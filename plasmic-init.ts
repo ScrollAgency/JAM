@@ -11,7 +11,6 @@ import {
 } from "plasmic-supabase";
 
 // Import des composants locaux
-import { AuthButton } from "./components/AuthButton";
 import { AuthForm } from "./components/AuthForm";
 import TextInput from "./components/TextInput";
 import Icons from "./components/icons";
@@ -31,6 +30,7 @@ import JobCard from "./components/jobCard/JobCard";
 import JobCardMap from "./components/JobCardMap";
 import UserTable from "./components/UserTable";
 import Checkbox from "./components/CheckBox";
+import AuthButton from "./components/ButtonGoogle";
 // import PlasmicSupabaseForm from "./components/PlasmicSupabaseForm";
 
 // Initialisation du loader Plasmic
@@ -52,7 +52,6 @@ PLASMIC.registerComponent(SupabaseUppyUploader, SupabaseUppyUploaderMeta);
 PLASMIC.registerComponent(SupabaseStorageGetSignedUrl, SupabaseStorageGetSignedUrlMeta);
 
 // Remplacement des composants
-PLASMIC.substituteComponent(AuthButton, "AuthButton");
 PLASMIC.substituteComponent(AuthForm, "AuthForm");
 
 
@@ -441,3 +440,45 @@ PLASMIC.registerComponent(Button, {
   },
   importPath: "./components/ButtonApple",
 });
+PLASMIC.registerComponent(AuthButton, {
+  name: "ButtonGoogle", // Nom du composant dans Plasmic
+  description: "Bouton pour se connecter avec Google",
+  props: {
+    label: "string",
+    icon: {
+      type: "choice",
+      defaultValue: "none",
+      options: ["start", "end", "only", "none"],
+      required: false,
+    },
+    destructive: "boolean",
+    hierarchy: {
+      type: "choice",
+      defaultValue: "primary",
+      options: ["primary", "secondary"],
+      required: false,
+    },
+    size: {
+      type: "choice",
+      defaultValue: "large",
+      options: ["small", "large"],
+      required: false,
+    },
+    state: {
+      type: "choice",
+      defaultValue: "default",
+      options: ["default", "hover", "focused", "disabled"],
+      required: false,
+    },
+    iconImage: "imageUrl",
+    className: "string",
+    onClick: {
+      type: "eventHandler",
+      description: "Fonction appelée lors du clic sur le bouton.",
+      argTypes: [],
+    },
+  },
+  importPath: "./components/ButtonGoogle",
+});
+console.log("Plasmic Project ID:", process.env.PLASMIC_PROJECT_ID);
+console.log("Plasmic API Token:", process.env.PLASMIC_TOKEN);

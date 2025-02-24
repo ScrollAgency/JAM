@@ -2,7 +2,6 @@ import React, { PropsWithChildren, useState, useEffect } from "react";
 import { cva } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 import "tailwindcss/tailwind.css";
-import Icons from "@/components/icons";
 
 interface TextInputProps extends PropsWithChildren {
   type?: "default" | "leading text" | "textarea" | "password" | "phone";
@@ -170,7 +169,6 @@ const TextInput = ({
         )}
       </div>
       <p className="text-black text-sm font-normal flex gap-1 items-center">
-        {destructive && <Icons.error />}
         {hint && (
           <span className={`flex-1 text-base ${destructive && "text-error-700"}`}>
             {hint}
