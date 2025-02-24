@@ -31,6 +31,7 @@ import JobCardMap from "./components/JobCardMap";
 import UserTable from "./components/UserTable";
 import Checkbox from "./components/CheckBox";
 import AuthButton from "./components/ButtonGoogle";
+import GoogleLoginButton from "./components/AuthButtonGoogle";
 // import PlasmicSupabaseForm from "./components/PlasmicSupabaseForm";
 
 // Initialisation du loader Plasmic
@@ -480,5 +481,9 @@ PLASMIC.registerComponent(AuthButton, {
   },
   importPath: "./components/ButtonGoogle",
 });
-console.log("Plasmic Project ID:", process.env.PLASMIC_PROJECT_ID);
-console.log("Plasmic API Token:", process.env.PLASMIC_TOKEN);
+
+PLASMIC.registerComponent(GoogleLoginButton, {
+  name: "AuthButtonGoogle",
+  props: {},
+  importPath: "./components/AuthButtonGoogle",
+});
