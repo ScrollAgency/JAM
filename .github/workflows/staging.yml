@@ -1,5 +1,5 @@
 name: Deploy to Staging
-
+    
 on:
   push:
     branches:
@@ -45,15 +45,6 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: Add .env file
-        run: |
-          echo "NODE_ENV=staging" >> .env
-          echo "API_URL=${{ secrets.API_URL }}" >> .env
-          echo "NEXT_PUBLIC_SUPABASE_URL=${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}" >> .env
-          echo "NEXT_PUBLIC_SUPABASE_ANON_KEY=${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}" >> .env
-          echo "NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN=${{ secrets.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN }}" >> .env
-          echo "PLASMIC_PROJECT_ID=${{ secrets.PLASMIC_PROJECT_ID }}" >> .env
-          echo "PLASMIC_TOKEN=${{ secrets.PLASMIC_TOKEN }}" >> .env
       - name: Build and push Docker image
         uses: docker/build-push-action@v4
         with:
@@ -75,19 +66,20 @@ jobs:
       - name: Login to Docker Hub on Staging Server
         run: |
           ssh -o StrictHostKeyChecking=no ubuntu@57.129.138.68 "
-          echo $DOCKERHUB_TOKEN | docker login -u $DOCKERHUB_USERNAME --password-stdin
+            echo $DOCKERHUB_TOKEN | docker login -u $DOCKERHUB_USERNAME --password-stdin
           "
         env:
           DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
           DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
-
+          
       - name: Deploy to Staging
         run: |
-          ssh -o StrictHostKeyChecking=no -T ubuntu@57.129.138.68 "
-          cd jam/staging &&
-          docker compose -f docker-compose.staging.yml pull &&
-          docker compose -f docker-compose.staging.yml up -d
+          ssh  -o StrictHostKeyChecking=no -T ubuntu@57.129.138.68 "
+            cd jam/staging &&
+            docker compose -f docker-compose.staging.yml pull &&
+            docker compose -f docker-compose.staging.yml up -d
           "
-          concurrency:
-            group: docker-build-${{ github.ref }}
-            cancel-in-progress: true
+
+    concurrency:
+      group: docker-build-${{ github.ref }}
+      cancel-in-progress: true
