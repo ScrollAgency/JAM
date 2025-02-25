@@ -1,5 +1,16 @@
 import { ensurePlasmicAppUser, PlasmicUser } from "@plasmicapp/auth-api";
 import { SupabaseClient } from "@supabase/auth-helpers-nextjs";
+import { createClient } from "@supabase/supabase-js";
+
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
+const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
+
+export const supabase = createClient(supabaseUrl, supabaseAnonKey, {
+  auth: {
+    persistSession: true, // Assure la persistance de la session
+    autoRefreshToken: true, // Rafraîchit le token automatiquement
+  },
+});
 
 // This is the secret that allows us to create users in the Plasmic API.
 // This should be kept secret and not exposed to the client.

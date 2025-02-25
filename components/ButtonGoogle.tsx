@@ -7,7 +7,7 @@ import React, {
 import { cn } from "@/lib/utils";
 import { cva } from "class-variance-authority";
 import Image from "next/image";
-import { supabase } from "../lib/supabaseClient"; // Ensure Supabase is correctly configured
+import { supabase } from "../lib/supabaseClient";
 
 type HTMLButtonProps = Pick<
     ButtonHTMLAttributes<HTMLButtonElement>,
@@ -23,7 +23,7 @@ interface ButtonProps extends HTMLButtonProps {
     state?: "default" | "hover" | "focused" | "disabled";
     iconImage?: string;
     className?: string;
-    authProvider?: "google" | "none"; // Added support for Google Auth
+    authProvider?: "google" | "none";
 }
 
 export interface ButtonActions {
@@ -59,7 +59,7 @@ const AuthButton = forwardRef<ButtonActions, ButtonProps>(
             if (authProvider === "google") {
                 event.preventDefault();
                 try {
-                    const { error } = await supabase.auth.signInWithOAuth({
+                    const { data, error } = await supabase.auth.signInWithOAuth({
                         provider: "google",
                         options: {
                             redirectTo: `${window.location.origin}/home`,
@@ -68,6 +68,8 @@ const AuthButton = forwardRef<ButtonActions, ButtonProps>(
 
                     if (error) {
                         console.error("Login error:", error.message);
+                    } else {
+                        console.log("Login successful:", data);
                     }
                 } catch (err) {
                     console.error("Unexpected error:", err);
@@ -122,16 +124,10 @@ const AuthButton = forwardRef<ButtonActions, ButtonProps>(
                 disabled={disabled}
                 className={cn(variants({ destructive, hierarchy, size, state }), className)}
             >
-                {icon === "start" && iconImage && (
+                {iconImage && (icon === "start" || icon === "end" || icon === "only") && (
                     <Image src={iconImage} alt="Icon" width={20} height={20} />
                 )}
                 {icon !== "only" && <span>{label}</span>}
-                {icon === "end" && iconImage && (
-                    <Image src={iconImage} alt="Icon" width={20} height={20} />
-                )}
-                {icon === "only" && iconImage && (
-                    <Image src={iconImage} alt="Icon" width={20} height={20} />
-                )}
             </button>
         );
     }
