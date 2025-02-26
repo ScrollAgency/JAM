@@ -3,22 +3,40 @@ import React, { useState } from "react";
 import Icons from "./icons";
 import ProgressBar from "./ProgressBar";
 
-const FileUploader = () => {
-  const [file, setFile] = useState<File | null>(new File([""], "TestFichier.pdf"));
-  const [progress, setProgress] = useState<number>(100);
+interface FileUploaderProps {
+  fileUrl?: string;
+  acceptedFormats?: string;
+  maxSize?: number;
+  onFileChange?: (file: File | null) => void;
+}
+
+const FileUploader: React.FC<FileUploaderProps> = ({
+  fileUrl,
+  acceptedFormats = ".pdf,.doc,.docx,.jpg",
+  maxSize = 2 * 1024 * 1024, // 2MB
+  onFileChange,
+}) => {
+  const [file, setFile] = useState<File | null>(null);
+  const [progress, setProgress] = useState<number>(0);
   const [hover, setHover] = useState<boolean>(false);
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
-      setFile(e.target.files[0]);
-      setProgress(0);
+      const selectedFile = e.target.files[0];
+      if (selectedFile.size > maxSize) {
+        alert("Le fichier dépasse la taille maximale autorisée.");
+        return;
+      }
+      setFile(selectedFile);
+      setProgress(100);
+      onFileChange?.(selectedFile);
     }
-    setProgress(100);
   };
 
   const handleFileRemove = () => {
     setFile(null);
     setProgress(0);
+    onFileChange?.(null);
   };
 
   const handleMouseEnter = () => setHover(true);
@@ -27,11 +45,10 @@ const FileUploader = () => {
   const handleFileUploadClick = () => {
     const input = document.createElement("input");
     input.type = "file";
-    input.accept = ".pdf,.doc,.docx,.jpg";
+    input.accept = acceptedFormats;
     input.onchange = (e) => handleFileChange(e as unknown as React.ChangeEvent<HTMLInputElement>);
     input.click();
   };
-
 
   return (
     <div
@@ -64,6 +81,7 @@ const FileUploader = () => {
                 <div className="flex items-start gap-4 flex-[1_0_0] self-stretch">
                   <div className="flex flex-col items-start gap-1 flex-[1_0_0]">
                     <div className="flex flex-col items-start self-stretch">
+                      {fileUrl && <img className="z-20 w-8" src={fileUrl} alt="file" />}
                       <p className="text-pine-500 text-sm font-medium">{file.name}</p>
                       <p className="text-gray-500 text-[10px] leading-[20px]">{fileSize(file.size)}</p>
                     </div>
@@ -93,7 +111,7 @@ const FileUploader = () => {
             {hover ? "Déposer un fichier ici..." : "Importer ou déposer un fichier"}
           </p>
           <p className={cn("text-center text-grey-700 text-xs leading-[18px]", hover && "hidden")}>
-            PDF, DOC, DOCX, JPG (max. 2Mo)
+            {acceptedFormats.replace(/,/g, ", ")} (max. {maxSize / 1024 / 1024}Mo)
           </p>
         </div>
       )}

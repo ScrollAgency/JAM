@@ -1,26 +1,31 @@
-This is a Next.js project bootstrapped with [`create-plasmic-app`](https://www.npmjs.com/package/create-plasmic-app).
 
-## Getting Started
+## 📊 Comparaison des versions des composants
 
-First, run the development server:
+| Composant                      | Version distante     | Version locale       |
+|--------------------------------|----------------------|----------------------|
+| CardSimple                     | 0.0.1                | 0.0.1                |
+| HeroCard                       | 0.0.1                | 0.0.1                |
+| CardComplex                    | 0.0.2                | 0.0.2                |
+| JamBadge                       | 0.0.1                | 0.0.1                |
+| Dropdown                       | 0.0.1                | 0.0.1                |
+| SitexButton                    | 0.0.1                | 0.0.1                |
+| ProgressBar                    | 0.0.1                | 0.0.1                |
+| SitexTextInput                 | 0.0.1                | 0.0.1                |
+| DropdownMultiSelect            | 0.0.1                | 0.0.1                |
+| ProfileBadge                   | 0.0.1                | 0.0.1                |
+| TextInput                      | 0.0.1                | 0.0.1                |
+| PasswordCheckIndicator         | 0.0.1                | 0.0.1                |
+| Toast                          | 0.0.1                | 0.0.1                |
+| Checkbox                       | 0.0.1                | 0.0.1                |
+| JamButton                      | 0.0.1                | 0.0.1                |
+| FileUploader                   | 0.0.1                | 0.0.1                |
+| JamTextInput                   | 0.0.1                | 0.0.1                |
+| SitexForm                      | 0.0.1                | 0.0.1                |
+| Toggle                         | 0.0.1                | 0.0.1                |
+| Map                            | N/A                  | 0.0.1                |
 
-```bash
-npm run dev
-```
 
-Open your browser to see the result.
+📍 Résultats de la comparaison :
 
-You can start editing your project in Plasmic Studio. The page auto-updates as you edit the project.
-
-## Learn More
-
-With Plasmic, you can enable non-developers on your team to publish pages and content into your website or app.
-
-To learn more about Plasmic, take a look at the following resources:
-
-- [Plasmic Website](https://www.plasmic.app/)
-- [Plasmic Documentation](https://docs.plasmic.app/learn/)
-- [Plasmic Community Forum](https://forum.plasmic.app/)
-
-You can check out [the Plasmic GitHub repository](https://github.com/plasmicapp/plasmic) - your feedback and contributions are welcome!
-
+🛠️  Nouveaux composants (locaux mais absents en distant) :
+- Map (0.0.1)

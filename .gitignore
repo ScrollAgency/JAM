@@ -29,6 +29,9 @@ yarn-error.log*
 .env*.local
 .env.local
 .env
+.env.staging
+.env.production
+.env.local-sasha
 
 # vercel
 .vercel
@@ -36,3 +39,5 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+.nmprc

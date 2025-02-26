@@ -9,10 +9,12 @@ const publicRoutes = [
     '/register-company',
     '/register',
     '/plasmic-host',
+    '/jobapplications',
     '/home',
+    '/my-account',
     '/forget-password',
     '/reset-password',
-    '/reset-password/[recovery_token]',
+    '/reset-password/[recovery_token]'
 ]
 
 
