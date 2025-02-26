@@ -18,14 +18,14 @@
 | Toast                          | 0.0.1                | 0.0.1                |
 | Checkbox                       | 0.0.1                | 0.0.1                |
 | JamButton                      | 0.0.1                | 0.0.1                |
+| Map                            | 0.0.1                | 0.0.2                |
 | FileUploader                   | 0.0.1                | 0.0.1                |
 | JamTextInput                   | 0.0.1                | 0.0.1                |
 | SitexForm                      | 0.0.1                | 0.0.1                |
 | Toggle                         | 0.0.1                | 0.0.1                |
-| Map                            | N/A                  | 0.0.1                |
 
 
 📍 Résultats de la comparaison :
 
-🛠️  Nouveaux composants (locaux mais absents en distant) :
-- Map (0.0.1)
+🔄 Mises à jour (version locale > version distante) :
+- Map (0.0.2 > 0.0.1)
