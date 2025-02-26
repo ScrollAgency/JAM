@@ -18,7 +18,7 @@
 | Toast                          | 0.0.1                | 0.0.1                |
 | Checkbox                       | 0.0.1                | 0.0.1                |
 | JamButton                      | 0.0.1                | 0.0.1                |
-| Map                            | 0.0.1                | 0.0.3                |
+| Map                            | 0.0.1                | 0.0.4                |
 | FileUploader                   | 0.0.1                | 0.0.1                |
 | JamTextInput                   | 0.0.1                | 0.0.1                |
 | SitexForm                      | 0.0.1                | 0.0.1                |
@@ -28,4 +28,4 @@
 📍 Résultats de la comparaison :
 
 🔄 Mises à jour (version locale > version distante) :
-- Map (0.0.3 > 0.0.1)
+- Map (0.0.4 > 0.0.1)
