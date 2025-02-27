@@ -29,6 +29,7 @@ jobs:
             npm ci
           else
             echo "Le répertoire 'tests' n'existe pas."
+            echo "Vérifier que le répertoire 'tests' existe et que npm install est exécuté correctement."
             exit 1
           fi
 
