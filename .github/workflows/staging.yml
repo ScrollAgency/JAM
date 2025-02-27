@@ -214,12 +214,7 @@ jobs:
         env:
           DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
           DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
-
-      - name: Copy .env file to staging server
-        run: |
-          scp -o StrictHostKeyChecking=no .env ubuntu@${{ secrets.SERVER_IP }}:${{ env.myapp }}/${{ env.environnement }}
-
-
+          
       # Étape 22 : Déployer sur le serveur staging
       - name: Deploy to Staging
         run: |

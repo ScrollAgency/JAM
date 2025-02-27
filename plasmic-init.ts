@@ -38,8 +38,8 @@ import GoogleLoginButton from "./components/AuthButtonGoogle";
 export const PLASMIC = initPlasmicLoader({
   projects: [
     {
-      id: process.env.PLASMIC_PROJECT_ID || "",  // ID du projet
-      token: process.env.PLASMIC_TOKEN || ""  // Token API pour le projet
+      id: process.env.PLASMIC_PROJECT_ID!,  // ID du projet
+      token: process.env.PLASMIC_TOKEN!  // Token API pour le projet
     }
   ], preview: true,
 });
