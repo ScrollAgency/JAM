@@ -24,8 +24,13 @@ jobs:
       # Étape 3 : Installer les dépendances
       - name: Install dependencies
         run: |
-          cd tests
-          npm ci
+          if [ -d "./tests" ]; then
+            cd tests
+            npm ci
+          else
+            echo "Le répertoire 'tests' n'existe pas."
+            exit 1
+          fi
 
       # Étape 4 : Création du cache npm
       - name: Cache NPM dependencies
