@@ -7,7 +7,7 @@ if [[ "$BRANCH" == "staging" ]]; then
 elif [[ "$BRANCH" == "production" ]]; then
   cp .env.production .env
 elif [[ "$BRANCH" == "local-sasha" ]]; then
-  cp .env.local-gael .env
+  cp .env.local-sasha .env
 fi
 
 echo "✅ Fichier .env mis à jour pour la branche $BRANCH"
