@@ -195,6 +195,8 @@ jobs:
             NODE_AUTH_TOKEN=${{ secrets.PLASMICLIBRARY_TOKEN }}
             NEXT_PUBLIC_PLASMIC_PROJECT_ID=${{ secrets.NEXT_PUBLIC_PLASMIC_PROJECT_ID }}
             NEXT_PUBLIC_PLASMIC_PROJECT_TOKEN=${{ secrets.NEXT_PUBLIC_PLASMIC_PROJECT_TOKEN }}
+            NEXT_PUBLIC_SUPABASE_URL=${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
+            NEXT_PUBLIC_SUPABASE_ANON_KEY=${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
           tags: |
             ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.myapp }}:${{ env.environnement }}
             ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.myapp }}:${{ github.sha }}
