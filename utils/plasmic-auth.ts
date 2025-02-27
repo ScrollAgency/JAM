@@ -2,10 +2,10 @@ import { ensurePlasmicAppUser, PlasmicUser } from "@plasmicapp/auth-api";
 import { SupabaseClient } from "@supabase/auth-helpers-nextjs";
 import { createClient } from "@supabase/supabase-js";
 
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
+const supabaseUrl2 = process.env.NEXT_PUBLIC_SUPABASE_URL!;
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
 
-export const supabase = createClient(supabaseUrl, supabaseAnonKey, {
+export const supabase = createClient(supabaseUrl2, supabaseAnonKey, {
   auth: {
     persistSession: true, // Assure la persistance de la session
     autoRefreshToken: true, // Rafraîchit le token automatiquement

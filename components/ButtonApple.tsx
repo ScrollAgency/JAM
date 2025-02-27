@@ -10,14 +10,14 @@ import Image from "next/image";
 import { createClient } from "@supabase/supabase-js";
 
 // Ensure environment variables are defined
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+const supabaseUrl3 = process.env.NEXT_PUBLIC_SUPABASE_URL;
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
-if (!supabaseUrl || !supabaseAnonKey) {
+if (!supabaseUrl3 || !supabaseAnonKey) {
     throw new Error("Missing Supabase environment variables");
 }
 
-const supabase = createClient(supabaseUrl, supabaseAnonKey);
+const supabase = createClient(supabaseUrl3, supabaseAnonKey);
 
 type HTMLButtonProps = Pick<
     ButtonHTMLAttributes<HTMLButtonElement>,

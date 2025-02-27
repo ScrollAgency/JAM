@@ -16,10 +16,10 @@ interface JobApplicationTableProps {
     className?: string;
 }
 
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL as string;
+const supabaseUrl4 = process.env.NEXT_PUBLIC_SUPABASE_URL as string;
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY as string;
 
-const supabase = createClient(supabaseUrl, supabaseAnonKey);
+const supabase = createClient(supabaseUrl4, supabaseAnonKey);
 
 const getImageUrl = (bucket: string, path: string) => {
     return supabase.storage.from(bucket).getPublicUrl(path).data.publicUrl;
