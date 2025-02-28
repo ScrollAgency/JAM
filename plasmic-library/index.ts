@@ -1,5 +1,5 @@
-const componentsContext = require.context('@/components', true, /\.tsx$/);
-const metaContext = require.context("./",true,/\.meta\.ts$/);
+const componentsContext = (require as any).context('@/components', true, /\.tsx$/);
+const metaContext = (require as any).context("./", true, /\.meta\.ts$/);
 
 interface ComponentMeta {
   name: string;
@@ -15,19 +15,19 @@ const components: Record<string, React.ComponentType<any>> = {};
 const componentsMeta: any[] = [];
 
 // Charger et enregistrer tous les composants
-componentsContext.keys().forEach((key) => {
-    const component = componentsContext(key) as { default: React.ComponentType<any> };
-    const componentName = key
-      .replace(/^.+\//, '') // Supprime les chemins d'accès
-      .replace(/\.\w+$/, ''); // Supprime l'extension
-  
-    components[componentName] = component.default;
-  });
+componentsContext.keys().forEach((key: string) => {
+  const component = componentsContext(key) as { default: React.ComponentType<any> };
+  const componentName = key
+    .replace(/^.+\//, '') // Supprime les chemins d'accès
+    .replace(/\.\w+$/, ''); // Supprime l'extension
+
+  components[componentName] = component.default;
+});
 
 // Charger les métadonnées
-metaContext.keys().forEach((key) => {
-    const meta = metaContext(key) as { default: ComponentMeta };
-    componentsMeta.push(meta.default);
+metaContext.keys().forEach((key: string) => {
+  const meta = metaContext(key) as { default: ComponentMeta };
+  componentsMeta.push(meta.default);
 });
 
 export { components, componentsMeta };
