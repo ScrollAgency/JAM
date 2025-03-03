@@ -161,33 +161,12 @@ const MapboxMap: React.FC<MapboxMapProps> = ({
 
       Object.values(markersRef.current).forEach((marker) => marker.remove());
       markersRef.current = {};
-
       for (const business of businesses) {
         const coords = await geocodeAddress(business.location);
         if (coords) {
           const markerElement = document.createElement('div');
-          markerElement.className = 'custom-marker';
-          let markerIcon = iconUrl || '/default-marker.png';
-          switch (business.state) {
-            case 'base':
-              markerIcon = "https://idwomihieftgogbgivic.supabase.co/storage/v1/object/public/img/Marker/State=PinApplied,%20ShowSalary=False.svg";
-              break;
-            case 'liked':
-              markerIcon = "https://idwomihieftgogbgivic.supabase.co/storage/v1/object/public/img/Marker/State=PinLiked,%20ShowSalary=False.svg";
-              break;
-            case 'new':
-              markerIcon = "https://idwomihieftgogbgivic.supabase.co/storage/v1/object/public/img/Marker/State=PinNew,%20ShowSalary=False.svg";
-              break;
-            case 'last_minute':
-              markerIcon = "https://idwomihieftgogbgivic.supabase.co/storage/v1/object/public/img/Marker/State=PinLastMin,%20ShowSalary=False.svg";
-              break;
-            case 'applied':
-              markerIcon = "https://idwomihieftgogbgivic.supabase.co/storage/v1/object/public/img/Marker/State=PinApplied,%20ShowSalary=False.svg";
-              break;
-            default:
-              markerIcon = "https://idwomihieftgogbgivic.supabase.co/storage/v1/object/public/img/Marker/State=PinApplied,%20ShowSalary=False.svg";
-          }
-          markerElement.style.backgroundImage = `url(${markerIcon})`;
+          markerElement.className = `custom-marker ${business.state}`;
+
           const currentZoom = mapRef.current?.getZoom() || zoom;
           const size = calculateMarkerSize(currentZoom);
           markerElement.style.width = `${size}px`;
@@ -199,7 +178,6 @@ const MapboxMap: React.FC<MapboxMapProps> = ({
             const userCoords = [userLocation.longitude, userLocation.latitude];
             const businessCoords = coords;
             const url = `https://api.mapbox.com/directions/v5/mapbox/driving/${userCoords.join(',')};${businessCoords.join(',')}?access_token=${mapboxgl.accessToken}`;
-
             try {
               const response = await fetch(url);
               const data = await response.json();
@@ -212,26 +190,28 @@ const MapboxMap: React.FC<MapboxMapProps> = ({
               console.error('Erreur de calcul du temps de trajet:', error);
             }
           }
-
           const popupHtml = `
             <div class="popup-content">
-            <div class="popup-header">
-            <p>${business.state}</p>
-              <img src="${business.company_logo || iconUrl || 'https://idwomihieftgogbgivic.supabase.co/storage/v1/object/public/img//64527ea280c2622554fb4698_logo-scroll.svg'}" alt="${business.title}" />
+              <div class="popup-header">
+              ${business.state === 'new' ? '<div class="popup-img"><img src="https://idwomihieftgogbgivic.supabase.co/storage/v1/object/public/img/ph_clock-countdown-fill.svg"/>Nouveau</div>' : ''}
+              ${business.state === 'last_minute' ? '<div class="popup-img">Dernière minute</div>' : ''}
+              ${business.state === 'liked' ? '<div class="popup-img">Favori</div>' : ''}
+              ${business.state === 'applied' ? '<div class="p-1.2 pr-2.5 h-10 rounded-br-lg  absolute top-0 left-0 items-center popup-img flex bg-black align-center justify-content-center gap-10px"><img class="w-1/8 " src="https://idwomihieftgogbgivic.supabase.co/storage/v1/object/public/img/ph_clock-countdown-fill.svg"/><p>POSTULÉ</p></div>' : ''}
+              <img src="${business.company_logo || iconUrl || 'https://idwomihieftgogbgivic.supabase.co/storage/v1/object/public/img/64527ea280c2622554fb4698_logo-scroll.svg'}" alt="${business.title}" style="border-radius: 8px;" />
               <h3>${business.title}</h3>
-            </div>
-            ${business.annonce ? `<div class="popup-badge">Annonce</div>` : ''}
-            <div class="popup-info">
+              </div>
+              ${business.annonce ? `<div class="popup-badge">Annonce</div>` : ''}
+              <div class="popup-info">
               <div><strong>Adresse:</strong> ${business.location}</div>
               <div><strong>Website:</strong> <a href="${business.company_website || '#'}" target="_blank">${business.company_website || 'N/A'}</a></div>
               <div><strong>Temps de trajet:</strong> ${travelTime}</div>
               <div><strong>Secteur d'activité:</strong> ${business.sector || 'N/A'}</div>
               <div><strong>Type de contrat:</strong> ${business.contract_type || 'N/A'}</div>
-              <div><strong>Temps de travail:</strong> ${business.hours_per_week || 'N/A'}<strong>H par semaine</strong></div>
+              <div><strong>Temps de travail:</strong> ${business.hours_per_week || 'N/A'} <strong>H par semaine</strong></div>
               <div><strong>Début travail:</strong> ${business.start_date ? new Date(business.start_date).toLocaleDateString() : 'N/A'}</div>
               <div><strong>Salaire:</strong> ${business.salary || 'N/A'}</div>
               <div><strong>Mode de travail:</strong> ${business.way_of_working || 'N/A'}</div>
-            </div>
+              </div>
             </div>
             `;
 
@@ -285,7 +265,6 @@ const MapboxMap: React.FC<MapboxMapProps> = ({
         });
       }
     };
-
     handleSearch();
   }, [searchAddress, geocodeAddress, mapLoaded]);
 
@@ -301,6 +280,21 @@ const MapboxMap: React.FC<MapboxMapProps> = ({
           .custom-marker:hover {
             transform: scale(1.8);
           }
+          .custom-marker.base {
+            background-image: url('https://idwomihieftgogbgivic.supabase.co/storage/v1/object/public/img/Marker/State=PinApplied,%20ShowSalary=False.svg');
+          }
+          .custom-marker.liked {
+            background-image: url('https://idwomihieftgogbgivic.supabase.co/storage/v1/object/public/img/Marker/State=PinLiked,%20ShowSalary=False.svg');
+          }
+          .custom-marker.new {
+            background-image: url('https://idwomihieftgogbgivic.supabase.co/storage/v1/object/public/img/Marker/State=PinNew,%20ShowSalary=False.svg');
+          }
+          .custom-marker.last_minute {
+            background-image: url('https://idwomihieftgogbgivic.supabase.co/storage/v1/object/public/img/Marker/State=PinLastMin,%20ShowSalary=False.svg');
+          }
+          .custom-marker.applied {
+            background-image: url('https://idwomihieftgogbgivic.supabase.co/storage/v1/object/public/img/Marker/State=PinApplied,%20ShowSalary=False.svg');
+          }
           .mapboxgl-popup-content {
             width: 400px;
             font-family: 'Arial', sans-serif;
@@ -311,6 +305,30 @@ const MapboxMap: React.FC<MapboxMapProps> = ({
             position: relative;
             line-height: 0.5;
             z-index: 9999;
+            border: 1px solid #FF4D84;
+            overflow: hidden;
+          }
+          .mapboxgl-popup-close-button {
+            display: none;
+          }
+          .mapboxgl-popup-content .state {
+            background: #FF4D84;
+            position: absolute;
+            top: -4px;
+            left: 0px;
+            color: #fff;
+            padding: 8px 8px;
+            border-radius: 0 0 12px 0;
+            font-size: 12px;
+          }
+          .mapboxgl-popup-img{
+            display: flex;
+            background: #000000;
+          }
+          .mapboxgl-popup-content img {
+            width: 50%;
+            height: auto;
+            border-radius: 8px;
           }
           .mapboxgl-popup-content h3 {
             font-size: 18px;
@@ -369,6 +387,9 @@ const MapboxMap: React.FC<MapboxMapProps> = ({
           .popup-info div img {
             width: 14px;
             height: 14px;
+          }
+            .mapboxgl-ctrl-bottom-right {
+            display: none;
           }
         `}
       </style>
