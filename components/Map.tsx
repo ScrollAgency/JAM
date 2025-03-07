@@ -204,8 +204,8 @@ const MapboxMap: React.FC<MapboxMapProps> = ({
               <h3>${business.title}</h3>
               </div>
               ${business.annonce ? `<div class="popup-badge">Annonce</div>` : ''}
-              <div class="popup-info relative pt-10">
-              <div class="absolute adress top-0 left-0 bg-[#ffffff]"><img src="//idwomihieftgogbgivic.supabase.co/storage/v1/object/public/img/ph_map-pin.svg"/><p> ${business.location},</p> <a class="color-[#000000] mr-20" href="${business.company_website || '#'}" target="_blank"> ${removeHttps(business.company_website) || 'N/A'}</a><p class="ml-5">${travelTime}</p></div>
+              <div class="popup-info relative pt-18">
+              <div class="absolute adress top-0 left-0 bg-[#ffffff]"><img src="//idwomihieftgogbgivic.supabase.co/storage/v1/object/public/img/ph_map-pin.svg"/><p class="w-full"> ${business.location},</p> <a class="color-[#000000] " href="${business.company_website || '#'}" target="_blank"> ${removeHttps(business.company_website) || 'N/A'}</a><p class="ml-5">${travelTime}</p></div>
               <div><img src="https://idwomihieftgogbgivic.supabase.co/storage/v1/object/public/img//ph_briefcase.svg" > ${business.sector || 'N/A'}</div>
               <div><img src="https://idwomihieftgogbgivic.supabase.co/storage/v1/object/public/img//ph_file-text.svg" >${business.contract_type || 'N/A'}</div>
               <div><img src="https://idwomihieftgogbgivic.supabase.co/storage/v1/object/public/img//ph_clock-countdown.svg"> ${business.start_date ? new Date(business.start_date).toLocaleDateString() : 'N/A'}</div>
@@ -368,6 +368,7 @@ const MapboxMap: React.FC<MapboxMapProps> = ({
             align-items: center;
             gap: 13px!important;
             height: 30px;
+            text-align: center;
           }
           .popup-header img {
             width: 20px;
@@ -424,6 +425,7 @@ const MapboxMap: React.FC<MapboxMapProps> = ({
             padding-right:5%;
             color: #000000!important;
             font-decoration: none!important;
+            width: 100%;
         }
             .adress a, .adress p {
             color: #000000!important;
@@ -431,6 +433,9 @@ const MapboxMap: React.FC<MapboxMapProps> = ({
             transition: 0.3s;
             font-weight: bold;
             font-size: 12px;
+            width: 100%;
+            display: inline-block;
+            line-height: 1;
         }
             .adress a:hover {
             text-decoration: underline!important;
@@ -441,7 +446,7 @@ const MapboxMap: React.FC<MapboxMapProps> = ({
       <div
         ref={mapContainerRef}
         className={`mapbox-map ${className}`}
-        style={{ width: '100%', height: '500px', borderRadius: '16px', position: 'relative' }}
+        style={{ width: '100%', height: '100%', borderRadius: '16px', position: 'relative' }}
       />
     </>
   );
