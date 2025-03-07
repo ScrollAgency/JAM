@@ -312,6 +312,7 @@ PLASMIC.registerComponent(Map, {
     iconUrl: "imageUrl",
     searchAddress: "string",
     zoom: "number",
+    className: "string",
     businesses: {
       type: "object",
       defaultValue: [],
