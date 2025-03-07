@@ -306,13 +306,13 @@ PLASMIC.registerComponent(Option, {
 PLASMIC.registerComponent(Map, {
   name: "Map",
   props: {
+    className: "string",
     mapStyle: "string",
     latitude: "number",
     longitude: "number",
     iconUrl: "imageUrl",
     searchAddress: "string",
     zoom: "number",
-    className: "string",
     businesses: {
       type: "object",
       defaultValue: [],

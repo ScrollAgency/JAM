@@ -24,7 +24,7 @@ interface MapboxMapProps {
   longitude?: number;
   zoom?: number;
   businesses?: BusinessProperties[];
-  className?: string;
+  className: string;
   searchAddress?: string;
   iconUrl?: string;
 }
@@ -38,7 +38,7 @@ const MapboxMap: React.FC<MapboxMapProps> = ({
   longitude = 2.3522,
   zoom = 9,
   businesses = [],
-  className = '',
+  className,
   searchAddress = '',
   iconUrl = '',
 }) => {
