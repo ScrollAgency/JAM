@@ -28,6 +28,9 @@ interface MapboxMapProps {
   searchAddress?: string;
   iconUrl?: string;
 }
+function removeHttps(url: any): string {
+  return url.replace(/^https:\/\//, '');
+}
 
 const MapboxMap: React.FC<MapboxMapProps> = ({
   mapStyle = 'mapbox://styles/mapbox/streets-v11',
@@ -192,25 +195,23 @@ const MapboxMap: React.FC<MapboxMapProps> = ({
           }
           const popupHtml = `
             <div class="popup-content">
-              <div class="popup-header">
-              ${business.state === 'new' ? '<div class="popup-img"><img src="https://idwomihieftgogbgivic.supabase.co/storage/v1/object/public/img/ph_clock-countdown-fill.svg"/>Nouveau</div>' : ''}
+              <div class="popup-header" style="align-items: center;">
+              ${business.state === 'new' ? '<div class="popup-img"><img src="//idwomihieftgogbgivic.supabase.co/storage/v1/object/public/img/ph_clock-countdown-fill.svg"/>Nouveau</div>' : ''}
               ${business.state === 'last_minute' ? '<div class="popup-img">Dernière minute</div>' : ''}
               ${business.state === 'liked' ? '<div class="popup-img">Favori</div>' : ''}
-              ${business.state === 'applied' ? '<div class="p-1.2 pr-2.5 h-10 rounded-br-lg  absolute top-0 left-0 items-center popup-img flex bg-black align-center justify-content-center gap-10px"><img class="w-1/8 " src="https://idwomihieftgogbgivic.supabase.co/storage/v1/object/public/img/ph_clock-countdown-fill.svg"/><p>POSTULÉ</p></div>' : ''}
-              <img src="${business.company_logo || iconUrl || 'https://idwomihieftgogbgivic.supabase.co/storage/v1/object/public/img/64527ea280c2622554fb4698_logo-scroll.svg'}" alt="${business.title}" style="border-radius: 8px;" />
+              ${business.state === 'applied' ? '<div class="popup-header w-1/3 pl-1 p-1.2 h-10 rounded-br-lg color-white absolute top-0 left-0 items-center popup-img flex bg-gradient-to-b from-[#FF4D84] to-[#F36320] align-center justify-content-center gap-10px"><img class="w-1/8" src="//idwomihieftgogbgivic.supabase.co/storage/v1/object/public/img/ph_clock-countdown-fill.svg"/><p class="text-[#ffffff]">POSTULÉ</p></div>' : ''}
+              <img class="business_logo" src="${business.company_logo || iconUrl || '//idwomihieftgogbgivic.supabase.co/storage/v1/object/public/img/64527ea280c2622554fb4698_logo-scroll.svg'}" alt="${business.title}" style="border-radius: 8px;" />
               <h3>${business.title}</h3>
               </div>
               ${business.annonce ? `<div class="popup-badge">Annonce</div>` : ''}
-              <div class="popup-info">
-              <div><strong>Adresse:</strong> ${business.location}</div>
-              <div><strong>Website:</strong> <a href="${business.company_website || '#'}" target="_blank">${business.company_website || 'N/A'}</a></div>
-              <div><strong>Temps de trajet:</strong> ${travelTime}</div>
-              <div><strong>Secteur d'activité:</strong> ${business.sector || 'N/A'}</div>
-              <div><strong>Type de contrat:</strong> ${business.contract_type || 'N/A'}</div>
-              <div><strong>Temps de travail:</strong> ${business.hours_per_week || 'N/A'} <strong>H par semaine</strong></div>
-              <div><strong>Début travail:</strong> ${business.start_date ? new Date(business.start_date).toLocaleDateString() : 'N/A'}</div>
-              <div><strong>Salaire:</strong> ${business.salary || 'N/A'}</div>
-              <div><strong>Mode de travail:</strong> ${business.way_of_working || 'N/A'}</div>
+              <div class="popup-info relative pt-10">
+              <div class="absolute adress top-0 left-0 bg-[#ffffff]"><img src="//idwomihieftgogbgivic.supabase.co/storage/v1/object/public/img/ph_map-pin.svg"/><p> ${business.location},</p> <a class="color-[#000000] mr-20" href="${business.company_website || '#'}" target="_blank"> ${removeHttps(business.company_website) || 'N/A'}</a><p class="ml-5">${travelTime}</p></div>
+              <div><img src="https://idwomihieftgogbgivic.supabase.co/storage/v1/object/public/img//ph_briefcase.svg" > ${business.sector || 'N/A'}</div>
+              <div><img src="https://idwomihieftgogbgivic.supabase.co/storage/v1/object/public/img//ph_file-text.svg" >${business.contract_type || 'N/A'}</div>
+              <div><img src="https://idwomihieftgogbgivic.supabase.co/storage/v1/object/public/img//ph_clock-countdown.svg"> ${business.start_date ? new Date(business.start_date).toLocaleDateString() : 'N/A'}</div>
+              <div><img src="https://idwomihieftgogbgivic.supabase.co/storage/v1/object/public/img//ph_clock.svg"> ${business.hours_per_week || 'N/A'} H par semaine</div>
+              <div><img src="https://idwomihieftgogbgivic.supabase.co/storage/v1/object/public/img//ph_coins-light.svg">${business.salary || 'N/A'}€</div>
+              <div><img src="https://idwomihieftgogbgivic.supabase.co/storage/v1/object/public/img//ph_office-chair.svg"> ${business.way_of_working || 'N/A'}</div>
               </div>
             </div>
             `;
@@ -272,7 +273,11 @@ const MapboxMap: React.FC<MapboxMapProps> = ({
     <>
       <style>
         {`
-          .custom-marker {
+        @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+        * {
+          font-family: 'DM Sans', sans-serif;
+        }
+        .custom-marker {
             border: none;
             cursor: pointer;
             transition: width 0.3s ease, height 0.3s ease;
@@ -296,10 +301,10 @@ const MapboxMap: React.FC<MapboxMapProps> = ({
             background-image: url('https://idwomihieftgogbgivic.supabase.co/storage/v1/object/public/img/Marker/State=PinApplied,%20ShowSalary=False.svg');
           }
           .mapboxgl-popup-content {
-            width: 400px;
+            width: 350px;
             font-family: 'Arial', sans-serif;
             background: #fff;
-            border-radius: 12px;
+            border-radius: 16px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
             padding: 16px;
             position: relative;
@@ -326,8 +331,8 @@ const MapboxMap: React.FC<MapboxMapProps> = ({
             background: #000000;
           }
           .mapboxgl-popup-content img {
-            width: 50%;
-            height: auto;
+            width: 10%;
+            height: 10%;
             border-radius: 8px;
           }
           .mapboxgl-popup-content h3 {
@@ -335,10 +340,10 @@ const MapboxMap: React.FC<MapboxMapProps> = ({
             font-weight: bold;
             margin-bottom: 8px;
             color: #333;
+            width: 70%;
           }
           .mapboxgl-popup-content p {
             font-size: 14px;
-            color: #555;
             margin: 4px 0;
           }
           .mapboxgl-popup-content a {
@@ -360,26 +365,48 @@ const MapboxMap: React.FC<MapboxMapProps> = ({
             margin-bottom: 10px;
           }
           .popup-header {
-            display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 13px!important;
+            height: 30px;
           }
           .popup-header img {
-            width: 40px;
-            height: 40px;
+            width: 20px;
+            height: 20px;
             object-fit: fit;
           }
+          .popup-header h3 {
+            font-size: 20px;
+            font-weight: bold;
+            position:absolute;
+            top:100px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 70%;
+          }
+            .business_logo {
+            width: 100px!important;
+            height: 100px!important;
+            border-radius: 8px;
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+          }
           .popup-info {
+            margin-top: 40px;
             display: flex;
             flex-wrap: wrap;
             gap: 6px;
+            padding-left:2.5%;
+            padding-right:2.5%;
           }
           .popup-info div {
-            background: #f5f5f5;
+            background: #F4F4F4;
             padding: 6px 10px;
-            border-radius: 6px;
+            border-radius: 16px;
             font-size: 12px;
-            color: #666;
+            font-weight: bold;
+            color: #000;
             display: flex;
             align-items: center;
             gap: 4px;
@@ -391,6 +418,24 @@ const MapboxMap: React.FC<MapboxMapProps> = ({
             .mapboxgl-ctrl-bottom-right {
             display: none;
           }
+            .adress {
+            background: #ffffff!important;
+            padding-left:5%;
+            padding-right:5%;
+            color: #000000!important;
+            font-decoration: none!important;
+        }
+            .adress a, .adress p {
+            color: #000000!important;
+            text-decoration: none!important;
+            transition: 0.3s;
+            font-weight: bold;
+            font-size: 12px;
+        }
+            .adress a:hover {
+            text-decoration: underline!important;
+            transition: 0.3s;
+        }
         `}
       </style>
       <div
