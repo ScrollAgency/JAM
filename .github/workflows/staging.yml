@@ -117,9 +117,12 @@ jobs:
       # Étape 12 : Installer les navigateurs Playwright
       - name: Install Playwright Browsers
         run: |
+          npm uninstall -g playwright
           npm install
           npm ci
           npx playwright install --with-deps
+          npx playwright cache clear
+
           
 
       # Étape 12 : Exécuter les tests Playwright
