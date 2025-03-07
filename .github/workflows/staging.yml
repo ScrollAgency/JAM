@@ -118,6 +118,7 @@ jobs:
       - name: Install Playwright Browsers
         run: |
           npm ci
+          pwsh bin/Debug/net6.0/playwright.ps1 install
           npx playwright install --with-deps
           
 
