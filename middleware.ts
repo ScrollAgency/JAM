@@ -3,6 +3,7 @@ import { NextResponse, type NextRequest } from 'next/server'
 
 const loginPage = '/login'
 
+// Liste des routes accessibles sans authentification
 const publicRoutes = [
     '/login',
     '/register-candidat',
@@ -15,12 +16,11 @@ const publicRoutes = [
     '/reset-password/[recovery_token]',
 ]
 
-
 export async function middleware(request: NextRequest) {
-    let supabaseResponse = NextResponse.next({
-        request,
-    })
+    // Préparer la réponse Next.js
+    let supabaseResponse = NextResponse.next()
 
+    // Créer le client Supabase SSR
     const supabase = createServerClient(
         process.env.NEXT_PUBLIC_SUPABASE_URL!,
         process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
@@ -30,36 +30,38 @@ export async function middleware(request: NextRequest) {
                     return request.cookies.getAll()
                 },
                 setAll(cookiesToSet) {
-                    cookiesToSet.forEach(({ name, value, options }) => request.cookies.set(name, value))
-                    supabaseResponse = NextResponse.next({
-                        request,
-                    })
-                    cookiesToSet.forEach(({ name, value, options }) =>
+                    // On met à jour les cookies dans la réponse
+                    cookiesToSet.forEach(({ name, value, options }) => {
                         supabaseResponse.cookies.set(name, value, options)
-                    )
+                    })
                 },
             },
         }
     )
+
+    // Récupère l'utilisateur connecté
     const {
         data: { user },
     } = await supabase.auth.getUser()
 
-    const isPublicRoute = publicRoutes.some(route => {
+    // Vérifie si la route est publique
+    const isPublicRoute = publicRoutes.some((route) => {
         if (route.includes('[recovery_token]')) {
-            const regex = new RegExp(`^${route.replace('[recovery_token]', '(.*)')}$`)
+            const regex = new RegExp(`^${route.replace('[recovery_token]', '.*')}$`)
             return regex.test(request.nextUrl.pathname)
         }
         return route === request.nextUrl.pathname
     })
 
+    // Si ce n'est pas une route publique et que l'utilisateur n'est pas connecté ➜ redirige vers login
     if (!isPublicRoute && !user) {
         const url = request.nextUrl.clone()
         url.pathname = loginPage
         return NextResponse.redirect(url)
-    } else {
-        return supabaseResponse
     }
+
+    // Sinon, retourne la réponse avec les cookies
+    return supabaseResponse
 }
 
 export const config = {

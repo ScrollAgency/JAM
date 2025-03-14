@@ -31,6 +31,7 @@ import JobCardMap from "./components/JobCardMap";
 import UserTable from "./components/UserTable";
 import Checkbox from "./components/CheckBox";
 import AuthButton from "./components/ButtonGoogle";
+import ButtonApple from "./components/ButtonApple";
 import GoogleLoginButton from "./components/AuthButtonGoogle";
 // import PlasmicSupabaseForm from "./components/PlasmicSupabaseForm";
 
@@ -403,7 +404,7 @@ PLASMIC.registerComponent(UserTable, {
 });
 
 //Enregistrement du composant ButtonApple
-PLASMIC.registerComponent(Button, {
+PLASMIC.registerComponent(ButtonApple, {
   name: "ButtonApple", // Nom du composant dans Plasmic
   props: {
     label: "string",
@@ -442,6 +443,7 @@ PLASMIC.registerComponent(Button, {
   },
   importPath: "./components/ButtonApple",
 });
+
 PLASMIC.registerComponent(AuthButton, {
   name: "ButtonGoogle", // Nom du composant dans Plasmic
   description: "Bouton pour se connecter avec Google",
