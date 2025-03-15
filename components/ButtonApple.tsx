@@ -68,6 +68,9 @@ const ButtonApple = forwardRef<ButtonActions, ButtonProps>(
         const handleAppleSignIn = async () => {
             const { error } = await supabase.auth.signInWithOAuth({
                 provider: "apple",
+                options: {
+                    redirectTo: `${window.location.origin}/home`,
+                },
             });
             if (error) {
                 console.error("Error signing in with Apple:", error.message);
