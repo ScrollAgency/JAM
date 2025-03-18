@@ -1,7 +1,6 @@
 import { cn } from "@/lib/utils";
 import { cva } from "class-variance-authority";
 import React, { useState } from "react";
-import { X } from "lucide-react"; // Icône de croix
 
 interface CheckboxProps {
   checked?: boolean;

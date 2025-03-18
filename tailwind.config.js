@@ -1,12 +1,15 @@
+const { heroui } = require("@heroui/react");
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
-
-    // Or if using `src` directory:
-    "./src/**/*.{js,ts,jsx,tsx,mdx}",
+    "./plasmic-library/**/*.{js,ts,jsx,tsx,mdx}",
+    "./node_modules/@heroui/react/dist/**/*.{js,ts,jsx,tsx}",
+    "./node_modules/@heroui/theme/dist/**/*.{js,ts,jsx,tsx}",
+    "./src/**/*.{js,ts,jsx,tsx,mdx}", // Si tu utilises `src/`
   ],
   theme: {
     extend: {
@@ -65,10 +68,14 @@ module.exports = {
         },
         danger: {
           background: "#FCF1F1",
-          border: "F0A5A3",
-          text: "AB3832",
+          border: "#F0A5A3",
+          text: "#AB3832",
         },
-        warning: { background: "#FDF9EB", border: "#F7D165", text: "#AD5B2B" },
+        warning: {
+          background: "#FDF9EB",
+          border: "#F7D165",
+          text: "#AD5B2B",
+        },
         success: {
           background: "#F1FBF3",
           border: "#99E4A4",
@@ -82,5 +89,5 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [heroui()],
 };

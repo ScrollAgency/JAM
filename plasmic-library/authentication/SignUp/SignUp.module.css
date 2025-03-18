@@ -1,0 +1,80 @@
+/* SignUp.module.css */
+
+/* Styles généraux */
+.signUpCard {
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  max-width: 400px;
+  text-align: center;
+}
+
+.title {
+  margin-bottom: 16px;
+  font-weight: bold;
+}
+
+.subTitle {
+  margin-bottom: 16px;
+  font-size: 14px;
+  color: #777;
+}
+
+/* Formulaire */
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+}
+
+.input {
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+.input:focus {
+  border-color: var(--sand200Borders);
+}
+
+.passwordStrength {
+  display: flex;
+  gap: 4px;
+}
+
+.passwordStrength div {
+  height: 5px;
+  width: 25%;
+}
+
+.valid {
+  background-color: green;
+}
+
+.invalid {
+  background-color: red;
+}
+
+.checkboxGroup {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.submitButton {
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.submitButton:hover {
+  background-color: #0056b3;
+}
