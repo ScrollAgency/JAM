@@ -1,192 +1,101 @@
 import * as React from "react";
 import type { HTMLElementRefOf } from "@plasmicapp/react-web";
-import styles from "./ForgotPassword.module.css";
-import { useCallback, useEffect, useState } from "react";
-import { tokens } from "@/styles/design-tokens";
+import { useState } from "react";
+import { presets } from "@/styles/presets";
+import Link from "next/link";  
 
 export interface ForgotPasswordProps {
-  width?: string;
-  height?: string;
-  padding?: string;
-  borderRadius?: string;
-  rowGap?: string;
-
-  title?: string;
-  titleFont?: string;
-  titleSize?: string;
-  titleColor?: string;
-  titleAlign?: "left" | "center" | "right";
-
-  showLabels?: boolean;
-  emailLabel?: string;
-  inputFont?: string;
-  inputSize?: string;
-  inputColor?: string;
-  labelColor?: string;
-  inputBorderRadius?: string;
-  inputBorderColor?: string;
-  placeholderEmail?: string;
-
-  email?: string;
-  onEmailChange?: (value: string) => void;
-
-  submitButtonText?: string;
-  submitFont?: string;
-  submitSize?: string;
-  submitColor?: string;
-  submitBackgroundColor?: string;
-  submitBorderRadius?: string;
-  submitWidth?: string;
-  submitHeight?: string;
-
+  wrapperStyle?: "simple" | "card" | "custom";
+  buttonSubmitStyle?: "primary" | "secondary" | "tertiary";
+  buttonAbordStyle?: "primary" | "secondary" | "tertiary";
+  inputStyle?: "simple" | "advance";
   onSubmit?: (event: React.FormEvent<HTMLFormElement>) => void;
-  className?: string;
+
+  // Titre
+  titleHeading?: "h1" | "h2" | "h3";
+  title?: string;
+
+  // Champ email
+  emailLabel?: string;
+  placeholderEmail?: string;
+  onEmailChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+
+  // Bouton de soumission
+  submitButtonText?: string;
+  cancelButtonText?: string;
+
+  // Texte explicatif
+  descriptionText?: string;
 }
 
 function ForgotPassword_(
-  props: ForgotPasswordProps, 
-  ref: HTMLElementRefOf<"div">
-) {
-  const primaryColor = tokens.find(token => token.name === "primaryColor")?.value ?? "#7641f1";
+  { 
+    wrapperStyle = "card",
+    buttonSubmitStyle = "primary",
+    buttonAbordStyle = "tertiary",
+    inputStyle = "simple",
+    onSubmit,
 
-  const {
-    width = "630px",
-    height = "auto",
-    padding = "64px",
-    borderRadius = "24px",
-    rowGap = "8px",
-
+    titleHeading = "h1",
     title = "Mot de passe oublié ?",
-    titleFont = "Arial, sans-serif",
-    titleSize = "48px",
-    titleColor = "#000",
-    titleAlign = "left",
 
-    showLabels = true,
     emailLabel = "Email",
-    inputFont = "Arial, sans-serif",
-    inputSize = "16px",
-    inputColor = "#000",
-    labelColor = "#333",
-    inputBorderRadius = "5px",
-    inputBorderColor = "#ccc",
     placeholderEmail = "Entrez votre email",
-
     onEmailChange,
 
     submitButtonText = "Réinitialiser",
-    submitFont = "Arial, sans-serif",
-    submitSize = "16px",
-    submitColor = "#fff",
-    submitBackgroundColor = primaryColor,
-    submitBorderRadius = "5px",
-    submitWidth = "100%",
-    submitHeight = "48px",
+    cancelButtonText = "Annuler",
+    descriptionText = "Pas de panique, nous allons vous envoyer un e-mail pour vous aider à réinitialiser votre mot de passe.", // Valeur par défaut
+  }: ForgotPasswordProps,
+  ref: HTMLElementRefOf<"div">
+) {
+  const [emailState, setEmail] = useState("");
 
-    onSubmit,
-    className,
-  } = props;
-
-  const [email, setEmail] = useState(props.email || "");
-
-  const handleEmailChange = useCallback((value: string) => {
-    setEmail(value);
-    if (onEmailChange) onEmailChange(value);
-  }, [onEmailChange]);
-
-  useEffect(() => {
-    setEmail(props.email || "");
-  }, [props.email]);
+  const Title = titleHeading;
 
   return (
     <div
-      className={`${styles.forgotPasswordCard} ${className}`}
       ref={ref}
-      style={{
-        width,
-        height,
-        padding,
-        borderRadius,
-        display: "flex",
-        flexDirection: "column",
-        gap: rowGap,
-      }}
+      style={presets.wrappers[wrapperStyle] as React.CSSProperties}
     >
-      <div
-        className={styles.title}
-        style={{
-          fontFamily: titleFont,
-          fontSize: titleSize,
-          color: titleColor,
-          textAlign: titleAlign,
-        }}
-      >
-        {title}
-      </div>
+      <Title style={presets.heading1}>{title}</Title>
 
-      <p className={styles.description}>
-        Pas de panique, nous allons vous envoyer un e-mail pour vous aider à réinitialiser votre mot de passe.
+      <p style={presets.formMessage as React.CSSProperties}>
+        {descriptionText}
       </p>
 
       <form
-        className={styles.form}
-        onSubmit={(event) => {
-          event.preventDefault();
-          if (onSubmit) onSubmit(event);
-        }}
+        onSubmit={(event) => { event.preventDefault(); onSubmit?.(event); }}
+        style={{ display: "flex", flexDirection: "column", rowGap: presets.form.rowGap }}
       >
-        <div className={styles.inputGroup}>
-          {showLabels && (
-            <label
-              htmlFor="emailInput"
-              style={{
-                fontFamily: inputFont,
-                fontSize: inputSize,
-                color: labelColor,
-                textAlign: "left",
-              }}
-            >
-              {emailLabel}
-            </label>
-          )}
+        <div style={{ rowGap: presets.inputField.rowGap }}>
+          <label style={presets.formLabel as React.CSSProperties} htmlFor="email">{emailLabel}</label>
           <input
             type="email"
-            id="emailInput"
+            id="email"
             placeholder={placeholderEmail}
-            className={styles.input}
-            value={email}
-            onChange={(e) => handleEmailChange(e.target.value)}
-            required
-            style={{
-              fontFamily: inputFont,
-              fontSize: inputSize,
-              color: inputColor,
-              borderRadius: inputBorderRadius,
-              borderColor: inputBorderColor,
+            style={presets.inputs[inputStyle]} 
+            value={emailState}
+            onChange={(e) => { 
+              setEmail(e.target.value); 
+              onEmailChange?.(e);
             }}
           />
         </div>
 
-        <button
-          type="submit"
-          className={styles.submitButton}
-          style={{
-            fontFamily: submitFont,
-            fontSize: submitSize,
-            color: submitColor,
-            backgroundColor: submitBackgroundColor,
-            borderRadius: submitBorderRadius,
-            width: submitWidth,
-            height: submitHeight,
-          }}
-        >
+        <button type="submit" style={presets.buttons[buttonSubmitStyle] as React.CSSProperties}>
           {submitButtonText}
         </button>
       </form>
 
-      <a href="/login" className={styles.cancelLink} style={{ color: primaryColor }}>
-        Annuler
-      </a>
+      <Link href="/login">
+        <button
+          type="button"
+          style={presets.buttons[buttonAbordStyle] as React.CSSProperties}
+        >
+          {cancelButtonText}
+        </button>
+      </Link>
     </div>
   );
 }

@@ -1,40 +1,43 @@
-import { tokens } from "@/styles/design-tokens";
-const primaryColor = tokens.find(token => token.name === "primaryColor")?.value ?? "#7641f1";
-
 const ResetPasswordMeta = {
   name: "ResetPassword",
   section: "🔑 Authentication",
   displayName: "Reset Password",
-  description: "Un formulaire pour réinitialiser le mot de passe",
+  description: "Un formulaire pour réinitialiser le mot de passe avec indicateur de force du mot de passe à couleurs dynamiques, visibilité du mot de passe et système d'alertes intégré",
   thumbnailUrl: "https://plasmic-api.agence-scroll.com/reset-password.png",
   props: {
-    // Propriétés pour le titre
+
+    // Wrapper style
+    wrapperStyle: {
+      type: "string",
+      defaultValue: "card",
+      options: ["simple", "card", "custom"],
+      description: "Style du conteneur du formulaire",
+    },
+
+    // Title
     title: {
       type: "string",
       defaultValue: "Réinitialiser le mot de passe",
     },
-    titleFont: {
+    titleHeading: {
       type: "string",
-      defaultValue: "Arial, sans-serif",
-    },
-    titleSize: {
-      type: "string",
-      defaultValue: "42px",
-    },
-    titleColor: {
-      type: "string",
-      defaultValue: "#000",
-    },
-    titleAlign: {
-      type: "string",
-      defaultValue: "left",
-      options: ["left", "center", "right"],
+      defaultValue: "h1",
+      options: ["h1", "h2", "h3"],
+      description: "Niveau du titre",
     },
 
+    // Input style
+    inputStyle: {
+      type: "choice",
+      defaultValue: "simple",
+      options: ["simple", "advance"],
+      description: "Style des champs de saisie",
+    },
+    
     // Nouveau mot de passe
     passwordLabel: {
       type: "string",
-      defaultValue: "Nouveau mot de passe*",
+      defaultValue: "Nouveau mot de passe",
     },
     password: {
       type: "string",
@@ -46,31 +49,11 @@ const ResetPasswordMeta = {
       type: "string",
       defaultValue: "Entrez votre nouveau mot de passe",
     },
-    passwordFont: {
-      type: "string",
-      defaultValue: "Arial, sans-serif",
-    },
-    passwordSize: {
-      type: "string",
-      defaultValue: "16px",
-    },
-    passwordColor: {
-      type: "string",
-      defaultValue: "#000",
-    },
-    passwordBorderRadius: {
-      type: "string",
-      defaultValue: "5px",
-    },
-    passwordBorderColor: {
-      type: "string",
-      defaultValue: "#ccc",
-    },
 
     // Confirmer mot de passe
     repeatPasswordLabel: {
       type: "string",
-      defaultValue: "Répétez le mot de passe*",
+      defaultValue: "Répétez le mot de passe",
     },
     repeatPassword: {
       type: "string",
@@ -82,68 +65,77 @@ const ResetPasswordMeta = {
       type: "string",
       defaultValue: "Confirmez votre mot de passe",
     },
-    repeatPasswordFont: {
-      type: "string",
-      defaultValue: "Arial, sans-serif",
-    },
-    repeatPasswordSize: {
-      type: "string",
-      defaultValue: "16px",
-    },
-    repeatPasswordColor: {
-      type: "string",
-      defaultValue: "#000",
-    },
-    repeatPasswordBorderRadius: {
-      type: "string",
-      defaultValue: "5px",
-    },
-    repeatPasswordBorderColor: {
-      type: "string",
-      defaultValue: "#ccc",
-    },
 
     // Barres de progression pour le mot de passe
     passwordStrength: {
       type: "boolean",
       defaultValue: true,
     },
+    
+    // Contrôle de visibilité du mot de passe
+    showPasswordToggle: {
+      type: "boolean",
+      defaultValue: true,
+      description: "Affiche un bouton pour montrer/masquer le mot de passe",
+    },
+    eyeIconColor: {
+      type: "string",
+      defaultValue: "#666",
+      description: "Couleur de l'icône d'œil",
+    },
 
-    // Bouton de soumission
+    // Alertes
+    showAlerts: {
+      type: "boolean",
+      defaultValue: true,
+      description: "Affiche des alertes pour les erreurs et succès",
+    },
+    alertPosition: {
+      type: "choice",
+      options: ["top", "bottom", "inline"],
+      defaultValue: "top",
+      description: "Position des alertes dans le composant",
+    },
+    maxAlerts: {
+      type: "number",
+      defaultValue: 3,
+      description: "Nombre maximum d'alertes à afficher simultanément",
+    },
+    customErrorMessages: {
+      type: "object",
+      description: "Messages d'erreur personnalisés pour chaque type d'erreur",
+    },
+    resetSuccessMessage: {
+      type: "string",
+      defaultValue: "Votre mot de passe a été réinitialisé avec succès!",
+      description: "Message affiché après une réinitialisation réussie",
+    },
+
+    // Boutons
     submitButtonText: {
       type: "string",
       defaultValue: "Réinitialiser",
+      description: "Texte du bouton de soumission",
     },
-    submitFont: {
+    submitButtonStyle: {
       type: "string",
-      defaultValue: "Arial, sans-serif",
+      defaultValue: "primary",
+      options: ["primary", "secondary", "tertiary"],
+      description: "Style du bouton de soumission",
     },
-    submitSize: {
+    cancelButtonText: {
       type: "string",
-      defaultValue: "16px",
+      defaultValue: "Annuler",
+      description: "Texte du bouton annuler",
     },
-    submitColor: {
+    cancelButtonStyle: {
       type: "string",
-      defaultValue: "#fff",
-    },
-    submitBackgroundColor: {
-      type: "string",
-      defaultValue: primaryColor,
-    },
-    submitBorderRadius: {
-      type: "string",
-      defaultValue: "5px",
-    },
-    submitWidth: {
-      type: "string",
-      defaultValue: "100%",
-    },
-    submitHeight: {
-      type: "string",
-      defaultValue: "48px",
+      defaultValue: "tertiary",
+      options: ["primary", "secondary", "tertiary"],
+      description: "Style du bouton annuler",
     },
 
-    // Comportement
+    // Events handlers
     onSubmit: {
       type: "eventHandler",
       argTypes: [{ name: "event", type: "object" }],
@@ -156,13 +148,14 @@ const ResetPasswordMeta = {
       type: "eventHandler",
       argTypes: [{ name: "event", type: "object" }],
     },
-
-    // Autres props
-    className: {
-      type: "string",
-      defaultValue: "",
+    onAlertClose: {
+      type: "eventHandler",
+      argTypes: [{ name: "id", type: "string" }],
+      description: "Fonction appelée lorsqu'une alerte est fermée",
     },
   },
+
+  // States
   states: {
     password: {
       type: 'writable',

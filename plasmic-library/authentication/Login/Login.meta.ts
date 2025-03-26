@@ -1,6 +1,3 @@
-import {tokens} from "@/styles/design-tokens"
-const primaryColor = tokens.find(token => token.name === "primaryColor")?.value ?? "#7641f1";
-
 const LoginMeta = {
   name: "Login",
   section: "🔑 Authentication",
@@ -8,30 +5,36 @@ const LoginMeta = {
   description: "Un formulaire simple pour se connecter",
   thumbnailUrl: "https://plasmic-api.agence-scroll.com/login.png",
   props: {
-    // Propriétés pour le titre
+
+    // Wrapper styles
+    wrapperStyle: {
+      type: "choice",
+      defaultValue: "card",
+      options: ["simple", "card", "custom"],
+      description: "Style du conteneur global",
+    },
+
+    // Title
     title: {
       type: "string",
       defaultValue: "Connexion",
     },
-    titleFont: {
-      type: "string",
-      defaultValue: "Arial, sans-serif",
-    },
-    titleSize: {
-      type: "string",
-      defaultValue: "48px",
-    },
-    titleColor: {
-      type: "string",
-      defaultValue: "#000",
-    },
-    titleAlign: {
-      type: "string",
-      defaultValue: "left",
-      options: ["left", "center", "right"],
+    titleHeading: {
+      type: "choice",
+      defaultValue: "h1",
+      options: ["h1", "h2", "h3"],
+      description: "Choisissez le niveau du titre (h1, h2, h3)",
     },
 
-    // Propriétés pour les labels et les inputs
+    // Input style
+    inputStyle: {
+      type: "choice",
+      defaultValue: "simple",
+      options: ["simple", "advance"],
+      description: "Style des champs de saisie",
+    },
+
+    // Email
     emailLabel: {
       type: "string",
       defaultValue: "Email",
@@ -42,6 +45,12 @@ const LoginMeta = {
       valueProp: "email",
       onChangeProp: "onEmailChange",
     },
+    placeholderEmail: {
+      type: "string",
+      defaultValue: "Entrez votre email",
+    },
+
+    // Password
     passwordLabel: {
       type: "string",
       defaultValue: "Mot de passe",
@@ -52,80 +61,40 @@ const LoginMeta = {
       valueProp: "password",
       onChangeProp: "onPasswordChange",
     },
-    inputFont: {
-      type: "string",
-      defaultValue: "Arial, sans-serif",
-    },
-    inputSize: {
-      type: "string",
-      defaultValue: "16px",
-    },
-    inputColor: {
-      type: "string",
-      defaultValue: "#000",
-    },
-    inputBorderRadius: {
-      type: "string",
-      defaultValue: "5px",
-    },
-    inputBorderColor: {
-      type: "string",
-      defaultValue: "#ccc",
-    },
-    placeholderEmail: {
-      type: "string",
-      defaultValue: "Entrez votre email",
-    },
     placeholderPassword: {
       type: "string",
       defaultValue: "Entrez votre mot de passe",
     },
 
-    // Propriétés pour le lien "Mot de passe oublié ?"
+    // Links
     forgotPasswordText: {
       type: "string",
       defaultValue: "Mot de passe oublié ?",
     },
+    createAccountText: {
+      type: "string",
+      defaultValue: "Créer un compte",
+      description: "Texte à afficher pour le lien Créer un compte",
+    },
+    showCreateAccount: {
+      type: "boolean",
+      defaultValue: false,
+      description: "Affiche ou non le lien Créer un compte",
+    },
 
-    // Propriétés pour le bouton de soumission
+    // Buttons
     submitButtonText: {
       type: "string",
       defaultValue: "Connexion",
     },
-    submitFont: {
-      type: "string",
-      defaultValue: "Arial, sans-serif",
+    buttonStyle: {
+      type: "choice",
+      defaultValue: "primary",
+      options: ["primary", "secondary", "tertiary"],
+      description: "Style du bouton de soumission",
     },
-    submitSize: {
-      type: "string",
-      defaultValue: "16px",
-    },
-    submitColor: {
-      type: "string",
-      defaultValue: "#fff",
-    },
-    submitBackgroundColor: {
-      type: "string",
-      defaultValue: primaryColor,
-    },
-    submitBorderRadius: {
-      type: "string",
-      defaultValue: "5px",
-    },
-    submitWidth: {
-      type: "string",
-      defaultValue: "100%",
-    },
-    submitHeight: {
-      type: "string",
-      defaultValue: "48px",
-    },
-
-    // Comportement
-    onSubmit: {
-      type: "eventHandler",
-      argTypes: [{ name: "event", type: "object" }],
-    },
+    
+    // Events handlers
     onEmailChange: {
       type: "eventHandler",
       argTypes: [{ name: "event", type: "object" }],
@@ -134,13 +103,13 @@ const LoginMeta = {
       type: "eventHandler",
       argTypes: [{ name: "event", type: "object" }],
     },
-
-    // Autres props
-    className: {
-      type: "string",
-      defaultValue: "",
+    onSubmit: {
+      type: "eventHandler",
+      argTypes: [{ name: "event", type: "object" }],
     },
   },
+
+  // States
   states: {
     email: {
       type: 'writable',

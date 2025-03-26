@@ -14,6 +14,8 @@ const publicRoutes = [
     '/forget-password',
     '/reset-password',
     '/reset-password/[recovery_token]',
+    '/first-install',
+    '/plasmic-library',
 ]
 
 export async function middleware(request: NextRequest) {

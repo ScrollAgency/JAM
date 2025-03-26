@@ -1,37 +1,39 @@
-import {tokens} from "@/styles/design-tokens"
-
-const primaryColor = tokens.find(token => token.name === "primaryColor")?.value ?? "#7641f1";
-const sand200Borders = tokens.find(token => token.name === "sand-200-borders")?.value ?? "#7641f1";
-
 const SignUpMeta = {
   name: "SignUp",
   section: "🔑 Authentication",
   displayName: "Sign Up",
-  description: "Un formulaire simple pour s'inscrire avec e-mail et mot de passe",
+  description: "Un formulaire d'inscription avec validation, contrôle de force du mot de passe, visibilité du mot de passe et système d'alertes intégré",
   thumbnailUrl: "https://plasmic-api.agence-scroll.com/signup.png",
   props: {
-    // Propriétés pour le titre
+
+    // Wrapper style
+    wrapperStyle: {
+      type: "string",
+      defaultValue: "card",
+      options: ["simple", "card", "custom"],
+      description: "Style du conteneur du formulaire",
+    },
+
+    // Title
     title: {
       type: "string",
       defaultValue: "Bienvenue !",
     },
-    titleFont: {
+    titleHeading: {
       type: "string",
-      defaultValue: "Manrope, Arial, sans-serif",
+      defaultValue: "h1",
+      options: ["h1", "h2", "h3"],
+      description: "Niveau du titre",
     },
-    titleSize: {
-      type: "string",
-      defaultValue: "48px",
+
+    // Input style
+    inputStyle: {
+      type: "choice",
+      defaultValue: "simple",
+      options: ["simple", "advance"],
+      description: "Style des champs de saisie",
     },
-    titleColor: {
-      type: "string",
-      defaultValue: "#000",
-    },
-    titleAlign: {
-      type: "string",
-      defaultValue: "left",
-      options: ["left", "center", "right"],
-    },
+    
 
     // Propriétés pour les labels et les inputs
     emailLabel: {
@@ -54,26 +56,7 @@ const SignUpMeta = {
       type: "string",
       defaultValue: "Répétez le mot de passe",
     },
-    inputFont: {
-      type: "string",
-      defaultValue: "Arial, sans-serif",
-    },
-    inputSize: {
-      type: "string",
-      defaultValue: "16px",
-    },
-    inputColor: {
-      type: "string",
-      defaultValue: "#000",
-    },
-    inputBorderRadius: {
-      type: "string",
-      defaultValue: "5px",
-    },
-    inputBorderColor: {
-      type: "string",
-      defaultValue: sand200Borders,
-    },
+    
     placeholderEmail: {
       type: "string",
       defaultValue: "Entrez votre email",
@@ -85,6 +68,45 @@ const SignUpMeta = {
     placeholderConfirmPassword: {
       type: "string",
       defaultValue: "Confirmez votre mot de passe",
+    },
+    
+    // Contrôle de visibilité du mot de passe
+    showPasswordToggle: {
+      type: "boolean",
+      defaultValue: true,
+      description: "Affiche un bouton pour montrer/masquer le mot de passe",
+    },
+    eyeIconColor: {
+      type: "string",
+      defaultValue: "#666",
+      description: "Couleur de l'icône d'œil",
+    },
+    showOAuthButtons: {
+      type: "boolean",
+      defaultValue: true,
+      description: "Montrer/masquer les boutons SSO",
+    },
+
+    // Gestion des alertes
+    showAlerts: {
+      type: "boolean",
+      defaultValue: true,
+      description: "Affiche des alertes pour les erreurs et succès",
+    },
+    alertPosition: {
+      type: "choice",
+      options: ["top", "bottom", "inline"],
+      defaultValue: "top",
+      description: "Position des alertes dans le composant",
+    },
+    maxAlerts: {
+      type: "number",
+      defaultValue: 3,
+      description: "Nombre maximum d'alertes à afficher simultanément",
+    },
+    customErrorMessages: {
+      type: "object",
+      description: "Messages d'erreur personnalisés pour chaque type d'erreur",
     },
 
     // Propriétés pour les messages supplémentaires
@@ -104,34 +126,7 @@ const SignUpMeta = {
       type: "string",
       defaultValue: "S'inscrire",
     },
-    submitFont: {
-      type: "string",
-      defaultValue: "Arial, sans-serif",
-    },
-    submitSize: {
-      type: "string",
-      defaultValue: "16px",
-    },
-    submitColor: {
-      type: "string",
-      defaultValue: "#fff",
-    },
-    submitBackgroundColor: {
-      type: "string",
-      defaultValue: primaryColor,
-    },
-    submitBorderRadius: {
-      type: "string",
-      defaultValue: "5px",
-    },
-    submitWidth: {
-      type: "string",
-      defaultValue: "100%",
-    },
-    submitHeight: {
-      type: "string",
-      defaultValue: "48px",
-    },
+    
 
     email: {
       type: "string",
@@ -164,6 +159,12 @@ const SignUpMeta = {
       onChangeProp: "onLastNameChange",
     },
 
+    // Barres de progression pour le mot de passe
+    passwordStrength: {
+      type: "boolean",
+      defaultValue: true,
+    },
+
     // Comportement
     onSubmit: {
       type: "eventHandler",
@@ -189,13 +190,19 @@ const SignUpMeta = {
       type: "eventHandler",
       argTypes: [{ name: "value", type: "string" }],
     },
-
-    // Autres props
-    className: {
-      type: "string",
-      defaultValue: "",
+    onAlertClose: {
+      type: "eventHandler",
+      argTypes: [{ name: "id", type: "string" }],
+      description: "Fonction appelée lorsqu'une alerte est fermée",
+    },
+    buttonStyle: {
+      type: "choice",
+      defaultValue: "primary",
+      options: ["primary", "secondary", "tertiary"],
+      description: "Style du bouton de soumission",
     },
   },
+
   states: {
     email: {
       type: 'writable',

@@ -1,6 +1,3 @@
-import { tokens } from "@/styles/design-tokens";
-const primaryColor = tokens.find(token => token.name === "primaryColor")?.value ?? "#7641f1";
-
 const ForgotPasswordMeta = {
   name: "ForgotPassword",
   section: "🔑 Authentication",
@@ -8,123 +5,109 @@ const ForgotPasswordMeta = {
   description: "Un formulaire pour réinitialiser le mot de passe",
   thumbnailUrl: "https://plasmic-api.agence-scroll.com/forgot-password.png",
   props: {
-    // Propriétés pour le titre
+
+    // Wrapper style
+    wrapperStyle: {
+      type: "string",
+      defaultValue: "card",
+      options: ["simple", "card", "custom"],
+      description: "Style du conteneur du formulaire",
+    },
+
+    // Title
     title: {
       type: "string",
       defaultValue: "Mot de passe oublié ?",
+      description: "Texte du titre",
     },
-    titleFont: {
+    titleHeading: {
       type: "string",
-      defaultValue: "Arial, sans-serif",
-    },
-    titleSize: {
-      type: "string",
-      defaultValue: "42px",
-    },
-    titleColor: {
-      type: "string",
-      defaultValue: "#000",
-    },
-    titleAlign: {
-      type: "string",
-      defaultValue: "left",
-      options: ["left", "center", "right"],
+      defaultValue: "h1",
+      options: ["h1", "h2", "h3"],
+      description: "Niveau du titre",
     },
 
-    // Champ email
+    // Description
+    descriptionText: {
+      type: "string",
+      defaultValue: "Pas de panique, nous allons vous envoyer un e-mail pour vous aider à réinitialiser votre mot de passe.",
+      description: "Texte affiché sous le titre",
+    },
+
+    // Input style
+    inputStyle: {
+      type: "choice",
+      defaultValue: "simple",
+      options: ["simple", "advance"],
+      description: "Style des champs de saisie",
+    },
+
+    // Email
     emailLabel: {
       type: "string",
       defaultValue: "Email",
+      description: "Label du champ email",
     },
     email: {
       type: "string",
       defaultValue: "",
       valueProp: "email",
       onChangeProp: "onEmailChange",
-    },
-    inputFont: {
-      type: "string",
-      defaultValue: "Arial, sans-serif",
-    },
-    inputSize: {
-      type: "string",
-      defaultValue: "16px",
-    },
-    inputColor: {
-      type: "string",
-      defaultValue: "#000",
-    },
-    inputBorderRadius: {
-      type: "string",
-      defaultValue: "5px",
-    },
-    inputBorderColor: {
-      type: "string",
-      defaultValue: "#ccc",
+      description: "Valeur du champ email",
     },
     placeholderEmail: {
       type: "string",
       defaultValue: "Entrez votre email",
+      description: "Texte de placeholder pour l'email",
     },
 
-    // Bouton de soumission
+    // Boutons
     submitButtonText: {
       type: "string",
       defaultValue: "Réinitialiser",
+      description: "Texte du bouton de soumission",
     },
-    submitFont: {
+    submitButtonStyle: {
       type: "string",
-      defaultValue: "Arial, sans-serif",
+      defaultValue: "primary",
+      options: ["primary", "secondary", "tertiary"],
+      description: "Style du bouton de soumission",
     },
-    submitSize: {
+    cancelButtonText: {
       type: "string",
-      defaultValue: "16px",
+      defaultValue: "Annuler",
+      description: "Texte du bouton annuler",
     },
-    submitColor: {
+    cancelButtonStyle: {
       type: "string",
-      defaultValue: "#fff",
-    },
-    submitBackgroundColor: {
-      type: "string",
-      defaultValue: primaryColor,
-    },
-    submitBorderRadius: {
-      type: "string",
-      defaultValue: "5px",
-    },
-    submitWidth: {
-      type: "string",
-      defaultValue: "100%",
-    },
-    submitHeight: {
-      type: "string",
-      defaultValue: "48px",
+      defaultValue: "tertiary",
+      options: ["primary", "secondary", "tertiary"],
+      description: "Style du bouton annuler",
     },
 
-    // Comportement
+    // Events handlers
     onSubmit: {
       type: "eventHandler",
       argTypes: [{ name: "event", type: "object" }],
+      description: "Action lors de la soumission du formulaire",
     },
     onEmailChange: {
       type: "eventHandler",
       argTypes: [{ name: "event", type: "object" }],
-    },
-
-    // Autres props
-    className: {
-      type: "string",
-      defaultValue: "",
+      description: "Action lors du changement du champ email",
     },
   },
+
+  // States
   states: {
     email: {
-      type: 'writable',
-      variableType: 'text',
-      valueProp: 'email',
-      onChangeProp: 'onEmailChange'
+      type: "writable",
+      variableType: "text",
+      valueProp: "email",
+      onChangeProp: "onEmailChange",
     },
   },
+
   importPath: "./components/auth/ForgotPassword",
 };
 

@@ -1,6 +1,6 @@
 import * as PlasmicLibrary from "./plasmic-library/components"
 import { initPlasmicLoader } from "@plasmicapp/loader-nextjs";
-import { tokens } from "./styles/design-tokens";
+import { tokens } from "./styles/tokens-jam";
 
 import { 
   SupabaseProvider, 
