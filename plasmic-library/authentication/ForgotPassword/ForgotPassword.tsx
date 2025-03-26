@@ -60,9 +60,12 @@ function ForgotPassword_(
   const handleFormSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (onSubmit) {
-      await onSubmit(event);
-      // Redirection après soumission
-      router.push(redirectAfterSubmit);
+      try {
+        await onSubmit(event);
+        // Ne pas rediriger automatiquement, laisser le composant parent gérer la redirection
+      } catch (error) {
+        console.error("Erreur lors de la réinitialisation:", error);
+      }
     }
   };
 
@@ -103,13 +106,10 @@ function ForgotPassword_(
         </button>
       </form>
 
-      <Link href="/login">
-        <button
-          type="button"
-          style={presets.buttons[buttonAbordStyle] as React.CSSProperties}
-        >
+      <Link href="/login" passHref legacyBehavior>
+        <a style={presets.buttons[buttonAbordStyle] as React.CSSProperties}>
           {cancelButtonText}
-        </button>
+        </a>
       </Link>
     </div>
   );

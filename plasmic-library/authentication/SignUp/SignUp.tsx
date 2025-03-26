@@ -414,8 +414,8 @@ function SignUp_(
     if (onSubmit) {
       try {
         await onSubmit(e);
-        // Redirection après inscription réussie
-        router.push(redirectAfterSignUp);
+        // Ne pas rediriger ici, laisser le composant parent ou le middleware gérer la redirection
+        addAlert('success', "Votre compte a été créé avec succès!");
       } catch (error) {
         console.error("Erreur lors de l'inscription:", error);
         addAlert('error', errorMessages.networkError);
@@ -602,11 +602,13 @@ function SignUp_(
 
       {showLoginLink && (
         <div style={{...presets.loginLinkContainer as React.CSSProperties, marginTop: "8px"}}>
-          <Link href={"/login"} style={{
-            ...presets.loginLink as React.CSSProperties,
-            color: getTokenValue("information-text")
-          }}>
-            {loginLinkText}
+          <Link href="/login" passHref legacyBehavior>
+            <a style={{
+              ...presets.loginLink as React.CSSProperties,
+              color: getTokenValue("information-text")
+            }}>
+              {loginLinkText}
+            </a>
           </Link>
         </div>
       )}

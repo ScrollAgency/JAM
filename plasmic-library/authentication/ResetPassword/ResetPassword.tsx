@@ -189,10 +189,6 @@ function ResetPassword_(
       try {
         await onSubmit(event);
         addAlert('success', resetSuccessMessage);
-        
-        setTimeout(() => {
-          router.push(redirectAfterReset);
-        }, 1500);
       } catch (error) {
         if (error instanceof Error) {
           addAlert('error', error.message || errorMessages.networkError);

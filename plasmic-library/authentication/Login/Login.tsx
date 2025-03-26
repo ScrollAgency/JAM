@@ -98,8 +98,14 @@ function Login_(
   const handleFormSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (onSubmit) {
-      await onSubmit(event);
-      router.push(redirectAfterLogin);
+      try {
+        await onSubmit(event);
+        // Ne pas rediriger ici automatiquement,
+        // laisser la redirection se faire par le composant parent si nécessaire
+        // La redirection sera gérée par le middleware ou le composant parent
+      } catch (error) {
+        console.error("Erreur lors de la connexion:", error);
+      }
     }
   };
 
@@ -216,8 +222,8 @@ function Login_(
         </div>
 
         <div style={{ display: "flex", justifyContent: "flex-end" }}>
-          <Link href="/forgot-password">
-            <span style={presets.links.linkLeft}>{forgotPasswordText}</span>
+          <Link href="/forgot-password" passHref legacyBehavior>
+            <a style={presets.links.linkLeft}>{forgotPasswordText}</a>
           </Link>
         </div>
 
@@ -234,14 +240,16 @@ function Login_(
         width: "100%",
         marginTop: "24px"
       }}>
-        <Link href="/register" style={{
-          color: getTokenValue("information-text"),
-          fontSize: "14px",
-          fontWeight: "500",
-          textDecoration: "none",
-          cursor: "pointer"
-        }}>
-          {signUpLinkText}
+        <Link href="/register" passHref legacyBehavior>
+          <a style={{
+            color: getTokenValue("information-text"),
+            fontSize: "14px",
+            fontWeight: "500",
+            textDecoration: "none",
+            cursor: "pointer"
+          }}>
+            {signUpLinkText}
+          </a>
         </Link>
       </div>
     </div>
