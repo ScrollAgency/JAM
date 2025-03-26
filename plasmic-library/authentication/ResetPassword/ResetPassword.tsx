@@ -189,6 +189,9 @@ function ResetPassword_(
       try {
         await onSubmit(event);
         addAlert('success', resetSuccessMessage);
+        setTimeout(() => {
+          router.push("/login");
+        }, 1500);
       } catch (error) {
         if (error instanceof Error) {
           addAlert('error', error.message || errorMessages.networkError);
@@ -275,13 +278,10 @@ function ResetPassword_(
         </button>
       </form>
 
-      <Link href="/login">
-        <button
-          type="button"
-          style={presets.buttons[buttonAbordStyle] as React.CSSProperties}
-        >
+      <Link href="/login" passHref legacyBehavior>
+        <a style={presets.buttons[buttonAbordStyle] as React.CSSProperties}>
           {cancelButtonText}
-        </button>
+        </a>
       </Link>
     </div>
   );

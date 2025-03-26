@@ -62,7 +62,10 @@ function ForgotPassword_(
     if (onSubmit) {
       try {
         await onSubmit(event);
-        // Ne pas rediriger automatiquement, laisser le composant parent gérer la redirection
+        // Rediriger vers la page de connexion après soumission
+        setTimeout(() => {
+          router.push("/login");
+        }, 1500);
       } catch (error) {
         console.error("Erreur lors de la réinitialisation:", error);
       }

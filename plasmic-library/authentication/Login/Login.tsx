@@ -100,9 +100,8 @@ function Login_(
     if (onSubmit) {
       try {
         await onSubmit(event);
-        // Ne pas rediriger ici automatiquement,
-        // laisser la redirection se faire par le composant parent si nécessaire
-        // La redirection sera gérée par le middleware ou le composant parent
+        // Rediriger explicitement vers /
+        router.push("/");
       } catch (error) {
         console.error("Erreur lors de la connexion:", error);
       }

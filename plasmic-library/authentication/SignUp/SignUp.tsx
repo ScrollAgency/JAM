@@ -414,8 +414,11 @@ function SignUp_(
     if (onSubmit) {
       try {
         await onSubmit(e);
-        // Ne pas rediriger ici, laisser le composant parent ou le middleware gérer la redirection
         addAlert('success', "Votre compte a été créé avec succès!");
+        // Rediriger vers / après un court délai
+        setTimeout(() => {
+          router.push("/");
+        }, 1500);
       } catch (error) {
         console.error("Erreur lors de l'inscription:", error);
         addAlert('error', errorMessages.networkError);
