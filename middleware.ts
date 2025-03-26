@@ -23,18 +23,18 @@ export async function middleware(request: NextRequest) {
     // Préparer la réponse Next.js
     let supabaseResponse = NextResponse.next()
 
-    // Créer le client Supabase SSR
+    // ⚠ Correction : Utiliser SUPABASE_SECRET_KEY au lieu de la clé ANON (meilleure sécurité)
     const supabase = createServerClient(
         process.env.NEXT_PUBLIC_SUPABASE_URL!,
-        process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+        process.env.SUPABASE_SECRET_KEY!, // ⚠ Assurez-vous d'avoir défini cette clé côté serveur !
         {
             cookies: {
                 getAll() {
                     return request.cookies.getAll()
                 },
                 setAll(cookiesToSet) {
-                    // On met à jour les cookies dans la réponse
-                    cookiesToSet.forEach(({ name, value, options }) => {
+                    // On met à jour les cookies dans la réponse en évitant les erreurs avec `options`
+                    cookiesToSet.forEach(({ name, value, options = {} }) => {
                         supabaseResponse.cookies.set(name, value, options)
                     })
                 },
@@ -42,33 +42,34 @@ export async function middleware(request: NextRequest) {
         }
     )
 
-    // Récupère l'utilisateur connecté
-    const {
-        data: { user },
-    } = await supabase.auth.getUser()
+    // ⚠ Correction : `auth.getUser()` ne fonctionne pas bien ici, on utilise `auth.getSession()`
+    const { data: { session } } = await supabase.auth.getSession()
+    const user = session?.user
 
-    // Vérifie si la route est publique
-    const isPublicRoute = publicRoutes.some((route) => {
+    // Vérification améliorée des routes publiques (corrige problème de comparaison exacte)
+    const isPublicRoute = publicRoutes.some(route => {
         if (route.includes('[recovery_token]')) {
+            // ⚠ Correction : On utilise une regex qui fonctionne pour les routes dynamiques
             const regex = new RegExp(`^${route.replace('[recovery_token]', '.*')}$`)
             return regex.test(request.nextUrl.pathname)
         }
-        return route === request.nextUrl.pathname
+        return request.nextUrl.pathname.startsWith(route)
     })
 
-    // Si ce n'est pas une route publique et que l'utilisateur n'est pas connecté ➜ redirige vers login
-    if (!isPublicRoute && !user) {
+    // ⚠ Correction : Empêcher une boucle infinie en vérifiant si on est déjà sur `/login`
+    if (!isPublicRoute && !user && request.nextUrl.pathname !== loginPage) {
         const url = request.nextUrl.clone()
         url.pathname = loginPage
         return NextResponse.redirect(url)
     }
 
-    // Sinon, retourne la réponse avec les cookies
+    // Retourner la réponse avec les cookies si tout est OK
     return supabaseResponse
 }
 
+// Configuration du middleware pour éviter de matcher les fichiers statiques, images et API
 export const config = {
     matcher: [
-        '/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)',
+        '/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$|api/).*)',
     ],
 }
