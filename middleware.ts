@@ -6,6 +6,7 @@ const loginPage = '/login'
 // Liste des routes accessibles sans authentification
 const publicRoutes = [
     '/login',
+    '/',
     '/register-candidat',
     '/register-company',
     '/register',
