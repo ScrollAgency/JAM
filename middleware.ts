@@ -10,12 +10,12 @@ const publicRoutes = [
     '/register-company',
     '/register',
     '/plasmic-host',
-    '/',
     '/forgot-password',
     '/reset-password',
     '/reset-password/[recovery_token]',
     '/first-install',
     '/plasmic-library',
+    '/parametres',
 ]
 
 export async function middleware(request: NextRequest) {
