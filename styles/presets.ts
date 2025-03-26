@@ -527,6 +527,13 @@ export const presets = {
     fontWeight: "500",
     fontSize: getTokenValue("font-size-sm"),
   },
+  linkRegister: {
+    color: getTokenValue("information-text"),
+    fontSize: "14px",
+    fontWeight: "500",
+    textDecoration: "none",
+    cursor: "pointer"
+  },
 
   arrowIcon: {
     fontSize: "18px",
