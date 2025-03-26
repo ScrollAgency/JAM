@@ -2,6 +2,7 @@ import type * as React from "react";
 import { forwardRef } from "react";
 import { useCallback, useEffect, useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { presets, getTokenValue } from "@/styles/presets";
 import PhoneSelector from "../../forms/PhoneSelector/PhoneSelector";
 import ButtonGoogle from "../../buttons/ButtonGoogle/ButtonGoogle";
@@ -89,6 +90,7 @@ export interface SignUpProps {
   // Autres
   passwordInfoText?: string;
   privacyPolicyText?: string;
+  redirectAfterSignUp?: string;
 }
 
 function SignUp_(
@@ -134,6 +136,7 @@ function SignUp_(
     // Lien de connexion
     showLoginLink = true,
     loginLinkText = "Déjà inscrit(e) ? CONNEXION",
+    loginLinkHref = "/login",
 
     // Gestion des alertes
     showAlerts = true,
@@ -143,6 +146,7 @@ function SignUp_(
 
     passwordInfoText = "Utilisez 8 caractères ou plus en mélangeant lettres, chiffres et symboles.",
     privacyPolicyText = "J'accepte la politique de confidentialité",
+    redirectAfterSignUp = "/",
 
     onSubmit,
     onEmailChange,
@@ -155,6 +159,8 @@ function SignUp_(
     onAppleSignIn,
     onAlertClose,
   } = props;
+
+  const router = useRouter();
 
   const Title = titleHeading as keyof JSX.IntrinsicElements;
   const [email, setEmail] = useState(props.email || "");
@@ -372,68 +378,47 @@ function SignUp_(
   };
 
   // Fonction de soumission du formulaire
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     
-    // Réinitialiser les alertes précédentes
+    // Réinitialiser les alertes existantes
     setAlerts([]);
     
-    // Validation du formulaire
-    let isValid = true;
-    let hasShownError = false;
-    
-    // Validation de l'email
+    // Validation email
     if (!validateEmail(email)) {
-      isValid = false;
       addAlert('error', errorMessages.invalidEmail);
-      hasShownError = true;
+      return;
     }
     
-    // Validation du mot de passe
-    if (passwordStrength < 3) {
-      isValid = false;
-      if (!hasShownError) {
-        addAlert('error', errorMessages.weakPassword);
-        hasShownError = true;
-      }
-    }
-    
-    // Vérification de la correspondance des mots de passe
+    // Validation des mots de passe
     if (password !== confirmPassword) {
-      isValid = false;
       setPasswordsMatch(false);
-      if (!hasShownError) {
-        addAlert('error', errorMessages.passwordMismatch);
-        hasShownError = true;
-      }
-    } else {
-      setPasswordsMatch(true);
+      addAlert('error', errorMessages.passwordMismatch);
+      return;
     }
     
-    // Vérification de la longueur minimale du numéro de téléphone
-    if (phone.length < 8) {
-      isValid = false;
+    // Vérification de la force du mot de passe
+    if (passwordStrength < 2) {
+      addAlert('error', errorMessages.weakPassword);
+      return;
+    }
+    
+    // Validation du téléphone
+    if (phone && phone.length < 8) {
       setPhoneError(true);
-      if (!hasShownError) {
-        addAlert('error', errorMessages.invalidPhone);
-      }
-    } else {
-      setPhoneError(false);
+      addAlert('error', errorMessages.invalidPhone);
+      return;
     }
     
-    // Si tout est valide, on soumet le formulaire
-    if (isValid && onSubmit) {
+    // Si on a une fonction onSubmit dans les props, on l'appelle
+    if (onSubmit) {
       try {
-        onSubmit(e);
-        // Afficher une alerte de succès uniquement si aucune erreur n'a été lancée par onSubmit
-        addAlert('success', "Votre compte a été créé avec succès!");
+        await onSubmit(e);
+        // Redirection après inscription réussie
+        router.push(redirectAfterSignUp);
       } catch (error) {
-        // Capturer les erreurs lancées par onSubmit
-        if (error instanceof Error) {
-          addAlert('error', error.message || errorMessages.networkError);
-        } else {
-          addAlert('error', errorMessages.networkError);
-        }
+        console.error("Erreur lors de l'inscription:", error);
+        addAlert('error', errorMessages.networkError);
       }
     }
   };

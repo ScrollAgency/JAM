@@ -7,7 +7,7 @@ const GoogleLoginButton = () => {
             const { error } = await supabase.auth.signInWithOAuth({
                 provider: "google",
                 options: {
-                    redirectTo: `${window.location.origin}/home`, // Assure-toi que cet URI est bien enregistré dans Google Cloud
+                    redirectTo: `${window.location.origin}/`, // Cette route est dans les publicRoutes
                 },
             });
 

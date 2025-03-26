@@ -69,7 +69,7 @@ const ButtonApple = forwardRef<ButtonActions, ButtonProps>(
             const { error } = await supabase.auth.signInWithOAuth({
                 provider: "apple",
                 options: {
-                    redirectTo: `${window.location.origin}/home`,
+                    redirectTo: `${window.location.origin}/`,
                 },
             });
             if (error) {

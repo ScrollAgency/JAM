@@ -1,6 +1,7 @@
 import type * as React from "react";
 import { forwardRef, useCallback, useEffect, useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { presets } from "@/styles/presets";
 import AlertManager, { type AlertType, type AlertMessage } from "../../alerts/AlertManager/AlertManager";
 
@@ -31,6 +32,7 @@ export interface ResetPasswordProps {
   onSubmit?: (event: React.FormEvent<HTMLFormElement>) => void;
   onAlertClose?: (id: string) => void;
   className?: string;
+  redirectAfterReset?: string;
 }
 
 function ResetPassword_(
@@ -57,8 +59,10 @@ function ResetPassword_(
     customErrorMessages,
     resetSuccessMessage = "Votre mot de passe a été réinitialisé avec succès!",
     onAlertClose,
+    redirectAfterReset = "/login",
   } = props;
 
+  const router = useRouter();
   const Title = titleHeading as keyof JSX.IntrinsicElements;
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -162,7 +166,7 @@ function ResetPassword_(
     };
   }, []);
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setAlerts([]);
     let isValid = true;
@@ -183,8 +187,12 @@ function ResetPassword_(
 
     if (isValid && onSubmit) {
       try {
-        onSubmit(event);
+        await onSubmit(event);
         addAlert('success', resetSuccessMessage);
+        
+        setTimeout(() => {
+          router.push(redirectAfterReset);
+        }, 1500);
       } catch (error) {
         if (error instanceof Error) {
           addAlert('error', error.message || errorMessages.networkError);

@@ -2,7 +2,8 @@ import * as React from "react";
 import type { HTMLElementRefOf } from "@plasmicapp/react-web";
 import { useState } from "react";
 import { presets } from "@/styles/presets";
-import Link from "next/link";  
+import Link from "next/link";
+import { useRouter } from "next/router";
 
 export interface ForgotPasswordProps {
   wrapperStyle?: "simple" | "card" | "custom";
@@ -26,6 +27,9 @@ export interface ForgotPasswordProps {
 
   // Texte explicatif
   descriptionText?: string;
+  
+  // Redirection
+  redirectAfterSubmit?: string;
 }
 
 function ForgotPassword_(
@@ -46,10 +50,21 @@ function ForgotPassword_(
     submitButtonText = "Réinitialiser",
     cancelButtonText = "Annuler",
     descriptionText = "Pas de panique, nous allons vous envoyer un e-mail pour vous aider à réinitialiser votre mot de passe.", // Valeur par défaut
+    redirectAfterSubmit = "/login",  // Redirection vers la page de connexion après soumission
   }: ForgotPasswordProps,
   ref: HTMLElementRefOf<"div">
 ) {
   const [emailState, setEmail] = useState("");
+  const router = useRouter(); // Initialisation du router Next.js
+
+  const handleFormSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    if (onSubmit) {
+      await onSubmit(event);
+      // Redirection après soumission
+      router.push(redirectAfterSubmit);
+    }
+  };
 
   const Title = titleHeading;
 
@@ -65,7 +80,7 @@ function ForgotPassword_(
       </p>
 
       <form
-        onSubmit={(event) => { event.preventDefault(); onSubmit?.(event); }}
+        onSubmit={handleFormSubmit}
         style={{ display: "flex", flexDirection: "column", rowGap: presets.form.rowGap }}
       >
         <div style={{ rowGap: presets.inputField.rowGap }}>

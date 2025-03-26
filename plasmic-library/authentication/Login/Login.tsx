@@ -2,7 +2,8 @@ import * as React from "react";
 import type { HTMLElementRefOf } from "@plasmicapp/react-web";
 import { useCallback, useEffect, useState } from "react";
 import { presets, getTokenValue } from "@/styles/presets";
-import Link from "next/link";  
+import Link from "next/link";
+import { useRouter } from "next/router";
 
 export interface LoginProps {
   wrapperStyle?: "simple" | "card" | "custom";
@@ -36,6 +37,7 @@ export interface LoginProps {
   showCreateAccount?: boolean;
   createAccountText?: string;
   signUpLinkText?: string;
+  redirectAfterLogin?: string;
 }
 
 function Login_(
@@ -70,8 +72,10 @@ function Login_(
     onGoogleSignIn,
     onAppleSignIn,
     signUpLinkText = "Pas encore de compte ? INSCRIPTION",
+    redirectAfterLogin = "/",
   } = props;
   
+  const router = useRouter();
   const Title = titleHeading as keyof JSX.IntrinsicElements;
   const [email, setEmail] = useState(props.email || "");
   const [password, setPassword] = useState(props.password || "");
@@ -89,6 +93,14 @@ function Login_(
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
+  };
+
+  const handleFormSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    if (onSubmit) {
+      await onSubmit(event);
+      router.push(redirectAfterLogin);
+    }
   };
 
   const EyeIcon = () => (
@@ -164,10 +176,7 @@ function Login_(
       {oAuthButtonsPosition === 'top' && renderOAuthButtons()}
 
       <form
-        onSubmit={(event) => {
-          event.preventDefault();
-          if (onSubmit) onSubmit(event);
-        }}
+        onSubmit={handleFormSubmit}
         style={{ display: "flex", flexDirection: "column", gap: "16px" }}
       >
         <div style={{ marginBottom: "8px" }}>
@@ -207,7 +216,7 @@ function Login_(
         </div>
 
         <div style={{ display: "flex", justifyContent: "flex-end" }}>
-          <Link href="/forgotpassword">
+          <Link href="/forgot-password">
             <span style={presets.links.linkLeft}>{forgotPasswordText}</span>
           </Link>
         </div>
@@ -225,7 +234,7 @@ function Login_(
         width: "100%",
         marginTop: "24px"
       }}>
-        <Link href="/signup" style={{
+        <Link href="/register" style={{
           color: getTokenValue("information-text"),
           fontSize: "14px",
           fontWeight: "500",
