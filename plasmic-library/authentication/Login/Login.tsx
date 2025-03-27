@@ -100,8 +100,8 @@ function Login_(
     if (onSubmit) {
       try {
         await onSubmit(event);
-        // Rediriger explicitement vers /
-        router.push("/");
+        // Au lieu d'utiliser router.push qui peut causer des boucles, utilisons window.location
+        window.location.href = redirectAfterLogin || "/";
       } catch (error) {
         console.error("Erreur lors de la connexion:", error);
       }
@@ -216,7 +216,10 @@ function Login_(
         </div>
 
         <div style={{ display: "flex", justifyContent: "flex-end" }}>
-          <Link href="/forgot-password" style={presets.linkRegister} passHref legacyBehavior>
+          <Link href="/forgot-password" style={presets.linkRegister} passHref legacyBehavior onClick={(e) => {
+            e.preventDefault();
+            window.location.href = "/forgot-password";
+          }}>
             {forgotPasswordText}
           </Link>
         </div>
@@ -234,7 +237,10 @@ function Login_(
         width: "100%",
         marginTop: "24px"
       }}>
-        <Link href="/register" style={presets.linkRegister} passHref legacyBehavior>
+        <Link href="/register" style={presets.linkRegister} passHref legacyBehavior onClick={(e) => {
+          e.preventDefault();
+          window.location.href = "/register";
+        }}>
             {signUpLinkText}
         </Link>
       </div>

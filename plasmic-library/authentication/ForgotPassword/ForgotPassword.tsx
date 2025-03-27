@@ -62,9 +62,9 @@ function ForgotPassword_(
     if (onSubmit) {
       try {
         await onSubmit(event);
-        // Rediriger vers la page de connexion après soumission
+        // Au lieu d'utiliser router.push qui cause des boucles, utilisons window.location
         setTimeout(() => {
-          router.push("/login");
+          window.location.href = redirectAfterSubmit;
         }, 1500);
       } catch (error) {
         console.error("Erreur lors de la réinitialisation:", error);
@@ -110,7 +110,10 @@ function ForgotPassword_(
       </form>
 
       <Link href="/login" passHref legacyBehavior>
-        <a style={presets.buttons[buttonAbordStyle] as React.CSSProperties}>
+        <a style={presets.buttons[buttonAbordStyle] as React.CSSProperties} onClick={(e) => {
+          e.preventDefault();
+          window.location.href = "/login";
+        }}>
           {cancelButtonText}
         </a>
       </Link>
