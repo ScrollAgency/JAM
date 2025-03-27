@@ -1,19 +1,11 @@
 import type React from "react";
-import {type 
-    ButtonHTMLAttributes,
-    forwardRef,
-    useImperativeHandle,
-    useRef,
-} from "react"
+import { type ButtonHTMLAttributes, forwardRef, useImperativeHandle, useRef } from "react";
 import { cn } from "@/lib/utils";
 import { cva } from "class-variance-authority";
 import Image from "next/image";
-//import { supabase } from "../../../lib/supabaseClient";
+import { supabase } from "@/lib/supabase";
 
-type HTMLButtonProps = Pick<
-    ButtonHTMLAttributes<HTMLButtonElement>,
-    "onClick" | "disabled"
->;
+type HTMLButtonProps = Pick<ButtonHTMLAttributes<HTMLButtonElement>, "onClick" | "disabled">;
 
 interface ButtonProps extends HTMLButtonProps {
     label?: string;
@@ -56,29 +48,29 @@ const AuthButton = forwardRef<ButtonActions, ButtonProps>(
             },
         }));
 
-        // const handleClick = async (event: React.MouseEvent<HTMLButtonElement>) => {
-        //     if (authProvider === "google") {
-        //         event.preventDefault();
-        //         try {
-        //             const { data, error } = await supabase.auth.signInWithOAuth({
-        //                 provider: "google",
-        //                 options: {
-        //                     redirectTo: `${window.location.origin}/`,
-        //                 },
-        //             });
+        const handleClick = async (event: React.MouseEvent<HTMLButtonElement>) => {
+            if (authProvider === "google") {
+                event.preventDefault();
+                try {
+                    const { data, error } = await supabase.auth.signInWithOAuth({
+                        provider: "google",
+                        options: {
+                            redirectTo: `${window.location.origin}/home`,
+                        },
+                    });
 
-        //             if (error) {
-        //                 console.error("Login error:", error.message);
-        //             } else {
-        //                 console.log("Login successful:", data);
-        //             }
-        //         } catch (err) {
-        //             console.error("Unexpected error:", err);
-        //         }
-        //     } else if (onClick) {
-        //         onClick(event);
-        //     }
-        // };
+                    if (error) {
+                        console.error("Login error:", error.message);
+                    } else {
+                        console.log("Login successful:", data);
+                    }
+                } catch (err) {
+                    console.error("Unexpected error:", err);
+                }
+            } else if (onClick) {
+                onClick(event);
+            }
+        };
 
         const variants = cva(
             "flex items-center justify-center gap-3 rounded transition-all outline-none group",
@@ -120,11 +112,11 @@ const AuthButton = forwardRef<ButtonActions, ButtonProps>(
 
         return (
             <button
-                type="button"
                 ref={buttonRef}
-                //onClick={handleClick}
+                onClick={handleClick}
                 disabled={disabled}
                 className={cn(variants({ destructive, hierarchy, size, state }), className)}
+                type="button"
             >
                 {iconImage && (icon === "start" || icon === "end" || icon === "only") && (
                     <Image src={iconImage} alt="Icon" width={20} height={20} />

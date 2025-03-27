@@ -1,25 +1,9 @@
 import type React from "react";
-import {type 
-    ButtonHTMLAttributes,
-    forwardRef,
-    useImperativeHandle,
-    useRef,
-} from "react"
+import { type ButtonHTMLAttributes, forwardRef, useImperativeHandle, useRef, } from "react"
+import { supabase } from "@/lib/supabase";
 import { cn } from "@/lib/utils";
 import { cva } from "class-variance-authority";
 import Image from "next/image";
-//import { createClient } from "@supabase/supabase-js";
-
-
-// // Ensure environment variables are defined
-// const supabaseUrl3 = process.env.NEXT_PUBLIC_SUPABASE_URL;
-// const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
-
-// if (!supabaseUrl3 || !supabaseAnonKey) {
-//     throw new Error("Missing Supabase environment variables");
-// }
-
-// const supabase = createClient(supabaseUrl3, supabaseAnonKey);
 
 type HTMLButtonProps = Pick<
     ButtonHTMLAttributes<HTMLButtonElement>,
@@ -66,25 +50,25 @@ const ButtonApple = forwardRef<ButtonActions, ButtonProps>(
         }));
 
         // Function to handle Apple sign-in with Supabase OAuth
-        // const handleAppleSignIn = async () => {
-        //     const { error } = await supabase.auth.signInWithOAuth({
-        //         provider: "apple",
-        //         options: {
-        //             redirectTo: `${window.location.origin}/`,
-        //         },
-        //     });
-        //     if (error) {
-        //         console.error("Error signing in with Apple:", error.message);
-        //     }
-        // };
+        const handleAppleSignIn = async () => {
+            const { error } = await supabase.auth.signInWithOAuth({
+                provider: "apple",
+                options: {
+                    redirectTo: `${window.location.origin}/home`,
+                },
+            });
+            if (error) {
+                console.error("Error signing in with Apple:", error.message);
+            }
+        };
 
-        // const handleClick = async (event: React.MouseEvent<HTMLButtonElement>) => {
-        //     event.preventDefault();
-        //     if (onClick) {
-        //         onClick(event);
-        //     }
-        //     await handleAppleSignIn();
-        // };
+        const handleClick = async (event: React.MouseEvent<HTMLButtonElement>) => {
+            event.preventDefault();
+            if (onClick) {
+                onClick(event);
+            }
+            await handleAppleSignIn();
+        };
 
         const variants = cva(
             "flex items-center justify-center gap-3 rounded transition-all outline-none group",
@@ -128,7 +112,7 @@ const ButtonApple = forwardRef<ButtonActions, ButtonProps>(
             <button
                 type="button"
                 ref={buttonRef}
-                //onClick={handleClick}
+                onClick={handleClick}
                 disabled={disabled}
                 className={cn(variants({ destructive, hierarchy, size, state }), className)}
             >

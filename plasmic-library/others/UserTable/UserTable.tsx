@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-//import { createClient } from '@supabase/supabase-js';
+import { supabase } from "@/lib/supabase";
 import { motion } from 'framer-motion';
 
 interface JobApplication {
@@ -16,14 +16,9 @@ interface UserTableProps {
     className?: string;
 }
 
-// const supabaseUrl4 = process.env.NEXT_PUBLIC_SUPABASE_URL as string;
-// const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY as string;
-
-// const supabase = createClient(supabaseUrl4, supabaseAnonKey);
-
-// const getImageUrl = (bucket: string, path: string) => {
-//     return supabase.storage.from(bucket).getPublicUrl(path).data.publicUrl;
-// };
+const getImageUrl = (bucket: string, path: string) => {
+    return supabase.storage.from(bucket).getPublicUrl(path).data.publicUrl;
+};
 
 const formatDate = (dateString: string) => {
     const date = new Date(dateString);
@@ -48,7 +43,7 @@ const UserTable: React.FC<UserTableProps> = ({ applications, className }) => {
     const itemsPerPage = 9; // Number of items per page
 
     const sortedApplications = React.useMemo(() => {
-        let sortableApplications = [...applications];
+        const sortableApplications = [...applications];
         if (sortConfig !== null) {
             sortableApplications.sort((a, b) => {
                 if (a[sortConfig.key] < b[sortConfig.key]) {
