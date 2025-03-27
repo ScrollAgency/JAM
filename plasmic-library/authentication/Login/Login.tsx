@@ -111,12 +111,12 @@ function Login_(
         </div>
 
         <div style={{ display: "flex", justifyContent: "space-between" }}>
-          <Link href="/forgotpassword">
+          <Link href="/forgot-password">
             <span style={presets.links.linkLeft}>{forgotPasswordText}</span>
           </Link>
 
           {showCreateAccount && (
-            <Link href="/signup">
+            <Link href="/register">
               <span style={presets.links.linkRight}>{createAccountText}</span>
             </Link>
           )}
