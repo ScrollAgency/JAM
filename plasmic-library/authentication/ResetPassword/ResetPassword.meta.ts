@@ -170,7 +170,7 @@ const ResetPasswordMeta = {
       onChangeProp: 'onRepeatPasswordChange'
     },
   },
-  importPath: "./components/auth/ResetPassword",
+  importPath: "./plasmic-library/authentication/ResetPassword",
 };
 
 export default ResetPasswordMeta;

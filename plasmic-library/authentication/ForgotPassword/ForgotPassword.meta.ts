@@ -108,7 +108,7 @@ const ForgotPasswordMeta = {
     },
   },
 
-  importPath: "./components/auth/ForgotPassword",
+  importPath: "./plasmic-library/authentication/ForgotPassword",
 };
 
 export default ForgotPasswordMeta;

@@ -236,7 +236,7 @@ const SignUpMeta = {
     },
   },
   
-  importPath: "./components/auth/SignUp",
+  importPath: "./plasmic-library/authentication/SignUp",
 };
 
 export default SignUpMeta;

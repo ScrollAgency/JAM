@@ -124,7 +124,7 @@ const LoginMeta = {
       onChangeProp: 'onPasswordChange'
     },
   },
-  importPath: "./components/auth/Login",
+  importPath: "./plasmic-library/authentication/Login",
 };
 
 export default LoginMeta;
