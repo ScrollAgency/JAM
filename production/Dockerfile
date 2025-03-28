@@ -27,24 +27,13 @@ RUN npm rebuild
 
 # Installe les dépendances
 RUN npm install
-RUN npm cache clean --force
-
 
 # Copie le reste des fichiers de l'application
 COPY . .
-
-# Installer Playwright et ses navigateurs
-WORKDIR /app/tests
-RUN npm install playwright
-
-# Retour au répertoire principal de l'application
-WORKDIR /app
-
-# Exécuter le build de Next.js
 RUN npm run build
 
 # Expose le port que l'application utilise
 EXPOSE 3000
 
-# Commande pour démarrer l'application
+# Commande pour démarrer l'application.
 CMD ["npm", "start"]
