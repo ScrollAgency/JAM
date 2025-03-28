@@ -125,7 +125,7 @@ function ForgotPassword_(
         </button>
       </form>
 
-      <Link href="/register">
+      <Link href="/login">
         <button
           type="button"
           style={presets.buttons[buttonAbordStyle] as React.CSSProperties}
