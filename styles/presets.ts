@@ -243,7 +243,7 @@ export const presets = {
       padding: "16px",
       width: "100%",
       height: "56px",
-      color: getTokenValue("grey-400"),
+      color: getTokenValue("information-text"),
       borderRadius: "12px",
       borderColor: getTokenValue("grey-200"),
       borderWidth: "1px",
