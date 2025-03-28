@@ -2,8 +2,7 @@ import * as React from "react";
 import type { HTMLElementRefOf } from "@plasmicapp/react-web";
 import { useState } from "react";
 import { presets } from "@/styles/presets";
-import Link from "next/link";
-import { useRouter } from "next/router";
+import Link from "next/link";  
 
 export interface ForgotPasswordProps {
   wrapperStyle?: "simple" | "card" | "custom";
@@ -27,9 +26,6 @@ export interface ForgotPasswordProps {
 
   // Texte explicatif
   descriptionText?: string;
-  
-  // Redirection
-  redirectAfterSubmit?: string;
 }
 
 function ForgotPassword_(
@@ -50,57 +46,77 @@ function ForgotPassword_(
     submitButtonText = "Réinitialiser",
     cancelButtonText = "Annuler",
     descriptionText = "Pas de panique, nous allons vous envoyer un e-mail pour vous aider à réinitialiser votre mot de passe.", // Valeur par défaut
-    redirectAfterSubmit = "/login",  // Redirection vers la page de connexion après soumission
   }: ForgotPasswordProps,
   ref: HTMLElementRefOf<"div">
 ) {
   const [emailState, setEmail] = useState("");
-  const router = useRouter(); // Initialisation du router Next.js
 
-  const handleFormSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    if (onSubmit) {
-      try {
-        await onSubmit(event);
-        // Au lieu d'utiliser router.push qui cause des boucles, utilisons window.location
-        setTimeout(() => {
-          window.location.href = redirectAfterSubmit;
-        }, 1500);
-      } catch (error) {
-        console.error("Erreur lors de la réinitialisation:", error);
-      }
+  // Utiliser une fonction pour rendre le titre au lieu de créer une variable qui référence la chaîne de caractères
+  const renderTitle = () => {
+    switch(titleHeading) {
+      case 'h1':
+        return <h1 style={presets.heading1 as React.CSSProperties}>{title}</h1>;
+      case 'h2':
+        return <h2 style={presets.heading2 as React.CSSProperties}>{title}</h2>;
+      case 'h3':
+        return <h3 style={presets.heading3 as React.CSSProperties}>{title}</h3>;
+      default:
+        return <h1 style={presets.heading1 as React.CSSProperties}>{title}</h1>;
     }
   };
 
-  const Title = titleHeading;
+  // Modifié pour éviter le problème de DataCloneError
+  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    setEmail(value);
+    
+    // Solution pour éviter l'erreur DataCloneError:
+    // Au lieu de passer l'événement original, créer un objet simplifié
+    if (onEmailChange) {
+      // Créer un objet simplifié qui imite l'événement de changement
+      const simpleEvent = {
+        target: {
+          value: value,
+          name: e.target.name,
+          id: e.target.id
+        },
+        currentTarget: {
+          value: value,
+          name: e.target.name,
+          id: e.target.id
+        },
+        preventDefault: () => {},
+        stopPropagation: () => {}
+      } as React.ChangeEvent<HTMLInputElement>;
+      
+      onEmailChange(simpleEvent);
+    }
+  };
 
   return (
     <div
       ref={ref}
       style={presets.wrappers[wrapperStyle] as React.CSSProperties}
     >
-      <Title style={presets.heading1}>{title}</Title>
+      {renderTitle()}
 
       <p style={presets.formMessage as React.CSSProperties}>
         {descriptionText}
       </p>
 
       <form
-        onSubmit={handleFormSubmit}
+        onSubmit={(event) => { event.preventDefault(); onSubmit?.(event); }}
         style={{ display: "flex", flexDirection: "column", rowGap: presets.form.rowGap }}
       >
-        <div style={{ rowGap: presets.inputField.rowGap }}>
+        <div style={{ ...presets.inputField } as React.CSSProperties}>
           <label style={presets.formLabel as React.CSSProperties} htmlFor="email">{emailLabel}</label>
           <input
             type="email"
             id="email"
             placeholder={placeholderEmail}
-            style={presets.inputs[inputStyle]} 
+            style={presets.inputs[inputStyle] as React.CSSProperties} 
             value={emailState}
-            onChange={(e) => { 
-              setEmail(e.target.value); 
-              onEmailChange?.(e);
-            }}
+            onChange={handleEmailChange}
           />
         </div>
 
@@ -109,13 +125,13 @@ function ForgotPassword_(
         </button>
       </form>
 
-      <Link href="/login" passHref legacyBehavior>
-        <a style={presets.buttons[buttonAbordStyle] as React.CSSProperties} onClick={(e) => {
-          e.preventDefault();
-          window.location.href = "/login";
-        }}>
+      <Link href="/register">
+        <button
+          type="button"
+          style={presets.buttons[buttonAbordStyle] as React.CSSProperties}
+        >
           {cancelButtonText}
-        </a>
+        </button>
       </Link>
     </div>
   );
