@@ -491,27 +491,27 @@ function SignUp_(
           </div>
         )}
 
-        <div style={presets.formLabel as React.CSSProperties}>
-          {showLabels && (
+        {showLabels && (
+          <div style={presets.inputField as React.CSSProperties}>
             <label
               htmlFor="emailInput"
               style={presets.formLabel as React.CSSProperties}
             >
               {emailLabel}
             </label>
-          )}
-          <input
-            type="email"
-            id="emailInput"
-            placeholder={placeholderEmail}
-            value={email}
-            onChange={(e) => handleEmailChange(e.target.value)}
-            required
-            style={presets.inputs[inputStyle]}
-          />
-        </div>
+            <input
+              type="email"
+              id="emailInput"
+              placeholder={placeholderEmail}
+              value={email}
+              onChange={(e) => handleEmailChange(e.target.value)}
+              required
+              style={presets.inputs[inputStyle]}
+            />
+          </div>
+        )}
 
-        <div style={presets.formLabel as React.CSSProperties}>
+        <div style={presets.inputField as React.CSSProperties}>
           {showLabels && (
             <label
               htmlFor="phoneInput"
@@ -529,7 +529,10 @@ function SignUp_(
               value={formatPhoneDisplay(phone)}
               onChange={handlePhoneChange}
               required
-              style={presets.phoneInput as React.CSSProperties}
+              style={{
+                ...presets.phoneInput,
+                fontWeight: "normal"
+              } as React.CSSProperties}
             />
           </div>
         </div>
