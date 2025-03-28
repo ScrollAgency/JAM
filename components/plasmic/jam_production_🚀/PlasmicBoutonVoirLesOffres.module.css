@@ -1,0 +1,63 @@
+.buttonBase {
+  background: rgba(186, 254, 104, 1);
+  box-shadow: inset 0px 0px 0px 1px rgba(186, 254, 104, 1);
+  filter: none;
+  width: auto;
+  height: auto;
+  display: inline-flex;
+  flex-direction: row;
+  position: relative;
+  justify-self: flex-start;
+  border-radius: 16px;
+  padding: 12px 24px;
+}
+.buttonBase > :global(.__wab_flex-container) {
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-left: calc(0px - 12px);
+  width: calc(100% + 12px);
+}
+.buttonBase > :global(.__wab_flex-container) > *,
+.buttonBase > :global(.__wab_flex-container) > :global(.__wab_slot) > *,
+.buttonBase > :global(.__wab_flex-container) > picture > img,
+.buttonBase
+  > :global(.__wab_flex-container)
+  > :global(.__wab_slot)
+  > picture
+  > img {
+  margin-left: 12px;
+}
+.text {
+  display: block;
+  font-size: 16px;
+  text-transform: uppercase;
+  font-family: "DM Sans", sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  line-height: 100%;
+  color: rgba(0, 0, 0, 1);
+  position: relative;
+}
+.iconArrow {
+  background: rgba(255, 255, 255, 1);
+  width: 33px;
+  height: 33px;
+  display: block;
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+  border-radius: 37.75743865966797px;
+}
+.svg {
+  object-fit: cover;
+  max-width: 100%;
+  color: #000;
+  transform: translate(-0.3526153564453125px, 0.38230037689208984px);
+  width: 19.633867263793945px;
+  height: 16.31121253967285px;
+  display: block;
+  position: absolute;
+  top: 8px;
+  left: 7px;
+}
