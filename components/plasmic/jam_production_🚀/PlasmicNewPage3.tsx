@@ -303,7 +303,10 @@ function PlasmicNewPage3__RenderFunc(props: {
                 {...child$Props}
               >
                 <FormItemWrapper
-                  className={classNames("__wab_instance", sty.formField___8IoD)}
+                  className={classNames(
+                    "__wab_instance",
+                    sty.formField___2KRqP
+                  )}
                   initialValue={"sylvainanton77@gmail.com"}
                   label={"login"}
                   name={"login"}
@@ -313,10 +316,7 @@ function PlasmicNewPage3__RenderFunc(props: {
                   />
                 </FormItemWrapper>
                 <FormItemWrapper
-                  className={classNames(
-                    "__wab_instance",
-                    sty.formField___42Yy4
-                  )}
+                  className={classNames("__wab_instance", sty.formField__yi4Y8)}
                   initialValue={"Test123!"}
                   label={"password"}
                   name={"password"}
