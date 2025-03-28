@@ -1,5 +1,4 @@
-name: Deploy to Production
-    
+name: Deploy to production
 on:
   push:
     branches:
@@ -26,12 +25,13 @@ jobs:
           mkdir -p ~/.ssh
           echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
-          ssh-keyscan -H 57.129.138.68 >> ~/.ssh/known_hosts  
+          ssh-keyscan -H ${{ secrets.SERVER_IP }} >> ~/.ssh/known_hosts  
 
       - name: Get current date and set app name
         run: |
           echo "date=$(date -u +'%Y-%m-%dT%H:%M:%SZ')" >> $GITHUB_ENV
           echo "myapp=jam" >> $GITHUB_ENV
+          echo "environnement=production" >> $GITHUB_ENV
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
@@ -50,11 +50,15 @@ jobs:
         with:
           push: true
           context: ./
-          file: ./production/Dockerfile
+          file: ./${{ env.environnement }}/Dockerfile
           build-args: |
             NODE_AUTH_TOKEN=${{ secrets.PLASMICLIBRARY_TOKEN }}
+            NEXT_PUBLIC_PLASMIC_PROJECT_ID=${{ secrets.NEXT_PUBLIC_PLASMIC_PROJECT_ID }}
+            NEXT_PUBLIC_PLASMIC_PROJECT_TOKEN=${{ secrets.NEXT_PUBLIC_PLASMIC_PROJECT_TOKEN }}
+            NEXT_PUBLIC_SUPABASE_URL=${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
+            NEXT_PUBLIC_SUPABASE_ANON_KEY=${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
           tags: |
-            ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.myapp }}:production
+            ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.myapp }}:${{ env.environnement }}
             ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.myapp }}:${{ github.sha }}
           labels: |
             maintainer=${{ secrets.DOCKERHUB_USERNAME }}
@@ -65,7 +69,7 @@ jobs:
 
       - name: Login to Docker Hub on production Server
         run: |
-          ssh -o StrictHostKeyChecking=no ubuntu@57.129.138.68 "
+          ssh -o StrictHostKeyChecking=no ubuntu@${{ secrets.SERVER_IP }} "
             echo $DOCKERHUB_TOKEN | docker login -u $DOCKERHUB_USERNAME --password-stdin
           "
         env:
@@ -74,11 +78,27 @@ jobs:
           
       - name: Deploy to production
         run: |
-          ssh  -o StrictHostKeyChecking=no -T ubuntu@57.129.138.68 "
-            cd jam/production &&
+          ssh  -o StrictHostKeyChecking=no -T ubuntu@${{ secrets.SERVER_IP }} "
+            cd ${{ env.myapp }}/${{ env.environnement }} &&
             docker compose -f docker-compose.production.yml pull &&
             docker compose -f docker-compose.production.yml up -d
           "
+
+      # Étape 31 : Nettoyer le serveur Docker
+      - name: Clean up Docker on staging Server
+        run: |
+            ssh -o StrictHostKeyChecking=no ubuntu@${{ secrets.SERVER_IP }} "
+                echo 'Starting Docker cleanup...' &&
+                echo 'Before cleanup:' &&
+                df -h &&
+                docker system prune -a --force &&
+                docker image prune -a --force &&
+                docker volume prune --force &&
+                docker network prune --force &&
+                echo 'After cleanup:' &&
+                df -h &&
+                echo 'Docker cleanup completed successfully.'
+            "
 
     concurrency:
       group: docker-build-${{ github.ref }}
