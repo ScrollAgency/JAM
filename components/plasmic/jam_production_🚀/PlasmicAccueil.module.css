@@ -62,7 +62,7 @@
   transform: none;
   overflow: auto;
   border-radius: 24px;
-  padding: 64px;
+  padding: 24px;
 }
 .jobListing > :global(.__wab_flex-container) {
   flex-direction: column;

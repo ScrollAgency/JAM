@@ -309,7 +309,10 @@ function PlasmicNewPage4__RenderFunc(props: {
                 {...child$Props}
               >
                 <FormItemWrapper
-                  className={classNames("__wab_instance", sty.formField__uoyvg)}
+                  className={classNames(
+                    "__wab_instance",
+                    sty.formField___0A5Jr
+                  )}
                   label={"login"}
                   name={"login"}
                 >
@@ -318,7 +321,7 @@ function PlasmicNewPage4__RenderFunc(props: {
                   />
                 </FormItemWrapper>
                 <FormItemWrapper
-                  className={classNames("__wab_instance", sty.formField__zUOhU)}
+                  className={classNames("__wab_instance", sty.formField__hYug)}
                   initialValue={(() => {
                     try {
                       return $state.password;
