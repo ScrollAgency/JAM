@@ -77,11 +77,11 @@ const FileUploader = ({
   return (
     <div
       className={cn(
-        "relative p-6 border-2 border-dashed rounded-lg transition-colors",
+        "relative p-6 border-2 border-dashed rounded-lg transition-colors bg-gray-50",
         getStateStyles()
       )}
       onDragEnter={handleDrag}
-      onDragLeave={handleDrag}
+      onDragLeave={handleDrag}  
       onDragOver={handleDrag}
       onDrop={handleDrop}
     >
@@ -94,7 +94,16 @@ const FileUploader = ({
         disabled={state === "disabled"}
       />
       
-      <div className="text-center">
+      <div className="text-center flex flex-col items-center">
+        <div className="bg-white rounded-full p-4 mb-4">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path fillRule="evenodd" clipRule="evenodd" d="M4 4C4 2.34315 5.34315 1 7 1H15.7574C16.553 1 17.3161 1.31607 17.8787 1.87868L21.1213 5.12132C21.6839 5.68393 22 6.44699 22 7.24264V20C22 21.6569 20.6569 23 19 23H7C5.34315 23 4 21.6569 4 20V4Z" fill="#0A3D00" />
+            <path fillRule="evenodd" clipRule="evenodd" d="M14 3V7.24264C14 7.7949 14.2107 8.3251 14.5858 8.70021L15.2929 9.40731C15.6834 9.79784 16.2206 10 16.7803 10H21V8H16.7803L16 7.24264V3H14Z" fill="#0A3D00" />
+          </svg>
+        </div>
+        <h3 className="text-lg font-medium mb-2 text-gray-900">Importer ou déposer un fichier</h3>
+        <p className="text-sm text-gray-500 mb-4">PDF, DOC, DOCX, JPG (max. 2Mo)</p>
+        
         {state === "uploading" && (
           <div className="mb-2">
             <div className="w-full bg-blue-200 rounded-full h-2.5">
