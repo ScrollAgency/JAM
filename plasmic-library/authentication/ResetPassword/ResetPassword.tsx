@@ -1,24 +1,36 @@
 import type * as React from "react";
 import { forwardRef, useCallback, useEffect, useState } from "react";
+import type { HTMLElementRefOf } from "@plasmicapp/react-web";
 import Link from "next/link";
-import { useRouter } from "next/router";
 import { presets } from "@/styles/presets";
 import AlertManager, { type AlertType, type AlertMessage } from "../../alerts/AlertManager/AlertManager";
+import { EyeIcon, ViewIcon } from "../icons/icons";
 
 export interface ResetPasswordProps {
+  // Wrapper
   wrapperStyle?: "simple" | "card" | "custom";
-  inputStyle?: "simple" | "advance";
+
+  // Title
   titleHeading?: "h1" | "h2" | "h3";
   title?: string;
+
+  // Input
+  inputStyle?: "simple" | "advance";
+
+  // Password
+  password?: string;
   passwordLabel?: string;
-  repeatPasswordLabel?: string;
-  buttonSubmitStyle?: "primary" | "secondary" | "tertiary";
-  buttonAbordStyle?: "primary" | "secondary" | "tertiary";
-  submitButtonText?: string;
-  cancelButtonText?: string;
-  showPasswordToggle?: boolean;
+  confirmPasswordLabel?: string;
+  confirmPassword?: string;
   eyeIconColor?: string;
-  showAlerts?: boolean;
+
+  // Buttons
+  buttonSubmitStyle?: "primary" | "secondary" | "tertiary";
+  submitButtonText?: string;
+  buttonAbordStyle?: "primary" | "secondary" | "tertiary";
+  cancelButtonText?: string;
+
+  // Alert
   alertPosition?: 'top' | 'bottom' | 'inline';
   maxAlerts?: number;
   customErrorMessages?: {
@@ -29,43 +41,64 @@ export interface ResetPasswordProps {
     networkError?: string;
   };
   resetSuccessMessage?: string;
+
+  // show / hide
+  showPasswordToggle?: boolean;
+  showAlerts?: boolean;
+
+  // Events handlers
+  onPasswordChange?: (value: string) => void;
+  onConfirmPasswordChange?: (value: string) => void;
   onSubmit?: (event: React.FormEvent<HTMLFormElement>) => void;
   onAlertClose?: (id: string) => void;
-  className?: string;
-  redirectAfterReset?: string;
 }
 
 function ResetPassword_(
   props: ResetPasswordProps,
-  ref: React.ForwardedRef<HTMLDivElement>
+  ref: HTMLElementRefOf<"div">
 ) {
   const {
+    // Wrapper
     wrapperStyle = "card",
-    inputStyle = "simple",
-    onSubmit,
+
+    // Title
     titleHeading = "h1",
     title = "Réinitialiser le mot de passe",
+    
+    // Input
+    inputStyle = "simple",
+
+    // Password
     passwordLabel= "Nouveau mot de passe*",
-    repeatPasswordLabel= "Répétez le mot de passe*",
-    submitButtonText = "Réinitialiser",
-    cancelButtonText = "Annuler",
-    buttonSubmitStyle = "primary",
-    buttonAbordStyle = "tertiary",
-    showPasswordToggle = true,
+    confirmPasswordLabel= "Répétez le mot de passe*",
     eyeIconColor = "#666",
-    showAlerts = true,
+
+    // Buttons
+    buttonSubmitStyle = "primary",
+    submitButtonText = "Réinitialiser",
+    buttonAbordStyle = "tertiary",
+    cancelButtonText = "Annuler",
+    
+    // Alert
     alertPosition = 'top',
     maxAlerts = 3,
     customErrorMessages,
     resetSuccessMessage = "Votre mot de passe a été réinitialisé avec succès!",
+
+    // show / hide
+    showPasswordToggle = true,
+    showAlerts = true,
+
+    // Events handlers
+    onPasswordChange,
+    onConfirmPasswordChange,
+    onSubmit,
     onAlertClose,
-    redirectAfterReset = "/login",
   } = props;
 
-  const router = useRouter();
   const Title = titleHeading as keyof JSX.IntrinsicElements;
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+  const [password, setPassword] = useState(props.password || "");
+  const [confirmPassword, setConfirmPassword] = useState(props.confirmPassword || "");
   const [passwordStrength, setPasswordStrength] = useState(0);
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
@@ -92,14 +125,17 @@ function ResetPassword_(
     if (onAlertClose) onAlertClose(id);
   };
 
-  const handlePasswordChange = useCallback((value: string) => {
-    setPassword(value);
-    checkPasswordStrength(value);
-  }, []);
+  const handlePasswordChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    setPassword(e.target.value);
+    checkPasswordStrength(e.target.value);
+    if (onPasswordChange) onPasswordChange(e.target.value);
+  }, [onPasswordChange]);
 
-  const handleConfirmPasswordChange = useCallback((value: string) => {
-    setConfirmPassword(value);
-  }, []);
+
+  const handleConfirmPasswordChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    setConfirmPassword(e.target.value);
+    if (onConfirmPasswordChange) onConfirmPasswordChange(e.target.value);
+  }, [onConfirmPasswordChange]);
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
@@ -143,30 +179,21 @@ function ResetPassword_(
     return bars;
   };
 
-  const EyeIcon = () => (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <title>Icône d'œil</title> {/* Accessibilité */}
-      <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
-      <circle cx="12" cy="12" r="3" />
-      <line x1="1" y1="1" x2="23" y2="23" />
-    </svg>
-  );
-
-  const ViewIcon = () => (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <title>Icône de vue</title> {/* Accessibilité */}
-      <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
-      <circle cx="12" cy="12" r="3" />
-    </svg>
-  );
-
   useEffect(() => {
     return () => {
       setAlerts([]);
     };
   }, []);
 
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+  useEffect(() => {
+    setPassword(props.password || "");
+  },  [props.password]);
+  
+    useEffect(() => {
+      setConfirmPassword(props.confirmPassword || "");
+    },  [props.confirmPassword]);
+
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setAlerts([]);
     let isValid = true;
@@ -187,11 +214,8 @@ function ResetPassword_(
 
     if (isValid && onSubmit) {
       try {
-        await onSubmit(event);
+        onSubmit(event);
         addAlert('success', resetSuccessMessage);
-        setTimeout(() => {
-          router.push("/login");
-        }, 1500);
       } catch (error) {
         if (error instanceof Error) {
           addAlert('error', error.message || errorMessages.networkError);
@@ -227,7 +251,7 @@ function ResetPassword_(
               type={showPassword ? "text" : "password"}
               id="passwordInput"
               value={password}
-              onChange={(e) => handlePasswordChange(e.target.value)}
+              onChange={handlePasswordChange}
               required
               style={presets.inputs[inputStyle]}
             />
@@ -247,13 +271,13 @@ function ResetPassword_(
         </div>
 
         <div style={{ rowGap: presets.inputField.rowGap }}>
-          <label style={presets.formLabel as React.CSSProperties} htmlFor="confirmPassword">{repeatPasswordLabel}</label>
+          <label style={presets.formLabel as React.CSSProperties} htmlFor="confirmPasswordInput">{confirmPasswordLabel}</label>
           <div style={presets.passwordInputWrapper as React.CSSProperties}>
             <input
               type={showConfirmPassword ? "text" : "password"}
               id="confirmPasswordInput"
               value={confirmPassword}
-              onChange={(e) => handleConfirmPasswordChange(e.target.value)}
+              onChange={handleConfirmPasswordChange}
               required
               style={presets.inputs[inputStyle]}
             />
@@ -278,10 +302,13 @@ function ResetPassword_(
         </button>
       </form>
 
-      <Link href="/login" passHref legacyBehavior>
-        <a style={presets.buttons[buttonAbordStyle] as React.CSSProperties}>
+      <Link href="/login">
+        <button
+          type="button"
+          style={presets.buttons[buttonAbordStyle] as React.CSSProperties}
+        >
           {cancelButtonText}
-        </a>
+        </button>
       </Link>
     </div>
   );

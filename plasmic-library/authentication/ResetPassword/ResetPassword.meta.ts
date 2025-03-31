@@ -26,7 +26,7 @@ const ResetPasswordMeta = {
       description: "Niveau du titre",
     },
 
-    // Input style
+    // Input
     inputStyle: {
       type: "choice",
       defaultValue: "simple",
@@ -37,7 +37,7 @@ const ResetPasswordMeta = {
     // Nouveau mot de passe
     passwordLabel: {
       type: "string",
-      defaultValue: "Nouveau mot de passe",
+      defaultValue: "Nouveau mot de passe*",
     },
     password: {
       type: "string",
@@ -51,17 +51,17 @@ const ResetPasswordMeta = {
     },
 
     // Confirmer mot de passe
-    repeatPasswordLabel: {
+    confirmPasswordLabel: {
       type: "string",
-      defaultValue: "Répétez le mot de passe",
+      defaultValue: "Répétez le mot de passe*",
     },
-    repeatPassword: {
+    confirmPassword: {
       type: "string",
       defaultValue: "",
-      valueProp: "repeatPassword",
-      onChangeProp: "onRepeatPasswordChange",
+      valueProp: "confirmPassword",
+      onChangeProp: "onConfirmPasswordChange",
     },
-    repeatPasswordPlaceholder: {
+    confirmPasswordPlaceholder: {
       type: "string",
       defaultValue: "Confirmez votre mot de passe",
     },
@@ -144,7 +144,7 @@ const ResetPasswordMeta = {
       type: "eventHandler",
       argTypes: [{ name: "event", type: "object" }],
     },
-    onRepeatPasswordChange: {
+    onConfirmPasswordChange: {
       type: "eventHandler",
       argTypes: [{ name: "event", type: "object" }],
     },
@@ -163,14 +163,14 @@ const ResetPasswordMeta = {
       valueProp: 'password',
       onChangeProp: 'onPasswordChange'
     },
-    repeatPassword: {
+    confirmPassword: {
       type: 'writable',
       variableType: 'text',
-      valueProp: 'repeatPassword',
-      onChangeProp: 'onRepeatPasswordChange'
+      valueProp: 'confirmPassword',
+      onChangeProp: 'onConfirmPasswordChange'
     },
   },
-  importPath: "./plasmic-library/authentication/ResetPassword",
+  importPath: "./components/auth/ResetPassword",
 };
 
 export default ResetPasswordMeta;
