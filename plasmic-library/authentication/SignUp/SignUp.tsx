@@ -184,7 +184,8 @@ function SignUp_(
     passwordMismatch: "Les mots de passe ne correspondent pas",
     invalidPhone: "Veuillez entrer un numéro de téléphone valide",
     networkError: "Une erreur réseau s'est produite. Veuillez réessayer.",
-    emailExists: "Cette adresse email est déjà utilisée"
+    emailExists: "Cette adresse email est déjà utilisée",
+    signupSuccess: "Votre compte a été créé avec succès! Veuillez vérifier vos emails pour confirmer votre compte."
   };
 
   // Fusionner avec les messages personnalisés
