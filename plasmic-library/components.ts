@@ -124,3 +124,8 @@ export { default as UserTableMeta } from "./others/UserTable/UserTable.meta";
 export { default as TextLink } from "./others/TextLink/TextLink";
 export { default as TextLinkMeta } from "./others/TextLink/TextLink.meta";
 
+export { default as MainCourante } from "./others/Kanban/Kanban";
+export { default as MainCouranteMeta } from "./others/Kanban/Kanban.meta";
+//       DataGrid
+export { default as DataGrid } from "./others/DataGrid/DataGrid";
+export { default as DataGridMeta } from "./others/DataGrid/DataGrid.meta";

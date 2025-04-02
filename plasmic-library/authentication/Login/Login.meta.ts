@@ -13,6 +13,11 @@ const LoginMeta = {
       options: ["simple", "card", "custom"],
       description: "Style du conteneur global",
     },
+    padding: {
+      type: "string",
+      defaultValue: "48px",
+      description: "Espacement interne du composant",
+    },
 
     // Title
     title: {
@@ -76,22 +81,46 @@ const LoginMeta = {
       defaultValue: "Créer un compte",
       description: "Texte à afficher pour le lien Créer un compte",
     },
-    showCreateAccount: {
-      type: "boolean",
-      defaultValue: false,
-      description: "Affiche ou non le lien Créer un compte",
+    signUpLinkText: {
+      type: "string",
+      defaultValue: "Pas encore de compte ? INSCRIPTION",
+      description: "Texte à afficher pour le lien Signup du bas",
+    },
+    forgotPasswordPosition: {
+      type: "choice",
+      defaultValue: "left",
+      options: ["left", "right"],
+      description: "Position du lien forgot password",
     },
 
+
     // Buttons
-    submitButtonText: {
-      type: "string",
-      defaultValue: "Connexion",
-    },
     buttonStyle: {
       type: "choice",
       defaultValue: "primary",
       options: ["primary", "secondary", "tertiary"],
       description: "Style du bouton de soumission",
+    },
+    submitButtonText: {
+      type: "string",
+      defaultValue: "Connexion",
+    },
+
+    // show / hide
+    showPasswordToggle: {
+      type: "boolean",
+      defaultValue: true,
+      description: "Affiche ou non l'oeil",
+    },
+    showSocialOAuth: {
+      type: "boolean",
+      defaultValue: true,
+      description: "Affiche ou non la section complète de connexion sociale (séparateur + boutons)",
+    },
+    showBottomSignupLink: {
+      type: "boolean",
+      defaultValue: false,
+      description: "Affiche ou non le lien signup du bas",
     },
     
     // Events handlers
@@ -106,6 +135,11 @@ const LoginMeta = {
     onSubmit: {
       type: "eventHandler",
       argTypes: [{ name: "event", type: "object" }],
+    },
+    onError: {
+      type: "eventHandler",
+      argTypes: [{ name: "error", type: "object" }],
+      description: "Appelé lorsqu'une erreur se produit dans le composant",
     },
   },
 
@@ -124,7 +158,7 @@ const LoginMeta = {
       onChangeProp: 'onPasswordChange'
     },
   },
-  importPath: "./plasmic-library/authentication/Login",
+  importPath: "./components/auth/Login",
 };
 
 export default LoginMeta;

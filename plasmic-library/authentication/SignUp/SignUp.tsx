@@ -10,31 +10,34 @@ import ButtonApple from "../../buttons/ButtonApple/ButtonApple";
 import AlertManager, { type AlertType, type AlertMessage } from "../../alerts/AlertManager/AlertManager";
 
 export interface SignUpProps {
-
+  // Wrapper
   wrapperStyle?: "simple" | "card" | "custom";
   inputStyle?: "simple" | "advance";
   titleHeading?: "h1" | "h2" | "h3";
   title?: string;
 
-  // Styles des inputs
+  // Labels & Placeholders
   showLabels?: boolean;
   emailLabel?: string;
   passwordLabel?: string;
   firstNameLabel?: string;
   lastNameLabel?: string;
   confirmPasswordLabel?: string;
+  phoneLabel?: string;
 
   placeholderEmail?: string;
   placeholderPassword?: string;
   placeholderFirstName?: string;
   placeholderLastName?: string;
   placeholderConfirmPassword?: string;
-  phoneLabel?: string;
   placeholderPhone?: string;
-  
-  // Contrôle de visibilité du mot de passe
+
+  // Visibility Controls
   showPasswordToggle?: boolean;
-  eyeIconColor?: string;
+  showPhoneInput?: boolean;
+  showLoginLink?: boolean;
+  showOAuthButtons?: boolean;
+  showAlerts?: boolean;
 
   // Styles du bouton Submit
   buttonStyle?: "primary" | "secondary" | "tertiary";
@@ -42,19 +45,12 @@ export interface SignUpProps {
   submitButtonText?: string;
 
   // Boutons OAuth
-  showOAuthButtons?: boolean;
   googleButtonText?: string;
   appleButtonText?: string;
   oAuthButtonsPosition?: 'top' | 'bottom';
   oAuthSeparatorText?: string;
 
-  // Lien de connexion
-  showLoginLink?: boolean;
-  loginLinkText?: string;
-  loginLinkHref?: string;
-
   // Gestion des alertes
-  showAlerts?: boolean;
   alertPosition?: 'top' | 'bottom' | 'inline';
   maxAlerts?: number;
   customErrorMessages?: {
@@ -74,7 +70,13 @@ export interface SignUpProps {
   lastName?: string;
   phone?: string;
 
-  onSubmit?: (event: React.FormEvent<HTMLFormElement>) => void;
+  onSubmit?: (event: React.FormEvent<HTMLFormElement>, formData: {
+    email: string;
+    password: string;
+    firstName: string;
+    lastName: string;
+    phone?: string;
+  }) => Promise<void>;
   onEmailChange?: (value: string) => void;
   onPasswordChange?: (value: string) => void;
   onFirstNameChange?: (value: string) => void;
@@ -91,6 +93,8 @@ export interface SignUpProps {
   passwordInfoText?: string;
   privacyPolicyText?: string;
   redirectAfterSignUp?: string;
+
+  padding?: string; // Controls inner padding of the component
 }
 
 function SignUp_(
@@ -98,20 +102,20 @@ function SignUp_(
   ref: React.ForwardedRef<HTMLDivElement>
 ) {
   const {
+    // Wrapper
     wrapperStyle = "card",
-    buttonStyle = "primary",
-    buttonAbordStyle = "tertiary",
     inputStyle = "simple",
     titleHeading = "h1",
     title = "Inscription",
 
+    // Labels & Placeholders
     showLabels = true,
     emailLabel = "Email",
     passwordLabel = "Mot de passe",
-    confirmPasswordLabel = "Répétez le mot de passe",
     firstNameLabel = "Prénom",
     lastNameLabel = "Nom",
     phoneLabel = "Téléphone",
+    confirmPasswordLabel = "Répétez le mot de passe",
 
     placeholderEmail = "Email",
     placeholderPassword = "••••••••",
@@ -119,27 +123,23 @@ function SignUp_(
     placeholderLastName = "Nom",
     placeholderPhone = "060606060606",
     placeholderConfirmPassword = "••••••••",
-    
-    // Contrôle de visibilité du mot de passe
-    showPasswordToggle = true,
-    eyeIconColor = "#666",
 
+    // Visibility Controls
+    showPasswordToggle = true,
+    showPhoneInput = false,
+    showLoginLink = true,
+    showOAuthButtons = true,
+    showAlerts = true,
+
+    buttonStyle = "primary",
+    buttonAbordStyle = "tertiary",
     submitButtonText = "S'inscrire",
 
-    // Boutons OAuth
-    showOAuthButtons = true,
     googleButtonText = "GOOGLE",
     appleButtonText = "APPLE",
     oAuthButtonsPosition = 'bottom',
     oAuthSeparatorText = "ou",
 
-    // Lien de connexion
-    showLoginLink = true,
-    loginLinkText = "Déjà inscrit(e) ? CONNEXION",
-    loginLinkHref = "/login",
-
-    // Gestion des alertes
-    showAlerts = true,
     alertPosition = 'top',
     maxAlerts = 3,
     customErrorMessages,
@@ -158,6 +158,8 @@ function SignUp_(
     onGoogleSignIn,
     onAppleSignIn,
     onAlertClose,
+
+    padding = "48px",
   } = props;
 
   const router = useRouter();
@@ -231,16 +233,13 @@ function SignUp_(
     if (onConfirmPasswordChange) onConfirmPasswordChange(value);
   }, [onConfirmPasswordChange]);
 
-  // Fonction pour formater le numéro de téléphone à l'affichage 
-  const formatPhoneDisplay = (phoneNumber: string) => {
+  const formatPhoneDisplay = useCallback((phoneNumber: string): string => {
     if (!phoneNumber) return '';
-    
     // Format par groupes de 2 chiffres (XX XX XX XX XX)
     return phoneNumber.replace(/(\d{2})(?=\d)/g, '$1 ').trim();
-  };
+  }, []);
 
-  // Gestion des changements du numéro de téléphone
-  const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handlePhoneChange = useCallback((e: React.ChangeEvent<HTMLInputElement>): void => {
     const inputValue = e.target.value;
     // Nettoyage du numéro : on garde seulement les chiffres
     let cleanedValue = inputValue.replace(/[^\d]/g, '');
@@ -251,11 +250,9 @@ function SignUp_(
     // Validation du numéro
     const isValidPhone = cleanedValue.length >= 8; // Longueur minimale pour un numéro valide
     setPhoneError(!isValidPhone && cleanedValue.length > 0);
-    // Affichage formaté dans le champ
-    e.target.value = formatPhoneDisplay(cleanedValue);
     // Appel de la fonction callback
-    onPhoneChange?.(cleanedValue);
-  };
+    if (onPhoneChange) onPhoneChange(cleanedValue);
+  }, [onPhoneChange]);
 
   const checkPasswordStrength = useCallback((password: string) => {
     const criteria = [/[a-z]/, /[A-Z]/, /\d/, /[^A-Za-z0-9]/];
@@ -404,21 +401,30 @@ function SignUp_(
       return;
     }
     
-    // Validation du téléphone
-    if (phone && phone.length < 8) {
+    // Validation du téléphone seulement si requis
+    if (showPhoneInput && (!phone || phone.length < 8)) {
       setPhoneError(true);
       addAlert('error', errorMessages.invalidPhone);
       return;
     }
+
+    // Créer l'objet avec les données du formulaire
+    const formData = {
+      email,
+      password,
+      firstName,
+      lastName,
+      phone: showPhoneInput ? `${countryCode}${phone}` : undefined
+    };
     
     // Si on a une fonction onSubmit dans les props, on l'appelle
     if (onSubmit) {
       try {
-        await onSubmit(e);
-        addAlert('success', "Votre compte a été créé avec succès!");
-        // Rediriger vers / après un court délai
+        await onSubmit(e, formData);
+        addAlert('success', "Votre compte a été créé avec succès! Veuillez vérifier vos emails pour confirmer votre compte.");
+        // Rediriger vers /login après un court délai
         setTimeout(() => {
-          router.push("/");
+          router.push("/login");
         }, 1500);
       } catch (error) {
         console.error("Erreur lors de l'inscription:", error);
@@ -446,7 +452,10 @@ function SignUp_(
   return (
     <div
       ref={ref}
-      style={presets.wrappers[wrapperStyle] as React.CSSProperties}
+      style={{
+        ...presets.wrappers[wrapperStyle] as React.CSSProperties,
+        padding
+      }}
     >
       <Title style={presets.heading1 as React.CSSProperties}>{title}</Title>
 
@@ -512,31 +521,37 @@ function SignUp_(
           </div>
         )}
 
-        <div style={presets.inputField as React.CSSProperties}>
-          {showLabels && (
-            <label
-              htmlFor="phoneInput"
-              style={presets.formLabel as React.CSSProperties}
-            >
-              {phoneLabel}
-            </label>
-          )}
-          <div style={presets.phoneInputGroup as React.CSSProperties}>
-            <PhoneSelector style={presets.phoneSelector as React.CSSProperties} />
-            <input
-              type="tel"
-              id="phoneInput"
-              placeholder={placeholderPhone}
-              value={formatPhoneDisplay(phone)}
-              onChange={handlePhoneChange}
-              required
-              style={{
-                ...presets.phoneInput,
-                fontWeight: "normal"
-              } as React.CSSProperties}
-            />
+        {showPhoneInput && (
+          <div style={presets.inputField as React.CSSProperties}>
+            {showLabels && (
+              <label
+                htmlFor="phoneInput"
+                style={presets.formLabel as React.CSSProperties}
+              >
+                {phoneLabel}
+              </label>
+            )}
+            <div style={presets.phoneInputGroup as React.CSSProperties}>
+              <PhoneSelector style={{
+                ...presets.phoneSelector as React.CSSProperties,
+                borderRight: "none"
+              }} />
+              <input
+                type="tel"
+                id="phoneInput"
+                placeholder={placeholderPhone}
+                value={phone ? formatPhoneDisplay(phone) : ''}
+                onChange={handlePhoneChange}
+                required={showPhoneInput}
+                style={{
+                  ...presets.phoneInput,
+                  fontWeight: "normal",
+                  borderLeft: "none"
+                } as React.CSSProperties}
+              />
+            </div>
           </div>
-        </div>
+        )}
 
         <div style={presets.inputField as React.CSSProperties}>
           <label style={presets.formLabel as React.CSSProperties} htmlFor="passwordInput">{passwordLabel}</label>
@@ -614,7 +629,7 @@ function SignUp_(
               ...presets.loginLink as React.CSSProperties,
               color: getTokenValue("information-text")
             }}>
-              {loginLinkText}
+              Déjà inscrit(e) ? CONNEXION
             </a>
           </Link>
         </div>

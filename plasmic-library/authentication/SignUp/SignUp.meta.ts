@@ -13,6 +13,11 @@ const SignUpMeta = {
       options: ["simple", "card", "custom"],
       description: "Style du conteneur du formulaire",
     },
+    padding: {
+      type: "string",
+      defaultValue: "48px",
+      description: "Espacement interne du composant",
+    },
 
     // Title
     title: {
@@ -159,6 +164,20 @@ const SignUpMeta = {
       onChangeProp: "onLastNameChange",
     },
 
+    phone: {
+      type: "string",
+      defaultValue: "",
+      valueProp: "phone",
+      onChangeProp: "onPhoneChange"
+    },
+    countryCode: {
+      type: "string",
+      defaultValue: "+33",
+      valueProp: "countryCode",
+      onChangeProp: "onCountryCodeChange",
+      description: "Code pays pour le numéro de téléphone"
+    },
+
     // Barres de progression pour le mot de passe
     passwordStrength: {
       type: "boolean",
@@ -186,6 +205,18 @@ const SignUpMeta = {
       type: "eventHandler",
       argTypes: [{ name: "event", type: "object" }],
     },
+    onPhoneChange: {
+      type: "eventHandler",
+      argTypes: [{ name: "value", type: "string" }],
+      description: "Fonction appelée lorsque le numéro de téléphone change (optionnel)",
+      required: false
+    },
+    onCountryCodeChange: {
+      type: "eventHandler",
+      argTypes: [{ name: "value", type: "string" }],
+      description: "Fonction appelée lorsque le code pays change (optionnel)",
+      required: false
+    },
     onConfirmPasswordChange: {
       type: "eventHandler",
       argTypes: [{ name: "value", type: "string" }],
@@ -200,6 +231,79 @@ const SignUpMeta = {
       defaultValue: "primary",
       options: ["primary", "secondary", "tertiary"],
       description: "Style du bouton de soumission",
+    },
+
+    // show / hide
+    showPhoneInput: {
+      type: "boolean",
+      defaultValue: false,
+      description: "Affiche ou non le champ téléphone",
+    },
+
+    // Labels visibility
+    showLabels: {
+      type: "boolean",
+      defaultValue: true,
+      description: "Afficher les labels des champs",
+    },
+
+    // Phone specific
+    phoneLabel: {
+      type: "string",
+      defaultValue: "Téléphone",
+      description: "Label du champ téléphone",
+    },
+    placeholderPhone: {
+      type: "string",
+      defaultValue: "060606060606",
+      description: "Placeholder du champ téléphone",
+    },
+
+    // Login link
+    showLoginLink: {
+      type: "boolean",
+      defaultValue: true,
+      description: "Afficher le lien vers la page de connexion",
+    },
+
+    // OAuth buttons position
+    oAuthButtonsPosition: {
+      type: "choice",
+      options: ["top", "bottom"],
+      defaultValue: "bottom",
+      description: "Position des boutons OAuth",
+    },
+
+    // OAuth text
+    oAuthSeparatorText: {
+      type: "string",
+      defaultValue: "ou",
+      description: "Texte du séparateur OAuth",
+    },
+    googleButtonText: {
+      type: "string",
+      defaultValue: "GOOGLE",
+      description: "Texte du bouton Google",
+    },
+    appleButtonText: {
+      type: "string",
+      defaultValue: "APPLE",
+      description: "Texte du bouton Apple",
+    },
+
+    // Button style for abort
+    buttonAbordStyle: {
+      type: "choice",
+      defaultValue: "tertiary",
+      options: ["primary", "secondary", "tertiary"],
+      description: "Style du bouton d'abandon",
+    },
+
+    // Redirect
+    redirectAfterSignUp: {
+      type: "string",
+      defaultValue: "/",
+      description: "URL de redirection après inscription",
     },
   },
 
@@ -234,6 +338,19 @@ const SignUpMeta = {
       valueProp: 'confirmPassword',
       onChangeProp: 'onConfirmPasswordChange'
     },
+    phone: {
+      type: 'writable',
+      variableType: 'text',
+      valueProp: 'phone',
+      onChangeProp: 'onPhoneChange'
+    },
+    countryCode: {
+      type: 'writable',
+      variableType: 'text',
+      valueProp: 'countryCode',
+      onChangeProp: 'onCountryCodeChange',
+      defaultValue: '+33'
+    }
   },
   
   importPath: "./plasmic-library/authentication/SignUp",
