@@ -510,4 +510,15 @@
 
 .dataGridRow:last-child td:last-child {
   border-bottom-right-radius: 12px;
+}
+
+.imageCell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.imageCell img {
+  border-radius: 50%;
+  object-fit: cover;
 } 
