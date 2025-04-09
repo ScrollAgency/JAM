@@ -16,6 +16,54 @@ const JobCardMeta = {
       city: "string",
       companyName: "string",
       logo: "imageUrl",
+      domain: {
+        type: "object",
+        fields: {
+          icon: "imageUrl",
+          text: "string",
+        },
+        required: false,
+      },
+      contractType: {
+        type: "object",
+        fields: {
+          icon: "imageUrl",
+          text: "string",
+        },
+        required: false,
+      },
+      availability: {
+        type: "object",
+        fields: {
+          icon: "imageUrl",
+          text: "string",
+        },
+        required: false,
+      },
+      workingTime: {
+        type: "object",
+        fields: {
+          icon: "imageUrl",
+          text: "string",
+        },
+        required: false,
+      },
+      salary: {
+        type: "object",
+        fields: {
+          icon: "imageUrl",
+          text: "string",
+        },
+        required: false,
+      },
+      workMode: {
+        type: "object",
+        fields: {
+          icon: "imageUrl",
+          text: "string",
+        },
+        required: false,
+      },
       onClick: {
         type: "eventHandler",
         description: "Fonction appelée lors du clic sur le bouton.",

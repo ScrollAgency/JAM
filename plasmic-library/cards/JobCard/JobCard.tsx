@@ -9,6 +9,30 @@ interface JobCardProps extends VariantProps<typeof cardVariant> {
   city: string;
   companyName: string;
   logo: string;
+  domain?: {
+    icon: string;
+    text: string;
+  };
+  contractType?: {
+    icon: string;
+    text: string;
+  };
+  availability?: {
+    icon: string;
+    text: string;
+  };
+  workingTime?: {
+    icon: string;
+    text: string;
+  };
+  salary?: {
+    icon: string;
+    text: string;
+  };
+  workMode?: {
+    icon: string;
+    text: string;
+  };
   tags?: string[];
   customIcons?: {
     mapPin?: string;
@@ -19,7 +43,7 @@ interface JobCardProps extends VariantProps<typeof cardVariant> {
   };
   className?: string;
   onClick?: (event: React.MouseEvent<HTMLDivElement>) => void;
-  onFavoriteClick?: () => void; // Nouvelle prop pour gérer les favoris
+  onFavoriteClick?: () => void;
 }
 
 export interface JobCardActions {
@@ -27,7 +51,7 @@ export interface JobCardActions {
 }
 
 const cardVariant = cva(
-  "w-[330px] flex flex-col rounded-2xl bg-white shadow-md relative border border-solid cursor-pointer",
+  "w-full max-w-[400px] flex flex-col bg-white shadow-lg rounded-[24px] p-6",
   {
     variants: {
       state: {
@@ -50,11 +74,17 @@ const JobCard = forwardRef<JobCardActions, JobCardProps>(({
   city,
   companyName,
   logo,
+  domain,
+  contractType,
+  availability,
+  workingTime,
+  salary,
+  workMode,
   tags = [],
   customIcons = {},
   className,
   onClick,
-  onFavoriteClick, // Nouvelle prop
+  onFavoriteClick,
 }, ref) => {
   const cardRef = useRef<HTMLDivElement>(null);
 
@@ -78,75 +108,95 @@ const JobCard = forwardRef<JobCardActions, JobCardProps>(({
       tabIndex={0}
       onKeyDown={(e) => e.key === 'Enter' && onClick?.(e as any)}
     >
-      <div className="flex items-center gap-4 p-4">
-        <div className="relative w-14 h-14">
-          <Image
-            src={logo}
-            alt={`${companyName} logo`}
-            fill
-            className="object-contain rounded-md"
-            sizes="56px"
-          />
-        </div>
-        <div className="text-center">
-          <h2 className="text-lg font-bold text-gray-900">{title}</h2>
-          <p className="text-sm text-gray-500">{companyName}</p>
+      {/* Logo et titre */}
+      <div className="flex justify-between items-start mb-2">
+        <Image
+          src={logo}
+          alt={`${companyName} logo`}
+          width={100}
+          height={24}
+          className="object-contain"
+        />
+        {state === "liked" && (
+          <button
+            className="text-[#FF4D84] text-2xl"
+            onClick={handleFavoriteClick}
+            aria-label="Retirer des favoris"
+          >
+            ♥
+          </button>
+        )}
+      </div>
+
+      {/* Titre du poste */}
+      <h2 className="text-2xl font-bold text-gray-900 mb-2">{title}</h2>
+
+      {/* Localisation */}
+      <div className="flex items-center mb-4">
+        <div className="flex items-center gap-1">
+          {customIcons.mapPin && (
+            <Image
+              src={customIcons.mapPin}
+              alt="Location"
+              width={16}
+              height={16}
+              className="text-gray-500"
+            />
+          )}
+          <span className="text-gray-900">{city}, {companyName}</span>
         </div>
       </div>
 
-      <div className="px-4 mt-2 flex items-center text-sm text-gray-600 gap-2">
-        {customIcons.mapPin && (
-          <Image
-            src={customIcons.mapPin}
-            alt="Location icon"
-            width={16}
-            height={16}
-            aria-hidden="true"
-          />
-        )}
-        <span>{city}</span>
-        <div className="flex items-center gap-1 ml-auto">
-          {Object.entries(customIcons).map(([key, value]) =>
-            key !== 'mapPin' && value && (
-              <Image
-                key={key}
-                src={value}
-                alt={`${key} icon`}
-                width={16}
-                height={16}
-                aria-hidden="true"
-              />
-            )
-          )}
-        </div>
+      <div className="flex flex-col gap-1.5">
+  {/* Première ligne */}
+  <div className="flex gap-1.5">
+    {domain && (
+      <div className="flex items-center gap-1.5 bg-gray-50 px-2 py-1.5 rounded-full flex-shrink-0">
+        <Image src={domain.icon} alt="Domain" width={14} height={14} />
+        <span className="text-xs font-medium text-gray-900">{domain.text}</span>
       </div>
-      {tags.length > 0 && (
-        <div className="p-4 pt-2 flex flex-wrap gap-2">
-          {tags.map((tag) => (
-            <span
-              key={tag}
-              className="px-2 py-1 text-xs font-medium text-gray-900 bg-gray-100 rounded-full"
-            >
-              {tag}
-            </span>
-          ))}
-        </div>
-      )}
+    )}
+    {contractType && (
+      <div className="flex items-center gap-1.5 bg-gray-50 px-2 py-1.5 rounded-full flex-shrink-0">
+        <Image src={contractType.icon} alt="Contract type" width={14} height={14} />
+        <span className="text-xs font-medium text-gray-900">{contractType.text}</span>
+      </div>
+    )}
+    {availability && (
+      <div className="flex items-center gap-1.5 bg-gray-50 px-2 py-1.5 rounded-full flex-shrink-0">
+        <Image src={availability.icon} alt="Availability" width={14} height={14} />
+        <span className="text-xs font-medium text-gray-900">{availability.text}</span>
+      </div>
+    )}
+  </div>
+
+  {/* Deuxième ligne */}
+  <div className="flex gap-1.5">
+    {workingTime && (
+      <div className="flex items-center gap-1.5 bg-gray-50 px-2 py-1.5 rounded-full flex-shrink-0">
+        <Image src={workingTime.icon} alt="Working time" width={14} height={14} />
+        <span className="text-xs font-medium text-gray-900">{workingTime.text}</span>
+      </div>
+    )}
+    {salary && (
+      <div className="flex items-center gap-1.5 bg-gray-50 px-2 py-1.5 rounded-full flex-shrink-0">
+        <Image src={salary.icon} alt="Salary" width={14} height={14} />
+        <span className="text-xs font-medium text-gray-900">{salary.text}</span>
+      </div>
+    )}
+    {workMode && (
+      <div className="flex items-center gap-1.5 bg-gray-50 px-2 py-1.5 rounded-full flex-shrink-0">
+        <Image src={workMode.icon} alt="Work mode" width={14} height={14} />
+        <span className="text-xs font-medium text-gray-900">{workMode.text}</span>
+      </div>
+    )}
+  </div>
+</div>
 
       {state === "new" && (
-        <div className="absolute top-2 left-2 bg-[#BAFE68] text-green-900 text-xs font-bold px-3 py-1 rounded-full uppercase">
+        <div className="absolute top-4 left-4 bg-[#BAFE68] text-green-900 text-xs font-bold px-3 py-1 rounded-full uppercase">
           Nouveau
         </div>
-      )}
-
-      {state === "liked" && (
-        <button
-          className="absolute top-2 right-2 w-8 h-8 bg-[#FF4D84] text-white rounded-full flex items-center justify-center hover:bg-[#FF3B6B] transition-colors"
-          onClick={handleFavoriteClick}
-          aria-label={state === "liked" ? "Retirer des favoris" : "Ajouter aux favoris"}
-        >
-          ❤
-        </button>
       )}
     </div>
   );
