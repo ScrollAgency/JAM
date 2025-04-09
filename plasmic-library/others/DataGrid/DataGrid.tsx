@@ -77,6 +77,9 @@ interface DataGridProps {
   columnHeaders?: { [key: string]: ColumnHeader };
   theme?: DataGridTheme;
   responsive?: ResponsiveConfig;
+  PreviousButton?: React.ComponentType<{ onClick: () => void; disabled: boolean }>;
+  NextButton?: React.ComponentType<{ onClick: () => void; disabled: boolean }>;
+  PageInfo?: React.ComponentType<{ currentPage: number; totalPages: number }>;
 }
 
 type SortField = string;
@@ -139,7 +142,10 @@ const DataGrid: React.FC<DataGridProps> = ({
   loadingComponent,
   columnHeaders = {},
   theme: customTheme,
-  responsive
+  responsive,
+  PreviousButton,
+  NextButton,
+  PageInfo
 }) => {
   const [mounted, setMounted] = useState(false);
   const [sort, setSort] = useState<SortState>({ field: 'id', direction: null });
@@ -248,77 +254,6 @@ const DataGrid: React.FC<DataGridProps> = ({
     }));
   };
 
-  const getStatusStyle = (status: string) => {
-    const baseStyle = {
-      padding: '4px 8px',
-      borderRadius: '4px',
-      fontSize: '12px',
-      fontWeight: '500',
-      display: 'inline-block'
-    };
-
-    switch (status.toLowerCase()) {
-      case 'non catégorisé':
-        return {
-          ...baseStyle,
-          backgroundColor: '#eaeaec',
-          color: '#43454d'
-        };
-      case 'à planifier':
-        return {
-          ...baseStyle,
-          backgroundColor: '#fdf9eb',
-          color: '#ad5b2b'
-        };
-      case 'à engager':
-        return {
-          ...baseStyle,
-          backgroundColor: '#fcf1f1',
-          color: '#ab3832'
-        };
-      case 'en cours':
-        return {
-          ...baseStyle,
-          backgroundColor: '#f1fbf3',
-          color: '#387c39'
-        };
-      default:
-        return {
-          ...baseStyle,
-          backgroundColor: '#f5f0fd',
-          color: '#552a9b'
-        };
-    }
-  };
-
-  const SortIcon = ({ field }: { field: SortField }) => {
-    if (sort.field !== field) {
-      return (
-        <svg className={styles.sortIcon} width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#999999" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M7 15l5 5 5-5M7 9l5-5 5 5"/>
-        </svg>
-      );
-    }
-
-    if (sort.direction === 'asc') {
-      return (
-        <svg className={styles.sortIcon} width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#333333" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M7 15l5 5 5-5"/>
-        </svg>
-      );
-    }
-
-    if (sort.direction === 'desc') {
-      return (
-        <svg className={styles.sortIcon} width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#333333" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M7 9l5-5 5 5"/>
-        </svg>
-      );
-    }
-
-    return null;
-  };
-
   const formatDate = (dateString: string) => {
     try {
       if (!dateString) return 'N/A';
@@ -329,7 +264,7 @@ const DataGrid: React.FC<DataGridProps> = ({
     }
   };
 
-  const renderCell = (column: string, value: string | null | undefined) => {
+  const renderCell = (column: string, value: string | null | undefined, task: Task) => {
     if (value === null || value === undefined) return 'N/A';
 
     const style = columnStyles[column];
@@ -355,6 +290,29 @@ const DataGrid: React.FC<DataGridProps> = ({
     }
 
     switch (column) {
+      case 'Entreprises':
+        const companyName = value || '';
+        return (
+          <div className={styles.companyCell}>
+            <img src={task.logo || ''} alt={companyName} className={styles.companyLogo} />
+            <span className={styles.companyName}>{companyName}</span>
+          </div>
+        );
+      case 'Postulé le':
+        return (
+          <span className={styles.dateCell}>
+            {value}
+          </span>
+        );
+      case 'Statut':
+        if (value === "Cette annonce n'est plus disponible") {
+          return <span className={styles.unavailable}>{value}</span>;
+        }
+        return (
+          <span className={styles.statusTag}>
+            {value}
+          </span>
+        );
       case 'date_start':
       case 'date_end':
       case 'created_at':
@@ -365,12 +323,6 @@ const DataGrid: React.FC<DataGridProps> = ({
       case 'type':
         return (
           <span className={styles.typeTag}>
-            {value}
-          </span>
-        );
-      case 'status':
-        return (
-          <span className={styles.statusTag}>
             {value}
           </span>
         );
@@ -483,7 +435,6 @@ const DataGrid: React.FC<DataGridProps> = ({
               >
                 <span className={styles.headerContent} style={{ justifyContent: 'center' }}>
                   {columnHeaders[column]?.label || columnLabels[column] || column}
-                  <SortIcon field={column} />
                 </span>
               </th>
             ))}
@@ -518,7 +469,7 @@ const DataGrid: React.FC<DataGridProps> = ({
                     borderColor: theme.borderColor
                   }}
                 >
-                  {renderCell(column, task[column])}
+                  {renderCell(column, task[column], task)}
                 </td>
               ))}
             </tr>
@@ -528,39 +479,39 @@ const DataGrid: React.FC<DataGridProps> = ({
 
       {totalPages > 1 && mounted && (
         <div className={styles.dataGridPagination}>
-          <div className={styles.paginationInfo}>
-            Page {currentPage} sur {totalPages}
+          <button
+            className={styles.paginationButton}
+            onClick={() => currentPage > 1 && onPageChange?.(currentPage - 1)}
+            disabled={currentPage === 1}
+          >
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ marginRight: '8px' }}>
+              <path d="M10 12L6 8L10 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+            PRECEDENT
+          </button>
+
+          <div className={styles.pageNumbers}>
+            {Array.from({ length: totalPages }, (_, i) => i + 1).map((pageNum) => (
+              <button
+                key={pageNum}
+                className={`${styles.pageNumber} ${pageNum === currentPage ? styles.activePage : ''}`}
+                onClick={() => onPageChange?.(pageNum)}
+              >
+                {pageNum}
+              </button>
+            ))}
           </div>
-          <div className={styles.paginationControls}>
-            <div
-              role="button"
-              tabIndex={0}
-              className={styles.paginationButton}
-              onClick={() => currentPage > 1 && onPageChange?.(currentPage - 1)}
-              onKeyDown={(e) => {
-                if ((e.key === 'Enter' || e.key === ' ') && currentPage > 1) {
-                  onPageChange?.(currentPage - 1);
-                }
-              }}
-              aria-disabled={currentPage === 1}
-            >
-              Précédent
-            </div>
-            <div
-              role="button"
-              tabIndex={0}
-              className={styles.paginationButton}
-              onClick={() => currentPage < totalPages && onPageChange?.(currentPage + 1)}
-              onKeyDown={(e) => {
-                if ((e.key === 'Enter' || e.key === ' ') && currentPage < totalPages) {
-                  onPageChange?.(currentPage + 1);
-                }
-              }}
-              aria-disabled={currentPage === totalPages}
-            >
-              Suivant
-            </div>
-          </div>
+
+          <button
+            className={styles.paginationButton}
+            onClick={() => currentPage < totalPages && onPageChange?.(currentPage + 1)}
+            disabled={currentPage === totalPages}
+          >
+            SUIVANT
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ marginLeft: '8px' }}>
+              <path d="M6 12L10 8L6 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+          </button>
         </div>
       )}
     </div>

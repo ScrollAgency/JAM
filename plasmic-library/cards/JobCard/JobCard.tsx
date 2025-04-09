@@ -129,7 +129,7 @@ const JobCard = forwardRef<JobCardActions, JobCardProps>(({
       </div>
 
       {/* Titre du poste */}
-      <h2 className="text-2xl font-bold text-gray-900 mb-2">{title}</h2>
+      <h2 className="text-xl font-bold text-gray-900 mb-2">{title}</h2>
 
       {/* Localisation */}
       <div className="flex items-center mb-4">
