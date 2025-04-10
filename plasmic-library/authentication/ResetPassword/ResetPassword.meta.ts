@@ -37,7 +37,7 @@ const ResetPasswordMeta = {
     // Nouveau mot de passe
     passwordLabel: {
       type: "string",
-      defaultValue: "Nouveau mot de passe*",
+      defaultValue: "Nouveau mot de passe",
     },
     password: {
       type: "string",
@@ -53,7 +53,7 @@ const ResetPasswordMeta = {
     // Confirmer mot de passe
     confirmPasswordLabel: {
       type: "string",
-      defaultValue: "Répétez le mot de passe*",
+      defaultValue: "Répétez le mot de passe",
     },
     confirmPassword: {
       type: "string",
@@ -72,12 +72,28 @@ const ResetPasswordMeta = {
       defaultValue: true,
     },
     
-    // Contrôle de visibilité du mot de passe
+    // Contrôle de visibilité
     showPasswordToggle: {
       type: "boolean",
       defaultValue: true,
       description: "Affiche un bouton pour montrer/masquer le mot de passe",
     },
+    showSubmitButton: {
+      type: "boolean",
+      defaultValue: true,
+      description: "Affiche ou masque le bouton de soumission",
+    },
+    showCancelButton: {
+      type: "boolean",
+      defaultValue: true,
+      description: "Affiche ou masque le bouton Retour",
+    },
+    showAlerts: {
+      type: "boolean",
+      defaultValue: true,
+      description: "Affiche des alertes pour les erreurs et succès",
+    },
+
     eyeIconColor: {
       type: "string",
       defaultValue: "#666",
@@ -85,11 +101,6 @@ const ResetPasswordMeta = {
     },
 
     // Alertes
-    showAlerts: {
-      type: "boolean",
-      defaultValue: true,
-      description: "Affiche des alertes pour les erreurs et succès",
-    },
     alertPosition: {
       type: "choice",
       options: ["top", "bottom", "inline"],

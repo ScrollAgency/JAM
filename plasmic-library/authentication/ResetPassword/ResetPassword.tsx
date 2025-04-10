@@ -6,6 +6,12 @@ import { presets } from "@/styles/presets";
 import AlertManager, { type AlertType, type AlertMessage } from "../../alerts/AlertManager/AlertManager";
 import { EyeIcon, ViewIcon } from "../icons/icons";
 
+const ArrowIcon = () => (
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M12 4L10.59 5.41L16.17 11H4V13H16.17L10.59 18.59L12 20L20 12L12 4Z" fill="currentColor"/>
+  </svg>
+);
+
 export interface ResetPasswordProps {
   // Wrapper
   wrapperStyle?: "simple" | "card" | "custom";
@@ -29,6 +35,8 @@ export interface ResetPasswordProps {
   submitButtonText?: string;
   buttonAbordStyle?: "primary" | "secondary" | "tertiary";
   cancelButtonText?: string;
+  showSubmitButton?: boolean;
+  showCancelButton?: boolean;
 
   // Alert
   alertPosition?: 'top' | 'bottom' | 'inline';
@@ -78,6 +86,8 @@ function ResetPassword_(
     submitButtonText = "Réinitialiser",
     buttonAbordStyle = "tertiary",
     cancelButtonText = "Annuler",
+    showSubmitButton = true,
+    showCancelButton = true,
     
     // Alert
     alertPosition = 'top',
@@ -294,22 +304,26 @@ function ResetPassword_(
           </div>
         </div>
 
-        <button
-          type="submit"
-          style={presets.buttons[buttonSubmitStyle] as React.CSSProperties}
-        >
-          {submitButtonText}
-        </button>
+        {showSubmitButton && (
+          <button
+            type="submit"
+            style={presets.buttons[buttonSubmitStyle] as React.CSSProperties}
+          >
+            {submitButtonText}
+          </button>
+        )}
       </form>
 
-      <Link href="/login">
-        <button
-          type="button"
-          style={presets.buttons[buttonAbordStyle] as React.CSSProperties}
-        >
-          {cancelButtonText}
-        </button>
-      </Link>
+      {showCancelButton && (
+        <Link href="/login">
+          <button
+            type="button"
+            style={presets.buttons[buttonAbordStyle] as React.CSSProperties}
+          >
+            {cancelButtonText}
+          </button>
+        </Link>
+      )}
     </div>
   );
 }
