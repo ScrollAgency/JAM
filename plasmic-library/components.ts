@@ -129,3 +129,6 @@ export { default as MainCouranteMeta } from "./others/Kanban/Kanban.meta";
 //       DataGrid
 export { default as DataGrid } from "./others/DataGrid/DataGrid";
 export { default as DataGridMeta } from "./others/DataGrid/DataGrid.meta";
+//       PageLoader
+export { default as PageLoader } from "./others/PageLoader/PageLoader";
+export { default as PageLoaderMeta } from "./others/PageLoader/PageLoader.meta";
