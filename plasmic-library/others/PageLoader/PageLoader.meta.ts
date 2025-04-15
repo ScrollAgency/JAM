@@ -13,6 +13,7 @@ const PageLoaderMeta = {
     onMount: {
       type: "eventHandler",
       description: "Action à exécuter au chargement",
+      argTypes: [],
     },
   },
   importPath: "./components/utils/PageLoader",
