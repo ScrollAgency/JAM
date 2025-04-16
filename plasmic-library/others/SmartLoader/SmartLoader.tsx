@@ -33,34 +33,34 @@ function SmartLoader_(props: SmartLoaderProps, ref: HTMLElementRefOf<"div">) {
   } = props;
 
   useEffect(() => {
-    if (!shouldRun) return;
-
-    const steps: { condition?: boolean; action?: () => void }[] = [
-      { condition: condition1, action: action1 },
-      { condition: condition2, action: action2 },
-      { condition: condition3, action: action3 },
-      { condition: condition4, action: action4 },
-      { condition: condition5, action: action5 },
-    ];
-
-    for (const { condition, action } of steps) {
-      if (condition && typeof action === "function") {
-        action();
-      }
+    if (shouldRun && condition1 && typeof action1 === "function") {
+      action1();
     }
-  }, [
-    shouldRun,
-    condition1,
-    action1,
-    condition2,
-    action2,
-    condition3,
-    action3,
-    condition4,
-    action4,
-    condition5,
-    action5,
-  ]);
+  }, [shouldRun, condition1, action1]);
+
+  useEffect(() => {
+    if (shouldRun && condition2 && typeof action2 === "function") {
+      action2();
+    }
+  }, [shouldRun, condition2, action2]);
+
+  useEffect(() => {
+    if (shouldRun && condition3 && typeof action3 === "function") {
+      action3();
+    }
+  }, [shouldRun, condition3, action3]);
+
+  useEffect(() => {
+    if (shouldRun && condition4 && typeof action4 === "function") {
+      action4();
+    }
+  }, [shouldRun, condition4, action4]);
+
+  useEffect(() => {
+    if (shouldRun && condition5 && typeof action5 === "function") {
+      action5();
+    }
+  }, [shouldRun, condition5, action5]);
 
   return null;
 }
