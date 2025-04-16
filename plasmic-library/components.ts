@@ -132,3 +132,6 @@ export { default as DataGridMeta } from "./others/DataGrid/DataGrid.meta";
 //       PageLoader
 export { default as PageLoader } from "./others/PageLoader/PageLoader";
 export { default as PageLoaderMeta } from "./others/PageLoader/PageLoader.meta";
+//       SmartLoader
+export { default as SmartLoader } from "./others/SmartLoader/SmartLoader";
+export { default as SmartLoaderMeta } from "./others/SmartLoader/SmartLoader.meta";
