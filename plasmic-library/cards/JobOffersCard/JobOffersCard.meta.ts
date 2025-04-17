@@ -110,6 +110,7 @@ const JobOffersCardMeta = {
         location: {
           type: "imageUrl",
           required: false,
+          description: "Icône de localisation. Si vide, l'icône par défaut sera affichée. Si null, aucune icône ne sera affichée."
         },
         delete: {
           type: "imageUrl",
