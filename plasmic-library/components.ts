@@ -59,6 +59,9 @@ export { default as JobCardMeta } from "./cards/JobCard/JobCard.meta";
 //       OperationCard
 // export { default as OperationCard } from "./cards/OperationCard/OperationCard";
 // export { default as OperationCardMeta } from "./cards/OperationCard/OperationCard.meta";
+//       JobOffersCard
+export { default as JobOffersCard } from "./cards/JobOffersCard/JobOffersCard";
+export { default as JobOffersCardMeta } from "./cards/JobOffersCard/JobOffersCard.meta";
 
 // Forms
 //       Checkbox
