@@ -13,49 +13,47 @@ function InputComboSelect_(
   ref: HTMLElementRefOf<"div">
 ) {
   const { value, onChange, className } = props;
+  const [open, setOpen] = React.useState(false);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+  const toggleDropdown = () => setOpen(!open);
+  const closeDropdown = () => setOpen(false);
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const val = parseInt(e.target.value, 10);
     if (!isNaN(val)) {
       onChange?.(val);
     }
   };
 
+  const handleSelect = (val: number) => {
+    onChange?.(val);
+    closeDropdown();
+  };
+
   return (
     <div className={`${styles.wrapper} ${className}`} ref={ref}>
       <input
         type="number"
-        min={0}
-        max={20}
         value={value ?? ""}
-        onChange={handleChange}
+        onChange={handleInputChange}
         className={styles.input}
       />
-      {/* icône visuelle */}
-      <svg
-        className={styles.icon}
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="#505050"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      >
-        <polyline points="6 9 12 15 18 9" />
-      </svg>
-      {/* select en superposition */}
-      <select
-        className={styles.select}
-        value={value ?? ""}
-        onChange={handleChange}
-        size={5}
-      >
-        {[...Array(20)].map((_, i) => (
-          <option key={i + 1} value={i + 1}>
-            {i + 1}
-          </option>
-        ))}
-      </select>
+      <div className={styles.icon} onClick={toggleDropdown}>
+        ▼
+      </div>
+      {open && (
+        <div className={styles.dropdown}>
+          {[...Array(20)].map((_, i) => (
+            <div
+              key={i}
+              className={styles.option}
+              onClick={() => handleSelect(i + 1)}
+            >
+              {i + 1}
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 }
