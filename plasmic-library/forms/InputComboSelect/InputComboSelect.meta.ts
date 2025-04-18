@@ -11,6 +11,7 @@ const InputComboSelectMeta = {
     },
     onChange: {
       type: "eventHandler",
+      argTypes: [],
     },
   },
 
@@ -23,7 +24,7 @@ const InputComboSelectMeta = {
       onChangeProp: "onEmailChange",
     },
   },
-  
+
   importPath: "./components/InputComboSelect/InputComboSelect",
 };
 
