@@ -31,10 +31,24 @@ function InputComboSelect_(
         onChange={handleChange}
         className={styles.input}
       />
+      {/* icône visuelle */}
+      <svg
+        className={styles.icon}
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="#505050"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <polyline points="6 9 12 15 18 9" />
+      </svg>
+      {/* select en superposition */}
       <select
         className={styles.select}
         value={value ?? ""}
         onChange={handleChange}
+        size={5}
       >
         {[...Array(20)].map((_, i) => (
           <option key={i + 1} value={i + 1}>
