@@ -103,6 +103,9 @@ export { default as SitexFormv2Meta } from "./forms/SitexFormv2/SitexFormv2.meta
 //       SitexTextInput
 export { default as SitexTextInput } from "./forms/SitexTextInput/SitexTextInput";
 export { default as SitexTextInputMeta } from "./forms/SitexTextInput/SitexTextInput.meta";
+//       InputComboSelect
+export { default as InputComboSelect } from "./forms/InputComboSelect/InputComboSelect";
+export { default as InputComboSelectMeta } from "./forms/InputComboSelect/InputComboSelect.meta";
 
 // Others
 //       FileUploader

@@ -1,53 +1,50 @@
 import * as React from "react";
-import { cn } from "../../../lib/utils";
+import type { HTMLElementRefOf } from "@plasmicapp/react-web";
+import styles from "./InputComboSelect.module.css";
 
-interface CheckboxProps {
-  checked?: boolean;
-  disabled?: boolean;
-  state?: "default" | "focused" | "disabled";
-  onChange?: (checked: boolean) => void;
-  label?: string;
-  section?: string;
-  displayName?: string;
-  description?: string;
-  thumbnailUrl?: string;
-  importPath: string;
+export interface InputComboSelectProps {
+  value?: number;
+  onChange?: (value: number) => void;
+  className?: string;
 }
 
-const Checkbox = ({
-  checked = false,
-  disabled = false,
-  state = "default",
-  onChange,
-  label,
-}: CheckboxProps) => {
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (!disabled && onChange) {
-      onChange(e.target.checked);
+function InputComboSelect_(
+  props: InputComboSelectProps,
+  ref: HTMLElementRefOf<"div">
+) {
+  const { value, onChange, className } = props;
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    const val = parseInt(e.target.value, 10);
+    if (!isNaN(val)) {
+      onChange?.(val);
     }
   };
 
   return (
-    <label className={cn(
-      "inline-flex items-center",
-      disabled && "opacity-50 cursor-not-allowed"
-    )}>
+    <div className={`${styles.wrapper} ${className}`} ref={ref}>
       <input
-        type="checkbox"
-        className={cn(
-          "form-checkbox h-5 w-5 text-blue-600 transition duration-150 ease-in-out",
-          state === "focused" && "ring-2 ring-offset-2 ring-blue-500",
-          disabled && "bg-gray-100"
-        )}
-        checked={checked}
-        disabled={disabled || state === "disabled"}
+        type="number"
+        min={1}
+        max={20}
+        value={value ?? ""}
         onChange={handleChange}
+        className={styles.input}
       />
-      {label && (
-        <span className="ml-2 text-gray-700">{label}</span>
-      )}
-    </label>
+      <select
+        className={styles.select}
+        value={value ?? ""}
+        onChange={handleChange}
+      >
+        {[...Array(20)].map((_, i) => (
+          <option key={i + 1} value={i + 1}>
+            {i + 1}
+          </option>
+        ))}
+      </select>
+    </div>
   );
-};
+}
 
-export default Checkbox;
+const InputComboSelect = React.forwardRef(InputComboSelect_);
+export default InputComboSelect;
