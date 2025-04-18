@@ -50,7 +50,7 @@
   pointer-events: none;
 }
 
-select option {
+.select option {
   font-size: 14px;
 }
 
