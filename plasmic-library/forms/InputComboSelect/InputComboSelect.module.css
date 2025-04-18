@@ -1,0 +1,26 @@
+.wrapper {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+  }
+  
+  .input {
+    width: 100%;
+    padding-right: 2rem; /* pour laisser la place à l'icône */
+    box-sizing: border-box;
+    font-size: 1rem;
+    padding: 0.5rem;
+  }
+  
+  .select {
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 2.5rem;
+    background: transparent;
+    border: none;
+    appearance: none;
+    cursor: pointer;
+  }
+  

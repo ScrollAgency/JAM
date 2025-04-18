@@ -100,11 +100,11 @@ const ForgotPasswordMeta = {
 
   // States
   states: {
-    email: {
+    value: {
       type: "writable",
-      variableType: "text",
-      valueProp: "email",
-      onChangeProp: "onEmailChange",
+      variableType: "number",
+      valueProp: "value",
+      onChangeProp: "onChange",
     },
   },
 
