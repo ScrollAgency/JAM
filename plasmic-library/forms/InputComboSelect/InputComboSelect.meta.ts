@@ -13,6 +13,17 @@ const InputComboSelectMeta = {
       type: "eventHandler",
     },
   },
+
+   // States
+   states: {
+    email: {
+      type: "writable",
+      variableType: "text",
+      valueProp: "email",
+      onChangeProp: "onEmailChange",
+    },
+  },
+  
   importPath: "./components/InputComboSelect/InputComboSelect",
 };
 
