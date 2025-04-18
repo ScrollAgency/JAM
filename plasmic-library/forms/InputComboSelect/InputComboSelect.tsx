@@ -25,7 +25,7 @@ function InputComboSelect_(
     <div className={`${styles.wrapper} ${className}`} ref={ref}>
       <input
         type="number"
-        min={1}
+        min={0}
         max={20}
         value={value ?? ""}
         onChange={handleChange}

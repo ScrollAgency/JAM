@@ -31,14 +31,27 @@
   margin: 0;
 }
 
+.input[type="number"] {
+  -moz-appearance: textfield;
+}
+
 .select {
   position: absolute;
-  right: 6px;
-  top: 5px;
-  width: 24px;
-  height: 24px;
-  opacity: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 34px;
+  height: 100%;
+  border: none;
+  background: transparent;
   cursor: pointer;
+  padding-left: 8px;
+  font-size: 0;
+  z-index: 1;
+}
+
+.select option {
+  font-size: 14px;
 }
 
 .icon {
@@ -50,11 +63,6 @@
   pointer-events: none;
 }
 
-.select option {
-  font-size: 14px;
-}
-
-/* Pour afficher 5 éléments visibles dans la dropdown */
 .select:focus {
   size: 5;
 }
