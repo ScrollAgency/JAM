@@ -19,8 +19,8 @@ function InputComboSelect_(
   const closeDropdown = () => setOpen(false);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const val = parseInt(e.target.value, 10);
-    if (!isNaN(val)) {
+    const val = Number.parseInt(e.target.value, 10);
+    if (!Number.isNaN(val)) {
       onChange?.(val);
     }
   };

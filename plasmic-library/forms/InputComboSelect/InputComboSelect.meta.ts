@@ -25,7 +25,7 @@ const InputComboSelectMeta = {
     },
   },
 
-  importPath: "./components/InputComboSelect/InputComboSelect",
+  importPath: "./components/forms/InputComboSelect/InputComboSelect",
 };
 
 export default InputComboSelectMeta;

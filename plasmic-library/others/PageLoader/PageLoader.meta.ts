@@ -16,7 +16,7 @@ const PageLoaderMeta = {
       argTypes: [],
     },
   },
-  importPath: "./components/utils/PageLoader",
+  importPath: "./components/others/PageLoader/PageLoader",
 };
 
 export default PageLoaderMeta;

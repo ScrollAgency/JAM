@@ -21,7 +21,7 @@ const SmartLoaderMeta = {
     condition5: { type: "boolean", description: "Condition 5" },
     action5: { type: "eventHandler", argTypes: [], description: "Action 5" },
   },
-  importPath: "./components/utils/SmartLoader",
+  importPath: "./components/others/SmartLoader/SmartLoader",
 };
 
 export default SmartLoaderMeta;
