@@ -74,8 +74,29 @@ const JobCardMeta = {
           },
         ],
       },
+      metrics: {
+        type: "array",
+        itemType: {
+          type: "object",
+          fields: {
+            icon: "imageUrl",
+            label: "string",
+            value: "string",
+          },
+        },
+        required: false,
+        defaultValue: [],
+      },
       tags: {
-        type: "object",
+        type: "array",
+        itemType: {
+          type: "object",
+          fields: {
+            icon: "imageUrl",
+            label: "string",
+          },
+        },
+        required: false,
         defaultValue: [],
       },
       customIcons: {
