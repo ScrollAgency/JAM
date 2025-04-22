@@ -19,7 +19,7 @@ export function MetricGroup({ metrics }: MetricGroupProps) {
             className="flex gap-0.5 items-center self-stretch my-auto w-6 min-h-[13px]"
             role="listitem"
           >
-            <Image
+            <img
               src={metric.icon || "/placeholder.svg"}
               alt={metric.label}
               width={10}
