@@ -1,5 +1,4 @@
 import * as PlasmicLibrary from "./plasmic-library/components"
-import * as PlasmicLibrary from "./plasmic-library/components"
 import { initPlasmicLoader } from "@plasmicapp/loader-nextjs";
 import { tokens } from "./styles/tokens-jam";
 
@@ -16,7 +15,7 @@ export const PLASMIC = initPlasmicLoader({
       token: process.env.NEXT_PUBLIC_PLASMIC_PROJECT_TOKEN || "",
     },
   ],
-  preview: true,
+  preview: false,
 });
 
 // Design tokens

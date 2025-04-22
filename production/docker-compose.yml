@@ -1,10 +1,10 @@
-name: jam-production
+name: ${PROJECT_NAME}-${PROJECT_ENVIRONNEMENT}
 services:
   app:
-    image: scrollagency/jam:production
-    container_name: jam-production
+    image: ${DOCKERHUB_USERNAME}/${PROJECT_NAME}:${PROJECT_ENVIRONNEMENT}
+    container_name: ${PROJECT_NAME}-${PROJECT_ENVIRONNEMENT}
     ports:
-      - "29002:3000"
+      - "${PROJECT_PORT}:3000"
     env_file:
       - .env
     environment:
@@ -13,12 +13,13 @@ services:
       - NEXT_PUBLIC_PLASMIC_PROJECT_TOKEN=${NEXT_PUBLIC_PLASMIC_PROJECT_TOKEN}
       - NEXT_PUBLIC_SUPABASE_URL=${NEXT_PUBLIC_SUPABASE_URL}
       - NEXT_PUBLIC_SUPABASE_ANON_KEY=${NEXT_PUBLIC_SUPABASE_ANON_KEY}
+      - NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN=${NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN}
     networks:
-      - jam-network
+      - ${PROJECT_NAME}-network
     restart: unless-stopped
 
 networks:
-  jam-network:
-    name: jam-network
+ jam-network:
+    name: ${PROJECT_NAME}-network
     driver: bridge
     external: true
