@@ -1,91 +1,104 @@
 import * as React from "react";
 import type { HTMLElementRefOf } from "@plasmicapp/react-web";
-import { useCallback, useEffect, useState } from "react";
+import { useState } from "react";
 import { presets } from "@/styles/presets";
 import Link from "next/link";  
 
 export interface ForgotPasswordProps {
-  // Wrapper
   wrapperStyle?: "simple" | "card" | "custom";
-  
+  buttonSubmitStyle?: "primary" | "secondary" | "tertiary";
+  buttonAbordStyle?: "primary" | "secondary" | "tertiary";
+  inputStyle?: "simple" | "advance";
+  onSubmit?: (event: React.FormEvent<HTMLFormElement>) => void;
+
   // Titre
   titleHeading?: "h1" | "h2" | "h3";
   title?: string;
 
-  // Texte explicatif
-  descriptionText?: string;
-
-  // Input
-  inputStyle?: "simple" | "advance";
-
-  // Email
-  email?: string;
+  // Champ email
   emailLabel?: string;
   placeholderEmail?: string;
-  
+  onEmailChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 
-  // Boutons
-  buttonSubmitStyle?: "primary" | "secondary" | "tertiary";
+  // Bouton de soumission
   submitButtonText?: string;
-  buttonAbordStyle?: "primary" | "secondary" | "tertiary";
   cancelButtonText?: string;
 
-  // Events handlers
-  onEmailChange?: (value: string) => void;
-  onSubmit?: (event: React.FormEvent<HTMLFormElement>) => void;
+  // Texte explicatif
+  descriptionText?: string;
 }
 
 function ForgotPassword_(
-  props: ForgotPasswordProps,
-  ref: HTMLElementRefOf<"div">
-){
-  const {
-    // Wrapper
+  { 
     wrapperStyle = "card",
-    
-    // Titre
+    buttonSubmitStyle = "primary",
+    buttonAbordStyle = "tertiary",
+    inputStyle = "simple",
+    onSubmit,
+
     titleHeading = "h1",
     title = "Mot de passe oublié ?",
 
-    // Texte explicatif
-    descriptionText = "Pas de panique, nous allons vous envoyer un e-mail pour vous aider à réinitialiser votre mot de passe.",
-
-    // Input
-    inputStyle = "simple",
-
-    // Email
     emailLabel = "Email",
     placeholderEmail = "Entrez votre email",
-
-    // Boutons
-    buttonSubmitStyle = "primary",
-    submitButtonText = "Réinitialiser",
-    buttonAbordStyle = "tertiary",
-    cancelButtonText = "Annuler",
-
-    // Events handlers
     onEmailChange,
-    onSubmit,
-   } = props;
 
-  const Title = titleHeading;
-  const [email, setEmail] = useState(props.email || "");
+    submitButtonText = "Réinitialiser",
+    cancelButtonText = "Annuler",
+    descriptionText = "Pas de panique, nous allons vous envoyer un e-mail pour vous aider à réinitialiser votre mot de passe.", // Valeur par défaut
+  }: ForgotPasswordProps,
+  ref: HTMLElementRefOf<"div">
+) {
+  const [emailState, setEmail] = useState("");
 
-  const handleEmailChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-    setEmail(e.target.value);
-    if (onEmailChange) onEmailChange(e.target.value);
-  }, [onEmailChange]);
+  // Utiliser une fonction pour rendre le titre au lieu de créer une variable qui référence la chaîne de caractères
+  const renderTitle = () => {
+    switch(titleHeading) {
+      case 'h1':
+        return <h1 style={presets.heading1 as React.CSSProperties}>{title}</h1>;
+      case 'h2':
+        return <h2 style={presets.heading2 as React.CSSProperties}>{title}</h2>;
+      case 'h3':
+        return <h3 style={presets.heading3 as React.CSSProperties}>{title}</h3>;
+      default:
+        return <h1 style={presets.heading1 as React.CSSProperties}>{title}</h1>;
+    }
+  };
 
-  useEffect(() => {
-    setEmail(props.email || "");
-  }, [props.email]);
+  // Modifié pour éviter le problème de DataCloneError
+  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    setEmail(value);
+    
+    // Solution pour éviter l'erreur DataCloneError:
+    // Au lieu de passer l'événement original, créer un objet simplifié
+    if (onEmailChange) {
+      // Créer un objet simplifié qui imite l'événement de changement
+      const simpleEvent = {
+        target: {
+          value: value,
+          name: e.target.name,
+          id: e.target.id
+        },
+        currentTarget: {
+          value: value,
+          name: e.target.name,
+          id: e.target.id
+        },
+        preventDefault: () => {},
+        stopPropagation: () => {}
+      } as React.ChangeEvent<HTMLInputElement>;
+      
+      onEmailChange(simpleEvent);
+    }
+  };
 
   return (
     <div
       ref={ref}
       style={presets.wrappers[wrapperStyle] as React.CSSProperties}
     >
-      <Title style={presets.heading1}>{title}</Title>
+      {renderTitle()}
 
       <p style={presets.formMessage as React.CSSProperties}>
         {descriptionText}
@@ -93,16 +106,16 @@ function ForgotPassword_(
 
       <form
         onSubmit={(event) => { event.preventDefault(); onSubmit?.(event); }}
-        style={presets.form as React.CSSProperties}
+        style={{ display: "flex", flexDirection: "column", rowGap: presets.form.rowGap }}
       >
-        <div style={{ rowGap: presets.inputField.rowGap }}>
+        <div style={{ ...presets.inputField } as React.CSSProperties}>
           <label style={presets.formLabel as React.CSSProperties} htmlFor="email">{emailLabel}</label>
           <input
             type="email"
             id="email"
             placeholder={placeholderEmail}
-            style={presets.inputs[inputStyle]} 
-            value={email}
+            style={presets.inputs[inputStyle] as React.CSSProperties} 
+            value={emailState}
             onChange={handleEmailChange}
           />
         </div>

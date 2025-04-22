@@ -1,3 +1,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Supprimer les paddings du modal de candidature */
+.Modal__scrollableContent__02GeH {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+/* Si besoin de cibler plus spécifiquement */
+.plasmic_default__all.plasmic_default__div.Modal__scrollableContent__02GeH {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}

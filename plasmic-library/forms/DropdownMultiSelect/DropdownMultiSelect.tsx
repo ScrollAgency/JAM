@@ -13,7 +13,7 @@ interface DropdownMultiSelectProps {
     icon?: string;
     avatar?: string;
     dotColor?: string;
-  }>;
+  }> | string; // Accepte aussi un tableau en JSON sous forme de chaîne
   onChange?: (values: string[]) => void;
   section?: string;
   displayName?: string;
@@ -35,6 +35,9 @@ const DropdownMultiSelect = ({
   const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
   const [searchTerm, setSearchTerm] = useState("");
 
+  // Si options est une chaîne de caractères JSON, on la transforme en tableau d'objets
+  const parsedOptions = typeof options === "string" ? JSON.parse(options) : options;
+
   const handleSelect = (optionId: string) => {
     const newSelected = selectedOptions.includes(optionId)
       ? selectedOptions.filter(id => id !== optionId)
@@ -44,11 +47,19 @@ const DropdownMultiSelect = ({
     onChange?.(newSelected);
   };
 
-  const filteredOptions = type === "search"
-    ? options.filter(opt =>
+  interface Option {
+    id: string;
+    label: string;
+    icon?: string;
+    avatar?: string;
+    dotColor?: string;
+  }
+
+  const filteredOptions: Option[] = type === "search"
+    ? (parsedOptions as Option[]).filter(opt =>
         opt.label.toLowerCase().includes(searchTerm.toLowerCase())
       )
-    : options;
+    : (parsedOptions as Option[]);
 
   return (
     <div className="relative w-full">

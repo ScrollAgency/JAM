@@ -4,9 +4,7 @@ export { default as AlertManager } from "./alerts/AlertManager/AlertManager";
 export { default as AlertManagerMeta } from "./alerts/AlertManager/AlertManager.meta";
 
 // Authentication
-//       AccountParameters
-export { default as AccountParameters } from "./authentication/AccountParameters/AccountParameters";
-export { default as AccountParametersMeta } from "./authentication/AccountParameters/AccountParameters.meta";
+
 //       Login
 export { default as Login } from "./authentication/Login/Login";
 export { default as LoginMeta } from "./authentication/Login/Login.meta";
@@ -30,8 +28,8 @@ export { default as ProfileBadgeMeta } from "./badges/ProfileBadge/ProfileBadge.
 
 // Buttons
 //       ButtonApple
-// export { default as ButtonApple } from "./buttons/ButtonApple/ButtonApple";
-// export { default as ButtonAppleMeta } from "./buttons/ButtonApple/ButtonApple.meta";
+export { default as ButtonApple } from "./buttons/ButtonApple/ButtonApple";
+export { default as ButtonAppleMeta } from "./buttons/ButtonApple/ButtonApple.meta";
 //       ButtonGoogle
 export { default as ButtonGoogle } from "./buttons/ButtonGoogle/ButtonGoogle";
 export { default as ButtonGoogleMeta } from "./buttons/ButtonGoogle/ButtonGoogle.meta";
@@ -59,8 +57,11 @@ export { default as HeroCardMeta } from "./cards/HeroCard/HeroCard.meta";
 export { default as JobCard } from "./cards/JobCard/JobCard";
 export { default as JobCardMeta } from "./cards/JobCard/JobCard.meta";
 //       OperationCard
-export { default as OperationCard } from "./cards/OperationCard/OperationCard";
-export { default as OperationCardMeta } from "./cards/OperationCard/OperationCard.meta";
+// export { default as OperationCard } from "./cards/OperationCard/OperationCard";
+// export { default as OperationCardMeta } from "./cards/OperationCard/OperationCard.meta";
+//       JobOffersCard
+export { default as JobOffersCard } from "./cards/JobOffersCard/JobOffersCard";
+export { default as JobOffersCardMeta } from "./cards/JobOffersCard/JobOffersCard.meta";
 
 // Forms
 //       Checkbox
@@ -102,6 +103,9 @@ export { default as SitexFormv2Meta } from "./forms/SitexFormv2/SitexFormv2.meta
 //       SitexTextInput
 export { default as SitexTextInput } from "./forms/SitexTextInput/SitexTextInput";
 export { default as SitexTextInputMeta } from "./forms/SitexTextInput/SitexTextInput.meta";
+//       InputComboSelect
+export { default as InputComboSelect } from "./forms/InputComboSelect/InputComboSelect";
+export { default as InputComboSelectMeta } from "./forms/InputComboSelect/InputComboSelect.meta";
 
 // Others
 //       FileUploader
@@ -119,12 +123,21 @@ export { default as ToastMeta } from "./others/Toast/Toast.meta";
 //       Toggle
 export { default as Toggle } from "./others/Toggle/Toggle";
 export { default as ToggleMeta } from "./others/Toggle/Toggle.meta";
+//       UserTable
+export { default as UserTable } from "./others/UserTable/UserTable";
+export { default as UserTableMeta } from "./others/UserTable/UserTable.meta";
 //       TextLink
 export { default as TextLink } from "./others/TextLink/TextLink";
 export { default as TextLinkMeta } from "./others/TextLink/TextLink.meta";
-//       MainCourante
+
 export { default as MainCourante } from "./others/Kanban/Kanban";
 export { default as MainCouranteMeta } from "./others/Kanban/Kanban.meta";
 //       DataGrid
 export { default as DataGrid } from "./others/DataGrid/DataGrid";
 export { default as DataGridMeta } from "./others/DataGrid/DataGrid.meta";
+//       PageLoader
+export { default as PageLoader } from "./others/PageLoader/PageLoader";
+export { default as PageLoaderMeta } from "./others/PageLoader/PageLoader.meta";
+//       SmartLoader
+export { default as SmartLoader } from "./others/SmartLoader/SmartLoader";
+export { default as SmartLoaderMeta } from "./others/SmartLoader/SmartLoader.meta";

@@ -4,7 +4,7 @@ const KanbanMeta = {
     displayName: "Kanban",
     description: "Vue Kanban pour la gestion des tâches avec drag & drop",
     thumbnailUrl: "https://static1.plasmic.app/insertables/kanban.svg",
-    importPath: "./components/others/kanban/kanban",
+    importPath: "./components/others/Kanban/Kanban",
     props: {
         tasks: {
             type: "array",
@@ -23,17 +23,41 @@ const KanbanMeta = {
                 }
             }
         },
-        containerClassName: {
+        containerWidth: {
             type: "string",
-            description: "Additional CSS class for the container"
+            description: "Width of the kanban container",
+            defaultValue: "100%"
         },
-        columnClassName: {
+        containerMaxWidth: {
             type: "string",
-            description: "Additional CSS class for columns"
+            description: "Maximum width of the kanban container",
+            defaultValue: "100%"
         },
-        cardClassName: {
+        containerHeight: {
             type: "string",
-            description: "Additional CSS class for cards"
+            description: "Height of the kanban container (auto or fixed value)",
+            defaultValue: "auto"
+        },
+        scrollBehavior: {
+            type: "choice",
+            options: ["overflow", "wrap"],
+            description: "How columns behave when they exceed container width: scroll horizontally or wrap to next line",
+            defaultValue: "overflow"
+        },
+        columnGap: {
+            type: "string",
+            description: "Space between columns",
+            defaultValue: "16px"
+        },
+        columnMinWidth: {
+            type: "string",
+            description: "Minimum width of columns",
+            defaultValue: "280px"
+        },
+        columnMaxWidth: {
+            type: "string",
+            description: "Maximum width of columns",
+            defaultValue: "320px"
         },
         minHeight: {
             type: "string",
@@ -50,11 +74,16 @@ const KanbanMeta = {
             description: "Maximum width of cards",
             defaultValue: "320px"
         },
+        cardMinHeight: {
+            type: "string",
+            description: "Minimum height of task cards",
+            defaultValue: "auto"
+        },
         groupBy: {
             type: "choice",
             description: "Group tasks by field",
             defaultValue: "type",
-            options: ["type", "thematic"]
+            options: ["type", "thematic", "status", "precisions"]
         },
         sortBy: {
             type: "choice",
@@ -77,16 +106,80 @@ const KanbanMeta = {
             description: "Show filter controls",
             defaultValue: true
         },
-        columnColors: {
+        fixedColumnOrder: {
+            type: "array",
+            description: "Fixed order of columns with their styles. Each column can have its own name and styling.",
+            itemType: {
+                type: "object",
+                fields: {
+                    id: {
+                        type: "string",
+                        description: "Column identifier"
+                    },
+                    title: {
+                        type: "string",
+                        description: "Display name of the column"
+                    },
+                    backgroundColor: {
+                        type: "string",
+                        description: "Background color for this column"
+                    }
+                }
+            }
+        },
+        headerStyle: {
             type: "object",
-            description: "Colors for columns",
+            description: "Default styling options for column headers",
             defaultValue: {
-                backgroundColor: "#EDF2F7",
-                textColor: "#2D3748"
+                backgroundColor: "transparent",
+                textColor: "#2D3748",
+                borderRadius: "0.5rem 0.5rem 0 0",
+                textAlign: "left",
+                fontSize: "14px",
+                fontWeight: "600",
+                padding: "1rem",
+                fontFamily: "Manrope",
+                uppercase: false
             },
             fields: {
-                backgroundColor: "string",
-                textColor: "string"
+                backgroundColor: {
+                    type: "string",
+                    description: "Default background color for columns without specific colors"
+                },
+                textColor: {
+                    type: "string",
+                    description: "Text color of the header"
+                },
+                borderRadius: {
+                    type: "string",
+                    description: "Border radius of the header"
+                },
+                textAlign: {
+                    type: "choice",
+                    options: ["left", "center", "right"],
+                    description: "Text alignment"
+                },
+                fontSize: {
+                    type: "string",
+                    description: "Font size"
+                },
+                fontWeight: {
+                    type: "string",
+                    description: "Font weight"
+                },
+                padding: {
+                    type: "string",
+                    description: "Padding"
+                },
+                fontFamily: {
+                    type: "string",
+                    description: "Font family"
+                },
+                uppercase: {
+                    type: "boolean",
+                    description: "Transform column title to uppercase",
+                    defaultValue: false
+                }
             }
         },
         taskColors: {
@@ -98,9 +191,43 @@ const KanbanMeta = {
                 borderColor: "#E2E8F0"
             },
             fields: {
-                backgroundColor: "string",
-                textColor: "string",
-                borderColor: "string"
+                backgroundColor: {
+                    type: "string",
+                    description: "Default background color for cards without a specific type color"
+                },
+                textColor: {
+                    type: "string",
+                    description: "Default text color for cards"
+                },
+                borderColor: {
+                    type: "string",
+                    description: "Default border color for cards"
+                }
+            }
+        },
+        typeColors: {
+            type: "array",
+            description: "Define background colors for different task types",
+            itemType: {
+                type: "object",
+                fields: {
+                    type: {
+                        type: "string",
+                        description: "Task type to match"
+                    },
+                    backgroundColor: {
+                        type: "string",
+                        description: "Background color for this task type"
+                    },
+                    textColor: {
+                        type: "string",
+                        description: "Optional text color for this task type"
+                    },
+                    borderColor: {
+                        type: "string",
+                        description: "Optional border color for this task type"
+                    }
+                }
             }
         },
         onTaskMove: {

@@ -1,7 +1,6 @@
 import { cn } from "@/lib/utils";
 import { cva } from "class-variance-authority";
-import type React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 
 interface CheckboxProps {
   checked?: boolean;

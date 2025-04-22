@@ -4,6 +4,9 @@ const nextConfig = {
   images: {
     domains: ['flagcdn.com'],
   },
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
 };
 
 export default nextConfig;

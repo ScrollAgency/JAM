@@ -7,7 +7,6 @@
 
 .kanbanColumn {
   flex: none;
-  background-color: var(--column-bg-color, #EDF2F7);
   border-radius: 0.5rem;
   overflow: hidden;
 }
@@ -44,6 +43,11 @@
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
 }
 
+.dragging {
+  transform: rotate(1deg);
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);
+}
+
 .moving {
   opacity: 0.6;
 }
@@ -64,7 +68,6 @@
   gap: 1rem;
   margin-bottom: 1rem;
   padding: 1rem;
-  background-color: #ffffff;
   border-radius: 0.5rem;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
@@ -75,6 +78,7 @@
   border: 1px solid #E2E8F0;
   border-radius: 0.25rem;
   font-size: 0.875rem;
+  background-color: #ffffff;
 }
 
 .filterSelect {

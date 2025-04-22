@@ -1,11 +1,5 @@
-import { createClient } from "@supabase/supabase-js";
+"use client"; // Assure que ce fichier est exécuté uniquement côté client
 
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || "";
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || "";
+import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 
-export const supabase = createClient(supabaseUrl, supabaseAnonKey, {
-  auth: {
-    persistSession: true,
-    autoRefreshToken: true,
-  },
-});
+export const supabase = createClientComponentClient();

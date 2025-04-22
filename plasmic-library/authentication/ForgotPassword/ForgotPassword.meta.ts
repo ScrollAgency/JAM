@@ -34,7 +34,7 @@ const ForgotPasswordMeta = {
       description: "Texte affiché sous le titre",
     },
 
-    // Input
+    // Input style
     inputStyle: {
       type: "choice",
       defaultValue: "simple",
@@ -108,7 +108,7 @@ const ForgotPasswordMeta = {
     },
   },
 
-  importPath: "./components/auth/ForgotPassword",
+  importPath: "./plasmic-library/authentication/ForgotPassword",
 };
 
 export default ForgotPasswordMeta;

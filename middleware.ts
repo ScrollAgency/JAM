@@ -3,21 +3,21 @@ import { NextResponse, type NextRequest } from 'next/server'
 
 const loginPage = '/login'
 
+// Liste des routes accessibles sans authentification
 const publicRoutes = [
     '/',
     '/login',
-    '/signup',
+    '/',
+    '/register-candidat',
+    '/register-company',
+    '/register',
+    '/plasmic-host',
     '/forgot-password',
     '/reset-password',
     '/reset-password/[recovery_token]',
-
-    '/plasmic-host',
+    '/first-install',
     '/plasmic-library',
-    '/api/save-data',
-    '/api/plasmic-lib/files',
-    '/api/plasmic-lib/listComponents',
-    '/api/plasmic-lib/update',
-    '/api/plasmic-lib/zipToVps',
+    '/parametres',
 ]
 
 export async function middleware(request: NextRequest) {

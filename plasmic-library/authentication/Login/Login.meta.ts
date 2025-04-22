@@ -13,6 +13,11 @@ const LoginMeta = {
       options: ["simple", "card", "custom"],
       description: "Style du conteneur global",
     },
+    padding: {
+      type: "string",
+      defaultValue: "48px",
+      description: "Espacement interne du composant",
+    },
 
     // Title
     title: {
@@ -102,20 +107,15 @@ const LoginMeta = {
     },
 
     // show / hide
-    showCreateAccount: {
-      type: "boolean",
-      defaultValue: false,
-      description: "Affiche ou non le lien Créer un compte",
-    },
     showPasswordToggle: {
       type: "boolean",
       defaultValue: true,
       description: "Affiche ou non l'oeil",
     },
-    showOAuthButtons: {
+    showSocialOAuth: {
       type: "boolean",
-      defaultValue: false,
-      description: "Affiche ou non les boutons de connexion SSO",
+      defaultValue: true,
+      description: "Affiche ou non la section complète de connexion sociale (séparateur + boutons)",
     },
     showBottomSignupLink: {
       type: "boolean",
@@ -135,6 +135,11 @@ const LoginMeta = {
     onSubmit: {
       type: "eventHandler",
       argTypes: [{ name: "event", type: "object" }],
+    },
+    onError: {
+      type: "eventHandler",
+      argTypes: [{ name: "error", type: "object" }],
+      description: "Appelé lorsqu'une erreur se produit dans le composant",
     },
   },
 

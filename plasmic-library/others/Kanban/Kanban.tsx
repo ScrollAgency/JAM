@@ -1,5 +1,4 @@
-import type React from 'react';
-import { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { DragDropContext, Droppable, Draggable } from '@hello-pangea/dnd';
 import { format, addHours, addMinutes } from 'date-fns';
 import styles from './Kanban.module.css';
@@ -8,10 +7,13 @@ interface ApiTask {
   id: number;
   title: string;
   date_start: string;
-  estimated_duration: string;
+  date_end: string;
   general_description: string;
   type: string;
+  priority: string;
   thematic: string;
+  status: string;
+  precisions: string;
 }
 
 interface Task {
@@ -21,7 +23,10 @@ interface Task {
   date_end: string;
   description: string;
   type: string;
+  priority: string;
   thematic: string;
+  status: string;
+  precisions: string;
 }
 
 interface Column {
@@ -37,28 +42,53 @@ interface KanbanData {
   columnOrder: string[];
 }
 
+interface FixedColumn {
+  id: string;
+  title: string;
+  backgroundColor: string;
+}
+
 interface KanbanProps {
   tasks: Task[];
-  containerClassName?: string;
-  columnClassName?: string;
-  cardClassName?: string;
   minHeight?: string;
   cardMinWidth?: string;
   cardMaxWidth?: string;
-  groupBy?: 'type' | 'thematic';
+  cardMinHeight?: string;
+  containerWidth?: string;
+  containerMaxWidth?: string;
+  containerHeight?: string;
+  scrollBehavior?: 'overflow' | 'wrap';
+  columnGap?: string;
+  columnMinWidth?: string;
+  columnMaxWidth?: string;
+  groupBy?: 'type' | 'thematic' | 'status' | 'precisions';
   sortBy?: 'date_start' | 'date_end' | 'title';
   sortDirection?: 'asc' | 'desc';
   searchTerm?: string;
   showFilters?: boolean;
-  columnColors?: {
+  fixedColumnOrder?: FixedColumn[];
+  headerStyle?: {
     backgroundColor?: string;
     textColor?: string;
+    borderRadius?: string;
+    textAlign?: 'left' | 'center' | 'right';
+    fontSize?: string;
+    fontWeight?: string;
+    padding?: string;
+    fontFamily?: string;
+    uppercase?: boolean;
   };
   taskColors?: {
     backgroundColor?: string;
     textColor?: string;
     borderColor?: string;
   };
+  typeColors?: Array<{
+    type: string;
+    backgroundColor: string;
+    textColor?: string;
+    borderColor?: string;
+  }>;
   onTaskMove?: (taskId: string, newGroup: string) => void;
   onTaskClick?: (taskId: string) => void;
   onSortChange?: (sortBy: string) => void;
@@ -67,18 +97,17 @@ interface KanbanProps {
 }
 
 const transformApiTask = (apiTask: ApiTask): Task => {
-  const [hours, minutes] = apiTask.estimated_duration.split(':').map(Number);
-  const startDate = new Date(apiTask.date_start);
-  const endDate = addMinutes(addHours(startDate, hours), minutes);
-
   return {
     id: apiTask.id.toString(),
     title: apiTask.title,
     date_start: apiTask.date_start,
-    date_end: endDate.toISOString(),
+    date_end: apiTask.date_end,
     description: apiTask.general_description,
     type: apiTask.type,
-    thematic: apiTask.thematic
+    priority: apiTask.priority,
+    thematic: apiTask.thematic,
+    status: apiTask.status,
+    precisions: apiTask.precisions
   };
 };
 
@@ -113,26 +142,40 @@ const sortTasks = (tasks: Task[], sortBy: string, sortDirection: 'asc' | 'desc')
 
 const Kanban: React.FC<KanbanProps> = ({
   tasks = [],
-  containerClassName = "",
-  columnClassName = "",
-  cardClassName = "",
   minHeight = "500px",
   cardMinWidth = "280px",
   cardMaxWidth = "320px",
+  cardMinHeight = "auto",
+  containerWidth = "100%",
+  containerMaxWidth = "100%",
+  containerHeight = "auto",
+  scrollBehavior = "overflow",
+  columnGap = "16px",
+  columnMinWidth = "280px",
+  columnMaxWidth = "320px",
   groupBy = "type",
   sortBy = "date_start",
   sortDirection = "asc",
   searchTerm = "",
   showFilters = true,
-  columnColors = {
-    backgroundColor: "#EDF2F7",
-    textColor: "#2D3748"
+  fixedColumnOrder,
+  headerStyle = {
+    backgroundColor: "transparent",
+    textColor: "#2D3748",
+    borderRadius: "0.5rem 0.5rem 0 0",
+    textAlign: "left",
+    fontSize: "14px",
+    fontWeight: "600",
+    padding: "1rem",
+    fontFamily: "Manrope",
+    uppercase: false
   },
   taskColors = {
     backgroundColor: "#ffffff",
     textColor: "#131013",
     borderColor: "#E2E8F0"
   },
+  typeColors = [],
   onTaskMove,
   onTaskClick,
   onSortChange,
@@ -147,8 +190,14 @@ const Kanban: React.FC<KanbanProps> = ({
 
   const columnTypes = useMemo(() => {
     const uniqueValues = Array.from(new Set(processedTasks.map(task => task[groupBy])));
+    if (fixedColumnOrder) {
+      // Use fixed order but include any new columns at the end
+      const fixedIds = fixedColumnOrder.map(col => col.id);
+      const newColumns = uniqueValues.filter(col => !fixedIds.includes(col));
+      return [...fixedIds, ...newColumns];
+    }
     return uniqueValues.length > 0 ? uniqueValues : ['Default'];
-  }, [processedTasks, groupBy]);
+  }, [processedTasks, groupBy, fixedColumnOrder]);
 
   const [data, setData] = useState<KanbanData>(() => {
     const initialColumns = columnTypes.reduce((acc, type) => {
@@ -210,7 +259,9 @@ const Kanban: React.FC<KanbanProps> = ({
     const updatedTask = {
       ...task,
       type: groupBy === 'type' ? destination.droppableId : task.type,
-      thematic: groupBy === 'thematic' ? destination.droppableId : task.thematic
+      thematic: groupBy === 'thematic' ? destination.droppableId : task.thematic,
+      status: groupBy === 'status' ? destination.droppableId : task.status,
+      precisions: groupBy === 'precisions' ? destination.droppableId : task.precisions
     };
 
     const newDestTasks = Array.from(destColumn.tasks);
@@ -274,39 +325,108 @@ const Kanban: React.FC<KanbanProps> = ({
     </div>
   ) : null;
 
+  const getTaskColors = (task: Task) => {
+    const typeColor = typeColors.find(tc => tc.type === task.type);
+    return {
+      backgroundColor: typeColor?.backgroundColor || taskColors.backgroundColor,
+      textColor: typeColor?.textColor || taskColors.textColor,
+      borderColor: typeColor?.borderColor || taskColors.borderColor
+    };
+  };
+
+  // Add priority color mapping
+  const priorityColors: { [key: string]: string } = {
+    "1: Nul": "#EAEAEC",
+    "2: Faible": "#FFD66B",
+    "3: Moyen": "#FF7F37",
+    "4: Fort": "#E20A37",
+    "5: Crise": "#43454D"
+  };
+
+  const getPriorityNumber = (priority: string) => {
+    if (priority === "SUIVI") return null;
+    const match = priority.match(/^(\d):/);
+    return match ? match[1] : null;
+  };
+
+  const getPriorityColor = (priority: string) => {
+    return priorityColors[priority] || "#EAEAEC";
+  };
+
   return (
-    <div className={containerClassName}>
+    <div style={{
+      width: containerWidth,
+      maxWidth: containerMaxWidth,
+      height: containerHeight,
+      overflow: 'hidden'
+    }}>
       {FilterControls}
       <DragDropContext onDragEnd={onDragEnd}>
-        <div className={`${styles.kanbanContainer}`}>
+        <div className={`${styles.kanbanContainer}`} 
+          style={{
+            display: 'flex',
+            gap: columnGap,
+            overflowX: scrollBehavior === 'overflow' ? 'auto' : 'visible',
+            overflowY: 'hidden',
+            flexWrap: scrollBehavior === 'wrap' ? 'wrap' : 'nowrap',
+            width: '100%',
+            height: '100%',
+            padding: '8px',
+            boxSizing: 'border-box'
+          }}>
           {data.columnOrder.map((columnId) => {
             const column = data.columns[columnId];
+            const fixedColumn = fixedColumnOrder?.find(col => col.id === columnId);
+            const columnTitle = fixedColumn?.title || columnId;
+            const backgroundColor = fixedColumn?.backgroundColor || headerStyle.backgroundColor;
+
             return (
               <div 
                 key={columnId} 
-                className={`${styles.kanbanColumn} ${columnClassName}`}
+                className={styles.kanbanColumn}
                 style={{
-                  minWidth: cardMinWidth,
-                  maxWidth: cardMaxWidth
+                  minWidth: columnMinWidth,
+                  maxWidth: columnMaxWidth,
+                  flex: scrollBehavior === 'wrap' ? '1 1 auto' : '0 0 auto',
+                  height: '100%'
                 }}
               >
                 <div 
                   className={styles.columnHeader}
                   style={{
-                    backgroundColor: columnColors.backgroundColor,
-                    color: columnColors.textColor
+                    backgroundColor,
+                    color: headerStyle.textColor,
+                    borderRadius: headerStyle.borderRadius,
+                    textAlign: headerStyle.textAlign,
+                    fontSize: headerStyle.fontSize,
+                    fontWeight: headerStyle.fontWeight,
+                    padding: headerStyle.padding,
+                    fontFamily: headerStyle.fontFamily,
+                    textTransform: headerStyle.uppercase ? 'uppercase' : 'none',
+                    position: 'sticky',
+                    top: 0,
+                    zIndex: 1
                   }}
                 >
-                  {columnId}
+                  {columnTitle}
                 </div>
-                <div className="bg-gray-100 rounded-lg rounded-t-none p-4 h-full" style={{ minHeight }}>
+                <div className="rounded-lg rounded-t-none h-full" 
+                  style={{ 
+                    minHeight,
+                    overflowY: 'auto',
+                    height: containerHeight === 'auto' ? 'auto' : '100%'
+                  }}>
                   <Droppable droppableId={columnId}>
                     {(provided, snapshot) => (
                       <div
                         ref={provided.innerRef}
                         {...provided.droppableProps}
                         className={`space-y-3 h-full ${styles.droppableColumn} ${snapshot.isDraggingOver ? styles.draggingOver : ''}`}
-                        style={{ minHeight: `calc(${minHeight} - 32px)` }}
+                        style={{ 
+                          minHeight: `calc(${minHeight} - 32px)`, 
+                          padding: '16px 8px',
+                          boxSizing: 'border-box'
+                        }}
                       >
                         {column.tasks.map((task, index) => (
                           <Draggable
@@ -322,42 +442,26 @@ const Kanban: React.FC<KanbanProps> = ({
                                 className={`${styles.draggableWrapper}`}
                                 style={{
                                   ...provided.draggableProps.style,
-                                  width: '100%'
+                                  width: snapshot.isDragging ? cardMaxWidth : '100%'
                                 }}
                               >
                                 <div
-                                  className={`rounded-lg p-4 shadow-sm cursor-pointer ${styles.taskCard} ${cardClassName} ${movingTaskId === task.id ? styles.moving : ''} ${snapshot.isDragging ? 'shadow-md' : ''}`}
+                                  className={`rounded-lg shadow-sm cursor-pointer ${styles.taskCard} ${movingTaskId === task.id ? styles.moving : ''} ${snapshot.isDragging ? styles.dragging : ''}`}
                                   onClick={() => handleTaskClick(task.id)}
                                   style={{
                                     fontFamily: 'Manrope',
-                                    backgroundColor: taskColors.backgroundColor,
-                                    color: taskColors.textColor,
-                                    borderColor: taskColors.borderColor,
+                                    ...getTaskColors(task),
                                     borderWidth: '1px',
-                                    borderStyle: 'solid'
+                                    borderStyle: 'solid',
+                                    width: '100%',
+                                    padding: '16px',
+                                    minHeight: cardMinHeight
                                   }}
                                 >
-                                  <div className="flex items-center gap-1 mb-3" style={{ 
-                                    backgroundColor: '#f6f3ef', 
-                                    padding: '2px 8px',
-                                    borderRadius: '4px',
-                                    width: 'fit-content'
-                                  }}>
-                                    <span style={{ 
-                                      color: '#604e39',
-                                      fontSize: '12px',
-                                      fontWeight: 'medium'
-                                    }}>№</span>
-                                    <span style={{ 
-                                      color: '#604e39',
-                                      fontSize: '12px',
-                                      fontWeight: 'medium'
-                                    }}>{task.id}</span>
-                                  </div>
-
                                   <div style={{
-                                    fontSize: '16px',
-                                    fontWeight: 'medium',
+                                    fontSize: '14px',
+                                    fontWeight: '600',
+                                    fontFamily: 'Manrope',
                                     color: '#131013',
                                     marginBottom: '12px',
                                     wordBreak: 'break-word'
@@ -365,35 +469,73 @@ const Kanban: React.FC<KanbanProps> = ({
                                     {task.title}
                                   </div>
 
-                                  <div 
-                                    className={styles.dateContainer}
-                                    style={{
-                                      fontSize: '14px',
-                                      color: '#4d4d4d',
-                                      marginBottom: '12px'
-                                    }}
-                                  >
-                                    <div className="flex items-center gap-2">
-                                      <span className={styles.dateLabel}>Date et heure de début</span>
-                                      <span>{format(new Date(task.date_start), 'dd/MM/yyyy, HH:mm')}</span>
+                                  <div className="flex items-center justify-between mb-3">
+                                    <div style={{ 
+                                      color: '#604e39',
+                                      fontSize: '12px',
+                                      fontFamily: 'Manrope',
+                                      fontWeight: '400'
+                                    }}>
+                                      No {task.id}
                                     </div>
-                                    <div className="flex items-center gap-2">
-                                      <span className={styles.dateLabel}>Date et heure de fin</span>
-                                      <span>{format(new Date(task.date_end), 'dd/MM/yyyy, HH:mm')}</span>
+                                    {task.priority !== "SUIVI" && (
+                                      <div className="flex items-center gap-2">
+                                        <div style={{
+                                          color: '#604e39',
+                                          fontSize: '12px',
+                                          fontFamily: 'Manrope',
+                                          fontWeight: '400'
+                                        }}>
+                                          Impact/Gravité
+                                        </div>
+                                        <div style={{
+                                          backgroundColor: getPriorityColor(task.priority),
+                                          width: '24px',
+                                          height: '24px',
+                                          borderRadius: '50%',
+                                          display: 'flex',
+                                          alignItems: 'center',
+                                          justifyContent: 'center',
+                                          color: ['4: Fort', '5: Crise'].includes(task.priority) ? '#FFFFFF' : '#000000',
+                                          fontSize: '12px',
+                                          fontFamily: 'Manrope',
+                                          fontWeight: '600'
+                                        }}>
+                                          {getPriorityNumber(task.priority)}
+                                        </div>
+                                      </div>
+                                    )}
+                                  </div>
+
+                                  <div style={{
+                                    fontSize: '12px',
+                                    fontFamily: 'Manrope',
+                                    color: '#4d4d4d',
+                                    marginBottom: '12px'
+                                  }}>
+                                    <div style={{ marginBottom: '8px' }}>
+                                      <div style={{ fontSize: '8px', fontWeight: '400', marginBottom: '4px' }}>Date et heure de début</div>
+                                      <div style={{ fontSize: '12px', fontWeight: '400' }}>{format(new Date(task.date_start), 'dd/MM/yyyy  HH:mm')}</div>
+                                    </div>
+                                    <div>
+                                      <div style={{ fontSize: '8px', fontWeight: '400', marginBottom: '4px' }}>Date et heure de fin</div>
+                                      <div style={{ fontSize: '12px', fontWeight: '400' }}>{format(new Date(task.date_end), 'dd/MM/yyyy  HH:mm')}</div>
                                     </div>
                                   </div>
 
                                   <div style={{
-                                    fontSize: '14px',
+                                    fontFamily: 'Manrope',
                                     color: '#333333'
                                   }}>
-                                    <div style={{ marginBottom: '8px' }}>Description</div>
+                                    <div style={{ marginBottom: '8px', fontSize: '8px', fontWeight: '400' }}>Description</div>
                                     <div style={{ 
                                       whiteSpace: 'pre-wrap',
                                       color: '#4d4d4d',
-                                      wordBreak: 'break-word'
+                                      wordBreak: 'break-word',
+                                      fontSize: '12px',
+                                      fontWeight: '400'
                                     }}>
-                                      {task.description.split('\n').map((line, index) => (
+                                      {(task.description || '').split('\n').map((line, index) => (
                                         <div key={index} className="flex items-start">
                                           <span className="mr-2 flex-shrink-0">•</span>
                                           <span>{line.trim()}</span>
@@ -401,6 +543,23 @@ const Kanban: React.FC<KanbanProps> = ({
                                       ))}
                                     </div>
                                   </div>
+
+                                  {task.precisions && (
+                                    <div style={{
+                                      fontFamily: 'Manrope',
+                                      color: '#333333',
+                                      marginTop: '12px'
+                                    }}>
+                                      <div style={{ marginBottom: '4px', fontSize: '8px', fontWeight: '400' }}>Type (Précisions)</div>
+                                      <div style={{ 
+                                        color: '#4d4d4d',
+                                        fontSize: '12px',
+                                        fontWeight: '400'
+                                      }}>
+                                        {task.precisions}
+                                      </div>
+                                    </div>
+                                  )}
                                 </div>
                               </div>
                             )}
