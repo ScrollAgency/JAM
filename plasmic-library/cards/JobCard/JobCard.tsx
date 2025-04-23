@@ -73,7 +73,7 @@ const JobCard = forwardRef<JobCardActions, JobCardProps>(({
   title,
   city,
   companyName,
-  logo="/favicon.ico",
+  logo = "/favicon.ico",
   domain,
   contractType,
   availability,
