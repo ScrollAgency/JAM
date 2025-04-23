@@ -73,7 +73,7 @@ const JobCard = forwardRef<JobCardActions, JobCardProps>(({
   title,
   city,
   companyName,
-  logo,
+  logo = "/favicon.ico",
   domain,
   contractType,
   availability,
@@ -111,7 +111,7 @@ const JobCard = forwardRef<JobCardActions, JobCardProps>(({
       {/* Logo et titre */}
       <div className="flex justify-between items-start mb-2">
         <Image
-          src={logo}
+          src={logo && logo !== "" ? logo : "/favicon.ico"}
           alt={`${companyName} logo`}
           width={100}
           height={24}
