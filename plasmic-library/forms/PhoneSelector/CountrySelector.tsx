@@ -10,7 +10,7 @@ function CountrySelector() {
   // interface PhoneInputProps {
   //   selectedCountry: CountryCode;
   // }
-  const flagUrl = useCountryFlag(selectedCountry.code);
+  const flagUrl = useCountryFlag(selectedCountry.code === "UK" ? "gb" : selectedCountry.code);
 
   return (
     <div className="flex flex-col flex-1 w-full">
