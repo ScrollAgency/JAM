@@ -1162,6 +1162,16 @@ function PlasmicAccueil__RenderFunc(props: {
         invalidatedKeys: null,
         roleId: null
       };
+    }),
+    getPp4CurrentJob: usePlasmicDataOp(() => {
+      return {
+        sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
+        opId: "2afbc108-a82d-467f-b048-ed32f1c2c98e",
+        userArgs: {},
+        cacheKey: `plasmic.$.2afbc108-a82d-467f-b048-ed32f1c2c98e.$.`,
+        invalidatedKeys: null,
+        roleId: null
+      };
     })
   };
   if (Object.keys(new$Queries).some(k => new$Queries[k] !== $queries[k])) {
@@ -3469,9 +3479,7 @@ function PlasmicAccueil__RenderFunc(props: {
                                       ? (() => {
                                           const actionArgs = {
                                             customFunction: async () => {
-                                              return (() => {
-                                                return event.stopPropagation();
-                                              })();
+                                              return event.stopPropagation();
                                             }
                                           };
                                           return (({ customFunction }) => {

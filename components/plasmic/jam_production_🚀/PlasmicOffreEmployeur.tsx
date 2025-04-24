@@ -1301,6 +1301,18 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
         invalidatedKeys: null,
         roleId: null
       };
+    }),
+    getJobapplicationsByJobOffers: usePlasmicDataOp(() => {
+      return {
+        sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
+        opId: "1e3dda04-b7b2-4657-a520-9d22389e3e32",
+        userArgs: {
+          query: [$ctx.params.job_id]
+        },
+        cacheKey: `plasmic.$.1e3dda04-b7b2-4657-a520-9d22389e3e32.$.`,
+        invalidatedKeys: null,
+        roleId: null
+      };
     })
   };
   if (Object.keys(new$Queries).some(k => new$Queries[k] !== $queries[k])) {
