@@ -21,6 +21,11 @@
 .root > * {
   grid-column: 4;
 }
+@media (min-width: 0px) and (max-width: 768px) {
+  .root > * {
+    grid-column: 4;
+  }
+}
 .user {
   background: rgba(255, 255, 255, 1);
   width: 100%;
@@ -64,6 +69,11 @@
   > picture
   > img {
   margin-top: 10px;
+}
+@media (min-width: 0px) and (max-width: 768px) {
+  .imageWrapper {
+    display: none;
+  }
 }
 .logoWrapper {
   width: auto;

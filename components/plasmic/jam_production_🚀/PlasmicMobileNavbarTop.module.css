@@ -138,6 +138,7 @@
   height: 100%;
   position: relative;
   overflow: hidden;
+  cursor: pointer;
   min-height: 0;
   display: none;
 }
@@ -188,6 +189,7 @@
   width: 28px;
   height: 28px;
   position: relative;
+  cursor: pointer;
   flex-shrink: 0;
   display: none;
   border-radius: 100px;

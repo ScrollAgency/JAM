@@ -1,0 +1,81 @@
+.progressBar {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  position: relative;
+  min-width: 0;
+}
+.progressBar > :global(.__wab_flex-container) {
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: flex-start;
+  min-width: 0;
+  margin-left: calc(0px - 8px);
+  width: calc(100% + 8px);
+}
+.progressBar > :global(.__wab_flex-container) > *,
+.progressBar > :global(.__wab_flex-container) > :global(.__wab_slot) > *,
+.progressBar > :global(.__wab_flex-container) > picture > img,
+.progressBar
+  > :global(.__wab_flex-container)
+  > :global(.__wab_slot)
+  > picture
+  > img {
+  margin-left: 8px;
+}
+.bar1 {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  align-items: stretch;
+  justify-content: flex-start;
+  width: 208px;
+  height: 4px;
+  max-width: 100%;
+  background: var(--token-3qu294j6Zo_Y);
+  flex-shrink: 0;
+  border-radius: 4px;
+}
+.bar1step1 {
+  background: var(--token-XkcIRFBUIQDs);
+}
+.bar2 {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  align-items: stretch;
+  justify-content: flex-start;
+  width: 208px;
+  height: 4px;
+  max-width: 100%;
+  background: var(--token-3qu294j6Zo_Y);
+  flex-shrink: 0;
+  border-radius: 4px;
+}
+.bar2step1 {
+  background: var(--token-3qu294j6Zo_Y);
+}
+.bar2step2 {
+  background: var(--token-XkcIRFBUIQDs);
+}
+.bar3 {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  align-items: stretch;
+  justify-content: flex-start;
+  width: 208px;
+  height: 4px;
+  max-width: 100%;
+  background: var(--token-3qu294j6Zo_Y);
+  flex-shrink: 0;
+  border-radius: 4px;
+}
+.bar3step2 {
+  background: var(--token-3qu294j6Zo_Y);
+}
+.bar3step3 {
+  background: var(--token-XkcIRFBUIQDs);
+}

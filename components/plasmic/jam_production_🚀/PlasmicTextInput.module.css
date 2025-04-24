@@ -1,19 +1,19 @@
 .ariaInput:global(.__wab_instance) {
   box-sizing: border-box;
-  box-shadow: inset 0px 0px 0px 1px var(--token-KO-_a_AX48hg);
-  color: var(--token-ceD1eQOG2geq);
-  font-family: var(--token-iPHCqhfXwTyN);
-  font-size: var(--token-aRuWp9ICGc-Q);
+  box-shadow: none;
   line-height: var(--token-QTSTTNIaGHpG);
   width: 100%;
   position: relative;
-  outline-style: none;
   height: 100%;
+  color: var(--token-qVvTulujfE86);
+  font-size: var(--token-aRuWp9ICGc-Q);
+  font-family: var(--token-iPHCqhfXwTyN);
   min-width: 0;
   min-height: 0;
   border-radius: var(--token-6E_dkwkzSygq);
   padding: 12px;
-  border-style: none;
+  border-width: 1px;
+  border-style: solid;
 }
 .ariaInput[data-disabled]:global(.__wab_instance) {
   cursor: not-allowed;
@@ -22,7 +22,7 @@
   outline-style: solid;
   outline-width: var(--token-UY9kPePLUyPt);
   outline-offset: 1px;
-  outline-color: var(--token--V1yrEhoM54H);
+  outline-color: var(--token-uqUcyTUgvV0c);
 }
 .ariaInputtype_soft:global(.__wab_instance) {
   background: var(--token-2WBfCSZKGd3h);
@@ -36,6 +36,9 @@
 }
 .ariaInputtype_plain[data-hovered]:global(.__wab_instance) {
   background: var(--token-2WBfCSZKGd3h);
+}
+.ariaInputtype_unnamedVariant:global(.__wab_instance) {
+  background: #ffffff;
 }
 .ariaInputflat_top:global(.__wab_instance) {
   border-top-left-radius: 0rem;

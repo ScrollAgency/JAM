@@ -3,39 +3,41 @@
 import * as React from "react";
 import { PageParamsProvider as PageParamsProvider__ } from "@plasmicapp/react-web/lib/host";
 import GlobalContextsProvider from "../../components/plasmic/jam_production_\uD83D\uDE80/PlasmicGlobalContextsProvider";
-
-import { PlasmicNewPage2 } from "../../components/plasmic/jam_production_\uD83D\uDE80/PlasmicNewPage2";
+import { Step1Context } from "../../components/plasmic/jam_production_\uD83D\uDE80/PlasmicGlobalVariant__Step1";
+import { PlasmicResetPassword } from "../../components/plasmic/jam_production_\uD83D\uDE80/PlasmicResetPassword";
 import { useRouter } from "next/router";
 
-function NewPage2() {
-  // Use PlasmicNewPage2 to render this component as it was
+function ResetPassword() {
+  // Use PlasmicResetPassword to render this component as it was
   // designed in Plasmic, by activating the appropriate variants,
   // attaching the appropriate event handlers, etc.  You
   // can also install whatever React hooks you need here to manage state or
   // fetch data.
   //
-  // Props you can pass into PlasmicNewPage2 are:
+  // Props you can pass into PlasmicResetPassword are:
   // 1. Variants you want to activate,
   // 2. Contents for slots you want to fill,
   // 3. Overrides for any named node in the component to attach behavior and data,
   // 4. Props to set on the root node.
   //
-  // By default, PlasmicNewPage2 is wrapped by your project's global
+  // By default, PlasmicResetPassword is wrapped by your project's global
   // variant context providers. These wrappers may be moved to
   // Next.js Custom App component
   // (https://nextjs.org/docs/advanced-features/custom-app).
 
   return (
-    <GlobalContextsProvider>
-      <PageParamsProvider__
-        route={useRouter()?.pathname}
-        params={useRouter()?.query}
-        query={useRouter()?.query}
-      >
-        <PlasmicNewPage2 />
-      </PageParamsProvider__>
-    </GlobalContextsProvider>
+    <Step1Context.Provider value={undefined}>
+      <GlobalContextsProvider>
+        <PageParamsProvider__
+          route={useRouter()?.pathname}
+          params={useRouter()?.query}
+          query={useRouter()?.query}
+        >
+          <PlasmicResetPassword />
+        </PageParamsProvider__>
+      </GlobalContextsProvider>
+    </Step1Context.Provider>
   );
 }
 
-export default NewPage2;
+export default ResetPassword;

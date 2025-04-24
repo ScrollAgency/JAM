@@ -65,6 +65,7 @@ import "@plasmicapp/react-web/lib/plasmic.css";
 
 import plasmic_antd_5_hostless_css from "../antd_5_hostless/plasmic.module.css"; // plasmic-import: ohDidvG9XsCeFumugENU3J/projectcss
 import plasmic_library_tailwind_3_4_number_tokens_css from "../library_tailwind_3_4_number_tokens/plasmic.module.css"; // plasmic-import: 4vjRXvnb4XuY6J15w9oRcQ/projectcss
+import plasmic_plasmic_rich_components_css from "../plasmic_rich_components/plasmic.module.css"; // plasmic-import: jkU633o1Cz7HrJdwdxhVHk/projectcss
 import projectcss from "./plasmic.module.css"; // plasmic-import: f7DE9y7qp46fyCw5nuY8f9/projectcss
 import sty from "./PlasmicMobileNavbarTop.module.css"; // plasmic-import: mAg8Ml3XUEhy/css
 
@@ -85,7 +86,7 @@ type ArgPropType = keyof PlasmicMobileNavbarTop__ArgsType;
 export const PlasmicMobileNavbarTop__ArgProps = new Array<ArgPropType>();
 
 export type PlasmicMobileNavbarTop__OverridesType = {
-  mobileNavbar?: Flex__<"div">;
+  mobileNavbar?: Flex__<"header">;
   logoTitre?: Flex__<"div">;
   logo?: Flex__<"svg">;
   text?: Flex__<"div">;
@@ -143,7 +144,7 @@ function PlasmicMobileNavbarTop__RenderFunc(props: {
 
   return (
     <Stack__
-      as={"div"}
+      as={"header"}
       data-plasmic-name={"mobileNavbar"}
       data-plasmic-override={overrides.mobileNavbar}
       data-plasmic-root={true}
@@ -157,6 +158,7 @@ function PlasmicMobileNavbarTop__RenderFunc(props: {
         projectcss.plasmic_tokens,
         plasmic_antd_5_hostless_css.plasmic_tokens,
         plasmic_library_tailwind_3_4_number_tokens_css.plasmic_tokens,
+        plasmic_plasmic_rich_components_css.plasmic_tokens,
         sty.mobileNavbar
       )}
     >
@@ -169,6 +171,34 @@ function PlasmicMobileNavbarTop__RenderFunc(props: {
           data-plasmic-name={"logo"}
           data-plasmic-override={overrides.logo}
           className={classNames(projectcss.all, sty.logo)}
+          onClick={async event => {
+            const $steps = {};
+
+            $steps["goToAccueil"] = true
+              ? (() => {
+                  const actionArgs = { destination: `/` };
+                  return (({ destination }) => {
+                    if (
+                      typeof destination === "string" &&
+                      destination.startsWith("#")
+                    ) {
+                      document
+                        .getElementById(destination.substr(1))
+                        .scrollIntoView({ behavior: "smooth" });
+                    } else {
+                      __nextRouter?.push(destination);
+                    }
+                  })?.apply(null, [actionArgs]);
+                })()
+              : undefined;
+            if (
+              $steps["goToAccueil"] != null &&
+              typeof $steps["goToAccueil"] === "object" &&
+              typeof $steps["goToAccueil"].then === "function"
+            ) {
+              $steps["goToAccueil"] = await $steps["goToAccueil"];
+            }
+          }}
           role={"img"}
         />
 
@@ -195,6 +225,34 @@ function PlasmicMobileNavbarTop__RenderFunc(props: {
           data-plasmic-name={"cloche"}
           data-plasmic-override={overrides.cloche}
           className={classNames(projectcss.all, sty.cloche)}
+          onClick={async event => {
+            const $steps = {};
+
+            $steps["goToMesAlertes"] = true
+              ? (() => {
+                  const actionArgs = { destination: `/alertes` };
+                  return (({ destination }) => {
+                    if (
+                      typeof destination === "string" &&
+                      destination.startsWith("#")
+                    ) {
+                      document
+                        .getElementById(destination.substr(1))
+                        .scrollIntoView({ behavior: "smooth" });
+                    } else {
+                      __nextRouter?.push(destination);
+                    }
+                  })?.apply(null, [actionArgs]);
+                })()
+              : undefined;
+            if (
+              $steps["goToMesAlertes"] != null &&
+              typeof $steps["goToMesAlertes"] === "object" &&
+              typeof $steps["goToMesAlertes"].then === "function"
+            ) {
+              $steps["goToMesAlertes"] = await $steps["goToMesAlertes"];
+            }
+          }}
           role={"img"}
         />
 
@@ -268,7 +326,7 @@ type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
   (typeof PlasmicDescendants)[T][number];
 type NodeDefaultElementType = {
-  mobileNavbar: "div";
+  mobileNavbar: "header";
   logoTitre: "div";
   logo: "svg";
   text: "div";

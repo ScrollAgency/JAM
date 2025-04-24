@@ -59,10 +59,26 @@ import {
   useGlobalActions
 } from "@plasmicapp/react-web/lib/host";
 
+import {
+  executePlasmicDataOp,
+  usePlasmicDataOp,
+  usePlasmicInvalidate
+} from "@plasmicapp/react-web/lib/data-sources";
+
+import Sidebar from "../../Sidebar"; // plasmic-import: M06HuWMcBQV2/component
 import MobileNavbarTop from "../../MobileNavbarTop"; // plasmic-import: mAg8Ml3XUEhy/component
-import Slidebar from "../../Slidebar"; // plasmic-import: M06HuWMcBQV2/component
-import BoutonCreerUneAlerte from "../../BoutonCreerUneAlerte"; // plasmic-import: 2FcG1aUx3cMM/component
+import { DataGrid } from "../../others/data_grid/data_grid"; // plasmic-import: o8vMrKl-wEva/codeComponent
+import Button from "../../Button"; // plasmic-import: 9ixtKbGKv7x-/component
 import MobileNavbarBottom from "../../MobileNavbarBottom"; // plasmic-import: BIS-N7QZzUVV/component
+import Modal from "../../Modal"; // plasmic-import: fsC3QwUZz9uz/component
+import { JamButton } from "../../forms/JamButton/JamButton"; // plasmic-import: UiI0wt2mxfuf/codeComponent
+import { FormWrapper } from "@plasmicpkgs/antd5/skinny/Form";
+import { formHelpers as FormWrapper_Helpers } from "@plasmicpkgs/antd5/skinny/Form";
+import { FormItemWrapper } from "@plasmicpkgs/antd5/skinny/FormItem";
+import TextInput from "../../TextInput"; // plasmic-import: pZ7Ql6sUFRw9/component
+import { AntdSelect } from "@plasmicpkgs/antd5/skinny/registerSelect";
+import { AntdButton } from "@plasmicpkgs/antd5/skinny/registerButton";
+import { Fetcher } from "@plasmicapp/react-web/lib/data-sources";
 
 import { useScreenVariants as useScreenVariantshm8Nko4B5BDd } from "./PlasmicGlobalVariant__Screen"; // plasmic-import: HM8Nko4B5BDd/globalVariant
 
@@ -70,10 +86,13 @@ import "@plasmicapp/react-web/lib/plasmic.css";
 
 import plasmic_antd_5_hostless_css from "../antd_5_hostless/plasmic.module.css"; // plasmic-import: ohDidvG9XsCeFumugENU3J/projectcss
 import plasmic_library_tailwind_3_4_number_tokens_css from "../library_tailwind_3_4_number_tokens/plasmic.module.css"; // plasmic-import: 4vjRXvnb4XuY6J15w9oRcQ/projectcss
+import plasmic_plasmic_rich_components_css from "../plasmic_rich_components/plasmic.module.css"; // plasmic-import: jkU633o1Cz7HrJdwdxhVHk/projectcss
 import projectcss from "./plasmic.module.css"; // plasmic-import: f7DE9y7qp46fyCw5nuY8f9/projectcss
 import sty from "./PlasmicMesAlertes.module.css"; // plasmic-import: g2Wsra2qxoMV/css
 
-import HeartStraightIcon from "./icons/PlasmicIcon__HeartStraight"; // plasmic-import: 2A8amxR7FAse/icon
+import NotificationBellSvgrepoComSvgIcon from "./icons/PlasmicIcon__NotificationBellSvgrepoComSvg"; // plasmic-import: dIeWzMIIc5ij/icon
+import CircleIcon from "./icons/PlasmicIcon__Circle"; // plasmic-import: je95h6YoQ2jE/icon
+import GroupIcon from "./icons/PlasmicIcon__Group"; // plasmic-import: yIYn4o5HgDaM/icon
 
 createPlasmicElementProxy;
 
@@ -88,19 +107,33 @@ export const PlasmicMesAlertes__ArgProps = new Array<ArgPropType>();
 
 export type PlasmicMesAlertes__OverridesType = {
   mesAlertes?: Flex__<"div">;
+  sidebar?: Flex__<typeof Sidebar>;
   mobileNavbarTop?: Flex__<typeof MobileNavbarTop>;
-  slidebar?: Flex__<typeof Slidebar>;
   main?: Flex__<"div">;
   heading?: Flex__<"div">;
-  card?: Flex__<"div">;
-  content6?: Flex__<"div">;
-  featuredIcon?: Flex__<"div">;
-  svg?: Flex__<"svg">;
-  textAndSupportingText?: Flex__<"div">;
+  card2?: Flex__<"div">;
+  annonces2?: Flex__<"div">;
+  dataGrid?: Flex__<typeof DataGrid>;
+  noAnnonce?: Flex__<"div">;
+  featuredIcon2?: Flex__<"div">;
+  textAndSupportingText2?: Flex__<"div">;
   text6?: Flex__<"div">;
-  supportingText?: Flex__<"div">;
-  boutonCreerUneAlerte?: Flex__<typeof BoutonCreerUneAlerte>;
+  supportingText2?: Flex__<"div">;
   mobileNavbarBottom?: Flex__<typeof MobileNavbarBottom>;
+  modal?: Flex__<typeof Modal>;
+  button?: Flex__<typeof JamButton>;
+  h3?: Flex__<"h3">;
+  alerteModal?: Flex__<"div">;
+  img?: Flex__<typeof PlasmicImg__>;
+  frame1437254312?: Flex__<"div">;
+  heading2?: Flex__<"div">;
+  frame1437254313?: Flex__<"div">;
+  form?: Flex__<typeof FormWrapper>;
+  textInput?: Flex__<typeof TextInput>;
+  textInput2?: Flex__<typeof TextInput>;
+  select?: Flex__<typeof AntdSelect>;
+  select3?: Flex__<typeof AntdSelect>;
+  select4?: Flex__<typeof AntdSelect>;
 };
 
 export interface DefaultMesAlertesProps {}
@@ -143,6 +176,123 @@ function PlasmicMesAlertes__RenderFunc(props: {
   const refsRef = React.useRef({});
   const $refs = refsRef.current;
 
+  let [$queries, setDollarQueries] = React.useState<
+    Record<string, ReturnType<typeof usePlasmicDataOp>>
+  >({});
+  const stateSpecs: Parameters<typeof useDollarState>[0] = React.useMemo(
+    () => [
+      {
+        path: "modal.isOpen",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+      },
+      {
+        path: "form.value",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "form",
+        onMutate: generateOnMutateForSpec("value", FormWrapper_Helpers)
+      },
+      {
+        path: "form.isSubmitting",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $ctx }) => false,
+
+        refName: "form",
+        onMutate: generateOnMutateForSpec("isSubmitting", FormWrapper_Helpers)
+      },
+      {
+        path: "textInput.value",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+      },
+      {
+        path: "textInput2.value",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+      },
+      {
+        path: "select.value",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+      },
+      {
+        path: "select3.value",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+      },
+      {
+        path: "select4.value",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+      }
+    ],
+    [$props, $ctx, $refs]
+  );
+  const $state = useDollarState(stateSpecs, {
+    $props,
+    $ctx,
+    $queries: $queries,
+    $refs
+  });
+
+  const new$Queries: Record<string, ReturnType<typeof usePlasmicDataOp>> = {
+    getWorkingTime: usePlasmicDataOp(() => {
+      return {
+        sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
+        opId: "751ade76-c646-49c1-996c-73c6f29de305",
+        userArgs: {},
+        cacheKey: `plasmic.$.751ade76-c646-49c1-996c-73c6f29de305.$.`,
+        invalidatedKeys: null,
+        roleId: null
+      };
+    }),
+    getMinimumSalary: usePlasmicDataOp(() => {
+      return {
+        sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
+        opId: "c21c24b7-b4c1-4e18-83af-444409289f19",
+        userArgs: {},
+        cacheKey: `plasmic.$.c21c24b7-b4c1-4e18-83af-444409289f19.$.`,
+        invalidatedKeys: null,
+        roleId: null
+      };
+    }),
+    getContractType: usePlasmicDataOp(() => {
+      return {
+        sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
+        opId: "d00d64cb-c5be-42b3-99bc-a0055ccddd27",
+        userArgs: {},
+        cacheKey: `plasmic.$.d00d64cb-c5be-42b3-99bc-a0055ccddd27.$.`,
+        invalidatedKeys: null,
+        roleId: null
+      };
+    }),
+    getAlerts: usePlasmicDataOp(() => {
+      return {
+        sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
+        opId: "b2cb0a61-9dd8-4748-9e72-cd2546ee2a75",
+        userArgs: {},
+        cacheKey: `plasmic.$.b2cb0a61-9dd8-4748-9e72-cd2546ee2a75.$.`,
+        invalidatedKeys: null,
+        roleId: null
+      };
+    })
+  };
+  if (Object.keys(new$Queries).some(k => new$Queries[k] !== $queries[k])) {
+    setDollarQueries(new$Queries);
+
+    $queries = new$Queries;
+  }
+
   const globalVariants = ensureGlobalVariants({
     screen: useScreenVariantshm8Nko4B5BDd()
   });
@@ -171,19 +321,20 @@ function PlasmicMesAlertes__RenderFunc(props: {
             projectcss.plasmic_tokens,
             plasmic_antd_5_hostless_css.plasmic_tokens,
             plasmic_library_tailwind_3_4_number_tokens_css.plasmic_tokens,
+            plasmic_plasmic_rich_components_css.plasmic_tokens,
             sty.mesAlertes
           )}
         >
+          <Sidebar
+            data-plasmic-name={"sidebar"}
+            data-plasmic-override={overrides.sidebar}
+            className={classNames("__wab_instance")}
+          />
+
           <MobileNavbarTop
             data-plasmic-name={"mobileNavbarTop"}
             data-plasmic-override={overrides.mobileNavbarTop}
             className={classNames("__wab_instance", sty.mobileNavbarTop)}
-          />
-
-          <Slidebar
-            data-plasmic-name={"slidebar"}
-            data-plasmic-override={overrides.slidebar}
-            className={classNames("__wab_instance", sty.slidebar)}
           />
 
           <Stack__
@@ -206,80 +357,707 @@ function PlasmicMesAlertes__RenderFunc(props: {
             </div>
             <Stack__
               as={"div"}
-              data-plasmic-name={"card"}
-              data-plasmic-override={overrides.card}
+              data-plasmic-name={"card2"}
+              data-plasmic-override={overrides.card2}
               hasGap={true}
-              className={classNames(projectcss.all, sty.card)}
+              className={classNames(projectcss.all, sty.card2)}
             >
-              <Stack__
-                as={"div"}
-                data-plasmic-name={"content6"}
-                data-plasmic-override={overrides.content6}
-                hasGap={true}
-                className={classNames(projectcss.all, sty.content6)}
-              >
+              {(() => {
+                try {
+                  return $queries.getAlerts.data.length > 0;
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return false;
+                  }
+                  throw e;
+                }
+              })() ? (
                 <div
-                  data-plasmic-name={"featuredIcon"}
-                  data-plasmic-override={overrides.featuredIcon}
-                  className={classNames(projectcss.all, sty.featuredIcon)}
+                  data-plasmic-name={"annonces2"}
+                  data-plasmic-override={overrides.annonces2}
+                  className={classNames(projectcss.all, sty.annonces2)}
                 >
-                  <HeartStraightIcon
-                    data-plasmic-name={"svg"}
-                    data-plasmic-override={overrides.svg}
-                    className={classNames(projectcss.all, sty.svg)}
-                    role={"img"}
+                  <DataGrid
+                    data-plasmic-name={"dataGrid"}
+                    data-plasmic-override={overrides.dataGrid}
+                    className={classNames("__wab_instance", sty.dataGrid)}
+                    columnHeaders={{}}
+                    columnLabels={{
+                      id: "ID",
+                      title: "Nom",
+                      status: "Statut",
+                      type: "Type",
+                      budget: "Budget (k€)",
+                      date_start: "Date de début",
+                      date_end: "Heures Dispositif",
+                      comments: "Comments",
+                      created_at: "Created At",
+                      updated_at: "Updated At",
+                      last_updated_by: "Last Updated By",
+                      model: "Model"
+                    }}
+                    columnStyles={{}}
+                    currentPage={1}
+                    emptyStateMessage={"Aucune donnée disponible"}
+                    enableExport={false}
+                    exportFormats={"csv"}
+                    isLoading={false}
+                    pageSize={10}
+                    responsive={{
+                      minWidth: "100%",
+                      horizontalOverflow: "auto",
+                      verticalOverflow: "auto",
+                      stickyHeader: true,
+                      compactOnMobile: true,
+                      breakpoint: 768
+                    }}
+                    tasks={(() => {
+                      try {
+                        return $queries.jobsLiked.data;
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return [];
+                        }
+                        throw e;
+                      }
+                    })()}
+                    theme={{
+                      headerBgColor: "#ECE6DF",
+                      rowBgColor: "#ffffff",
+                      hoverBgColor: "#f9f5ff",
+                      borderColor: "#d9cdbf",
+                      textColor: "#333333",
+                      fontSize: "14px"
+                    }}
                   />
                 </div>
+              ) : null}
+              {(
+                hasVariant(globalVariants, "screen", "mobileOnly")
+                  ? (() => {
+                      try {
+                        return $queries.jobsLiked.data.length == 0;
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return true;
+                        }
+                        throw e;
+                      }
+                    })()
+                  : true
+              ) ? (
                 <Stack__
                   as={"div"}
-                  data-plasmic-name={"textAndSupportingText"}
-                  data-plasmic-override={overrides.textAndSupportingText}
+                  data-plasmic-name={"noAnnonce"}
+                  data-plasmic-override={overrides.noAnnonce}
                   hasGap={true}
-                  className={classNames(
-                    projectcss.all,
-                    sty.textAndSupportingText
-                  )}
+                  className={classNames(projectcss.all, sty.noAnnonce)}
                 >
                   <div
-                    data-plasmic-name={"text6"}
-                    data-plasmic-override={overrides.text6}
+                    data-plasmic-name={"featuredIcon2"}
+                    data-plasmic-override={overrides.featuredIcon2}
+                    className={classNames(projectcss.all, sty.featuredIcon2)}
+                  >
+                    <PlasmicIcon__
+                      PlasmicIconType={
+                        hasVariant(globalVariants, "screen", "mobileOnly")
+                          ? NotificationBellSvgrepoComSvgIcon
+                          : NotificationBellSvgrepoComSvgIcon
+                      }
+                      className={classNames(projectcss.all, sty.svg__aq2Ug)}
+                      role={"img"}
+                    />
+                  </div>
+                  <Stack__
+                    as={"div"}
+                    data-plasmic-name={"textAndSupportingText2"}
+                    data-plasmic-override={overrides.textAndSupportingText2}
+                    hasGap={true}
                     className={classNames(
                       projectcss.all,
-                      projectcss.__wab_text,
-                      sty.text6
+                      sty.textAndSupportingText2
                     )}
                   >
-                    {"Vous n'avez pas encore d'alerte"}
-                  </div>
-                  <div
-                    data-plasmic-name={"supportingText"}
-                    data-plasmic-override={overrides.supportingText}
-                    className={classNames(
-                      projectcss.all,
-                      projectcss.__wab_text,
-                      sty.supportingText
-                    )}
-                  >
-                    {
-                      "Cr\u00e9ez des alertes et recevez des notifications pour les offres d'emploi qui vous int\u00e9ressent."
-                    }
-                  </div>
+                    <div
+                      data-plasmic-name={"text6"}
+                      data-plasmic-override={overrides.text6}
+                      className={classNames(
+                        projectcss.all,
+                        projectcss.__wab_text,
+                        sty.text6
+                      )}
+                    >
+                      {"Vous n'avez pas encore d'alerte"}
+                    </div>
+                    <div
+                      data-plasmic-name={"supportingText2"}
+                      data-plasmic-override={overrides.supportingText2}
+                      className={classNames(
+                        projectcss.all,
+                        projectcss.__wab_text,
+                        sty.supportingText2
+                      )}
+                    >
+                      {
+                        "Cr\u00e9ez des alertes et recevez des notifications pour les offres d'emploi qui vous int\u00e9ressent."
+                      }
+                    </div>
+                    <Button
+                      className={classNames(
+                        "__wab_instance",
+                        sty.button__seaXf
+                      )}
+                      end={
+                        <GroupIcon
+                          className={classNames(projectcss.all, sty.svg__crfqi)}
+                          role={"img"}
+                        />
+                      }
+                      iconEnd={true}
+                      label={
+                        <div
+                          className={classNames(
+                            projectcss.all,
+                            projectcss.__wab_text,
+                            sty.text___29COm
+                          )}
+                        >
+                          {"cr\u00e9er une alerte"}
+                        </div>
+                      }
+                      onClick={async event => {
+                        const $steps = {};
+
+                        $steps["goToAccueil"] = true
+                          ? (() => {
+                              const actionArgs = { destination: `/` };
+                              return (({ destination }) => {
+                                if (
+                                  typeof destination === "string" &&
+                                  destination.startsWith("#")
+                                ) {
+                                  document
+                                    .getElementById(destination.substr(1))
+                                    .scrollIntoView({ behavior: "smooth" });
+                                } else {
+                                  __nextRouter?.push(destination);
+                                }
+                              })?.apply(null, [actionArgs]);
+                            })()
+                          : undefined;
+                        if (
+                          $steps["goToAccueil"] != null &&
+                          typeof $steps["goToAccueil"] === "object" &&
+                          typeof $steps["goToAccueil"].then === "function"
+                        ) {
+                          $steps["goToAccueil"] = await $steps["goToAccueil"];
+                        }
+                      }}
+                    />
+                  </Stack__>
                 </Stack__>
-              </Stack__>
-              <BoutonCreerUneAlerte
-                data-plasmic-name={"boutonCreerUneAlerte"}
-                data-plasmic-override={overrides.boutonCreerUneAlerte}
-                className={classNames(
-                  "__wab_instance",
-                  sty.boutonCreerUneAlerte
-                )}
-              />
+              ) : null}
             </Stack__>
           </Stack__>
           <MobileNavbarBottom
             data-plasmic-name={"mobileNavbarBottom"}
             data-plasmic-override={overrides.mobileNavbarBottom}
             className={classNames("__wab_instance", sty.mobileNavbarBottom)}
+          />
+
+          <Modal
+            data-plasmic-name={"modal"}
+            data-plasmic-override={overrides.modal}
+            className={classNames("__wab_instance", sty.modal)}
+            closeOnBackdropClick={false}
+            content={
+              <Stack__
+                as={"div"}
+                data-plasmic-name={"alerteModal"}
+                data-plasmic-override={overrides.alerteModal}
+                hasGap={true}
+                className={classNames(projectcss.all, sty.alerteModal)}
+              >
+                <PlasmicImg__
+                  data-plasmic-name={"img"}
+                  data-plasmic-override={overrides.img}
+                  alt={""}
+                  className={classNames(sty.img)}
+                  displayHeight={"17px"}
+                  displayMaxHeight={"none"}
+                  displayMaxWidth={"100%"}
+                  displayMinHeight={"0"}
+                  displayMinWidth={"0"}
+                  displayWidth={"17px"}
+                  loading={"lazy"}
+                  onClick={async event => {
+                    const $steps = {};
+
+                    $steps["updateModalIsOpen"] = true
+                      ? (() => {
+                          const actionArgs = {
+                            variable: {
+                              objRoot: $state,
+                              variablePath: ["modal", "isOpen"]
+                            },
+                            operation: 0,
+                            value: false
+                          };
+                          return (({
+                            variable,
+                            value,
+                            startIndex,
+                            deleteCount
+                          }) => {
+                            if (!variable) {
+                              return;
+                            }
+                            const { objRoot, variablePath } = variable;
+
+                            $stateSet(objRoot, variablePath, value);
+                            return value;
+                          })?.apply(null, [actionArgs]);
+                        })()
+                      : undefined;
+                    if (
+                      $steps["updateModalIsOpen"] != null &&
+                      typeof $steps["updateModalIsOpen"] === "object" &&
+                      typeof $steps["updateModalIsOpen"].then === "function"
+                    ) {
+                      $steps["updateModalIsOpen"] = await $steps[
+                        "updateModalIsOpen"
+                      ];
+                    }
+                  }}
+                  src={{
+                    src: "/plasmic/jam_production_🚀/images/close5.svg",
+                    fullWidth: 17,
+                    fullHeight: 17,
+                    aspectRatio: 1
+                  }}
+                />
+
+                <Stack__
+                  as={"div"}
+                  data-plasmic-name={"frame1437254312"}
+                  data-plasmic-override={overrides.frame1437254312}
+                  hasGap={true}
+                  className={classNames(projectcss.all, sty.frame1437254312)}
+                >
+                  <div
+                    data-plasmic-name={"heading2"}
+                    data-plasmic-override={overrides.heading2}
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.__wab_text,
+                      sty.heading2
+                    )}
+                  >
+                    {"Cr\u00e9ez une alerte"}
+                  </div>
+                  <Stack__
+                    as={"div"}
+                    data-plasmic-name={"frame1437254313"}
+                    data-plasmic-override={overrides.frame1437254313}
+                    hasGap={true}
+                    className={classNames(projectcss.all, sty.frame1437254313)}
+                  >
+                    {(() => {
+                      const child$Props = {
+                        className: classNames("__wab_instance", sty.form),
+                        extendedOnValuesChange: async (...eventArgs: any) => {
+                          generateStateOnChangePropForCodeComponents(
+                            $state,
+                            "value",
+                            ["form", "value"],
+                            FormWrapper_Helpers
+                          ).apply(null, eventArgs);
+                        },
+                        formItems: [
+                          { label: "Name", name: "name", inputType: "Text" },
+                          {
+                            label: "Message",
+                            name: "message",
+                            inputType: "Text Area"
+                          }
+                        ],
+                        labelCol: { span: 8, horizontalOnly: true },
+                        layout: "vertical",
+                        mode: "advanced",
+                        onFinish: async values => {
+                          const $steps = {};
+                        },
+                        onIsSubmittingChange: async (...eventArgs: any) => {
+                          generateStateOnChangePropForCodeComponents(
+                            $state,
+                            "isSubmitting",
+                            ["form", "isSubmitting"],
+                            FormWrapper_Helpers
+                          ).apply(null, eventArgs);
+                        },
+                        ref: ref => {
+                          $refs["form"] = ref;
+                        },
+                        submitSlot: null,
+                        wrapperCol: { span: 16, horizontalOnly: true }
+                      };
+                      initializeCodeComponentStates(
+                        $state,
+                        [
+                          {
+                            name: "value",
+                            plasmicStateName: "form.value"
+                          },
+                          {
+                            name: "isSubmitting",
+                            plasmicStateName: "form.isSubmitting"
+                          }
+                        ],
+                        [],
+                        FormWrapper_Helpers ?? {},
+                        child$Props
+                      );
+
+                      return (
+                        <FormWrapper
+                          data-plasmic-name={"form"}
+                          data-plasmic-override={overrides.form}
+                          {...child$Props}
+                        >
+                          <FormItemWrapper
+                            className={classNames(
+                              "__wab_instance",
+                              sty.formField__fgi0Z
+                            )}
+                            label={"Intitul\u00e9 du poste"}
+                            name={"job_name"}
+                          >
+                            <TextInput
+                              data-plasmic-name={"textInput"}
+                              data-plasmic-override={overrides.textInput}
+                              className={classNames(
+                                "__wab_instance",
+                                sty.textInput
+                              )}
+                              inputType={"text"}
+                              onChange={async (...eventArgs: any) => {
+                                generateStateOnChangeProp($state, [
+                                  "textInput",
+                                  "value"
+                                ]).apply(null, eventArgs);
+
+                                if (
+                                  eventArgs.length > 1 &&
+                                  eventArgs[1] &&
+                                  eventArgs[1]._plasmic_state_init_
+                                ) {
+                                  return;
+                                }
+                              }}
+                              placeholder={"D\u00e9veloppeur"}
+                            />
+                          </FormItemWrapper>
+                          <FormItemWrapper
+                            className={classNames(
+                              "__wab_instance",
+                              sty.formField__p9DDn
+                            )}
+                            label={"Ville"}
+                            name={"city"}
+                          >
+                            <TextInput
+                              data-plasmic-name={"textInput2"}
+                              data-plasmic-override={overrides.textInput2}
+                              className={classNames(
+                                "__wab_instance",
+                                sty.textInput2
+                              )}
+                              inputType={"text"}
+                              onChange={async (...eventArgs: any) => {
+                                generateStateOnChangeProp($state, [
+                                  "textInput2",
+                                  "value"
+                                ]).apply(null, eventArgs);
+
+                                if (
+                                  eventArgs.length > 1 &&
+                                  eventArgs[1] &&
+                                  eventArgs[1]._plasmic_state_init_
+                                ) {
+                                  return;
+                                }
+                              }}
+                              placeholder={"Paris"}
+                            />
+                          </FormItemWrapper>
+                          <FormItemWrapper
+                            className={classNames(
+                              "__wab_instance",
+                              sty.formField__a1X2X
+                            )}
+                            label={"Temps de travail"}
+                            name={"working_time"}
+                          >
+                            <AntdSelect
+                              data-plasmic-name={"select"}
+                              data-plasmic-override={overrides.select}
+                              allowClear={false}
+                              bordered={true}
+                              className={classNames(
+                                "__wab_instance",
+                                sty.select
+                              )}
+                              defaultOpen={false}
+                              defaultStylesClassName={classNames(
+                                projectcss.root_reset,
+                                projectcss.plasmic_default_styles,
+                                projectcss.plasmic_mixins,
+                                projectcss.plasmic_tokens,
+                                plasmic_antd_5_hostless_css.plasmic_tokens,
+                                plasmic_library_tailwind_3_4_number_tokens_css.plasmic_tokens,
+                                plasmic_plasmic_rich_components_css.plasmic_tokens
+                              )}
+                              dropdownMatchSelectWidth={false}
+                              mode={"multiple"}
+                              onChange={async (...eventArgs: any) => {
+                                generateStateOnChangeProp($state, [
+                                  "select",
+                                  "value"
+                                ]).apply(null, eventArgs);
+                              }}
+                              options={(() => {
+                                try {
+                                  return $queries.getWorkingTime.data.map(
+                                    workingTime => ({
+                                      value: workingTime.id,
+                                      label: workingTime.working_time
+                                    })
+                                  );
+                                } catch (e) {
+                                  if (
+                                    e instanceof TypeError ||
+                                    e?.plasmicType ===
+                                      "PlasmicUndefinedDataError"
+                                  ) {
+                                    return [];
+                                  }
+                                  throw e;
+                                }
+                              })()}
+                              placeholder={"Select..."}
+                              popupScopeClassName={sty["select__popup"]}
+                              showSearch={false}
+                              size={"large"}
+                              useChildren={false}
+                              value={generateStateValueProp($state, [
+                                "select",
+                                "value"
+                              ])}
+                            />
+                          </FormItemWrapper>
+                          <FormItemWrapper
+                            className={classNames(
+                              "__wab_instance",
+                              sty.formField__luBtz
+                            )}
+                            label={"Type de contrat"}
+                            name={"contract_type"}
+                          >
+                            <AntdSelect
+                              data-plasmic-name={"select3"}
+                              data-plasmic-override={overrides.select3}
+                              className={classNames(
+                                "__wab_instance",
+                                sty.select3
+                              )}
+                              defaultStylesClassName={classNames(
+                                projectcss.root_reset,
+                                projectcss.plasmic_default_styles,
+                                projectcss.plasmic_mixins,
+                                projectcss.plasmic_tokens,
+                                plasmic_antd_5_hostless_css.plasmic_tokens,
+                                plasmic_library_tailwind_3_4_number_tokens_css.plasmic_tokens,
+                                plasmic_plasmic_rich_components_css.plasmic_tokens
+                              )}
+                              mode={"multiple"}
+                              onChange={async (...eventArgs: any) => {
+                                generateStateOnChangeProp($state, [
+                                  "select3",
+                                  "value"
+                                ]).apply(null, eventArgs);
+                              }}
+                              options={(() => {
+                                try {
+                                  return $queries.getContractType.data.map(
+                                    contractType => ({
+                                      value: contractType.id,
+                                      label: contractType.contract_type
+                                    })
+                                  );
+                                } catch (e) {
+                                  if (
+                                    e instanceof TypeError ||
+                                    e?.plasmicType ===
+                                      "PlasmicUndefinedDataError"
+                                  ) {
+                                    return [];
+                                  }
+                                  throw e;
+                                }
+                              })()}
+                              placeholder={"Select..."}
+                              popupScopeClassName={sty["select3__popup"]}
+                              size={"large"}
+                              value={generateStateValueProp($state, [
+                                "select3",
+                                "value"
+                              ])}
+                            />
+                          </FormItemWrapper>
+                          <FormItemWrapper
+                            className={classNames(
+                              "__wab_instance",
+                              sty.formField__sHjY
+                            )}
+                            label={"Salaire minimum"}
+                            name={"min_wage"}
+                          >
+                            <AntdSelect
+                              data-plasmic-name={"select4"}
+                              data-plasmic-override={overrides.select4}
+                              className={classNames(
+                                "__wab_instance",
+                                sty.select4
+                              )}
+                              defaultStylesClassName={classNames(
+                                projectcss.root_reset,
+                                projectcss.plasmic_default_styles,
+                                projectcss.plasmic_mixins,
+                                projectcss.plasmic_tokens,
+                                plasmic_antd_5_hostless_css.plasmic_tokens,
+                                plasmic_library_tailwind_3_4_number_tokens_css.plasmic_tokens,
+                                plasmic_plasmic_rich_components_css.plasmic_tokens
+                              )}
+                              mode={"multiple"}
+                              onChange={async (...eventArgs: any) => {
+                                generateStateOnChangeProp($state, [
+                                  "select4",
+                                  "value"
+                                ]).apply(null, eventArgs);
+                              }}
+                              options={(() => {
+                                try {
+                                  return $queries.getMinimumSalary.data.map(
+                                    minSalary => ({
+                                      value: minSalary.id,
+                                      label: minSalary.min_salary
+                                    })
+                                  );
+                                } catch (e) {
+                                  if (
+                                    e instanceof TypeError ||
+                                    e?.plasmicType ===
+                                      "PlasmicUndefinedDataError"
+                                  ) {
+                                    return [
+                                      {
+                                        value: "option1",
+                                        label: "Option 1",
+                                        type: "option"
+                                      },
+                                      {
+                                        value: "option2",
+                                        label: "Option 2",
+                                        type: "option"
+                                      }
+                                    ];
+                                  }
+                                  throw e;
+                                }
+                              })()}
+                              placeholder={"Select..."}
+                              popupScopeClassName={sty["select4__popup"]}
+                              size={"large"}
+                              value={generateStateValueProp($state, [
+                                "select4",
+                                "value"
+                              ])}
+                            />
+                          </FormItemWrapper>
+                          <AntdButton
+                            className={classNames(
+                              "__wab_instance",
+                              sty.button__iOjmQ
+                            )}
+                            submitsForm={true}
+                            type={"primary"}
+                          >
+                            <div
+                              className={classNames(
+                                projectcss.all,
+                                projectcss.__wab_text,
+                                sty.text__zc2Dg
+                              )}
+                            >
+                              {"Submit"}
+                            </div>
+                          </AntdButton>
+                        </FormWrapper>
+                      );
+                    })()}
+                  </Stack__>
+                </Stack__>
+              </Stack__>
+            }
+            footer={null}
+            heading={
+              <h3
+                data-plasmic-name={"h3"}
+                data-plasmic-override={overrides.h3}
+                className={classNames(
+                  projectcss.all,
+                  projectcss.h3,
+                  projectcss.__wab_text,
+                  sty.h3
+                )}
+              >
+                {"Heading"}
+              </h3>
+            }
+            isOpen={generateStateValueProp($state, ["modal", "isOpen"])}
+            onOpenChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, ["modal", "isOpen"]).apply(
+                null,
+                eventArgs
+              );
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+            showFooter={false}
+            showHeader={false}
+            trigger={
+              <JamButton
+                data-plasmic-name={"button"}
+                data-plasmic-override={overrides.button}
+                className={classNames("__wab_instance", sty.button)}
+                icon={"none"}
+              />
+            }
           />
         </div>
       </div>
@@ -290,79 +1068,169 @@ function PlasmicMesAlertes__RenderFunc(props: {
 const PlasmicDescendants = {
   mesAlertes: [
     "mesAlertes",
+    "sidebar",
     "mobileNavbarTop",
-    "slidebar",
     "main",
     "heading",
-    "card",
-    "content6",
-    "featuredIcon",
-    "svg",
-    "textAndSupportingText",
+    "card2",
+    "annonces2",
+    "dataGrid",
+    "noAnnonce",
+    "featuredIcon2",
+    "textAndSupportingText2",
     "text6",
-    "supportingText",
-    "boutonCreerUneAlerte",
-    "mobileNavbarBottom"
+    "supportingText2",
+    "mobileNavbarBottom",
+    "modal",
+    "button",
+    "h3",
+    "alerteModal",
+    "img",
+    "frame1437254312",
+    "heading2",
+    "frame1437254313",
+    "form",
+    "textInput",
+    "textInput2",
+    "select",
+    "select3",
+    "select4"
   ],
+  sidebar: ["sidebar"],
   mobileNavbarTop: ["mobileNavbarTop"],
-  slidebar: ["slidebar"],
   main: [
     "main",
     "heading",
-    "card",
-    "content6",
-    "featuredIcon",
-    "svg",
-    "textAndSupportingText",
+    "card2",
+    "annonces2",
+    "dataGrid",
+    "noAnnonce",
+    "featuredIcon2",
+    "textAndSupportingText2",
     "text6",
-    "supportingText",
-    "boutonCreerUneAlerte"
+    "supportingText2"
   ],
   heading: ["heading"],
-  card: [
-    "card",
-    "content6",
-    "featuredIcon",
-    "svg",
-    "textAndSupportingText",
+  card2: [
+    "card2",
+    "annonces2",
+    "dataGrid",
+    "noAnnonce",
+    "featuredIcon2",
+    "textAndSupportingText2",
     "text6",
-    "supportingText",
-    "boutonCreerUneAlerte"
+    "supportingText2"
   ],
-  content6: [
-    "content6",
-    "featuredIcon",
-    "svg",
-    "textAndSupportingText",
+  annonces2: ["annonces2", "dataGrid"],
+  dataGrid: ["dataGrid"],
+  noAnnonce: [
+    "noAnnonce",
+    "featuredIcon2",
+    "textAndSupportingText2",
     "text6",
-    "supportingText"
+    "supportingText2"
   ],
-  featuredIcon: ["featuredIcon", "svg"],
-  svg: ["svg"],
-  textAndSupportingText: ["textAndSupportingText", "text6", "supportingText"],
+  featuredIcon2: ["featuredIcon2"],
+  textAndSupportingText2: [
+    "textAndSupportingText2",
+    "text6",
+    "supportingText2"
+  ],
   text6: ["text6"],
-  supportingText: ["supportingText"],
-  boutonCreerUneAlerte: ["boutonCreerUneAlerte"],
-  mobileNavbarBottom: ["mobileNavbarBottom"]
+  supportingText2: ["supportingText2"],
+  mobileNavbarBottom: ["mobileNavbarBottom"],
+  modal: [
+    "modal",
+    "button",
+    "h3",
+    "alerteModal",
+    "img",
+    "frame1437254312",
+    "heading2",
+    "frame1437254313",
+    "form",
+    "textInput",
+    "textInput2",
+    "select",
+    "select3",
+    "select4"
+  ],
+  button: ["button"],
+  h3: ["h3"],
+  alerteModal: [
+    "alerteModal",
+    "img",
+    "frame1437254312",
+    "heading2",
+    "frame1437254313",
+    "form",
+    "textInput",
+    "textInput2",
+    "select",
+    "select3",
+    "select4"
+  ],
+  img: ["img"],
+  frame1437254312: [
+    "frame1437254312",
+    "heading2",
+    "frame1437254313",
+    "form",
+    "textInput",
+    "textInput2",
+    "select",
+    "select3",
+    "select4"
+  ],
+  heading2: ["heading2"],
+  frame1437254313: [
+    "frame1437254313",
+    "form",
+    "textInput",
+    "textInput2",
+    "select",
+    "select3",
+    "select4"
+  ],
+  form: ["form", "textInput", "textInput2", "select", "select3", "select4"],
+  textInput: ["textInput"],
+  textInput2: ["textInput2"],
+  select: ["select"],
+  select3: ["select3"],
+  select4: ["select4"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
   (typeof PlasmicDescendants)[T][number];
 type NodeDefaultElementType = {
   mesAlertes: "div";
+  sidebar: typeof Sidebar;
   mobileNavbarTop: typeof MobileNavbarTop;
-  slidebar: typeof Slidebar;
   main: "div";
   heading: "div";
-  card: "div";
-  content6: "div";
-  featuredIcon: "div";
-  svg: "svg";
-  textAndSupportingText: "div";
+  card2: "div";
+  annonces2: "div";
+  dataGrid: typeof DataGrid;
+  noAnnonce: "div";
+  featuredIcon2: "div";
+  textAndSupportingText2: "div";
   text6: "div";
-  supportingText: "div";
-  boutonCreerUneAlerte: typeof BoutonCreerUneAlerte;
+  supportingText2: "div";
   mobileNavbarBottom: typeof MobileNavbarBottom;
+  modal: typeof Modal;
+  button: typeof JamButton;
+  h3: "h3";
+  alerteModal: "div";
+  img: typeof PlasmicImg__;
+  frame1437254312: "div";
+  heading2: "div";
+  frame1437254313: "div";
+  form: typeof FormWrapper;
+  textInput: typeof TextInput;
+  textInput2: typeof TextInput;
+  select: typeof AntdSelect;
+  select3: typeof AntdSelect;
+  select4: typeof AntdSelect;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -425,19 +1293,33 @@ export const PlasmicMesAlertes = Object.assign(
   makeNodeComponent("mesAlertes"),
   {
     // Helper components rendering sub-elements
+    sidebar: makeNodeComponent("sidebar"),
     mobileNavbarTop: makeNodeComponent("mobileNavbarTop"),
-    slidebar: makeNodeComponent("slidebar"),
     main: makeNodeComponent("main"),
     heading: makeNodeComponent("heading"),
-    card: makeNodeComponent("card"),
-    content6: makeNodeComponent("content6"),
-    featuredIcon: makeNodeComponent("featuredIcon"),
-    svg: makeNodeComponent("svg"),
-    textAndSupportingText: makeNodeComponent("textAndSupportingText"),
+    card2: makeNodeComponent("card2"),
+    annonces2: makeNodeComponent("annonces2"),
+    dataGrid: makeNodeComponent("dataGrid"),
+    noAnnonce: makeNodeComponent("noAnnonce"),
+    featuredIcon2: makeNodeComponent("featuredIcon2"),
+    textAndSupportingText2: makeNodeComponent("textAndSupportingText2"),
     text6: makeNodeComponent("text6"),
-    supportingText: makeNodeComponent("supportingText"),
-    boutonCreerUneAlerte: makeNodeComponent("boutonCreerUneAlerte"),
+    supportingText2: makeNodeComponent("supportingText2"),
     mobileNavbarBottom: makeNodeComponent("mobileNavbarBottom"),
+    modal: makeNodeComponent("modal"),
+    button: makeNodeComponent("button"),
+    h3: makeNodeComponent("h3"),
+    alerteModal: makeNodeComponent("alerteModal"),
+    img: makeNodeComponent("img"),
+    frame1437254312: makeNodeComponent("frame1437254312"),
+    heading2: makeNodeComponent("heading2"),
+    frame1437254313: makeNodeComponent("frame1437254313"),
+    form: makeNodeComponent("form"),
+    textInput: makeNodeComponent("textInput"),
+    textInput2: makeNodeComponent("textInput2"),
+    select: makeNodeComponent("select"),
+    select3: makeNodeComponent("select3"),
+    select4: makeNodeComponent("select4"),
 
     // Metadata about props expected for PlasmicMesAlertes
     internalVariantProps: PlasmicMesAlertes__VariantProps,

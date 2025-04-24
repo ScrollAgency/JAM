@@ -65,17 +65,6 @@ import {
   usePlasmicInvalidate
 } from "@plasmicapp/react-web/lib/data-sources";
 
-import { FormWrapper } from "@plasmicpkgs/antd5/skinny/Form";
-import { formHelpers as FormWrapper_Helpers } from "@plasmicpkgs/antd5/skinny/Form";
-import { FormItemWrapper } from "@plasmicpkgs/antd5/skinny/FormItem";
-import { TextInput } from "../../forms/TextInput/TextInput"; // plasmic-import: vyWUomJMQins/codeComponent
-import { PhoneSelector } from "../../forms/PhoneSelector/PhoneSelector"; // plasmic-import: sOyePdANTQ6t/codeComponent
-import Checkbox from "../../Checkbox"; // plasmic-import: _vJ0pkaxrL1M/component
-import { JamCheckbox } from "../../forms/JamCheckbox/JamCheckbox"; // plasmic-import: 1QMOW_Bp_2-8/codeComponent
-import { Reveal } from "@plasmicpkgs/react-awesome-reveal";
-import { JamButton } from "../../forms/JamButton/JamButton"; // plasmic-import: UiI0wt2mxfuf/codeComponent
-import { ButtonGoogle } from "../../forms/ButtonGoogle/ButtonGoogle"; // plasmic-import: TpN9EpWTj8vW/codeComponent
-import { ButtonApple } from "../../forms/ButtonApple/ButtonApple"; // plasmic-import: TKCXwVafuZOo/codeComponent
 import { SignUp } from "../../../plasmic-library/authentication/SignUp"; // plasmic-import: l54x2CZo0bN2/codeComponent
 import { Fetcher } from "@plasmicapp/react-web/lib/data-sources";
 
@@ -85,12 +74,11 @@ import "@plasmicapp/react-web/lib/plasmic.css";
 
 import plasmic_antd_5_hostless_css from "../antd_5_hostless/plasmic.module.css"; // plasmic-import: ohDidvG9XsCeFumugENU3J/projectcss
 import plasmic_library_tailwind_3_4_number_tokens_css from "../library_tailwind_3_4_number_tokens/plasmic.module.css"; // plasmic-import: 4vjRXvnb4XuY6J15w9oRcQ/projectcss
+import plasmic_plasmic_rich_components_css from "../plasmic_rich_components/plasmic.module.css"; // plasmic-import: jkU633o1Cz7HrJdwdxhVHk/projectcss
 import projectcss from "./plasmic.module.css"; // plasmic-import: f7DE9y7qp46fyCw5nuY8f9/projectcss
 import sty from "./PlasmicInscriptionCandidat.module.css"; // plasmic-import: cvdvzbSyE3-W/css
 
 import PictogramIcon from "./icons/PlasmicIcon__Pictogram"; // plasmic-import: KlZQiGxQTluF/icon
-import CheckIcon from "./icons/PlasmicIcon__Check"; // plasmic-import: wV32h4GpW1qw/icon
-import DividerLineIcon from "./icons/PlasmicIcon__DividerLine"; // plasmic-import: VvHpOw2n2MiA/icon
 
 createPlasmicElementProxy;
 
@@ -109,52 +97,12 @@ export type PlasmicInscriptionCandidat__OverridesType = {
   signUp?: Flex__<"div">;
   imageWrapper?: Flex__<"div">;
   logoWrapper?: Flex__<"div">;
+  svg?: Flex__<"svg">;
   baseline?: Flex__<"div">;
   frame?: Flex__<"div">;
   frame2?: Flex__<"div">;
   frame3?: Flex__<"div">;
   formWrapper?: Flex__<"div">;
-  heading?: Flex__<"div">;
-  registerForm?: Flex__<typeof FormWrapper>;
-  nomPrenom?: Flex__<"div">;
-  textInput9?: Flex__<typeof TextInput>;
-  textInput7?: Flex__<typeof TextInput>;
-  textInput3?: Flex__<typeof TextInput>;
-  label?: Flex__<"div">;
-  inputWrapper4?: Flex__<"div">;
-  phoneSelector?: Flex__<typeof PhoneSelector>;
-  phoneInput?: Flex__<"div">;
-  textInput4?: Flex__<typeof TextInput>;
-  textInput5?: Flex__<typeof TextInput>;
-  inputWrapper5?: Flex__<"div">;
-  wrapper2?: Flex__<"div">;
-  progressBar?: Flex__<"div">;
-  signedByBaseProgressBarSteppedMediumLabelNone?: Flex__<"div">;
-  progress?: Flex__<"div">;
-  inProgress?: Flex__<"div">;
-  base?: Flex__<"div">;
-  base2?: Flex__<"div">;
-  base3?: Flex__<"div">;
-  base4?: Flex__<"div">;
-  base5?: Flex__<"div">;
-  base6?: Flex__<"div">;
-  text?: Flex__<"div">;
-  textInput8?: Flex__<typeof TextInput>;
-  checkboxWrapper3?: Flex__<"div">;
-  checkbox?: Flex__<typeof Checkbox>;
-  checkBox?: Flex__<typeof JamCheckbox>;
-  buttonWrapper?: Flex__<"div">;
-  button?: Flex__<"button">;
-  button2?: Flex__<typeof JamButton>;
-  dividerWrapper?: Flex__<"div">;
-  form?: Flex__<"div">;
-  googleApple?: Flex__<"div">;
-  buttonGoogle?: Flex__<typeof ButtonGoogle>;
-  buttonApple?: Flex__<typeof ButtonApple>;
-  linkWrapper?: Flex__<"div">;
-  text5?: Flex__<"div">;
-  link?: Flex__<"a"> & Partial<LinkProps>;
-  signUp2?: Flex__<typeof SignUp>;
   signUp3?: Flex__<typeof SignUp>;
 };
 
@@ -242,30 +190,6 @@ function PlasmicInscriptionCandidat__RenderFunc(props: {
         initFunc: ({ $props, $state, $queries, $ctx }) => ""
       },
       {
-        path: "registerForm.value",
-        type: "private",
-        variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
-
-        refName: "registerForm",
-        onMutate: generateOnMutateForSpec("value", FormWrapper_Helpers)
-      },
-      {
-        path: "registerForm.isSubmitting",
-        type: "private",
-        variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => false,
-
-        refName: "registerForm",
-        onMutate: generateOnMutateForSpec("isSubmitting", FormWrapper_Helpers)
-      },
-      {
-        path: "checkbox.isSelected",
-        type: "private",
-        variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
-      },
-      {
         path: "emailBdd",
         type: "private",
         variableType: "array",
@@ -283,36 +207,6 @@ function PlasmicInscriptionCandidat__RenderFunc(props: {
               throw e;
             }
           })()
-      },
-      {
-        path: "signUp2.email",
-        type: "private",
-        variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => ""
-      },
-      {
-        path: "signUp2.firstName",
-        type: "private",
-        variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => ""
-      },
-      {
-        path: "signUp2.lastName",
-        type: "private",
-        variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => ""
-      },
-      {
-        path: "signUp2.password",
-        type: "private",
-        variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => ""
-      },
-      {
-        path: "signUp2.confirmPassword",
-        type: "private",
-        variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => ""
       },
       {
         path: "signUp3.email",
@@ -343,6 +237,18 @@ function PlasmicInscriptionCandidat__RenderFunc(props: {
         type: "private",
         variableType: "text",
         initFunc: ({ $props, $state, $queries, $ctx }) => ""
+      },
+      {
+        path: "signUp3.phone",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $ctx }) => ""
+      },
+      {
+        path: "signUp3.countryCode",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $ctx }) => "+33"
       }
     ],
     [$props, $ctx, $refs]
@@ -415,6 +321,7 @@ function PlasmicInscriptionCandidat__RenderFunc(props: {
             projectcss.plasmic_tokens,
             plasmic_antd_5_hostless_css.plasmic_tokens,
             plasmic_library_tailwind_3_4_number_tokens_css.plasmic_tokens,
+            plasmic_plasmic_rich_components_css.plasmic_tokens,
             sty.inscription
           )}
         >
@@ -438,7 +345,9 @@ function PlasmicInscriptionCandidat__RenderFunc(props: {
                 className={classNames(projectcss.all, sty.logoWrapper)}
               >
                 <PictogramIcon
-                  className={classNames(projectcss.all, sty.svg___6NpL)}
+                  data-plasmic-name={"svg"}
+                  data-plasmic-override={overrides.svg}
+                  className={classNames(projectcss.all, sty.svg)}
                   role={"img"}
                 />
 
@@ -508,1139 +417,12 @@ function PlasmicInscriptionCandidat__RenderFunc(props: {
               hasGap={true}
               className={classNames(projectcss.all, sty.formWrapper)}
             >
-              <div
-                data-plasmic-name={"heading"}
-                data-plasmic-override={overrides.heading}
-                className={classNames(
-                  projectcss.all,
-                  projectcss.__wab_text,
-                  sty.heading
-                )}
-              >
-                {"Inscription"}
-              </div>
-              {(() => {
-                const child$Props = {
-                  className: classNames("__wab_instance", sty.registerForm),
-                  extendedOnValuesChange: async (...eventArgs: any) => {
-                    generateStateOnChangePropForCodeComponents(
-                      $state,
-                      "value",
-                      ["registerForm", "value"],
-                      FormWrapper_Helpers
-                    ).apply(null, eventArgs);
-
-                    (async (changedValues, allValues) => {
-                      const $steps = {};
-                    }).apply(null, eventArgs);
-                  },
-                  formItems: [
-                    { label: "Name", name: "name", inputType: "Text" },
-                    {
-                      label: "Message",
-                      name: "message",
-                      inputType: "Text Area"
-                    }
-                  ],
-                  labelCol: { span: 8, horizontalOnly: true },
-                  layout: "vertical",
-                  mode: "advanced",
-                  onFinish: async values => {
-                    const $steps = {};
-
-                    $steps["invokeGlobalAction"] =
-                      $state.password === $state.password2 &&
-                      $state.password !== ""
-                        ? (() => {
-                            const actionArgs = {
-                              args: [
-                                (() => {
-                                  try {
-                                    return $state.email;
-                                  } catch (e) {
-                                    if (
-                                      e instanceof TypeError ||
-                                      e?.plasmicType ===
-                                        "PlasmicUndefinedDataError"
-                                    ) {
-                                      return undefined;
-                                    }
-                                    throw e;
-                                  }
-                                })(),
-                                (() => {
-                                  try {
-                                    return $state.password;
-                                  } catch (e) {
-                                    if (
-                                      e instanceof TypeError ||
-                                      e?.plasmicType ===
-                                        "PlasmicUndefinedDataError"
-                                    ) {
-                                      return undefined;
-                                    }
-                                    throw e;
-                                  }
-                                })(),
-                                "/home",
-                                (() => {
-                                  try {
-                                    return undefined;
-                                  } catch (e) {
-                                    if (
-                                      e instanceof TypeError ||
-                                      e?.plasmicType ===
-                                        "PlasmicUndefinedDataError"
-                                    ) {
-                                      return undefined;
-                                    }
-                                    throw e;
-                                  }
-                                })(),
-                                (() => {
-                                  try {
-                                    return {
-                                      firstName: $state.firstName,
-                                      lastName: $state.lastName,
-                                      phone: $state.phone,
-                                      email: $state.email
-                                    };
-                                  } catch (e) {
-                                    if (
-                                      e instanceof TypeError ||
-                                      e?.plasmicType ===
-                                        "PlasmicUndefinedDataError"
-                                    ) {
-                                      return undefined;
-                                    }
-                                    throw e;
-                                  }
-                                })()
-                              ]
-                            };
-                            return $globalActions[
-                              "SupabaseUserGlobalContext.signup"
-                            ]?.apply(null, [...actionArgs.args]);
-                          })()
-                        : undefined;
-                    if (
-                      $steps["invokeGlobalAction"] != null &&
-                      typeof $steps["invokeGlobalAction"] === "object" &&
-                      typeof $steps["invokeGlobalAction"].then === "function"
-                    ) {
-                      $steps["invokeGlobalAction"] = await $steps[
-                        "invokeGlobalAction"
-                      ];
-                    }
-                  },
-                  onFinishFailed: async data => {
-                    const $steps = {};
-
-                    $steps["invokeGlobalAction"] = true
-                      ? (() => {
-                          const actionArgs = {
-                            args: [
-                              "error",
-                              "Impossible de soumettre le formulaire. V\u00e9rifiez les champs et r\u00e9essayez.",
-                              undefined,
-                              5,
-                              "topRight"
-                            ]
-                          };
-                          return $globalActions[
-                            "plasmic-antd5-config-provider.showNotification"
-                          ]?.apply(null, [...actionArgs.args]);
-                        })()
-                      : undefined;
-                    if (
-                      $steps["invokeGlobalAction"] != null &&
-                      typeof $steps["invokeGlobalAction"] === "object" &&
-                      typeof $steps["invokeGlobalAction"].then === "function"
-                    ) {
-                      $steps["invokeGlobalAction"] = await $steps[
-                        "invokeGlobalAction"
-                      ];
-                    }
-                  },
-                  onIsSubmittingChange: async (...eventArgs: any) => {
-                    generateStateOnChangePropForCodeComponents(
-                      $state,
-                      "isSubmitting",
-                      ["registerForm", "isSubmitting"],
-                      FormWrapper_Helpers
-                    ).apply(null, eventArgs);
-                  },
-                  ref: ref => {
-                    $refs["registerForm"] = ref;
-                  },
-                  submitSlot: null,
-                  validateTrigger: [],
-                  wrapperCol: { span: 16, horizontalOnly: true }
-                };
-                initializeCodeComponentStates(
-                  $state,
-                  [
-                    {
-                      name: "value",
-                      plasmicStateName: "registerForm.value"
-                    },
-                    {
-                      name: "isSubmitting",
-                      plasmicStateName: "registerForm.isSubmitting"
-                    }
-                  ],
-                  [],
-                  FormWrapper_Helpers ?? {},
-                  child$Props
-                );
-
-                return (
-                  <FormWrapper
-                    data-plasmic-name={"registerForm"}
-                    data-plasmic-override={overrides.registerForm}
-                    {...child$Props}
-                  >
-                    <div
-                      data-plasmic-name={"nomPrenom"}
-                      data-plasmic-override={overrides.nomPrenom}
-                      className={classNames(projectcss.all, sty.nomPrenom)}
-                    >
-                      <FormItemWrapper
-                        className={classNames(
-                          "__wab_instance",
-                          sty.formField__cmDhh
-                        )}
-                        initialValue={$state.firstName}
-                        label={null}
-                        name={"firstName"}
-                        noLabel={true}
-                        rules={[
-                          {
-                            ruleType: "advanced",
-                            custom: (rule, value) => {
-                              return $state.firstName !== "";
-                            },
-                            message: "\ufeffLe pr\u00e9nom est requis."
-                          }
-                        ]}
-                      >
-                        <TextInput
-                          data-plasmic-name={"textInput9"}
-                          data-plasmic-override={overrides.textInput9}
-                          className={classNames(
-                            "__wab_instance",
-                            sty.textInput9
-                          )}
-                          isMulti={false}
-                          label={"Pr\u00e9nom*"}
-                          placeholder={"Pr\u00e9nom"}
-                          showIcon={false}
-                          showLabel={true}
-                          state={"default"}
-                          text={""}
-                          type={"text"}
-                        />
-                      </FormItemWrapper>
-                      <FormItemWrapper
-                        className={classNames(
-                          "__wab_instance",
-                          sty.formField__lZwfo
-                        )}
-                        initialValue={$state.lastName}
-                        label={
-                          <div
-                            className={classNames(
-                              projectcss.all,
-                              projectcss.__wab_text,
-                              sty.text__tDQbY
-                            )}
-                          >
-                            {"Inscription"}
-                          </div>
-                        }
-                        name={"last_name"}
-                        noLabel={true}
-                        rules={[
-                          {
-                            ruleType: "advanced",
-                            message: "Le nom est requis.",
-                            custom: (rule, value) => {
-                              return $state.lastName !== "";
-                            }
-                          }
-                        ]}
-                      >
-                        <TextInput
-                          data-plasmic-name={"textInput7"}
-                          data-plasmic-override={overrides.textInput7}
-                          className={classNames(
-                            "__wab_instance",
-                            sty.textInput7
-                          )}
-                          isMulti={false}
-                          label={"Nom*"}
-                          placeholder={"Nom"}
-                          showIcon={false}
-                          showLabel={true}
-                          state={"default"}
-                          text={""}
-                          type={"text"}
-                        />
-                      </FormItemWrapper>
-                    </div>
-                    <FormItemWrapper
-                      className={classNames(
-                        "__wab_instance",
-                        sty.formField___7Ga1
-                      )}
-                      initialValue={$state.email}
-                      label={
-                        <div
-                          className={classNames(
-                            projectcss.all,
-                            projectcss.__wab_text,
-                            sty.text__ayxuk
-                          )}
-                        >
-                          {"Inscription"}
-                        </div>
-                      }
-                      name={"email"}
-                      noLabel={true}
-                      noStyle={false}
-                      rules={[
-                        {
-                          ruleType: "advanced",
-                          message: "L'adresse e-mail est requise.",
-                          custom: (rule, value) => {
-                            return $state.email !== "";
-                          }
-                        },
-
-                        {
-                          ruleType: "advanced",
-                          custom: (rule, value) => {
-                            return !$queries.getEmail.data.some(
-                              item => item.email === $state.email
-                            );
-                          },
-                          message:
-                            "Cette adresse e-mail est d\u00e9j\u00e0 utilis\u00e9e.",
-                          options: (() => {
-                            const __composite = [{ value: null }];
-                            __composite["0"]["value"] = undefined;
-                            return __composite;
-                          })()
-                        }
-                      ]}
-                    >
-                      <TextInput
-                        data-plasmic-name={"textInput3"}
-                        data-plasmic-override={overrides.textInput3}
-                        className={classNames("__wab_instance", sty.textInput3)}
-                        isMulti={false}
-                        label={"Email*"}
-                        placeholder={"Email"}
-                        showIcon={false}
-                        showLabel={true}
-                        state={"default"}
-                        text={""}
-                        type={"text"}
-                      />
-                    </FormItemWrapper>
-                    <FormItemWrapper
-                      className={classNames(
-                        "__wab_instance",
-                        sty.formField__cmpH
-                      )}
-                      hidden={false}
-                      initialValue={$state.phone}
-                      label={
-                        <div
-                          className={classNames(
-                            projectcss.all,
-                            projectcss.__wab_text,
-                            sty.text___1Eh6L
-                          )}
-                        >
-                          {"Inscription"}
-                        </div>
-                      }
-                      name={"phone"}
-                      noLabel={true}
-                      rules={[
-                        {
-                          ruleType: "advanced",
-                          message:
-                            "Le num\u00e9ro de t\u00e9l\u00e9phone est requis.",
-                          custom: (rule, value) => {
-                            return $state.phone !== "";
-                          }
-                        }
-                      ]}
-                    >
-                      <div
-                        data-plasmic-name={"label"}
-                        data-plasmic-override={overrides.label}
-                        className={classNames(
-                          projectcss.all,
-                          projectcss.__wab_text,
-                          sty.label
-                        )}
-                      >
-                        {"T\u00e9l\u00e9phone*"}
-                      </div>
-                      <Stack__
-                        as={"div"}
-                        data-plasmic-name={"inputWrapper4"}
-                        data-plasmic-override={overrides.inputWrapper4}
-                        hasGap={true}
-                        className={classNames(
-                          projectcss.all,
-                          sty.inputWrapper4
-                        )}
-                      >
-                        <PhoneSelector
-                          data-plasmic-name={"phoneSelector"}
-                          data-plasmic-override={overrides.phoneSelector}
-                          className={classNames(
-                            "__wab_instance",
-                            sty.phoneSelector
-                          )}
-                        />
-
-                        <div
-                          data-plasmic-name={"phoneInput"}
-                          data-plasmic-override={overrides.phoneInput}
-                          className={classNames(projectcss.all, sty.phoneInput)}
-                        >
-                          <TextInput
-                            data-plasmic-name={"textInput4"}
-                            data-plasmic-override={overrides.textInput4}
-                            className={classNames(
-                              "__wab_instance",
-                              sty.textInput4
-                            )}
-                            isMulti={false}
-                            label={"Input Label"}
-                            placeholder={"Enter text..."}
-                            showIcon={false}
-                            showLabel={true}
-                            state={"default"}
-                            text={""}
-                            type={"phone"}
-                          />
-                        </div>
-                      </Stack__>
-                    </FormItemWrapper>
-                    <FormItemWrapper
-                      className={classNames(
-                        "__wab_instance",
-                        sty.formField__v0P6F
-                      )}
-                      initialValue={$state.password}
-                      label={
-                        <div
-                          className={classNames(
-                            projectcss.all,
-                            projectcss.__wab_text,
-                            sty.text___4X5Hp
-                          )}
-                        >
-                          {"Inscription"}
-                        </div>
-                      }
-                      name={"password"}
-                      noLabel={true}
-                      rules={[
-                        {
-                          ruleType: "advanced",
-                          custom: (rule, value) => {
-                            return (
-                              $state.password.match(
-                                /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/
-                              ) !== null
-                            );
-                          },
-                          message:
-                            "Le mot de passe doit contenir au moins 8 caract\u00e8res, incluant des lettres, des chiffres et des symboles sp\u00e9ciaux."
-                        }
-                      ]}
-                    >
-                      <TextInput
-                        data-plasmic-name={"textInput5"}
-                        data-plasmic-override={overrides.textInput5}
-                        className={classNames("__wab_instance", sty.textInput5)}
-                        isMulti={false}
-                        label={"Mot de passe*"}
-                        placeholder={"**********"}
-                        showIcon={false}
-                        showLabel={true}
-                        state={"default"}
-                        text={""}
-                        type={"password"}
-                      />
-
-                      <Stack__
-                        as={"div"}
-                        data-plasmic-name={"inputWrapper5"}
-                        data-plasmic-override={overrides.inputWrapper5}
-                        hasGap={true}
-                        className={classNames(
-                          projectcss.all,
-                          sty.inputWrapper5
-                        )}
-                      >
-                        <Stack__
-                          as={"div"}
-                          data-plasmic-name={"wrapper2"}
-                          data-plasmic-override={overrides.wrapper2}
-                          hasGap={true}
-                          className={classNames(projectcss.all, sty.wrapper2)}
-                        >
-                          <Stack__
-                            as={"div"}
-                            data-plasmic-name={"progressBar"}
-                            data-plasmic-override={overrides.progressBar}
-                            hasGap={true}
-                            className={classNames(
-                              projectcss.all,
-                              sty.progressBar
-                            )}
-                          >
-                            <div
-                              data-plasmic-name={
-                                "signedByBaseProgressBarSteppedMediumLabelNone"
-                              }
-                              data-plasmic-override={
-                                overrides.signedByBaseProgressBarSteppedMediumLabelNone
-                              }
-                              className={classNames(
-                                projectcss.all,
-                                sty.signedByBaseProgressBarSteppedMediumLabelNone
-                              )}
-                            />
-
-                            {false ? (
-                              <div
-                                data-plasmic-name={"progress"}
-                                data-plasmic-override={overrides.progress}
-                                className={classNames(
-                                  projectcss.all,
-                                  sty.progress
-                                )}
-                              />
-                            ) : null}
-                            {false ? (
-                              <div
-                                data-plasmic-name={"inProgress"}
-                                data-plasmic-override={overrides.inProgress}
-                                className={classNames(
-                                  projectcss.all,
-                                  sty.inProgress
-                                )}
-                              />
-                            ) : null}
-                            <div
-                              data-plasmic-name={"base"}
-                              data-plasmic-override={overrides.base}
-                              className={classNames(projectcss.all, sty.base)}
-                            />
-
-                            <div
-                              data-plasmic-name={"base2"}
-                              data-plasmic-override={overrides.base2}
-                              className={classNames(projectcss.all, sty.base2)}
-                            />
-
-                            <div
-                              data-plasmic-name={"base3"}
-                              data-plasmic-override={overrides.base3}
-                              className={classNames(projectcss.all, sty.base3)}
-                            />
-
-                            <div
-                              data-plasmic-name={"base4"}
-                              data-plasmic-override={overrides.base4}
-                              className={classNames(projectcss.all, sty.base4)}
-                            />
-
-                            {false ? (
-                              <div
-                                data-plasmic-name={"base5"}
-                                data-plasmic-override={overrides.base5}
-                                className={classNames(
-                                  projectcss.all,
-                                  sty.base5
-                                )}
-                              />
-                            ) : null}
-                            {false ? (
-                              <div
-                                data-plasmic-name={"base6"}
-                                data-plasmic-override={overrides.base6}
-                                className={classNames(
-                                  projectcss.all,
-                                  sty.base6
-                                )}
-                              />
-                            ) : null}
-                          </Stack__>
-                          <div
-                            data-plasmic-name={"text"}
-                            data-plasmic-override={overrides.text}
-                            className={classNames(
-                              projectcss.all,
-                              projectcss.__wab_text,
-                              sty.text
-                            )}
-                          >
-                            {
-                              "Utilisez 8 caract\u00e8res ou plus en m\u00e9langeant lettres, chiffres et symboles."
-                            }
-                          </div>
-                        </Stack__>
-                      </Stack__>
-                    </FormItemWrapper>
-                    <FormItemWrapper
-                      className={classNames(
-                        "__wab_instance",
-                        sty.formField__svcy
-                      )}
-                      initialValue={$state.password2}
-                      label={
-                        <div
-                          className={classNames(
-                            projectcss.all,
-                            projectcss.__wab_text,
-                            sty.text__p0Y94
-                          )}
-                        >
-                          {"Inscription"}
-                        </div>
-                      }
-                      name={"password2"}
-                      noLabel={true}
-                      rules={[
-                        {
-                          ruleType: "advanced",
-                          message:
-                            "La confirmation du mot de passe est requise.",
-                          custom: (rule, value) => {
-                            return $state.password2 !== "";
-                          }
-                        },
-
-                        {
-                          ruleType: "advanced",
-                          custom: (rule, value) => {
-                            return $state.password2 === $state.password;
-                          },
-                          message: "Les mots de passe ne correspondent pas."
-                        }
-                      ]}
-                    >
-                      <TextInput
-                        data-plasmic-name={"textInput8"}
-                        data-plasmic-override={overrides.textInput8}
-                        className={classNames("__wab_instance", sty.textInput8)}
-                        isMulti={false}
-                        label={"R\u00e9p\u00e9tez le mot de passe*"}
-                        placeholder={"*********"}
-                        showIcon={false}
-                        showLabel={true}
-                        state={"default"}
-                        text={""}
-                        type={"password"}
-                      />
-                    </FormItemWrapper>
-                    <FormItemWrapper
-                      className={classNames(
-                        "__wab_instance",
-                        sty.formField__qaryX
-                      )}
-                      label={
-                        <div
-                          className={classNames(
-                            projectcss.all,
-                            projectcss.__wab_text,
-                            sty.text__zIbCp
-                          )}
-                        >
-                          {"Inscription"}
-                        </div>
-                      }
-                      name={"checkbox"}
-                      noLabel={true}
-                      rules={[
-                        {
-                          ruleType: "advanced",
-                          message:
-                            "Vous devez accepter les conditions d'utilisation pour continuer.",
-                          custom: (rule, value) => {
-                            return $state.checkbox.isSelected;
-                          }
-                        }
-                      ]}
-                    >
-                      <Stack__
-                        as={"div"}
-                        data-plasmic-name={"checkboxWrapper3"}
-                        data-plasmic-override={overrides.checkboxWrapper3}
-                        hasGap={true}
-                        className={classNames(
-                          projectcss.all,
-                          sty.checkboxWrapper3
-                        )}
-                      >
-                        <Checkbox
-                          data-plasmic-name={"checkbox"}
-                          data-plasmic-override={overrides.checkbox}
-                          autoFocus={false}
-                          className={classNames("__wab_instance", sty.checkbox)}
-                          label={
-                            <React.Fragment>
-                              <JamCheckbox
-                                data-plasmic-name={"checkBox"}
-                                data-plasmic-override={overrides.checkBox}
-                                checked={false}
-                                className={classNames(
-                                  "__wab_instance",
-                                  sty.checkBox
-                                )}
-                                type={"Checkbox"}
-                              />
-
-                              <Reveal
-                                className={classNames(
-                                  "__wab_instance",
-                                  sty.reveal__oYrgS
-                                )}
-                                triggerOnce={true}
-                              >
-                                {(() => {
-                                  try {
-                                    return $state.checkbox.isSelected;
-                                  } catch (e) {
-                                    if (
-                                      e instanceof TypeError ||
-                                      e?.plasmicType ===
-                                        "PlasmicUndefinedDataError"
-                                    ) {
-                                      return true;
-                                    }
-                                    throw e;
-                                  }
-                                })() ? (
-                                  <CheckIcon
-                                    className={classNames(
-                                      projectcss.all,
-                                      sty.svg__uV7Py
-                                    )}
-                                    role={"img"}
-                                  />
-                                ) : null}
-                              </Reveal>
-                            </React.Fragment>
-                          }
-                          onChange={async (...eventArgs: any) => {
-                            generateStateOnChangeProp($state, [
-                              "checkbox",
-                              "isSelected"
-                            ]).apply(null, eventArgs);
-
-                            if (
-                              eventArgs.length > 1 &&
-                              eventArgs[1] &&
-                              eventArgs[1]._plasmic_state_init_
-                            ) {
-                              return;
-                            }
-                          }}
-                          value={(() => {
-                            try {
-                              return $state.checkbox.isSelected;
-                            } catch (e) {
-                              if (
-                                e instanceof TypeError ||
-                                e?.plasmicType === "PlasmicUndefinedDataError"
-                              ) {
-                                return undefined;
-                              }
-                              throw e;
-                            }
-                          })()}
-                        />
-
-                        <div
-                          className={classNames(
-                            projectcss.all,
-                            projectcss.__wab_text,
-                            sty.text__gAAdK
-                          )}
-                        >
-                          <React.Fragment>
-                            <React.Fragment>{"J'accepte la"}</React.Fragment>
-                            <span
-                              className={
-                                "plasmic_default__all plasmic_default__span"
-                              }
-                              style={{ fontWeight: 700 }}
-                            >
-                              {" politique de confidentialit\u00e9"}
-                            </span>
-                          </React.Fragment>
-                        </div>
-                      </Stack__>
-                    </FormItemWrapper>
-                    <FormItemWrapper
-                      className={classNames(
-                        "__wab_instance",
-                        sty.formField__zf4S0
-                      )}
-                      label={
-                        <div
-                          className={classNames(
-                            projectcss.all,
-                            projectcss.__wab_text,
-                            sty.text__wD7Ft
-                          )}
-                        >
-                          {"Inscription"}
-                        </div>
-                      }
-                      name={"name"}
-                      noLabel={true}
-                      rules={[]}
-                    >
-                      <Stack__
-                        as={"div"}
-                        data-plasmic-name={"buttonWrapper"}
-                        data-plasmic-override={overrides.buttonWrapper}
-                        hasGap={true}
-                        className={classNames(
-                          projectcss.all,
-                          sty.buttonWrapper
-                        )}
-                      >
-                        <button
-                          data-plasmic-name={"button"}
-                          data-plasmic-override={overrides.button}
-                          className={classNames(
-                            projectcss.all,
-                            projectcss.button,
-                            sty.button
-                          )}
-                          onClick={async event => {
-                            const $steps = {};
-
-                            $steps["runCode"] = true
-                              ? (() => {
-                                  const actionArgs = {
-                                    customFunction: async () => {
-                                      return ($state.registerForm.isSubmitting =
-                                        true);
-                                    }
-                                  };
-                                  return (({ customFunction }) => {
-                                    return customFunction();
-                                  })?.apply(null, [actionArgs]);
-                                })()
-                              : undefined;
-                            if (
-                              $steps["runCode"] != null &&
-                              typeof $steps["runCode"] === "object" &&
-                              typeof $steps["runCode"].then === "function"
-                            ) {
-                              $steps["runCode"] = await $steps["runCode"];
-                            }
-                          }}
-                          ref={ref => {
-                            $refs["button"] = ref;
-                          }}
-                        >
-                          <Reveal
-                            className={classNames(
-                              "__wab_instance",
-                              sty.reveal__rRaBf
-                            )}
-                            triggerOnce={true}
-                          >
-                            <JamButton
-                              data-plasmic-name={"button2"}
-                              data-plasmic-override={overrides.button2}
-                              className={classNames(
-                                "__wab_instance",
-                                sty.button2
-                              )}
-                              icon={"end"}
-                              iconImage={
-                                "/plasmic/jam_production_🚀/images/image11.svg"
-                              }
-                              label={"INSCRIPTION"}
-                              onClick={async () => {
-                                const $steps = {};
-
-                                $steps["runCode"] = true
-                                  ? (() => {
-                                      const actionArgs = {
-                                        customFunction: async () => {
-                                          return ($state.registerForm.isSubmitting =
-                                            true);
-                                        }
-                                      };
-                                      return (({ customFunction }) => {
-                                        return customFunction();
-                                      })?.apply(null, [actionArgs]);
-                                    })()
-                                  : undefined;
-                                if (
-                                  $steps["runCode"] != null &&
-                                  typeof $steps["runCode"] === "object" &&
-                                  typeof $steps["runCode"].then === "function"
-                                ) {
-                                  $steps["runCode"] = await $steps["runCode"];
-                                }
-                              }}
-                            />
-                          </Reveal>
-                        </button>
-                        <Stack__
-                          as={"div"}
-                          data-plasmic-name={"dividerWrapper"}
-                          data-plasmic-override={overrides.dividerWrapper}
-                          hasGap={true}
-                          className={classNames(
-                            projectcss.all,
-                            sty.dividerWrapper
-                          )}
-                        >
-                          <div
-                            className={classNames(
-                              projectcss.all,
-                              sty.freeBox__d6WNd
-                            )}
-                          >
-                            <DividerLineIcon
-                              className={classNames(
-                                projectcss.all,
-                                sty.svg__veRZw
-                              )}
-                              role={"img"}
-                            />
-                          </div>
-                          <div
-                            className={classNames(
-                              projectcss.all,
-                              sty.freeBox__cGGl
-                            )}
-                          >
-                            <DividerLineIcon
-                              className={classNames(
-                                projectcss.all,
-                                sty.svg___4Xu4H
-                              )}
-                              role={"img"}
-                            />
-                          </div>
-                        </Stack__>
-                      </Stack__>
-                    </FormItemWrapper>
-                  </FormWrapper>
-                );
-              })()}
-              <Stack__
-                as={"div"}
-                data-plasmic-name={"form"}
-                data-plasmic-override={overrides.form}
-                hasGap={true}
-                className={classNames(projectcss.all, sty.form)}
-              >
-                <Stack__
-                  as={"div"}
-                  data-plasmic-name={"googleApple"}
-                  data-plasmic-override={overrides.googleApple}
-                  hasGap={true}
-                  className={classNames(projectcss.all, sty.googleApple)}
-                >
-                  <ButtonGoogle
-                    data-plasmic-name={"buttonGoogle"}
-                    data-plasmic-override={overrides.buttonGoogle}
-                    className={classNames("__wab_instance", sty.buttonGoogle)}
-                    hierarchy={"primary"}
-                    icon={"start"}
-                    iconImage={
-                      "/plasmic/jam_production_🚀/images/iconSocialsGoogle.svg"
-                    }
-                    label={"GOOGLE"}
-                    onClick={async () => {
-                      const $steps = {};
-                    }}
-                    size={"large"}
-                    state={"default"}
-                  />
-
-                  <ButtonApple
-                    data-plasmic-name={"buttonApple"}
-                    data-plasmic-override={overrides.buttonApple}
-                    className={classNames("__wab_instance", sty.buttonApple)}
-                    hierarchy={"primary"}
-                    icon={"start"}
-                    iconImage={
-                      "/plasmic/jam_production_🚀/images/iconSocialsApple.svg"
-                    }
-                    label={"APPLE"}
-                    size={"large"}
-                    state={"default"}
-                  />
-                </Stack__>
-                <Stack__
-                  as={"div"}
-                  data-plasmic-name={"linkWrapper"}
-                  data-plasmic-override={overrides.linkWrapper}
-                  hasGap={true}
-                  className={classNames(projectcss.all, sty.linkWrapper)}
-                >
-                  <div
-                    data-plasmic-name={"text5"}
-                    data-plasmic-override={overrides.text5}
-                    className={classNames(
-                      projectcss.all,
-                      projectcss.__wab_text,
-                      sty.text5
-                    )}
-                  >
-                    {"D\u00e9j\u00e0 inscrit(e) ?"}
-                  </div>
-                  <PlasmicLink__
-                    data-plasmic-name={"link"}
-                    data-plasmic-override={overrides.link}
-                    className={classNames(
-                      projectcss.all,
-                      projectcss.a,
-                      projectcss.__wab_text,
-                      sty.link
-                    )}
-                    component={Link}
-                    onClick={async event => {
-                      const $steps = {};
-
-                      $steps["runCode"] = true
-                        ? (() => {
-                            const actionArgs = {
-                              customFunction: async () => {
-                                return (window.location = "/login");
-                              }
-                            };
-                            return (({ customFunction }) => {
-                              return customFunction();
-                            })?.apply(null, [actionArgs]);
-                          })()
-                        : undefined;
-                      if (
-                        $steps["runCode"] != null &&
-                        typeof $steps["runCode"] === "object" &&
-                        typeof $steps["runCode"].then === "function"
-                      ) {
-                        $steps["runCode"] = await $steps["runCode"];
-                      }
-                    }}
-                    platform={"nextjs"}
-                  >
-                    <React.Fragment>
-                      <span
-                        className={"plasmic_default__all plasmic_default__span"}
-                        style={{ color: "#000000", fontWeight: 700 }}
-                      >
-                        {"CONNEXION"}
-                      </span>
-                    </React.Fragment>
-                  </PlasmicLink__>
-                </Stack__>
-                <SignUp
-                  data-plasmic-name={"signUp2"}
-                  data-plasmic-override={overrides.signUp2}
-                  alertPosition={"top"}
-                  buttonStyle={"primary"}
-                  className={classNames("__wab_instance", sty.signUp2)}
-                  confirmPassword={generateStateValueProp($state, [
-                    "signUp2",
-                    "confirmPassword"
-                  ])}
-                  confirmPasswordLabel={"Répétez le mot de passe"}
-                  email={generateStateValueProp($state, ["signUp2", "email"])}
-                  emailLabel={"Email"}
-                  eyeIconColor={"#666"}
-                  firstName={generateStateValueProp($state, [
-                    "signUp2",
-                    "firstName"
-                  ])}
-                  firstNameLabel={"Prénom"}
-                  inputStyle={"simple"}
-                  lastName={generateStateValueProp($state, [
-                    "signUp2",
-                    "lastName"
-                  ])}
-                  lastNameLabel={"Nom"}
-                  maxAlerts={3}
-                  onConfirmPasswordChange={async (...eventArgs: any) => {
-                    generateStateOnChangeProp($state, [
-                      "signUp2",
-                      "confirmPassword"
-                    ]).apply(null, eventArgs);
-                  }}
-                  onEmailChange={async (...eventArgs: any) => {
-                    generateStateOnChangeProp($state, [
-                      "signUp2",
-                      "email"
-                    ]).apply(null, eventArgs);
-                  }}
-                  onFirstNameChange={async (...eventArgs: any) => {
-                    generateStateOnChangeProp($state, [
-                      "signUp2",
-                      "firstName"
-                    ]).apply(null, eventArgs);
-                  }}
-                  onLastNameChange={async (...eventArgs: any) => {
-                    generateStateOnChangeProp($state, [
-                      "signUp2",
-                      "lastName"
-                    ]).apply(null, eventArgs);
-                  }}
-                  onPasswordChange={async (...eventArgs: any) => {
-                    generateStateOnChangeProp($state, [
-                      "signUp2",
-                      "password"
-                    ]).apply(null, eventArgs);
-                  }}
-                  password={generateStateValueProp($state, [
-                    "signUp2",
-                    "password"
-                  ])}
-                  passwordInfoText={
-                    "Utilisez 8 caractères ou plus en mélangeant lettres, chiffres et symboles."
-                  }
-                  passwordLabel={"Mot de passe"}
-                  passwordStrength={true}
-                  placeholderConfirmPassword={"Confirmez votre mot de passe"}
-                  placeholderEmail={"Entrez votre email"}
-                  placeholderPassword={"Entrez votre mot de passe"}
-                  privacyPolicyText={
-                    "J'accepte la politique de confidentialité"
-                  }
-                  showAlerts={true}
-                  showOAuthButtons={true}
-                  showPasswordToggle={true}
-                  submitButtonText={"S'inscrire"}
-                  title={"Bienvenue !"}
-                  titleHeading={"h1"}
-                  wrapperStyle={"card"}
-                />
-              </Stack__>
               <SignUp
                 data-plasmic-name={"signUp3"}
                 data-plasmic-override={overrides.signUp3}
                 alertPosition={"top"}
+                appleButtonText={"APPLE"}
+                buttonAbordStyle={"tertiary"}
                 buttonStyle={"primary"}
                 className={classNames("__wab_instance", sty.signUp3)}
                 confirmPassword={generateStateValueProp($state, [
@@ -1648,6 +430,10 @@ function PlasmicInscriptionCandidat__RenderFunc(props: {
                   "confirmPassword"
                 ])}
                 confirmPasswordLabel={"Répétez le mot de passe"}
+                countryCode={generateStateValueProp($state, [
+                  "signUp3",
+                  "countryCode"
+                ])}
                 email={generateStateValueProp($state, ["signUp3", "email"])}
                 emailLabel={"Email"}
                 eyeIconColor={"#666"}
@@ -1656,6 +442,7 @@ function PlasmicInscriptionCandidat__RenderFunc(props: {
                   "firstName"
                 ])}
                 firstNameLabel={"Prénom"}
+                googleButtonText={"GOOGLE"}
                 inputStyle={"simple"}
                 lastName={generateStateValueProp($state, [
                   "signUp3",
@@ -1663,10 +450,18 @@ function PlasmicInscriptionCandidat__RenderFunc(props: {
                 ])}
                 lastNameLabel={"Nom"}
                 maxAlerts={3}
+                oAuthButtonsPosition={"bottom"}
+                oAuthSeparatorText={"ou"}
                 onConfirmPasswordChange={async (...eventArgs: any) => {
                   generateStateOnChangeProp($state, [
                     "signUp3",
                     "confirmPassword"
+                  ]).apply(null, eventArgs);
+                }}
+                onCountryCodeChange={async (...eventArgs: any) => {
+                  generateStateOnChangeProp($state, [
+                    "signUp3",
+                    "countryCode"
                   ]).apply(null, eventArgs);
                 }}
                 onEmailChange={async (...eventArgs: any) => {
@@ -1692,6 +487,12 @@ function PlasmicInscriptionCandidat__RenderFunc(props: {
                     "signUp3",
                     "password"
                   ]).apply(null, eventArgs);
+                }}
+                onPhoneChange={async (...eventArgs: any) => {
+                  generateStateOnChangeProp($state, ["signUp3", "phone"]).apply(
+                    null,
+                    eventArgs
+                  );
                 }}
                 onSubmit={async event => {
                   const $steps = {};
@@ -1727,14 +528,17 @@ function PlasmicInscriptionCandidat__RenderFunc(props: {
                               }
                             })(),
                             ``,
-                            "/login",
+                            "/",
                             (() => {
                               try {
                                 return {
                                   firstName: $state.signUp3.firstName,
                                   lastName: $state.signUp3.lastName,
-                                  phone: $state.phone,
-                                  email: $state.signUp3.email
+                                  phone:
+                                    $state.signUp3.countryCode +
+                                    $state.signUp3.phone,
+                                  email: $state.signUp3.email,
+                                  role: "User"
                                 };
                               } catch (e) {
                                 if (
@@ -1762,7 +566,33 @@ function PlasmicInscriptionCandidat__RenderFunc(props: {
                       "invokeGlobalAction"
                     ];
                   }
+
+                  $steps["invokeGlobalAction2"] = true
+                    ? (() => {
+                        const actionArgs = {
+                          args: [
+                            "success",
+                            "Veuillez v\u00e9rifier vos e-mails pour confirmer votre adresse et acc\u00e9der \u00e0 Job Around Me.",
+                            undefined,
+                            10
+                          ]
+                        };
+                        return $globalActions[
+                          "plasmic-antd5-config-provider.showNotification"
+                        ]?.apply(null, [...actionArgs.args]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["invokeGlobalAction2"] != null &&
+                    typeof $steps["invokeGlobalAction2"] === "object" &&
+                    typeof $steps["invokeGlobalAction2"].then === "function"
+                  ) {
+                    $steps["invokeGlobalAction2"] = await $steps[
+                      "invokeGlobalAction2"
+                    ];
+                  }
                 }}
+                padding={"40px 16px"}
                 password={generateStateValueProp($state, [
                   "signUp3",
                   "password"
@@ -1772,13 +602,20 @@ function PlasmicInscriptionCandidat__RenderFunc(props: {
                 }
                 passwordLabel={"Mot de passe"}
                 passwordStrength={true}
+                phone={generateStateValueProp($state, ["signUp3", "phone"])}
+                phoneLabel={"Téléphone"}
                 placeholderConfirmPassword={"Confirmez votre mot de passe"}
                 placeholderEmail={"Entrez votre email"}
                 placeholderPassword={"Entrez votre mot de passe"}
+                placeholderPhone={"060606060606"}
                 privacyPolicyText={"J'accepte la politique de confidentialité"}
+                redirectAfterSignUp={``}
                 showAlerts={true}
+                showLabels={true}
+                showLoginLink={true}
                 showOAuthButtons={false}
                 showPasswordToggle={true}
+                showPhoneInput={true}
                 submitButtonText={"S'inscrire"}
                 title={"Bienvenue !"}
                 titleHeading={"h1"}
@@ -1798,287 +635,42 @@ const PlasmicDescendants = {
     "signUp",
     "imageWrapper",
     "logoWrapper",
+    "svg",
     "baseline",
     "frame",
     "frame2",
     "frame3",
     "formWrapper",
-    "heading",
-    "registerForm",
-    "nomPrenom",
-    "textInput9",
-    "textInput7",
-    "textInput3",
-    "label",
-    "inputWrapper4",
-    "phoneSelector",
-    "phoneInput",
-    "textInput4",
-    "textInput5",
-    "inputWrapper5",
-    "wrapper2",
-    "progressBar",
-    "signedByBaseProgressBarSteppedMediumLabelNone",
-    "progress",
-    "inProgress",
-    "base",
-    "base2",
-    "base3",
-    "base4",
-    "base5",
-    "base6",
-    "text",
-    "textInput8",
-    "checkboxWrapper3",
-    "checkbox",
-    "checkBox",
-    "buttonWrapper",
-    "button",
-    "button2",
-    "dividerWrapper",
-    "form",
-    "googleApple",
-    "buttonGoogle",
-    "buttonApple",
-    "linkWrapper",
-    "text5",
-    "link",
-    "signUp2",
     "signUp3"
   ],
   signUp: [
     "signUp",
     "imageWrapper",
     "logoWrapper",
+    "svg",
     "baseline",
     "frame",
     "frame2",
     "frame3",
     "formWrapper",
-    "heading",
-    "registerForm",
-    "nomPrenom",
-    "textInput9",
-    "textInput7",
-    "textInput3",
-    "label",
-    "inputWrapper4",
-    "phoneSelector",
-    "phoneInput",
-    "textInput4",
-    "textInput5",
-    "inputWrapper5",
-    "wrapper2",
-    "progressBar",
-    "signedByBaseProgressBarSteppedMediumLabelNone",
-    "progress",
-    "inProgress",
-    "base",
-    "base2",
-    "base3",
-    "base4",
-    "base5",
-    "base6",
-    "text",
-    "textInput8",
-    "checkboxWrapper3",
-    "checkbox",
-    "checkBox",
-    "buttonWrapper",
-    "button",
-    "button2",
-    "dividerWrapper",
-    "form",
-    "googleApple",
-    "buttonGoogle",
-    "buttonApple",
-    "linkWrapper",
-    "text5",
-    "link",
-    "signUp2",
     "signUp3"
   ],
   imageWrapper: [
     "imageWrapper",
     "logoWrapper",
+    "svg",
     "baseline",
     "frame",
     "frame2",
     "frame3"
   ],
-  logoWrapper: ["logoWrapper", "baseline", "frame", "frame2", "frame3"],
+  logoWrapper: ["logoWrapper", "svg", "baseline", "frame", "frame2", "frame3"],
+  svg: ["svg"],
   baseline: ["baseline", "frame", "frame2", "frame3"],
   frame: ["frame"],
   frame2: ["frame2"],
   frame3: ["frame3"],
-  formWrapper: [
-    "formWrapper",
-    "heading",
-    "registerForm",
-    "nomPrenom",
-    "textInput9",
-    "textInput7",
-    "textInput3",
-    "label",
-    "inputWrapper4",
-    "phoneSelector",
-    "phoneInput",
-    "textInput4",
-    "textInput5",
-    "inputWrapper5",
-    "wrapper2",
-    "progressBar",
-    "signedByBaseProgressBarSteppedMediumLabelNone",
-    "progress",
-    "inProgress",
-    "base",
-    "base2",
-    "base3",
-    "base4",
-    "base5",
-    "base6",
-    "text",
-    "textInput8",
-    "checkboxWrapper3",
-    "checkbox",
-    "checkBox",
-    "buttonWrapper",
-    "button",
-    "button2",
-    "dividerWrapper",
-    "form",
-    "googleApple",
-    "buttonGoogle",
-    "buttonApple",
-    "linkWrapper",
-    "text5",
-    "link",
-    "signUp2",
-    "signUp3"
-  ],
-  heading: ["heading"],
-  registerForm: [
-    "registerForm",
-    "nomPrenom",
-    "textInput9",
-    "textInput7",
-    "textInput3",
-    "label",
-    "inputWrapper4",
-    "phoneSelector",
-    "phoneInput",
-    "textInput4",
-    "textInput5",
-    "inputWrapper5",
-    "wrapper2",
-    "progressBar",
-    "signedByBaseProgressBarSteppedMediumLabelNone",
-    "progress",
-    "inProgress",
-    "base",
-    "base2",
-    "base3",
-    "base4",
-    "base5",
-    "base6",
-    "text",
-    "textInput8",
-    "checkboxWrapper3",
-    "checkbox",
-    "checkBox",
-    "buttonWrapper",
-    "button",
-    "button2",
-    "dividerWrapper"
-  ],
-  nomPrenom: ["nomPrenom", "textInput9", "textInput7"],
-  textInput9: ["textInput9"],
-  textInput7: ["textInput7"],
-  textInput3: ["textInput3"],
-  label: ["label"],
-  inputWrapper4: ["inputWrapper4", "phoneSelector", "phoneInput", "textInput4"],
-  phoneSelector: ["phoneSelector"],
-  phoneInput: ["phoneInput", "textInput4"],
-  textInput4: ["textInput4"],
-  textInput5: ["textInput5"],
-  inputWrapper5: [
-    "inputWrapper5",
-    "wrapper2",
-    "progressBar",
-    "signedByBaseProgressBarSteppedMediumLabelNone",
-    "progress",
-    "inProgress",
-    "base",
-    "base2",
-    "base3",
-    "base4",
-    "base5",
-    "base6",
-    "text"
-  ],
-  wrapper2: [
-    "wrapper2",
-    "progressBar",
-    "signedByBaseProgressBarSteppedMediumLabelNone",
-    "progress",
-    "inProgress",
-    "base",
-    "base2",
-    "base3",
-    "base4",
-    "base5",
-    "base6",
-    "text"
-  ],
-  progressBar: [
-    "progressBar",
-    "signedByBaseProgressBarSteppedMediumLabelNone",
-    "progress",
-    "inProgress",
-    "base",
-    "base2",
-    "base3",
-    "base4",
-    "base5",
-    "base6"
-  ],
-  signedByBaseProgressBarSteppedMediumLabelNone: [
-    "signedByBaseProgressBarSteppedMediumLabelNone"
-  ],
-  progress: ["progress"],
-  inProgress: ["inProgress"],
-  base: ["base"],
-  base2: ["base2"],
-  base3: ["base3"],
-  base4: ["base4"],
-  base5: ["base5"],
-  base6: ["base6"],
-  text: ["text"],
-  textInput8: ["textInput8"],
-  checkboxWrapper3: ["checkboxWrapper3", "checkbox", "checkBox"],
-  checkbox: ["checkbox", "checkBox"],
-  checkBox: ["checkBox"],
-  buttonWrapper: ["buttonWrapper", "button", "button2", "dividerWrapper"],
-  button: ["button", "button2"],
-  button2: ["button2"],
-  dividerWrapper: ["dividerWrapper"],
-  form: [
-    "form",
-    "googleApple",
-    "buttonGoogle",
-    "buttonApple",
-    "linkWrapper",
-    "text5",
-    "link",
-    "signUp2"
-  ],
-  googleApple: ["googleApple", "buttonGoogle", "buttonApple"],
-  buttonGoogle: ["buttonGoogle"],
-  buttonApple: ["buttonApple"],
-  linkWrapper: ["linkWrapper", "text5", "link"],
-  text5: ["text5"],
-  link: ["link"],
-  signUp2: ["signUp2"],
+  formWrapper: ["formWrapper", "signUp3"],
   signUp3: ["signUp3"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
@@ -2089,52 +681,12 @@ type NodeDefaultElementType = {
   signUp: "div";
   imageWrapper: "div";
   logoWrapper: "div";
+  svg: "svg";
   baseline: "div";
   frame: "div";
   frame2: "div";
   frame3: "div";
   formWrapper: "div";
-  heading: "div";
-  registerForm: typeof FormWrapper;
-  nomPrenom: "div";
-  textInput9: typeof TextInput;
-  textInput7: typeof TextInput;
-  textInput3: typeof TextInput;
-  label: "div";
-  inputWrapper4: "div";
-  phoneSelector: typeof PhoneSelector;
-  phoneInput: "div";
-  textInput4: typeof TextInput;
-  textInput5: typeof TextInput;
-  inputWrapper5: "div";
-  wrapper2: "div";
-  progressBar: "div";
-  signedByBaseProgressBarSteppedMediumLabelNone: "div";
-  progress: "div";
-  inProgress: "div";
-  base: "div";
-  base2: "div";
-  base3: "div";
-  base4: "div";
-  base5: "div";
-  base6: "div";
-  text: "div";
-  textInput8: typeof TextInput;
-  checkboxWrapper3: "div";
-  checkbox: typeof Checkbox;
-  checkBox: typeof JamCheckbox;
-  buttonWrapper: "div";
-  button: "button";
-  button2: typeof JamButton;
-  dividerWrapper: "div";
-  form: "div";
-  googleApple: "div";
-  buttonGoogle: typeof ButtonGoogle;
-  buttonApple: typeof ButtonApple;
-  linkWrapper: "div";
-  text5: "div";
-  link: "a";
-  signUp2: typeof SignUp;
   signUp3: typeof SignUp;
 };
 
@@ -2201,54 +753,12 @@ export const PlasmicInscriptionCandidat = Object.assign(
     signUp: makeNodeComponent("signUp"),
     imageWrapper: makeNodeComponent("imageWrapper"),
     logoWrapper: makeNodeComponent("logoWrapper"),
+    svg: makeNodeComponent("svg"),
     baseline: makeNodeComponent("baseline"),
     frame: makeNodeComponent("frame"),
     frame2: makeNodeComponent("frame2"),
     frame3: makeNodeComponent("frame3"),
     formWrapper: makeNodeComponent("formWrapper"),
-    heading: makeNodeComponent("heading"),
-    registerForm: makeNodeComponent("registerForm"),
-    nomPrenom: makeNodeComponent("nomPrenom"),
-    textInput9: makeNodeComponent("textInput9"),
-    textInput7: makeNodeComponent("textInput7"),
-    textInput3: makeNodeComponent("textInput3"),
-    label: makeNodeComponent("label"),
-    inputWrapper4: makeNodeComponent("inputWrapper4"),
-    phoneSelector: makeNodeComponent("phoneSelector"),
-    phoneInput: makeNodeComponent("phoneInput"),
-    textInput4: makeNodeComponent("textInput4"),
-    textInput5: makeNodeComponent("textInput5"),
-    inputWrapper5: makeNodeComponent("inputWrapper5"),
-    wrapper2: makeNodeComponent("wrapper2"),
-    progressBar: makeNodeComponent("progressBar"),
-    signedByBaseProgressBarSteppedMediumLabelNone: makeNodeComponent(
-      "signedByBaseProgressBarSteppedMediumLabelNone"
-    ),
-    progress: makeNodeComponent("progress"),
-    inProgress: makeNodeComponent("inProgress"),
-    base: makeNodeComponent("base"),
-    base2: makeNodeComponent("base2"),
-    base3: makeNodeComponent("base3"),
-    base4: makeNodeComponent("base4"),
-    base5: makeNodeComponent("base5"),
-    base6: makeNodeComponent("base6"),
-    text: makeNodeComponent("text"),
-    textInput8: makeNodeComponent("textInput8"),
-    checkboxWrapper3: makeNodeComponent("checkboxWrapper3"),
-    checkbox: makeNodeComponent("checkbox"),
-    checkBox: makeNodeComponent("checkBox"),
-    buttonWrapper: makeNodeComponent("buttonWrapper"),
-    button: makeNodeComponent("button"),
-    button2: makeNodeComponent("button2"),
-    dividerWrapper: makeNodeComponent("dividerWrapper"),
-    form: makeNodeComponent("form"),
-    googleApple: makeNodeComponent("googleApple"),
-    buttonGoogle: makeNodeComponent("buttonGoogle"),
-    buttonApple: makeNodeComponent("buttonApple"),
-    linkWrapper: makeNodeComponent("linkWrapper"),
-    text5: makeNodeComponent("text5"),
-    link: makeNodeComponent("link"),
-    signUp2: makeNodeComponent("signUp2"),
     signUp3: makeNodeComponent("signUp3"),
 
     // Metadata about props expected for PlasmicInscriptionCandidat

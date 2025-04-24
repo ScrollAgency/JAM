@@ -62,24 +62,23 @@ import {
 import { BaseInput } from "@plasmicpkgs/react-aria/skinny/registerInput";
 import { inputHelpers as BaseInput_Helpers } from "@plasmicpkgs/react-aria/skinny/registerInput";
 
-import { useScreenVariants as useScreenVariantshm8Nko4B5BDd } from "./PlasmicGlobalVariant__Screen"; // plasmic-import: HM8Nko4B5BDd/globalVariant
-
 import "@plasmicapp/react-web/lib/plasmic.css";
 
 import plasmic_antd_5_hostless_css from "../antd_5_hostless/plasmic.module.css"; // plasmic-import: ohDidvG9XsCeFumugENU3J/projectcss
 import plasmic_library_tailwind_3_4_number_tokens_css from "../library_tailwind_3_4_number_tokens/plasmic.module.css"; // plasmic-import: 4vjRXvnb4XuY6J15w9oRcQ/projectcss
+import plasmic_plasmic_rich_components_css from "../plasmic_rich_components/plasmic.module.css"; // plasmic-import: jkU633o1Cz7HrJdwdxhVHk/projectcss
 import projectcss from "./plasmic.module.css"; // plasmic-import: f7DE9y7qp46fyCw5nuY8f9/projectcss
 import sty from "./PlasmicTextInput.module.css"; // plasmic-import: pZ7Ql6sUFRw9/css
 
 createPlasmicElementProxy;
 
 export type PlasmicTextInput__VariantMembers = {
-  type: "soft" | "plain";
+  type: "soft" | "plain" | "unnamedVariant";
   flat: "top" | "right" | "bottom" | "left";
   padded: "left" | "right";
 };
 export type PlasmicTextInput__VariantsArgs = {
-  type?: SingleChoiceArg<"soft" | "plain">;
+  type?: SingleChoiceArg<"soft" | "plain" | "unnamedVariant">;
   flat?: MultiChoiceArg<"top" | "right" | "bottom" | "left">;
   padded?: MultiChoiceArg<"left" | "right">;
 };
@@ -265,7 +264,7 @@ export interface DefaultTextInputProps {
     | "webauthn";
   ariaLabel?: string;
   onChange?: (val: string) => void;
-  type?: SingleChoiceArg<"soft" | "plain">;
+  type?: SingleChoiceArg<"soft" | "plain" | "unnamedVariant">;
   flat?: MultiChoiceArg<"top" | "right" | "bottom" | "left">;
   padded?: MultiChoiceArg<"left" | "right">;
   className?: string;
@@ -291,9 +290,7 @@ function PlasmicTextInput__RenderFunc(props: {
   const args = React.useMemo(
     () =>
       Object.assign(
-        {
-          inputType: "tel"
-        },
+        {},
         Object.fromEntries(
           Object.entries(props.args).filter(([_, v]) => v !== undefined)
         )
@@ -352,10 +349,6 @@ function PlasmicTextInput__RenderFunc(props: {
     $refs
   });
 
-  const globalVariants = ensureGlobalVariants({
-    screen: useScreenVariantshm8Nko4B5BDd()
-  });
-
   const [$ccVariants, setDollarCcVariants] = React.useState<
     Record<string, boolean>
   >({
@@ -389,6 +382,7 @@ function PlasmicTextInput__RenderFunc(props: {
         projectcss.plasmic_tokens,
         plasmic_antd_5_hostless_css.plasmic_tokens,
         plasmic_library_tailwind_3_4_number_tokens_css.plasmic_tokens,
+        plasmic_plasmic_rich_components_css.plasmic_tokens,
         sty.ariaInput,
         {
           [sty.ariaInputflat_bottom]: hasVariant($state, "flat", "bottom"),
@@ -398,7 +392,12 @@ function PlasmicTextInput__RenderFunc(props: {
           [sty.ariaInputpadded_left]: hasVariant($state, "padded", "left"),
           [sty.ariaInputpadded_right]: hasVariant($state, "padded", "right"),
           [sty.ariaInputtype_plain]: hasVariant($state, "type", "plain"),
-          [sty.ariaInputtype_soft]: hasVariant($state, "type", "soft")
+          [sty.ariaInputtype_soft]: hasVariant($state, "type", "soft"),
+          [sty.ariaInputtype_unnamedVariant]: hasVariant(
+            $state,
+            "type",
+            "unnamedVariant"
+          )
         }
       ),
       defaultValue: args.defaultValue,

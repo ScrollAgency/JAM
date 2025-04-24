@@ -63,6 +63,7 @@ import "@plasmicapp/react-web/lib/plasmic.css";
 
 import plasmic_antd_5_hostless_css from "../antd_5_hostless/plasmic.module.css"; // plasmic-import: ohDidvG9XsCeFumugENU3J/projectcss
 import plasmic_library_tailwind_3_4_number_tokens_css from "../library_tailwind_3_4_number_tokens/plasmic.module.css"; // plasmic-import: 4vjRXvnb4XuY6J15w9oRcQ/projectcss
+import plasmic_plasmic_rich_components_css from "../plasmic_rich_components/plasmic.module.css"; // plasmic-import: jkU633o1Cz7HrJdwdxhVHk/projectcss
 import projectcss from "./plasmic.module.css"; // plasmic-import: f7DE9y7qp46fyCw5nuY8f9/projectcss
 import sty from "./PlasmicBoutonCreerUneAlerte.module.css"; // plasmic-import: 2FcG1aUx3cMM/css
 
@@ -74,9 +75,13 @@ type VariantPropType = keyof PlasmicBoutonCreerUneAlerte__VariantsArgs;
 export const PlasmicBoutonCreerUneAlerte__VariantProps =
   new Array<VariantPropType>();
 
-export type PlasmicBoutonCreerUneAlerte__ArgsType = {};
+export type PlasmicBoutonCreerUneAlerte__ArgsType = {
+  onClick?: (event: any) => void;
+};
 type ArgPropType = keyof PlasmicBoutonCreerUneAlerte__ArgsType;
-export const PlasmicBoutonCreerUneAlerte__ArgProps = new Array<ArgPropType>();
+export const PlasmicBoutonCreerUneAlerte__ArgProps = new Array<ArgPropType>(
+  "onClick"
+);
 
 export type PlasmicBoutonCreerUneAlerte__OverridesType = {
   buttonBase?: Flex__<"div">;
@@ -85,6 +90,7 @@ export type PlasmicBoutonCreerUneAlerte__OverridesType = {
 };
 
 export interface DefaultBoutonCreerUneAlerteProps {
+  onClick?: (event: any) => void;
   className?: string;
 }
 
@@ -142,8 +148,10 @@ function PlasmicBoutonCreerUneAlerte__RenderFunc(props: {
         projectcss.plasmic_tokens,
         plasmic_antd_5_hostless_css.plasmic_tokens,
         plasmic_library_tailwind_3_4_number_tokens_css.plasmic_tokens,
+        plasmic_plasmic_rich_components_css.plasmic_tokens,
         sty.buttonBase
       )}
+      onClick={args.onClick}
     >
       <div
         data-plasmic-name={"text"}

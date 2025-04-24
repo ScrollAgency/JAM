@@ -61,20 +61,29 @@ import {
 
 import { BaseButton } from "@plasmicpkgs/react-aria/skinny/registerButton";
 
+import { useScreenVariants as useScreenVariantshm8Nko4B5BDd } from "./PlasmicGlobalVariant__Screen"; // plasmic-import: HM8Nko4B5BDd/globalVariant
+
 import "@plasmicapp/react-web/lib/plasmic.css";
 
 import plasmic_antd_5_hostless_css from "../antd_5_hostless/plasmic.module.css"; // plasmic-import: ohDidvG9XsCeFumugENU3J/projectcss
 import plasmic_library_tailwind_3_4_number_tokens_css from "../library_tailwind_3_4_number_tokens/plasmic.module.css"; // plasmic-import: 4vjRXvnb4XuY6J15w9oRcQ/projectcss
+import plasmic_plasmic_rich_components_css from "../plasmic_rich_components/plasmic.module.css"; // plasmic-import: jkU633o1Cz7HrJdwdxhVHk/projectcss
 import projectcss from "./plasmic.module.css"; // plasmic-import: f7DE9y7qp46fyCw5nuY8f9/projectcss
 import sty from "./PlasmicButton.module.css"; // plasmic-import: 9ixtKbGKv7x-/css
 
 import CircleIcon from "./icons/PlasmicIcon__Circle"; // plasmic-import: je95h6YoQ2jE/icon
-import ChevronDown2Icon from "./icons/PlasmicIcon__ChevronDown2"; // plasmic-import: ImRzoqJkNumw/icon
+import PictogramIcon from "./icons/PlasmicIcon__Pictogram"; // plasmic-import: KlZQiGxQTluF/icon
 
 createPlasmicElementProxy;
 
 export type PlasmicButton__VariantMembers = {
-  color: "neutral" | "muted" | "success" | "warning" | "errorDestructive";
+  color:
+    | "neutral"
+    | "muted"
+    | "success"
+    | "warning"
+    | "errorDestructive"
+    | "white";
   type: "soft" | "bordered";
   size: "extraSmall" | "small" | "large" | "extraLarge";
   iconStart: "iconStart";
@@ -84,7 +93,7 @@ export type PlasmicButton__VariantMembers = {
 };
 export type PlasmicButton__VariantsArgs = {
   color?: SingleChoiceArg<
-    "neutral" | "muted" | "success" | "warning" | "errorDestructive"
+    "neutral" | "muted" | "success" | "warning" | "errorDestructive" | "white"
   >;
   type?: SingleChoiceArg<"soft" | "bordered">;
   size?: SingleChoiceArg<"extraSmall" | "small" | "large" | "extraLarge">;
@@ -134,7 +143,6 @@ export type PlasmicButton__OverridesType = {
   root?: Flex__<typeof BaseButton>;
   softBackground?: Flex__<"div">;
   border?: Flex__<"div">;
-  interactionEffect?: Flex__<"div">;
 };
 
 export interface DefaultButtonProps {
@@ -149,7 +157,7 @@ export interface DefaultButtonProps {
   label?: React.ReactNode;
   end?: React.ReactNode;
   color?: SingleChoiceArg<
-    "neutral" | "muted" | "success" | "warning" | "errorDestructive"
+    "neutral" | "muted" | "success" | "warning" | "errorDestructive" | "white"
   >;
   type?: SingleChoiceArg<"soft" | "bordered">;
   size?: SingleChoiceArg<"extraSmall" | "small" | "large" | "extraLarge">;
@@ -255,6 +263,10 @@ function PlasmicButton__RenderFunc(props: {
     $refs
   });
 
+  const globalVariants = ensureGlobalVariants({
+    screen: useScreenVariantshm8Nko4B5BDd()
+  });
+
   const [$ccVariants, setDollarCcVariants] = React.useState<
     Record<string, boolean>
   >({
@@ -291,6 +303,7 @@ function PlasmicButton__RenderFunc(props: {
         projectcss.plasmic_tokens,
         plasmic_antd_5_hostless_css.plasmic_tokens,
         plasmic_library_tailwind_3_4_number_tokens_css.plasmic_tokens,
+        plasmic_plasmic_rich_components_css.plasmic_tokens,
         sty.root,
         {
           [sty.rootcolor_errorDestructive]: hasVariant(
@@ -314,6 +327,7 @@ function PlasmicButton__RenderFunc(props: {
           [sty.rootcolor_warning_type_soft]:
             hasVariant($state, "color", "warning") &&
             hasVariant($state, "type", "soft"),
+          [sty.rootcolor_white]: hasVariant($state, "color", "white"),
           [sty.rootflatSide_bottom]: hasVariant($state, "flatSide", "bottom"),
           [sty.rootflatSide_left]: hasVariant($state, "flatSide", "left"),
           [sty.rootflatSide_right]: hasVariant($state, "flatSide", "right"),
@@ -460,67 +474,6 @@ function PlasmicButton__RenderFunc(props: {
           })}
         />
       ) : null}
-      <div
-        data-plasmic-name={"interactionEffect"}
-        data-plasmic-override={overrides.interactionEffect}
-        className={classNames(projectcss.all, sty.interactionEffect, {
-          [sty.interactionEffectcolor_errorDestructive]: hasVariant(
-            $state,
-            "color",
-            "errorDestructive"
-          ),
-          [sty.interactionEffectcolor_muted]: hasVariant(
-            $state,
-            "color",
-            "muted"
-          ),
-          [sty.interactionEffectcolor_neutral]: hasVariant(
-            $state,
-            "color",
-            "neutral"
-          ),
-          [sty.interactionEffectcolor_success]: hasVariant(
-            $state,
-            "color",
-            "success"
-          ),
-          [sty.interactionEffectcolor_warning]: hasVariant(
-            $state,
-            "color",
-            "warning"
-          ),
-          [sty.interactionEffectroundedFull]: hasVariant(
-            $state,
-            "roundedFull",
-            "roundedFull"
-          ),
-          [sty.interactionEffectsize_large]: hasVariant(
-            $state,
-            "size",
-            "large"
-          ),
-          [sty.interactionEffectsize_small]: hasVariant(
-            $state,
-            "size",
-            "small"
-          ),
-          [sty.interactionEffecttype_bordered]: hasVariant(
-            $state,
-            "type",
-            "bordered"
-          ),
-          [sty.interactionEffecttype_bordered_color_success]:
-            hasVariant($state, "color", "success") &&
-            hasVariant($state, "type", "bordered"),
-          [sty.interactionEffecttype_soft]: hasVariant($state, "type", "soft")
-        })}
-        style={
-          hasVariant($state, "type", "bordered") && $ccVariants["pressed"]
-            ? { display: "block" }
-            : undefined
-        }
-      />
-
       <Stack__
         as={"div"}
         hasGap={true}
@@ -529,6 +482,16 @@ function PlasmicButton__RenderFunc(props: {
             $state,
             "color",
             "neutral"
+          ),
+          [sty.freeBoxiconEnd__smEYmG9ZQp]: hasVariant(
+            $state,
+            "iconEnd",
+            "iconEnd"
+          ),
+          [sty.freeBoxiconStart__smEYmlqsZ]: hasVariant(
+            $state,
+            "iconStart",
+            "iconStart"
           ),
           [sty.freeBoxroundedFull__smEYmDs7XC]: hasVariant(
             $state,
@@ -838,7 +801,7 @@ function PlasmicButton__RenderFunc(props: {
         >
           {renderPlasmicSlot({
             defaultContents: (
-              <ChevronDown2Icon
+              <PictogramIcon
                 className={classNames(projectcss.all, sty.svg__jmbk7)}
                 role={"img"}
               />
@@ -946,10 +909,9 @@ function PlasmicButton__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "softBackground", "border", "interactionEffect"],
+  root: ["root", "softBackground", "border"],
   softBackground: ["softBackground"],
-  border: ["border"],
-  interactionEffect: ["interactionEffect"]
+  border: ["border"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -958,7 +920,6 @@ type NodeDefaultElementType = {
   root: typeof BaseButton;
   softBackground: "div";
   border: "div";
-  interactionEffect: "div";
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -1023,7 +984,6 @@ export const PlasmicButton = Object.assign(
     // Helper components rendering sub-elements
     softBackground: makeNodeComponent("softBackground"),
     border: makeNodeComponent("border"),
-    interactionEffect: makeNodeComponent("interactionEffect"),
 
     // Metadata about props expected for PlasmicButton
     internalVariantProps: PlasmicButton__VariantProps,

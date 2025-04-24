@@ -59,19 +59,24 @@ import {
   useGlobalActions
 } from "@plasmicapp/react-web/lib/host";
 
+import Button2 from "../../Button2"; // plasmic-import: RjZcZb_kakG7/component
+
 import { useScreenVariants as useScreenVariantshm8Nko4B5BDd } from "./PlasmicGlobalVariant__Screen"; // plasmic-import: HM8Nko4B5BDd/globalVariant
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
 import plasmic_antd_5_hostless_css from "../antd_5_hostless/plasmic.module.css"; // plasmic-import: ohDidvG9XsCeFumugENU3J/projectcss
 import plasmic_library_tailwind_3_4_number_tokens_css from "../library_tailwind_3_4_number_tokens/plasmic.module.css"; // plasmic-import: 4vjRXvnb4XuY6J15w9oRcQ/projectcss
+import plasmic_plasmic_rich_components_css from "../plasmic_rich_components/plasmic.module.css"; // plasmic-import: jkU633o1Cz7HrJdwdxhVHk/projectcss
 import projectcss from "./plasmic.module.css"; // plasmic-import: f7DE9y7qp46fyCw5nuY8f9/projectcss
 import sty from "./PlasmicMobileNavbarBottom.module.css"; // plasmic-import: BIS-N7QZzUVV/css
 
-import PhGridFourFillIcon from "./icons/PlasmicIcon__PhGridFourFill"; // plasmic-import: 0a5C2oOC6D74/icon
-import HeartStraight2Icon from "./icons/PlasmicIcon__HeartStraight2"; // plasmic-import: IaiER4CsTFaK/icon
+import GridFourIcon from "./icons/PlasmicIcon__GridFour"; // plasmic-import: KzAe7cfwmhYT/icon
+import PictogramIcon from "./icons/PlasmicIcon__Pictogram"; // plasmic-import: KlZQiGxQTluF/icon
+import HeartStraightIcon from "./icons/PlasmicIcon__HeartStraight"; // plasmic-import: 2A8amxR7FAse/icon
 import EnvelopeSimple2Icon from "./icons/PlasmicIcon__EnvelopeSimple2"; // plasmic-import: 44ROc7g2Vqof/icon
 import PhGearFillIcon from "./icons/PlasmicIcon__PhGearFill"; // plasmic-import: M0oN64eO6n3z/icon
+import HeartStraight2Icon from "./icons/PlasmicIcon__HeartStraight2"; // plasmic-import: IaiER4CsTFaK/icon
 
 createPlasmicElementProxy;
 
@@ -86,9 +91,7 @@ type ArgPropType = keyof PlasmicMobileNavbarBottom__ArgsType;
 export const PlasmicMobileNavbarBottom__ArgProps = new Array<ArgPropType>();
 
 export type PlasmicMobileNavbarBottom__OverridesType = {
-  mobileNavbarBottom?: Flex__<"div">;
-  frame1437253913?: Flex__<"a"> & Partial<LinkProps>;
-  frame22?: Flex__<"div">;
+  mobileNavbarBottom?: Flex__<"nav">;
   frame1437253914?: Flex__<"a"> & Partial<LinkProps>;
   frame23?: Flex__<"div">;
   frame1437253915?: Flex__<"a"> & Partial<LinkProps>;
@@ -146,7 +149,7 @@ function PlasmicMobileNavbarBottom__RenderFunc(props: {
   return (
     (hasVariant(globalVariants, "screen", "mobileOnly") ? true : false) ? (
       <Stack__
-        as={"div"}
+        as={"nav"}
         data-plasmic-name={"mobileNavbarBottom"}
         data-plasmic-override={overrides.mobileNavbarBottom}
         data-plasmic-root={true}
@@ -160,44 +163,262 @@ function PlasmicMobileNavbarBottom__RenderFunc(props: {
           projectcss.plasmic_tokens,
           plasmic_antd_5_hostless_css.plasmic_tokens,
           plasmic_library_tailwind_3_4_number_tokens_css.plasmic_tokens,
+          plasmic_plasmic_rich_components_css.plasmic_tokens,
           sty.mobileNavbarBottom
         )}
       >
-        <Stack__
-          as={PlasmicLink__}
-          data-plasmic-name={"frame1437253913"}
-          data-plasmic-override={overrides.frame1437253913}
-          hasGap={true}
-          className={classNames(
-            projectcss.all,
-            projectcss.a,
-            sty.frame1437253913
-          )}
-          component={Link}
-          href={`/candidatures`}
-          platform={"nextjs"}
-        >
-          <div
-            data-plasmic-name={"frame22"}
-            data-plasmic-override={overrides.frame22}
-            className={classNames(projectcss.all, sty.frame22)}
-          />
+        <Button2
+          className={classNames("__wab_instance", sty.button2__nsRvc)}
+          label={
+            <div
+              className={classNames(
+                projectcss.all,
+                projectcss.__wab_text,
+                sty.text___7Gko
+              )}
+            >
+              {"candidatures"}
+            </div>
+          }
+          onClick={async event => {
+            const $steps = {};
 
-          <PhGridFourFillIcon
-            className={classNames(projectcss.all, sty.svg___2FemE)}
-            role={"img"}
-          />
+            $steps["goToMesCandidatures"] = true
+              ? (() => {
+                  const actionArgs = { destination: `/candidatures` };
+                  return (({ destination }) => {
+                    if (
+                      typeof destination === "string" &&
+                      destination.startsWith("#")
+                    ) {
+                      document
+                        .getElementById(destination.substr(1))
+                        .scrollIntoView({ behavior: "smooth" });
+                    } else {
+                      __nextRouter?.push(destination);
+                    }
+                  })?.apply(null, [actionArgs]);
+                })()
+              : undefined;
+            if (
+              $steps["goToMesCandidatures"] != null &&
+              typeof $steps["goToMesCandidatures"] === "object" &&
+              typeof $steps["goToMesCandidatures"].then === "function"
+            ) {
+              $steps["goToMesCandidatures"] = await $steps[
+                "goToMesCandidatures"
+              ];
+            }
+          }}
+          start={
+            <GridFourIcon
+              className={classNames(projectcss.all, sty.svg__wXNi)}
+              role={"img"}
+            />
+          }
+          type={(() => {
+            try {
+              return $ctx.pagePath === "/candidatures" ? "actif" : "";
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return [];
+              }
+              throw e;
+            }
+          })()}
+        />
 
-          <div
-            className={classNames(
-              projectcss.all,
-              projectcss.__wab_text,
-              sty.text__nxEty
-            )}
-          >
-            {"CANDIDATURES"}
-          </div>
-        </Stack__>
+        <Button2
+          className={classNames("__wab_instance", sty.button2__nY5Al)}
+          label={
+            <div
+              className={classNames(
+                projectcss.all,
+                projectcss.__wab_text,
+                sty.text__a6Bnn
+              )}
+            >
+              {"annonces"}
+            </div>
+          }
+          onClick={async event => {
+            const $steps = {};
+
+            $steps["goToMesAnnonces"] = true
+              ? (() => {
+                  const actionArgs = { destination: `/annonces` };
+                  return (({ destination }) => {
+                    if (
+                      typeof destination === "string" &&
+                      destination.startsWith("#")
+                    ) {
+                      document
+                        .getElementById(destination.substr(1))
+                        .scrollIntoView({ behavior: "smooth" });
+                    } else {
+                      __nextRouter?.push(destination);
+                    }
+                  })?.apply(null, [actionArgs]);
+                })()
+              : undefined;
+            if (
+              $steps["goToMesAnnonces"] != null &&
+              typeof $steps["goToMesAnnonces"] === "object" &&
+              typeof $steps["goToMesAnnonces"].then === "function"
+            ) {
+              $steps["goToMesAnnonces"] = await $steps["goToMesAnnonces"];
+            }
+          }}
+          start={
+            <HeartStraightIcon
+              className={classNames(projectcss.all, sty.svg__uvhC5)}
+              role={"img"}
+            />
+          }
+          type={(() => {
+            try {
+              return $ctx.pagePath === "/annonces" ? "actif" : "";
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return [];
+              }
+              throw e;
+            }
+          })()}
+        />
+
+        <Button2
+          className={classNames("__wab_instance", sty.button2__tln4Z)}
+          label={
+            <div
+              className={classNames(
+                projectcss.all,
+                projectcss.__wab_text,
+                sty.text___93GTo
+              )}
+            >
+              {"alertes"}
+            </div>
+          }
+          onClick={async event => {
+            const $steps = {};
+
+            $steps["goToMesAlertes"] = true
+              ? (() => {
+                  const actionArgs = { destination: `/alertes` };
+                  return (({ destination }) => {
+                    if (
+                      typeof destination === "string" &&
+                      destination.startsWith("#")
+                    ) {
+                      document
+                        .getElementById(destination.substr(1))
+                        .scrollIntoView({ behavior: "smooth" });
+                    } else {
+                      __nextRouter?.push(destination);
+                    }
+                  })?.apply(null, [actionArgs]);
+                })()
+              : undefined;
+            if (
+              $steps["goToMesAlertes"] != null &&
+              typeof $steps["goToMesAlertes"] === "object" &&
+              typeof $steps["goToMesAlertes"].then === "function"
+            ) {
+              $steps["goToMesAlertes"] = await $steps["goToMesAlertes"];
+            }
+          }}
+          start={
+            <EnvelopeSimple2Icon
+              className={classNames(projectcss.all, sty.svg__b2M12)}
+              role={"img"}
+            />
+          }
+          type={(() => {
+            try {
+              return $ctx.pagePath === "/alertes" ? "actif" : "";
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return [];
+              }
+              throw e;
+            }
+          })()}
+        />
+
+        <Button2
+          className={classNames("__wab_instance", sty.button2__rBgXg)}
+          label={
+            <div
+              className={classNames(
+                projectcss.all,
+                projectcss.__wab_text,
+                sty.text__bwVuo
+              )}
+            >
+              {"param\u00e8tres"}
+            </div>
+          }
+          onClick={async event => {
+            const $steps = {};
+
+            $steps["goToParametresDeCompte"] = true
+              ? (() => {
+                  const actionArgs = { destination: `/parametres` };
+                  return (({ destination }) => {
+                    if (
+                      typeof destination === "string" &&
+                      destination.startsWith("#")
+                    ) {
+                      document
+                        .getElementById(destination.substr(1))
+                        .scrollIntoView({ behavior: "smooth" });
+                    } else {
+                      __nextRouter?.push(destination);
+                    }
+                  })?.apply(null, [actionArgs]);
+                })()
+              : undefined;
+            if (
+              $steps["goToParametresDeCompte"] != null &&
+              typeof $steps["goToParametresDeCompte"] === "object" &&
+              typeof $steps["goToParametresDeCompte"].then === "function"
+            ) {
+              $steps["goToParametresDeCompte"] = await $steps[
+                "goToParametresDeCompte"
+              ];
+            }
+          }}
+          start={
+            <PhGearFillIcon
+              className={classNames(projectcss.all, sty.svg__kWnKa)}
+              role={"img"}
+            />
+          }
+          type={(() => {
+            try {
+              return $ctx.pagePath === "/parametres" ? "actif" : "";
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return [];
+              }
+              throw e;
+            }
+          })()}
+        />
+
         <Stack__
           as={PlasmicLink__}
           data-plasmic-name={"frame1437253914"}
@@ -311,8 +532,6 @@ function PlasmicMobileNavbarBottom__RenderFunc(props: {
 const PlasmicDescendants = {
   mobileNavbarBottom: [
     "mobileNavbarBottom",
-    "frame1437253913",
-    "frame22",
     "frame1437253914",
     "frame23",
     "frame1437253915",
@@ -320,8 +539,6 @@ const PlasmicDescendants = {
     "frame1437253916",
     "frame25"
   ],
-  frame1437253913: ["frame1437253913", "frame22"],
-  frame22: ["frame22"],
   frame1437253914: ["frame1437253914", "frame23"],
   frame23: ["frame23"],
   frame1437253915: ["frame1437253915", "frame24"],
@@ -333,9 +550,7 @@ type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
   (typeof PlasmicDescendants)[T][number];
 type NodeDefaultElementType = {
-  mobileNavbarBottom: "div";
-  frame1437253913: "a";
-  frame22: "div";
+  mobileNavbarBottom: "nav";
   frame1437253914: "a";
   frame23: "div";
   frame1437253915: "a";
@@ -404,8 +619,6 @@ export const PlasmicMobileNavbarBottom = Object.assign(
   makeNodeComponent("mobileNavbarBottom"),
   {
     // Helper components rendering sub-elements
-    frame1437253913: makeNodeComponent("frame1437253913"),
-    frame22: makeNodeComponent("frame22"),
     frame1437253914: makeNodeComponent("frame1437253914"),
     frame23: makeNodeComponent("frame23"),
     frame1437253915: makeNodeComponent("frame1437253915"),

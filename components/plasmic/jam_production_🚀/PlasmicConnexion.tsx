@@ -59,16 +59,8 @@ import {
   useGlobalActions
 } from "@plasmicapp/react-web/lib/host";
 
-import {
-  executePlasmicDataOp,
-  usePlasmicDataOp,
-  usePlasmicInvalidate
-} from "@plasmicapp/react-web/lib/data-sources";
-
-import { Login } from "../../../plasmic-library/authentication/Login"; // plasmic-import: DTfpuarR8FPx/codeComponent
-import { ButtonGoogle } from "../../forms/ButtonGoogle/ButtonGoogle"; // plasmic-import: TpN9EpWTj8vW/codeComponent
-import { ButtonApple } from "../../forms/ButtonApple/ButtonApple"; // plasmic-import: TKCXwVafuZOo/codeComponent
-import { Fetcher } from "@plasmicapp/react-web/lib/data-sources";
+import { Login } from "../../auth/Login"; // plasmic-import: DTfpuarR8FPx/codeComponent
+import { PageLoader } from "../../utils/PageLoader"; // plasmic-import: FHDrnDhA4DZe/codeComponent
 
 import { useScreenVariants as useScreenVariantshm8Nko4B5BDd } from "./PlasmicGlobalVariant__Screen"; // plasmic-import: HM8Nko4B5BDd/globalVariant
 
@@ -76,11 +68,11 @@ import "@plasmicapp/react-web/lib/plasmic.css";
 
 import plasmic_antd_5_hostless_css from "../antd_5_hostless/plasmic.module.css"; // plasmic-import: ohDidvG9XsCeFumugENU3J/projectcss
 import plasmic_library_tailwind_3_4_number_tokens_css from "../library_tailwind_3_4_number_tokens/plasmic.module.css"; // plasmic-import: 4vjRXvnb4XuY6J15w9oRcQ/projectcss
+import plasmic_plasmic_rich_components_css from "../plasmic_rich_components/plasmic.module.css"; // plasmic-import: jkU633o1Cz7HrJdwdxhVHk/projectcss
 import projectcss from "./plasmic.module.css"; // plasmic-import: f7DE9y7qp46fyCw5nuY8f9/projectcss
 import sty from "./PlasmicConnexion.module.css"; // plasmic-import: ZGZ6sFcj1aLn/css
 
 import PictogramIcon from "./icons/PlasmicIcon__Pictogram"; // plasmic-import: KlZQiGxQTluF/icon
-import DividerLineIcon from "./icons/PlasmicIcon__DividerLine"; // plasmic-import: VvHpOw2n2MiA/icon
 
 createPlasmicElementProxy;
 
@@ -96,23 +88,16 @@ export const PlasmicConnexion__ArgProps = new Array<ArgPropType>();
 export type PlasmicConnexion__OverridesType = {
   connexion?: Flex__<"div">;
   signIn?: Flex__<"div">;
-  imageWrapper?: Flex__<"div">;
-  logoWrapper?: Flex__<"div">;
-  baseline?: Flex__<"div">;
-  frame?: Flex__<"div">;
-  frame2?: Flex__<"div">;
-  frame3?: Flex__<"div">;
+  imageWrapper2?: Flex__<"div">;
+  logoWrapper2?: Flex__<"div">;
+  svg?: Flex__<"svg">;
+  baseline2?: Flex__<"div">;
+  frame4?: Flex__<"div">;
+  frame5?: Flex__<"div">;
+  frame6?: Flex__<"div">;
   formWrapper?: Flex__<"div">;
-  title?: Flex__<"div">;
-  heading?: Flex__<"div">;
   loginForm?: Flex__<typeof Login>;
-  form?: Flex__<"div">;
-  buttonWrapper?: Flex__<"div">;
-  dividerWrapper?: Flex__<"div">;
-  text3?: Flex__<"div">;
-  buttonWrapper2?: Flex__<"div">;
-  buttonGoogle?: Flex__<typeof ButtonGoogle>;
-  buttonApple?: Flex__<typeof ButtonApple>;
+  pageLoader?: Flex__<typeof PageLoader>;
 };
 
 export interface DefaultConnexionProps {}
@@ -157,34 +142,13 @@ function PlasmicConnexion__RenderFunc(props: {
 
   const $globalActions = useGlobalActions?.();
 
-  let [$queries, setDollarQueries] = React.useState<
-    Record<string, ReturnType<typeof usePlasmicDataOp>>
-  >({});
   const stateSpecs: Parameters<typeof useDollarState>[0] = React.useMemo(
     () => [
       {
-        path: "email",
+        path: "user",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => ""
-      },
-      {
-        path: "password",
-        type: "private",
-        variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => ""
-      },
-      {
-        path: "result",
-        type: "private",
-        variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => ""
-      },
-      {
-        path: "erreur",
-        type: "private",
-        variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => false
+        initFunc: ({ $props, $state, $queries, $ctx }) => "null6"
       },
       {
         path: "loginForm.email",
@@ -204,29 +168,9 @@ function PlasmicConnexion__RenderFunc(props: {
   const $state = useDollarState(stateSpecs, {
     $props,
     $ctx,
-    $queries: $queries,
+    $queries: {},
     $refs
   });
-
-  const new$Queries: Record<string, ReturnType<typeof usePlasmicDataOp>> = {
-    componentData3: usePlasmicDataOp(() => {
-      return {
-        sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
-        opId: "3e2b2c3d-d9c3-4adf-82cc-33d2b65409f4",
-        userArgs: {
-          filters: [$ctx.SupabaseUser.user.id]
-        },
-        cacheKey: `plasmic.$.3e2b2c3d-d9c3-4adf-82cc-33d2b65409f4.$.`,
-        invalidatedKeys: null,
-        roleId: null
-      };
-    })
-  };
-  if (Object.keys(new$Queries).some(k => new$Queries[k] !== $queries[k])) {
-    setDollarQueries(new$Queries);
-
-    $queries = new$Queries;
-  }
 
   const globalVariants = ensureGlobalVariants({
     screen: useScreenVariantshm8Nko4B5BDd()
@@ -269,8 +213,54 @@ function PlasmicConnexion__RenderFunc(props: {
             projectcss.plasmic_tokens,
             plasmic_antd_5_hostless_css.plasmic_tokens,
             plasmic_library_tailwind_3_4_number_tokens_css.plasmic_tokens,
+            plasmic_plasmic_rich_components_css.plasmic_tokens,
             sty.connexion
           )}
+          onLoad={async event => {
+            const $steps = {};
+
+            $steps["goToPage"] = true
+              ? (() => {
+                  const actionArgs = {
+                    destination: (() => {
+                      try {
+                        return $ctx.SupabaseUser.user.user_metadata.role ===
+                          "Company"
+                          ? "offre-employeur"
+                          : "/";
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return undefined;
+                        }
+                        throw e;
+                      }
+                    })()
+                  };
+                  return (({ destination }) => {
+                    if (
+                      typeof destination === "string" &&
+                      destination.startsWith("#")
+                    ) {
+                      document
+                        .getElementById(destination.substr(1))
+                        .scrollIntoView({ behavior: "smooth" });
+                    } else {
+                      __nextRouter?.push(destination);
+                    }
+                  })?.apply(null, [actionArgs]);
+                })()
+              : undefined;
+            if (
+              $steps["goToPage"] != null &&
+              typeof $steps["goToPage"] === "object" &&
+              typeof $steps["goToPage"].then === "function"
+            ) {
+              $steps["goToPage"] = await $steps["goToPage"];
+            }
+          }}
         >
           <div
             data-plasmic-name={"signIn"}
@@ -279,40 +269,42 @@ function PlasmicConnexion__RenderFunc(props: {
           >
             <Stack__
               as={"div"}
-              data-plasmic-name={"imageWrapper"}
-              data-plasmic-override={overrides.imageWrapper}
+              data-plasmic-name={"imageWrapper2"}
+              data-plasmic-override={overrides.imageWrapper2}
               hasGap={true}
-              className={classNames(projectcss.all, sty.imageWrapper)}
+              className={classNames(projectcss.all, sty.imageWrapper2)}
             >
               <Stack__
                 as={"div"}
-                data-plasmic-name={"logoWrapper"}
-                data-plasmic-override={overrides.logoWrapper}
+                data-plasmic-name={"logoWrapper2"}
+                data-plasmic-override={overrides.logoWrapper2}
                 hasGap={true}
-                className={classNames(projectcss.all, sty.logoWrapper)}
+                className={classNames(projectcss.all, sty.logoWrapper2)}
               >
                 <PictogramIcon
-                  className={classNames(projectcss.all, sty.svg__hs2Bq)}
+                  data-plasmic-name={"svg"}
+                  data-plasmic-override={overrides.svg}
+                  className={classNames(projectcss.all, sty.svg)}
                   role={"img"}
                 />
 
                 <div
-                  data-plasmic-name={"baseline"}
-                  data-plasmic-override={overrides.baseline}
-                  className={classNames(projectcss.all, sty.baseline)}
+                  data-plasmic-name={"baseline2"}
+                  data-plasmic-override={overrides.baseline2}
+                  className={classNames(projectcss.all, sty.baseline2)}
                 >
                   <Stack__
                     as={"div"}
-                    data-plasmic-name={"frame"}
-                    data-plasmic-override={overrides.frame}
+                    data-plasmic-name={"frame4"}
+                    data-plasmic-override={overrides.frame4}
                     hasGap={true}
-                    className={classNames(projectcss.all, sty.frame)}
+                    className={classNames(projectcss.all, sty.frame4)}
                   >
                     <div
                       className={classNames(
                         projectcss.all,
                         projectcss.__wab_text,
-                        sty.text__lTs63
+                        sty.text__f8Msj
                       )}
                     >
                       {"JOB"}
@@ -320,16 +312,16 @@ function PlasmicConnexion__RenderFunc(props: {
                   </Stack__>
                   <Stack__
                     as={"div"}
-                    data-plasmic-name={"frame2"}
-                    data-plasmic-override={overrides.frame2}
+                    data-plasmic-name={"frame5"}
+                    data-plasmic-override={overrides.frame5}
                     hasGap={true}
-                    className={classNames(projectcss.all, sty.frame2)}
+                    className={classNames(projectcss.all, sty.frame5)}
                   >
                     <div
                       className={classNames(
                         projectcss.all,
                         projectcss.__wab_text,
-                        sty.text__cv3QR
+                        sty.text__cheZj
                       )}
                     >
                       {"AROUND"}
@@ -337,16 +329,16 @@ function PlasmicConnexion__RenderFunc(props: {
                   </Stack__>
                   <Stack__
                     as={"div"}
-                    data-plasmic-name={"frame3"}
-                    data-plasmic-override={overrides.frame3}
+                    data-plasmic-name={"frame6"}
+                    data-plasmic-override={overrides.frame6}
                     hasGap={true}
-                    className={classNames(projectcss.all, sty.frame3)}
+                    className={classNames(projectcss.all, sty.frame6)}
                   >
                     <div
                       className={classNames(
                         projectcss.all,
                         projectcss.__wab_text,
-                        sty.text__rOwCs
+                        sty.text__j34TO
                       )}
                     >
                       {"ME"}
@@ -362,23 +354,6 @@ function PlasmicConnexion__RenderFunc(props: {
               hasGap={true}
               className={classNames(projectcss.all, sty.formWrapper)}
             >
-              <div
-                data-plasmic-name={"title"}
-                data-plasmic-override={overrides.title}
-                className={classNames(projectcss.all, sty.title)}
-              >
-                <div
-                  data-plasmic-name={"heading"}
-                  data-plasmic-override={overrides.heading}
-                  className={classNames(
-                    projectcss.all,
-                    projectcss.__wab_text,
-                    sty.heading
-                  )}
-                >
-                  {"Connexion"}
-                </div>
-              </div>
               <Login
                 data-plasmic-name={"loginForm"}
                 data-plasmic-override={overrides.loginForm}
@@ -387,6 +362,7 @@ function PlasmicConnexion__RenderFunc(props: {
                 createAccountText={"Créer un compte"}
                 email={generateStateValueProp($state, ["loginForm", "email"])}
                 emailLabel={"Email"}
+                forgotPasswordPosition={"left"}
                 forgotPasswordText={"Mot de passe oubli\u00e9 ?"}
                 inputStyle={"simple"}
                 onEmailChange={async (...eventArgs: any) => {
@@ -434,7 +410,19 @@ function PlasmicConnexion__RenderFunc(props: {
                                 throw e;
                               }
                             })(),
-                            "/"
+                            (() => {
+                              try {
+                                return undefined;
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return undefined;
+                                }
+                                throw e;
+                              }
+                            })()
                           ]
                         };
                         return $globalActions[
@@ -451,7 +439,28 @@ function PlasmicConnexion__RenderFunc(props: {
                       "invokeGlobalAction"
                     ];
                   }
+
+                  $steps["invokeGlobalAction2"] = true
+                    ? (() => {
+                        const actionArgs = {
+                          args: ["success", "bonjour", undefined, 10]
+                        };
+                        return $globalActions[
+                          "plasmic-antd5-config-provider.showNotification"
+                        ]?.apply(null, [...actionArgs.args]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["invokeGlobalAction2"] != null &&
+                    typeof $steps["invokeGlobalAction2"] === "object" &&
+                    typeof $steps["invokeGlobalAction2"].then === "function"
+                  ) {
+                    $steps["invokeGlobalAction2"] = await $steps[
+                      "invokeGlobalAction2"
+                    ];
+                  }
                 }}
+                padding={"40px 8px"}
                 password={generateStateValueProp($state, [
                   "loginForm",
                   "password"
@@ -459,107 +468,80 @@ function PlasmicConnexion__RenderFunc(props: {
                 passwordLabel={"Mot de passe"}
                 placeholderEmail={"Entrez votre email"}
                 placeholderPassword={"Entrez votre mot de passe"}
-                showCreateAccount={true}
+                showBottomSignupLink={true}
+                showPasswordToggle={true}
+                showSocialOAuth={false}
+                signUpLinkText={"Pas encore de compte ? INSCRIPTION"}
                 submitButtonText={"Connexion"}
                 title={"Connexion"}
                 titleHeading={"h1"}
                 wrapperStyle={"card"}
               />
-
-              <Stack__
-                as={"div"}
-                data-plasmic-name={"form"}
-                data-plasmic-override={overrides.form}
-                hasGap={true}
-                className={classNames(projectcss.all, sty.form)}
-              >
-                <Stack__
-                  as={"div"}
-                  data-plasmic-name={"buttonWrapper"}
-                  data-plasmic-override={overrides.buttonWrapper}
-                  hasGap={true}
-                  className={classNames(projectcss.all, sty.buttonWrapper)}
-                >
-                  <Stack__
-                    as={"div"}
-                    data-plasmic-name={"dividerWrapper"}
-                    data-plasmic-override={overrides.dividerWrapper}
-                    hasGap={true}
-                    className={classNames(projectcss.all, sty.dividerWrapper)}
-                  >
-                    <div
-                      className={classNames(projectcss.all, sty.freeBox__tS3Wq)}
-                    >
-                      <DividerLineIcon
-                        className={classNames(projectcss.all, sty.svg___0RuW)}
-                        role={"img"}
-                      />
-                    </div>
-                    <div
-                      data-plasmic-name={"text3"}
-                      data-plasmic-override={overrides.text3}
-                      className={classNames(
-                        projectcss.all,
-                        projectcss.__wab_text,
-                        sty.text3
-                      )}
-                    >
-                      {"OU"}
-                    </div>
-                    <div
-                      className={classNames(
-                        projectcss.all,
-                        sty.freeBox___6HbP2
-                      )}
-                    >
-                      <DividerLineIcon
-                        className={classNames(projectcss.all, sty.svg__pExzs)}
-                        role={"img"}
-                      />
-                    </div>
-                  </Stack__>
-                  <Stack__
-                    as={"div"}
-                    data-plasmic-name={"buttonWrapper2"}
-                    data-plasmic-override={overrides.buttonWrapper2}
-                    hasGap={true}
-                    className={classNames(projectcss.all, sty.buttonWrapper2)}
-                  >
-                    <ButtonGoogle
-                      data-plasmic-name={"buttonGoogle"}
-                      data-plasmic-override={overrides.buttonGoogle}
-                      className={classNames("__wab_instance", sty.buttonGoogle)}
-                      hierarchy={"primary"}
-                      icon={"start"}
-                      iconImage={
-                        "/plasmic/jam_production_🚀/images/iconSocialsGoogle.svg"
-                      }
-                      label={"GOOGLE"}
-                      onClick={async () => {
-                        const $steps = {};
-                      }}
-                      size={"large"}
-                      state={"default"}
-                    />
-
-                    <ButtonApple
-                      data-plasmic-name={"buttonApple"}
-                      data-plasmic-override={overrides.buttonApple}
-                      className={classNames("__wab_instance", sty.buttonApple)}
-                      hierarchy={"primary"}
-                      icon={"start"}
-                      iconImage={
-                        "/plasmic/jam_production_🚀/images/iconSocialsApple.svg"
-                      }
-                      label={"APPLE"}
-                      size={"large"}
-                      state={"default"}
-                    />
-                  </Stack__>
-                </Stack__>
-              </Stack__>
             </Stack__>
           </div>
+          <PageLoader
+            data-plasmic-name={"pageLoader"}
+            data-plasmic-override={overrides.pageLoader}
+            className={classNames("__wab_instance", sty.pageLoader)}
+            onMount={async () => {
+              const $steps = {};
+
+              $steps["goToPage"] = true
+                ? (() => {
+                    const actionArgs = {
+                      destination: (() => {
+                        try {
+                          return $ctx.SupabaseUser.user.user_metadata.role ===
+                            "Company"
+                            ? "offre-employeur"
+                            : "/";
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return undefined;
+                          }
+                          throw e;
+                        }
+                      })()
+                    };
+                    return (({ destination }) => {
+                      if (
+                        typeof destination === "string" &&
+                        destination.startsWith("#")
+                      ) {
+                        document
+                          .getElementById(destination.substr(1))
+                          .scrollIntoView({ behavior: "smooth" });
+                      } else {
+                        __nextRouter?.push(destination);
+                      }
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["goToPage"] != null &&
+                typeof $steps["goToPage"] === "object" &&
+                typeof $steps["goToPage"].then === "function"
+              ) {
+                $steps["goToPage"] = await $steps["goToPage"];
+              }
+            }}
+            shouldRun={(() => {
+              try {
+                return $ctx.SupabaseUser.user !== null;
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return true;
+                }
+                throw e;
+              }
+            })()}
+          />
         </div>
       </div>
     </React.Fragment>
@@ -570,95 +552,54 @@ const PlasmicDescendants = {
   connexion: [
     "connexion",
     "signIn",
-    "imageWrapper",
-    "logoWrapper",
-    "baseline",
-    "frame",
-    "frame2",
-    "frame3",
+    "imageWrapper2",
+    "logoWrapper2",
+    "svg",
+    "baseline2",
+    "frame4",
+    "frame5",
+    "frame6",
     "formWrapper",
-    "title",
-    "heading",
     "loginForm",
-    "form",
-    "buttonWrapper",
-    "dividerWrapper",
-    "text3",
-    "buttonWrapper2",
-    "buttonGoogle",
-    "buttonApple"
+    "pageLoader"
   ],
   signIn: [
     "signIn",
-    "imageWrapper",
-    "logoWrapper",
-    "baseline",
-    "frame",
-    "frame2",
-    "frame3",
+    "imageWrapper2",
+    "logoWrapper2",
+    "svg",
+    "baseline2",
+    "frame4",
+    "frame5",
+    "frame6",
     "formWrapper",
-    "title",
-    "heading",
-    "loginForm",
-    "form",
-    "buttonWrapper",
-    "dividerWrapper",
-    "text3",
-    "buttonWrapper2",
-    "buttonGoogle",
-    "buttonApple"
+    "loginForm"
   ],
-  imageWrapper: [
-    "imageWrapper",
-    "logoWrapper",
-    "baseline",
-    "frame",
-    "frame2",
-    "frame3"
+  imageWrapper2: [
+    "imageWrapper2",
+    "logoWrapper2",
+    "svg",
+    "baseline2",
+    "frame4",
+    "frame5",
+    "frame6"
   ],
-  logoWrapper: ["logoWrapper", "baseline", "frame", "frame2", "frame3"],
-  baseline: ["baseline", "frame", "frame2", "frame3"],
-  frame: ["frame"],
-  frame2: ["frame2"],
-  frame3: ["frame3"],
-  formWrapper: [
-    "formWrapper",
-    "title",
-    "heading",
-    "loginForm",
-    "form",
-    "buttonWrapper",
-    "dividerWrapper",
-    "text3",
-    "buttonWrapper2",
-    "buttonGoogle",
-    "buttonApple"
+  logoWrapper2: [
+    "logoWrapper2",
+    "svg",
+    "baseline2",
+    "frame4",
+    "frame5",
+    "frame6"
   ],
-  title: ["title", "heading"],
-  heading: ["heading"],
+  svg: ["svg"],
+  baseline2: ["baseline2", "frame4", "frame5", "frame6"],
+  frame4: ["frame4"],
+  frame5: ["frame5"],
+  frame6: ["frame6"],
+  formWrapper: ["formWrapper", "loginForm"],
   loginForm: ["loginForm"],
-  form: [
-    "form",
-    "buttonWrapper",
-    "dividerWrapper",
-    "text3",
-    "buttonWrapper2",
-    "buttonGoogle",
-    "buttonApple"
-  ],
-  buttonWrapper: [
-    "buttonWrapper",
-    "dividerWrapper",
-    "text3",
-    "buttonWrapper2",
-    "buttonGoogle",
-    "buttonApple"
-  ],
-  dividerWrapper: ["dividerWrapper", "text3"],
-  text3: ["text3"],
-  buttonWrapper2: ["buttonWrapper2", "buttonGoogle", "buttonApple"],
-  buttonGoogle: ["buttonGoogle"],
-  buttonApple: ["buttonApple"]
+  pageLoader: ["pageLoader"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -666,23 +607,16 @@ type DescendantsType<T extends NodeNameType> =
 type NodeDefaultElementType = {
   connexion: "div";
   signIn: "div";
-  imageWrapper: "div";
-  logoWrapper: "div";
-  baseline: "div";
-  frame: "div";
-  frame2: "div";
-  frame3: "div";
+  imageWrapper2: "div";
+  logoWrapper2: "div";
+  svg: "svg";
+  baseline2: "div";
+  frame4: "div";
+  frame5: "div";
+  frame6: "div";
   formWrapper: "div";
-  title: "div";
-  heading: "div";
   loginForm: typeof Login;
-  form: "div";
-  buttonWrapper: "div";
-  dividerWrapper: "div";
-  text3: "div";
-  buttonWrapper2: "div";
-  buttonGoogle: typeof ButtonGoogle;
-  buttonApple: typeof ButtonApple;
+  pageLoader: typeof PageLoader;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -746,23 +680,16 @@ export const PlasmicConnexion = Object.assign(
   {
     // Helper components rendering sub-elements
     signIn: makeNodeComponent("signIn"),
-    imageWrapper: makeNodeComponent("imageWrapper"),
-    logoWrapper: makeNodeComponent("logoWrapper"),
-    baseline: makeNodeComponent("baseline"),
-    frame: makeNodeComponent("frame"),
-    frame2: makeNodeComponent("frame2"),
-    frame3: makeNodeComponent("frame3"),
+    imageWrapper2: makeNodeComponent("imageWrapper2"),
+    logoWrapper2: makeNodeComponent("logoWrapper2"),
+    svg: makeNodeComponent("svg"),
+    baseline2: makeNodeComponent("baseline2"),
+    frame4: makeNodeComponent("frame4"),
+    frame5: makeNodeComponent("frame5"),
+    frame6: makeNodeComponent("frame6"),
     formWrapper: makeNodeComponent("formWrapper"),
-    title: makeNodeComponent("title"),
-    heading: makeNodeComponent("heading"),
     loginForm: makeNodeComponent("loginForm"),
-    form: makeNodeComponent("form"),
-    buttonWrapper: makeNodeComponent("buttonWrapper"),
-    dividerWrapper: makeNodeComponent("dividerWrapper"),
-    text3: makeNodeComponent("text3"),
-    buttonWrapper2: makeNodeComponent("buttonWrapper2"),
-    buttonGoogle: makeNodeComponent("buttonGoogle"),
-    buttonApple: makeNodeComponent("buttonApple"),
+    pageLoader: makeNodeComponent("pageLoader"),
 
     // Metadata about props expected for PlasmicConnexion
     internalVariantProps: PlasmicConnexion__VariantProps,

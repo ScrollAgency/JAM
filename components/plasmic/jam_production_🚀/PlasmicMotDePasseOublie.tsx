@@ -74,6 +74,7 @@ import "@plasmicapp/react-web/lib/plasmic.css";
 
 import plasmic_antd_5_hostless_css from "../antd_5_hostless/plasmic.module.css"; // plasmic-import: ohDidvG9XsCeFumugENU3J/projectcss
 import plasmic_library_tailwind_3_4_number_tokens_css from "../library_tailwind_3_4_number_tokens/plasmic.module.css"; // plasmic-import: 4vjRXvnb4XuY6J15w9oRcQ/projectcss
+import plasmic_plasmic_rich_components_css from "../plasmic_rich_components/plasmic.module.css"; // plasmic-import: jkU633o1Cz7HrJdwdxhVHk/projectcss
 import projectcss from "./plasmic.module.css"; // plasmic-import: f7DE9y7qp46fyCw5nuY8f9/projectcss
 import sty from "./PlasmicMotDePasseOublie.module.css"; // plasmic-import: nZQjprv2Kf2z/css
 
@@ -101,6 +102,7 @@ export type PlasmicMotDePasseOublie__OverridesType = {
   frame?: Flex__<"div">;
   frame2?: Flex__<"div">;
   frame3?: Flex__<"div">;
+  freeBox?: Flex__<"div">;
   forgotPassword?: Flex__<typeof ForgotPassword>;
 };
 
@@ -152,10 +154,10 @@ function PlasmicMotDePasseOublie__RenderFunc(props: {
   const stateSpecs: Parameters<typeof useDollarState>[0] = React.useMemo(
     () => [
       {
-        path: "email",
+        path: "succrss",
         type: "private",
-        variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => ""
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $ctx }) => false
       },
       {
         path: "forgotPassword.email",
@@ -234,6 +236,7 @@ function PlasmicMotDePasseOublie__RenderFunc(props: {
             projectcss.plasmic_tokens,
             plasmic_antd_5_hostless_css.plasmic_tokens,
             plasmic_library_tailwind_3_4_number_tokens_css.plasmic_tokens,
+            plasmic_plasmic_rich_components_css.plasmic_tokens,
             sty.root
           )}
         >
@@ -322,71 +325,77 @@ function PlasmicMotDePasseOublie__RenderFunc(props: {
                 </div>
               </Stack__>
             </Stack__>
-            <ForgotPassword
-              data-plasmic-name={"forgotPassword"}
-              data-plasmic-override={overrides.forgotPassword}
-              cancelButtonStyle={"tertiary"}
-              cancelButtonText={"Annuler"}
-              className={classNames("__wab_instance", sty.forgotPassword)}
-              descriptionText={
-                "Pas de panique, nous allons vous envoyer un e-mail pour vous aider à réinitialiser votre mot de passe."
-              }
-              email={generateStateValueProp($state, [
-                "forgotPassword",
-                "email"
-              ])}
-              emailLabel={"Email"}
-              inputStyle={"simple"}
-              onEmailChange={async (...eventArgs: any) => {
-                generateStateOnChangeProp($state, [
+            <div
+              data-plasmic-name={"freeBox"}
+              data-plasmic-override={overrides.freeBox}
+              className={classNames(projectcss.all, sty.freeBox)}
+            >
+              <ForgotPassword
+                data-plasmic-name={"forgotPassword"}
+                data-plasmic-override={overrides.forgotPassword}
+                cancelButtonStyle={"tertiary"}
+                cancelButtonText={"Annuler"}
+                className={classNames("__wab_instance", sty.forgotPassword)}
+                descriptionText={
+                  "Pas de panique, nous allons vous envoyer un e-mail pour vous aider à réinitialiser votre mot de passe."
+                }
+                email={generateStateValueProp($state, [
                   "forgotPassword",
                   "email"
-                ]).apply(null, eventArgs);
-              }}
-              onSubmit={async event => {
-                const $steps = {};
+                ])}
+                emailLabel={"Email"}
+                inputStyle={"simple"}
+                onEmailChange={async (...eventArgs: any) => {
+                  generateStateOnChangeProp($state, [
+                    "forgotPassword",
+                    "email"
+                  ]).apply(null, eventArgs);
+                }}
+                onSubmit={async event => {
+                  const $steps = {};
 
-                $steps["invokeGlobalAction"] = true
-                  ? (() => {
-                      const actionArgs = {
-                        args: [
-                          (() => {
-                            try {
-                              return $state.forgotPassword.email.target.value;
-                            } catch (e) {
-                              if (
-                                e instanceof TypeError ||
-                                e?.plasmicType === "PlasmicUndefinedDataError"
-                              ) {
-                                return undefined;
+                  $steps["invokeGlobalAction"] = true
+                    ? (() => {
+                        const actionArgs = {
+                          args: [
+                            (() => {
+                              try {
+                                return $state.forgotPassword.email.target.value;
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return undefined;
+                                }
+                                throw e;
                               }
-                              throw e;
-                            }
-                          })()
-                        ]
-                      };
-                      return $globalActions[
-                        "SupabaseUserGlobalContext.resetPasswordForEmail"
-                      ]?.apply(null, [...actionArgs.args]);
-                    })()
-                  : undefined;
-                if (
-                  $steps["invokeGlobalAction"] != null &&
-                  typeof $steps["invokeGlobalAction"] === "object" &&
-                  typeof $steps["invokeGlobalAction"].then === "function"
-                ) {
-                  $steps["invokeGlobalAction"] = await $steps[
-                    "invokeGlobalAction"
-                  ];
-                }
-              }}
-              placeholderEmail={"Entrez votre email"}
-              submitButtonStyle={"primary"}
-              submitButtonText={"Réinitialiser"}
-              title={"Mot de passe oublié ?"}
-              titleHeading={"h1"}
-              wrapperStyle={"card"}
-            />
+                            })()
+                          ]
+                        };
+                        return $globalActions[
+                          "SupabaseUserGlobalContext.resetPasswordForEmail"
+                        ]?.apply(null, [...actionArgs.args]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["invokeGlobalAction"] != null &&
+                    typeof $steps["invokeGlobalAction"] === "object" &&
+                    typeof $steps["invokeGlobalAction"].then === "function"
+                  ) {
+                    $steps["invokeGlobalAction"] = await $steps[
+                      "invokeGlobalAction"
+                    ];
+                  }
+                }}
+                placeholderEmail={"Entrez votre email"}
+                submitButtonStyle={"primary"}
+                submitButtonText={"Réinitialiser"}
+                title={"Mot de passe oublié ?"}
+                titleHeading={"h1"}
+                wrapperStyle={"card"}
+              />
+            </div>
           </div>
         </div>
       </div>
@@ -405,6 +414,7 @@ const PlasmicDescendants = {
     "frame",
     "frame2",
     "frame3",
+    "freeBox",
     "forgotPassword"
   ],
   passwordForgotten: [
@@ -416,6 +426,7 @@ const PlasmicDescendants = {
     "frame",
     "frame2",
     "frame3",
+    "freeBox",
     "forgotPassword"
   ],
   imageWrapper: [
@@ -433,6 +444,7 @@ const PlasmicDescendants = {
   frame: ["frame"],
   frame2: ["frame2"],
   frame3: ["frame3"],
+  freeBox: ["freeBox", "forgotPassword"],
   forgotPassword: ["forgotPassword"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
@@ -448,6 +460,7 @@ type NodeDefaultElementType = {
   frame: "div";
   frame2: "div";
   frame3: "div";
+  freeBox: "div";
   forgotPassword: typeof ForgotPassword;
 };
 
@@ -519,6 +532,7 @@ export const PlasmicMotDePasseOublie = Object.assign(
     frame: makeNodeComponent("frame"),
     frame2: makeNodeComponent("frame2"),
     frame3: makeNodeComponent("frame3"),
+    freeBox: makeNodeComponent("freeBox"),
     forgotPassword: makeNodeComponent("forgotPassword"),
 
     // Metadata about props expected for PlasmicMotDePasseOublie
