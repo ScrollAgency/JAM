@@ -2090,10 +2090,6 @@ function PlasmicAccueil__RenderFunc(props: {
               ) {
                 return;
               }
-
-              (async val => {
-                const $steps = {};
-              }).apply(null, eventArgs);
             }}
             showFooter={false}
             showHeader={false}
