@@ -66,6 +66,7 @@ import {
   usePlasmicInvalidate
 } from "@plasmicapp/react-web/lib/data-sources";
 
+import { PageLoader } from "../../utils/PageLoader"; // plasmic-import: FHDrnDhA4DZe/codeComponent
 import MobileNavbarTop from "../../MobileNavbarTop"; // plasmic-import: mAg8Ml3XUEhy/component
 import Sidebar from "../../Sidebar"; // plasmic-import: M06HuWMcBQV2/component
 import { JobCard } from "../../cards/JobCard/JobCard"; // plasmic-import: epi6kICoBl8S/codeComponent
@@ -130,6 +131,7 @@ export const PlasmicMesAnnonces__ArgProps = new Array<ArgPropType>();
 
 export type PlasmicMesAnnonces__OverridesType = {
   annonces?: Flex__<"div">;
+  pageLoader?: Flex__<typeof PageLoader>;
   mobileNavbarTop?: Flex__<typeof MobileNavbarTop>;
   sidebar?: Flex__<typeof Sidebar>;
   main?: Flex__<"div">;
@@ -631,6 +633,37 @@ function PlasmicMesAnnonces__RenderFunc(props: {
             sty.annonces
           )}
         >
+          <PageLoader
+            data-plasmic-name={"pageLoader"}
+            data-plasmic-override={overrides.pageLoader}
+            className={classNames("__wab_instance", sty.pageLoader)}
+            onMount={async () => {
+              const $steps = {};
+
+              $steps["refreshData"] = true
+                ? (() => {
+                    const actionArgs = {
+                      queryInvalidation: ["plasmic_refresh_all"]
+                    };
+                    return (async ({ queryInvalidation }) => {
+                      if (!queryInvalidation) {
+                        return;
+                      }
+                      await plasmicInvalidate(queryInvalidation);
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["refreshData"] != null &&
+                typeof $steps["refreshData"] === "object" &&
+                typeof $steps["refreshData"].then === "function"
+              ) {
+                $steps["refreshData"] = await $steps["refreshData"];
+              }
+            }}
+            shouldRun={false}
+          />
+
           <MobileNavbarTop
             data-plasmic-name={"mobileNavbarTop"}
             data-plasmic-override={overrides.mobileNavbarTop}
@@ -4984,6 +5017,7 @@ function PlasmicMesAnnonces__RenderFunc(props: {
 const PlasmicDescendants = {
   annonces: [
     "annonces",
+    "pageLoader",
     "mobileNavbarTop",
     "sidebar",
     "main",
@@ -5099,6 +5133,7 @@ const PlasmicDescendants = {
     "fileUploader2",
     "textInput6"
   ],
+  pageLoader: ["pageLoader"],
   mobileNavbarTop: ["mobileNavbarTop"],
   sidebar: ["sidebar"],
   main: [
@@ -5661,6 +5696,7 @@ type DescendantsType<T extends NodeNameType> =
   (typeof PlasmicDescendants)[T][number];
 type NodeDefaultElementType = {
   annonces: "div";
+  pageLoader: typeof PageLoader;
   mobileNavbarTop: typeof MobileNavbarTop;
   sidebar: typeof Sidebar;
   main: "div";
@@ -5837,6 +5873,7 @@ export const PlasmicMesAnnonces = Object.assign(
   makeNodeComponent("annonces"),
   {
     // Helper components rendering sub-elements
+    pageLoader: makeNodeComponent("pageLoader"),
     mobileNavbarTop: makeNodeComponent("mobileNavbarTop"),
     sidebar: makeNodeComponent("sidebar"),
     main: makeNodeComponent("main"),

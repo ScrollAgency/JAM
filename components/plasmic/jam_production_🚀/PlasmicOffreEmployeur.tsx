@@ -93,7 +93,6 @@ import { SmartLoader } from "../../utils/SmartLoader"; // plasmic-import: YAp2GW
 import { AntdInput } from "@plasmicpkgs/antd5/skinny/registerInput";
 import { inputHelpers as AntdInput_Helpers } from "@plasmicpkgs/antd5/skinny/registerInput";
 import ProductCard from "../../ProductCard"; // plasmic-import: XNMQC2V0FBMZ/component
-import { AlertManager } from "../../alerts/AlertManager/AlertManager"; // plasmic-import: vWsoh6ymTswC/codeComponent
 import MobileNavbarBottom2 from "../../MobileNavbarBottom2"; // plasmic-import: gAnwjyfMiBe9/component
 import { InputComboSelect } from "../../InputComboSelect/InputComboSelect"; // plasmic-import: KwvhXarw-EVS/codeComponent
 import { Fetcher } from "@plasmicapp/react-web/lib/data-sources";
@@ -254,7 +253,6 @@ export type PlasmicOffreEmployeur__OverridesType = {
   e?: Flex__<"div">;
   modalOnboarding?: Flex__<"div">;
   stripeCancel?: Flex__<typeof PageLoader>;
-  onboardingDone?: Flex__<typeof PageLoader>;
   stripeCheckout?: Flex__<typeof SmartLoader>;
   modal?: Flex__<"div">;
   close?: Flex__<"div">;
@@ -315,7 +313,6 @@ export type PlasmicOffreEmployeur__OverridesType = {
   buttonBack?: Flex__<typeof Button>;
   buttonSubscription?: Flex__<typeof Button>;
   step2?: Flex__<"div">;
-  step3?: Flex__<"div">;
   mobileNavbarBottom2?: Flex__<typeof MobileNavbarBottom2>;
   insufficientCharges?: Flex__<typeof Modal>;
   button?: Flex__<typeof JamButton>;
@@ -9997,64 +9994,6 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                 })()}
               />
 
-              <PageLoader
-                data-plasmic-name={"onboardingDone"}
-                data-plasmic-override={overrides.onboardingDone}
-                className={classNames("__wab_instance", sty.onboardingDone)}
-                onMount={async () => {
-                  const $steps = {};
-
-                  $steps["updateOnboardingStep"] = true
-                    ? (() => {
-                        const actionArgs = {
-                          variable: {
-                            objRoot: $state,
-                            variablePath: ["onboardingStep"]
-                          },
-                          operation: 0,
-                          value: 2
-                        };
-                        return (({
-                          variable,
-                          value,
-                          startIndex,
-                          deleteCount
-                        }) => {
-                          if (!variable) {
-                            return;
-                          }
-                          const { objRoot, variablePath } = variable;
-
-                          $stateSet(objRoot, variablePath, value);
-                          return value;
-                        })?.apply(null, [actionArgs]);
-                      })()
-                    : undefined;
-                  if (
-                    $steps["updateOnboardingStep"] != null &&
-                    typeof $steps["updateOnboardingStep"] === "object" &&
-                    typeof $steps["updateOnboardingStep"].then === "function"
-                  ) {
-                    $steps["updateOnboardingStep"] = await $steps[
-                      "updateOnboardingStep"
-                    ];
-                  }
-                }}
-                shouldRun={(() => {
-                  try {
-                    return $ctx.query.onboarding === "done";
-                  } catch (e) {
-                    if (
-                      e instanceof TypeError ||
-                      e?.plasmicType === "PlasmicUndefinedDataError"
-                    ) {
-                      return true;
-                    }
-                    throw e;
-                  }
-                })()}
-              />
-
               <SmartLoader
                 data-plasmic-name={"stripeCheckout"}
                 data-plasmic-override={overrides.stripeCheckout}
@@ -10497,57 +10436,59 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                 action3={async () => {
                   const $steps = {};
 
-                  $steps["createUserStripeInfos"] = true
-                    ? (() => {
-                        const actionArgs = {
-                          dataOp: {
-                            sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
-                            opId: "4be8fea2-429c-451c-b7e8-516e9773bdb3",
-                            userArgs: {
-                              variables: [
-                                $state.stripeCustomerId,
-                                $state.priceId,
-                                $state.productId,
-                                $state.productId === "prod_S81KBWHPyJa53z"
-                                  ? 0
-                                  : 2,
-                                $state.productId === "prod_S81KBWHPyJa53z"
-                                  ? 3
-                                  : 8,
-                                $state.productId === "prod_S81KBWHPyJa53z"
-                                  ? 1
-                                  : 4,
-                                $state.stripeSessionId,
-                                $state.stripeStatus,
-                                $state.stripeSubscriptionId,
-                                $ctx.SupabaseUser.user.id
-                              ]
+                  $steps["createUserStripeInfos"] =
+                    $state.stripeCreateAccount === true
+                      ? (() => {
+                          const actionArgs = {
+                            dataOp: {
+                              sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
+                              opId: "4be8fea2-429c-451c-b7e8-516e9773bdb3",
+                              userArgs: {
+                                variables: [
+                                  $state.stripeCustomerId,
+                                  $state.priceId,
+                                  $state.productId,
+                                  $state.productId === "prod_S81KBWHPyJa53z"
+                                    ? 0
+                                    : 2,
+                                  $state.productId === "prod_S81KBWHPyJa53z"
+                                    ? 3
+                                    : 8,
+                                  $state.productId === "prod_S81KBWHPyJa53z"
+                                    ? 1
+                                    : 4,
+                                  $state.stripeSessionId,
+                                  $state.stripeStatus,
+                                  $state.stripeSubscriptionId,
+                                  $ctx.SupabaseUser.user.id
+                                ]
+                              },
+                              cacheKey: null,
+                              invalidatedKeys: ["plasmic_refresh_all"],
+                              roleId: null
                             },
-                            cacheKey: null,
-                            invalidatedKeys: ["plasmic_refresh_all"],
-                            roleId: null
-                          }
-                        };
-                        return (async ({ dataOp, continueOnError }) => {
-                          try {
-                            const response = await executePlasmicDataOp(
-                              dataOp,
-                              {
-                                userAuthToken: dataSourcesCtx?.userAuthToken,
-                                user: dataSourcesCtx?.user
+                            continueOnError: false
+                          };
+                          return (async ({ dataOp, continueOnError }) => {
+                            try {
+                              const response = await executePlasmicDataOp(
+                                dataOp,
+                                {
+                                  userAuthToken: dataSourcesCtx?.userAuthToken,
+                                  user: dataSourcesCtx?.user
+                                }
+                              );
+                              await plasmicInvalidate(dataOp.invalidatedKeys);
+                              return response;
+                            } catch (e) {
+                              if (!continueOnError) {
+                                throw e;
                               }
-                            );
-                            await plasmicInvalidate(dataOp.invalidatedKeys);
-                            return response;
-                          } catch (e) {
-                            if (!continueOnError) {
-                              throw e;
+                              return e;
                             }
-                            return e;
-                          }
-                        })?.apply(null, [actionArgs]);
-                      })()
-                    : undefined;
+                          })?.apply(null, [actionArgs]);
+                        })()
+                      : undefined;
                   if (
                     $steps["createUserStripeInfos"] != null &&
                     typeof $steps["createUserStripeInfos"] === "object" &&
@@ -10599,6 +10540,43 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                   ) {
                     $steps["updateOnboardingTrue"] = await $steps[
                       "updateOnboardingTrue"
+                    ];
+                  }
+
+                  $steps["updateStripeCreateAccount"] = true
+                    ? (() => {
+                        const actionArgs = {
+                          variable: {
+                            objRoot: $state,
+                            variablePath: ["stripeCreateAccount"]
+                          },
+                          operation: 0,
+                          value: false
+                        };
+                        return (({
+                          variable,
+                          value,
+                          startIndex,
+                          deleteCount
+                        }) => {
+                          if (!variable) {
+                            return;
+                          }
+                          const { objRoot, variablePath } = variable;
+
+                          $stateSet(objRoot, variablePath, value);
+                          return value;
+                        })?.apply(null, [actionArgs]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["updateStripeCreateAccount"] != null &&
+                    typeof $steps["updateStripeCreateAccount"] === "object" &&
+                    typeof $steps["updateStripeCreateAccount"].then ===
+                      "function"
+                  ) {
+                    $steps["updateStripeCreateAccount"] = await $steps[
+                      "updateStripeCreateAccount"
                     ];
                   }
 
@@ -14205,36 +14183,10 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                 ) : null}
                 {(() => {
                   try {
-                    return $ctx.query.onboarding === "success";
-                  } catch (e) {
-                    if (
-                      e instanceof TypeError ||
-                      e?.plasmicType === "PlasmicUndefinedDataError"
-                    ) {
-                      return true;
-                    }
-                    throw e;
-                  }
-                })() ? (
-                  <div
-                    data-plasmic-name={"step2"}
-                    data-plasmic-override={overrides.step2}
-                    className={classNames(projectcss.all, sty.step2)}
-                  >
-                    <div
-                      className={classNames(
-                        projectcss.all,
-                        projectcss.__wab_text,
-                        sty.text__kkYol
-                      )}
-                    >
-                      {"Paiement effectu\u00e9"}
-                    </div>
-                  </div>
-                ) : null}
-                {(() => {
-                  try {
-                    return $ctx.query.onboarding === "done";
+                    return (
+                      $ctx.query.onboarding === "success" ||
+                      $ctx.query.onboarding === "done"
+                    );
                   } catch (e) {
                     if (
                       e instanceof TypeError ||
@@ -14247,10 +14199,10 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                 })() ? (
                   <Stack__
                     as={"div"}
-                    data-plasmic-name={"step3"}
-                    data-plasmic-override={overrides.step3}
+                    data-plasmic-name={"step2"}
+                    data-plasmic-override={overrides.step2}
                     hasGap={true}
-                    className={classNames(projectcss.all, sty.step3)}
+                    className={classNames(projectcss.all, sty.step2)}
                   >
                     <div
                       className={classNames(projectcss.all, sty.freeBox__napWg)}
@@ -14259,6 +14211,15 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                         className={classNames(projectcss.all, sty.svg__e2RWs)}
                         role={"img"}
                       />
+                    </div>
+                    <div
+                      className={classNames(
+                        projectcss.all,
+                        projectcss.__wab_text,
+                        sty.text__u3OT
+                      )}
+                    >
+                      {"Paiement effectu\u00e9"}
                     </div>
                     <div
                       className={classNames(
@@ -14371,54 +14332,6 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                     </div>
                   </Stack__>
                 ) : null}
-                {(() => {
-                  try {
-                    return $ctx.query.stripe === "cancel";
-                  } catch (e) {
-                    if (
-                      e instanceof TypeError ||
-                      e?.plasmicType === "PlasmicUndefinedDataError"
-                    ) {
-                      return true;
-                    }
-                    throw e;
-                  }
-                })() ? (
-                  <AlertManager
-                    alerts={["Paiement annul\u00e9"]}
-                    className={
-                      "error" +
-                      " " +
-                      classNames("__wab_instance", sty.alertManager__loWbw)
-                    }
-                    maxAlerts={3}
-                    position={"inline"}
-                  />
-                ) : null}
-                {(() => {
-                  try {
-                    return $ctx.query.stripe === "success";
-                  } catch (e) {
-                    if (
-                      e instanceof TypeError ||
-                      e?.plasmicType === "PlasmicUndefinedDataError"
-                    ) {
-                      return true;
-                    }
-                    throw e;
-                  }
-                })() ? (
-                  <AlertManager
-                    alerts={["Paiement effectu\u00e9 avec succ\u00e8s"]}
-                    className={
-                      "success" +
-                      " " +
-                      classNames("__wab_instance", sty.alertManager__ip4Ya)
-                    }
-                    maxAlerts={3}
-                    position={"inline"}
-                  />
-                ) : null}
                 <ProgressBar
                   className={classNames(
                     "__wab_instance",
@@ -14452,7 +14365,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                   })()}
                   step3={(() => {
                     try {
-                      return $state.onboardingStep === 2;
+                      return $ctx.query.onboarding === "success";
                     } catch (e) {
                       if (
                         e instanceof TypeError ||
@@ -15406,7 +15319,6 @@ const PlasmicDescendants = {
     "e",
     "modalOnboarding",
     "stripeCancel",
-    "onboardingDone",
     "stripeCheckout",
     "modal",
     "close",
@@ -15467,7 +15379,6 @@ const PlasmicDescendants = {
     "buttonBack",
     "buttonSubscription",
     "step2",
-    "step3",
     "mobileNavbarBottom2",
     "insufficientCharges",
     "button",
@@ -15804,7 +15715,6 @@ const PlasmicDescendants = {
   modalOnboarding: [
     "modalOnboarding",
     "stripeCancel",
-    "onboardingDone",
     "stripeCheckout",
     "modal",
     "close",
@@ -15864,11 +15774,9 @@ const PlasmicDescendants = {
     "actions",
     "buttonBack",
     "buttonSubscription",
-    "step2",
-    "step3"
+    "step2"
   ],
   stripeCancel: ["stripeCancel"],
-  onboardingDone: ["onboardingDone"],
   stripeCheckout: ["stripeCheckout"],
   modal: [
     "modal",
@@ -15929,8 +15837,7 @@ const PlasmicDescendants = {
     "actions",
     "buttonBack",
     "buttonSubscription",
-    "step2",
-    "step3"
+    "step2"
   ],
   close: ["close", "icon"],
   icon: ["icon"],
@@ -16095,7 +16002,6 @@ const PlasmicDescendants = {
   buttonBack: ["buttonBack"],
   buttonSubscription: ["buttonSubscription"],
   step2: ["step2"],
-  step3: ["step3"],
   mobileNavbarBottom2: ["mobileNavbarBottom2"],
   insufficientCharges: ["insufficientCharges", "button", "e3"],
   button: ["button"],
@@ -16259,7 +16165,6 @@ type NodeDefaultElementType = {
   e: "div";
   modalOnboarding: "div";
   stripeCancel: typeof PageLoader;
-  onboardingDone: typeof PageLoader;
   stripeCheckout: typeof SmartLoader;
   modal: "div";
   close: "div";
@@ -16320,7 +16225,6 @@ type NodeDefaultElementType = {
   buttonBack: typeof Button;
   buttonSubscription: typeof Button;
   step2: "div";
-  step3: "div";
   mobileNavbarBottom2: typeof MobileNavbarBottom2;
   insufficientCharges: typeof Modal;
   button: typeof JamButton;
@@ -16504,7 +16408,6 @@ export const PlasmicOffreEmployeur = Object.assign(
     e: makeNodeComponent("e"),
     modalOnboarding: makeNodeComponent("modalOnboarding"),
     stripeCancel: makeNodeComponent("stripeCancel"),
-    onboardingDone: makeNodeComponent("onboardingDone"),
     stripeCheckout: makeNodeComponent("stripeCheckout"),
     modal: makeNodeComponent("modal"),
     close: makeNodeComponent("close"),
@@ -16565,7 +16468,6 @@ export const PlasmicOffreEmployeur = Object.assign(
     buttonBack: makeNodeComponent("buttonBack"),
     buttonSubscription: makeNodeComponent("buttonSubscription"),
     step2: makeNodeComponent("step2"),
-    step3: makeNodeComponent("step3"),
     mobileNavbarBottom2: makeNodeComponent("mobileNavbarBottom2"),
     insufficientCharges: makeNodeComponent("insufficientCharges"),
     button: makeNodeComponent("button"),

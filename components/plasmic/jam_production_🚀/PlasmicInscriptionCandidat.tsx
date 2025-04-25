@@ -310,390 +310,388 @@ function PlasmicInscriptionCandidat__RenderFunc(props: {
         }
       `}</style>
 
-      <div className={projectcss.plasmic_page_wrapper}>
+      <div
+        data-plasmic-name={"inscription"}
+        data-plasmic-override={overrides.inscription}
+        data-plasmic-root={true}
+        data-plasmic-for-node={forNode}
+        className={classNames(
+          projectcss.all,
+          projectcss.root_reset,
+          projectcss.plasmic_default_styles,
+          projectcss.plasmic_mixins,
+          projectcss.plasmic_tokens,
+          plasmic_antd_5_hostless_css.plasmic_tokens,
+          plasmic_library_tailwind_3_4_number_tokens_css.plasmic_tokens,
+          plasmic_plasmic_rich_components_css.plasmic_tokens,
+          sty.inscription
+        )}
+      >
         <div
-          data-plasmic-name={"inscription"}
-          data-plasmic-override={overrides.inscription}
-          data-plasmic-root={true}
-          data-plasmic-for-node={forNode}
-          className={classNames(
-            projectcss.all,
-            projectcss.root_reset,
-            projectcss.plasmic_default_styles,
-            projectcss.plasmic_mixins,
-            projectcss.plasmic_tokens,
-            plasmic_antd_5_hostless_css.plasmic_tokens,
-            plasmic_library_tailwind_3_4_number_tokens_css.plasmic_tokens,
-            plasmic_plasmic_rich_components_css.plasmic_tokens,
-            sty.inscription
-          )}
+          data-plasmic-name={"signUp"}
+          data-plasmic-override={overrides.signUp}
+          className={classNames(projectcss.all, sty.signUp)}
         >
-          <div
-            data-plasmic-name={"signUp"}
-            data-plasmic-override={overrides.signUp}
-            className={classNames(projectcss.all, sty.signUp)}
+          <Stack__
+            as={"div"}
+            data-plasmic-name={"imageWrapper"}
+            data-plasmic-override={overrides.imageWrapper}
+            hasGap={true}
+            className={classNames(projectcss.all, sty.imageWrapper)}
           >
             <Stack__
               as={"div"}
-              data-plasmic-name={"imageWrapper"}
-              data-plasmic-override={overrides.imageWrapper}
+              data-plasmic-name={"logoWrapper"}
+              data-plasmic-override={overrides.logoWrapper}
               hasGap={true}
-              className={classNames(projectcss.all, sty.imageWrapper)}
+              className={classNames(projectcss.all, sty.logoWrapper)}
             >
+              <PictogramIcon
+                className={classNames(projectcss.all, sty.svg___6NpL)}
+                role={"img"}
+              />
+
+              <div
+                data-plasmic-name={"baseline"}
+                data-plasmic-override={overrides.baseline}
+                className={classNames(projectcss.all, sty.baseline)}
+              >
+                <Stack__
+                  as={"div"}
+                  data-plasmic-name={"frame"}
+                  data-plasmic-override={overrides.frame}
+                  hasGap={true}
+                  className={classNames(projectcss.all, sty.frame)}
+                >
+                  <div
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.__wab_text,
+                      sty.text__kxkvv
+                    )}
+                  >
+                    {"JOB"}
+                  </div>
+                </Stack__>
+                <Stack__
+                  as={"div"}
+                  data-plasmic-name={"frame2"}
+                  data-plasmic-override={overrides.frame2}
+                  hasGap={true}
+                  className={classNames(projectcss.all, sty.frame2)}
+                >
+                  <div
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.__wab_text,
+                      sty.text___6FkZm
+                    )}
+                  >
+                    {"AROUND"}
+                  </div>
+                </Stack__>
+                <Stack__
+                  as={"div"}
+                  data-plasmic-name={"frame3"}
+                  data-plasmic-override={overrides.frame3}
+                  hasGap={true}
+                  className={classNames(projectcss.all, sty.frame3)}
+                >
+                  <div
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.__wab_text,
+                      sty.text___3SDkI
+                    )}
+                  >
+                    {"ME"}
+                  </div>
+                </Stack__>
+              </div>
+            </Stack__>
+          </Stack__>
+          <Stack__
+            as={"div"}
+            data-plasmic-name={"formWrapper"}
+            data-plasmic-override={overrides.formWrapper}
+            hasGap={true}
+            className={classNames(projectcss.all, sty.formWrapper)}
+          >
+            {(() => {
+              try {
+                return $ctx.query.signup !== "success";
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return true;
+                }
+                throw e;
+              }
+            })() ? (
+              <div
+                data-plasmic-name={"signupLoading"}
+                data-plasmic-override={overrides.signupLoading}
+                className={classNames(projectcss.all, sty.signupLoading)}
+              >
+                <SignUp
+                  data-plasmic-name={"signUp3"}
+                  data-plasmic-override={overrides.signUp3}
+                  alertPosition={"top"}
+                  appleButtonText={"APPLE"}
+                  buttonAbordStyle={"tertiary"}
+                  buttonStyle={"primary"}
+                  className={classNames("__wab_instance", sty.signUp3)}
+                  confirmPassword={generateStateValueProp($state, [
+                    "signUp3",
+                    "confirmPassword"
+                  ])}
+                  confirmPasswordLabel={"Répétez le mot de passe"}
+                  countryCode={generateStateValueProp($state, [
+                    "signUp3",
+                    "countryCode"
+                  ])}
+                  email={generateStateValueProp($state, ["signUp3", "email"])}
+                  emailLabel={"Email"}
+                  eyeIconColor={"#666"}
+                  firstName={generateStateValueProp($state, [
+                    "signUp3",
+                    "firstName"
+                  ])}
+                  firstNameLabel={"Prénom"}
+                  googleButtonText={"GOOGLE"}
+                  inputStyle={"simple"}
+                  lastName={generateStateValueProp($state, [
+                    "signUp3",
+                    "lastName"
+                  ])}
+                  lastNameLabel={"Nom"}
+                  maxAlerts={3}
+                  oAuthButtonsPosition={"bottom"}
+                  oAuthSeparatorText={"ou"}
+                  onConfirmPasswordChange={async (...eventArgs: any) => {
+                    generateStateOnChangeProp($state, [
+                      "signUp3",
+                      "confirmPassword"
+                    ]).apply(null, eventArgs);
+                  }}
+                  onCountryCodeChange={async (...eventArgs: any) => {
+                    generateStateOnChangeProp($state, [
+                      "signUp3",
+                      "countryCode"
+                    ]).apply(null, eventArgs);
+                  }}
+                  onEmailChange={async (...eventArgs: any) => {
+                    generateStateOnChangeProp($state, [
+                      "signUp3",
+                      "email"
+                    ]).apply(null, eventArgs);
+                  }}
+                  onFirstNameChange={async (...eventArgs: any) => {
+                    generateStateOnChangeProp($state, [
+                      "signUp3",
+                      "firstName"
+                    ]).apply(null, eventArgs);
+                  }}
+                  onLastNameChange={async (...eventArgs: any) => {
+                    generateStateOnChangeProp($state, [
+                      "signUp3",
+                      "lastName"
+                    ]).apply(null, eventArgs);
+                  }}
+                  onPasswordChange={async (...eventArgs: any) => {
+                    generateStateOnChangeProp($state, [
+                      "signUp3",
+                      "password"
+                    ]).apply(null, eventArgs);
+                  }}
+                  onPhoneChange={async (...eventArgs: any) => {
+                    generateStateOnChangeProp($state, [
+                      "signUp3",
+                      "phone"
+                    ]).apply(null, eventArgs);
+                  }}
+                  onSubmit={async event => {
+                    const $steps = {};
+
+                    $steps["invokeGlobalAction"] = true
+                      ? (() => {
+                          const actionArgs = {
+                            args: [
+                              (() => {
+                                try {
+                                  return $state.signUp3.email;
+                                } catch (e) {
+                                  if (
+                                    e instanceof TypeError ||
+                                    e?.plasmicType ===
+                                      "PlasmicUndefinedDataError"
+                                  ) {
+                                    return undefined;
+                                  }
+                                  throw e;
+                                }
+                              })(),
+                              (() => {
+                                try {
+                                  return $state.signUp3.password;
+                                } catch (e) {
+                                  if (
+                                    e instanceof TypeError ||
+                                    e?.plasmicType ===
+                                      "PlasmicUndefinedDataError"
+                                  ) {
+                                    return undefined;
+                                  }
+                                  throw e;
+                                }
+                              })(),
+                              (() => {
+                                try {
+                                  return "/register-candidat?signup=success";
+                                } catch (e) {
+                                  if (
+                                    e instanceof TypeError ||
+                                    e?.plasmicType ===
+                                      "PlasmicUndefinedDataError"
+                                  ) {
+                                    return undefined;
+                                  }
+                                  throw e;
+                                }
+                              })(),
+                              "/login",
+                              (() => {
+                                try {
+                                  return {
+                                    firstName: $state.signUp3.firstName,
+                                    lastName: $state.signUp3.lastName,
+                                    phone:
+                                      $state.signUp3.countryCode +
+                                      $state.signUp3.phone,
+                                    email: $state.signUp3.email,
+                                    role: "User"
+                                  };
+                                } catch (e) {
+                                  if (
+                                    e instanceof TypeError ||
+                                    e?.plasmicType ===
+                                      "PlasmicUndefinedDataError"
+                                  ) {
+                                    return undefined;
+                                  }
+                                  throw e;
+                                }
+                              })()
+                            ]
+                          };
+                          return $globalActions[
+                            "SupabaseUserGlobalContext.signup"
+                          ]?.apply(null, [...actionArgs.args]);
+                        })()
+                      : undefined;
+                    if (
+                      $steps["invokeGlobalAction"] != null &&
+                      typeof $steps["invokeGlobalAction"] === "object" &&
+                      typeof $steps["invokeGlobalAction"].then === "function"
+                    ) {
+                      $steps["invokeGlobalAction"] = await $steps[
+                        "invokeGlobalAction"
+                      ];
+                    }
+                  }}
+                  padding={"40px 16px"}
+                  password={generateStateValueProp($state, [
+                    "signUp3",
+                    "password"
+                  ])}
+                  passwordInfoText={
+                    "Utilisez 8 caractères ou plus en mélangeant lettres, chiffres et symboles."
+                  }
+                  passwordLabel={"Mot de passe"}
+                  passwordStrength={true}
+                  phone={generateStateValueProp($state, ["signUp3", "phone"])}
+                  phoneLabel={"Téléphone"}
+                  placeholderConfirmPassword={"Confirmez votre mot de passe"}
+                  placeholderEmail={"Entrez votre email"}
+                  placeholderPassword={"Entrez votre mot de passe"}
+                  placeholderPhone={"060606060606"}
+                  privacyPolicyText={
+                    "J'accepte la politique de confidentialité"
+                  }
+                  redirectAfterSignUp={``}
+                  showAlerts={true}
+                  showLabels={true}
+                  showLoginLink={true}
+                  showOAuthButtons={false}
+                  showPasswordToggle={true}
+                  showPhoneInput={true}
+                  submitButtonText={"S'inscrire"}
+                  title={"Bienvenue !"}
+                  titleHeading={"h1"}
+                  wrapperStyle={"card"}
+                />
+              </div>
+            ) : null}
+            {(() => {
+              try {
+                return $ctx.query.signup === "success";
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return true;
+                }
+                throw e;
+              }
+            })() ? (
               <Stack__
                 as={"div"}
-                data-plasmic-name={"logoWrapper"}
-                data-plasmic-override={overrides.logoWrapper}
+                data-plasmic-name={"signupSuccess"}
+                data-plasmic-override={overrides.signupSuccess}
                 hasGap={true}
-                className={classNames(projectcss.all, sty.logoWrapper)}
+                className={classNames(projectcss.all, sty.signupSuccess)}
               >
-                <PictogramIcon
-                  className={classNames(projectcss.all, sty.svg___6NpL)}
+                <CheckIcon
+                  className={classNames(projectcss.all, sty.svg__aqJ6X)}
                   role={"img"}
                 />
 
-                <div
-                  data-plasmic-name={"baseline"}
-                  data-plasmic-override={overrides.baseline}
-                  className={classNames(projectcss.all, sty.baseline)}
-                >
-                  <Stack__
-                    as={"div"}
-                    data-plasmic-name={"frame"}
-                    data-plasmic-override={overrides.frame}
-                    hasGap={true}
-                    className={classNames(projectcss.all, sty.frame)}
-                  >
-                    <div
-                      className={classNames(
-                        projectcss.all,
-                        projectcss.__wab_text,
-                        sty.text__kxkvv
-                      )}
-                    >
-                      {"JOB"}
-                    </div>
-                  </Stack__>
-                  <Stack__
-                    as={"div"}
-                    data-plasmic-name={"frame2"}
-                    data-plasmic-override={overrides.frame2}
-                    hasGap={true}
-                    className={classNames(projectcss.all, sty.frame2)}
-                  >
-                    <div
-                      className={classNames(
-                        projectcss.all,
-                        projectcss.__wab_text,
-                        sty.text___6FkZm
-                      )}
-                    >
-                      {"AROUND"}
-                    </div>
-                  </Stack__>
-                  <Stack__
-                    as={"div"}
-                    data-plasmic-name={"frame3"}
-                    data-plasmic-override={overrides.frame3}
-                    hasGap={true}
-                    className={classNames(projectcss.all, sty.frame3)}
-                  >
-                    <div
-                      className={classNames(
-                        projectcss.all,
-                        projectcss.__wab_text,
-                        sty.text___3SDkI
-                      )}
-                    >
-                      {"ME"}
-                    </div>
-                  </Stack__>
-                </div>
-              </Stack__>
-            </Stack__>
-            <Stack__
-              as={"div"}
-              data-plasmic-name={"formWrapper"}
-              data-plasmic-override={overrides.formWrapper}
-              hasGap={true}
-              className={classNames(projectcss.all, sty.formWrapper)}
-            >
-              {(() => {
-                try {
-                  return $ctx.query.signup !== "success";
-                } catch (e) {
-                  if (
-                    e instanceof TypeError ||
-                    e?.plasmicType === "PlasmicUndefinedDataError"
-                  ) {
-                    return true;
-                  }
-                  throw e;
-                }
-              })() ? (
-                <div
-                  data-plasmic-name={"signupLoading"}
-                  data-plasmic-override={overrides.signupLoading}
-                  className={classNames(projectcss.all, sty.signupLoading)}
-                >
-                  <SignUp
-                    data-plasmic-name={"signUp3"}
-                    data-plasmic-override={overrides.signUp3}
-                    alertPosition={"top"}
-                    appleButtonText={"APPLE"}
-                    buttonAbordStyle={"tertiary"}
-                    buttonStyle={"primary"}
-                    className={classNames("__wab_instance", sty.signUp3)}
-                    confirmPassword={generateStateValueProp($state, [
-                      "signUp3",
-                      "confirmPassword"
-                    ])}
-                    confirmPasswordLabel={"Répétez le mot de passe"}
-                    countryCode={generateStateValueProp($state, [
-                      "signUp3",
-                      "countryCode"
-                    ])}
-                    email={generateStateValueProp($state, ["signUp3", "email"])}
-                    emailLabel={"Email"}
-                    eyeIconColor={"#666"}
-                    firstName={generateStateValueProp($state, [
-                      "signUp3",
-                      "firstName"
-                    ])}
-                    firstNameLabel={"Prénom"}
-                    googleButtonText={"GOOGLE"}
-                    inputStyle={"simple"}
-                    lastName={generateStateValueProp($state, [
-                      "signUp3",
-                      "lastName"
-                    ])}
-                    lastNameLabel={"Nom"}
-                    maxAlerts={3}
-                    oAuthButtonsPosition={"bottom"}
-                    oAuthSeparatorText={"ou"}
-                    onConfirmPasswordChange={async (...eventArgs: any) => {
-                      generateStateOnChangeProp($state, [
-                        "signUp3",
-                        "confirmPassword"
-                      ]).apply(null, eventArgs);
-                    }}
-                    onCountryCodeChange={async (...eventArgs: any) => {
-                      generateStateOnChangeProp($state, [
-                        "signUp3",
-                        "countryCode"
-                      ]).apply(null, eventArgs);
-                    }}
-                    onEmailChange={async (...eventArgs: any) => {
-                      generateStateOnChangeProp($state, [
-                        "signUp3",
-                        "email"
-                      ]).apply(null, eventArgs);
-                    }}
-                    onFirstNameChange={async (...eventArgs: any) => {
-                      generateStateOnChangeProp($state, [
-                        "signUp3",
-                        "firstName"
-                      ]).apply(null, eventArgs);
-                    }}
-                    onLastNameChange={async (...eventArgs: any) => {
-                      generateStateOnChangeProp($state, [
-                        "signUp3",
-                        "lastName"
-                      ]).apply(null, eventArgs);
-                    }}
-                    onPasswordChange={async (...eventArgs: any) => {
-                      generateStateOnChangeProp($state, [
-                        "signUp3",
-                        "password"
-                      ]).apply(null, eventArgs);
-                    }}
-                    onPhoneChange={async (...eventArgs: any) => {
-                      generateStateOnChangeProp($state, [
-                        "signUp3",
-                        "phone"
-                      ]).apply(null, eventArgs);
-                    }}
-                    onSubmit={async event => {
-                      const $steps = {};
-
-                      $steps["invokeGlobalAction"] = true
-                        ? (() => {
-                            const actionArgs = {
-                              args: [
-                                (() => {
-                                  try {
-                                    return $state.signUp3.email;
-                                  } catch (e) {
-                                    if (
-                                      e instanceof TypeError ||
-                                      e?.plasmicType ===
-                                        "PlasmicUndefinedDataError"
-                                    ) {
-                                      return undefined;
-                                    }
-                                    throw e;
-                                  }
-                                })(),
-                                (() => {
-                                  try {
-                                    return $state.signUp3.password;
-                                  } catch (e) {
-                                    if (
-                                      e instanceof TypeError ||
-                                      e?.plasmicType ===
-                                        "PlasmicUndefinedDataError"
-                                    ) {
-                                      return undefined;
-                                    }
-                                    throw e;
-                                  }
-                                })(),
-                                (() => {
-                                  try {
-                                    return "/register-candidat?signup=success";
-                                  } catch (e) {
-                                    if (
-                                      e instanceof TypeError ||
-                                      e?.plasmicType ===
-                                        "PlasmicUndefinedDataError"
-                                    ) {
-                                      return undefined;
-                                    }
-                                    throw e;
-                                  }
-                                })(),
-                                "/login",
-                                (() => {
-                                  try {
-                                    return {
-                                      firstName: $state.signUp3.firstName,
-                                      lastName: $state.signUp3.lastName,
-                                      phone:
-                                        $state.signUp3.countryCode +
-                                        $state.signUp3.phone,
-                                      email: $state.signUp3.email,
-                                      role: "User"
-                                    };
-                                  } catch (e) {
-                                    if (
-                                      e instanceof TypeError ||
-                                      e?.plasmicType ===
-                                        "PlasmicUndefinedDataError"
-                                    ) {
-                                      return undefined;
-                                    }
-                                    throw e;
-                                  }
-                                })()
-                              ]
-                            };
-                            return $globalActions[
-                              "SupabaseUserGlobalContext.signup"
-                            ]?.apply(null, [...actionArgs.args]);
-                          })()
-                        : undefined;
-                      if (
-                        $steps["invokeGlobalAction"] != null &&
-                        typeof $steps["invokeGlobalAction"] === "object" &&
-                        typeof $steps["invokeGlobalAction"].then === "function"
-                      ) {
-                        $steps["invokeGlobalAction"] = await $steps[
-                          "invokeGlobalAction"
-                        ];
-                      }
-                    }}
-                    padding={"40px 16px"}
-                    password={generateStateValueProp($state, [
-                      "signUp3",
-                      "password"
-                    ])}
-                    passwordInfoText={
-                      "Utilisez 8 caractères ou plus en mélangeant lettres, chiffres et symboles."
-                    }
-                    passwordLabel={"Mot de passe"}
-                    passwordStrength={true}
-                    phone={generateStateValueProp($state, ["signUp3", "phone"])}
-                    phoneLabel={"Téléphone"}
-                    placeholderConfirmPassword={"Confirmez votre mot de passe"}
-                    placeholderEmail={"Entrez votre email"}
-                    placeholderPassword={"Entrez votre mot de passe"}
-                    placeholderPhone={"060606060606"}
-                    privacyPolicyText={
-                      "J'accepte la politique de confidentialité"
-                    }
-                    redirectAfterSignUp={``}
-                    showAlerts={true}
-                    showLabels={true}
-                    showLoginLink={true}
-                    showOAuthButtons={false}
-                    showPasswordToggle={true}
-                    showPhoneInput={true}
-                    submitButtonText={"S'inscrire"}
-                    title={"Bienvenue !"}
-                    titleHeading={"h1"}
-                    wrapperStyle={"card"}
-                  />
-                </div>
-              ) : null}
-              {(() => {
-                try {
-                  return $ctx.query.signup === "success";
-                } catch (e) {
-                  if (
-                    e instanceof TypeError ||
-                    e?.plasmicType === "PlasmicUndefinedDataError"
-                  ) {
-                    return true;
-                  }
-                  throw e;
-                }
-              })() ? (
                 <Stack__
                   as={"div"}
-                  data-plasmic-name={"signupSuccess"}
-                  data-plasmic-override={overrides.signupSuccess}
+                  data-plasmic-name={"freeBox"}
+                  data-plasmic-override={overrides.freeBox}
                   hasGap={true}
-                  className={classNames(projectcss.all, sty.signupSuccess)}
+                  className={classNames(projectcss.all, sty.freeBox)}
                 >
-                  <CheckIcon
-                    className={classNames(projectcss.all, sty.svg__aqJ6X)}
-                    role={"img"}
-                  />
-
-                  <Stack__
-                    as={"div"}
-                    data-plasmic-name={"freeBox"}
-                    data-plasmic-override={overrides.freeBox}
-                    hasGap={true}
-                    className={classNames(projectcss.all, sty.freeBox)}
+                  <div
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.__wab_text,
+                      sty.text__d9Eu9
+                    )}
                   >
-                    <div
-                      className={classNames(
-                        projectcss.all,
-                        projectcss.__wab_text,
-                        sty.text__d9Eu9
-                      )}
-                    >
-                      {
-                        "Votre compte a \u00e9t\u00e9 cr\u00e9\u00e9 avec succ\u00e8s"
-                      }
-                    </div>
-                    <div
-                      className={classNames(
-                        projectcss.all,
-                        projectcss.__wab_text,
-                        sty.text__rGiQ
-                      )}
-                    >
-                      {
-                        "Veuillez v\u00e9rifier vos e-mails pour confirmer votre adresse \net acc\u00e9der \u00e0 Job Around Me."
-                      }
-                    </div>
-                  </Stack__>
+                    {
+                      "Votre compte a \u00e9t\u00e9 cr\u00e9\u00e9 avec succ\u00e8s"
+                    }
+                  </div>
+                  <div
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.__wab_text,
+                      sty.text__rGiQ
+                    )}
+                  >
+                    {
+                      "Veuillez v\u00e9rifier vos e-mails pour confirmer votre adresse \net acc\u00e9der \u00e0 Job Around Me."
+                    }
+                  </div>
                 </Stack__>
-              ) : null}
-            </Stack__>
-          </div>
+              </Stack__>
+            ) : null}
+          </Stack__>
         </div>
       </div>
     </React.Fragment>

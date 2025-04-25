@@ -571,20 +571,7 @@ function PlasmicAccueil__RenderFunc(props: {
         path: "jobId",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) =>
-          (() => {
-            try {
-              return 1;
-            } catch (e) {
-              if (
-                e instanceof TypeError ||
-                e?.plasmicType === "PlasmicUndefinedDataError"
-              ) {
-                return undefined;
-              }
-              throw e;
-            }
-          })()
+        initFunc: ({ $props, $state, $queries, $ctx }) => "1"
       },
       {
         path: "jobAvailability",
@@ -1430,8 +1417,7 @@ function PlasmicAccueil__RenderFunc(props: {
                           <React.Fragment>
                             {(() => {
                               try {
-                                return $queries.getJobById.data[0]
-                                  .hours_by_week;
+                                return $queries.getCriteriaByJobId.data[3].name;
                               } catch (e) {
                                 if (
                                   e instanceof TypeError ||
@@ -8006,7 +7992,7 @@ function PlasmicAccueil__RenderFunc(props: {
                                               },
                                               cacheKey: null,
                                               invalidatedKeys: [
-                                                "24ab9e7e-7e19-4ab2-82fc-82df12596da0"
+                                                "plasmic_refresh_all"
                                               ],
                                               roleId: null
                                             }
@@ -8156,6 +8142,44 @@ function PlasmicAccueil__RenderFunc(props: {
                               onClick={async event => {
                                 const $steps = {};
 
+                                $steps["updateJobId"] = true
+                                  ? (() => {
+                                      const actionArgs = {
+                                        variable: {
+                                          objRoot: $state,
+                                          variablePath: ["jobId"]
+                                        },
+                                        operation: 0,
+                                        value: currentItem.id
+                                      };
+                                      return (({
+                                        variable,
+                                        value,
+                                        startIndex,
+                                        deleteCount
+                                      }) => {
+                                        if (!variable) {
+                                          return;
+                                        }
+                                        const { objRoot, variablePath } =
+                                          variable;
+
+                                        $stateSet(objRoot, variablePath, value);
+                                        return value;
+                                      })?.apply(null, [actionArgs]);
+                                    })()
+                                  : undefined;
+                                if (
+                                  $steps["updateJobId"] != null &&
+                                  typeof $steps["updateJobId"] === "object" &&
+                                  typeof $steps["updateJobId"].then ===
+                                    "function"
+                                ) {
+                                  $steps["updateJobId"] = await $steps[
+                                    "updateJobId"
+                                  ];
+                                }
+
                                 $steps["updateCardLieu"] = true
                                   ? (() => {
                                       const actionArgs = {
@@ -8192,44 +8216,6 @@ function PlasmicAccueil__RenderFunc(props: {
                                 ) {
                                   $steps["updateCardLieu"] = await $steps[
                                     "updateCardLieu"
-                                  ];
-                                }
-
-                                $steps["updateLieu2"] = true
-                                  ? (() => {
-                                      const actionArgs = {
-                                        variable: {
-                                          objRoot: $state,
-                                          variablePath: ["jobId"]
-                                        },
-                                        operation: 0,
-                                        value: currentItem.id
-                                      };
-                                      return (({
-                                        variable,
-                                        value,
-                                        startIndex,
-                                        deleteCount
-                                      }) => {
-                                        if (!variable) {
-                                          return;
-                                        }
-                                        const { objRoot, variablePath } =
-                                          variable;
-
-                                        $stateSet(objRoot, variablePath, value);
-                                        return value;
-                                      })?.apply(null, [actionArgs]);
-                                    })()
-                                  : undefined;
-                                if (
-                                  $steps["updateLieu2"] != null &&
-                                  typeof $steps["updateLieu2"] === "object" &&
-                                  typeof $steps["updateLieu2"].then ===
-                                    "function"
-                                ) {
-                                  $steps["updateLieu2"] = await $steps[
-                                    "updateLieu2"
                                   ];
                                 }
 
