@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import type { HTMLElementRefOf } from "@plasmicapp/react-web";
 
 export interface SmartLoaderProps {
@@ -32,33 +32,44 @@ function SmartLoader_(props: SmartLoaderProps, ref: HTMLElementRefOf<"div">) {
     action5,
   } = props;
 
+  const action1Ref = useRef(false);
+  const action2Ref = useRef(false);
+  const action3Ref = useRef(false);
+  const action4Ref = useRef(false);
+  const action5Ref = useRef(false);
+
   useEffect(() => {
-    if (shouldRun && condition1 && typeof action1 === "function") {
+    if (shouldRun && condition1 && !action1Ref.current && typeof action1 === "function") {
       action1();
+      action1Ref.current = true; // Ensure action1 is only triggered once
     }
   }, [shouldRun, condition1, action1]);
 
   useEffect(() => {
-    if (shouldRun && condition2 && typeof action2 === "function") {
+    if (shouldRun && condition2 && !action2Ref.current && typeof action2 === "function") {
       action2();
+      action2Ref.current = true; // Ensure action2 is only triggered once
     }
   }, [shouldRun, condition2, action2]);
 
   useEffect(() => {
-    if (shouldRun && condition3 && typeof action3 === "function") {
+    if (shouldRun && condition3 && !action3Ref.current && typeof action3 === "function") {
       action3();
+      action3Ref.current = true; // Ensure action3 is only triggered once
     }
   }, [shouldRun, condition3, action3]);
 
   useEffect(() => {
-    if (shouldRun && condition4 && typeof action4 === "function") {
+    if (shouldRun && condition4 && !action4Ref.current && typeof action4 === "function") {
       action4();
+      action4Ref.current = true; // Ensure action4 is only triggered once
     }
   }, [shouldRun, condition4, action4]);
 
   useEffect(() => {
-    if (shouldRun && condition5 && typeof action5 === "function") {
+    if (shouldRun && condition5 && !action5Ref.current && typeof action5 === "function") {
       action5();
+      action5Ref.current = true; // Ensure action5 is only triggered once
     }
   }, [shouldRun, condition5, action5]);
 

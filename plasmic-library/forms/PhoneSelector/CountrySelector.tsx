@@ -10,13 +10,13 @@ function CountrySelector() {
   // interface PhoneInputProps {
   //   selectedCountry: CountryCode;
   // }
-  const flagUrl = useCountryFlag(selectedCountry.code);
+  const flagUrl = useCountryFlag(selectedCountry.code === "UK" ? "gb" : selectedCountry.code);
 
   return (
     <div className="flex flex-col flex-1 w-full">
       <div className="flex flex-1 gap-1 px-3.5 py-2.5 bg-white rounded-2xl size-full">
         <div className="flex gap-2 justify-center items-center h-full">
-          <Image
+          <img
             src={flagUrl}
             alt={`Flag of ${selectedCountry.name}`}
             className="w-auto h-6"
