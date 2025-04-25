@@ -1210,11 +1210,11 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
     getUser: usePlasmicDataOp(() => {
       return {
         sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
-        opId: "9f412504-e938-4e59-9fca-bfe70cfa0a98",
+        opId: "824e3311-006f-47c1-8e57-3abea78d9f18",
         userArgs: {
           filters: [$ctx.SupabaseUser.user.id]
         },
-        cacheKey: `plasmic.$.9f412504-e938-4e59-9fca-bfe70cfa0a98.$.`,
+        cacheKey: `plasmic.$.824e3311-006f-47c1-8e57-3abea78d9f18.$.`,
         invalidatedKeys: null,
         roleId: null
       };
@@ -9500,6 +9500,44 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                                 "updateCreateOffreIsOpen"
                               ];
                             }
+
+                            $steps["updateCreateOffreIsOpen2"] = true
+                              ? (() => {
+                                  const actionArgs = {
+                                    variable: {
+                                      objRoot: $state,
+                                      variablePath: ["createOffre", "isOpen"]
+                                    },
+                                    operation: 0,
+                                    value: false
+                                  };
+                                  return (({
+                                    variable,
+                                    value,
+                                    startIndex,
+                                    deleteCount
+                                  }) => {
+                                    if (!variable) {
+                                      return;
+                                    }
+                                    const { objRoot, variablePath } = variable;
+
+                                    $stateSet(objRoot, variablePath, value);
+                                    return value;
+                                  })?.apply(null, [actionArgs]);
+                                })()
+                              : undefined;
+                            if (
+                              $steps["updateCreateOffreIsOpen2"] != null &&
+                              typeof $steps["updateCreateOffreIsOpen2"] ===
+                                "object" &&
+                              typeof $steps["updateCreateOffreIsOpen2"].then ===
+                                "function"
+                            ) {
+                              $steps["updateCreateOffreIsOpen2"] = await $steps[
+                                "updateCreateOffreIsOpen2"
+                              ];
+                            }
                           }}
                           submitsForm={true}
                         />
@@ -9920,7 +9958,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
           ) : null}
           {(() => {
             try {
-              return $state.showModal === true && $state.hiddeModal === true;
+              return $state.showModal === true && $state.hiddeModal === false;
             } catch (e) {
               if (
                 e instanceof TypeError ||
@@ -14403,7 +14441,10 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                   })()}
                   step3={(() => {
                     try {
-                      return $ctx.query.onboarding === "success";
+                      return (
+                        $ctx.query.onboarding === "success" ||
+                        $ctx.query.onboarding === "done"
+                      );
                     } catch (e) {
                       if (
                         e instanceof TypeError ||

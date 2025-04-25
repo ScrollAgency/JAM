@@ -1149,16 +1149,6 @@ function PlasmicAccueil__RenderFunc(props: {
         invalidatedKeys: null,
         roleId: null
       };
-    }),
-    getPp4CurrentJob: usePlasmicDataOp(() => {
-      return {
-        sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
-        opId: "2afbc108-a82d-467f-b048-ed32f1c2c98e",
-        userArgs: {},
-        cacheKey: `plasmic.$.2afbc108-a82d-467f-b048-ed32f1c2c98e.$.`,
-        invalidatedKeys: null,
-        roleId: null
-      };
     })
   };
   if (Object.keys(new$Queries).some(k => new$Queries[k] !== $queries[k])) {
@@ -7886,7 +7876,9 @@ function PlasmicAccueil__RenderFunc(props: {
                                                 },
                                                 cacheKey: null,
                                                 invalidatedKeys: [
-                                                  "24ab9e7e-7e19-4ab2-82fc-82df12596da0"
+                                                  "24ab9e7e-7e19-4ab2-82fc-82df12596da0",
+                                                  "8b5c082f-d99a-4dae-bab9-7c91407a4070",
+                                                  "ee40aeb1-9965-4045-8d4f-b223146962b1"
                                                 ],
                                                 roleId: null
                                               }
@@ -7994,7 +7986,9 @@ function PlasmicAccueil__RenderFunc(props: {
                                                 },
                                                 cacheKey: null,
                                                 invalidatedKeys: [
-                                                  "24ab9e7e-7e19-4ab2-82fc-82df12596da0"
+                                                  "24ab9e7e-7e19-4ab2-82fc-82df12596da0",
+                                                  "8b5c082f-d99a-4dae-bab9-7c91407a4070",
+                                                  "ee40aeb1-9965-4045-8d4f-b223146962b1"
                                                 ],
                                                 roleId: null
                                               }
