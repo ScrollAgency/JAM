@@ -661,7 +661,7 @@ function PlasmicMesAnnonces__RenderFunc(props: {
                 $steps["refreshData"] = await $steps["refreshData"];
               }
             }}
-            shouldRun={false}
+            shouldRun={true}
           />
 
           <MobileNavbarTop
