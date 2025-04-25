@@ -7865,56 +7865,59 @@ function PlasmicAccueil__RenderFunc(props: {
                                   onClick={async event => {
                                     const $steps = {};
 
-                                    $steps["postgresUpdateMany"] = true
-                                      ? (() => {
-                                          const actionArgs = {
-                                            dataOp: {
-                                              sourceId:
-                                                "kVSSe8ab4TtzwRPnTeEeUp",
-                                              opId: "82374051-9814-414c-909c-d23851067d30",
-                                              userArgs: {
-                                                variables: [
-                                                  currentItem.id,
-                                                  $state.couleurLike == false
-                                                    ? true
-                                                    : false,
-                                                  $ctx.SupabaseUser.user.id
-                                                ]
-                                              },
-                                              cacheKey: null,
-                                              invalidatedKeys: [
-                                                "plasmic_refresh_all"
-                                              ],
-                                              roleId: null
-                                            }
-                                          };
-                                          return (async ({
-                                            dataOp,
-                                            continueOnError
-                                          }) => {
-                                            try {
-                                              const response =
-                                                await executePlasmicDataOp(
-                                                  dataOp,
-                                                  {
-                                                    userAuthToken:
-                                                      dataSourcesCtx?.userAuthToken,
-                                                    user: dataSourcesCtx?.user
-                                                  }
-                                                );
-                                              await plasmicInvalidate(
-                                                dataOp.invalidatedKeys
-                                              );
-                                              return response;
-                                            } catch (e) {
-                                              if (!continueOnError) {
-                                                throw e;
+                                    $steps["postgresUpdateMany"] =
+                                      !$queries.getUsersLikes.data.some(
+                                        like => like.job_id === currentItem.id
+                                      )
+                                        ? (() => {
+                                            const actionArgs = {
+                                              dataOp: {
+                                                sourceId:
+                                                  "kVSSe8ab4TtzwRPnTeEeUp",
+                                                opId: "82374051-9814-414c-909c-d23851067d30",
+                                                userArgs: {
+                                                  variables: [
+                                                    currentItem.id,
+                                                    $state.couleurLike == false
+                                                      ? true
+                                                      : false,
+                                                    $ctx.SupabaseUser.user.id
+                                                  ]
+                                                },
+                                                cacheKey: null,
+                                                invalidatedKeys: [
+                                                  "24ab9e7e-7e19-4ab2-82fc-82df12596da0"
+                                                ],
+                                                roleId: null
                                               }
-                                              return e;
-                                            }
-                                          })?.apply(null, [actionArgs]);
-                                        })()
-                                      : undefined;
+                                            };
+                                            return (async ({
+                                              dataOp,
+                                              continueOnError
+                                            }) => {
+                                              try {
+                                                const response =
+                                                  await executePlasmicDataOp(
+                                                    dataOp,
+                                                    {
+                                                      userAuthToken:
+                                                        dataSourcesCtx?.userAuthToken,
+                                                      user: dataSourcesCtx?.user
+                                                    }
+                                                  );
+                                                await plasmicInvalidate(
+                                                  dataOp.invalidatedKeys
+                                                );
+                                                return response;
+                                              } catch (e) {
+                                                if (!continueOnError) {
+                                                  throw e;
+                                                }
+                                                return e;
+                                              }
+                                            })?.apply(null, [actionArgs]);
+                                          })()
+                                        : undefined;
                                     if (
                                       $steps["postgresUpdateMany"] != null &&
                                       typeof $steps["postgresUpdateMany"] ===
@@ -7976,50 +7979,53 @@ function PlasmicAccueil__RenderFunc(props: {
                                   onClick={async event => {
                                     const $steps = {};
 
-                                    $steps["postgresUpdateMany"] = true
-                                      ? (() => {
-                                          const actionArgs = {
-                                            dataOp: {
-                                              sourceId:
-                                                "kVSSe8ab4TtzwRPnTeEeUp",
-                                              opId: "21389a04-150f-4bd5-bdca-85fbbce35635",
-                                              userArgs: {
-                                                conditions: [currentItem.id]
-                                              },
-                                              cacheKey: null,
-                                              invalidatedKeys: [
-                                                "plasmic_refresh_all"
-                                              ],
-                                              roleId: null
-                                            }
-                                          };
-                                          return (async ({
-                                            dataOp,
-                                            continueOnError
-                                          }) => {
-                                            try {
-                                              const response =
-                                                await executePlasmicDataOp(
-                                                  dataOp,
-                                                  {
-                                                    userAuthToken:
-                                                      dataSourcesCtx?.userAuthToken,
-                                                    user: dataSourcesCtx?.user
-                                                  }
-                                                );
-                                              await plasmicInvalidate(
-                                                dataOp.invalidatedKeys
-                                              );
-                                              return response;
-                                            } catch (e) {
-                                              if (!continueOnError) {
-                                                throw e;
+                                    $steps["postgresUpdateMany"] =
+                                      $queries.getUsersLikes.data.some(
+                                        like => like.job_id === currentItem.id
+                                      )
+                                        ? (() => {
+                                            const actionArgs = {
+                                              dataOp: {
+                                                sourceId:
+                                                  "kVSSe8ab4TtzwRPnTeEeUp",
+                                                opId: "21389a04-150f-4bd5-bdca-85fbbce35635",
+                                                userArgs: {
+                                                  conditions: [currentItem.id]
+                                                },
+                                                cacheKey: null,
+                                                invalidatedKeys: [
+                                                  "24ab9e7e-7e19-4ab2-82fc-82df12596da0"
+                                                ],
+                                                roleId: null
                                               }
-                                              return e;
-                                            }
-                                          })?.apply(null, [actionArgs]);
-                                        })()
-                                      : undefined;
+                                            };
+                                            return (async ({
+                                              dataOp,
+                                              continueOnError
+                                            }) => {
+                                              try {
+                                                const response =
+                                                  await executePlasmicDataOp(
+                                                    dataOp,
+                                                    {
+                                                      userAuthToken:
+                                                        dataSourcesCtx?.userAuthToken,
+                                                      user: dataSourcesCtx?.user
+                                                    }
+                                                  );
+                                                await plasmicInvalidate(
+                                                  dataOp.invalidatedKeys
+                                                );
+                                                return response;
+                                              } catch (e) {
+                                                if (!continueOnError) {
+                                                  throw e;
+                                                }
+                                                return e;
+                                              }
+                                            })?.apply(null, [actionArgs]);
+                                          })()
+                                        : undefined;
                                     if (
                                       $steps["postgresUpdateMany"] != null &&
                                       typeof $steps["postgresUpdateMany"] ===
