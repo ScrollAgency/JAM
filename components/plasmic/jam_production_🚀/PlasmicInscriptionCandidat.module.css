@@ -3,7 +3,7 @@
   position: relative;
   width: 100%;
   height: 100vh;
-  align-content: flex-start;
+  align-content: stretch;
   justify-items: center;
   overflow: auto;
   min-width: 0;
@@ -33,7 +33,6 @@
 .signUp {
   background: rgba(255, 255, 255, 1);
   width: 100%;
-  height: 100vh;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -64,32 +63,13 @@
   display: flex;
   position: relative;
   align-self: stretch;
-  flex-grow: 1;
   overflow: hidden;
-  flex-direction: column;
-  width: 50%;
-  flex-shrink: 1;
-  height: 100%;
-  min-height: 0;
-  padding: 433px 229px;
-}
-.imageWrapper > :global(.__wab_flex-container) {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  width: 50%;
+  height: 100%;
   min-height: 0;
-  margin-top: calc(0px - 10px);
-  height: calc(100% + 10px);
-}
-.imageWrapper > :global(.__wab_flex-container) > *,
-.imageWrapper > :global(.__wab_flex-container) > :global(.__wab_slot) > *,
-.imageWrapper > :global(.__wab_flex-container) > picture > img,
-.imageWrapper
-  > :global(.__wab_flex-container)
-  > :global(.__wab_slot)
-  > picture
-  > img {
-  margin-top: 10px;
 }
 @media (min-width: 0px) and (max-width: 768px) {
   .imageWrapper {
@@ -100,9 +80,14 @@
   width: auto;
   height: auto;
   display: flex;
-  position: relative;
+  position: absolute;
   overflow: hidden;
   flex-direction: column;
+  left: 0;
+  top: 40%;
+  z-index: 1;
+  right: 0;
+  bottom: 40%;
 }
 .logoWrapper > :global(.__wab_flex-container) {
   flex-direction: column;
@@ -253,34 +238,14 @@
   display: flex;
   position: relative;
   align-self: stretch;
-  flex-grow: 1;
   flex-direction: column;
-  padding-left: 64px;
-  padding-right: 64px;
-  padding-top: 64px;
   width: 50%;
-  flex-shrink: 1;
-  height: 100%;
-  min-height: 0;
   border-radius: 24px;
 }
 .formWrapper > :global(.__wab_flex-container) {
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  min-height: 0;
-  margin-top: calc(0px - 22px);
-  height: calc(100% + 22px);
-}
-.formWrapper > :global(.__wab_flex-container) > *,
-.formWrapper > :global(.__wab_flex-container) > :global(.__wab_slot) > *,
-.formWrapper > :global(.__wab_flex-container) > picture > img,
-.formWrapper
-  > :global(.__wab_flex-container)
-  > :global(.__wab_slot)
-  > picture
-  > img {
-  margin-top: 22px;
+  justify-content: flex-start;
 }
 @media (min-width: 0px) and (max-width: 768px) {
   .formWrapper {
@@ -326,6 +291,12 @@
   justify-content: flex-start;
   align-items: center;
   min-width: 0;
+  padding: 16px;
+}
+@media (min-width: 0px) and (max-width: 768px) {
+  .signupLoading {
+    padding: 0px;
+  }
 }
 .signUp3:global(.__wab_instance) {
   max-width: 100%;

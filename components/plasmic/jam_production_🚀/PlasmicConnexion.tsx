@@ -439,26 +439,6 @@ function PlasmicConnexion__RenderFunc(props: {
                       "invokeGlobalAction"
                     ];
                   }
-
-                  $steps["invokeGlobalAction2"] = true
-                    ? (() => {
-                        const actionArgs = {
-                          args: ["success", "bonjour", undefined, 10]
-                        };
-                        return $globalActions[
-                          "plasmic-antd5-config-provider.showNotification"
-                        ]?.apply(null, [...actionArgs.args]);
-                      })()
-                    : undefined;
-                  if (
-                    $steps["invokeGlobalAction2"] != null &&
-                    typeof $steps["invokeGlobalAction2"] === "object" &&
-                    typeof $steps["invokeGlobalAction2"].then === "function"
-                  ) {
-                    $steps["invokeGlobalAction2"] = await $steps[
-                      "invokeGlobalAction2"
-                    ];
-                  }
                 }}
                 padding={"40px 8px"}
                 password={generateStateValueProp($state, [

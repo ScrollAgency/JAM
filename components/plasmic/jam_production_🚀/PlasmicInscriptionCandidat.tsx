@@ -332,11 +332,9 @@ function PlasmicInscriptionCandidat__RenderFunc(props: {
           data-plasmic-override={overrides.signUp}
           className={classNames(projectcss.all, sty.signUp)}
         >
-          <Stack__
-            as={"div"}
+          <div
             data-plasmic-name={"imageWrapper"}
             data-plasmic-override={overrides.imageWrapper}
-            hasGap={true}
             className={classNames(projectcss.all, sty.imageWrapper)}
           >
             <Stack__
@@ -409,7 +407,7 @@ function PlasmicInscriptionCandidat__RenderFunc(props: {
                 </Stack__>
               </div>
             </Stack__>
-          </Stack__>
+          </div>
           <Stack__
             as={"div"}
             data-plasmic-name={"formWrapper"}
