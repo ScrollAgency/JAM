@@ -390,15 +390,9 @@ export const DataGridV2: React.FC<DataGridV2Props> = ({
                 <circle cx="12" cy="12" r="3"></circle>
               </svg>
             </button>
-            <a
-              href={fileUrl}
-              download={fileName}
-              onClick={(e) => e.stopPropagation()}
-              className={styles.fileName}
-              title={fileName}
-            >
+            <span className={styles.fileName} title={fileName}>
               {fileName}
-            </a>
+            </span>
           </div>
         );
       case 'note':
