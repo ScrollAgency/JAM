@@ -440,7 +440,7 @@
   max-width: 100%;
   width: 17px;
   height: 17px;
-  display: block !important;
+  display: block;
   position: relative;
   overflow: hidden;
   flex-shrink: 0;

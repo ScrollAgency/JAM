@@ -53,7 +53,7 @@
   max-width: 100%;
   width: 17px;
   height: 17px;
-  display: block !important;
+  display: block;
   position: relative;
   overflow: hidden;
   align-self: flex-end;
@@ -65,7 +65,7 @@
 }
 @media (min-width: 0px) and (max-width: 768px) {
   .img__hgXjN {
-    display: block !important;
+    display: block;
   }
 }
 .jobListing {
@@ -1137,7 +1137,7 @@
   max-width: 100%;
   width: 17px;
   height: 17px;
-  display: block !important;
+  display: block;
   position: relative;
   overflow: hidden;
   align-self: flex-end;
@@ -1149,7 +1149,7 @@
 }
 @media (min-width: 0px) and (max-width: 768px) {
   .img__dQyt2 {
-    display: block !important;
+    display: block;
   }
 }
 .text__osnHc {
@@ -1414,7 +1414,7 @@
   max-width: 100%;
   width: 12px;
   height: 12px;
-  display: block !important;
+  display: block;
   position: relative;
   overflow: hidden;
   flex-shrink: 0;
@@ -2198,7 +2198,7 @@
   max-width: 100%;
   width: 132px;
   height: 132px;
-  display: block !important;
+  display: block;
   position: relative;
   border-radius: 100px;
 }
@@ -2794,7 +2794,7 @@
   max-width: 100%;
   width: 39px;
   height: 39px;
-  display: flex !important;
+  display: flex;
   flex-direction: column;
   position: relative;
   left: auto;
@@ -2826,7 +2826,7 @@
   max-width: 100%;
   width: 39px;
   height: 39px;
-  display: flex !important;
+  display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -2920,7 +2920,7 @@
   max-width: 100%;
   width: 39px;
   height: 39px;
-  display: flex !important;
+  display: flex;
   flex-direction: column;
   flex-shrink: 0;
   border-radius: 99px;
@@ -2948,7 +2948,7 @@
   max-width: 100%;
   width: 39px;
   height: 39px;
-  display: flex !important;
+  display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -3075,7 +3075,7 @@
   max-width: 100%;
   width: 39px;
   height: 39px;
-  display: flex !important;
+  display: flex;
   flex-direction: column;
   position: relative;
   left: auto;
@@ -3107,7 +3107,7 @@
   max-width: 100%;
   width: 39px;
   height: 39px;
-  display: flex !important;
+  display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -3195,7 +3195,7 @@
   max-width: 100%;
   width: 39px;
   height: 39px;
-  display: flex !important;
+  display: flex;
   flex-direction: column;
   flex-shrink: 0;
   border-radius: 99px;
@@ -3223,7 +3223,7 @@
   max-width: 100%;
   width: 39px;
   height: 39px;
-  display: flex !important;
+  display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -3813,87 +3813,21 @@
 }
 .trouvezUnJobNaJamaisEteAussiSimple {
   display: block;
-  font-size: 54px;
-  text-align: center;
-  letter-spacing: 0em;
-  line-height: 1.2000000476837158;
-  width: auto;
-  color: #ffffff;
   position: relative;
   left: auto;
   top: auto;
+  color: #ffffff;
+  letter-spacing: 0em;
+  line-height: 1.2000000476837158;
+  text-align: center;
   font-weight: 400;
+  font-size: 54px;
 }
 @media (min-width: 0px) and (max-width: 768px) {
   .trouvezUnJobNaJamaisEteAussiSimple {
     width: 100%;
     padding-right: 0px;
     height: auto;
-    min-width: 0;
-  }
-}
-.hero {
-  height: auto;
-  display: flex;
-  position: relative;
-  overflow: hidden;
-  flex-direction: column;
-  left: auto;
-  top: auto;
-  width: auto;
-  align-self: center;
-  border-radius: 20px;
-  padding: 0px;
-}
-.hero > :global(.__wab_flex-container) {
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  margin-top: calc(0px - 64px);
-  height: calc(100% + 64px);
-}
-.hero > :global(.__wab_flex-container) > *,
-.hero > :global(.__wab_flex-container) > :global(.__wab_slot) > *,
-.hero > :global(.__wab_flex-container) > picture > img,
-.hero > :global(.__wab_flex-container) > :global(.__wab_slot) > picture > img {
-  margin-top: 64px;
-}
-@media (min-width: 0px) and (max-width: 768px) {
-  .hero {
-    height: 100%;
-    width: 100%;
-    position: relative;
-    left: auto;
-    top: auto;
-    min-width: 0;
-    min-height: 0;
-    padding: 0px;
-  }
-}
-@media (min-width: 0px) and (max-width: 768px) {
-  .hero > :global(.__wab_flex-container) {
-    min-width: 0;
-    min-height: 0;
-  }
-}
-.text__mQghv {
-  display: block;
-  font-size: 20px;
-  text-align: center;
-  font-family: "DM Sans", sans-serif;
-  font-weight: 400;
-  letter-spacing: -0.01em;
-  line-height: 1.5;
-  color: rgba(221, 221, 221, 1);
-  width: 100%;
-  min-width: 0;
-}
-@media (min-width: 0px) and (max-width: 768px) {
-  .text__mQghv {
-    width: 100%;
-    position: relative;
-    left: auto;
-    top: auto;
     min-width: 0;
   }
 }
@@ -5763,14 +5697,14 @@
   max-width: 100%;
   width: 17px;
   flex-shrink: 0;
-  display: none !important;
+  display: none;
 }
 .img___99Yk6 > picture > img {
   object-fit: cover;
 }
 @media (min-width: 0px) and (max-width: 768px) {
   .img___99Yk6 {
-    display: block !important;
+    display: block;
   }
 }
 .freeBox__ksAtE {
@@ -6810,7 +6744,7 @@
   max-width: 100%;
   width: 24px;
   height: 24px;
-  display: block !important;
+  display: block;
   position: relative;
   overflow: hidden;
   flex-shrink: 0;

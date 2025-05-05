@@ -315,7 +315,7 @@ function PlasmicSidebar2__RenderFunc(props: {
             type={(() => {
               try {
                 return $ctx.pagePath === "/offre-employeur" ||
-                  $ctx.pagePath === "/candidatures-employeur"
+                  $ctx.pagePath === "/candidatures-employeur/[job_id]"
                   ? "actif"
                   : "";
               } catch (e) {

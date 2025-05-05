@@ -145,12 +145,6 @@ function PlasmicConnexion__RenderFunc(props: {
   const stateSpecs: Parameters<typeof useDollarState>[0] = React.useMemo(
     () => [
       {
-        path: "user",
-        type: "private",
-        variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => "null6"
-      },
-      {
         path: "loginForm.email",
         type: "private",
         variableType: "text",

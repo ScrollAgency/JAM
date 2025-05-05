@@ -527,7 +527,7 @@
   max-width: 100%;
   width: 132px;
   height: 132px;
-  display: block !important;
+  display: block;
   position: relative;
   top: auto;
   left: auto;

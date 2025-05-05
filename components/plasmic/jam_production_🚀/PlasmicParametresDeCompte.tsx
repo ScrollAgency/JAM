@@ -152,7 +152,7 @@ export type PlasmicParametresDeCompte__OverridesType = {
   select4?: Flex__<typeof Select>;
   select2?: Flex__<typeof AntdSelect>;
   textAreaInput?: Flex__<typeof TextAreaInput>;
-  select7?: Flex__<typeof AntdSelect>;
+  select8?: Flex__<typeof AntdSelect>;
   select?: Flex__<typeof Select>;
   textInput4?: Flex__<typeof TextInput>;
   cvModificationDuMdp?: Flex__<"div">;
@@ -364,12 +364,6 @@ function PlasmicParametresDeCompte__RenderFunc(props: {
         initFunc: ({ $props, $state, $queries, $ctx }) => undefined
       },
       {
-        path: "select7.value",
-        type: "private",
-        variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
-      },
-      {
         path: "select.value",
         type: "private",
         variableType: "text",
@@ -400,12 +394,6 @@ function PlasmicParametresDeCompte__RenderFunc(props: {
         onMutate: generateOnMutateForSpec("isSubmitting", FormWrapper_Helpers)
       },
       {
-        path: "select2.value",
-        type: "private",
-        variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
-      },
-      {
         path: "textInput5.value",
         type: "private",
         variableType: "text",
@@ -413,6 +401,18 @@ function PlasmicParametresDeCompte__RenderFunc(props: {
       },
       {
         path: "textAreaInput.value",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+      },
+      {
+        path: "select2.value",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+      },
+      {
+        path: "select8.value",
         type: "private",
         variableType: "text",
         initFunc: ({ $props, $state, $queries, $ctx }) => undefined
@@ -1600,6 +1600,7 @@ function PlasmicParametresDeCompte__RenderFunc(props: {
                             plasmic_library_tailwind_3_4_number_tokens_css.plasmic_tokens,
                             plasmic_plasmic_rich_components_css.plasmic_tokens
                           )}
+                          dropdownMatchSelectWidth={true}
                           mode={"multiple"}
                           onChange={async (...eventArgs: any) => {
                             generateStateOnChangeProp($state, [
@@ -1630,7 +1631,7 @@ function PlasmicParametresDeCompte__RenderFunc(props: {
                               className={classNames(
                                 projectcss.all,
                                 projectcss.__wab_text,
-                                sty.text___6DeSp
+                                sty.text___32N4S
                               )}
                             >
                               {"Moyens de transport"}
@@ -1643,7 +1644,7 @@ function PlasmicParametresDeCompte__RenderFunc(props: {
                             <ChevronDownIcon
                               className={classNames(
                                 projectcss.all,
-                                sty.svg___738Er
+                                sty.svg__c2PO
                               )}
                               role={"img"}
                             />
@@ -1721,9 +1722,7 @@ function PlasmicParametresDeCompte__RenderFunc(props: {
                         )}
                         initialValue={(() => {
                           try {
-                            return (
-                              $queries.getUserForTest.data[0].skill || undefined
-                            );
+                            return $queries.getMe.data[0].skill || undefined;
                           } catch (e) {
                             if (
                               e instanceof TypeError ||
@@ -1747,11 +1746,7 @@ function PlasmicParametresDeCompte__RenderFunc(props: {
                         }
                         name={(() => {
                           try {
-                            return (
-                              $queries.getUserForTest.data[0].skill || [
-                                undefined
-                              ]
-                            );
+                            return $queries.getMe.data[0].skill || [undefined];
                           } catch (e) {
                             if (
                               e instanceof TypeError ||
@@ -1764,11 +1759,11 @@ function PlasmicParametresDeCompte__RenderFunc(props: {
                         })()}
                       >
                         <AntdSelect
-                          data-plasmic-name={"select7"}
-                          data-plasmic-override={overrides.select7}
+                          data-plasmic-name={"select8"}
+                          data-plasmic-override={overrides.select8}
                           allowClear={true}
                           autoFocus={false}
-                          className={classNames("__wab_instance", sty.select7)}
+                          className={classNames("__wab_instance", sty.select8)}
                           defaultStylesClassName={classNames(
                             projectcss.root_reset,
                             projectcss.plasmic_default_styles,
@@ -1781,7 +1776,7 @@ function PlasmicParametresDeCompte__RenderFunc(props: {
                           mode={"multiple"}
                           onChange={async (...eventArgs: any) => {
                             generateStateOnChangeProp($state, [
-                              "select7",
+                              "select8",
                               "value"
                             ]).apply(null, eventArgs);
                           }}
@@ -1806,25 +1801,25 @@ function PlasmicParametresDeCompte__RenderFunc(props: {
                               className={classNames(
                                 projectcss.all,
                                 projectcss.__wab_text,
-                                sty.text__dYodg
+                                sty.text__xU0H
                               )}
                             >
                               {"Ajouter"}
                             </div>
                           }
-                          popupScopeClassName={sty["select7__popup"]}
+                          popupScopeClassName={sty["select8__popup"]}
                           size={"large"}
                           suffixIcon={
                             <ChevronDownIcon
                               className={classNames(
                                 projectcss.all,
-                                sty.svg___1XFm
+                                sty.svg__iv9X7
                               )}
                               role={"img"}
                             />
                           }
                           value={generateStateValueProp($state, [
-                            "select7",
+                            "select8",
                             "value"
                           ])}
                         />
@@ -3452,7 +3447,7 @@ const PlasmicDescendants = {
     "select4",
     "select2",
     "textAreaInput",
-    "select7",
+    "select8",
     "select",
     "textInput4",
     "cvModificationDuMdp",
@@ -3515,7 +3510,7 @@ const PlasmicDescendants = {
     "select4",
     "select2",
     "textAreaInput",
-    "select7",
+    "select8",
     "select",
     "textInput4",
     "cvModificationDuMdp",
@@ -3574,7 +3569,7 @@ const PlasmicDescendants = {
     "select4",
     "select2",
     "textAreaInput",
-    "select7",
+    "select8",
     "select",
     "textInput4",
     "cvModificationDuMdp",
@@ -3627,7 +3622,7 @@ const PlasmicDescendants = {
     "select4",
     "select2",
     "textAreaInput",
-    "select7",
+    "select8",
     "select",
     "textInput4"
   ],
@@ -3670,7 +3665,7 @@ const PlasmicDescendants = {
     "select4",
     "select2",
     "textAreaInput",
-    "select7",
+    "select8",
     "select",
     "textInput4"
   ],
@@ -3688,7 +3683,7 @@ const PlasmicDescendants = {
   select4: ["select4"],
   select2: ["select2"],
   textAreaInput: ["textAreaInput"],
-  select7: ["select7"],
+  select8: ["select8"],
   select: ["select"],
   textInput4: ["textInput4"],
   cvModificationDuMdp: [
@@ -3814,7 +3809,7 @@ type NodeDefaultElementType = {
   select4: typeof Select;
   select2: typeof AntdSelect;
   textAreaInput: typeof TextAreaInput;
-  select7: typeof AntdSelect;
+  select8: typeof AntdSelect;
   select: typeof Select;
   textInput4: typeof TextInput;
   cvModificationDuMdp: "div";
@@ -3937,7 +3932,7 @@ export const PlasmicParametresDeCompte = Object.assign(
     select4: makeNodeComponent("select4"),
     select2: makeNodeComponent("select2"),
     textAreaInput: makeNodeComponent("textAreaInput"),
-    select7: makeNodeComponent("select7"),
+    select8: makeNodeComponent("select8"),
     select: makeNodeComponent("select"),
     textInput4: makeNodeComponent("textInput4"),
     cvModificationDuMdp: makeNodeComponent("cvModificationDuMdp"),

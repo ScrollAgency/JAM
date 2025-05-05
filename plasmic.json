@@ -3376,6 +3376,12 @@
           "name": "InputComboSelect",
           "displayName": "InputComboSelect",
           "componentImportPath": "./components/InputComboSelect/InputComboSelect"
+        },
+        {
+          "id": "iL_5-0entnZc",
+          "name": "DataGridV2",
+          "displayName": "DataGridV2",
+          "componentImportPath": "./components/others/DataGridV2/DataGridV2"
         }
       ],
       "customFunctions": []
@@ -3576,6 +3582,21 @@
       ],
       "customFunctions": [],
       "jsBundleThemes": []
+    },
+    {
+      "projectId": "t8YkhWMcnmjNxpEvnBYxFF",
+      "projectApiToken": "n2kLAkdJX0nnhgjhVRAikqMELACkGTzJiaJt8klmvomgiKcrTjOJoPTR0C9Rgj3Il201IFL47PODQytDyqzUOQ",
+      "projectName": "immer",
+      "version": ">0.0.0",
+      "cssFilePath": "plasmic/immer/plasmic.module.css",
+      "components": [],
+      "icons": [],
+      "images": [],
+      "indirect": true,
+      "globalContextsFilePath": "",
+      "splitsProviderFilePath": "",
+      "codeComponents": [],
+      "customFunctions": []
     }
   ],
   "globalVariants": {

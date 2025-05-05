@@ -440,6 +440,12 @@ function PlasmicMesAnnonces__RenderFunc(props: {
         type: "private",
         variableType: "text",
         initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+      },
+      {
+        path: "isRefreshed",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $ctx }) => false
       }
     ],
     [$props, $ctx, $refs]
@@ -640,10 +646,12 @@ function PlasmicMesAnnonces__RenderFunc(props: {
             onMount={async () => {
               const $steps = {};
 
-              $steps["refreshData"] = true
+              $steps["refreshData"] = !$state.isRefreshed
                 ? (() => {
                     const actionArgs = {
-                      queryInvalidation: ["plasmic_refresh_all"]
+                      queryInvalidation: [
+                        "24ab9e7e-7e19-4ab2-82fc-82df12596da0"
+                      ]
                     };
                     return (async ({ queryInvalidation }) => {
                       if (!queryInvalidation) {
@@ -659,6 +667,35 @@ function PlasmicMesAnnonces__RenderFunc(props: {
                 typeof $steps["refreshData"].then === "function"
               ) {
                 $steps["refreshData"] = await $steps["refreshData"];
+              }
+
+              $steps["updateIsRefreshed"] = true
+                ? (() => {
+                    const actionArgs = {
+                      variable: {
+                        objRoot: $state,
+                        variablePath: ["isRefreshed"]
+                      },
+                      operation: 0,
+                      value: true
+                    };
+                    return (({ variable, value, startIndex, deleteCount }) => {
+                      if (!variable) {
+                        return;
+                      }
+                      const { objRoot, variablePath } = variable;
+
+                      $stateSet(objRoot, variablePath, value);
+                      return value;
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["updateIsRefreshed"] != null &&
+                typeof $steps["updateIsRefreshed"] === "object" &&
+                typeof $steps["updateIsRefreshed"].then === "function"
+              ) {
+                $steps["updateIsRefreshed"] = await $steps["updateIsRefreshed"];
               }
             }}
             shouldRun={true}

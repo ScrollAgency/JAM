@@ -1234,11 +1234,11 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
     cardJobOffers: usePlasmicDataOp(() => {
       return {
         sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
-        opId: "a47de048-494a-4671-bafd-745f0c4491b6",
+        opId: "86a865c1-0261-4284-930f-6ef2f6f1060b",
         userArgs: {
           query: [$queries.getCompanies.data[0].id]
         },
-        cacheKey: `plasmic.$.a47de048-494a-4671-bafd-745f0c4491b6.$.`,
+        cacheKey: `plasmic.$.86a865c1-0261-4284-930f-6ef2f6f1060b.$.`,
         invalidatedKeys: null,
         roleId: null
       };
@@ -4955,7 +4955,13 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                                     {(() => {
                                       try {
                                         return currentItem.posted
-                                          ? "Voir les candidatures"
+                                          ? currentItem.num_job_applications ===
+                                            1
+                                            ? "Voir la candidature"
+                                            : currentItem.num_job_applications >
+                                              1
+                                            ? `Voir les ${currentItem.num_job_applications} candidatures`
+                                            : "Voir les candidatures"
                                           : "Poster l'annonce";
                                       } catch (e) {
                                         if (
