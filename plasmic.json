@@ -2521,6 +2521,26 @@
           "id": "W1rUXOrpOhym",
           "name": "LightningIcon",
           "moduleFilePath": "plasmic/jam_production_🚀/icons/PlasmicIcon__Lightning.tsx"
+        },
+        {
+          "id": "LuaGiLfpw6Vl",
+          "name": "SortAscendingIcon",
+          "moduleFilePath": "plasmic/jam_production_🚀/icons/PlasmicIcon__SortAscending.tsx"
+        },
+        {
+          "id": "7N6Suhwryqlm",
+          "name": "XIcon",
+          "moduleFilePath": "plasmic/jam_production_🚀/icons/PlasmicIcon__X.tsx"
+        },
+        {
+          "id": "TnWLxKqpsOCZ",
+          "name": "PhoneIcon",
+          "moduleFilePath": "plasmic/jam_production_🚀/icons/PlasmicIcon__Phone.tsx"
+        },
+        {
+          "id": "Zu-Xc5DdiDXn",
+          "name": "StarBackgroundIcon",
+          "moduleFilePath": "plasmic/jam_production_🚀/icons/PlasmicIcon__StarBackground.tsx"
         }
       ],
       "images": [
@@ -3083,6 +3103,291 @@
           "id": "PZdiSuFMXy1d",
           "name": "ph:clock-countdown-fill 2",
           "filePath": "../public/plasmic/jam_production_🚀/images/phClockCountdownFill2.svg"
+        },
+        {
+          "id": "GjoPQLtfC97C",
+          "name": "icons8-info-16.png",
+          "filePath": "../public/plasmic/jam_production_🚀/images/icons8Info16Png.png"
+        },
+        {
+          "id": "rAGzu1jBIkMc",
+          "name": "icons8-info.svg",
+          "filePath": "../public/plasmic/jam_production_🚀/images/icons8InfoSvg.svg"
+        },
+        {
+          "id": "uJOIYgU74DMk",
+          "name": "Avatar",
+          "filePath": "../public/plasmic/jam_production_🚀/images/avatar.png"
+        },
+        {
+          "id": "kwYAd1k7anGn",
+          "name": "Star",
+          "filePath": "../public/plasmic/jam_production_🚀/images/star.svg"
+        },
+        {
+          "id": "NiWS-jEPVUeX",
+          "name": "Star 2",
+          "filePath": "../public/plasmic/jam_production_🚀/images/star2.svg"
+        },
+        {
+          "id": "9XXLABbpeuTx",
+          "name": "Star 3",
+          "filePath": "../public/plasmic/jam_production_🚀/images/star3.svg"
+        },
+        {
+          "id": "jYs97n_I9QGl",
+          "name": "Star 4",
+          "filePath": "../public/plasmic/jam_production_🚀/images/star4.svg"
+        },
+        {
+          "id": "SzdQS02W9eCj",
+          "name": "Star 5",
+          "filePath": "../public/plasmic/jam_production_🚀/images/star5.svg"
+        },
+        {
+          "id": "-4aXwdIBQafV",
+          "name": "Star 6",
+          "filePath": "../public/plasmic/jam_production_🚀/images/star6.svg"
+        },
+        {
+          "id": "Drd09AlU0Chx",
+          "name": "Star 7",
+          "filePath": "../public/plasmic/jam_production_🚀/images/star7.svg"
+        },
+        {
+          "id": "qgPCn4iXzwKq",
+          "name": "Star 8",
+          "filePath": "../public/plasmic/jam_production_🚀/images/star8.svg"
+        },
+        {
+          "id": "71eprpsXoCFi",
+          "name": "Star 9",
+          "filePath": "../public/plasmic/jam_production_🚀/images/star9.svg"
+        },
+        {
+          "id": "oo6gyvcW_jZr",
+          "name": "Star 10",
+          "filePath": "../public/plasmic/jam_production_🚀/images/star10.svg"
+        },
+        {
+          "id": "AOrQIljDfU2V",
+          "name": "Star 11",
+          "filePath": "../public/plasmic/jam_production_🚀/images/star11.svg"
+        },
+        {
+          "id": "98ulazMy5DDk",
+          "name": "Star 12",
+          "filePath": "../public/plasmic/jam_production_🚀/images/star12.svg"
+        },
+        {
+          "id": "ZyymRAEiImah",
+          "name": "Star 13",
+          "filePath": "../public/plasmic/jam_production_🚀/images/star13.svg"
+        },
+        {
+          "id": "Y3Fa79dHeSET",
+          "name": "Star 14",
+          "filePath": "../public/plasmic/jam_production_🚀/images/star14.svg"
+        },
+        {
+          "id": "hVbAMOwmmcHU",
+          "name": "Star 15",
+          "filePath": "../public/plasmic/jam_production_🚀/images/star15.svg"
+        },
+        {
+          "id": "rRH2Sf_VUlpP",
+          "name": "Star 16",
+          "filePath": "../public/plasmic/jam_production_🚀/images/star16.svg"
+        },
+        {
+          "id": "fb--aTkCqWKv",
+          "name": "Star 17",
+          "filePath": "../public/plasmic/jam_production_🚀/images/star17.svg"
+        },
+        {
+          "id": "fVJCVydCCjtH",
+          "name": "Star 18",
+          "filePath": "../public/plasmic/jam_production_🚀/images/star18.svg"
+        },
+        {
+          "id": "Zg3MVfNSa0CR",
+          "name": "Star 19",
+          "filePath": "../public/plasmic/jam_production_🚀/images/star19.svg"
+        },
+        {
+          "id": "C0Bote4EzTd8",
+          "name": "Star 20",
+          "filePath": "../public/plasmic/jam_production_🚀/images/star20.svg"
+        },
+        {
+          "id": "2-IRB45a9Qte",
+          "name": "Star 21",
+          "filePath": "../public/plasmic/jam_production_🚀/images/star21.svg"
+        },
+        {
+          "id": "uYYCnfhtW9QX",
+          "name": "Star 22",
+          "filePath": "../public/plasmic/jam_production_🚀/images/star22.svg"
+        },
+        {
+          "id": "GvdWz12tMjm4",
+          "name": "Star 23",
+          "filePath": "../public/plasmic/jam_production_🚀/images/star23.svg"
+        },
+        {
+          "id": "HHm_Jm0jg6rU",
+          "name": "Star 24",
+          "filePath": "../public/plasmic/jam_production_🚀/images/star24.svg"
+        },
+        {
+          "id": "NQIjdDvrna53",
+          "name": "Star 25",
+          "filePath": "../public/plasmic/jam_production_🚀/images/star25.svg"
+        },
+        {
+          "id": "7G3WI9heQFMR",
+          "name": "Star 26",
+          "filePath": "../public/plasmic/jam_production_🚀/images/star26.svg"
+        },
+        {
+          "id": "-Qe4qtja_734",
+          "name": "Star 27",
+          "filePath": "../public/plasmic/jam_production_🚀/images/star27.svg"
+        },
+        {
+          "id": "_ZxEM2FUHF7P",
+          "name": "Star 28",
+          "filePath": "../public/plasmic/jam_production_🚀/images/star28.svg"
+        },
+        {
+          "id": "GOmMTk_-Z1yh",
+          "name": "Star 29",
+          "filePath": "../public/plasmic/jam_production_🚀/images/star29.svg"
+        },
+        {
+          "id": "krq1BaaCqP6q",
+          "name": "Star 30",
+          "filePath": "../public/plasmic/jam_production_🚀/images/star30.svg"
+        },
+        {
+          "id": "ruPqiyTmrZbG",
+          "name": "Star 31",
+          "filePath": "../public/plasmic/jam_production_🚀/images/star31.svg"
+        },
+        {
+          "id": "mE3WQWul5sVf",
+          "name": "Star 32",
+          "filePath": "../public/plasmic/jam_production_🚀/images/star32.svg"
+        },
+        {
+          "id": "qEqR7Grlf4Mw",
+          "name": "Star 33",
+          "filePath": "../public/plasmic/jam_production_🚀/images/star33.svg"
+        },
+        {
+          "id": "KY0hwaHFHkBc",
+          "name": "Star 34",
+          "filePath": "../public/plasmic/jam_production_🚀/images/star34.svg"
+        },
+        {
+          "id": "vuhUxZRPyK3_",
+          "name": "Star 35",
+          "filePath": "../public/plasmic/jam_production_🚀/images/star35.svg"
+        },
+        {
+          "id": "NCnrKiNrnRaY",
+          "name": "Star 36",
+          "filePath": "../public/plasmic/jam_production_🚀/images/star36.svg"
+        },
+        {
+          "id": "ne7HY8KFly4F",
+          "name": "Star 37",
+          "filePath": "../public/plasmic/jam_production_🚀/images/star37.svg"
+        },
+        {
+          "id": "A1u25aI67SMW",
+          "name": "Star 38",
+          "filePath": "../public/plasmic/jam_production_🚀/images/star38.svg"
+        },
+        {
+          "id": "PZ9AsIgIN8FM",
+          "name": "Star 39",
+          "filePath": "../public/plasmic/jam_production_🚀/images/star39.svg"
+        },
+        {
+          "id": "872IUCrejXnJ",
+          "name": "Star 40",
+          "filePath": "../public/plasmic/jam_production_🚀/images/star40.svg"
+        },
+        {
+          "id": "VLAvx0x7id_C",
+          "name": "Star 41",
+          "filePath": "../public/plasmic/jam_production_🚀/images/star41.svg"
+        },
+        {
+          "id": "Udl3k-7PO7n9",
+          "name": "Star 42",
+          "filePath": "../public/plasmic/jam_production_🚀/images/star42.svg"
+        },
+        {
+          "id": "V1f4we4ACJ7r",
+          "name": "Star 43",
+          "filePath": "../public/plasmic/jam_production_🚀/images/star43.svg"
+        },
+        {
+          "id": "Ga3v8yLrLpJy",
+          "name": "Star 44",
+          "filePath": "../public/plasmic/jam_production_🚀/images/star44.svg"
+        },
+        {
+          "id": "Tif_p70eFNmr",
+          "name": "Star 45",
+          "filePath": "../public/plasmic/jam_production_🚀/images/star45.svg"
+        },
+        {
+          "id": "qhbJRQHyAGGH",
+          "name": "Star 46",
+          "filePath": "../public/plasmic/jam_production_🚀/images/star46.svg"
+        },
+        {
+          "id": "mhivGmEnYNc2",
+          "name": "Star 47",
+          "filePath": "../public/plasmic/jam_production_🚀/images/star47.svg"
+        },
+        {
+          "id": "ezuP18SSgf9h",
+          "name": "Star 48",
+          "filePath": "../public/plasmic/jam_production_🚀/images/star48.svg"
+        },
+        {
+          "id": "3zDM4sUqg6NT",
+          "name": "Star 49",
+          "filePath": "../public/plasmic/jam_production_🚀/images/star49.svg"
+        },
+        {
+          "id": "humnBuNcqmWz",
+          "name": "Star 50",
+          "filePath": "../public/plasmic/jam_production_🚀/images/star50.svg"
+        },
+        {
+          "id": "Dm27mejuKYEx",
+          "name": "Star 51",
+          "filePath": "../public/plasmic/jam_production_🚀/images/star51.svg"
+        },
+        {
+          "id": "abBK9N3MqLsM",
+          "name": "Star 52",
+          "filePath": "../public/plasmic/jam_production_🚀/images/star52.svg"
+        },
+        {
+          "id": "v_O0_S784RaS",
+          "name": "Star 53",
+          "filePath": "../public/plasmic/jam_production_🚀/images/star53.svg"
+        },
+        {
+          "id": "daw1pIorH6jm",
+          "name": "Star 54",
+          "filePath": "../public/plasmic/jam_production_🚀/images/star54.svg"
         }
       ],
       "indirect": false,
@@ -3596,7 +3901,8 @@
       "globalContextsFilePath": "",
       "splitsProviderFilePath": "",
       "codeComponents": [],
-      "customFunctions": []
+      "customFunctions": [],
+      "jsBundleThemes": []
     }
   ],
   "globalVariants": {
@@ -3625,6 +3931,6 @@
   "nextjsConfig": {
     "pagesDir": "../pages"
   },
-  "cliVersion": "0.1.337",
-  "$schema": "https://unpkg.com/@plasmicapp/cli@0.1.337/dist/plasmic.schema.json"
+  "cliVersion": "0.1.338",
+  "$schema": "https://unpkg.com/@plasmicapp/cli@0.1.338/dist/plasmic.schema.json"
 }

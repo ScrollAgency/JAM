@@ -3611,6 +3611,16 @@
       }
     },
     {
+      "name": "Unnamed Style Token 6",
+      "type": "color",
+      "value": "#FFFFFF",
+      "category": "color",
+      "meta": {
+        "projectId": "f7DE9y7qp46fyCw5nuY8f9",
+        "id": "KV-FTA-eJL3L"
+      }
+    },
+    {
       "name": "Warning Background",
       "type": "color",
       "value": "#fdf9eb",

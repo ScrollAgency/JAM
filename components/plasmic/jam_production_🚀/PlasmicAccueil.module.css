@@ -4052,6 +4052,7 @@
   max-width: 100%;
   object-fit: cover;
   border-radius: 16px;
+  border: 1px solid var(--token-d-0gEGbakN0M);
 }
 .img__bgjoy {
   object-fit: cover;
@@ -4111,6 +4112,7 @@
   max-width: 100%;
   object-fit: cover;
   border-radius: 16px;
+  border: 1px solid var(--token-d-0gEGbakN0M);
 }
 .img__wMeId {
   object-fit: cover;
@@ -4152,6 +4154,7 @@
   height: 48px;
   min-width: 205px;
   border-radius: 16px;
+  border: 1px solid var(--token-d-0gEGbakN0M);
 }
 @media (min-width: 0px) and (max-width: 768px) {
   .select13:global(.__wab_instance) {
@@ -4230,6 +4233,7 @@
   height: 48px;
   min-width: 179px;
   border-radius: 16px;
+  border: 1px solid var(--token-d-0gEGbakN0M);
 }
 @media (min-width: 0px) and (max-width: 768px) {
   .select9:global(.__wab_instance) {
@@ -4304,6 +4308,7 @@
   height: 48px;
   min-width: 205px;
   border-radius: 16px;
+  border: 1px solid var(--token-d-0gEGbakN0M);
 }
 .freeBox__kNiQ {
   display: flex;
@@ -4377,6 +4382,7 @@
   height: 48px;
   min-width: 205px;
   border-radius: 16px;
+  border: 1px solid var(--token-d-0gEGbakN0M);
 }
 @media (min-width: 0px) and (max-width: 768px) {
   .select10:global(.__wab_instance) {
@@ -4455,6 +4461,7 @@
   top: auto;
   min-width: 205px;
   border-radius: 16px;
+  border: 1px solid var(--token-d-0gEGbakN0M);
 }
 @media (min-width: 0px) and (max-width: 768px) {
   .select14:global(.__wab_instance) {
@@ -4532,6 +4539,7 @@
   height: 47px;
   min-width: 135px;
   border-radius: 16px;
+  border: 1px solid var(--token-d-0gEGbakN0M);
 }
 @media (min-width: 0px) and (max-width: 768px) {
   .select12:global(.__wab_instance) {
@@ -4613,6 +4621,7 @@
   min-width: 205px;
   height: 48px;
   border-radius: 16px;
+  border: 1px solid var(--token-d-0gEGbakN0M);
 }
 @media (min-width: 0px) and (max-width: 768px) {
   .select11:global(.__wab_instance) {
@@ -4716,6 +4725,13 @@
   position: relative;
   color: var(--token-OIYWLyLPYWym);
   height: 1em;
+}
+.text__pbiWy {
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  min-width: 0;
 }
 .mapJobs {
   width: 100%;

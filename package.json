@@ -12,7 +12,7 @@
     "@ant-design/icons": "^6.0.0",
     "@ant-design/pro-components": "^2.6.4",
     "@mapbox/mapbox-gl-directions": "^4.3.1",
-    "@plasmicapp/cli": "^0.1.337",
+    "@plasmicapp/cli": "^0.1.338",
     "@plasmicapp/loader-nextjs": "^1.0.410",
     "@plasmicapp/loader-react": "^1.0.373",
     "@plasmicapp/react-web": "^0.2.361",

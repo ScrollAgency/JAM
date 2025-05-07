@@ -369,6 +369,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
   };
 
   const __nextRouter = useNextRouter();
+
   const $ctx = useDataEnv?.() || {};
   const refsRef = React.useRef({});
   const $refs = refsRef.current;
@@ -1307,6 +1308,18 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
           query: [$ctx.params.job_id]
         },
         cacheKey: `plasmic.$.1e3dda04-b7b2-4657-a520-9d22389e3e32.$.`,
+        invalidatedKeys: null,
+        roleId: null
+      };
+    }),
+    getUserLatLong: usePlasmicDataOp(() => {
+      return {
+        sourceId: "f3JnwXdZdRBeVqXgX9Vuxa",
+        opId: "7f036029-00b4-4f16-bceb-55c637960b86",
+        userArgs: {
+          params: [$queries.getUser.data[0].city]
+        },
+        cacheKey: `plasmic.$.7f036029-00b4-4f16-bceb-55c637960b86.$.`,
         invalidatedKeys: null,
         roleId: null
       };
@@ -5177,25 +5190,346 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                                   </React.Fragment>
                                 </div>
                               </div>
-                              <div
+                              <Stack__
+                                as={"div"}
+                                hasGap={true}
                                 className={classNames(
                                   projectcss.all,
-                                  sty.freeBox__c87Zi
+                                  sty.freeBox__sf9Ef
                                 )}
-                                onClick={async event => {
-                                  const $steps = {};
+                              >
+                                <div
+                                  className={classNames(
+                                    projectcss.all,
+                                    sty.freeBox__c87Zi
+                                  )}
+                                  onClick={async event => {
+                                    const $steps = {};
 
-                                  $steps["invokeGlobalAction"] =
-                                    Number(
-                                      $queries.stripeUserInfos.data[0]
-                                        .recharge_boost
-                                    ) == 0
+                                    $steps["invokeGlobalAction"] =
+                                      Number(
+                                        $queries.stripeUserInfos.data[0]
+                                          .recharge_boost
+                                      ) == 0
+                                        ? (() => {
+                                            const actionArgs = {
+                                              args: [
+                                                "warning",
+                                                "Plus de cr\u00e9dits boost disponibles",
+                                                "Vous avez d\u00e9j\u00e0 utilis\u00e9 vos 2 boosts ce mois-ci. Vous pouvez acheter des cr\u00e9dits suppl\u00e9mentaires ou attendre le mois prochain.",
+                                                10
+                                              ]
+                                            };
+                                            return $globalActions[
+                                              "plasmic-antd5-config-provider.showNotification"
+                                            ]?.apply(null, [
+                                              ...actionArgs.args
+                                            ]);
+                                          })()
+                                        : undefined;
+                                    if (
+                                      $steps["invokeGlobalAction"] != null &&
+                                      typeof $steps["invokeGlobalAction"] ===
+                                        "object" &&
+                                      typeof $steps["invokeGlobalAction"]
+                                        .then === "function"
+                                    ) {
+                                      $steps["invokeGlobalAction"] =
+                                        await $steps["invokeGlobalAction"];
+                                    }
+                                  }}
+                                >
+                                  <ZapIcon
+                                    className={classNames(
+                                      projectcss.all,
+                                      sty.svg__jntWv
+                                    )}
+                                    role={"img"}
+                                  />
+
+                                  <div
+                                    className={classNames(
+                                      projectcss.all,
+                                      projectcss.__wab_text,
+                                      sty.text__sbK
+                                    )}
+                                  >
+                                    {"BOOST"}
+                                  </div>
+                                  {(() => {
+                                    const child$Props = {
+                                      className: classNames(
+                                        "__wab_instance",
+                                        sty.switch3
+                                      ),
+                                      disabled: (() => {
+                                        try {
+                                          return (() => {
+                                            if (
+                                              $queries.stripeUserInfos.data[0]
+                                                .product_id ==
+                                                "prod_S81L3WBaA1HwM0" &&
+                                              $queries.stripeUserInfos.data[0]
+                                                .recharge_boost > 0
+                                            ) {
+                                              return false;
+                                            } else if (
+                                              $queries.stripeUserInfos.data[0]
+                                                .recharge_boost == 0
+                                            ) {
+                                              return true;
+                                            } else {
+                                              return false;
+                                            }
+                                          })();
+                                        } catch (e) {
+                                          if (
+                                            e instanceof TypeError ||
+                                            e?.plasmicType ===
+                                              "PlasmicUndefinedDataError"
+                                          ) {
+                                            return false;
+                                          }
+                                          throw e;
+                                        }
+                                      })(),
+                                      isSelected: generateStateValueProp(
+                                        $state,
+                                        [
+                                          "switch3",
+                                          __plasmic_idx_0,
+                                          "isSelected"
+                                        ]
+                                      ),
+                                      onChange: async (...eventArgs: any) => {
+                                        generateStateOnChangeProp($state, [
+                                          "switch3",
+                                          __plasmic_idx_0,
+                                          "isSelected"
+                                        ]).apply(null, eventArgs);
+
+                                        if (
+                                          eventArgs.length > 1 &&
+                                          eventArgs[1] &&
+                                          eventArgs[1]._plasmic_state_init_
+                                        ) {
+                                          return;
+                                        }
+
+                                        (async val => {
+                                          const $steps = {};
+
+                                          $steps["postgresUpdateMany"] = true
+                                            ? (() => {
+                                                const actionArgs = {
+                                                  dataOp: {
+                                                    sourceId:
+                                                      "kVSSe8ab4TtzwRPnTeEeUp",
+                                                    opId: "d5ac40b0-0d4d-4dc6-9737-2d220b297a64",
+                                                    userArgs: {
+                                                      conditions: [
+                                                        $ctx.SupabaseUser.user
+                                                          .id
+                                                      ],
+                                                      variables: [
+                                                        Math.max(
+                                                          0,
+                                                          $state.switch3[
+                                                            currentIndex
+                                                          ].isSelected
+                                                            ? Number(
+                                                                $queries
+                                                                  .stripeUserInfos
+                                                                  .data[0]
+                                                                  .recharge_boost -
+                                                                  1
+                                                              )
+                                                            : Number(
+                                                                $queries
+                                                                  .stripeUserInfos
+                                                                  .data[0]
+                                                                  .recharge_boost
+                                                              )
+                                                        )
+                                                      ]
+                                                    },
+                                                    cacheKey: null,
+                                                    invalidatedKeys: [
+                                                      "plasmic_refresh_all"
+                                                    ],
+                                                    roleId: null
+                                                  }
+                                                };
+                                                return (async ({
+                                                  dataOp,
+                                                  continueOnError
+                                                }) => {
+                                                  try {
+                                                    const response =
+                                                      await executePlasmicDataOp(
+                                                        dataOp,
+                                                        {
+                                                          userAuthToken:
+                                                            dataSourcesCtx?.userAuthToken,
+                                                          user: dataSourcesCtx?.user
+                                                        }
+                                                      );
+                                                    await plasmicInvalidate(
+                                                      dataOp.invalidatedKeys
+                                                    );
+                                                    return response;
+                                                  } catch (e) {
+                                                    if (!continueOnError) {
+                                                      throw e;
+                                                    }
+                                                    return e;
+                                                  }
+                                                })?.apply(null, [actionArgs]);
+                                              })()
+                                            : undefined;
+                                          if (
+                                            $steps["postgresUpdateMany"] !=
+                                              null &&
+                                            typeof $steps[
+                                              "postgresUpdateMany"
+                                            ] === "object" &&
+                                            typeof $steps["postgresUpdateMany"]
+                                              .then === "function"
+                                          ) {
+                                            $steps["postgresUpdateMany"] =
+                                              await $steps[
+                                                "postgresUpdateMany"
+                                              ];
+                                          }
+
+                                          $steps["postgresUpdateById"] = true
+                                            ? (() => {
+                                                const actionArgs = {
+                                                  dataOp: {
+                                                    sourceId:
+                                                      "kVSSe8ab4TtzwRPnTeEeUp",
+                                                    opId: "cee5cfc5-4de5-43af-9616-bc311b5bafc8",
+                                                    userArgs: {
+                                                      keys: [currentItem.id],
+                                                      variables: [
+                                                        $state.switch3[
+                                                          currentIndex
+                                                        ].isSelected
+                                                      ]
+                                                    },
+                                                    cacheKey: null,
+                                                    invalidatedKeys: [
+                                                      "plasmic_refresh_all"
+                                                    ],
+                                                    roleId: null
+                                                  }
+                                                };
+                                                return (async ({
+                                                  dataOp,
+                                                  continueOnError
+                                                }) => {
+                                                  try {
+                                                    const response =
+                                                      await executePlasmicDataOp(
+                                                        dataOp,
+                                                        {
+                                                          userAuthToken:
+                                                            dataSourcesCtx?.userAuthToken,
+                                                          user: dataSourcesCtx?.user
+                                                        }
+                                                      );
+                                                    await plasmicInvalidate(
+                                                      dataOp.invalidatedKeys
+                                                    );
+                                                    return response;
+                                                  } catch (e) {
+                                                    if (!continueOnError) {
+                                                      throw e;
+                                                    }
+                                                    return e;
+                                                  }
+                                                })?.apply(null, [actionArgs]);
+                                              })()
+                                            : undefined;
+                                          if (
+                                            $steps["postgresUpdateById"] !=
+                                              null &&
+                                            typeof $steps[
+                                              "postgresUpdateById"
+                                            ] === "object" &&
+                                            typeof $steps["postgresUpdateById"]
+                                              .then === "function"
+                                          ) {
+                                            $steps["postgresUpdateById"] =
+                                              await $steps[
+                                                "postgresUpdateById"
+                                              ];
+                                          }
+                                        }).apply(null, eventArgs);
+                                      },
+                                      showLabel: false
+                                    };
+
+                                    initializePlasmicStates(
+                                      $state,
+                                      [
+                                        {
+                                          name: "switch3[].isSelected",
+                                          initFunc: ({
+                                            $props,
+                                            $state,
+                                            $queries
+                                          }) =>
+                                            (() => {
+                                              try {
+                                                return currentItem.is_boosted;
+                                              } catch (e) {
+                                                if (
+                                                  e instanceof TypeError ||
+                                                  e?.plasmicType ===
+                                                    "PlasmicUndefinedDataError"
+                                                ) {
+                                                  return undefined;
+                                                }
+                                                throw e;
+                                              }
+                                            })()
+                                        }
+                                      ],
+                                      [__plasmic_idx_0]
+                                    );
+                                    return (
+                                      <Switch
+                                        data-plasmic-name={"switch3"}
+                                        data-plasmic-override={
+                                          overrides.switch3
+                                        }
+                                        {...child$Props}
+                                      />
+                                    );
+                                  })()}
+                                </div>
+                                <PlasmicImg__
+                                  alt={""}
+                                  className={classNames(sty.img__yAyFt)}
+                                  displayHeight={"16px"}
+                                  displayMaxHeight={"none"}
+                                  displayMaxWidth={"100%"}
+                                  displayMinHeight={"0"}
+                                  displayMinWidth={"0"}
+                                  displayWidth={"16px"}
+                                  loading={"lazy"}
+                                  onClick={async event => {
+                                    const $steps = {};
+
+                                    $steps["invokeGlobalAction"] = true
                                       ? (() => {
                                           const actionArgs = {
                                             args: [
-                                              "warning",
-                                              "Plus de cr\u00e9dits boost disponibles",
-                                              "Vous avez d\u00e9j\u00e0 utilis\u00e9 vos 2 boosts ce mois-ci. Vous pouvez acheter des cr\u00e9dits suppl\u00e9mentaires ou attendre le mois prochain."
+                                              "info",
+                                              "Cr\u00e9dits Boost",
+                                              "Vos cr\u00e9dits Boost ne seront pas recr\u00e9dit\u00e9s si vous d\u00e9sactivez, et votre annonce ne sera plus mise en avant dans les r\u00e9sultats de recherche.",
+                                              10
                                             ]
                                           };
                                           return $globalActions[
@@ -5203,277 +5537,25 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                                           ]?.apply(null, [...actionArgs.args]);
                                         })()
                                       : undefined;
-                                  if (
-                                    $steps["invokeGlobalAction"] != null &&
-                                    typeof $steps["invokeGlobalAction"] ===
-                                      "object" &&
-                                    typeof $steps["invokeGlobalAction"].then ===
-                                      "function"
-                                  ) {
-                                    $steps["invokeGlobalAction"] = await $steps[
-                                      "invokeGlobalAction"
-                                    ];
-                                  }
-                                }}
-                              >
-                                <ZapIcon
-                                  className={classNames(
-                                    projectcss.all,
-                                    sty.svg__jntWv
-                                  )}
-                                  role={"img"}
+                                    if (
+                                      $steps["invokeGlobalAction"] != null &&
+                                      typeof $steps["invokeGlobalAction"] ===
+                                        "object" &&
+                                      typeof $steps["invokeGlobalAction"]
+                                        .then === "function"
+                                    ) {
+                                      $steps["invokeGlobalAction"] =
+                                        await $steps["invokeGlobalAction"];
+                                    }
+                                  }}
+                                  src={{
+                                    src: "/plasmic/jam_production_🚀/images/icons8InfoSvg.svg",
+                                    fullWidth: 50,
+                                    fullHeight: 50,
+                                    aspectRatio: 1
+                                  }}
                                 />
-
-                                <div
-                                  className={classNames(
-                                    projectcss.all,
-                                    projectcss.__wab_text,
-                                    sty.text__sbK
-                                  )}
-                                >
-                                  {"BOOST"}
-                                </div>
-                                {(() => {
-                                  const child$Props = {
-                                    className: classNames(
-                                      "__wab_instance",
-                                      sty.switch3
-                                    ),
-                                    disabled: (() => {
-                                      try {
-                                        return (() => {
-                                          if (
-                                            $queries.stripeUserInfos.data[0]
-                                              .product_id ==
-                                              "prod_S81L3WBaA1HwM0" &&
-                                            $queries.stripeUserInfos.data[0]
-                                              .recharge_boost > 0
-                                          ) {
-                                            return false;
-                                          } else if (
-                                            $queries.stripeUserInfos.data[0]
-                                              .recharge_boost == 0
-                                          ) {
-                                            return true;
-                                          }
-                                        })();
-                                      } catch (e) {
-                                        if (
-                                          e instanceof TypeError ||
-                                          e?.plasmicType ===
-                                            "PlasmicUndefinedDataError"
-                                        ) {
-                                          return false;
-                                        }
-                                        throw e;
-                                      }
-                                    })(),
-                                    isSelected: generateStateValueProp($state, [
-                                      "switch3",
-                                      __plasmic_idx_0,
-                                      "isSelected"
-                                    ]),
-                                    onChange: async (...eventArgs: any) => {
-                                      generateStateOnChangeProp($state, [
-                                        "switch3",
-                                        __plasmic_idx_0,
-                                        "isSelected"
-                                      ]).apply(null, eventArgs);
-
-                                      if (
-                                        eventArgs.length > 1 &&
-                                        eventArgs[1] &&
-                                        eventArgs[1]._plasmic_state_init_
-                                      ) {
-                                        return;
-                                      }
-
-                                      (async val => {
-                                        const $steps = {};
-
-                                        $steps["postgresUpdateMany"] = true
-                                          ? (() => {
-                                              const actionArgs = {
-                                                dataOp: {
-                                                  sourceId:
-                                                    "kVSSe8ab4TtzwRPnTeEeUp",
-                                                  opId: "d5ac40b0-0d4d-4dc6-9737-2d220b297a64",
-                                                  userArgs: {
-                                                    conditions: [
-                                                      $ctx.SupabaseUser.user.id
-                                                    ],
-                                                    variables: [
-                                                      Math.max(
-                                                        0,
-                                                        $state.switch3[
-                                                          currentIndex
-                                                        ].isSelected
-                                                          ? Number(
-                                                              $queries
-                                                                .stripeUserInfos
-                                                                .data[0]
-                                                                .recharge_boost -
-                                                                1
-                                                            )
-                                                          : Number(
-                                                              $queries
-                                                                .stripeUserInfos
-                                                                .data[0]
-                                                                .recharge_boost
-                                                            )
-                                                      )
-                                                    ]
-                                                  },
-                                                  cacheKey: null,
-                                                  invalidatedKeys: [
-                                                    "plasmic_refresh_all"
-                                                  ],
-                                                  roleId: null
-                                                }
-                                              };
-                                              return (async ({
-                                                dataOp,
-                                                continueOnError
-                                              }) => {
-                                                try {
-                                                  const response =
-                                                    await executePlasmicDataOp(
-                                                      dataOp,
-                                                      {
-                                                        userAuthToken:
-                                                          dataSourcesCtx?.userAuthToken,
-                                                        user: dataSourcesCtx?.user
-                                                      }
-                                                    );
-                                                  await plasmicInvalidate(
-                                                    dataOp.invalidatedKeys
-                                                  );
-                                                  return response;
-                                                } catch (e) {
-                                                  if (!continueOnError) {
-                                                    throw e;
-                                                  }
-                                                  return e;
-                                                }
-                                              })?.apply(null, [actionArgs]);
-                                            })()
-                                          : undefined;
-                                        if (
-                                          $steps["postgresUpdateMany"] !=
-                                            null &&
-                                          typeof $steps[
-                                            "postgresUpdateMany"
-                                          ] === "object" &&
-                                          typeof $steps["postgresUpdateMany"]
-                                            .then === "function"
-                                        ) {
-                                          $steps["postgresUpdateMany"] =
-                                            await $steps["postgresUpdateMany"];
-                                        }
-
-                                        $steps["postgresUpdateById"] = true
-                                          ? (() => {
-                                              const actionArgs = {
-                                                dataOp: {
-                                                  sourceId:
-                                                    "kVSSe8ab4TtzwRPnTeEeUp",
-                                                  opId: "cee5cfc5-4de5-43af-9616-bc311b5bafc8",
-                                                  userArgs: {
-                                                    keys: [currentItem.id],
-                                                    variables: [
-                                                      $state.switch3[
-                                                        currentIndex
-                                                      ].isSelected
-                                                    ]
-                                                  },
-                                                  cacheKey: null,
-                                                  invalidatedKeys: [
-                                                    "plasmic_refresh_all"
-                                                  ],
-                                                  roleId: null
-                                                }
-                                              };
-                                              return (async ({
-                                                dataOp,
-                                                continueOnError
-                                              }) => {
-                                                try {
-                                                  const response =
-                                                    await executePlasmicDataOp(
-                                                      dataOp,
-                                                      {
-                                                        userAuthToken:
-                                                          dataSourcesCtx?.userAuthToken,
-                                                        user: dataSourcesCtx?.user
-                                                      }
-                                                    );
-                                                  await plasmicInvalidate(
-                                                    dataOp.invalidatedKeys
-                                                  );
-                                                  return response;
-                                                } catch (e) {
-                                                  if (!continueOnError) {
-                                                    throw e;
-                                                  }
-                                                  return e;
-                                                }
-                                              })?.apply(null, [actionArgs]);
-                                            })()
-                                          : undefined;
-                                        if (
-                                          $steps["postgresUpdateById"] !=
-                                            null &&
-                                          typeof $steps[
-                                            "postgresUpdateById"
-                                          ] === "object" &&
-                                          typeof $steps["postgresUpdateById"]
-                                            .then === "function"
-                                        ) {
-                                          $steps["postgresUpdateById"] =
-                                            await $steps["postgresUpdateById"];
-                                        }
-                                      }).apply(null, eventArgs);
-                                    },
-                                    showLabel: false
-                                  };
-
-                                  initializePlasmicStates(
-                                    $state,
-                                    [
-                                      {
-                                        name: "switch3[].isSelected",
-                                        initFunc: ({
-                                          $props,
-                                          $state,
-                                          $queries
-                                        }) =>
-                                          (() => {
-                                            try {
-                                              return currentItem.is_boosted;
-                                            } catch (e) {
-                                              if (
-                                                e instanceof TypeError ||
-                                                e?.plasmicType ===
-                                                  "PlasmicUndefinedDataError"
-                                              ) {
-                                                return undefined;
-                                              }
-                                              throw e;
-                                            }
-                                          })()
-                                      }
-                                    ],
-                                    [__plasmic_idx_0]
-                                  );
-                                  return (
-                                    <Switch
-                                      data-plasmic-name={"switch3"}
-                                      data-plasmic-override={overrides.switch3}
-                                      {...child$Props}
-                                    />
-                                  );
-                                })()}
-                              </div>
+                              </Stack__>
                             </div>
                             <div
                               className={classNames(
