@@ -247,32 +247,12 @@ function PlasmicMesAlertes__RenderFunc(props: {
   });
 
   const new$Queries: Record<string, ReturnType<typeof usePlasmicDataOp>> = {
-    getWorkingTime: usePlasmicDataOp(() => {
+    getCriteria: usePlasmicDataOp(() => {
       return {
         sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
-        opId: "751ade76-c646-49c1-996c-73c6f29de305",
+        opId: "3c8bdc4e-677f-4634-aaef-8a13e1973a95",
         userArgs: {},
-        cacheKey: `plasmic.$.751ade76-c646-49c1-996c-73c6f29de305.$.`,
-        invalidatedKeys: null,
-        roleId: null
-      };
-    }),
-    getMinimumSalary: usePlasmicDataOp(() => {
-      return {
-        sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
-        opId: "c21c24b7-b4c1-4e18-83af-444409289f19",
-        userArgs: {},
-        cacheKey: `plasmic.$.c21c24b7-b4c1-4e18-83af-444409289f19.$.`,
-        invalidatedKeys: null,
-        roleId: null
-      };
-    }),
-    getContractType: usePlasmicDataOp(() => {
-      return {
-        sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
-        opId: "d00d64cb-c5be-42b3-99bc-a0055ccddd27",
-        userArgs: {},
-        cacheKey: `plasmic.$.d00d64cb-c5be-42b3-99bc-a0055ccddd27.$.`,
+        cacheKey: `plasmic.$.3c8bdc4e-677f-4634-aaef-8a13e1973a95.$.`,
         invalidatedKeys: null,
         roleId: null
       };
@@ -540,18 +520,27 @@ function PlasmicMesAlertes__RenderFunc(props: {
 
                         $steps["goToAccueil"] = true
                           ? (() => {
-                              const actionArgs = { destination: `/` };
-                              return (({ destination }) => {
-                                if (
-                                  typeof destination === "string" &&
-                                  destination.startsWith("#")
-                                ) {
-                                  document
-                                    .getElementById(destination.substr(1))
-                                    .scrollIntoView({ behavior: "smooth" });
-                                } else {
-                                  __nextRouter?.push(destination);
+                              const actionArgs = {
+                                variable: {
+                                  objRoot: $state,
+                                  variablePath: ["modal", "isOpen"]
+                                },
+                                operation: 0,
+                                value: true
+                              };
+                              return (({
+                                variable,
+                                value,
+                                startIndex,
+                                deleteCount
+                              }) => {
+                                if (!variable) {
+                                  return;
                                 }
+                                const { objRoot, variablePath } = variable;
+
+                                $stateSet(objRoot, variablePath, value);
+                                return value;
                               })?.apply(null, [actionArgs]);
                             })()
                           : undefined;
@@ -739,6 +728,7 @@ function PlasmicMesAlertes__RenderFunc(props: {
                               "__wab_instance",
                               sty.formField__fgi0Z
                             )}
+                            initialValue={""}
                             label={"Intitul\u00e9 du poste"}
                             name={"job_name"}
                           >
@@ -772,6 +762,7 @@ function PlasmicMesAlertes__RenderFunc(props: {
                               "__wab_instance",
                               sty.formField__p9DDn
                             )}
+                            initialValue={""}
                             label={"Ville"}
                             name={"city"}
                           >
@@ -805,14 +796,17 @@ function PlasmicMesAlertes__RenderFunc(props: {
                               "__wab_instance",
                               sty.formField__a1X2X
                             )}
+                            hidden={false}
                             label={"Temps de travail"}
                             name={"working_time"}
+                            preserve={false}
+                            validateTrigger={[]}
                           >
                             <AntdSelect
                               data-plasmic-name={"select"}
                               data-plasmic-override={overrides.select}
-                              allowClear={false}
-                              bordered={true}
+                              allowClear={true}
+                              bordered={false}
                               className={classNames(
                                 "__wab_instance",
                                 sty.select
@@ -837,12 +831,14 @@ function PlasmicMesAlertes__RenderFunc(props: {
                               }}
                               options={(() => {
                                 try {
-                                  return $queries.getWorkingTime.data.map(
-                                    workingTime => ({
-                                      value: workingTime.id,
-                                      label: workingTime.working_time
-                                    })
-                                  );
+                                  return $queries.getCriteria.data
+                                    .filter(
+                                      item => item.type === "working_time"
+                                    )
+                                    .map(item => ({
+                                      label: item.name,
+                                      value: item.name
+                                    }));
                                 } catch (e) {
                                   if (
                                     e instanceof TypeError ||
@@ -856,7 +852,7 @@ function PlasmicMesAlertes__RenderFunc(props: {
                               })()}
                               placeholder={"Select..."}
                               popupScopeClassName={sty["select__popup"]}
-                              showSearch={false}
+                              showSearch={true}
                               size={"large"}
                               useChildren={false}
                               value={generateStateValueProp($state, [
@@ -870,12 +866,26 @@ function PlasmicMesAlertes__RenderFunc(props: {
                               "__wab_instance",
                               sty.formField__luBtz
                             )}
+                            initialValue={(() => {
+                              try {
+                                return undefined;
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return undefined;
+                                }
+                                throw e;
+                              }
+                            })()}
                             label={"Type de contrat"}
                             name={"contract_type"}
                           >
                             <AntdSelect
                               data-plasmic-name={"select3"}
                               data-plasmic-override={overrides.select3}
+                              allowClear={true}
                               className={classNames(
                                 "__wab_instance",
                                 sty.select3
@@ -889,6 +899,7 @@ function PlasmicMesAlertes__RenderFunc(props: {
                                 plasmic_library_tailwind_3_4_number_tokens_css.plasmic_tokens,
                                 plasmic_plasmic_rich_components_css.plasmic_tokens
                               )}
+                              dropdownMatchSelectWidth={false}
                               mode={"multiple"}
                               onChange={async (...eventArgs: any) => {
                                 generateStateOnChangeProp($state, [
@@ -898,12 +909,14 @@ function PlasmicMesAlertes__RenderFunc(props: {
                               }}
                               options={(() => {
                                 try {
-                                  return $queries.getContractType.data.map(
-                                    contractType => ({
-                                      value: contractType.id,
-                                      label: contractType.contract_type
-                                    })
-                                  );
+                                  return $queries.getCriteria.data
+                                    .filter(
+                                      item => item.type === "contract_type"
+                                    )
+                                    .map(item => ({
+                                      label: item.name,
+                                      value: item.name
+                                    }));
                                 } catch (e) {
                                   if (
                                     e instanceof TypeError ||
@@ -917,6 +930,7 @@ function PlasmicMesAlertes__RenderFunc(props: {
                               })()}
                               placeholder={"Select..."}
                               popupScopeClassName={sty["select3__popup"]}
+                              showSearch={true}
                               size={"large"}
                               value={generateStateValueProp($state, [
                                 "select3",
@@ -929,6 +943,19 @@ function PlasmicMesAlertes__RenderFunc(props: {
                               "__wab_instance",
                               sty.formField__sHjY
                             )}
+                            initialValue={(() => {
+                              try {
+                                return undefined;
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return undefined;
+                                }
+                                throw e;
+                              }
+                            })()}
                             label={"Salaire minimum"}
                             name={"min_wage"}
                           >
@@ -957,30 +984,19 @@ function PlasmicMesAlertes__RenderFunc(props: {
                               }}
                               options={(() => {
                                 try {
-                                  return $queries.getMinimumSalary.data.map(
-                                    minSalary => ({
-                                      value: minSalary.id,
-                                      label: minSalary.min_salary
-                                    })
-                                  );
+                                  return $queries.getCriteria.data
+                                    .filter(item => item.type === "salary")
+                                    .map(item => ({
+                                      label: item.name,
+                                      value: item.name
+                                    }));
                                 } catch (e) {
                                   if (
                                     e instanceof TypeError ||
                                     e?.plasmicType ===
                                       "PlasmicUndefinedDataError"
                                   ) {
-                                    return [
-                                      {
-                                        value: "option1",
-                                        label: "Option 1",
-                                        type: "option"
-                                      },
-                                      {
-                                        value: "option2",
-                                        label: "Option 2",
-                                        type: "option"
-                                      }
-                                    ];
+                                    return [];
                                   }
                                   throw e;
                                 }
@@ -1035,6 +1051,7 @@ function PlasmicMesAlertes__RenderFunc(props: {
               </h3>
             }
             isOpen={generateStateValueProp($state, ["modal", "isOpen"])}
+            noTrigger={true}
             onOpenChange={async (...eventArgs: any) => {
               generateStateOnChangeProp($state, ["modal", "isOpen"]).apply(
                 null,

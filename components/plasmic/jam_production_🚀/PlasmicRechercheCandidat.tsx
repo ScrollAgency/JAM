@@ -89,11 +89,12 @@ import projectcss from "./plasmic.module.css"; // plasmic-import: f7DE9y7qp46fyC
 import sty from "./PlasmicRechercheCandidat.module.css"; // plasmic-import: CsVrMhQxf35k/css
 
 import CircleIcon from "./icons/PlasmicIcon__Circle"; // plasmic-import: je95h6YoQ2jE/icon
-import PictogramIcon from "./icons/PlasmicIcon__Pictogram"; // plasmic-import: KlZQiGxQTluF/icon
+import GroupIcon from "./icons/PlasmicIcon__Group"; // plasmic-import: yIYn4o5HgDaM/icon
 import XIcon from "./icons/PlasmicIcon__X"; // plasmic-import: 7N6Suhwryqlm/icon
 import IconPhMapPinIcon from "./icons/PlasmicIcon__IconPhMapPin"; // plasmic-import: CAcfAl_W7CL5/icon
 import PhoneIcon from "./icons/PlasmicIcon__Phone"; // plasmic-import: TnWLxKqpsOCZ/icon
 import EnvelopeSimpleIcon from "./icons/PlasmicIcon__EnvelopeSimple"; // plasmic-import: 6e-QrJJmFWot/icon
+import PictogramIcon from "./icons/PlasmicIcon__Pictogram"; // plasmic-import: KlZQiGxQTluF/icon
 import StarBackgroundIcon from "./icons/PlasmicIcon__StarBackground"; // plasmic-import: Zu-Xc5DdiDXn/icon
 import MagnifyingGlassIcon from "./icons/PlasmicIcon__MagnifyingGlass"; // plasmic-import: fii_q6lckj-n/icon
 
@@ -800,6 +801,7 @@ function PlasmicRechercheCandidat__RenderFunc(props: {
                         <AntdSelect
                           data-plasmic-name={"select"}
                           data-plasmic-override={overrides.select}
+                          allowClear={true}
                           bordered={false}
                           className={classNames("__wab_instance", sty.select)}
                           defaultStylesClassName={classNames(
@@ -881,6 +883,16 @@ function PlasmicRechercheCandidat__RenderFunc(props: {
                       data-plasmic-override={overrides.button}
                       className={classNames("__wab_instance", sty.button)}
                       color={"white"}
+                      end={
+                        <GroupIcon
+                          className={classNames(
+                            projectcss.all,
+                            sty.svg___2ZehJ
+                          )}
+                          role={"img"}
+                        />
+                      }
+                      iconEnd={true}
                       label={
                         <div
                           className={classNames(
