@@ -1075,7 +1075,7 @@ function PlasmicParametresDeCompte__RenderFunc(props: {
                                   variables: [$state.formulaire.value]
                                 },
                                 cacheKey: null,
-                                invalidatedKeys: ["plasmic_refresh_all"],
+                                invalidatedKeys: [],
                                 roleId: null
                               }
                             };
@@ -1730,19 +1730,7 @@ function PlasmicParametresDeCompte__RenderFunc(props: {
                             {"Comp\u00e9tences"}
                           </div>
                         }
-                        name={(() => {
-                          try {
-                            return $queries.getMe.data[0].skill || [undefined];
-                          } catch (e) {
-                            if (
-                              e instanceof TypeError ||
-                              e?.plasmicType === "PlasmicUndefinedDataError"
-                            ) {
-                              return undefined;
-                            }
-                            throw e;
-                          }
-                        })()}
+                        name={"skill"}
                       >
                         <AntdSelect
                           data-plasmic-name={"select8"}
@@ -1769,7 +1757,7 @@ function PlasmicParametresDeCompte__RenderFunc(props: {
                           options={(() => {
                             try {
                               return $queries.getSoftSkill.data.map(skill => ({
-                                value: skill.id,
+                                value: skill.skill,
                                 label: skill.skill
                               }));
                             } catch (e) {

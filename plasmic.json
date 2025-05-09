@@ -2546,6 +2546,26 @@
           "id": "H7s7pGhDmqKY",
           "name": "Icon16Icon",
           "moduleFilePath": "plasmic/jam_production_🚀/icons/PlasmicIcon__Icon16.tsx"
+        },
+        {
+          "id": "HYYgN-FkDmX6",
+          "name": "PauseCircleIcon",
+          "moduleFilePath": "plasmic/jam_production_🚀/icons/PlasmicIcon__PauseCircle.tsx"
+        },
+        {
+          "id": "l9xLeGEs7UWH",
+          "name": "PencilSimpleLineIcon",
+          "moduleFilePath": "plasmic/jam_production_🚀/icons/PlasmicIcon__PencilSimpleLine.tsx"
+        },
+        {
+          "id": "3oXUWH4aUqgx",
+          "name": "Vector20Icon",
+          "moduleFilePath": "plasmic/jam_production_🚀/icons/PlasmicIcon__Vector20.tsx"
+        },
+        {
+          "id": "4EUB4wFLEPEm",
+          "name": "Vector21Icon",
+          "moduleFilePath": "plasmic/jam_production_🚀/icons/PlasmicIcon__Vector21.tsx"
         }
       ],
       "images": [
@@ -3393,6 +3413,16 @@
           "id": "daw1pIorH6jm",
           "name": "Star 54",
           "filePath": "../public/plasmic/jam_production_🚀/images/star54.svg"
+        },
+        {
+          "id": "xN5wxaz-zz61",
+          "name": "ph:car-profile 13",
+          "filePath": "../public/plasmic/jam_production_🚀/images/phCarProfile13.svg"
+        },
+        {
+          "id": "0l7hswRHW8rr",
+          "name": "Icon/ph:office-chair 6",
+          "filePath": "../public/plasmic/jam_production_🚀/images/iconPhOfficeChair6.svg"
         }
       ],
       "indirect": false,
