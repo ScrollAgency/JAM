@@ -88,6 +88,7 @@ import plasmic_plasmic_rich_components_css from "../plasmic_rich_components/plas
 import projectcss from "./plasmic.module.css"; // plasmic-import: f7DE9y7qp46fyCw5nuY8f9/projectcss
 import sty from "./PlasmicRechercheCandidat.module.css"; // plasmic-import: CsVrMhQxf35k/css
 
+import Icon16Icon from "./icons/PlasmicIcon__Icon16"; // plasmic-import: H7s7pGhDmqKY/icon
 import CircleIcon from "./icons/PlasmicIcon__Circle"; // plasmic-import: je95h6YoQ2jE/icon
 import GroupIcon from "./icons/PlasmicIcon__Group"; // plasmic-import: yIYn4o5HgDaM/icon
 import XIcon from "./icons/PlasmicIcon__X"; // plasmic-import: 7N6Suhwryqlm/icon
@@ -621,22 +622,12 @@ function PlasmicRechercheCandidat__RenderFunc(props: {
                             },
                             placeholder: "Mot-cl\u00e9, comp\u00e9tence...",
                             prefix: (
-                              <PlasmicImg__
-                                alt={""}
-                                className={classNames(sty.img__jLdB0)}
-                                displayHeight={"20px"}
-                                displayMaxHeight={"none"}
-                                displayMaxWidth={"none"}
-                                displayMinHeight={"0"}
-                                displayMinWidth={"0"}
-                                displayWidth={"20px"}
-                                loading={"lazy"}
-                                src={{
-                                  src: "/plasmic/jam_production_🚀/images/image10.svg",
-                                  fullWidth: 21,
-                                  fullHeight: 20,
-                                  aspectRatio: 1.05
-                                }}
+                              <Icon16Icon
+                                className={classNames(
+                                  projectcss.all,
+                                  sty.svg__fnoMi
+                                )}
+                                role={"img"}
                               />
                             ),
 

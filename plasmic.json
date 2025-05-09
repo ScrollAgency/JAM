@@ -2541,6 +2541,11 @@
           "id": "Zu-Xc5DdiDXn",
           "name": "StarBackgroundIcon",
           "moduleFilePath": "plasmic/jam_production_🚀/icons/PlasmicIcon__StarBackground.tsx"
+        },
+        {
+          "id": "H7s7pGhDmqKY",
+          "name": "Icon16Icon",
+          "moduleFilePath": "plasmic/jam_production_🚀/icons/PlasmicIcon__Icon16.tsx"
         }
       ],
       "images": [

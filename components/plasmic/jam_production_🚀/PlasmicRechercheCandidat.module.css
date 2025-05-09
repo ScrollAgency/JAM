@@ -151,13 +151,13 @@
   border-radius: 16px;
   border: 1px solid var(--token-d-0gEGbakN0M);
 }
-.img__jLdB0 {
+.svg__fnoMi {
   object-fit: cover;
-  width: 20px;
-  height: 20px;
-}
-.img__jLdB0 > picture > img {
-  object-fit: cover;
+  max-width: 100%;
+  color: #000;
+  width: 16px;
+  height: 17px;
+  display: block;
 }
 .freeBox__dyXi {
   display: flex;
