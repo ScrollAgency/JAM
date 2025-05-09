@@ -551,11 +551,8 @@
   max-width: 100%;
   object-fit: cover;
   display: block;
-  filter: drop-shadow(0px 0px 10px #dc2626);
   mix-blend-mode: normal;
   cursor: pointer;
-  border-radius: 16px;
-  border: 1px solid var(--token-nuB3vbLUeNHj);
 }
 .formField__luBtz:global(.__wab_instance) {
   width: 100%;

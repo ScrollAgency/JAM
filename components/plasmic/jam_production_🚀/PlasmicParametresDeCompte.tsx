@@ -1569,22 +1569,7 @@ function PlasmicParametresDeCompte__RenderFunc(props: {
                             {"Moyens de transport"}
                           </div>
                         }
-                        name={(() => {
-                          try {
-                            return (
-                              $queries.getUserForTest.data[0]
-                                .transport_mode || [undefined]
-                            );
-                          } catch (e) {
-                            if (
-                              e instanceof TypeError ||
-                              e?.plasmicType === "PlasmicUndefinedDataError"
-                            ) {
-                              return undefined;
-                            }
-                            throw e;
-                          }
-                        })()}
+                        name={"transport_mode"}
                         noLabel={false}
                       >
                         <AntdSelect

@@ -120,7 +120,7 @@ export type PlasmicRechercheCandidat__OverridesType = {
   form?: Flex__<typeof FormWrapper>;
   input?: Flex__<typeof AntdInput>;
   input2?: Flex__<typeof AntdInput>;
-  select?: Flex__<typeof AntdSelect>;
+  select9?: Flex__<typeof AntdSelect>;
   button?: Flex__<typeof Button>;
   results?: Flex__<"div">;
   resultsDetails?: Flex__<"div">;
@@ -309,12 +309,6 @@ function PlasmicRechercheCandidat__RenderFunc(props: {
         initFunc: ({ $props, $state, $queries, $ctx }) => []
       },
       {
-        path: "select.value",
-        type: "private",
-        variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
-      },
-      {
         path: "cityTab",
         type: "private",
         variableType: "array",
@@ -325,6 +319,12 @@ function PlasmicRechercheCandidat__RenderFunc(props: {
         type: "private",
         variableType: "text",
         initFunc: ({ $props, $state, $queries, $ctx }) => ""
+      },
+      {
+        path: "select9.value",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
       }
     ],
     [$props, $ctx, $refs]
@@ -766,117 +766,93 @@ function PlasmicRechercheCandidat__RenderFunc(props: {
                           })()}
                         </div>
                       </FormItemWrapper>
-                      <FormItemWrapper
-                        className={classNames(
-                          "__wab_instance",
-                          sty.formField___6Cwj
+                      <AntdSelect
+                        data-plasmic-name={"select9"}
+                        data-plasmic-override={overrides.select9}
+                        allowClear={true}
+                        bordered={false}
+                        className={classNames("__wab_instance", sty.select9)}
+                        defaultStylesClassName={classNames(
+                          projectcss.root_reset,
+                          projectcss.plasmic_default_styles,
+                          projectcss.plasmic_mixins,
+                          projectcss.plasmic_tokens,
+                          plasmic_antd_5_hostless_css.plasmic_tokens,
+                          plasmic_library_tailwind_3_4_number_tokens_css.plasmic_tokens,
+                          plasmic_plasmic_rich_components_css.plasmic_tokens
                         )}
-                        initialValue={(() => {
+                        mode={"single"}
+                        onChange={async (...eventArgs: any) => {
+                          generateStateOnChangeProp($state, [
+                            "select9",
+                            "value"
+                          ]).apply(null, eventArgs);
+                        }}
+                        options={(() => {
                           try {
-                            return "";
+                            return $queries.getCriteria.data
+                              .filter(
+                                item => item.type === "availability_status"
+                              )
+                              .map(item => ({
+                                value: item.name,
+                                label: item.name
+                              }));
                           } catch (e) {
                             if (
                               e instanceof TypeError ||
                               e?.plasmicType === "PlasmicUndefinedDataError"
                             ) {
-                              return undefined;
+                              return [];
                             }
                             throw e;
                           }
                         })()}
-                        label={
-                          <div
+                        placeholder={
+                          <Stack__
+                            as={"div"}
+                            hasGap={true}
                             className={classNames(
                               projectcss.all,
-                              projectcss.__wab_text,
-                              sty.text___5693M
+                              sty.freeBox__ectx9
                             )}
                           >
-                            {"Disponibilit\u00e9"}
-                          </div>
-                        }
-                        name={"availability"}
-                        preserve={false}
-                      >
-                        <AntdSelect
-                          data-plasmic-name={"select"}
-                          data-plasmic-override={overrides.select}
-                          allowClear={true}
-                          bordered={false}
-                          className={classNames("__wab_instance", sty.select)}
-                          defaultStylesClassName={classNames(
-                            projectcss.root_reset,
-                            projectcss.plasmic_default_styles,
-                            projectcss.plasmic_mixins,
-                            projectcss.plasmic_tokens,
-                            plasmic_antd_5_hostless_css.plasmic_tokens,
-                            plasmic_library_tailwind_3_4_number_tokens_css.plasmic_tokens,
-                            plasmic_plasmic_rich_components_css.plasmic_tokens
-                          )}
-                          onChange={async (...eventArgs: any) => {
-                            generateStateOnChangeProp($state, [
-                              "select",
-                              "value"
-                            ]).apply(null, eventArgs);
-                          }}
-                          options={[
-                            {
-                              value: "option1",
-                              label: "Option 1",
-                              type: "option"
-                            },
-                            {
-                              value: "option2",
-                              label: "Option 2",
-                              type: "option"
-                            }
-                          ]}
-                          placeholder={
-                            <Stack__
-                              as={"div"}
-                              hasGap={true}
+                            <PlasmicImg__
+                              alt={""}
+                              className={classNames(sty.img__hRSm)}
+                              displayHeight={"16px"}
+                              displayMaxHeight={"none"}
+                              displayMaxWidth={"100%"}
+                              displayMinHeight={"0"}
+                              displayMinWidth={"0"}
+                              displayWidth={"14px"}
+                              loading={"lazy"}
+                              src={{
+                                src: "/plasmic/jam_production_🚀/images/image3.svg",
+                                fullWidth: 20,
+                                fullHeight: 20,
+                                aspectRatio: 1
+                              }}
+                            />
+
+                            <div
                               className={classNames(
                                 projectcss.all,
-                                sty.freeBox__tZlM
+                                projectcss.__wab_text,
+                                sty.text__l3OvF
                               )}
                             >
-                              <PlasmicImg__
-                                alt={""}
-                                className={classNames(sty.img__rsBK)}
-                                displayHeight={"16px"}
-                                displayMaxHeight={"none"}
-                                displayMaxWidth={"100%"}
-                                displayMinHeight={"0"}
-                                displayMinWidth={"0"}
-                                displayWidth={"14px"}
-                                loading={"lazy"}
-                                src={{
-                                  src: "/plasmic/jam_production_🚀/images/image3.svg",
-                                  fullWidth: 20,
-                                  fullHeight: 20,
-                                  aspectRatio: 1
-                                }}
-                              />
-
-                              <div
-                                className={classNames(
-                                  projectcss.all,
-                                  projectcss.__wab_text,
-                                  sty.text___8OErh
-                                )}
-                              >
-                                {"Disponibilit\u00e9"}
-                              </div>
-                            </Stack__>
-                          }
-                          popupScopeClassName={sty["select__popup"]}
-                          size={"small"}
-                          value={generateStateValueProp($state, [
-                            "select",
-                            "value"
-                          ])}
-                        />
-                      </FormItemWrapper>
+                              {"Disponibilit\u00e9"}
+                            </div>
+                          </Stack__>
+                        }
+                        popupScopeClassName={sty["select9__popup"]}
+                        size={"large"}
+                        value={generateStateValueProp($state, [
+                          "select9",
+                          "value"
+                        ])}
+                      />
                     </Stack__>
                     <Button
                       data-plasmic-name={"button"}
@@ -2380,7 +2356,7 @@ const PlasmicDescendants = {
     "form",
     "input",
     "input2",
-    "select",
+    "select9",
     "button",
     "results",
     "resultsDetails",
@@ -2464,7 +2440,7 @@ const PlasmicDescendants = {
     "form",
     "input",
     "input2",
-    "select",
+    "select9",
     "button",
     "results",
     "resultsDetails",
@@ -2538,12 +2514,12 @@ const PlasmicDescendants = {
     "text5",
     "supportingText2"
   ],
-  filtre: ["filtre", "h1", "form", "input", "input2", "select", "button"],
+  filtre: ["filtre", "h1", "form", "input", "input2", "select9", "button"],
   h1: ["h1"],
-  form: ["form", "input", "input2", "select", "button"],
+  form: ["form", "input", "input2", "select9", "button"],
   input: ["input"],
   input2: ["input2"],
-  select: ["select"],
+  select9: ["select9"],
   button: ["button"],
   results: [
     "results",
@@ -3022,7 +2998,7 @@ type NodeDefaultElementType = {
   form: typeof FormWrapper;
   input: typeof AntdInput;
   input2: typeof AntdInput;
-  select: typeof AntdSelect;
+  select9: typeof AntdSelect;
   button: typeof Button;
   results: "div";
   resultsDetails: "div";
@@ -3166,7 +3142,7 @@ export const PlasmicRechercheCandidat = Object.assign(
     form: makeNodeComponent("form"),
     input: makeNodeComponent("input"),
     input2: makeNodeComponent("input2"),
-    select: makeNodeComponent("select"),
+    select9: makeNodeComponent("select9"),
     button: makeNodeComponent("button"),
     results: makeNodeComponent("results"),
     resultsDetails: makeNodeComponent("resultsDetails"),

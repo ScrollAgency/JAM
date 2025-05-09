@@ -10,7 +10,7 @@
   font-family: var(--token-iPHCqhfXwTyN);
   min-width: 0;
   min-height: 0;
-  border-radius: var(--token-6E_dkwkzSygq);
+  border-radius: 16px;
   padding: 12px;
   border-width: 1px;
   border-style: solid;
@@ -19,10 +19,13 @@
   cursor: not-allowed;
 }
 .ariaInput[data-focused]:global(.__wab_instance) {
+  filter: drop-shadow(0px 0px 4px #e7ffcc) drop-shadow(0px 1px 2px #1018280d);
   outline-style: solid;
   outline-width: var(--token-UY9kPePLUyPt);
   outline-offset: 1px;
   outline-color: var(--token-uqUcyTUgvV0c);
+  border-radius: 16px;
+  border: 1px solid var(--token-nuB3vbLUeNHj);
 }
 .ariaInputtype_soft:global(.__wab_instance) {
   background: var(--token-2WBfCSZKGd3h);

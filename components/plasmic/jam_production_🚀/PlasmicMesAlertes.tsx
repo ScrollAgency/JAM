@@ -806,7 +806,7 @@ function PlasmicMesAlertes__RenderFunc(props: {
                               data-plasmic-name={"select"}
                               data-plasmic-override={overrides.select}
                               allowClear={true}
-                              bordered={false}
+                              bordered={true}
                               className={classNames(
                                 "__wab_instance",
                                 sty.select
@@ -886,6 +886,7 @@ function PlasmicMesAlertes__RenderFunc(props: {
                               data-plasmic-name={"select3"}
                               data-plasmic-override={overrides.select3}
                               allowClear={true}
+                              bordered={false}
                               className={classNames(
                                 "__wab_instance",
                                 sty.select3
@@ -962,6 +963,7 @@ function PlasmicMesAlertes__RenderFunc(props: {
                             <AntdSelect
                               data-plasmic-name={"select4"}
                               data-plasmic-override={overrides.select4}
+                              bordered={false}
                               className={classNames(
                                 "__wab_instance",
                                 sty.select4
