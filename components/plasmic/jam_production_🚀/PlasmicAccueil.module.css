@@ -7,7 +7,8 @@
   justify-items: center;
   justify-content: flex-start;
   align-items: center;
-  background: #000000;
+  background: linear-gradient(180deg, #010a07 0%, #010a07 62%, #000000 100%) 0%
+    0% / 100% 100% repeat;
   overflow: auto;
   position: relative;
   min-width: 0;
@@ -26,7 +27,12 @@
 @media (min-width: 0px) and (max-width: 768px) {
   .rechercheJob {
     overflow: hidden;
-    background: var(--token-ceD1eQOG2geq);
+    background: linear-gradient(
+        180deg,
+        #010a07 0%,
+        var(--token-qVvTulujfE86) 100%
+      )
+      0% 0% / 100% 100% repeat;
   }
 }
 @media (min-width: 0px) and (max-width: 768px) {
@@ -3437,7 +3443,6 @@
   object-fit: cover;
 }
 .structureLp {
-  background: rgba(0, 0, 0, 1);
   width: 100%;
   height: auto;
   display: flex;
@@ -3445,6 +3450,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
+  background: none;
   grid-column-start: 1 !important;
   grid-column-end: -1 !important;
 }
@@ -3457,7 +3463,7 @@
 }
 .frame1437254391 {
   width: 100%;
-  height: 1319px;
+  height: 100%;
   display: flex;
   position: relative;
   flex-direction: column;
@@ -3466,7 +3472,7 @@
   z-index: 1;
   align-self: center;
   min-width: 0;
-  flex-shrink: 0;
+  min-height: 0;
   padding: 0px;
 }
 @media (min-width: 0px) and (max-width: 768px) {
@@ -3479,22 +3485,24 @@
   }
 }
 .header {
-  width: auto;
+  width: 100%;
   height: auto;
   display: flex;
   flex-direction: row;
   background: #ffffff00;
-  position: absolute;
-  left: 0;
-  top: 0;
-  right: 0;
+  position: relative;
+  left: auto;
+  top: auto;
   z-index: 1;
-  padding: 23px;
+  right: auto;
+  min-width: 0;
+  padding: 23px 48px;
 }
 .header > :global(.__wab_flex-container) {
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+  min-width: 0;
   margin-left: calc(0px - 80px);
   width: calc(100% + 80px);
 }
@@ -3514,6 +3522,11 @@
     width: 100%;
     display: flex;
     flex-direction: row;
+    position: relative;
+    left: auto;
+    top: auto;
+    right: auto;
+    margin-bottom: 32px;
     padding: 20px;
   }
 }
@@ -3713,32 +3726,54 @@
   height: 1em;
 }
 .bgImage {
-  object-fit: cover;
+  object-fit: contain;
   max-width: 100%;
   width: 100%;
   height: 100%;
+  position: absolute;
+  left: auto;
+  top: 0;
+  object-position: right -279px;
+  bottom: 0;
+  right: 0;
+  z-index: 0;
   min-width: 0;
   min-height: 0;
 }
 .bgImage > picture > img {
-  object-fit: cover;
+  object-fit: contain;
+  object-position: right -279px;
 }
 @media (min-width: 0px) and (max-width: 768px) {
   .bgImage {
     height: 582px;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    object-position: center center;
+    object-fit: fill;
     flex-shrink: 0;
+  }
+}
+@media (min-width: 0px) and (max-width: 768px) {
+  .bgImage > picture > img {
+    object-fit: fill;
+    object-position: center center;
   }
 }
 .title {
   width: 45%;
   height: auto;
   display: flex;
-  position: absolute;
+  position: relative;
   flex-direction: column;
-  align-self: center;
+  align-self: flex-start;
   left: auto;
-  top: 150px;
+  top: auto;
   z-index: 50;
+  bottom: auto;
+  padding-left: 48px;
+  padding-top: 48px;
 }
 .title > :global(.__wab_flex-container) {
   flex-direction: column;
@@ -3756,9 +3791,12 @@
 @media (min-width: 0px) and (max-width: 768px) {
   .title {
     width: 100%;
-    position: absolute;
-    left: 0px;
-    top: 170px;
+    position: relative;
+    left: auto;
+    top: auto;
+    height: auto;
+    bottom: auto;
+    margin-bottom: 32px;
     min-width: 0;
     padding: 0px 20px;
   }
@@ -3778,7 +3816,7 @@
   display: flex;
   position: relative;
   flex-direction: column;
-  align-self: center;
+  align-self: flex-start;
   border-radius: 16px;
   padding: 4px 12px;
 }
@@ -3798,6 +3836,11 @@
   > picture
   > img {
   margin-top: 12px;
+}
+@media (min-width: 0px) and (max-width: 768px) {
+  .badgeGroup {
+    align-self: center;
+  }
 }
 .message {
   display: block;
@@ -3819,32 +3862,61 @@
   color: #ffffff;
   letter-spacing: 0em;
   line-height: 1.2000000476837158;
-  text-align: center;
+  text-align: left;
   font-weight: 400;
   font-size: 54px;
+  margin-top: calc(8px + 4px) !important;
+  margin-bottom: 8px;
+  font-family: "DM Sans", sans-serif;
 }
 @media (min-width: 0px) and (max-width: 768px) {
   .trouvezUnJobNaJamaisEteAussiSimple {
     width: 100%;
     padding-right: 0px;
     height: auto;
+    text-align: center;
+    font-size: 32px;
+    margin-top: calc(8px + 4px) !important;
+    min-width: 0;
+  }
+}
+.trouvezUnJobNaJamaisEteAussiSimple2 {
+  display: block;
+  position: relative;
+  left: auto;
+  top: auto;
+  color: #ffffff;
+  text-align: left;
+  font-weight: 400;
+  font-size: 20px;
+  font-family: "DM Sans", sans-serif;
+}
+@media (min-width: 0px) and (max-width: 768px) {
+  .trouvezUnJobNaJamaisEteAussiSimple2 {
+    width: 100%;
+    padding-right: 0px;
+    height: auto;
+    left: auto;
+    top: auto;
+    text-align: center;
+    font-size: 14px;
     min-width: 0;
   }
 }
 .searchMap {
   width: auto;
   display: flex;
-  position: absolute;
+  position: relative;
   flex-direction: column;
-  left: 0;
+  left: auto;
   top: auto;
-  z-index: 200;
   flex-shrink: 0;
   height: auto;
-  right: 0;
-  bottom: 0;
+  right: auto;
+  bottom: auto;
   overflow: auto;
-  padding: 0px 50px 50px;
+  z-index: 1;
+  padding: 50px;
 }
 .searchMap > :global(.__wab_flex-container) {
   flex-direction: column;
@@ -3871,13 +3943,16 @@
     left: auto;
     top: auto;
     right: auto;
+    height: 100%;
     min-width: 0;
+    min-height: 0;
     padding: 0px 20px;
   }
 }
 @media (min-width: 0px) and (max-width: 768px) {
   .searchMap > :global(.__wab_flex-container) {
     min-width: 0;
+    min-height: 0;
   }
 }
 .filters {
@@ -4672,11 +4747,11 @@
   font-size: 16px;
 }
 .button8:global(.__wab_instance):global(.__wab_instance) {
-  position: relative;
   flex-grow: 0;
   flex-shrink: 0;
   width: 100%;
-  height: 40px;
+  height: 48px;
+  position: relative;
   min-width: 0;
   display: none;
 }
@@ -4775,7 +4850,7 @@
     display: flex;
     flex-direction: column-reverse;
     overflow: visible;
-    height: 600px;
+    height: 400px;
     left: auto;
     top: auto;
     min-width: 0;
@@ -4808,7 +4883,7 @@
     margin-top: 0px;
   }
 }
-.mapBox:global(.__wab_instance) {
+.mapBox__rvf40:global(.__wab_instance) {
   object-fit: cover;
   flex-grow: 0;
   flex-shrink: 0;
@@ -4839,12 +4914,12 @@
     width: 100%;
     justify-content: flex-start;
     align-items: flex-start;
-    display: flex;
     flex-direction: row;
     z-index: 100;
     left: 0px;
     top: 0px;
     min-width: 0;
+    display: none;
     border-radius: 16px;
   }
 }
@@ -4892,6 +4967,7 @@
     height: 50px;
     margin-left: calc(0px + 0px) !important;
     flex-shrink: 0;
+    display: none;
   }
 }
 .button3:global(.__wab_instance) {
@@ -4986,6 +5062,7 @@
     width: 100%;
     margin-top: calc(0px + 0px) !important;
     min-width: 0;
+    display: none;
   }
 }
 @media (min-width: 0px) and (max-width: 768px) {
@@ -5077,7 +5154,7 @@
 .rechercheJob .dislike:hover {
   color: var(--token-z7lbSBcm72mI);
 }
-.jobCard:global(.__wab_instance) {
+.jobCard___9Gniz:global(.__wab_instance) {
   max-width: 100%;
   object-fit: cover;
   box-shadow: none;
@@ -5104,7 +5181,401 @@
   padding: 10px;
 }
 @media (min-width: 0px) and (max-width: 768px) {
-  .jobCard:global(.__wab_instance) {
+  .jobCard___9Gniz:global(.__wab_instance) {
+    align-items: center;
+    justify-content: flex-start;
+    max-width: none;
+    width: 100%;
+    min-width: 0;
+  }
+}
+.mapJobs2 {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background: none;
+  left: auto;
+  top: auto;
+  position: relative;
+  flex-shrink: 0;
+  align-self: center;
+  height: 600px;
+  overflow: auto;
+  min-width: 0;
+  border-radius: 16px;
+  padding: 0px;
+}
+.mapJobs2 > :global(.__wab_flex-container) {
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: nowrap;
+  align-content: stretch;
+  min-width: 0;
+  margin-top: calc(0px - 0px);
+  height: calc(100% + 0px);
+}
+.mapJobs2 > :global(.__wab_flex-container) > *,
+.mapJobs2 > :global(.__wab_flex-container) > :global(.__wab_slot) > *,
+.mapJobs2 > :global(.__wab_flex-container) > picture > img,
+.mapJobs2
+  > :global(.__wab_flex-container)
+  > :global(.__wab_slot)
+  > picture
+  > img {
+  margin-top: 0px;
+}
+@media (min-width: 0px) and (max-width: 768px) {
+  .mapJobs2 {
+    width: 100%;
+    display: flex;
+    flex-direction: column-reverse;
+    overflow: visible;
+    height: 100%;
+    left: auto;
+    top: auto;
+    max-height: 840px;
+    min-height: 65px;
+    min-width: 0;
+    border-radius: 0px;
+  }
+}
+@media (min-width: 0px) and (max-width: 768px) {
+  .mapJobs2 > :global(.__wab_flex-container) {
+    flex-direction: column-reverse;
+    align-items: center;
+    justify-content: flex-end;
+    min-width: 0;
+    margin-left: calc(0px - 0px);
+    width: calc(100% + 0px);
+    margin-top: calc(0px - 0px);
+    height: calc(100% + 0px);
+  }
+}
+@media (min-width: 0px) and (max-width: 768px) {
+  .mapJobs2 > :global(.__wab_flex-container) > *,
+  .mapJobs2 > :global(.__wab_flex-container) > :global(.__wab_slot) > *,
+  .mapJobs2 > :global(.__wab_flex-container) > picture > img,
+  .mapJobs2
+    > :global(.__wab_flex-container)
+    > :global(.__wab_slot)
+    > picture
+    > img {
+    margin-left: 0px;
+    margin-top: 0px;
+  }
+}
+.mapBox___0IljK:global(.__wab_instance) {
+  object-fit: cover;
+  flex-grow: 0;
+  flex-shrink: 0;
+  background: #ffffff;
+}
+@media (min-width: 0px) and (max-width: 768px) {
+  .mapBox___0IljK:global(.__wab_instance) {
+    display: none;
+  }
+}
+.postes2 {
+  display: flex;
+  flex-direction: row;
+  width: 350px;
+  height: auto;
+  max-width: 100%;
+  justify-content: center;
+  align-items: center;
+  overflow: visible;
+  background: #ffffff;
+  cursor: pointer;
+  z-index: 100;
+  left: 0;
+  top: 0;
+  position: absolute;
+  box-shadow: none;
+  border-radius: 16px;
+  padding: 8px;
+  border: 1px solid var(--token-d-0gEGbakN0M);
+}
+@media (min-width: 0px) and (max-width: 768px) {
+  .postes2 {
+    width: auto;
+    justify-content: flex-start;
+    align-items: flex-start;
+    display: flex;
+    flex-direction: row;
+    left: 0;
+    top: 0;
+    position: absolute;
+    right: 0;
+    border-radius: 16px;
+  }
+}
+.text__ceQwr {
+  width: auto;
+  height: auto;
+  position: relative;
+  left: auto;
+  top: auto;
+  color: var(--token-qVvTulujfE86);
+  border-radius: 16px;
+  padding: 13px;
+}
+@media (min-width: 0px) and (max-width: 768px) {
+  .text__ceQwr {
+    left: auto;
+    top: auto;
+    border-radius: 16px;
+  }
+}
+.button9 {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  width: 50px;
+  max-width: 100%;
+  justify-content: center;
+  align-items: center;
+  margin-left: 0px;
+  left: 314px;
+  top: 12px;
+  z-index: 200;
+  height: 50px;
+  right: auto;
+  flex-shrink: 0;
+  padding: 0px;
+}
+@media (min-width: 0px) and (max-width: 768px) {
+  .button9 {
+    position: absolute;
+    left: auto;
+    top: 6px;
+    width: 50px;
+    height: 50px;
+    right: 6px;
+    margin-left: calc(0px + 0px) !important;
+    flex-shrink: 0;
+  }
+}
+.button10:global(.__wab_instance) {
+  object-fit: cover;
+  background: url("/plasmic/jam_production_🚀/images/image13.svg") top 50% left 50% / 56% 100% no-repeat,
+    var(--token-uqUcyTUgvV0c);
+  color: #002400;
+  box-shadow: 0px 4px 16px 0px rgba(0, 0, 0, 0.2);
+  height: 100%;
+  z-index: 200;
+  width: 100%;
+  position: absolute;
+  left: 0px;
+  top: -6px;
+  flex-grow: 0;
+  flex-shrink: 0;
+  align-self: center;
+  transform: rotateX(0deg) rotateY(0deg) rotateZ(180deg);
+  border-radius: 100px;
+  border-width: 1px;
+  border-style: solid;
+}
+@media (min-width: 0px) and (max-width: 768px) {
+  .button10:global(.__wab_instance) {
+    top: 3px;
+    display: flex;
+  }
+}
+.button11:global(.__wab_instance) {
+  object-fit: cover;
+  background: url("/plasmic/jam_production_🚀/images/image13.svg") top 50% left 50% / 56% 100% no-repeat,
+    var(--token-uqUcyTUgvV0c);
+  color: #002400;
+  box-shadow: 0px 4px 16px 0px rgba(0, 0, 0, 0.2);
+  height: 100%;
+  z-index: 200;
+  width: 100%;
+  position: absolute;
+  left: 0px;
+  top: -6px;
+  flex-grow: 0;
+  flex-shrink: 0;
+  align-self: center;
+  border-radius: 100px;
+  border-width: 1px;
+  border-style: solid;
+}
+@media (min-width: 0px) and (max-width: 768px) {
+  .button11:global(.__wab_instance) {
+    top: auto;
+    position: relative;
+    left: auto;
+  }
+}
+.jobListContainer2 {
+  background: rgba(255, 255, 255, 1);
+  box-shadow: none;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  flex-shrink: 0;
+  width: 350px;
+  overflow: auto;
+  height: auto;
+  z-index: 50;
+  bottom: 0;
+  left: 0;
+  top: 0;
+  position: absolute;
+  border-radius: 16px;
+  padding: 70px 10px 0px;
+}
+.jobListContainer2 > :global(.__wab_flex-container) {
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  margin-top: calc(0px - 16px);
+  height: calc(100% + 16px);
+}
+.jobListContainer2 > :global(.__wab_flex-container) > *,
+.jobListContainer2 > :global(.__wab_flex-container) > :global(.__wab_slot) > *,
+.jobListContainer2 > :global(.__wab_flex-container) > picture > img,
+.jobListContainer2
+  > :global(.__wab_flex-container)
+  > :global(.__wab_slot)
+  > picture
+  > img {
+  margin-top: 16px;
+}
+@media (min-width: 0px) and (max-width: 768px) {
+  .jobListContainer2 {
+    width: 100%;
+    margin-top: calc(0px + 0px) !important;
+    height: 100%;
+    position: relative;
+    left: auto;
+    top: auto;
+    max-height: 840px;
+    bottom: auto;
+    min-width: 0;
+    min-height: 0;
+  }
+}
+@media (min-width: 0px) and (max-width: 768px) {
+  .jobListContainer2 > :global(.__wab_flex-container) {
+    align-items: center;
+    justify-content: flex-start;
+    min-width: 0;
+    min-height: 0;
+  }
+}
+.jobsOnScroll2 {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  align-items: stretch;
+  justify-content: flex-start;
+  width: 100%;
+  margin-top: calc(0px + 16px) !important;
+  margin-bottom: 0px;
+  margin-left: 0px;
+  margin-right: 0px;
+  border-top-left-radius: 16px;
+  flex-wrap: nowrap;
+  align-content: stretch;
+  flex-basis: auto;
+  flex-shrink: 1;
+  min-width: 0;
+  padding: 0px;
+}
+@media (min-width: 0px) and (max-width: 768px) {
+  .jobsOnScroll2 {
+    z-index: 1;
+    height: 100%;
+    width: 100%;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-shrink: 0;
+    margin-top: calc(0px + 16px) !important;
+    min-width: 0;
+    min-height: 0;
+  }
+}
+.likeButtons2 {
+  display: flex;
+  flex-direction: row;
+  position: absolute;
+  align-items: flex-start;
+  justify-content: flex-end;
+  width: auto;
+  height: auto;
+  top: 0;
+  left: auto;
+  z-index: 100;
+  right: 0;
+  padding: 8px;
+}
+.like3 {
+  object-fit: cover;
+  max-width: 100%;
+  color: var(--token-d-0gEGbakN0M);
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  pointer-events: auto;
+  transition-property: all;
+  transition-duration: 500ms;
+  flex-shrink: 0;
+  -webkit-transition-property: all;
+  -webkit-transition-duration: 500ms;
+}
+.rechercheJob .like3:hover {
+  color: var(--token-m0UcCQ1ZmcM3);
+}
+.dislike2 {
+  object-fit: cover;
+  max-width: 100%;
+  color: var(--token-kSvLe56WmiDs);
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  position: relative;
+  left: auto;
+  top: auto;
+  pointer-events: auto;
+  transition-property: all;
+  transition-duration: 500ms;
+  flex-shrink: 0;
+  -webkit-transition-property: all;
+  -webkit-transition-duration: 500ms;
+}
+.rechercheJob .dislike2:hover {
+  color: var(--token-z7lbSBcm72mI);
+}
+.jobCard__cwhV0:global(.__wab_instance) {
+  max-width: 100%;
+  object-fit: cover;
+  box-shadow: none;
+  display: block;
+  flex-grow: 0;
+  flex-shrink: 0;
+  width: 100%;
+  border-top-width: 0px;
+  border-right-width: 0px;
+  border-bottom-width: 1px;
+  border-left-width: 0px;
+  border-bottom-style: solid;
+  font-size: 15px;
+  height: 100%;
+  overflow-x: auto;
+  overflow-y: auto;
+  cursor: pointer;
+  transform: none;
+  font-weight: 500;
+  font-family: "DM Sans", sans-serif;
+  min-width: 0;
+  min-height: 0;
+  border-radius: 0px;
+  padding: 10px;
+}
+@media (min-width: 0px) and (max-width: 768px) {
+  .jobCard__cwhV0:global(.__wab_instance) {
     align-items: center;
     justify-content: flex-start;
     max-width: none;

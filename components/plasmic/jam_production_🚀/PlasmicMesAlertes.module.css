@@ -431,7 +431,6 @@
   height: auto;
   max-width: 100%;
   min-width: 0;
-  padding: 8px;
 }
 .freeBox__jhZr > :global(.__wab_flex-container) {
   flex-direction: column;
