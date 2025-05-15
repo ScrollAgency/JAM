@@ -117,6 +117,9 @@ export { default as MapMeta } from "./others/Map/Map.meta";
 //       ProgressBar
 export { default as ProgressBar } from "./others/ProgressBar/ProgressBar";
 export { default as ProgressBarMeta } from "./others/ProgressBar/ProgressBar.meta";
+//       Separator
+export { default as Separator } from "./others/Separator/Separator";
+export { default as SeparatorMeta } from "./others/Separator/Separator.meta";
 //       Toast
 export { default as Toast } from "./others/Toast/Toast";
 export { default as ToastMeta } from "./others/Toast/Toast.meta";
