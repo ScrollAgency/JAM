@@ -151,12 +151,12 @@ const DataGridV2Meta = {
     onViewCV: {
       type: "eventHandler",
       description: "Appelé lors du clic sur le bouton de prévisualisation du CV",
-      argTypes: [{ name: "fileUrl", type: "string" }]
+      argTypes: [{ name: "fileUrl", type: "string" }, { name: "taskId", type: "string" }]
     },
     onViewLM: {
       type: "eventHandler",
       description: "Appelé lors du clic sur le bouton de prévisualisation de la lettre de motivation",
-      argTypes: [{ name: "fileUrl", type: "string" }]
+      argTypes: [{ name: "fileUrl", type: "string" }, { name: "taskId", type: "string" }]
     }
   }
 } as ComponentMeta<typeof DataGridV2>;
