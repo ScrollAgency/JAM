@@ -87,8 +87,8 @@ interface DataGridV2Props {
   responsive?: ResponsiveConfig;
   onAccept?: (taskId: string) => void;
   onReject?: (taskId: string) => void;
-  onViewCV?: (fileUrl: string) => void;
-  onViewLM?: (fileUrl: string) => void;
+  onViewCV?: (fileUrl: string, taskId: string) => void;
+  onViewLM?: (fileUrl: string, taskId: string) => void;
   statusConfig?: {
     [key: string]: {
       label: string;
@@ -378,9 +378,9 @@ export const DataGridV2: React.FC<DataGridV2Props> = ({
               onClick={(e) => {
                 e.stopPropagation();
                 if (isCV) {
-                  onViewCV?.(fileUrl);
+                  onViewCV?.(fileUrl, task.id || '');
                 } else {
-                  onViewLM?.(fileUrl);
+                  onViewLM?.(fileUrl, task.id || '');
                 }
               }}
               title={`Voir ${isCV ? 'le CV' : 'la lettre de motivation'}`}
