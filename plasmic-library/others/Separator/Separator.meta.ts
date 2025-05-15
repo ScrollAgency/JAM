@@ -15,7 +15,7 @@ const meta: ComponentMeta = {
   section: "UI",
   props: {
     orientation: {
-      type: "select",
+      type: "string",
       defaultValue: "horizontal",
     },
     decorative: {
