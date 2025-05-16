@@ -85,7 +85,7 @@ interface DataGridV2Props {
   columnHeaders?: { [key: string]: ColumnHeader };
   theme?: DataGridTheme;
   responsive?: ResponsiveConfig;
-  onAccept?: (taskId: string) => void;
+  onAccept?: (taskId: string, task: Task) => void;
   onReject?: (taskId: string) => void;
   onViewCV?: (fileUrl: string, taskId: string) => void;
   onViewLM?: (fileUrl: string, taskId: string) => void;
@@ -276,7 +276,7 @@ export const DataGridV2: React.FC<DataGridV2Props> = ({
             className={`${styles.actionButton} ${styles.acceptButton}`}
             onClick={(e) => {
               e.stopPropagation();
-              onAccept?.(task.id || '');
+              onAccept?.(task.id || '', task);
             }}
             title="Accepter la candidature"
           >

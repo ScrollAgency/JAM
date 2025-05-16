@@ -89,11 +89,7 @@ const DataGridV2Meta = {
         "actions"
       ]
     },
-    onAccept: {
-      type: "eventHandler",
-      description: "Fonction appelée lors de l'acceptation d'une candidature",
-      argTypes: [{ name: "taskId", type: "string" }]
-    },
+        onAccept: {      type: "eventHandler",      description: "Fonction appelée lors de l'acceptation d'une candidature",      argTypes: [        { name: "taskId", type: "string" },        { name: "task", type: "object", fields: {          id: "string",          nom_du_candidat: "string",          note: "string",          cv_nom: "string",          lm_nom: "string",          date_de_candidature: "string",          status: "string",          email: "string",          profile_photo: { type: "string", optional: true }        } }      ]    },
     onReject: {
       type: "eventHandler",
       description: "Fonction appelée lors du rejet d'une candidature",
