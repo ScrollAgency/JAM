@@ -149,3 +149,7 @@ export { default as PageLoaderMeta } from "./others/PageLoader/PageLoader.meta";
 //       SmartLoader
 export { default as SmartLoader } from "./others/SmartLoader/SmartLoader";
 export { default as SmartLoaderMeta } from "./others/SmartLoader/SmartLoader.meta";
+
+//       Notation
+export { default as Notation } from "./others/Notation/Notation";
+export { default as NotationMeta } from "./others/Notation/Notation.meta";
