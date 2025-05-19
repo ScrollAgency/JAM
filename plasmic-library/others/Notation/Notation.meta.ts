@@ -24,6 +24,14 @@ const NotationMeta = {
       defaultValue: "",
       advanced: true,
     },
+    onChange: {
+      type: "eventHandler",
+      displayName: "Au changement",
+      description: "Fonction appelée lorsqu'une étoile est cliquée",
+      argTypes: [
+        { name: "value", type: "number" }
+      ]
+    }
   },
 };
 
