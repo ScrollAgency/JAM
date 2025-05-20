@@ -139,6 +139,17 @@
   font-weight: 500;
 }
 
+.userInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.userEmail {
+  font-size: 12px;
+  color: #667085;
+  margin-top: 2px;
+}
+
 .dateCell {
   color: #666;
   font-size: 0.9em;

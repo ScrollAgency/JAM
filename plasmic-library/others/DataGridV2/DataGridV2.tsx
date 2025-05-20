@@ -342,7 +342,10 @@ export const DataGridV2: React.FC<DataGridV2Props> = ({
                 }}
               />
             )}
-            <span className={styles.companyName}>{value}</span>
+            <div className={styles.userInfo}>
+              <span className={styles.companyName}>{value}</span>
+              {task.email && <span className={styles.userEmail}>{task.email}</span>}
+            </div>
           </div>
         );
       case 'status':
