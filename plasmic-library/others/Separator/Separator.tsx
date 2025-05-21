@@ -3,7 +3,10 @@
 import * as React from "react"
 import * as SeparatorPrimitive from "@radix-ui/react-separator"
 
-import { cn } from "@/lib/utils"
+// Remplaçons la fonction d'utilitaire cn par une version simple
+const cn = (...classes: string[]) => {
+  return classes.filter(Boolean).join(" ")
+}
 
 const Separator = React.forwardRef<
   React.ElementRef<typeof SeparatorPrimitive.Root>,
@@ -20,7 +23,7 @@ const Separator = React.forwardRef<
       className={cn(
         "shrink-0 bg-border",
         orientation === "horizontal" ? "h-[1px] w-full" : "h-full w-[1px]",
-        className
+        className || ""
       )}
       {...props}
     />
