@@ -2538,14 +2538,14 @@
           "checksum": "960cf8a84a11ba2d9606b88c00c8298f"
         },
         {
-          "assetId": "f7DE9y7qp46fyCw5nuY8f9",
-          "type": "projectCss",
-          "checksum": "4b93b97c5bd71e635de3e560ea26e158"
-        },
-        {
           "type": "icon",
           "assetId": "wmiG3ar5cZJO",
           "checksum": "2670188192e6ab8eb6a289b31a0aa69c"
+        },
+        {
+          "assetId": "f7DE9y7qp46fyCw5nuY8f9",
+          "type": "projectCss",
+          "checksum": "4b93b97c5bd71e635de3e560ea26e158"
         }
       ],
       "codegenVersion": "0.0.1"
