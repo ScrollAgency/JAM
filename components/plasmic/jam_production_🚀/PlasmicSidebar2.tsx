@@ -60,6 +60,7 @@ import {
 } from "@plasmicapp/react-web/lib/host";
 
 import SideBarButton from "../../SideBarButton"; // plasmic-import: QWOZXZk1eTc0/component
+import { Separator } from "../../../plasmic-library/others/Separator/Separator"; // plasmic-import: DY1R_wd6WfSn/codeComponent
 
 import { useScreenVariants as useScreenVariantshm8Nko4B5BDd } from "./PlasmicGlobalVariant__Screen"; // plasmic-import: HM8Nko4B5BDd/globalVariant
 
@@ -628,6 +629,245 @@ function PlasmicSidebar2__RenderFunc(props: {
           hasGap={true}
           className={classNames(projectcss.all, sty.disconnectButton)}
         >
+          <div className={classNames(projectcss.all, sty.freeBox__iiBjj)}>
+            <div
+              className={classNames(
+                projectcss.all,
+                projectcss.__wab_text,
+                sty.text__oJi1F
+              )}
+            >
+              <React.Fragment>
+                <span
+                  className={"plasmic_default__all plasmic_default__span"}
+                  style={{ fontWeight: 600 }}
+                >
+                  {"VOS ANNONCES"}
+                </span>
+              </React.Fragment>
+            </div>
+            <div className={classNames(projectcss.all, sty.freeBox__tWrQc)}>
+              <div
+                className={classNames(
+                  projectcss.all,
+                  projectcss.__wab_text,
+                  sty.text__ek9E1
+                )}
+              >
+                <React.Fragment>
+                  <span
+                    className={"plasmic_default__all plasmic_default__span"}
+                    style={{ fontWeight: 500 }}
+                  >
+                    {"Classiques :"}
+                  </span>
+                </React.Fragment>
+              </div>
+              <div
+                className={classNames(
+                  projectcss.all,
+                  projectcss.__wab_text,
+                  sty.text__dEAfw
+                )}
+              >
+                <React.Fragment>
+                  <span
+                    className={"plasmic_default__all plasmic_default__span"}
+                    style={{ fontWeight: 500 }}
+                  >
+                    {"x"}
+                  </span>
+                </React.Fragment>
+              </div>
+              <div
+                className={classNames(
+                  projectcss.all,
+                  projectcss.__wab_text,
+                  sty.text___9Jwm2
+                )}
+              >
+                <React.Fragment>
+                  <span
+                    className={"plasmic_default__all plasmic_default__span"}
+                    style={{ fontWeight: 500 }}
+                  >
+                    {"/"}
+                  </span>
+                </React.Fragment>
+              </div>
+              <div
+                className={classNames(
+                  projectcss.all,
+                  projectcss.__wab_text,
+                  sty.text__ngIM
+                )}
+              >
+                <React.Fragment>
+                  <span
+                    className={"plasmic_default__all plasmic_default__span"}
+                    style={{ fontWeight: 500 }}
+                  >
+                    {"x"}
+                  </span>
+                </React.Fragment>
+              </div>
+            </div>
+            <Separator
+              className={
+                "" + " " + classNames("__wab_instance", sty.separateur__xUkgR)
+              }
+              decorative={true}
+              orientation={"horizontal"}
+            />
+
+            <div className={classNames(projectcss.all, sty.freeBox___8HqIp)}>
+              <div
+                className={classNames(
+                  projectcss.all,
+                  projectcss.__wab_text,
+                  sty.text__ptU3M
+                )}
+              >
+                <React.Fragment>
+                  <span
+                    className={"plasmic_default__all plasmic_default__span"}
+                    style={{ fontWeight: 500 }}
+                  >
+                    {"Last Minute :"}
+                  </span>
+                </React.Fragment>
+              </div>
+              <div
+                className={classNames(
+                  projectcss.all,
+                  projectcss.__wab_text,
+                  sty.text___63354
+                )}
+              >
+                <React.Fragment>
+                  <span
+                    className={"plasmic_default__all plasmic_default__span"}
+                    style={{ fontWeight: 500 }}
+                  >
+                    {"x"}
+                  </span>
+                </React.Fragment>
+              </div>
+              <div
+                className={classNames(
+                  projectcss.all,
+                  projectcss.__wab_text,
+                  sty.text__hWrAk
+                )}
+              >
+                <React.Fragment>
+                  <span
+                    className={"plasmic_default__all plasmic_default__span"}
+                    style={{ fontWeight: 500 }}
+                  >
+                    {"/"}
+                  </span>
+                </React.Fragment>
+              </div>
+              <div
+                className={classNames(
+                  projectcss.all,
+                  projectcss.__wab_text,
+                  sty.text__z3Gq
+                )}
+              >
+                <React.Fragment>
+                  <span
+                    className={"plasmic_default__all plasmic_default__span"}
+                    style={{ fontWeight: 500 }}
+                  >
+                    {"x"}
+                  </span>
+                </React.Fragment>
+              </div>
+            </div>
+            <Separator
+              className={
+                "" + " " + classNames("__wab_instance", sty.separateur__m5BEk)
+              }
+              decorative={true}
+              orientation={"horizontal"}
+            />
+
+            <div className={classNames(projectcss.all, sty.freeBox__qc7WD)}>
+              <div
+                className={classNames(
+                  projectcss.all,
+                  projectcss.__wab_text,
+                  sty.text__qVzSn
+                )}
+              >
+                <React.Fragment>
+                  <span
+                    className={"plasmic_default__all plasmic_default__span"}
+                    style={{ fontWeight: 500 }}
+                  >
+                    {"Boost\u00e9es :"}
+                  </span>
+                </React.Fragment>
+              </div>
+              <div
+                className={classNames(
+                  projectcss.all,
+                  projectcss.__wab_text,
+                  sty.text__eo9Dt
+                )}
+              >
+                <React.Fragment>
+                  <span
+                    className={"plasmic_default__all plasmic_default__span"}
+                    style={{ fontWeight: 500 }}
+                  >
+                    {"x"}
+                  </span>
+                </React.Fragment>
+              </div>
+              <div
+                className={classNames(
+                  projectcss.all,
+                  projectcss.__wab_text,
+                  sty.text___1EkjV
+                )}
+              >
+                <React.Fragment>
+                  <span
+                    className={"plasmic_default__all plasmic_default__span"}
+                    style={{ fontWeight: 500 }}
+                  >
+                    {"/"}
+                  </span>
+                </React.Fragment>
+              </div>
+              <div
+                className={classNames(
+                  projectcss.all,
+                  projectcss.__wab_text,
+                  sty.text__yal
+                )}
+              >
+                <React.Fragment>
+                  <span
+                    className={"plasmic_default__all plasmic_default__span"}
+                    style={{ fontWeight: 500 }}
+                  >
+                    {"x"}
+                  </span>
+                </React.Fragment>
+              </div>
+            </div>
+            <Separator
+              className={
+                "" + " " + classNames("__wab_instance", sty.separateur__zMctD)
+              }
+              decorative={true}
+              orientation={"horizontal"}
+            />
+          </div>
           <SolarLogoutOutlineIcon
             className={classNames(projectcss.all, sty.svg___42UmA)}
             role={"img"}

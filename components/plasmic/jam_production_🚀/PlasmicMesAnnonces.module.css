@@ -245,7 +245,7 @@
   position: relative;
   left: auto;
   top: auto;
-  min-height: 0;
+  min-height: 244px;
   padding: 16px;
   border: 2px solid var(--token-ovRm8DFM9H8a);
 }

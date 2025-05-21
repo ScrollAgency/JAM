@@ -704,7 +704,18 @@ function PlasmicAccueil__RenderFunc(props: {
         initFunc: ({ $props, $state, $queries, $ctx }) =>
           (() => {
             try {
-              return "";
+              return (() => {
+                const queryString = $ctx.params.job_title;
+                const getParam = (key, query) => {
+                  const params = query.split("&").reduce((acc, pair) => {
+                    const [k, v] = pair.split("=");
+                    acc[k] = v;
+                    return acc;
+                  }, {});
+                  return params[key] ?? "";
+                };
+                return getParam("job_title", queryString);
+              })();
             } catch (e) {
               if (
                 e instanceof TypeError ||
@@ -6130,7 +6141,6 @@ function PlasmicAccueil__RenderFunc(props: {
                               "__wab_instance",
                               sty.formField___6Jwam
                             )}
-                            initialValue={undefined}
                             label={
                               <div
                                 className={classNames(
@@ -6252,7 +6262,52 @@ function PlasmicAccueil__RenderFunc(props: {
                                   AntdInput_Helpers ?? {},
                                   child$Props
                                 );
-
+                                initializePlasmicStates(
+                                  $state,
+                                  [
+                                    {
+                                      name: "input3.value",
+                                      initFunc: ({
+                                        $props,
+                                        $state,
+                                        $queries
+                                      }) =>
+                                        (() => {
+                                          try {
+                                            return (() => {
+                                              const queryString =
+                                                $ctx.params.job_title;
+                                              const getParam = (key, query) => {
+                                                const params = query
+                                                  .split("&")
+                                                  .reduce((acc, pair) => {
+                                                    const [k, v] =
+                                                      pair.split("=");
+                                                    acc[k] = v;
+                                                    return acc;
+                                                  }, {});
+                                                return params[key] ?? "";
+                                              };
+                                              return getParam(
+                                                "job_title",
+                                                queryString
+                                              );
+                                            })();
+                                          } catch (e) {
+                                            if (
+                                              e instanceof TypeError ||
+                                              e?.plasmicType ===
+                                                "PlasmicUndefinedDataError"
+                                            ) {
+                                              return undefined;
+                                            }
+                                            throw e;
+                                          }
+                                        })()
+                                    }
+                                  ],
+                                  []
+                                );
                                 return (
                                   <AntdInput
                                     data-plasmic-name={"input3"}
@@ -6614,6 +6669,35 @@ function PlasmicAccueil__RenderFunc(props: {
                               sty.formField___2W6T
                             )}
                             hidden={false}
+                            initialValue={(() => {
+                              try {
+                                return (() => {
+                                  const queryString = $ctx.params.job_title;
+                                  const getParam = (key, query) => {
+                                    const params = query
+                                      .split("&")
+                                      .reduce((acc, pair) => {
+                                        const [k, v] = pair.split("=");
+                                        acc[k] = v;
+                                        return acc;
+                                      }, {});
+                                    return params[key] ?? "";
+                                  };
+                                  return getParam(
+                                    "contract_types",
+                                    queryString
+                                  );
+                                })();
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return undefined;
+                                }
+                                throw e;
+                              }
+                            })()}
                             label={"Name"}
                             name={"contract_type"}
                             noLabel={true}
@@ -6719,6 +6803,32 @@ function PlasmicAccueil__RenderFunc(props: {
                               "__wab_instance",
                               sty.formField__eZlqS
                             )}
+                            initialValue={(() => {
+                              try {
+                                return (() => {
+                                  const queryString = $ctx.params.job_title;
+                                  const getParam = (key, query) => {
+                                    const params = query
+                                      .split("&")
+                                      .reduce((acc, pair) => {
+                                        const [k, v] = pair.split("=");
+                                        acc[k] = v;
+                                        return acc;
+                                      }, {});
+                                    return params[key] ?? "";
+                                  };
+                                  return getParam("work_times", queryString);
+                                })();
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return undefined;
+                                }
+                                throw e;
+                              }
+                            })()}
                             label={"Name"}
                             name={"working_time"}
                             noLabel={true}
@@ -6921,6 +7031,32 @@ function PlasmicAccueil__RenderFunc(props: {
                               "__wab_instance",
                               sty.formField___7Yt9
                             )}
+                            initialValue={(() => {
+                              try {
+                                return (() => {
+                                  const queryString = $ctx.params.job_title;
+                                  const getParam = (key, query) => {
+                                    const params = query
+                                      .split("&")
+                                      .reduce((acc, pair) => {
+                                        const [k, v] = pair.split("=");
+                                        acc[k] = v;
+                                        return acc;
+                                      }, {});
+                                    return params[key] ?? "";
+                                  };
+                                  return getParam("min_salary", queryString);
+                                })();
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return undefined;
+                                }
+                                throw e;
+                              }
+                            })()}
                             label={"Name"}
                             name={"salary"}
                             noLabel={true}

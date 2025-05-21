@@ -100,6 +100,7 @@ import PhTrashIcon from "./icons/PlasmicIcon__PhTrash"; // plasmic-import: juO39
 import PictogramIcon from "./icons/PlasmicIcon__Pictogram"; // plasmic-import: KlZQiGxQTluF/icon
 import PhPencilSimpleIcon from "./icons/PlasmicIcon__PhPencilSimple"; // plasmic-import: 7xHLZEkolpKE/icon
 import ChevronDownIcon from "./icons/PlasmicIcon__ChevronDown"; // plasmic-import: yud1FH0Ox1FR/icon
+import SolarLogoutOutlineIcon from "./icons/PlasmicIcon__SolarLogoutOutline"; // plasmic-import: UZfkN-2mqbQ1/icon
 
 createPlasmicElementProxy;
 
@@ -152,6 +153,7 @@ export type PlasmicParametresEmployeur__OverridesType = {
   select3?: Flex__<typeof AntdSelect>;
   select5?: Flex__<typeof AntdSelect>;
   textInput4?: Flex__<typeof TextInput>;
+  expandTab?: Flex__<"div">;
   mobileNavbarBottom2?: Flex__<typeof MobileNavbarBottom2>;
 };
 
@@ -2311,6 +2313,53 @@ function PlasmicParametresEmployeur__RenderFunc(props: {
                 })()}
               </div>
             </div>
+            {(
+              hasVariant(globalVariants, "screen", "mobileOnly") ? true : false
+            ) ? (
+              <Stack__
+                as={"div"}
+                data-plasmic-name={"expandTab"}
+                data-plasmic-override={overrides.expandTab}
+                hasGap={true}
+                className={classNames(projectcss.all, sty.expandTab)}
+                onClick={async event => {
+                  const $steps = {};
+
+                  $steps["invokeGlobalAction"] = true
+                    ? (() => {
+                        const actionArgs = { args: ["/"] };
+                        return $globalActions[
+                          "SupabaseUserGlobalContext.logout"
+                        ]?.apply(null, [...actionArgs.args]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["invokeGlobalAction"] != null &&
+                    typeof $steps["invokeGlobalAction"] === "object" &&
+                    typeof $steps["invokeGlobalAction"].then === "function"
+                  ) {
+                    $steps["invokeGlobalAction"] = await $steps[
+                      "invokeGlobalAction"
+                    ];
+                  }
+                }}
+              >
+                <SolarLogoutOutlineIcon
+                  className={classNames(projectcss.all, sty.svg___0FXEu)}
+                  role={"img"}
+                />
+
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__uiFkR
+                  )}
+                >
+                  {"D\u00e9connexion"}
+                </div>
+              </Stack__>
+            ) : null}
           </Stack__>
           <MobileNavbarBottom2
             data-plasmic-name={"mobileNavbarBottom2"}
@@ -2363,6 +2412,7 @@ const PlasmicDescendants = {
     "select3",
     "select5",
     "textInput4",
+    "expandTab",
     "mobileNavbarBottom2"
   ],
   mobileNavbarTop: ["mobileNavbarTop"],
@@ -2402,7 +2452,8 @@ const PlasmicDescendants = {
     "textInput6",
     "select3",
     "select5",
-    "textInput4"
+    "textInput4",
+    "expandTab"
   ],
   heading: ["heading"],
   card4: [
@@ -2501,6 +2552,7 @@ const PlasmicDescendants = {
   select3: ["select3"],
   select5: ["select5"],
   textInput4: ["textInput4"],
+  expandTab: ["expandTab"],
   mobileNavbarBottom2: ["mobileNavbarBottom2"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
@@ -2545,6 +2597,7 @@ type NodeDefaultElementType = {
   select3: typeof AntdSelect;
   select5: typeof AntdSelect;
   textInput4: typeof TextInput;
+  expandTab: "div";
   mobileNavbarBottom2: typeof MobileNavbarBottom2;
 };
 
@@ -2645,6 +2698,7 @@ export const PlasmicParametresEmployeur = Object.assign(
     select3: makeNodeComponent("select3"),
     select5: makeNodeComponent("select5"),
     textInput4: makeNodeComponent("textInput4"),
+    expandTab: makeNodeComponent("expandTab"),
     mobileNavbarBottom2: makeNodeComponent("mobileNavbarBottom2"),
 
     // Metadata about props expected for PlasmicParametresEmployeur
