@@ -117,6 +117,9 @@ export { default as MapMeta } from "./others/Map/Map.meta";
 //       ProgressBar
 export { default as ProgressBar } from "./others/ProgressBar/ProgressBar";
 export { default as ProgressBarMeta } from "./others/ProgressBar/ProgressBar.meta";
+//       Separator
+export { default as Separator } from "./others/Separator/Separator";
+export { default as SeparatorMeta } from "./others/Separator/Separator.meta";
 //       Toast
 export { default as Toast } from "./others/Toast/Toast";
 export { default as ToastMeta } from "./others/Toast/Toast.meta";
@@ -135,9 +138,18 @@ export { default as MainCouranteMeta } from "./others/Kanban/Kanban.meta";
 //       DataGrid
 export { default as DataGrid } from "./others/DataGrid/DataGrid";
 export { default as DataGridMeta } from "./others/DataGrid/DataGrid.meta";
+
+// DataGridV2
+export { default as DataGridV2 } from "./others/DataGridV2/DataGridV2";
+export { default as DataGridV2Meta } from "./others/DataGridV2/DataGridV2.meta";
+
 //       PageLoader
 export { default as PageLoader } from "./others/PageLoader/PageLoader";
 export { default as PageLoaderMeta } from "./others/PageLoader/PageLoader.meta";
 //       SmartLoader
 export { default as SmartLoader } from "./others/SmartLoader/SmartLoader";
 export { default as SmartLoaderMeta } from "./others/SmartLoader/SmartLoader.meta";
+
+//       Notation
+export { default as Notation } from "./others/Notation/Notation";
+export { default as NotationMeta } from "./others/Notation/Notation.meta";
