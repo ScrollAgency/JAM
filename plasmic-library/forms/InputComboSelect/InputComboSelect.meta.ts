@@ -7,7 +7,7 @@ const InputComboSelectMeta = {
   props: {
     value: {
       type: "number",
-      defaultValue: 1,
+      defaultValue: 0,
     },
     onChange: {
       type: "eventHandler",
