@@ -140,6 +140,13 @@ export { default as DataGrid } from "./others/DataGrid/DataGrid";
 export { default as DataGridMeta } from "./others/DataGrid/DataGrid.meta";
 
 // DataGridV2
+export { default as DataGridOffre } from "./others/DataGridOffre/DataGridOffre";
+export { default as DataGridOffreMeta } from "./others/DataGridOffre/DataGridOffre.meta";
+
+// DataGridV2
+export { default as DataGridUser } from "./others/DataGridUser/DataGridUser";
+export { default as DataGridUserMeta } from "./others/DataGridUser/DataGridUser.meta";
+// DataGridV2
 export { default as DataGridV2 } from "./others/DataGridV2/DataGridV2";
 export { default as DataGridV2Meta } from "./others/DataGridV2/DataGridV2.meta";
 
