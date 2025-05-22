@@ -1,6 +1,6 @@
 import * as React from "react";
 import type { HTMLElementRefOf } from "@plasmicapp/react-web";
-import { useState } from "react";
+import { useState, cloneElement, isValidElement } from "react";
 import { loadStripe } from "@stripe/stripe-js";
 
 export interface StripeItem {
@@ -31,7 +31,7 @@ function StripeCheckoutButton_(
     customerEmail,
     successUrl,
     cancelUrl,
-    children = "Payer",
+    children,
     disabled = false,
     className,
     onSuccess,
@@ -46,7 +46,6 @@ function StripeCheckoutButton_(
       const filteredItems = items.filter((item) => item.quantity > 0);
       if (filteredItems.length === 0) {
         alert("Votre panier est vide.");
-        setLoading(false);
         return;
       }
 
@@ -58,7 +57,7 @@ function StripeCheckoutButton_(
           client_reference_id: clientReferenceId,
           customer_email: customerEmail,
           success_url: successUrl,
-          cancel_url: cancelUrl,    
+          cancel_url: cancelUrl,
         }),
       });
 
@@ -70,7 +69,6 @@ function StripeCheckoutButton_(
       const { sessionId } = await res.json();
 
       const stripe = await loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY || "");
-
       if (!stripe) throw new Error("Stripe.js non initialisé");
 
       await stripe.redirectToCheckout({ sessionId });
@@ -84,6 +82,17 @@ function StripeCheckoutButton_(
     }
   };
 
+  // Cas où children est un élément React valide
+  if (isValidElement(children)) {
+    return cloneElement(children as React.ReactElement<any>, {
+      onClick: handleClick,
+      disabled: disabled || loading,
+      className,
+      ref,
+    });
+  }
+
+  // Fallback : bouton par défaut
   return (
     <button
       type="button"
@@ -92,7 +101,7 @@ function StripeCheckoutButton_(
       disabled={disabled || loading}
       onClick={handleClick}
     >
-      {loading ? "Chargement..." : children}
+      {loading ? "Chargement..." : children || "Payer"}
     </button>
   );
 }
