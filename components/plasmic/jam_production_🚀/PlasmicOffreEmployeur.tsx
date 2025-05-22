@@ -81,7 +81,7 @@ import MenuItem from "../../MenuItem"; // plasmic-import: plmAgyhhAdMc/component
 import TextAreaInput from "../../TextAreaInput"; // plasmic-import: nVAUbPc6gpoz/component
 import Button from "../../Button"; // plasmic-import: 9ixtKbGKv7x-/component
 import DeleteAccount from "../../DeleteAccount"; // plasmic-import: KdtWnTG_vDHe/component
-import { PageLoader } from "../../utils/PageLoader"; // plasmic-import: FHDrnDhA4DZe/codeComponent
+import { PageLoader } from "../../others/PageLoader/PageLoader"; // plasmic-import: FHDrnDhA4DZe/codeComponent
 import Sidebar2 from "../../Sidebar2"; // plasmic-import: RXqL3kdDrXwo/component
 import { JobOffersCard } from "../../cards/JobOffersCard/JobOffersCard"; // plasmic-import: gsOcF6TJNbSL/codeComponent
 import { UploadWrapper } from "@plasmicpkgs/antd5/skinny/registerUpload";
@@ -89,12 +89,12 @@ import { AntdTextArea } from "@plasmicpkgs/antd5/skinny/registerInput";
 import { inputHelpers as AntdTextArea_Helpers } from "@plasmicpkgs/antd5/skinny/registerInput";
 import ProgressBar from "../../ProgressBar"; // plasmic-import: o2sDSKJQp4UX/component
 import { JamButton } from "../../forms/JamButton/JamButton"; // plasmic-import: UiI0wt2mxfuf/codeComponent
-import { SmartLoader } from "../../utils/SmartLoader"; // plasmic-import: YAp2GWWLB3S2/codeComponent
+import { SmartLoader } from "../../others/SmartLoader/SmartLoader"; // plasmic-import: YAp2GWWLB3S2/codeComponent
 import { AntdInput } from "@plasmicpkgs/antd5/skinny/registerInput";
 import { inputHelpers as AntdInput_Helpers } from "@plasmicpkgs/antd5/skinny/registerInput";
 import ProductCard from "../../ProductCard"; // plasmic-import: XNMQC2V0FBMZ/component
 import MobileNavbarBottom2 from "../../MobileNavbarBottom2"; // plasmic-import: gAnwjyfMiBe9/component
-import { InputComboSelect } from "../../InputComboSelect/InputComboSelect"; // plasmic-import: KwvhXarw-EVS/codeComponent
+import { InputComboSelect } from "../../forms/InputComboSelect/InputComboSelect"; // plasmic-import: KwvhXarw-EVS/codeComponent
 import { Fetcher } from "@plasmicapp/react-web/lib/data-sources";
 
 import { useScreenVariants as useScreenVariantshm8Nko4B5BDd } from "./PlasmicGlobalVariant__Screen"; // plasmic-import: HM8Nko4B5BDd/globalVariant
@@ -1090,19 +1090,19 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
         path: "inputComboSelect.value",
         type: "private",
         variableType: "number",
-        initFunc: ({ $props, $state, $queries, $ctx }) => 1
+        initFunc: ({ $props, $state, $queries, $ctx }) => 0
       },
       {
         path: "inputComboSelect2.value",
         type: "private",
         variableType: "number",
-        initFunc: ({ $props, $state, $queries, $ctx }) => 1
+        initFunc: ({ $props, $state, $queries, $ctx }) => 0
       },
       {
         path: "inputComboSelect3.value",
         type: "private",
         variableType: "number",
-        initFunc: ({ $props, $state, $queries, $ctx }) => 1
+        initFunc: ({ $props, $state, $queries, $ctx }) => 0
       },
       {
         path: "textInput21.value",
@@ -1146,6 +1146,12 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
         path: "switch3[].isSelected",
         type: "private",
         variableType: "boolean"
+      },
+      {
+        path: "coordinates",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $ctx }) => ({})
       }
     ],
     [$props, $ctx, $refs]
@@ -1320,6 +1326,24 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
           params: [$queries.getUser.data[0].city]
         },
         cacheKey: `plasmic.$.7f036029-00b4-4f16-bceb-55c637960b86.$.`,
+        invalidatedKeys: null,
+        roleId: null
+      };
+    }),
+    getLocationData: usePlasmicDataOp(() => {
+      return {
+        sourceId: "f3JnwXdZdRBeVqXgX9Vuxa",
+        opId: "d1d2f644-bd2b-4753-9fe3-c3e52743153b",
+        userArgs: {
+          params: [
+            $state.form2.value.postal_code +
+              " " +
+              $state.form2.value.location +
+              ", " +
+              $state.form2.value.country
+          ]
+        },
+        cacheKey: `plasmic.$.d1d2f644-bd2b-4753-9fe3-c3e52743153b.$.`,
         invalidatedKeys: null,
         roleId: null
       };
@@ -4493,7 +4517,9 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                                   conditions: [$state.jobId]
                                 },
                                 cacheKey: null,
-                                invalidatedKeys: ["plasmic_refresh_all"],
+                                invalidatedKeys: [
+                                  "86a865c1-0261-4284-930f-6ef2f6f1060b"
+                                ],
                                 roleId: null
                               }
                             };
@@ -9281,12 +9307,12 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                           onClick={async event => {
                             const $steps = {};
 
-                            $steps["postgresCreateMany"] = true
+                            $steps["createDraftJob"] = true
                               ? (() => {
                                   const actionArgs = {
                                     dataOp: {
                                       sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
-                                      opId: "c1190dcc-4742-4463-82ce-e876c37936c1",
+                                      opId: "02a4b7b4-f704-4f71-8a8a-c293a4f37f46",
                                       userArgs: {
                                         variables: [
                                           $state.form2.value.address,
@@ -9315,11 +9341,19 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                                             .join(", "),
                                           $state._switch.isSelected,
                                           $state.form2.value.end_date,
-                                          $state.form2.value.start_date
+                                          $state.form2.value.start_date,
+                                          Number(
+                                            $queries.getLocationData?.data
+                                              ?.response[0]?.lat
+                                          ) ?? 0,
+                                          Number(
+                                            $queries.getLocationData?.data
+                                              ?.response[0]?.lon
+                                          ) ?? 0
                                         ]
                                       },
                                       cacheKey: null,
-                                      invalidatedKeys: ["plasmic_refresh_all"],
+                                      invalidatedKeys: [],
                                       roleId: null
                                     }
                                   };
@@ -9348,14 +9382,13 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                                 })()
                               : undefined;
                             if (
-                              $steps["postgresCreateMany"] != null &&
-                              typeof $steps["postgresCreateMany"] ===
-                                "object" &&
-                              typeof $steps["postgresCreateMany"].then ===
+                              $steps["createDraftJob"] != null &&
+                              typeof $steps["createDraftJob"] === "object" &&
+                              typeof $steps["createDraftJob"].then ===
                                 "function"
                             ) {
-                              $steps["postgresCreateMany"] = await $steps[
-                                "postgresCreateMany"
+                              $steps["createDraftJob"] = await $steps[
+                                "createDraftJob"
                               ];
                             }
 
@@ -9420,12 +9453,12 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                           onClick={async event => {
                             const $steps = {};
 
-                            $steps["postgresCreateMany"] = true
+                            $steps["createOffer"] = true
                               ? (() => {
                                   const actionArgs = {
                                     dataOp: {
                                       sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
-                                      opId: "5cfe1f31-b16e-4e91-befa-c8edda9968e8",
+                                      opId: "acd0433b-aa45-4057-bdde-9e5f1ebc1be5",
                                       userArgs: {
                                         variables: [
                                           $state.form2.value.address,
@@ -9446,11 +9479,22 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                                           $state.form2.value.benefits,
                                           $state._switch.isSelected,
                                           $state.form2.value.end_date,
-                                          $state.form2.value.start_date
+                                          $state.form2.value.start_date,
+                                          Number(
+                                            $queries.getLocationData?.data
+                                              ?.response[0]?.lat
+                                          ) ?? 0,
+                                          Number(
+                                            $queries.getLocationData?.data
+                                              ?.response[0]?.lon
+                                          ) ?? 0
                                         ]
                                       },
                                       cacheKey: null,
-                                      invalidatedKeys: ["plasmic_refresh_all"],
+                                      invalidatedKeys: [
+                                        "86a865c1-0261-4284-930f-6ef2f6f1060b",
+                                        "8851f1dd-39f5-42db-bff9-d775526e36fe"
+                                      ],
                                       roleId: null
                                     }
                                   };
@@ -9479,18 +9523,16 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                                 })()
                               : undefined;
                             if (
-                              $steps["postgresCreateMany"] != null &&
-                              typeof $steps["postgresCreateMany"] ===
-                                "object" &&
-                              typeof $steps["postgresCreateMany"].then ===
-                                "function"
+                              $steps["createOffer"] != null &&
+                              typeof $steps["createOffer"] === "object" &&
+                              typeof $steps["createOffer"].then === "function"
                             ) {
-                              $steps["postgresCreateMany"] = await $steps[
-                                "postgresCreateMany"
+                              $steps["createOffer"] = await $steps[
+                                "createOffer"
                               ];
                             }
 
-                            $steps["postgresUpdateMany"] = true
+                            $steps["updateStripe"] = true
                               ? (() => {
                                   const actionArgs = {
                                     dataOp: {
@@ -9511,7 +9553,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                                         conditions: [$ctx.SupabaseUser.user.id]
                                       },
                                       cacheKey: null,
-                                      invalidatedKeys: ["plasmic_refresh_all"],
+                                      invalidatedKeys: [],
                                       roleId: null
                                     }
                                   };
@@ -9540,14 +9582,12 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                                 })()
                               : undefined;
                             if (
-                              $steps["postgresUpdateMany"] != null &&
-                              typeof $steps["postgresUpdateMany"] ===
-                                "object" &&
-                              typeof $steps["postgresUpdateMany"].then ===
-                                "function"
+                              $steps["updateStripe"] != null &&
+                              typeof $steps["updateStripe"] === "object" &&
+                              typeof $steps["updateStripe"].then === "function"
                             ) {
-                              $steps["postgresUpdateMany"] = await $steps[
-                                "postgresUpdateMany"
+                              $steps["updateStripe"] = await $steps[
+                                "updateStripe"
                               ];
                             }
 

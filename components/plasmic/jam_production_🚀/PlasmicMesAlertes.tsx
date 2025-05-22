@@ -118,7 +118,7 @@ export type PlasmicMesAlertes__OverridesType = {
   mobileNavbarTop?: Flex__<typeof MobileNavbarTop>;
   main?: Flex__<"div">;
   heading?: Flex__<"div">;
-  card2?: Flex__<"div">;
+  alerts?: Flex__<"div">;
   loading?: Flex__<"div">;
   noAnnonce?: Flex__<"div">;
   featuredIcon2?: Flex__<"div">;
@@ -507,10 +507,10 @@ function PlasmicMesAlertes__RenderFunc(props: {
             </div>
             <Stack__
               as={"div"}
-              data-plasmic-name={"card2"}
-              data-plasmic-override={overrides.card2}
+              data-plasmic-name={"alerts"}
+              data-plasmic-override={overrides.alerts}
               hasGap={true}
-              className={classNames(projectcss.all, sty.card2)}
+              className={classNames(projectcss.all, sty.alerts)}
             >
               {(() => {
                 try {
@@ -541,7 +541,7 @@ function PlasmicMesAlertes__RenderFunc(props: {
                 hasVariant(globalVariants, "screen", "mobileOnly")
                   ? (() => {
                       try {
-                        return $queries.jobsLiked.data.length == 0;
+                        return $queries.getAlerts.data.length == 0;
                       } catch (e) {
                         if (
                           e instanceof TypeError ||
@@ -1497,7 +1497,7 @@ function PlasmicMesAlertes__RenderFunc(props: {
                       onFinish: async values => {
                         const $steps = {};
 
-                        $steps["postgresCreate"] =
+                        $steps["createCriteria"] =
                           !$queries.getAlerts.data.some(
                             alert => alert.id === $state.currentAlert.id
                           )
@@ -1543,16 +1543,16 @@ function PlasmicMesAlertes__RenderFunc(props: {
                               })()
                             : undefined;
                         if (
-                          $steps["postgresCreate"] != null &&
-                          typeof $steps["postgresCreate"] === "object" &&
-                          typeof $steps["postgresCreate"].then === "function"
+                          $steps["createCriteria"] != null &&
+                          typeof $steps["createCriteria"] === "object" &&
+                          typeof $steps["createCriteria"].then === "function"
                         ) {
-                          $steps["postgresCreate"] = await $steps[
-                            "postgresCreate"
+                          $steps["createCriteria"] = await $steps[
+                            "createCriteria"
                           ];
                         }
 
-                        $steps["postgresUpdateById"] =
+                        $steps["updateCriteriaById"] =
                           $state.currentAlert.id !== undefined
                             ? (() => {
                                 const actionArgs = {
@@ -1597,13 +1597,13 @@ function PlasmicMesAlertes__RenderFunc(props: {
                               })()
                             : undefined;
                         if (
-                          $steps["postgresUpdateById"] != null &&
-                          typeof $steps["postgresUpdateById"] === "object" &&
-                          typeof $steps["postgresUpdateById"].then ===
+                          $steps["updateCriteriaById"] != null &&
+                          typeof $steps["updateCriteriaById"] === "object" &&
+                          typeof $steps["updateCriteriaById"].then ===
                             "function"
                         ) {
-                          $steps["postgresUpdateById"] = await $steps[
-                            "postgresUpdateById"
+                          $steps["updateCriteriaById"] = await $steps[
+                            "updateCriteriaById"
                           ];
                         }
 
@@ -1755,7 +1755,7 @@ function PlasmicMesAlertes__RenderFunc(props: {
                                 return;
                               }
                             }}
-                            placeholder={"D\u00e9veloppeur"}
+                            placeholder={"Ex : D\u00e9veloppeur"}
                           />
                         </FormItemWrapper>
                         <FormItemWrapper
@@ -1792,7 +1792,7 @@ function PlasmicMesAlertes__RenderFunc(props: {
                                 return;
                               }
                             }}
-                            placeholder={"Paris"}
+                            placeholder={"Ex : Seine-et-Marne"}
                           />
                         </FormItemWrapper>
                         <FormItemWrapper
@@ -2472,7 +2472,7 @@ const PlasmicDescendants = {
     "mobileNavbarTop",
     "main",
     "heading",
-    "card2",
+    "alerts",
     "loading",
     "noAnnonce",
     "featuredIcon2",
@@ -2515,7 +2515,7 @@ const PlasmicDescendants = {
   main: [
     "main",
     "heading",
-    "card2",
+    "alerts",
     "loading",
     "noAnnonce",
     "featuredIcon2",
@@ -2529,8 +2529,8 @@ const PlasmicDescendants = {
     "deleteEdit"
   ],
   heading: ["heading"],
-  card2: [
-    "card2",
+  alerts: [
+    "alerts",
     "loading",
     "noAnnonce",
     "featuredIcon2",
@@ -2665,7 +2665,7 @@ type NodeDefaultElementType = {
   mobileNavbarTop: typeof MobileNavbarTop;
   main: "div";
   heading: "div";
-  card2: "div";
+  alerts: "div";
   loading: "div";
   noAnnonce: "div";
   featuredIcon2: "div";
@@ -2768,7 +2768,7 @@ export const PlasmicMesAlertes = Object.assign(
     mobileNavbarTop: makeNodeComponent("mobileNavbarTop"),
     main: makeNodeComponent("main"),
     heading: makeNodeComponent("heading"),
-    card2: makeNodeComponent("card2"),
+    alerts: makeNodeComponent("alerts"),
     loading: makeNodeComponent("loading"),
     noAnnonce: makeNodeComponent("noAnnonce"),
     featuredIcon2: makeNodeComponent("featuredIcon2"),

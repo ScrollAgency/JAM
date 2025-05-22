@@ -74,13 +74,13 @@
     flex-direction: column;
     min-width: 0;
     min-height: 0;
-    padding: 80px 20px 78px;
+    padding: 94px 20px 78px;
   }
 }
 @media (min-width: 0px) and (max-width: 768px) {
   .main > :global(.__wab_flex-container) {
-    align-items: stretch;
-    justify-content: flex-start;
+    align-items: center;
+    justify-content: center;
     flex-direction: column;
     min-width: 0;
     min-height: 0;
@@ -120,6 +120,8 @@
   .freeBox__kohVn {
     top: auto;
     left: auto;
+    justify-content: space-between;
+    align-items: center;
   }
 }
 .heading {
@@ -133,7 +135,7 @@
 }
 @media (min-width: 0px) and (max-width: 768px) {
   .heading {
-    padding-top: 20px;
+    padding-top: 0px;
   }
 }
 .button__a9Gtr:global(.__wab_instance):global(.__wab_instance) {
@@ -154,13 +156,10 @@
   color: var(--token-OIYWLyLPYWym);
   height: 1em;
 }
-.card2 {
+.alerts {
   background: none;
-  box-shadow: inset 0px 0px 0px 1px rgba(244, 255, 230, 1);
-  transform: scale(0.9999999403953552, 0.9999999403953552);
   height: 100%;
   display: flex;
-  transform-origin: top left;
   position: relative;
   flex-direction: column;
   width: 100%;
@@ -168,7 +167,7 @@
   min-height: 0;
   border-radius: 24px;
 }
-.card2 > :global(.__wab_flex-container) {
+.alerts > :global(.__wab_flex-container) {
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
@@ -177,14 +176,18 @@
   margin-top: calc(0px - 32px);
   height: calc(100% + 32px);
 }
-.card2 > :global(.__wab_flex-container) > *,
-.card2 > :global(.__wab_flex-container) > :global(.__wab_slot) > *,
-.card2 > :global(.__wab_flex-container) > picture > img,
-.card2 > :global(.__wab_flex-container) > :global(.__wab_slot) > picture > img {
+.alerts > :global(.__wab_flex-container) > *,
+.alerts > :global(.__wab_flex-container) > :global(.__wab_slot) > *,
+.alerts > :global(.__wab_flex-container) > picture > img,
+.alerts
+  > :global(.__wab_flex-container)
+  > :global(.__wab_slot)
+  > picture
+  > img {
   margin-top: 32px;
 }
 @media (min-width: 0px) and (max-width: 768px) {
-  .card2 {
+  .alerts {
     display: flex;
     flex-direction: column;
     position: relative;
@@ -196,14 +199,14 @@
     transform: none;
     width: 100%;
     min-width: 0;
-    padding: 0px 40px;
+    padding: 0px;
   }
 }
 @media (min-width: 0px) and (max-width: 768px) {
-  .card2 > :global(.__wab_flex-container) {
+  .alerts > :global(.__wab_flex-container) {
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     min-width: 0;
     margin-left: calc(0px - 0px);
     width: calc(100% + 0px);
@@ -212,10 +215,10 @@
   }
 }
 @media (min-width: 0px) and (max-width: 768px) {
-  .card2 > :global(.__wab_flex-container) > *,
-  .card2 > :global(.__wab_flex-container) > :global(.__wab_slot) > *,
-  .card2 > :global(.__wab_flex-container) > picture > img,
-  .card2
+  .alerts > :global(.__wab_flex-container) > *,
+  .alerts > :global(.__wab_flex-container) > :global(.__wab_slot) > *,
+  .alerts > :global(.__wab_flex-container) > picture > img,
+  .alerts
     > :global(.__wab_flex-container)
     > :global(.__wab_slot)
     > picture
@@ -401,7 +404,7 @@
 }
 .freeBox__mclch > :global(.__wab_flex-container) {
   flex-direction: row;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: flex-start;
   min-width: 0;
   margin-left: calc(0px - 16px);
@@ -417,20 +420,29 @@
   > img {
   margin-left: 16px;
 }
+@media (min-width: 0px) and (max-width: 768px) {
+  .freeBox__mclch {
+    padding: 25px;
+  }
+}
+@media (min-width: 0px) and (max-width: 768px) {
+  .freeBox__mclch > :global(.__wab_flex-container) {
+    justify-content: center;
+    align-items: flex-end;
+  }
+}
 .freeBox__jhZr {
   display: flex;
   flex-direction: column;
   position: relative;
-  width: 100%;
+  width: auto;
   height: auto;
   max-width: 100%;
-  min-width: 0;
 }
 .freeBox__jhZr > :global(.__wab_flex-container) {
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
-  min-width: 0;
   margin-top: calc(0px - 32px);
   height: calc(100% + 32px);
 }

@@ -75,6 +75,7 @@ import { inputHelpers as AntdInput_Helpers } from "@plasmicpkgs/antd5/skinny/reg
 import { AntdSelect } from "@plasmicpkgs/antd5/skinny/registerSelect";
 import Button from "../../Button"; // plasmic-import: 9ixtKbGKv7x-/component
 import { AntdAvatar } from "@plasmicpkgs/antd5/skinny/registerAvatar";
+import { Notation } from "../../../plasmic-library/others/Notation/Notation"; // plasmic-import: z82NxL6AqE3T/codeComponent
 import MobileNavbarBottom2 from "../../MobileNavbarBottom2"; // plasmic-import: gAnwjyfMiBe9/component
 import { Fetcher } from "@plasmicapp/react-web/lib/data-sources";
 
@@ -96,7 +97,6 @@ import IconPhMapPinIcon from "./icons/PlasmicIcon__IconPhMapPin"; // plasmic-imp
 import PhoneIcon from "./icons/PlasmicIcon__Phone"; // plasmic-import: TnWLxKqpsOCZ/icon
 import EnvelopeSimpleIcon from "./icons/PlasmicIcon__EnvelopeSimple"; // plasmic-import: 6e-QrJJmFWot/icon
 import PictogramIcon from "./icons/PlasmicIcon__Pictogram"; // plasmic-import: KlZQiGxQTluF/icon
-import StarBackgroundIcon from "./icons/PlasmicIcon__StarBackground"; // plasmic-import: Zu-Xc5DdiDXn/icon
 import MagnifyingGlassIcon from "./icons/PlasmicIcon__MagnifyingGlass"; // plasmic-import: fii_q6lckj-n/icon
 
 createPlasmicElementProxy;
@@ -157,31 +157,10 @@ export type PlasmicRechercheCandidat__OverridesType = {
   frame1437254413?: Flex__<"div">;
   frame1437254408?: Flex__<"div">;
   tableCell?: Flex__<"div">;
-  starIcon?: Flex__<"div">;
-  starIcon2?: Flex__<"div">;
-  starIcon3?: Flex__<"div">;
-  starIcon4?: Flex__<"div">;
-  star?: Flex__<"div">;
-  starIcon5?: Flex__<"div">;
-  star2?: Flex__<"div">;
   frame1437254409?: Flex__<"div">;
   tableCell2?: Flex__<"div">;
-  starIcon6?: Flex__<"div">;
-  starIcon7?: Flex__<"div">;
-  starIcon8?: Flex__<"div">;
-  starIcon9?: Flex__<"div">;
-  star3?: Flex__<"div">;
-  starIcon10?: Flex__<"div">;
-  star4?: Flex__<"div">;
   frame1437254418?: Flex__<"div">;
   tableCell3?: Flex__<"div">;
-  starIcon11?: Flex__<"div">;
-  starIcon12?: Flex__<"div">;
-  starIcon13?: Flex__<"div">;
-  starIcon14?: Flex__<"div">;
-  star5?: Flex__<"div">;
-  starIcon15?: Flex__<"div">;
-  star6?: Flex__<"div">;
   searchNotPerformed?: Flex__<"div">;
   content?: Flex__<"div">;
   featuredIcon?: Flex__<"div">;
@@ -470,7 +449,7 @@ function PlasmicRechercheCandidat__RenderFunc(props: {
                   onFinish: async values => {
                     const $steps = {};
 
-                    $steps["runCode"] = true
+                    $steps["updateArray"] = true
                       ? (() => {
                           const actionArgs = {
                             customFunction: async () => {
@@ -493,11 +472,11 @@ function PlasmicRechercheCandidat__RenderFunc(props: {
                         })()
                       : undefined;
                     if (
-                      $steps["runCode"] != null &&
-                      typeof $steps["runCode"] === "object" &&
-                      typeof $steps["runCode"].then === "function"
+                      $steps["updateArray"] != null &&
+                      typeof $steps["updateArray"] === "object" &&
+                      typeof $steps["updateArray"].then === "function"
                     ) {
-                      $steps["runCode"] = await $steps["runCode"];
+                      $steps["updateArray"] = await $steps["updateArray"];
                     }
 
                     $steps["clearValues"] = true
@@ -1635,158 +1614,69 @@ function PlasmicRechercheCandidat__RenderFunc(props: {
                                   sty.tableCell
                                 )}
                               >
-                                <div
-                                  data-plasmic-name={"starIcon"}
-                                  data-plasmic-override={overrides.starIcon}
-                                  className={classNames(
-                                    projectcss.all,
-                                    sty.starIcon
-                                  )}
-                                >
-                                  <StarBackgroundIcon
-                                    className={classNames(
-                                      projectcss.all,
-                                      sty.svg__s9Lsj
-                                    )}
-                                    role={"img"}
+                                {(() => {
+                                  try {
+                                    return currentItem.punctuality !== null;
+                                  } catch (e) {
+                                    if (
+                                      e instanceof TypeError ||
+                                      e?.plasmicType ===
+                                        "PlasmicUndefinedDataError"
+                                    ) {
+                                      return true;
+                                    }
+                                    throw e;
+                                  }
+                                })() ? (
+                                  <Notation
+                                    className={
+                                      "" +
+                                      " " +
+                                      classNames(
+                                        "__wab_instance",
+                                        sty.notationEtoiles__pti6
+                                      )
+                                    }
+                                    value={(() => {
+                                      try {
+                                        return currentItem.punctuality;
+                                      } catch (e) {
+                                        if (
+                                          e instanceof TypeError ||
+                                          e?.plasmicType ===
+                                            "PlasmicUndefinedDataError"
+                                        ) {
+                                          return 0;
+                                        }
+                                        throw e;
+                                      }
+                                    })()}
                                   />
-
-                                  <PlasmicImg__
-                                    alt={""}
-                                    className={classNames(sty.img__vzCql)}
-                                    displayHeight={"12.643705368041992px"}
-                                    displayMaxHeight={"none"}
-                                    displayMaxWidth={"100%"}
-                                    displayMinHeight={"0"}
-                                    displayMinWidth={"0"}
-                                    displayWidth={"12.643705368041992px"}
-                                    loading={"lazy"}
-                                    src={{
-                                      src: "/plasmic/jam_production_🚀/images/star.svg",
-                                      fullWidth: 12.643705368041992,
-                                      fullHeight: 12.643705368041992,
-                                      aspectRatio: 1
-                                    }}
-                                  />
-                                </div>
-                                <div
-                                  data-plasmic-name={"starIcon2"}
-                                  data-plasmic-override={overrides.starIcon2}
-                                  className={classNames(
-                                    projectcss.all,
-                                    sty.starIcon2
-                                  )}
-                                >
-                                  <StarBackgroundIcon
-                                    className={classNames(
-                                      projectcss.all,
-                                      sty.svg__nTeWm
-                                    )}
-                                    role={"img"}
-                                  />
-
-                                  <PlasmicImg__
-                                    alt={""}
-                                    className={classNames(sty.img__c7Zc8)}
-                                    displayHeight={"12.643705368041992px"}
-                                    displayMaxHeight={"none"}
-                                    displayMaxWidth={"100%"}
-                                    displayMinHeight={"0"}
-                                    displayMinWidth={"0"}
-                                    displayWidth={"12.643705368041992px"}
-                                    loading={"lazy"}
-                                    src={{
-                                      src: "/plasmic/jam_production_🚀/images/star2.svg",
-                                      fullWidth: 12.643705368041992,
-                                      fullHeight: 12.643705368041992,
-                                      aspectRatio: 1
-                                    }}
-                                  />
-                                </div>
-                                <div
-                                  data-plasmic-name={"starIcon3"}
-                                  data-plasmic-override={overrides.starIcon3}
-                                  className={classNames(
-                                    projectcss.all,
-                                    sty.starIcon3
-                                  )}
-                                >
-                                  <StarBackgroundIcon
-                                    className={classNames(
-                                      projectcss.all,
-                                      sty.svg___2Lwry
-                                    )}
-                                    role={"img"}
-                                  />
-
-                                  <PlasmicImg__
-                                    alt={""}
-                                    className={classNames(sty.img__rqtsL)}
-                                    displayHeight={"12.643705368041992px"}
-                                    displayMaxHeight={"none"}
-                                    displayMaxWidth={"100%"}
-                                    displayMinHeight={"0"}
-                                    displayMinWidth={"0"}
-                                    displayWidth={"12.643705368041992px"}
-                                    loading={"lazy"}
-                                    src={{
-                                      src: "/plasmic/jam_production_🚀/images/star3.svg",
-                                      fullWidth: 12.643705368041992,
-                                      fullHeight: 12.643705368041992,
-                                      aspectRatio: 1
-                                    }}
-                                  />
-                                </div>
-                                <div
-                                  data-plasmic-name={"starIcon4"}
-                                  data-plasmic-override={overrides.starIcon4}
-                                  className={classNames(
-                                    projectcss.all,
-                                    sty.starIcon4
-                                  )}
-                                >
-                                  <StarBackgroundIcon
-                                    className={classNames(
-                                      projectcss.all,
-                                      sty.svg___9Te4C
-                                    )}
-                                    role={"img"}
-                                  />
-
+                                ) : null}
+                                {(() => {
+                                  try {
+                                    return currentItem.punctuality === null;
+                                  } catch (e) {
+                                    if (
+                                      e instanceof TypeError ||
+                                      e?.plasmicType ===
+                                        "PlasmicUndefinedDataError"
+                                    ) {
+                                      return true;
+                                    }
+                                    throw e;
+                                  }
+                                })() ? (
                                   <div
-                                    data-plasmic-name={"star"}
-                                    data-plasmic-override={overrides.star}
                                     className={classNames(
                                       projectcss.all,
-                                      sty.star
+                                      projectcss.__wab_text,
+                                      sty.text__bYXhz
                                     )}
-                                  />
-                                </div>
-                                <div
-                                  data-plasmic-name={"starIcon5"}
-                                  data-plasmic-override={overrides.starIcon5}
-                                  className={classNames(
-                                    projectcss.all,
-                                    sty.starIcon5
-                                  )}
-                                >
-                                  <StarBackgroundIcon
-                                    className={classNames(
-                                      projectcss.all,
-                                      sty.svg__qKdzu
-                                    )}
-                                    role={"img"}
-                                  />
-
-                                  <div
-                                    data-plasmic-name={"star2"}
-                                    data-plasmic-override={overrides.star2}
-                                    className={classNames(
-                                      projectcss.all,
-                                      sty.star2
-                                    )}
-                                  />
-                                </div>
+                                  >
+                                    {"Pas encore not\u00e9"}
+                                  </div>
+                                ) : null}
                               </Stack__>
                             </Stack__>
                             <Stack__
@@ -1819,158 +1709,69 @@ function PlasmicRechercheCandidat__RenderFunc(props: {
                                   sty.tableCell2
                                 )}
                               >
-                                <div
-                                  data-plasmic-name={"starIcon6"}
-                                  data-plasmic-override={overrides.starIcon6}
-                                  className={classNames(
-                                    projectcss.all,
-                                    sty.starIcon6
-                                  )}
-                                >
-                                  <StarBackgroundIcon
-                                    className={classNames(
-                                      projectcss.all,
-                                      sty.svg__ueFhK
-                                    )}
-                                    role={"img"}
+                                {(() => {
+                                  try {
+                                    return currentItem.respect !== null;
+                                  } catch (e) {
+                                    if (
+                                      e instanceof TypeError ||
+                                      e?.plasmicType ===
+                                        "PlasmicUndefinedDataError"
+                                    ) {
+                                      return true;
+                                    }
+                                    throw e;
+                                  }
+                                })() ? (
+                                  <Notation
+                                    className={
+                                      "" +
+                                      " " +
+                                      classNames(
+                                        "__wab_instance",
+                                        sty.notationEtoiles__dU7Gk
+                                      )
+                                    }
+                                    value={(() => {
+                                      try {
+                                        return currentItem.respect;
+                                      } catch (e) {
+                                        if (
+                                          e instanceof TypeError ||
+                                          e?.plasmicType ===
+                                            "PlasmicUndefinedDataError"
+                                        ) {
+                                          return 0;
+                                        }
+                                        throw e;
+                                      }
+                                    })()}
                                   />
-
-                                  <PlasmicImg__
-                                    alt={""}
-                                    className={classNames(sty.img__oMkwx)}
-                                    displayHeight={"12.643705368041992px"}
-                                    displayMaxHeight={"none"}
-                                    displayMaxWidth={"100%"}
-                                    displayMinHeight={"0"}
-                                    displayMinWidth={"0"}
-                                    displayWidth={"12.643705368041992px"}
-                                    loading={"lazy"}
-                                    src={{
-                                      src: "/plasmic/jam_production_🚀/images/star4.svg",
-                                      fullWidth: 12.643705368041992,
-                                      fullHeight: 12.643705368041992,
-                                      aspectRatio: 1
-                                    }}
-                                  />
-                                </div>
-                                <div
-                                  data-plasmic-name={"starIcon7"}
-                                  data-plasmic-override={overrides.starIcon7}
-                                  className={classNames(
-                                    projectcss.all,
-                                    sty.starIcon7
-                                  )}
-                                >
-                                  <StarBackgroundIcon
-                                    className={classNames(
-                                      projectcss.all,
-                                      sty.svg___5Ba3E
-                                    )}
-                                    role={"img"}
-                                  />
-
-                                  <PlasmicImg__
-                                    alt={""}
-                                    className={classNames(sty.img__rgGw)}
-                                    displayHeight={"12.643705368041992px"}
-                                    displayMaxHeight={"none"}
-                                    displayMaxWidth={"100%"}
-                                    displayMinHeight={"0"}
-                                    displayMinWidth={"0"}
-                                    displayWidth={"12.643705368041992px"}
-                                    loading={"lazy"}
-                                    src={{
-                                      src: "/plasmic/jam_production_🚀/images/star5.svg",
-                                      fullWidth: 12.643705368041992,
-                                      fullHeight: 12.643705368041992,
-                                      aspectRatio: 1
-                                    }}
-                                  />
-                                </div>
-                                <div
-                                  data-plasmic-name={"starIcon8"}
-                                  data-plasmic-override={overrides.starIcon8}
-                                  className={classNames(
-                                    projectcss.all,
-                                    sty.starIcon8
-                                  )}
-                                >
-                                  <StarBackgroundIcon
-                                    className={classNames(
-                                      projectcss.all,
-                                      sty.svg__bCjLl
-                                    )}
-                                    role={"img"}
-                                  />
-
-                                  <PlasmicImg__
-                                    alt={""}
-                                    className={classNames(sty.img__t3IE)}
-                                    displayHeight={"12.643705368041992px"}
-                                    displayMaxHeight={"none"}
-                                    displayMaxWidth={"100%"}
-                                    displayMinHeight={"0"}
-                                    displayMinWidth={"0"}
-                                    displayWidth={"12.643705368041992px"}
-                                    loading={"lazy"}
-                                    src={{
-                                      src: "/plasmic/jam_production_🚀/images/star6.svg",
-                                      fullWidth: 12.643705368041992,
-                                      fullHeight: 12.643705368041992,
-                                      aspectRatio: 1
-                                    }}
-                                  />
-                                </div>
-                                <div
-                                  data-plasmic-name={"starIcon9"}
-                                  data-plasmic-override={overrides.starIcon9}
-                                  className={classNames(
-                                    projectcss.all,
-                                    sty.starIcon9
-                                  )}
-                                >
-                                  <StarBackgroundIcon
-                                    className={classNames(
-                                      projectcss.all,
-                                      sty.svg__oOzBq
-                                    )}
-                                    role={"img"}
-                                  />
-
+                                ) : null}
+                                {(() => {
+                                  try {
+                                    return currentItem.respect === null;
+                                  } catch (e) {
+                                    if (
+                                      e instanceof TypeError ||
+                                      e?.plasmicType ===
+                                        "PlasmicUndefinedDataError"
+                                    ) {
+                                      return true;
+                                    }
+                                    throw e;
+                                  }
+                                })() ? (
                                   <div
-                                    data-plasmic-name={"star3"}
-                                    data-plasmic-override={overrides.star3}
                                     className={classNames(
                                       projectcss.all,
-                                      sty.star3
+                                      projectcss.__wab_text,
+                                      sty.text__bccDd
                                     )}
-                                  />
-                                </div>
-                                <div
-                                  data-plasmic-name={"starIcon10"}
-                                  data-plasmic-override={overrides.starIcon10}
-                                  className={classNames(
-                                    projectcss.all,
-                                    sty.starIcon10
-                                  )}
-                                >
-                                  <StarBackgroundIcon
-                                    className={classNames(
-                                      projectcss.all,
-                                      sty.svg__h3Yuy
-                                    )}
-                                    role={"img"}
-                                  />
-
-                                  <div
-                                    data-plasmic-name={"star4"}
-                                    data-plasmic-override={overrides.star4}
-                                    className={classNames(
-                                      projectcss.all,
-                                      sty.star4
-                                    )}
-                                  />
-                                </div>
+                                  >
+                                    {"Pas encore not\u00e9"}
+                                  </div>
+                                ) : null}
                               </Stack__>
                             </Stack__>
                             <div
@@ -2001,158 +1802,69 @@ function PlasmicRechercheCandidat__RenderFunc(props: {
                                   sty.tableCell3
                                 )}
                               >
-                                <div
-                                  data-plasmic-name={"starIcon11"}
-                                  data-plasmic-override={overrides.starIcon11}
-                                  className={classNames(
-                                    projectcss.all,
-                                    sty.starIcon11
-                                  )}
-                                >
-                                  <StarBackgroundIcon
-                                    className={classNames(
-                                      projectcss.all,
-                                      sty.svg__d5IEg
-                                    )}
-                                    role={"img"}
+                                {(() => {
+                                  try {
+                                    return currentItem.performance !== null;
+                                  } catch (e) {
+                                    if (
+                                      e instanceof TypeError ||
+                                      e?.plasmicType ===
+                                        "PlasmicUndefinedDataError"
+                                    ) {
+                                      return true;
+                                    }
+                                    throw e;
+                                  }
+                                })() ? (
+                                  <Notation
+                                    className={
+                                      "" +
+                                      " " +
+                                      classNames(
+                                        "__wab_instance",
+                                        sty.notationEtoiles__xUrCm
+                                      )
+                                    }
+                                    value={(() => {
+                                      try {
+                                        return currentItem.performance;
+                                      } catch (e) {
+                                        if (
+                                          e instanceof TypeError ||
+                                          e?.plasmicType ===
+                                            "PlasmicUndefinedDataError"
+                                        ) {
+                                          return 0;
+                                        }
+                                        throw e;
+                                      }
+                                    })()}
                                   />
-
-                                  <PlasmicImg__
-                                    alt={""}
-                                    className={classNames(sty.img___0Ww4S)}
-                                    displayHeight={"12.643705368041992px"}
-                                    displayMaxHeight={"none"}
-                                    displayMaxWidth={"100%"}
-                                    displayMinHeight={"0"}
-                                    displayMinWidth={"0"}
-                                    displayWidth={"12.643705368041992px"}
-                                    loading={"lazy"}
-                                    src={{
-                                      src: "/plasmic/jam_production_🚀/images/star7.svg",
-                                      fullWidth: 12.643705368041992,
-                                      fullHeight: 12.643705368041992,
-                                      aspectRatio: 1
-                                    }}
-                                  />
-                                </div>
-                                <div
-                                  data-plasmic-name={"starIcon12"}
-                                  data-plasmic-override={overrides.starIcon12}
-                                  className={classNames(
-                                    projectcss.all,
-                                    sty.starIcon12
-                                  )}
-                                >
-                                  <StarBackgroundIcon
-                                    className={classNames(
-                                      projectcss.all,
-                                      sty.svg__po4K
-                                    )}
-                                    role={"img"}
-                                  />
-
-                                  <PlasmicImg__
-                                    alt={""}
-                                    className={classNames(sty.img__y1G9H)}
-                                    displayHeight={"12.643705368041992px"}
-                                    displayMaxHeight={"none"}
-                                    displayMaxWidth={"100%"}
-                                    displayMinHeight={"0"}
-                                    displayMinWidth={"0"}
-                                    displayWidth={"12.643705368041992px"}
-                                    loading={"lazy"}
-                                    src={{
-                                      src: "/plasmic/jam_production_🚀/images/star8.svg",
-                                      fullWidth: 12.643705368041992,
-                                      fullHeight: 12.643705368041992,
-                                      aspectRatio: 1
-                                    }}
-                                  />
-                                </div>
-                                <div
-                                  data-plasmic-name={"starIcon13"}
-                                  data-plasmic-override={overrides.starIcon13}
-                                  className={classNames(
-                                    projectcss.all,
-                                    sty.starIcon13
-                                  )}
-                                >
-                                  <StarBackgroundIcon
-                                    className={classNames(
-                                      projectcss.all,
-                                      sty.svg___3TgCd
-                                    )}
-                                    role={"img"}
-                                  />
-
-                                  <PlasmicImg__
-                                    alt={""}
-                                    className={classNames(sty.img__bkn4V)}
-                                    displayHeight={"12.643705368041992px"}
-                                    displayMaxHeight={"none"}
-                                    displayMaxWidth={"100%"}
-                                    displayMinHeight={"0"}
-                                    displayMinWidth={"0"}
-                                    displayWidth={"12.643705368041992px"}
-                                    loading={"lazy"}
-                                    src={{
-                                      src: "/plasmic/jam_production_🚀/images/star9.svg",
-                                      fullWidth: 12.643705368041992,
-                                      fullHeight: 12.643705368041992,
-                                      aspectRatio: 1
-                                    }}
-                                  />
-                                </div>
-                                <div
-                                  data-plasmic-name={"starIcon14"}
-                                  data-plasmic-override={overrides.starIcon14}
-                                  className={classNames(
-                                    projectcss.all,
-                                    sty.starIcon14
-                                  )}
-                                >
-                                  <StarBackgroundIcon
-                                    className={classNames(
-                                      projectcss.all,
-                                      sty.svg__jUy71
-                                    )}
-                                    role={"img"}
-                                  />
-
+                                ) : null}
+                                {(() => {
+                                  try {
+                                    return currentItem.performance === null;
+                                  } catch (e) {
+                                    if (
+                                      e instanceof TypeError ||
+                                      e?.plasmicType ===
+                                        "PlasmicUndefinedDataError"
+                                    ) {
+                                      return true;
+                                    }
+                                    throw e;
+                                  }
+                                })() ? (
                                   <div
-                                    data-plasmic-name={"star5"}
-                                    data-plasmic-override={overrides.star5}
                                     className={classNames(
                                       projectcss.all,
-                                      sty.star5
+                                      projectcss.__wab_text,
+                                      sty.text__boD2Y
                                     )}
-                                  />
-                                </div>
-                                <div
-                                  data-plasmic-name={"starIcon15"}
-                                  data-plasmic-override={overrides.starIcon15}
-                                  className={classNames(
-                                    projectcss.all,
-                                    sty.starIcon15
-                                  )}
-                                >
-                                  <StarBackgroundIcon
-                                    className={classNames(
-                                      projectcss.all,
-                                      sty.svg__sf5RT
-                                    )}
-                                    role={"img"}
-                                  />
-
-                                  <div
-                                    data-plasmic-name={"star6"}
-                                    data-plasmic-override={overrides.star6}
-                                    className={classNames(
-                                      projectcss.all,
-                                      sty.star6
-                                    )}
-                                  />
-                                </div>
+                                  >
+                                    {"Pas encore not\u00e9"}
+                                  </div>
+                                ) : null}
                               </Stack__>
                             </div>
                           </div>
@@ -2383,31 +2095,10 @@ const PlasmicDescendants = {
     "frame1437254413",
     "frame1437254408",
     "tableCell",
-    "starIcon",
-    "starIcon2",
-    "starIcon3",
-    "starIcon4",
-    "star",
-    "starIcon5",
-    "star2",
     "frame1437254409",
     "tableCell2",
-    "starIcon6",
-    "starIcon7",
-    "starIcon8",
-    "starIcon9",
-    "star3",
-    "starIcon10",
-    "star4",
     "frame1437254418",
     "tableCell3",
-    "starIcon11",
-    "starIcon12",
-    "starIcon13",
-    "starIcon14",
-    "star5",
-    "starIcon15",
-    "star6",
     "searchNotPerformed",
     "content",
     "featuredIcon",
@@ -2467,31 +2158,10 @@ const PlasmicDescendants = {
     "frame1437254413",
     "frame1437254408",
     "tableCell",
-    "starIcon",
-    "starIcon2",
-    "starIcon3",
-    "starIcon4",
-    "star",
-    "starIcon5",
-    "star2",
     "frame1437254409",
     "tableCell2",
-    "starIcon6",
-    "starIcon7",
-    "starIcon8",
-    "starIcon9",
-    "star3",
-    "starIcon10",
-    "star4",
     "frame1437254418",
     "tableCell3",
-    "starIcon11",
-    "starIcon12",
-    "starIcon13",
-    "starIcon14",
-    "star5",
-    "starIcon15",
-    "star6",
     "searchNotPerformed",
     "content",
     "featuredIcon",
@@ -2547,31 +2217,10 @@ const PlasmicDescendants = {
     "frame1437254413",
     "frame1437254408",
     "tableCell",
-    "starIcon",
-    "starIcon2",
-    "starIcon3",
-    "starIcon4",
-    "star",
-    "starIcon5",
-    "star2",
     "frame1437254409",
     "tableCell2",
-    "starIcon6",
-    "starIcon7",
-    "starIcon8",
-    "starIcon9",
-    "star3",
-    "starIcon10",
-    "star4",
     "frame1437254418",
     "tableCell3",
-    "starIcon11",
-    "starIcon12",
-    "starIcon13",
-    "starIcon14",
-    "star5",
-    "starIcon15",
-    "star6",
     "searchNotPerformed",
     "content",
     "featuredIcon",
@@ -2626,31 +2275,10 @@ const PlasmicDescendants = {
     "frame1437254413",
     "frame1437254408",
     "tableCell",
-    "starIcon",
-    "starIcon2",
-    "starIcon3",
-    "starIcon4",
-    "star",
-    "starIcon5",
-    "star2",
     "frame1437254409",
     "tableCell2",
-    "starIcon6",
-    "starIcon7",
-    "starIcon8",
-    "starIcon9",
-    "star3",
-    "starIcon10",
-    "star4",
     "frame1437254418",
-    "tableCell3",
-    "starIcon11",
-    "starIcon12",
-    "starIcon13",
-    "starIcon14",
-    "star5",
-    "starIcon15",
-    "star6"
+    "tableCell3"
   ],
   card: [
     "card",
@@ -2679,31 +2307,10 @@ const PlasmicDescendants = {
     "frame1437254413",
     "frame1437254408",
     "tableCell",
-    "starIcon",
-    "starIcon2",
-    "starIcon3",
-    "starIcon4",
-    "star",
-    "starIcon5",
-    "star2",
     "frame1437254409",
     "tableCell2",
-    "starIcon6",
-    "starIcon7",
-    "starIcon8",
-    "starIcon9",
-    "star3",
-    "starIcon10",
-    "star4",
     "frame1437254418",
-    "tableCell3",
-    "starIcon11",
-    "starIcon12",
-    "starIcon13",
-    "starIcon14",
-    "star5",
-    "starIcon15",
-    "star6"
+    "tableCell3"
   ],
   cardHeader: [
     "cardHeader",
@@ -2749,31 +2356,10 @@ const PlasmicDescendants = {
     "frame1437254413",
     "frame1437254408",
     "tableCell",
-    "starIcon",
-    "starIcon2",
-    "starIcon3",
-    "starIcon4",
-    "star",
-    "starIcon5",
-    "star2",
     "frame1437254409",
     "tableCell2",
-    "starIcon6",
-    "starIcon7",
-    "starIcon8",
-    "starIcon9",
-    "star3",
-    "starIcon10",
-    "star4",
     "frame1437254418",
-    "tableCell3",
-    "starIcon11",
-    "starIcon12",
-    "starIcon13",
-    "starIcon14",
-    "star5",
-    "starIcon15",
-    "star6"
+    "tableCell3"
   ],
   documents: ["documents", "cvButton", "ldmButton"],
   cvButton: ["cvButton"],
@@ -2791,147 +2377,27 @@ const PlasmicDescendants = {
     "frame1437254413",
     "frame1437254408",
     "tableCell",
-    "starIcon",
-    "starIcon2",
-    "starIcon3",
-    "starIcon4",
-    "star",
-    "starIcon5",
-    "star2",
     "frame1437254409",
     "tableCell2",
-    "starIcon6",
-    "starIcon7",
-    "starIcon8",
-    "starIcon9",
-    "star3",
-    "starIcon10",
-    "star4",
     "frame1437254418",
-    "tableCell3",
-    "starIcon11",
-    "starIcon12",
-    "starIcon13",
-    "starIcon14",
-    "star5",
-    "starIcon15",
-    "star6"
+    "tableCell3"
   ],
   heading3: ["heading3"],
   frame1437254413: [
     "frame1437254413",
     "frame1437254408",
     "tableCell",
-    "starIcon",
-    "starIcon2",
-    "starIcon3",
-    "starIcon4",
-    "star",
-    "starIcon5",
-    "star2",
     "frame1437254409",
     "tableCell2",
-    "starIcon6",
-    "starIcon7",
-    "starIcon8",
-    "starIcon9",
-    "star3",
-    "starIcon10",
-    "star4",
     "frame1437254418",
-    "tableCell3",
-    "starIcon11",
-    "starIcon12",
-    "starIcon13",
-    "starIcon14",
-    "star5",
-    "starIcon15",
-    "star6"
+    "tableCell3"
   ],
-  frame1437254408: [
-    "frame1437254408",
-    "tableCell",
-    "starIcon",
-    "starIcon2",
-    "starIcon3",
-    "starIcon4",
-    "star",
-    "starIcon5",
-    "star2"
-  ],
-  tableCell: [
-    "tableCell",
-    "starIcon",
-    "starIcon2",
-    "starIcon3",
-    "starIcon4",
-    "star",
-    "starIcon5",
-    "star2"
-  ],
-  starIcon: ["starIcon"],
-  starIcon2: ["starIcon2"],
-  starIcon3: ["starIcon3"],
-  starIcon4: ["starIcon4", "star"],
-  star: ["star"],
-  starIcon5: ["starIcon5", "star2"],
-  star2: ["star2"],
-  frame1437254409: [
-    "frame1437254409",
-    "tableCell2",
-    "starIcon6",
-    "starIcon7",
-    "starIcon8",
-    "starIcon9",
-    "star3",
-    "starIcon10",
-    "star4"
-  ],
-  tableCell2: [
-    "tableCell2",
-    "starIcon6",
-    "starIcon7",
-    "starIcon8",
-    "starIcon9",
-    "star3",
-    "starIcon10",
-    "star4"
-  ],
-  starIcon6: ["starIcon6"],
-  starIcon7: ["starIcon7"],
-  starIcon8: ["starIcon8"],
-  starIcon9: ["starIcon9", "star3"],
-  star3: ["star3"],
-  starIcon10: ["starIcon10", "star4"],
-  star4: ["star4"],
-  frame1437254418: [
-    "frame1437254418",
-    "tableCell3",
-    "starIcon11",
-    "starIcon12",
-    "starIcon13",
-    "starIcon14",
-    "star5",
-    "starIcon15",
-    "star6"
-  ],
-  tableCell3: [
-    "tableCell3",
-    "starIcon11",
-    "starIcon12",
-    "starIcon13",
-    "starIcon14",
-    "star5",
-    "starIcon15",
-    "star6"
-  ],
-  starIcon11: ["starIcon11"],
-  starIcon12: ["starIcon12"],
-  starIcon13: ["starIcon13"],
-  starIcon14: ["starIcon14", "star5"],
-  star5: ["star5"],
-  starIcon15: ["starIcon15", "star6"],
-  star6: ["star6"],
+  frame1437254408: ["frame1437254408", "tableCell"],
+  tableCell: ["tableCell"],
+  frame1437254409: ["frame1437254409", "tableCell2"],
+  tableCell2: ["tableCell2"],
+  frame1437254418: ["frame1437254418", "tableCell3"],
+  tableCell3: ["tableCell3"],
   searchNotPerformed: [
     "searchNotPerformed",
     "content",
@@ -3025,31 +2491,10 @@ type NodeDefaultElementType = {
   frame1437254413: "div";
   frame1437254408: "div";
   tableCell: "div";
-  starIcon: "div";
-  starIcon2: "div";
-  starIcon3: "div";
-  starIcon4: "div";
-  star: "div";
-  starIcon5: "div";
-  star2: "div";
   frame1437254409: "div";
   tableCell2: "div";
-  starIcon6: "div";
-  starIcon7: "div";
-  starIcon8: "div";
-  starIcon9: "div";
-  star3: "div";
-  starIcon10: "div";
-  star4: "div";
   frame1437254418: "div";
   tableCell3: "div";
-  starIcon11: "div";
-  starIcon12: "div";
-  starIcon13: "div";
-  starIcon14: "div";
-  star5: "div";
-  starIcon15: "div";
-  star6: "div";
   searchNotPerformed: "div";
   content: "div";
   featuredIcon: "div";
@@ -3169,31 +2614,10 @@ export const PlasmicRechercheCandidat = Object.assign(
     frame1437254413: makeNodeComponent("frame1437254413"),
     frame1437254408: makeNodeComponent("frame1437254408"),
     tableCell: makeNodeComponent("tableCell"),
-    starIcon: makeNodeComponent("starIcon"),
-    starIcon2: makeNodeComponent("starIcon2"),
-    starIcon3: makeNodeComponent("starIcon3"),
-    starIcon4: makeNodeComponent("starIcon4"),
-    star: makeNodeComponent("star"),
-    starIcon5: makeNodeComponent("starIcon5"),
-    star2: makeNodeComponent("star2"),
     frame1437254409: makeNodeComponent("frame1437254409"),
     tableCell2: makeNodeComponent("tableCell2"),
-    starIcon6: makeNodeComponent("starIcon6"),
-    starIcon7: makeNodeComponent("starIcon7"),
-    starIcon8: makeNodeComponent("starIcon8"),
-    starIcon9: makeNodeComponent("starIcon9"),
-    star3: makeNodeComponent("star3"),
-    starIcon10: makeNodeComponent("starIcon10"),
-    star4: makeNodeComponent("star4"),
     frame1437254418: makeNodeComponent("frame1437254418"),
     tableCell3: makeNodeComponent("tableCell3"),
-    starIcon11: makeNodeComponent("starIcon11"),
-    starIcon12: makeNodeComponent("starIcon12"),
-    starIcon13: makeNodeComponent("starIcon13"),
-    starIcon14: makeNodeComponent("starIcon14"),
-    star5: makeNodeComponent("star5"),
-    starIcon15: makeNodeComponent("starIcon15"),
-    star6: makeNodeComponent("star6"),
     searchNotPerformed: makeNodeComponent("searchNotPerformed"),
     content: makeNodeComponent("content"),
     featuredIcon: makeNodeComponent("featuredIcon"),

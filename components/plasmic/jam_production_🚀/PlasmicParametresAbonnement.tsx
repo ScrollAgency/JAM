@@ -59,16 +59,20 @@ import {
   useGlobalActions
 } from "@plasmicapp/react-web/lib/host";
 
+import { usePlasmicDataSourceContext } from "@plasmicapp/data-sources-context";
 import {
   executePlasmicDataOp,
   usePlasmicDataOp,
   usePlasmicInvalidate
 } from "@plasmicapp/react-web/lib/data-sources";
 
+import { PageLoader } from "../../others/PageLoader/PageLoader"; // plasmic-import: FHDrnDhA4DZe/codeComponent
 import Sidebar2 from "../../Sidebar2"; // plasmic-import: RXqL3kdDrXwo/component
-import ProductCard from "../../ProductCard"; // plasmic-import: XNMQC2V0FBMZ/component
+import Modal from "../../Modal"; // plasmic-import: fsC3QwUZz9uz/component
+import { JamButton } from "../../forms/JamButton/JamButton"; // plasmic-import: UiI0wt2mxfuf/codeComponent
 import Button from "../../Button"; // plasmic-import: 9ixtKbGKv7x-/component
-import { InputComboSelect } from "../../InputComboSelect/InputComboSelect"; // plasmic-import: KwvhXarw-EVS/codeComponent
+import ProductCard from "../../ProductCard"; // plasmic-import: XNMQC2V0FBMZ/component
+import { InputComboSelect } from "../../forms/InputComboSelect/InputComboSelect"; // plasmic-import: KwvhXarw-EVS/codeComponent
 import TextInput from "../../TextInput"; // plasmic-import: pZ7Ql6sUFRw9/component
 import { Fetcher } from "@plasmicapp/react-web/lib/data-sources";
 
@@ -82,9 +86,10 @@ import plasmic_plasmic_rich_components_css from "../plasmic_rich_components/plas
 import projectcss from "./plasmic.module.css"; // plasmic-import: f7DE9y7qp46fyCw5nuY8f9/projectcss
 import sty from "./PlasmicParametresAbonnement.module.css"; // plasmic-import: CdOLil72lyc4/css
 
+import Icon17Icon from "./icons/PlasmicIcon__Icon17"; // plasmic-import: pk0tqTEbFRlt/icon
 import CircleIcon from "./icons/PlasmicIcon__Circle"; // plasmic-import: je95h6YoQ2jE/icon
-import PictogramIcon from "./icons/PlasmicIcon__Pictogram"; // plasmic-import: KlZQiGxQTluF/icon
 import GroupIcon from "./icons/PlasmicIcon__Group"; // plasmic-import: yIYn4o5HgDaM/icon
+import PictogramIcon from "./icons/PlasmicIcon__Pictogram"; // plasmic-import: KlZQiGxQTluF/icon
 import Icon13Icon from "./icons/PlasmicIcon__Icon13"; // plasmic-import: KY0MLj91ByQL/icon
 import Icon14Icon from "./icons/PlasmicIcon__Icon14"; // plasmic-import: a3u1joTTVUfZ/icon
 import IconPhBriefcaseIcon from "./icons/PlasmicIcon__IconPhBriefcase"; // plasmic-import: E-c3RGwvaig6/icon
@@ -105,9 +110,16 @@ export const PlasmicParametresAbonnement__ArgProps = new Array<ArgPropType>();
 
 export type PlasmicParametresAbonnement__OverridesType = {
   root?: Flex__<"div">;
+  actionCreditSuccess?: Flex__<typeof PageLoader>;
   sidebar2?: Flex__<typeof Sidebar2>;
   main?: Flex__<"div">;
   heading?: Flex__<"div">;
+  modalCreditsAlerts?: Flex__<typeof Modal>;
+  closeButton?: Flex__<"div">;
+  img?: Flex__<typeof PlasmicImg__>;
+  iconSuccess?: Flex__<"div">;
+  messageText?: Flex__<"div">;
+  actionButton?: Flex__<"div">;
   card2?: Flex__<"div">;
   blockSubscription?: Flex__<"div">;
   subscription?: Flex__<"div">;
@@ -221,19 +233,46 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
         path: "inputComboSelect.value",
         type: "private",
         variableType: "number",
-        initFunc: ({ $props, $state, $queries, $ctx }) => 1
+        initFunc: ({ $props, $state, $queries, $ctx }) => 0
       },
       {
         path: "inputComboSelect2.value",
         type: "private",
         variableType: "number",
-        initFunc: ({ $props, $state, $queries, $ctx }) => 1
+        initFunc: ({ $props, $state, $queries, $ctx }) => 0
       },
       {
         path: "inputComboSelect3.value",
         type: "private",
         variableType: "number",
-        initFunc: ({ $props, $state, $queries, $ctx }) => 1
+        initFunc: ({ $props, $state, $queries, $ctx }) => 0
+      },
+      {
+        path: "modalCreditsAlerts.isOpen",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $ctx }) =>
+          (() => {
+            try {
+              return (
+                $state.isModalCreditOpen && $ctx.query.credit !== "loading"
+              );
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return true;
+              }
+              throw e;
+            }
+          })()
+      },
+      {
+        path: "isModalCreditOpen",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $ctx }) => false
       }
     ],
     [$props, $ctx, $refs]
@@ -244,6 +283,8 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
     $queries: $queries,
     $refs
   });
+  const dataSourcesCtx = usePlasmicDataSourceContext();
+  const plasmicInvalidate = usePlasmicInvalidate();
 
   const new$Queries: Record<string, ReturnType<typeof usePlasmicDataOp>> = {
     stripeProductsList: usePlasmicDataOp(() => {
@@ -307,6 +348,25 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
             sty.root
           )}
         >
+          <PageLoader
+            data-plasmic-name={"actionCreditSuccess"}
+            data-plasmic-override={overrides.actionCreditSuccess}
+            className={classNames("__wab_instance", sty.actionCreditSuccess)}
+            shouldRun={(() => {
+              try {
+                return $ctx.query.credit === "success";
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return true;
+                }
+                throw e;
+              }
+            })()}
+          />
+
           <Sidebar2
             data-plasmic-name={"sidebar2"}
             data-plasmic-override={overrides.sidebar2}
@@ -331,6 +391,210 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
             >
               {"Mes abonnement"}
             </div>
+            {(() => {
+              const child$Props = {
+                className: classNames("__wab_instance", sty.modalCreditsAlerts),
+                content: (
+                  <Stack__
+                    as={"div"}
+                    hasGap={true}
+                    className={classNames(projectcss.all, sty.freeBox__osJ4U)}
+                  >
+                    <div
+                      data-plasmic-name={"iconSuccess"}
+                      data-plasmic-override={overrides.iconSuccess}
+                      className={classNames(projectcss.all, sty.iconSuccess)}
+                    >
+                      <Icon17Icon
+                        className={classNames(projectcss.all, sty.svg__emkBr)}
+                        role={"img"}
+                      />
+                    </div>
+                    <Stack__
+                      as={"div"}
+                      data-plasmic-name={"messageText"}
+                      data-plasmic-override={overrides.messageText}
+                      hasGap={true}
+                      className={classNames(projectcss.all, sty.messageText)}
+                    >
+                      <div
+                        className={classNames(
+                          projectcss.all,
+                          projectcss.__wab_text,
+                          sty.text___2T0Rb
+                        )}
+                      >
+                        {"Merci !"}
+                      </div>
+                      <div
+                        className={classNames(
+                          projectcss.all,
+                          projectcss.__wab_text,
+                          sty.text__nNsVw
+                        )}
+                      >
+                        {
+                          "Votre paiement a bien abouti et vos cr\u00e9dits sont pr\u00eats \u00e0 \u00eatre utilis\u00e9s !"
+                        }
+                      </div>
+                    </Stack__>
+                  </Stack__>
+                ),
+                footer: (
+                  <div
+                    data-plasmic-name={"actionButton"}
+                    data-plasmic-override={overrides.actionButton}
+                    className={classNames(projectcss.all, sty.actionButton)}
+                  >
+                    <Button
+                      className={classNames(
+                        "__wab_instance",
+                        sty.button__v1Wkn
+                      )}
+                      end={
+                        <GroupIcon
+                          className={classNames(projectcss.all, sty.svg__w22K7)}
+                          role={"img"}
+                        />
+                      }
+                      iconEnd={true}
+                      label={
+                        <div
+                          className={classNames(
+                            projectcss.all,
+                            projectcss.__wab_text,
+                            sty.text__k25C
+                          )}
+                        >
+                          {"publier une offre d'emploi"}
+                        </div>
+                      }
+                    />
+                  </div>
+                ),
+                heading: (
+                  <div
+                    data-plasmic-name={"closeButton"}
+                    data-plasmic-override={overrides.closeButton}
+                    className={classNames(projectcss.all, sty.closeButton)}
+                  >
+                    <PlasmicImg__
+                      data-plasmic-name={"img"}
+                      data-plasmic-override={overrides.img}
+                      alt={""}
+                      className={classNames(sty.img)}
+                      displayHeight={"17px"}
+                      displayMaxHeight={"none"}
+                      displayMaxWidth={"100%"}
+                      displayMinHeight={"0"}
+                      displayMinWidth={"0"}
+                      displayWidth={"auto"}
+                      loading={"lazy"}
+                      onClick={async event => {
+                        const $steps = {};
+
+                        $steps["updateIsModalCreditOpen"] = true
+                          ? (() => {
+                              const actionArgs = {
+                                variable: {
+                                  objRoot: $state,
+                                  variablePath: ["isModalCreditOpen"]
+                                },
+                                operation: 0,
+                                value: false
+                              };
+                              return (({
+                                variable,
+                                value,
+                                startIndex,
+                                deleteCount
+                              }) => {
+                                if (!variable) {
+                                  return;
+                                }
+                                const { objRoot, variablePath } = variable;
+
+                                $stateSet(objRoot, variablePath, value);
+                                return value;
+                              })?.apply(null, [actionArgs]);
+                            })()
+                          : undefined;
+                        if (
+                          $steps["updateIsModalCreditOpen"] != null &&
+                          typeof $steps["updateIsModalCreditOpen"] ===
+                            "object" &&
+                          typeof $steps["updateIsModalCreditOpen"].then ===
+                            "function"
+                        ) {
+                          $steps["updateIsModalCreditOpen"] = await $steps[
+                            "updateIsModalCreditOpen"
+                          ];
+                        }
+                      }}
+                      src={{
+                        src: "/plasmic/jam_production_🚀/images/close.svg",
+                        fullWidth: 17,
+                        fullHeight: 17,
+                        aspectRatio: 1
+                      }}
+                    />
+                  </div>
+                ),
+                isOpen: generateStateValueProp($state, [
+                  "modalCreditsAlerts",
+                  "isOpen"
+                ]),
+                noTrigger: true,
+                onOpenChange: async (...eventArgs: any) => {
+                  generateStateOnChangeProp($state, [
+                    "modalCreditsAlerts",
+                    "isOpen"
+                  ]).apply(null, eventArgs);
+
+                  if (
+                    eventArgs.length > 1 &&
+                    eventArgs[1] &&
+                    eventArgs[1]._plasmic_state_init_
+                  ) {
+                    return;
+                  }
+                }
+              };
+
+              initializePlasmicStates(
+                $state,
+                [
+                  {
+                    name: "modalCreditsAlerts.isOpen",
+                    initFunc: ({ $props, $state, $queries }) =>
+                      (() => {
+                        try {
+                          return (
+                            $state.isModalCreditOpen &&
+                            $ctx.query.credit !== "loading"
+                          );
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return true;
+                          }
+                          throw e;
+                        }
+                      })()
+                  }
+                ],
+                []
+              );
+              return (
+                <Modal
+                  data-plasmic-name={"modalCreditsAlerts"}
+                  data-plasmic-override={overrides.modalCreditsAlerts}
+                  {...child$Props}
+                />
+              );
+            })()}
             <Stack__
               as={"div"}
               data-plasmic-name={"card2"}
@@ -1644,6 +1908,79 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                         {"acheter les cr\u00e9dits"}
                       </div>
                     }
+                    onClick={async event => {
+                      const $steps = {};
+
+                      $steps["stripeCheckout"] = true
+                        ? (() => {
+                            const actionArgs = {
+                              dataOp: {
+                                sourceId: "iWyefF3oqfc9knnzuF1Fin",
+                                opId: "e0a5ef53-4c5c-4d4f-a339-15554dafa3e5",
+                                userArgs: {
+                                  params: [
+                                    $queries.getUserStripeInfos.data[0]
+                                      .customer_id
+                                  ],
+                                  body: [
+                                    [
+                                      {
+                                        price:
+                                          $queries.stripeProductsList.data
+                                            .response.data[2].default_price.id,
+                                        quantity: $state.inputComboSelect.value
+                                      },
+                                      {
+                                        price:
+                                          $queries.stripeProductsList.data
+                                            .response.data[1].default_price.id,
+                                        quantity: $state.inputComboSelect2.value
+                                      },
+                                      {
+                                        price:
+                                          $queries.stripeProductsList.data
+                                            .response.data[0].default_price.id,
+                                        quantity: $state.inputComboSelect3.value
+                                      }
+                                    ].filter(item => item.quantity > 0)
+                                  ]
+                                },
+                                cacheKey: null,
+                                invalidatedKeys: ["plasmic_refresh_all"],
+                                roleId: null
+                              }
+                            };
+                            return (async ({ dataOp, continueOnError }) => {
+                              try {
+                                const response = await executePlasmicDataOp(
+                                  dataOp,
+                                  {
+                                    userAuthToken:
+                                      dataSourcesCtx?.userAuthToken,
+                                    user: dataSourcesCtx?.user
+                                  }
+                                );
+                                await plasmicInvalidate(dataOp.invalidatedKeys);
+                                return response;
+                              } catch (e) {
+                                if (!continueOnError) {
+                                  throw e;
+                                }
+                                return e;
+                              }
+                            })?.apply(null, [actionArgs]);
+                          })()
+                        : undefined;
+                      if (
+                        $steps["stripeCheckout"] != null &&
+                        typeof $steps["stripeCheckout"] === "object" &&
+                        typeof $steps["stripeCheckout"].then === "function"
+                      ) {
+                        $steps["stripeCheckout"] = await $steps[
+                          "stripeCheckout"
+                        ];
+                      }
+                    }}
                   />
                 </div>
               </Stack__>
@@ -1658,9 +1995,16 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
 const PlasmicDescendants = {
   root: [
     "root",
+    "actionCreditSuccess",
     "sidebar2",
     "main",
     "heading",
+    "modalCreditsAlerts",
+    "closeButton",
+    "img",
+    "iconSuccess",
+    "messageText",
+    "actionButton",
     "card2",
     "blockSubscription",
     "subscription",
@@ -1698,10 +2042,17 @@ const PlasmicDescendants = {
     "total",
     "amount"
   ],
+  actionCreditSuccess: ["actionCreditSuccess"],
   sidebar2: ["sidebar2"],
   main: [
     "main",
     "heading",
+    "modalCreditsAlerts",
+    "closeButton",
+    "img",
+    "iconSuccess",
+    "messageText",
+    "actionButton",
     "card2",
     "blockSubscription",
     "subscription",
@@ -1740,6 +2091,19 @@ const PlasmicDescendants = {
     "amount"
   ],
   heading: ["heading"],
+  modalCreditsAlerts: [
+    "modalCreditsAlerts",
+    "closeButton",
+    "img",
+    "iconSuccess",
+    "messageText",
+    "actionButton"
+  ],
+  closeButton: ["closeButton", "img"],
+  img: ["img"],
+  iconSuccess: ["iconSuccess"],
+  messageText: ["messageText"],
+  actionButton: ["actionButton"],
   card2: [
     "card2",
     "blockSubscription",
@@ -1899,9 +2263,16 @@ type DescendantsType<T extends NodeNameType> =
   (typeof PlasmicDescendants)[T][number];
 type NodeDefaultElementType = {
   root: "div";
+  actionCreditSuccess: typeof PageLoader;
   sidebar2: typeof Sidebar2;
   main: "div";
   heading: "div";
+  modalCreditsAlerts: typeof Modal;
+  closeButton: "div";
+  img: typeof PlasmicImg__;
+  iconSuccess: "div";
+  messageText: "div";
+  actionButton: "div";
   card2: "div";
   blockSubscription: "div";
   subscription: "div";
@@ -2000,9 +2371,16 @@ export const PlasmicParametresAbonnement = Object.assign(
   makeNodeComponent("root"),
   {
     // Helper components rendering sub-elements
+    actionCreditSuccess: makeNodeComponent("actionCreditSuccess"),
     sidebar2: makeNodeComponent("sidebar2"),
     main: makeNodeComponent("main"),
     heading: makeNodeComponent("heading"),
+    modalCreditsAlerts: makeNodeComponent("modalCreditsAlerts"),
+    closeButton: makeNodeComponent("closeButton"),
+    img: makeNodeComponent("img"),
+    iconSuccess: makeNodeComponent("iconSuccess"),
+    messageText: makeNodeComponent("messageText"),
+    actionButton: makeNodeComponent("actionButton"),
     card2: makeNodeComponent("card2"),
     blockSubscription: makeNodeComponent("blockSubscription"),
     subscription: makeNodeComponent("subscription"),

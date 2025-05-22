@@ -417,6 +417,12 @@ function PlasmicParametresDeCompte__RenderFunc(props: {
         type: "private",
         variableType: "text",
         initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+      },
+      {
+        path: "coordinates",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $ctx }) => ({})
       }
     ],
     [$props, $ctx, $refs]
@@ -507,6 +513,24 @@ function PlasmicParametresDeCompte__RenderFunc(props: {
         opId: "84622454-c999-4af7-b04e-2330ef994ec9",
         userArgs: {},
         cacheKey: `plasmic.$.84622454-c999-4af7-b04e-2330ef994ec9.$.`,
+        invalidatedKeys: null,
+        roleId: null
+      };
+    }),
+    getLocationData: usePlasmicDataOp(() => {
+      return {
+        sourceId: "f3JnwXdZdRBeVqXgX9Vuxa",
+        opId: "d1d2f644-bd2b-4753-9fe3-c3e52743153b",
+        userArgs: {
+          params: [
+            $state.formulaire.value.postal_code +
+              " " +
+              $state.formulaire.value.city +
+              ", " +
+              $state.formulaire.value.country
+          ]
+        },
+        cacheKey: `plasmic.$.d1d2f644-bd2b-4753-9fe3-c3e52743153b.$.`,
         invalidatedKeys: null,
         roleId: null
       };
@@ -1064,7 +1088,60 @@ function PlasmicParametresDeCompte__RenderFunc(props: {
                     onFinish: async values => {
                       const $steps = {};
 
-                      $steps["postgresUpdateById"] = true
+                      $steps["updateUser"] = true
+                        ? (() => {
+                            const actionArgs = {
+                              dataOp: {
+                                sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
+                                opId: "be380b29-736c-4488-847b-38abdc62ffb0",
+                                userArgs: {
+                                  keys: [$ctx.SupabaseUser.user.id],
+                                  variables: [
+                                    Number(
+                                      $queries.getLocationData?.data
+                                        ?.response[0]?.lat
+                                    ),
+                                    Number(
+                                      $queries.getLocationData?.data
+                                        ?.response[0]?.lon
+                                    )
+                                  ]
+                                },
+                                cacheKey: null,
+                                invalidatedKeys: [],
+                                roleId: null
+                              }
+                            };
+                            return (async ({ dataOp, continueOnError }) => {
+                              try {
+                                const response = await executePlasmicDataOp(
+                                  dataOp,
+                                  {
+                                    userAuthToken:
+                                      dataSourcesCtx?.userAuthToken,
+                                    user: dataSourcesCtx?.user
+                                  }
+                                );
+                                await plasmicInvalidate(dataOp.invalidatedKeys);
+                                return response;
+                              } catch (e) {
+                                if (!continueOnError) {
+                                  throw e;
+                                }
+                                return e;
+                              }
+                            })?.apply(null, [actionArgs]);
+                          })()
+                        : undefined;
+                      if (
+                        $steps["updateUser"] != null &&
+                        typeof $steps["updateUser"] === "object" &&
+                        typeof $steps["updateUser"].then === "function"
+                      ) {
+                        $steps["updateUser"] = await $steps["updateUser"];
+                      }
+
+                      $steps["updateUserById"] = true
                         ? (() => {
                             const actionArgs = {
                               dataOp: {
@@ -1101,12 +1178,12 @@ function PlasmicParametresDeCompte__RenderFunc(props: {
                           })()
                         : undefined;
                       if (
-                        $steps["postgresUpdateById"] != null &&
-                        typeof $steps["postgresUpdateById"] === "object" &&
-                        typeof $steps["postgresUpdateById"].then === "function"
+                        $steps["updateUserById"] != null &&
+                        typeof $steps["updateUserById"] === "object" &&
+                        typeof $steps["updateUserById"].then === "function"
                       ) {
-                        $steps["postgresUpdateById"] = await $steps[
-                          "postgresUpdateById"
+                        $steps["updateUserById"] = await $steps[
+                          "updateUserById"
                         ];
                       }
                     },

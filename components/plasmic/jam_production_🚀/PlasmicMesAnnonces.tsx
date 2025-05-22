@@ -66,7 +66,7 @@ import {
   usePlasmicInvalidate
 } from "@plasmicapp/react-web/lib/data-sources";
 
-import { PageLoader } from "../../utils/PageLoader"; // plasmic-import: FHDrnDhA4DZe/codeComponent
+import { PageLoader } from "../../others/PageLoader/PageLoader"; // plasmic-import: FHDrnDhA4DZe/codeComponent
 import MobileNavbarTop from "../../MobileNavbarTop"; // plasmic-import: mAg8Ml3XUEhy/component
 import Sidebar from "../../Sidebar"; // plasmic-import: M06HuWMcBQV2/component
 import { JobCard } from "../../cards/JobCard/JobCard"; // plasmic-import: epi6kICoBl8S/codeComponent
@@ -842,6 +842,7 @@ function PlasmicMesAnnonces__RenderFunc(props: {
                             throw e;
                           }
                         })()}
+                        metrics={[]}
                         onClick={async event => {
                           const $steps = {};
 

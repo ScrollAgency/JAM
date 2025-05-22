@@ -1704,6 +1704,47 @@
           "scheme": "blackbox",
           "componentType": "page",
           "path": "/candidatures-employeur/[job_id]"
+        },
+        {
+          "id": "dhaHjohJR0Z5",
+          "name": "OffreAdmin",
+          "type": "managed",
+          "projectId": "f7DE9y7qp46fyCw5nuY8f9",
+          "renderModuleFilePath": "plasmic/jam_production_🚀/PlasmicOffreAdmin.tsx",
+          "importSpec": {
+            "modulePath": "../pages/offre_admin.tsx"
+          },
+          "cssFilePath": "plasmic/jam_production_🚀/PlasmicOffreAdmin.module.css",
+          "scheme": "blackbox",
+          "componentType": "page",
+          "path": "/offre_admin"
+        },
+        {
+          "id": "tvp-rSXbKvIx",
+          "name": "UserAdmin",
+          "type": "managed",
+          "projectId": "f7DE9y7qp46fyCw5nuY8f9",
+          "renderModuleFilePath": "plasmic/jam_production_🚀/PlasmicUserAdmin.tsx",
+          "importSpec": {
+            "modulePath": "../pages/user_admin.tsx"
+          },
+          "cssFilePath": "plasmic/jam_production_🚀/PlasmicUserAdmin.module.css",
+          "scheme": "blackbox",
+          "componentType": "page",
+          "path": "/user_admin"
+        },
+        {
+          "id": "wO_leu131AjQ",
+          "name": "Sidebar3",
+          "type": "managed",
+          "projectId": "f7DE9y7qp46fyCw5nuY8f9",
+          "renderModuleFilePath": "plasmic/jam_production_🚀/PlasmicSidebar3.tsx",
+          "importSpec": {
+            "modulePath": "Sidebar3.tsx"
+          },
+          "cssFilePath": "plasmic/jam_production_🚀/PlasmicSidebar3.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
         }
       ],
       "icons": [
@@ -2571,6 +2612,11 @@
           "id": "wmiG3ar5cZJO",
           "name": "AlertCircleIcon",
           "moduleFilePath": "plasmic/jam_production_🚀/icons/PlasmicIcon__AlertCircle.tsx"
+        },
+        {
+          "id": "pk0tqTEbFRlt",
+          "name": "Icon17Icon",
+          "moduleFilePath": "plasmic/jam_production_🚀/icons/PlasmicIcon__Icon17.tsx"
         }
       ],
       "images": [
@@ -3722,13 +3768,13 @@
           "id": "FHDrnDhA4DZe",
           "name": "PageLoader",
           "displayName": "PageLoader",
-          "componentImportPath": "./components/utils/PageLoader"
+          "componentImportPath": "./components/others/PageLoader/PageLoader"
         },
         {
           "id": "YAp2GWWLB3S2",
           "name": "SmartLoader",
           "displayName": "SmartLoader",
-          "componentImportPath": "./components/utils/SmartLoader"
+          "componentImportPath": "./components/others/SmartLoader/SmartLoader"
         },
         {
           "id": "gsOcF6TJNbSL",
@@ -3740,7 +3786,7 @@
           "id": "KwvhXarw-EVS",
           "name": "InputComboSelect",
           "displayName": "InputComboSelect",
-          "componentImportPath": "./components/InputComboSelect/InputComboSelect"
+          "componentImportPath": "./components/forms/InputComboSelect/InputComboSelect"
         },
         {
           "id": "iL_5-0entnZc",

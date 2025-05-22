@@ -2370,8 +2370,8 @@
     min-width: 0;
     margin-left: calc(0px - 0px);
     width: calc(100% + 0px);
-    margin-top: calc(0px - var(--token-cfon0PHiXQoL));
-    height: calc(100% + var(--token-cfon0PHiXQoL));
+    margin-top: calc(0px - 16px);
+    height: calc(100% + 16px);
   }
 }
 @media (min-width: 0px) and (max-width: 768px) {
@@ -2384,7 +2384,7 @@
     > picture
     > img {
     margin-left: 0px;
-    margin-top: var(--token-cfon0PHiXQoL);
+    margin-top: 16px;
   }
 }
 .freeBox__xXjUr {
@@ -2419,7 +2419,7 @@
   .freeBox__xXjUr {
     display: flex;
     flex-direction: row;
-    margin-top: calc(0px + var(--token-cfon0PHiXQoL)) !important;
+    margin-top: calc(0px + 16px) !important;
     margin-right: 0px;
     margin-bottom: 0px;
     margin-left: calc(0px + 0px) !important;
@@ -2463,6 +2463,12 @@
   flex-direction: row;
   min-width: 500px;
   min-height: 320px;
+}
+@media (min-width: 0px) and (max-width: 768px) {
+  .jobOffersCard:global(.__wab_instance) {
+    width: 100%;
+    min-width: 0;
+  }
 }
 .freeBox__usZm4 {
   display: flex;
@@ -2728,6 +2734,11 @@
   white-space: pre;
   color: var(--token-ceD1eQOG2geq);
 }
+@media (min-width: 0px) and (max-width: 768px) {
+  .text__gprR {
+    font-size: 10px;
+  }
+}
 .svg__gbP5 {
   position: relative;
   color: var(--token-OIYWLyLPYWym);
@@ -2747,6 +2758,11 @@
   white-space: pre;
   color: var(--token-ceD1eQOG2geq);
   padding-left: 0px;
+}
+@media (min-width: 0px) and (max-width: 768px) {
+  .text___9Rr6X {
+    font-size: 10px;
+  }
 }
 .svg__ge3Oe {
   position: relative;
