@@ -11,40 +11,28 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
   try {
     const body = Array.isArray(req.body) ? req.body[0] : req.body;
-    const { sessionId, customerId, products } = body;
+    const { sessionId, customerId, customerEmail, products } = body;
 
     if (!sessionId || !customerId || !products || !Array.isArray(products)) {
       return res.status(400).json({ error: "Invalid data" });
     }
 
-    // 🔎 Récupérer les valeurs existantes
-    const { data: existingData, error: fetchError } = await supabaseServer
-      .from("stripe_info")
-      .select("recharge_classic, recharge_lastminute, recharge_boost")
-      .eq("customer_id", customerId)
-      .single();
-
-    if (fetchError) {
-      console.error("❌ Erreur de récupération Supabase :", fetchError);
-      return res.status(500).json({ error: fetchError.message });
-    }
-
+    // Construire les mises à jour à appliquer sur stripe_info
     const updates: Record<string, number> = {};
 
     for (const product of products) {
       const { product_id, quantity } = product;
-
       if (!product_id || typeof quantity !== 'number') continue;
 
       switch (product_id) {
         case "prod_S94I2bEjJBgtUi":
-          updates.recharge_classic = (existingData?.recharge_classic || 0) + quantity;
+          updates.recharge_classic = (updates.recharge_classic || 0) + quantity;
           break;
         case "prod_S94JK9sfmhTanv":
-          updates.recharge_lastminute = (existingData?.recharge_lastminute || 0) + quantity;
+          updates.recharge_lastminute = (updates.recharge_lastminute || 0) + quantity;
           break;
         case "prod_S94Jb2TNBEp2vU":
-          updates.recharge_boost = (existingData?.recharge_boost || 0) + quantity;
+          updates.recharge_boost = (updates.recharge_boost || 0) + quantity;
           break;
       }
     }
@@ -53,14 +41,38 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       return res.status(400).json({ error: "No valid products found" });
     }
 
-    const { error } = await supabaseServer
+    // Update de stripe_info
+    const { error: updateError } = await supabaseServer
       .from("stripe_info")
       .update(updates)
       .eq("customer_id", customerId);
 
-    if (error) {
-      console.error("📛 Erreur de mise à jour Supabase :", error);
-      throw error;
+    if (updateError) {
+      console.error("📛 Erreur de mise à jour Supabase :", updateError);
+      throw updateError;
+    }
+
+    const totalAmount = products.reduce((sum, p) => sum + (p.quantity * (p.price || 0)), 0); 
+
+    // Insert dans stripe_history
+    const historyRecord = {
+      customer_id: customerId,
+      purchased_at: new Date().toISOString(),
+      total_amount: totalAmount,
+      invoice_url: body.invoice_url || null,
+      invoice_title: body.invoice_title || null,
+      products,
+      customer_email: customerEmail || null,
+    };
+
+
+    const { error: insertError } = await supabaseServer
+      .from("stripe_history")
+      .insert(historyRecord);
+
+    if (insertError) {
+      console.error("📛 Erreur insertion historique Supabase :", insertError);
+      throw insertError;
     }
 
     res.status(200).json({ success: true });
