@@ -17,12 +17,12 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       return res.status(400).json({ error: "Invalid data" });
     }
 
-    // Construire les mises à jour à appliquer sur stripe_info
+    // Construire les mises à jour à appliquer sur stripe_info (quantités achetées)
     const updates: Record<string, number> = {};
 
     for (const product of products) {
       const { product_id, quantity } = product;
-      if (!product_id || typeof quantity !== 'number') continue;
+      if (!product_id || typeof quantity !== "number") continue;
 
       switch (product_id) {
         case "prod_S94I2bEjJBgtUi":
@@ -41,7 +41,24 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       return res.status(400).json({ error: "No valid products found" });
     }
 
-    // Update de stripe_info
+    // Récupérer les valeurs existantes dans stripe_info
+    const { data: existingData, error: fetchError } = await supabaseServer
+      .from("stripe_info")
+      .select("recharge_classic, recharge_lastminute, recharge_boost")
+      .eq("customer_id", customerId)
+      .single();
+
+    if (fetchError) {
+      console.error("Erreur fetch données existantes :", fetchError);
+      throw fetchError;
+    }
+
+    // Ajouter aux quantités existantes
+    updates.recharge_classic = (existingData?.recharge_classic || 0) + (updates.recharge_classic || 0);
+    updates.recharge_lastminute = (existingData?.recharge_lastminute || 0) + (updates.recharge_lastminute || 0);
+    updates.recharge_boost = (existingData?.recharge_boost || 0) + (updates.recharge_boost || 0);
+
+    // Update de stripe_info avec les nouvelles quantités cumulées
     const { error: updateError } = await supabaseServer
       .from("stripe_info")
       .update(updates)
@@ -52,7 +69,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       throw updateError;
     }
 
-    const totalAmount = products.reduce((sum, p) => sum + (p.quantity * (p.price || 0)), 0); 
+    const totalAmount = products.reduce((sum, p) => sum + (p.quantity * (p.price || 0)), 0);
 
     // Insert dans stripe_history
     const historyRecord = {
@@ -64,7 +81,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       products,
       customer_email: customerEmail || null,
     };
-
 
     const { error: insertError } = await supabaseServer
       .from("stripe_history")
