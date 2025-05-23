@@ -17,23 +17,16 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
   try {
     const session = await stripe.checkout.sessions.retrieve(sessionId, {
-        expand: ["payment_intent.charges"],
+      expand: ["payment_intent.charges"],
     });
 
-    type PaymentIntentWithCharges = Stripe.PaymentIntent & {
-        charges: {
-            data: Array<Stripe.Charge>;
-        };
+    // Cast pour étendre le type avec charges
+    const paymentIntent = session.payment_intent as Stripe.PaymentIntent & {
+      charges: Stripe.ApiList<Stripe.Charge>;
     };
 
-    const paymentIntent = session.payment_intent as PaymentIntentWithCharges;
-
-
-    if (!paymentIntent) {
-      return res.status(404).json({ error: "No payment intent found for this session" });
-    }
-
-    const receiptUrl = paymentIntent.charges?.data?.[0]?.receipt_url;
+    const charge = paymentIntent.charges?.data?.[0];
+    const receiptUrl = charge?.receipt_url;
 
     res.status(200).json({
       receiptUrl,
