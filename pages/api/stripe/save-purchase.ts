@@ -1,8 +1,6 @@
-// /pages/api/stripe/save-purchase.ts
 import type { NextApiRequest, NextApiResponse } from "next";
 import { corsPolicy } from "../../../lib/middleware/corsPolicy";
 import { supabaseServer } from "../../../lib/supabaseServer";
-
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   await corsPolicy(req, res);
@@ -32,7 +30,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
       switch (product_id) {
         case "prod_S94I2bEjJBgtUi":
-          updates.recharge_classique = (updates.recharge_classic || 0) + quantity;
+          updates.recharge_classic = (updates.recharge_classic || 0) + quantity;
           break;
         case "prod_S94JK9sfmhTanv":
           updates.recharge_lastminute = (updates.recharge_lastminute || 0) + quantity;
