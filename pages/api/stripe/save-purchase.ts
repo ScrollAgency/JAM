@@ -3,6 +3,7 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import { corsPolicy } from "../../../lib/middleware/corsPolicy";
 import { supabaseServer } from "../../../lib/supabaseServer";
 
+
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   await corsPolicy(req, res);
 
