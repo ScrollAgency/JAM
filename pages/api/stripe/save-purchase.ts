@@ -11,7 +11,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   }
 
   try {
-    const { sessionId, customerId, products } = req.body;
+    const body = Array.isArray(req.body) ? req.body[0] : req.body;
+    const { sessionId, customerId, products } = body;
 
     if (!sessionId || !customerId || !products || !Array.isArray(products)) {
       return res.status(400).json({ error: "Invalid data" });
