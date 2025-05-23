@@ -31,7 +31,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
       switch (product_id) {
         case "prod_S94I2bEjJBgtUi":
-          updates.recharge_classique = (updates.recharge_classique || 0) + quantity;
+          updates.recharge_classique = (updates.recharge_classic || 0) + quantity;
           break;
         case "prod_S94JK9sfmhTanv":
           updates.recharge_lastminute = (updates.recharge_lastminute || 0) + quantity;
