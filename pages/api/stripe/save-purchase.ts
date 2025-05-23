@@ -11,8 +11,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   }
 
   try {
+    console.log("🔍 Payload reçu :", JSON.stringify(req.body, null, 2));
     const body = Array.isArray(req.body) ? req.body[0] : req.body;
     const { sessionId, customerId, products } = body;
+
+    console.log("📦 Données extraites :", { sessionId, customerId, products });
 
     if (!sessionId || !customerId || !products || !Array.isArray(products)) {
       return res.status(400).json({ error: "Invalid data" });
@@ -48,11 +51,14 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       .update(updates)
       .eq("customer_id", customerId);
 
-    if (error) throw error;
+    if (error) {
+      console.error("📛 Erreur de mise à jour Supabase :", error);
+      throw error;
+    }
 
     res.status(200).json({ success: true });
   } catch (err: any) {
     console.error("Erreur Supabase :", err);
-    res.status(500).json({ error: err.message });
+    res.status(500).json({ error: err?.message || "Unknown error" });
   }
 }
