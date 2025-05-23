@@ -1,4 +1,3 @@
-// /pages/api/stripe/get-session.ts
 import type { NextApiRequest, NextApiResponse } from "next";
 import Stripe from "stripe";
 import { corsPolicy } from "../../../lib/middleware/corsPolicy";
