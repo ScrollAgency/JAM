@@ -10,17 +10,25 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   }
 
   try {
-    console.log("🔍 Payload reçu :", JSON.stringify(req.body, null, 2));
     const body = Array.isArray(req.body) ? req.body[0] : req.body;
     const { sessionId, customerId, products } = body;
-
-    console.log("📦 Données extraites :", { sessionId, customerId, products });
 
     if (!sessionId || !customerId || !products || !Array.isArray(products)) {
       return res.status(400).json({ error: "Invalid data" });
     }
 
-    // Construire les mises à jour à appliquer
+    // 🔎 Récupérer les valeurs existantes
+    const { data: existingData, error: fetchError } = await supabaseServer
+      .from("stripe_info")
+      .select("recharge_classic, recharge_lastminute, recharge_boost")
+      .eq("customer_id", customerId)
+      .single();
+
+    if (fetchError) {
+      console.error("❌ Erreur de récupération Supabase :", fetchError);
+      return res.status(500).json({ error: fetchError.message });
+    }
+
     const updates: Record<string, number> = {};
 
     for (const product of products) {
@@ -30,13 +38,13 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
       switch (product_id) {
         case "prod_S94I2bEjJBgtUi":
-          updates.recharge_classic = (updates.recharge_classic || 0) + quantity;
+          updates.recharge_classic = (existingData?.recharge_classic || 0) + quantity;
           break;
         case "prod_S94JK9sfmhTanv":
-          updates.recharge_lastminute = (updates.recharge_lastminute || 0) + quantity;
+          updates.recharge_lastminute = (existingData?.recharge_lastminute || 0) + quantity;
           break;
         case "prod_S94Jb2TNBEp2vU":
-          updates.recharge_boost = (updates.recharge_boost || 0) + quantity;
+          updates.recharge_boost = (existingData?.recharge_boost || 0) + quantity;
           break;
       }
     }
