@@ -25,6 +25,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       charges: Stripe.ApiList<Stripe.Charge>;
     };
 
+    console.log("💳 Charges data:", JSON.stringify(paymentIntent.charges?.data, null, 2));
+
     const charge = paymentIntent.charges?.data?.[0];
     const receiptUrl = charge?.receipt_url;
 
