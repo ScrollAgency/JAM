@@ -1,5 +1,4 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import type Stripe from "stripe";
 import stripe from "../../../lib/stripeServer";
 import { corsPolicy } from "../../../lib/middleware/corsPolicy";
 
@@ -16,29 +15,31 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   }
 
   try {
+    // Récupère la session Stripe
     const session = await stripe.checkout.sessions.retrieve(sessionId);
 
     const paymentIntentId = session.payment_intent as string;
-
     if (!paymentIntentId) {
-    return res.status(404).json({ error: "No payment intent found" });
+      return res.status(404).json({ error: "No payment intent found" });
     }
 
-    const paymentIntent = await stripe.paymentIntents.retrieve(paymentIntentId, {
-    expand: ["charges"],
+    // Récupère le PaymentIntent avec le champ latest_charge
+    const paymentIntent = await stripe.paymentIntents.retrieve(paymentIntentId);
+
+    const chargeId = paymentIntent.latest_charge as string;
+    if (!chargeId) {
+      return res.status(404).json({ error: "No charge found for this payment intent" });
+    }
+
+    // Récupère la charge pour obtenir le reçu
+    const charge = await stripe.charges.retrieve(chargeId);
+
+    res.status(200).json({
+      receiptUrl: charge.receipt_url,
+      amount: paymentIntent.amount,
+      currency: paymentIntent.currency,
+      status: paymentIntent.status,
     });
-
-    res.status(200).json({ paymentIntent });
-
-    // const charge = paymentIntent.charges?.data?.[0];
-    // const receiptUrl = charge?.receipt_url;
-
-    // res.status(200).json({
-    // receiptUrl,
-    // amount: paymentIntent.amount,
-    // currency: paymentIntent.currency,
-    // status: paymentIntent.status,
-    // });
   } catch (err: any) {
     console.error("Erreur Stripe paymentIntent :", err);
     res.status(500).json({ error: err.message });
