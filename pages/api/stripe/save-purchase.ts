@@ -1,7 +1,7 @@
 // /pages/api/stripe/save-purchase.ts
 import type { NextApiRequest, NextApiResponse } from "next";
 import { corsPolicy } from "../../../lib/middleware/corsPolicy";
-import { supabaseServer } from '../../../lib/supabaseServer';
+import { supabaseServer } from "../../../lib/supabaseServer";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   await corsPolicy(req, res);
@@ -11,17 +11,41 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   }
 
   try {
-    const { sessionId, products, customerEmail } = req.body;
+    const { sessionId, customerId, products } = req.body;
 
-    if (!sessionId || !products || !Array.isArray(products)) {
+    if (!sessionId || !customerId || !products || !Array.isArray(products)) {
       return res.status(400).json({ error: "Invalid data" });
     }
 
-    const { error } = await supabaseServer.from("stripe_infos").insert({
-      session_id: sessionId,
-      email: customerEmail,
-      products,
-    });
+    // Construire les mises à jour à appliquer
+    const updates: Record<string, number> = {};
+
+    for (const product of products) {
+      const { product_id, quantity } = product;
+
+      if (!product_id || typeof quantity !== 'number') continue;
+
+      switch (product_id) {
+        case "prod_S94I2bEjJBgtUi":
+          updates.recharge_classique = (updates.recharge_classique || 0) + quantity;
+          break;
+        case "prod_S94JK9sfmhTanv":
+          updates.recharge_lastminute = (updates.recharge_lastminute || 0) + quantity;
+          break;
+        case "prod_S94Jb2TNBEp2vU":
+          updates.recharge_boost = (updates.recharge_boost || 0) + quantity;
+          break;
+      }
+    }
+
+    if (Object.keys(updates).length === 0) {
+      return res.status(400).json({ error: "No valid products found" });
+    }
+
+    const { error } = await supabaseServer
+      .from("stripe_infos")
+      .update(updates)
+      .eq("customer_id", customerId);
 
     if (error) throw error;
 
