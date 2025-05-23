@@ -47,7 +47,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     }
 
     const { error } = await supabaseServer
-      .from("stripe_infos")
+      .from("stripe_info")
       .update(updates)
       .eq("customer_id", customerId);
 
