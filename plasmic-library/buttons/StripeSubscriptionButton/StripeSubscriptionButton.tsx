@@ -73,11 +73,19 @@ function StripeSubscriptionButton_(
 
       const data = await res.json();
 
+      // Create subscription
       if (stripeAction === "create") {
         await stripe.redirectToCheckout({ sessionId: data.sessionId });
+
+      // Update subscription
       } else if (stripeAction === "update") {
-        window.location.href = data.url;
+        if (!data.success) {
+          throw new Error("La mise à jour de l'abonnement a échoué");
+        }
         onStatusChange?.("success");
+        onSuccess?.();
+
+      // Cancel subscription
       } else if (stripeAction === "cancel") {
         alert("Abonnement annulé avec succès.");
         onStatusChange?.("success");
