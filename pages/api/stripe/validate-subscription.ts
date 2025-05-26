@@ -1,4 +1,4 @@
-import { NextApiRequest, NextApiResponse } from "next";
+import type { NextApiRequest, NextApiResponse } from "next";
 import stripe from "../../../lib/stripeServer";
 import { corsPolicy } from "../../../lib/middleware/corsPolicy";
 import { supabaseServer } from "../../../lib/supabaseServer";

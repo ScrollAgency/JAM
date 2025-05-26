@@ -1,5 +1,5 @@
 // pages/api/stripe/manage-subscription.ts
-import { NextApiRequest, NextApiResponse } from "next";
+import type { NextApiRequest, NextApiResponse } from "next";
 import stripe from "../../../lib/stripeServer";
 import { corsPolicy } from "../../../lib/middleware/corsPolicy";
 
@@ -36,22 +36,39 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       }
 
       case "update": {
-        if (!customerEmail) {
-          return res.status(400).json({ error: "Email client requis pour 'update'" });
+        if (!customerEmail || !priceId) {
+          return res.status(400).json({ error: "Email client et priceId requis pour 'update'" });
         }
 
+        // 1. Récupère le client
         const customers = await stripe.customers.list({ email: customerEmail, limit: 1 });
         const customer = customers.data[0];
         if (!customer) {
           return res.status(404).json({ error: "Client introuvable" });
         }
 
-        const portalSession = await stripe.billingPortal.sessions.create({
+        // 2. Récupère l'abonnement actif
+        const subscriptions = await stripe.subscriptions.list({
           customer: customer.id,
-          return_url: successUrl || "https://your-default-return-url.com",
+          status: "active",
+          limit: 1,
         });
 
-        return res.status(200).json({ url: portalSession.url });
+        const subscription = subscriptions.data[0];
+        if (!subscription) {
+          return res.status(404).json({ error: "Abonnement actif non trouvé" });
+        }
+
+        // 3. Met à jour l'abonnement avec un nouveau prix
+        const updatedSubscription = await stripe.subscriptions.update(subscription.id, {
+          items: [{
+            id: subscription.items.data[0].id,
+            price: priceId,
+          }],
+          proration_behavior: "create_prorations",
+        });
+
+        return res.status(200).json({ success: true, subscriptionId: updatedSubscription.id });
       }
 
       case "cancel": {
@@ -72,7 +89,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         }
 
         await stripe.subscriptions.update(subscription.id, {
-          cancel_at_period_end: true, // ⚠️ Mieux que suppression immédiate
+          cancel_at_period_end: true,
         });
 
         return res.status(200).json({ success: true });
