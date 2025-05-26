@@ -8,12 +8,12 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
   const { session_id, action } = req.query;
 
-  if (!session_id || typeof session_id !== "string") {
-    return res.status(400).json({ error: "Session ID manquant" });
-  }
-
   if (!action || typeof action !== "string") {
     return res.status(400).json({ error: "Action manquante" });
+  }
+
+  if (action === "create" && (!session_id || typeof session_id !== "string")) {
+    return res.status(400).json({ error: "Session ID manquant" });
   }
 
   try {
