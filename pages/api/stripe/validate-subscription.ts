@@ -70,6 +70,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         return res.status(400).json({ error: "subscription_id, price_id et status sont requis" });
       }
 
+      console.log("BODY REÇU :", req.body);
+
       // Update la ligne où subscription_id = subscription_id
       const { error } = await supabaseServer
         .from("stripe_info")
