@@ -1,6 +1,6 @@
 const StripeCheckoutButtonMeta = {
     name: "StripeCheckoutButton",
-    section: "🔖 JAM",
+    section: "🔖 Jam",
     displayName: "Stripe Checkout button",
     description: "Stripe button used in JAM project",
     thumbnailUrl: "https://static1.plasmic.app/insertables/button.svg",

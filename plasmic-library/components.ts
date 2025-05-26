@@ -45,6 +45,10 @@ export { default as SitexButtonMeta } from "./buttons/SitexButton/SitexButton.me
 //       StripeCheckoutButton
 export { default as StripeCheckoutButton } from "./buttons/StripeCheckoutButton/StripeCheckoutButton";
 export { default as StripeCheckoutButtonMeta } from "./buttons/StripeCheckoutButton/StripeCheckoutButton.meta";
+//       StripeSubscriptionButton
+export { default as StripeSubscriptionButton } from "./buttons/StripeSubscriptionButton/StripeSubscriptionButton";
+export { default as StripeSubscriptionButtonMeta } from "./buttons/StripeSubscriptionButton/StripeSubscriptionButton.meta";
+
 
 // Cards
 //       CardSimple
