@@ -1,4 +1,5 @@
 import type React from "react";
+import { isValidElement, cloneElement } from "react";
 import { X } from "lucide-react";
 
 export interface ConfirmModalProps {
@@ -17,14 +18,13 @@ export interface ConfirmModalProps {
 }
 
 export const ConfirmModal = ({
-
   title = "Voulez-vous résilier votre abonnement ?",
   description = "Votre abonnement sera actif jusqu’à la fin du mois en cours. Sans abonnement, vous ne pourrez plus utiliser la plateforme.",
-  
+
   iconSlot,
   cancelButtonSlot,
   confirmButtonSlot,
-  
+
   onCancel,
   onConfirm,
 
@@ -32,6 +32,23 @@ export const ConfirmModal = ({
   loading = false,
 }: ConfirmModalProps) => {
   if (!show) return null;
+
+  // Fonction utilitaire pour injecter onClick dans un slot React valide
+  const injectOnClick = (node: React.ReactNode, onClick: () => void) => {
+    if (isValidElement(node)) {
+      const element = node as React.ReactElement<any>;
+      return cloneElement(element, {
+        onClick: (e: React.MouseEvent) => {
+          if (element.props.onClick) {
+            element.props.onClick(e);
+          }
+          onClick();
+        },
+        disabled: loading || element.props.disabled, // on propage disabled
+      });
+    }
+    return node;
+  };
 
   return (
     <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center">
@@ -43,21 +60,30 @@ export const ConfirmModal = ({
         <h2 className="text-xl font-semibold mb-2">{title}</h2>
         <p className="text-sm text-gray-600 mb-6">{description}</p>
         <div className="flex justify-center gap-4">
-          {cancelButtonSlot ?? (
-            <button type="button" onClick={onCancel} className="px-4 py-2 rounded-lg border" disabled={loading}>
-              "Annuler"
-            </button>
-          )}
-          {confirmButtonSlot ?? (
-            <button 
-              type="button"
-              onClick={onConfirm}
-              className="px-4 py-2 rounded-lg bg-red-600 text-white hover:bg-red-700"
-              disabled={loading}
-            >
-              {loading ? "Chargement..." : "Confirmer"}
-            </button>
-          )}
+          {cancelButtonSlot
+            ? injectOnClick(cancelButtonSlot, onCancel)
+            : (
+              <button
+                type="button"
+                onClick={onCancel}
+                className="px-4 py-2 rounded-lg border"
+                disabled={loading}
+              >
+                Annuler
+              </button>
+            )}
+          {confirmButtonSlot
+            ? injectOnClick(confirmButtonSlot, onConfirm)
+            : (
+              <button
+                type="button"
+                onClick={onConfirm}
+                className="px-4 py-2 rounded-lg bg-red-600 text-white hover:bg-red-700"
+                disabled={loading}
+              >
+                {loading ? "Chargement..." : "Confirmer"}
+              </button>
+            )}
         </div>
       </div>
     </div>
