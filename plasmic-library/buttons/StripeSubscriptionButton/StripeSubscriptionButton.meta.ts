@@ -15,7 +15,7 @@ const StripeSubscriptionButtonMeta = {
       displayName: "Price ID",
       description: "Identifiant Stripe du tarif (price_xxx)",
     },
-    CustomerId: "string",
+    customerId: "string",
     customerEmail: "string",
     successUrl: { type: "string" },
     cancelUrl: { type: "string" },
