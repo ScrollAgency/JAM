@@ -11,7 +11,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     return res.status(405).json({ error: "Méthode non autorisée" });
   }
 
-  const { action, priceId, clientReferenceId, customerEmail, successUrl, cancelUrl } = req.body;
+  const { action, priceId, customerId, customerEmail, successUrl, cancelUrl } = req.body;
 
   if (!action) {
     return res.status(400).json({ error: "Action requise" });
@@ -27,7 +27,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         const session = await stripe.checkout.sessions.create({
           mode: "subscription",
           line_items: [{ price: priceId, quantity: 1 }],
-          client_reference_id: clientReferenceId,
+          client_reference_id: customerId,
           customer_email: customerEmail,
           success_url: successUrl,
           cancel_url: cancelUrl,
@@ -37,20 +37,12 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       }
 
       case "update": {
-        if (!customerEmail || !priceId) {
-          return res.status(400).json({ error: "Email client et priceId requis pour 'update'" });
+        if (!customerId || !priceId) {
+          return res.status(400).json({ error: "customerId et priceId requis pour 'update'" });
         }
 
-        // 1. Récupère le client
-        const customers = await stripe.customers.list({ email: customerEmail, limit: 1 });
-        const customer = customers.data[0];
-        if (!customer) {
-          return res.status(404).json({ error: "Client introuvable" });
-        }
-
-        // 2. Récupère l'abonnement actif
         const subscriptions = await stripe.subscriptions.list({
-          customer: customer.id,
+          customer: customerId,
           status: "active",
           limit: 1,
         });
@@ -60,7 +52,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           return res.status(404).json({ error: "Abonnement actif non trouvé" });
         }
 
-        // 3. Met à jour l'abonnement avec un nouveau prix
         const updatedSubscription = await stripe.subscriptions.update(subscription.id, {
           items: [{
             id: subscription.items.data[0].id,
@@ -80,7 +71,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             product_id: productId,
             status: updatedSubscription.status
           })
-          .eq("customer_id", customer.id);
+          .eq("customer_id", customerId);
 
           if (error) {
           console.error("Erreur Supabase :", error);
@@ -97,32 +88,24 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       }
 
       case "cancel": {
-        if (!customerEmail) {
-          return res.status(400).json({ error: "Email client requis pour 'cancel'" });
+        if (!customerId) {
+          return res.status(400).json({ error: "customerId requis pour 'cancel'" });
         }
 
-        const customers = await stripe.customers.list({ email: customerEmail, limit: 1 });
-        const customer = customers.data[0];
-        if (!customer) {
-          return res.status(404).json({ error: "Client introuvable" });
-        }
-
-        const subscriptions = await stripe.subscriptions.list({ customer: customer.id, limit: 1 });
+        const subscriptions = await stripe.subscriptions.list({ customer: customerId, limit: 1 });
         const subscription = subscriptions.data[0];
         if (!subscription) {
           return res.status(404).json({ error: "Aucune souscription trouvée" });
         }
 
-        // 1. Annule sur Stripe
         await stripe.subscriptions.update(subscription.id, {
           cancel_at_period_end: true,
         });
 
-        // 2. Mets à jour Supabase
         const { error } = await supabaseServer
           .from("stripe_info")
           .update({ status: "cancel" })
-          .eq("customer_id", customer.id);
+          .eq("customer_id", customerId);
 
         if (error) {
           console.error("Erreur Supabase lors du cancel:", error);

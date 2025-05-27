@@ -7,7 +7,7 @@ import { ConfirmModal } from "./ConfirmModal";
 export interface StripeSubscriptionButtonProps {
   stripeAction: "create" | "update" | "cancel";
   priceId?: string;
-  CustomerId?: string;
+  customerId?: string;
   customerEmail?: string;
   successUrl?: string;
   cancelUrl?: string;
@@ -33,7 +33,7 @@ function StripeSubscriptionButton_(
   const {
     stripeAction,
     priceId,
-    CustomerId,
+    customerId,
     customerEmail,
     successUrl,
     cancelUrl,
@@ -57,12 +57,17 @@ function StripeSubscriptionButton_(
   const handleConfirm = async () => {
     setShowConfirmModal(false);
     setLoading(true);
+
     try {
+      if (stripeAction === "cancel" && !customerId) {
+        throw new Error("customerId requis pour annuler l'abonnement");
+      }
+
       if (stripeAction === "cancel") {
         const res = await fetch("/api/stripe/manage-subscription", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ action: "cancel", customerEmail }),
+          body: JSON.stringify({ action: "cancel", customerEmail, customerId }),
         });
 
         if (!res.ok) {
@@ -84,7 +89,7 @@ function StripeSubscriptionButton_(
           body: JSON.stringify({
             action: stripeAction,
             priceId,
-            CustomerId,
+            customerId,
             customerEmail,
             successUrl,
             cancelUrl,
