@@ -80,7 +80,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             product_id: productId,
             status: updatedSubscription.status
           })
-          .eq("subscription_id", updatedSubscription.id);
+          .eq("customer_id", customer.id);
 
           if (error) {
           console.error("Erreur Supabase :", error);
@@ -122,7 +122,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         const { error } = await supabaseServer
           .from("stripe_info")
           .update({ status: "cancel" })
-          .eq("subscription_id", subscription.id);
+          .eq("customer_id", customer.id);
 
         if (error) {
           console.error("Erreur Supabase lors du cancel:", error);
