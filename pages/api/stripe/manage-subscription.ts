@@ -1,6 +1,7 @@
 // pages/api/stripe/manage-subscription.ts
 import type { NextApiRequest, NextApiResponse } from "next";
 import stripe from "../../../lib/stripeServer";
+import { supabaseServer } from "../../../lib/supabaseServer";
 import { corsPolicy } from "../../../lib/middleware/corsPolicy";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
@@ -68,7 +69,31 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           proration_behavior: "create_prorations",
         });
 
-        return res.status(200).json({ success: true, subscriptionId: updatedSubscription.id });
+        const price = await stripe.prices.retrieve(priceId);
+        const productId = typeof price.product === "string" ? price.product : price.product.id;
+
+        // Mets à jour Supabase
+        const { error } = await supabaseServer
+          .from("stripe_info")
+          .update({ 
+            price_id: priceId,
+            product_id: productId,
+            status: updatedSubscription.status
+          })
+          .eq("subscription_id", updatedSubscription.id);
+
+          if (error) {
+          console.error("Erreur Supabase :", error);
+          return res.status(500).json({ error: "Erreur lors de la mise à jour Supabase" });
+        }
+
+        return res.status(200).json({
+          success: true,
+          subscriptionId: updatedSubscription.id,
+          priceId: priceId,
+          status: updatedSubscription.status,
+        });
+
       }
 
       case "cancel": {
@@ -88,11 +113,27 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           return res.status(404).json({ error: "Aucune souscription trouvée" });
         }
 
+        // 1. Annule sur Stripe
         await stripe.subscriptions.update(subscription.id, {
           cancel_at_period_end: true,
         });
 
-        return res.status(200).json({ success: true });
+        // 2. Mets à jour Supabase
+        const { error } = await supabaseServer
+          .from("stripe_info")
+          .update({ status: "cancel" })
+          .eq("subscription_id", subscription.id);
+
+        if (error) {
+          console.error("Erreur Supabase lors du cancel:", error);
+          return res.status(500).json({ error: "Erreur lors de la mise à jour Supabase" });
+        }
+
+        return res.status(200).json({
+          success: true,
+          subscriptionId: subscription.id,
+          status: "cancel",
+        });
       }
 
       default:

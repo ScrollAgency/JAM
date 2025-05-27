@@ -63,44 +63,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       return res.status(201).json({ success: true, message: "Ligne créée dans stripe_info" });
     }
 
-    if (action === "update") {
-      const { subscription_id, price_id, status } = req.body;
-
-      if (!subscription_id || !price_id || !status) {
-        return res.status(400).json({ error: "subscription_id, price_id et status sont requis" });
-      }
-
-      console.log("BODY REÇU :", req.body);
-
-      // Update la ligne où subscription_id = subscription_id
-      const { error } = await supabaseServer
-        .from("stripe_info")
-        .update({ price_id, status })
-        .eq("subscription_id", subscription_id);
-
-      if (error) throw error;
-
-      return res.status(200).json({ success: true, message: "Ligne mise à jour" });
-    }
-
-    if (action === "cancel") {
-      const { subscription_id } = req.body;
-
-      if (!subscription_id) {
-        return res.status(400).json({ error: "subscription_id est requis" });
-      }
-
-      // Update le status en "cancel" pour la subscription_id donnée
-      const { error } = await supabaseServer
-        .from("stripe_info")
-        .update({ status: "cancel" })
-        .eq("subscription_id", subscription_id);
-
-      if (error) throw error;
-
-      return res.status(200).json({ success: true, message: "Abonnement annulé" });
-    }
-
     return res.status(400).json({ error: "Action non supportée" });
   } catch (err: any) {
     console.error("Erreur dans la route Stripe validate-subscription :", err);

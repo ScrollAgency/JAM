@@ -33,6 +33,41 @@ const StripeSubscriptionButtonMeta = {
       type: "string",
       description: "Classe CSS personnalisée",
     },
+
+    // Modale
+    confirmTitle: {
+      type: "string",
+      defaultValue: "Voulez-vous résilier votre abonnement ?",
+      displayName: "Titre de confirmation",
+    },
+    confirmDescription: {
+      type: "string",
+      defaultValue: "Votre abonnement sera actif jusqu’à la fin du mois en cours. Sans abonnement, vous ne pourrez plus utiliser la plateforme.",
+      displayName: "Texte de confirmation",
+    },
+    confirmIcon: {
+      type: "imageUrl",
+      displayName: "Icône de confirmation",
+      description: "Icône affichée en haut de la modale",
+    },
+    confirmButtonLabel: {
+      type: "string",
+      defaultValue: "Résilier",
+      displayName: "Texte du bouton de confirmation",
+    },
+    cancelButtonLabel: {
+      type: "string",
+      defaultValue: "Annuler",
+      displayName: "Texte du bouton d’annulation",
+    },
+    showConfirmationModal: {
+      type: "boolean",
+      defaultValue: true,
+      displayName: "Afficher la modale de confirmation",
+    },
+
+
+    // Slots et callbacks
     children: "slot",
     onSuccess: {
       type: "eventHandler",
