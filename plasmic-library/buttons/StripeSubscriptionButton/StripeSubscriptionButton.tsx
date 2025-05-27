@@ -111,7 +111,7 @@ function StripeSubscriptionButton_(
       }
     } catch (error: any) {
       console.error("Erreur Stripe :", error);
-      alert(error.message); // À remplacer par ta modale d'erreur personnalisée si besoin
+      alert(error.message);
       onError?.(error);
       if (stripeAction !== "create") {
         onStatusChange?.("error");
@@ -132,29 +132,6 @@ function StripeSubscriptionButton_(
     handleConfirm();
   };
 
-  if (isValidElement(children)) {
-    return (
-      <>
-        <ConfirmModal
-          show={showConfirmModal}
-          onCancel={() => setShowConfirmModal(false)}
-          onConfirm={handleConfirm}
-          title={confirmTitle}
-          description={confirmDescription}
-          iconSlot={confirmIconSlot}
-          confirmButtonSlot={confirmButtonSlot}
-          cancelButtonSlot={cancelButtonSlot}
-          loading={loading}
-        />
-        {cloneElement(children as React.ReactElement<any>, {
-          onClick: handleClick,
-          disabled: disabled || loading,
-          ref,
-        })}
-      </>
-    );
-  }
-
   return (
     <>
       <ConfirmModal
@@ -168,14 +145,23 @@ function StripeSubscriptionButton_(
         cancelButtonSlot={cancelButtonSlot}
         loading={loading}
       />
-      <button
-        type="button"
-        ref={ref}
-        disabled={disabled || loading}
-        onClick={handleClick}
-      >
-        {loading ? "Chargement..." : children || "Abonnement"}
-      </button>
+
+      {isValidElement(children)
+        ? cloneElement(children as React.ReactElement<any>, {
+            onClick: handleClick,
+            disabled: disabled || loading,
+            ref,
+          })
+        : (
+          <button
+            type="button"
+            ref={ref}
+            disabled={disabled || loading}
+            onClick={handleClick}
+          >
+            {loading ? "Chargement..." : children || "Abonnement"}
+          </button>
+        )}
     </>
   );
 }
