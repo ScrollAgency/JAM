@@ -51,7 +51,7 @@ export interface JobCardActions {
 }
 
 const cardVariant = cva(
-  "w-full max-w-[400px] flex flex-col bg-white shadow-lg rounded-[24px] p-6",
+  "w-full max-w-[400px] flex flex-col bg-white shadow-lg rounded-[24px] p-6 relative",
   {
     variants: {
       state: {
@@ -108,24 +108,46 @@ const JobCard = forwardRef<JobCardActions, JobCardProps>(({
       tabIndex={0}
       onKeyDown={(e) => e.key === 'Enter' && onClick?.(e as any)}
     >
-      {/* Logo et titre */}
-      <div className="flex justify-between items-start mb-2">
+      {/* Badges d'état */}
+      {state === "lastMin" && (
+        <div className="absolute top-4 right-4 bg-[#FF6B35] text-white text-xs font-bold px-3 py-1 rounded-full uppercase">
+          LAST MINUTE
+        </div>
+      )}
+      
+      {state === "new" && (
+        <div className="absolute top-4 right-4 bg-[#BAFE68] text-green-900 text-xs font-bold px-3 py-1 rounded-full uppercase">
+          NOUVEAU
+        </div>
+      )}
+      
+      {state === "applied" && (
+        <div className="absolute top-4 left-4 bg-[#2D5016] text-white text-xs font-bold px-3 py-1 rounded-full uppercase flex items-center gap-1">
+          <span>✓</span>
+          POSTULÉ
+        </div>
+      )}
+
+      {/* Coeur de favoris */}
+      {(state === "liked" || state === "applied") && (
+        <button
+          className="absolute top-4 right-4 text-[#FF4D84] text-xl"
+          onClick={handleFavoriteClick}
+          aria-label="Retirer des favoris"
+        >
+          ♥
+        </button>
+      )}
+
+      {/* Logo */}
+      <div className="mb-4">
         <Image
           src={logo && logo !== "" ? logo : "/favicon.ico"}
           alt={`${companyName} logo`}
-          width={100}
-          height={24}
+          width={120}
+          height={32}
           className="object-contain"
         />
-        {state === "liked" && (
-          <button
-            className="text-[#FF4D84] text-2xl"
-            onClick={handleFavoriteClick}
-            aria-label="Retirer des favoris"
-          >
-            ♥
-          </button>
-        )}
       </div>
 
       {/* Titre du poste */}
@@ -143,61 +165,56 @@ const JobCard = forwardRef<JobCardActions, JobCardProps>(({
               className="text-gray-500"
             />
           )}
-          <span className="text-gray-900">{city}, {companyName}</span>
+          <span className="text-gray-600 text-sm">{city} ({companyName})</span>
         </div>
       </div>
 
-      <div className="flex flex-col gap-1.5">
-  {/* Première ligne */}
-  <div className="flex gap-1.5">
-    {domain && (
-      <div className="flex items-center gap-1.5 bg-gray-50 px-2 py-1.5 rounded-full flex-shrink-0">
-        <Image src={domain.icon} alt="Domain" width={14} height={14} />
-        <span className="text-xs font-medium text-gray-900">{domain.text}</span>
-      </div>
-    )}
-    {contractType && (
-      <div className="flex items-center gap-1.5 bg-gray-50 px-2 py-1.5 rounded-full flex-shrink-0">
-        <Image src={contractType.icon} alt="Contract type" width={14} height={14} />
-        <span className="text-xs font-medium text-gray-900">{contractType.text}</span>
-      </div>
-    )}
-    {availability && (
-      <div className="flex items-center gap-1.5 bg-gray-50 px-2 py-1.5 rounded-full flex-shrink-0">
-        <Image src={availability.icon} alt="Availability" width={14} height={14} />
-        <span className="text-xs font-medium text-gray-900">{availability.text}</span>
-      </div>
-    )}
-  </div>
-
-  {/* Deuxième ligne */}
-  <div className="flex gap-1.5">
-    {workingTime && (
-      <div className="flex items-center gap-1.5 bg-gray-50 px-2 py-1.5 rounded-full flex-shrink-0">
-        <Image src={workingTime.icon} alt="Working time" width={14} height={14} />
-        <span className="text-xs font-medium text-gray-900">{workingTime.text}</span>
-      </div>
-    )}
-    {salary && (
-      <div className="flex items-center gap-1.5 bg-gray-50 px-2 py-1.5 rounded-full flex-shrink-0">
-        <Image src={salary.icon} alt="Salary" width={14} height={14} />
-        <span className="text-xs font-medium text-gray-900">{salary.text}</span>
-      </div>
-    )}
-    {workMode && (
-      <div className="flex items-center gap-1.5 bg-gray-50 px-2 py-1.5 rounded-full flex-shrink-0">
-        <Image src={workMode.icon} alt="Work mode" width={14} height={14} />
-        <span className="text-xs font-medium text-gray-900">{workMode.text}</span>
-      </div>
-    )}
-  </div>
-</div>
-
-      {state === "new" && (
-        <div className="absolute top-4 left-4 bg-[#BAFE68] text-green-900 text-xs font-bold px-3 py-1 rounded-full uppercase">
-          Nouveau
+      {/* Tags d'informations */}
+      <div className="flex flex-col gap-2">
+        {/* Première ligne */}
+        <div className="flex gap-2 flex-wrap">
+          {domain && (
+            <div className="flex items-center gap-1.5 bg-gray-50 px-3 py-1.5 rounded-full flex-shrink-0">
+              <Image src={domain.icon} alt="Domain" width={14} height={14} />
+              <span className="text-xs font-medium text-gray-900">{domain.text}</span>
+            </div>
+          )}
+          {contractType && (
+            <div className="flex items-center gap-1.5 bg-gray-50 px-3 py-1.5 rounded-full flex-shrink-0">
+              <Image src={contractType.icon} alt="Contract type" width={14} height={14} />
+              <span className="text-xs font-medium text-gray-900">{contractType.text}</span>
+            </div>
+          )}
+          {availability && (
+            <div className="flex items-center gap-1.5 bg-gray-50 px-3 py-1.5 rounded-full flex-shrink-0">
+              <Image src={availability.icon} alt="Availability" width={14} height={14} />
+              <span className="text-xs font-medium text-gray-900">{availability.text}</span>
+            </div>
+          )}
         </div>
-      )}
+
+        {/* Deuxième ligne */}
+        <div className="flex gap-2 flex-wrap">
+          {workingTime && (
+            <div className="flex items-center gap-1.5 bg-gray-50 px-3 py-1.5 rounded-full flex-shrink-0">
+              <Image src={workingTime.icon} alt="Working time" width={14} height={14} />
+              <span className="text-xs font-medium text-gray-900">{workingTime.text}</span>
+            </div>
+          )}
+          {salary && (
+            <div className="flex items-center gap-1.5 bg-gray-50 px-3 py-1.5 rounded-full flex-shrink-0">
+              <Image src={salary.icon} alt="Salary" width={14} height={14} />
+              <span className="text-xs font-medium text-gray-900">{salary.text}</span>
+            </div>
+          )}
+          {workMode && (
+            <div className="flex items-center gap-1.5 bg-gray-50 px-3 py-1.5 rounded-full flex-shrink-0">
+              <Image src={workMode.icon} alt="Work mode" width={14} height={14} />
+              <span className="text-xs font-medium text-gray-900">{workMode.text}</span>
+            </div>
+          )}
+        </div>
+      </div>
     </div>
   );
 });

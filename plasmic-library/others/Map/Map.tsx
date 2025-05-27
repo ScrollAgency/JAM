@@ -1,278 +1,218 @@
-import React, { useEffect, useState, useRef, useCallback } from 'react';
+import React, { useEffect, useRef, useState, useCallback } from 'react';
 import mapboxgl from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
+import './Map.module.css';
 
-interface BusinessProperties {
-  title?: string;
-  location: string;
-  company_logo?: string;
-  company_website?: string;
-  annonce?: string;
-  tempsDeTrajet?: string;
-  sector?: string;
-  contract_type?: string;
-  hours_per_week?: string;
-  start_date?: string;
-  salary?: string;
-  way_of_working?: string;
-  state?: string;
+interface MarkerData {
+   latitude: number;
+   longitude: number;
+   state?: string;
+   title?: string;
+   location?: string;
+   logo_file?: string;
+   company_name?: string;
+   website?: string;
+   contract_type?: string;
+   start_date?: string;
+   working_time?: number;
+   created_at?: string;
+   salary?: number;
+   work_mode?: string;
+   annonce?: boolean;
+   sector_activity?: string;
+   is_last_minute?: boolean;
 }
 
 interface MapboxProps {
-  mapStyle?: string;
-  latitude?: number;
-  longitude?: number;
-  zoom?: number;
-  businesses?: BusinessProperties[];
-  className: string;
-  searchAddress?: string;
-  iconUrl?: string;
-}
-function removeHttps(url: any): string {
-  return url.replace(/^https:\/\//, '');
+   mapStyle?: string;
+   latitude?: number;
+   longitude?: number;
+   zoom?: number;
+   markers?: MarkerData[];
+   className?: string;
 }
 
 const Mapbox: React.FC<MapboxProps> = ({
-  mapStyle = 'mapbox://styles/mapbox/streets-v11',
-  latitude = 48.8566,
-  longitude = 2.3522,
-  zoom = 9,
-  businesses = [],
-  className,
-  searchAddress = '',
-  iconUrl = '',
+   mapStyle = 'mapbox://styles/mapbox/streets-v11',
+   latitude = 48.8566,
+   longitude = 2.3522,
+   zoom = 9,
+   markers = [],
+   className = '',
 }) => {
-  const [userLocation, setUserLocation] = useState<{ latitude: number; longitude: number } | null>(null);
-  const [mapLoaded, setMapLoaded] = useState(false);
-  const mapContainerRef = useRef<HTMLDivElement>(null);
-  const mapRef = useRef<mapboxgl.Map | null>(null);
-  const markersRef = useRef<{ [key: string]: mapboxgl.Marker }>({});
-  const userMarkerRef = useRef<mapboxgl.Marker | null>(null);
+   const mapContainerRef = useRef<HTMLDivElement | null>(null);
+   const mapRef = useRef<mapboxgl.Map | null>(null);
+   const markersRef = useRef<Record<string, mapboxgl.Marker>>({});
+   const [mapLoaded, setMapLoaded] = useState(false);
 
-  useEffect(() => {
-    if (!process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN) {
-      console.error('Mapbox access token is not set');
-      return;
-    }
-    mapboxgl.accessToken = process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN;
-  }, []);
+   const calculateMarkerSize = useCallback((zoom: number) => {
+      const minSize = 20;
+      const maxSize = 40;
+      const minZoom = 5;
+      const maxZoom = 15;
+      const clampedZoom = Math.min(Math.max(zoom, minZoom), maxZoom);
+      return minSize + ((clampedZoom - minZoom) / (maxZoom - minZoom)) * (maxSize - minSize);
+   }, []);
 
-  useEffect(() => {
-    let isMounted = true;
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          if (isMounted) {
-            setUserLocation({
-              latitude: position.coords.latitude,
-              longitude: position.coords.longitude,
-            });
-          }
-        },
-        (error) => console.error('Erreur de géolocalisation:', error)
-      );
-    }
-    return () => {
-      isMounted = false;
-    };
-  }, []);
 
-  const calculateMarkerSize = useCallback((zoom: number): number => {
-    const minZoom = 5;
-    const maxZoom = 15;
-    const minSize = 16;
-    const maxSize = 48;
-    if (zoom <= minZoom) return minSize;
-    if (zoom >= maxZoom) return maxSize;
-    return minSize + (maxSize - minSize) * (zoom - minZoom) / (maxZoom - minZoom);
-  }, []);
 
-  useEffect(() => {
-    if (!mapContainerRef.current || !mapboxgl.accessToken) return;
 
-    if (mapRef.current) {
-      mapRef.current.remove();
-    }
 
-    const map = new mapboxgl.Map({
-      container: mapContainerRef.current,
-      style: mapStyle,
-      center: [longitude, latitude],
-      zoom: zoom,
-      projection: { name: 'mercator' },
-    });
+   // 1. Créer la carte une seule fois
+   useEffect(() => {
+      if (!mapContainerRef.current || mapRef.current || !process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN) return;
 
-    map.addControl(new mapboxgl.NavigationControl(), 'top-right');
+      mapboxgl.accessToken = process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN;
 
-    map.on('load', () => {
-      setMapLoaded(true);
-      map.setProjection({ name: 'mercator' });
-
-      map.on('zoom', () => {
-        const currentZoom = map.getZoom();
-        const size = calculateMarkerSize(currentZoom);
-        document.querySelectorAll('.custom-marker').forEach((marker) => {
-          (marker as HTMLElement).style.width = `${size}px`;
-          (marker as HTMLElement).style.height = `${size}px`;
-        });
+      const map = new mapboxgl.Map({
+         container: mapContainerRef.current,
+         style: mapStyle,
+         center: [longitude, latitude],
+         zoom,
+         projection: { name: 'mercator' },
       });
-    });
-    mapRef.current = map;
 
-    return () => {
-      if (mapRef.current) {
-        mapRef.current.remove();
-        mapRef.current = null;
+      map.addControl(new mapboxgl.NavigationControl(), 'top-right');
+
+      map.on('load', () => {
+         setMapLoaded(true);
+
+         map.on('zoom', () => {
+            const currentZoom = map.getZoom();
+            const size = calculateMarkerSize(currentZoom);
+            document.querySelectorAll('.custom-marker').forEach((marker) => {
+               const el = marker as HTMLElement;
+               el.style.width = `${size}px`;
+               el.style.height = `${size}px`;
+            });
+         });
+      });
+
+      mapRef.current = map;
+
+      return () => {
+         map.remove();
+         mapRef.current = null;
+      };
+   }, [mapStyle, calculateMarkerSize]);
+
+
+
+
+
+   // 2. Recentrer la carte si lat/lng changent
+   useEffect(() => {
+      if (mapRef.current && mapLoaded) {
+         mapRef.current.flyTo({ center: [longitude, latitude], essential: true });
       }
-    };
-  }, [mapStyle, latitude, longitude, zoom, calculateMarkerSize]);
+   }, [latitude, longitude, mapLoaded]);
 
-  useEffect(() => {
-    if (userLocation && mapRef.current) {
-      mapRef.current.setCenter([userLocation.longitude, userLocation.latitude]);
-    }
-  }, [userLocation]);
 
-  useEffect(() => {
-    const handleResize = () => {
-      if (mapRef.current) {
-        mapRef.current.resize();
-      }
-    };
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
 
-  const geocodeAddress = useCallback(async (address: string) => {
-    try {
-      const response = await fetch(
-        `https://api.mapbox.com/geocoding/v5/mapbox.places/${encodeURIComponent(
-          address
-        )}.json?access_token=${mapboxgl.accessToken}`
-      );
-      const data = await response.json();
-      return data.features && data.features.length > 0 ? data.features[0].center : null;
-    } catch (error) {
-      console.error('Erreur de géocodage:', error);
-      return null;
-    }
-  }, []);
 
-  useEffect(() => {
-    const updateBusinessMarkers = async () => {
-      if (!mapRef.current || !mapLoaded || !businesses.length) return;
+
+   // 3. Affichage des marqueurs
+   useEffect(() => {
+      if (!mapRef.current || !mapLoaded || markers.length === 0) return;
 
       Object.values(markersRef.current).forEach((marker) => marker.remove());
       markersRef.current = {};
-      for (const business of businesses) {
-        const coords = await geocodeAddress(business.location);
-        if (coords) {
-          const markerElement = document.createElement('div');
-          markerElement.className = `custom-marker ${business.state}`;
 
-          const currentZoom = mapRef.current?.getZoom() || zoom;
-          const size = calculateMarkerSize(currentZoom);
-          markerElement.style.width = `${size}px`;
-          markerElement.style.height = `${size}px`;
-          markerElement.style.backgroundSize = 'cover';
+      markers.forEach((markerData) => {
+         const {
+            latitude,
+            longitude,
+            state,
+            title,
+            location,
+            created_at,
+            company_name,
+            logo_file,
+            website,
+            contract_type,
+            working_time,
+            salary,
+            work_mode,
+            sector_activity,
+            is_last_minute,
+         } = markerData;
 
-          let travelTime = 'N/A';
-          if (userLocation) {
-            const userCoords = [userLocation.longitude, userLocation.latitude];
-            const businessCoords = coords;
-            const url = `https://api.mapbox.com/directions/v5/mapbox/driving/${userCoords.join(',')};${businessCoords.join(',')}?access_token=${mapboxgl.accessToken}`;
-            try {
-              const response = await fetch(url);
-              const data = await response.json();
-              if (data.routes && data.routes.length > 0) {
-                const duration = data.routes[0].duration; // duration in seconds
-                const minutes = Math.round(duration / 60);
-                travelTime = `${minutes} min`;
-              }
-            } catch (error) {
-              console.error('Erreur de calcul du temps de trajet:', error);
+         const today = new Date().toISOString().slice(0, 10); // "2025-05-27"
+         const createdDate = markerData.created_at?.slice(0, 10); // extrait la date
+
+         let markerState = 'base';
+
+         if (markerData.is_last_minute) {
+            markerState = 'last_minute';
+         } else if (createdDate === today) {
+            markerState = 'new';
+         }
+
+
+         const markerElement = document.createElement('div');
+         markerElement.className = `custom-marker ${markerState}`;
+         const currentZoom = mapRef.current!.getZoom();
+         const size = calculateMarkerSize(currentZoom);
+         markerElement.style.width = `${size}px`;
+         markerElement.style.height = `${size}px`;
+         markerElement.style.backgroundSize = 'cover';
+
+         const popupHtml = `
+        <div class="popup-content">
+          <div class="popup-header">
+            ${markerState === 'new' ? '<div class="new-job">Nouveau</div>' : ''}
+            ${is_last_minute ? `
+               <div class="popup-img">
+               <img src="//idwomihieftgogbgivic.supabase.co/storage/v1/object/public/img/ph_clock-countdown-fill.svg" alt="Countdown Icon" />
+               LAST MINUTE
+                  </div>
+                  ` : ''}
+
+            ${state === 'liked' ? '<div class="popup-img">Favori</div>' : ''}
+            ${state === 'applied'
+               ? `<div class="popup-header w-1/3 pl-1 p-1.2 h-10 rounded-br-lg color-white absolute top-0 left-0 items-center popup-img flex bg-gradient-to-b from-[#FF4D84] to-[#F36320] align-center justify-content-center gap-10px"><img class="w-1/8" src="//idwomihieftgogbgivic.supabase.co/storage/v1/object/public/img/ph_clock-countdown-fill.svg"/><p class="text-[#ffffff]">POSTULÉ</p></div>`
+               : ''
             }
-          }
-          const popupHtml = `
-            <div class="popup-content">
-              <div class="popup-header" style="align-items: center;">
-              ${business.state === 'new' ? '<div class="popup-img"><img src="//idwomihieftgogbgivic.supabase.co/storage/v1/object/public/img/ph_clock-countdown-fill.svg"/>Nouveau</div>' : ''}
-              ${business.state === 'last_minute' ? '<div class="popup-img">Dernière minute</div>' : ''}
-              ${business.state === 'liked' ? '<div class="popup-img">Favori</div>' : ''}
-              ${business.state === 'applied' ? '<div class="popup-header w-1/3 pl-1 p-1.2 h-10 rounded-br-lg color-white absolute top-0 left-0 items-center popup-img flex bg-gradient-to-b from-[#FF4D84] to-[#F36320] align-center justify-content-center gap-10px"><img class="w-1/8" src="//idwomihieftgogbgivic.supabase.co/storage/v1/object/public/img/ph_clock-countdown-fill.svg"/><p class="text-[#ffffff]">POSTULÉ</p></div>' : ''}
-              <img class="business_logo" src="${business.company_logo || iconUrl || '//idwomihieftgogbgivic.supabase.co/storage/v1/object/public/img/64527ea280c2622554fb4698_logo-scroll.svg'}" alt="${business.title}" style="border-radius: 8px;" />
-              <h3>${business.title}</h3>
-              </div>
-              ${business.annonce ? `<div class="popup-badge">Annonce</div>` : ''}
-              <div class="popup-info relative pt-18">
-              <div class="absolute adress top-0 left-0 bg-[#ffffff]"><img src="//idwomihieftgogbgivic.supabase.co/storage/v1/object/public/img/ph_map-pin.svg"/><p class="w-full"> ${business.location},</p> <a class="color-[#000000] " href="${business.company_website || '#'}" target="_blank"> ${removeHttps(business.company_website) || 'N/A'}</a><p class="ml-5">${travelTime}</p></div>
-              <div><img src="https://idwomihieftgogbgivic.supabase.co/storage/v1/object/public/img//ph_briefcase.svg" > ${business.sector || 'N/A'}</div>
-              <div><img src="https://idwomihieftgogbgivic.supabase.co/storage/v1/object/public/img//ph_file-text.svg" >${business.contract_type || 'N/A'}</div>
-              <div><img src="https://idwomihieftgogbgivic.supabase.co/storage/v1/object/public/img//ph_clock-countdown.svg"> ${business.start_date ? new Date(business.start_date).toLocaleDateString() : 'N/A'}</div>
-              <div><img src="https://idwomihieftgogbgivic.supabase.co/storage/v1/object/public/img//ph_clock.svg"> ${business.hours_per_week || 'N/A'} H par semaine</div>
-              <div><img src="https://idwomihieftgogbgivic.supabase.co/storage/v1/object/public/img//ph_coins-light.svg">${business.salary || 'N/A'}€</div>
-              <div><img src="https://idwomihieftgogbgivic.supabase.co/storage/v1/object/public/img//ph_office-chair.svg"> ${business.way_of_working || 'N/A'}</div>
-              </div>
-            </div>
-            `;
 
-          const marker = new mapboxgl.Marker({ element: markerElement })
-            .setLngLat(coords)
-            .setPopup(new mapboxgl.Popup().setHTML(popupHtml))
-            .addTo(mapRef.current);
+            <img class="business_logo" src="${logo_file}" alt="${title}" />
 
-          markersRef.current[business.title || business.location] = marker;
-        }
-      }
-    };
+            <h3>${title || 'Titre non défini'}</h3>
+          </div>
 
-    updateBusinessMarkers();
-  }, [businesses, geocodeAddress, iconUrl, mapLoaded, zoom, calculateMarkerSize]);
+         <div class="flex bg-[#ffffff]">
 
-  useEffect(() => {
-    if (!mapRef.current || !mapLoaded || !userLocation) return;
+            <img src="//idwomihieftgogbgivic.supabase.co/storage/v1/object/public/img/ph_map-pin.svg"/>
 
-    if (userMarkerRef.current) {
-      userMarkerRef.current.remove();
-    }
+            <p class="w-full">${location || 'Localisation non définie'}${company_name ? `, ${company_name}` : ''}</p>
 
-    const userMarkerElement = document.createElement('div');
-    userMarkerElement.className = 'custom-marker';
-    const userIcon = iconUrl || '/user-icon.png';
-    userMarkerElement.style.backgroundImage = `url(${userIcon})`;
+            <a href="${website || '#'}" target="_blank">${website ? website.replace(/^https?:\/\//, '') : 'N/A'}</a>
 
-    const currentZoom = mapRef.current.getZoom();
-    const size = calculateMarkerSize(currentZoom);
-    userMarkerElement.style.width = `${size}px`;
-    userMarkerElement.style.height = `${size}px`;
-    userMarkerElement.style.backgroundSize = 'cover';
+         </div>
 
-    userMarkerRef.current = new mapboxgl.Marker({
-      element: userMarkerElement,
-    })
-      .setLngLat([userLocation.longitude, userLocation.latitude])
-      .addTo(mapRef.current);
-  }, [userLocation, iconUrl, mapLoaded, calculateMarkerSize]);
+         <div class="popup-info">
+            <div><img src="https://idwomihieftgogbgivic.supabase.co/storage/v1/object/public/img//ph_briefcase.svg" > ${sector_activity || 'N/A'}</div>
+            <div><img src="https://idwomihieftgogbgivic.supabase.co/storage/v1/object/public/img//ph_file-text.svg" >${contract_type || 'N/A'}</div>
+            <div><img src="https://idwomihieftgogbgivic.supabase.co/storage/v1/object/public/img//ph_clock.svg"> ${working_time || 'N/A'}</div>
+            <div><img src="https://idwomihieftgogbgivic.supabase.co/storage/v1/object/public/img//ph_coins-light.svg">${salary || 'N/A'}</div>
+            <div><img src="https://idwomihieftgogbgivic.supabase.co/storage/v1/object/public/img//ph_office-chair.svg"> ${work_mode || 'N/A'}</div>
+         </div>
+        </div>`;
 
-  useEffect(() => {
-    const handleSearch = async () => {
-      if (!searchAddress.trim() || !mapRef.current || !mapLoaded) return;
+         const popup = new mapboxgl.Popup({ offset: 25 }).setHTML(popupHtml);
 
-      const coords = await geocodeAddress(searchAddress);
-      if (coords) {
-        mapRef.current.flyTo({
-          center: coords,
-          zoom: 12,
-        });
-      }
-    };
-    handleSearch();
-  }, [searchAddress, geocodeAddress, mapLoaded]);
+         const marker = new mapboxgl.Marker({ element: markerElement })
+            .setLngLat([longitude, latitude])
+            .setPopup(popup)
+            .addTo(mapRef.current!);
 
-  return (
-    <>
-      <style>
-        {`
+         markersRef.current[title || `${latitude}-${longitude}`] = marker;
+      });
+   }, [markers, mapLoaded, calculateMarkerSize]);
+
+   return (
+      <>
+         <style>
+            {`
         @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap');
         * {
           font-family: 'DM Sans', sans-serif;
@@ -325,17 +265,38 @@ const Mapbox: React.FC<MapboxProps> = ({
             padding: 8px 8px;
             border-radius: 0 0 12px 0;
             font-size: 12px;
+
           }
           .mapboxgl-popup-img{
             display: flex;
             background: #000000;
           }
+
+.popup-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center; 
+  
+  background: linear-gradient(180deg, #F6165B 0%, #F36320 63.5%);
+  border-radius: 16px 0px 8px;
+  padding: 8px 12px;
+  color: #ffffff;
+  margin-bottom: 10px;
+}
+
+
+
+            
+
           .mapboxgl-popup-content img {
             width: 10%;
             height: 10%;
             border-radius: 8px;
           }
           .mapboxgl-popup-content h3 {
+            line-height: 1.2;
             font-size: 18px;
             font-weight: bold;
             margin-bottom: 8px;
@@ -376,25 +337,22 @@ const Mapbox: React.FC<MapboxProps> = ({
             object-fit: fit;
           }
           .popup-header h3 {
+            position: absolute;
+            top: 50px;
+            left: 50%
             font-size: 20px;
             font-weight: bold;
-            position:absolute;
-            top:100px;
-            left: 50%;
-            transform: translateX(-50%);
             width: 70%;
           }
             .business_logo {
             width: 100px!important;
-            height: 100px!important;
             border-radius: 8px;
             position: absolute;
-            top: 10px;
+            top: 15px;
             left: 50%;
             transform: translateX(-50%);
           }
           .popup-info {
-            margin-top: 40px;
             display: flex;
             flex-wrap: wrap;
             gap: 6px;
@@ -441,15 +399,32 @@ const Mapbox: React.FC<MapboxProps> = ({
             text-decoration: underline!important;
             transition: 0.3s;
         }
+            .new-job {
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: flex;
+            align-items: center; 
+  
+           background: #BAFE68;
+             border-radius: 16px 0px 8px;
+            padding: 8px 12px;
+            color: #000000;
+            margin-bottom: 10px;
+}
         `}
-      </style>
-      <div
-        ref={mapContainerRef}
-        className={`mapbox-map ${className}`}
-        style={{ width: '100%', height: '100%', borderRadius: '16px', position: 'relative' }}
-      />
-    </>
-  );
+         </style>
+         <div
+            ref={mapContainerRef}
+            className={`mapbox-map ${className}`}
+            style={{ width: '100%', height: '100%', borderRadius: '16px', position: 'relative' }}
+         />
+      </>
+   );
 };
 
 export default Mapbox;
+
+
+
+

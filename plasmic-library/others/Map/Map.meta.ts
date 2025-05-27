@@ -12,7 +12,7 @@ const MapBoxMeta = {
         iconUrl: "imageUrl",
         searchAddress: "string",
         zoom: "number",
-        businesses: {
+        markers: {
             type: "object",
             defaultValue: [],
         },
