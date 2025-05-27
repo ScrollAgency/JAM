@@ -15,24 +15,11 @@ const StripeSubscriptionButtonMeta = {
       displayName: "Price ID",
       description: "Identifiant Stripe du tarif (price_xxx)",
     },
-    clientReferenceId: "string",
+    CustomerId: "string",
     customerEmail: "string",
-    successUrl: {
-      type: "string",
-      description: "URL de redirection après succès (pour checkout)",
-    },
-    cancelUrl: {
-      type: "string",
-      description: "URL de redirection après annulation (pour checkout)",
-    },
-    disabled: {
-      type: "boolean",
-      description: "Désactiver le bouton",
-    },
-    className: {
-      type: "string",
-      description: "Classe CSS personnalisée",
-    },
+    successUrl: { type: "string" },
+    cancelUrl: { type: "string" },
+    disabled: { type: "boolean" },
 
     // Modale
     confirmTitle: {
@@ -45,20 +32,18 @@ const StripeSubscriptionButtonMeta = {
       defaultValue: "Votre abonnement sera actif jusqu’à la fin du mois en cours. Sans abonnement, vous ne pourrez plus utiliser la plateforme.",
       displayName: "Texte de confirmation",
     },
-    confirmIcon: {
-      type: "imageUrl",
+    confirmIconSlot: {
+      type: "slot",
       displayName: "Icône de confirmation",
-      description: "Icône affichée en haut de la modale",
+      description: "Slot pour une image ou une icône",
     },
-    confirmButtonLabel: {
-      type: "string",
-      defaultValue: "Résilier",
-      displayName: "Texte du bouton de confirmation",
+    confirmButtonSlot: {
+      type: "slot",
+      displayName: "Bouton confirmer personnalisé",
     },
-    cancelButtonLabel: {
-      type: "string",
-      defaultValue: "Annuler",
-      displayName: "Texte du bouton d’annulation",
+    cancelButtonSlot: {
+      type: "slot",
+      displayName: "Bouton annuler personnalisé",
     },
     showConfirmationModal: {
       type: "boolean",
