@@ -96,6 +96,7 @@ interface DataGridV2Props {
       color?: string;
     }
   };
+  showActionsColumn?: boolean;
 }
 
 const DEFAULT_LABELS: { [key: string]: string } = {
@@ -150,7 +151,8 @@ export const DataGridV2: React.FC<DataGridV2Props> = ({
   onReject,
   onViewCV,
   onViewLM,
-  statusConfig
+  statusConfig,
+  showActionsColumn = true
 }) => {
   const [mounted, setMounted] = useState(false);
   const [sort, setSort] = useState<{ field: string; direction: 'asc' | 'desc' | null }>({ field: '', direction: null });
@@ -168,16 +170,33 @@ export const DataGridV2: React.FC<DataGridV2Props> = ({
   const allColumns = useMemo(() => {
     if (tasks.length === 0) return [];
     const cols = Object.keys(tasks[0]);
+    let result: string[];
     if (columnOrder) {
-      return [...columnOrder.filter(col => cols.includes(col)), 'actions'];
+      result = columnOrder.filter(col => cols.includes(col));
+    } else {
+      result = [...cols];
     }
-    return [...cols, 'actions'];
-  }, [tasks, columnOrder]);
+    if (showActionsColumn) {
+      result = [...result, 'actions'];
+    }
+    return result;
+  }, [tasks, columnOrder, showActionsColumn]);
 
   const columns = useMemo(() => {
-    if (!visibleColumns) return allColumns;
-    return [...visibleColumns, 'actions'];
-  }, [allColumns, visibleColumns]);
+    let baseCols: string[];
+    if (!visibleColumns) {
+      baseCols = allColumns;
+    } else {
+      baseCols = [...visibleColumns];
+    }
+    if (showActionsColumn && !baseCols.includes('actions')) {
+      baseCols = [...baseCols, 'actions'];
+    }
+    if (!showActionsColumn) {
+      baseCols = baseCols.filter(col => col !== 'actions');
+    }
+    return baseCols;
+  }, [allColumns, visibleColumns, showActionsColumn]);
 
   const filteredTasks = useMemo(() => {
     return tasks.filter(task => {
