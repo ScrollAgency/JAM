@@ -3,18 +3,16 @@ import type { HTMLElementRefOf } from "@plasmicapp/react-web";
 import { useState, cloneElement, isValidElement } from "react";
 import { loadStripe } from "@stripe/stripe-js";
 import { ConfirmModal } from "./ConfirmModal";
-import { AlertCircle } from "lucide-react";
 
 export interface StripeSubscriptionButtonProps {
   stripeAction: "create" | "update" | "cancel";
   priceId?: string;
-  clientReferenceId?: string;
+  CustomerId?: string;
   customerEmail?: string;
   successUrl?: string;
   cancelUrl?: string;
   children?: React.ReactNode;
   disabled?: boolean;
-  className?: string;
   onSuccess?: () => void;
   onError?: (error: Error) => void;
   onStatusChange?: (status: "success" | "error") => void;
@@ -22,9 +20,9 @@ export interface StripeSubscriptionButtonProps {
   // Props confirmation modal
   confirmTitle?: string;
   confirmDescription?: string;
-  confirmIcon?: React.ReactNode;
-  confirmButtonLabel?: string;
-  cancelButtonLabel?: string;
+  confirmIconSlot?: React.ReactNode;
+  confirmButtonSlot?: React.ReactNode;
+  cancelButtonSlot?: React.ReactNode;
   showConfirmationModal?: boolean;
 }
 
@@ -35,30 +33,27 @@ function StripeSubscriptionButton_(
   const {
     stripeAction,
     priceId,
-    clientReferenceId,
+    CustomerId,
     customerEmail,
     successUrl,
     cancelUrl,
     children,
     disabled = false,
-    className,
     onSuccess,
     onError,
     onStatusChange,
 
-    // Modal props avec valeurs par défaut
     confirmTitle = "Voulez-vous vraiment procéder ?",
     confirmDescription = "Cette action est irréversible.",
-    confirmIcon = <AlertCircle size={40} className="text-red-500" />,
-    confirmButtonLabel = "Confirmer",
-    cancelButtonLabel = "Annuler",
+    confirmIconSlot,
+    confirmButtonSlot,
+    cancelButtonSlot,
     showConfirmationModal = true,
   } = props;
 
   const [loading, setLoading] = useState(false);
   const [showConfirmModal, setShowConfirmModal] = useState(false);
 
-  // Appelé une fois la confirmation validée
   const handleConfirm = async () => {
     setShowConfirmModal(false);
     setLoading(true);
@@ -67,10 +62,7 @@ function StripeSubscriptionButton_(
         const res = await fetch("/api/stripe/manage-subscription", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            action: "cancel",
-            customerEmail,
-          }),
+          body: JSON.stringify({ action: "cancel", customerEmail }),
         });
 
         if (!res.ok) {
@@ -81,7 +73,6 @@ function StripeSubscriptionButton_(
         onStatusChange?.("success");
         onSuccess?.();
       } else {
-        // create ou update
         const stripe = await loadStripe(
           process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY || ""
         );
@@ -93,7 +84,7 @@ function StripeSubscriptionButton_(
           body: JSON.stringify({
             action: stripeAction,
             priceId,
-            clientReferenceId,
+            CustomerId,
             customerEmail,
             successUrl,
             cancelUrl,
@@ -120,7 +111,7 @@ function StripeSubscriptionButton_(
       }
     } catch (error: any) {
       console.error("Erreur Stripe :", error);
-      alert(error.message); // Tu pourras remplacer par ta modale personnalisée
+      alert(error.message); // À remplacer par ta modale d'erreur personnalisée si besoin
       onError?.(error);
       if (stripeAction !== "create") {
         onStatusChange?.("error");
@@ -130,7 +121,6 @@ function StripeSubscriptionButton_(
     }
   };
 
-  // Bouton click: soit on affiche la modale si demandé, soit on exécute directement
   const handleClick = () => {
     if (
       (stripeAction === "cancel" || stripeAction === "update") &&
@@ -139,8 +129,6 @@ function StripeSubscriptionButton_(
       setShowConfirmModal(true);
       return;
     }
-
-    // Pour create ou si pas de modale confirmation
     handleConfirm();
   };
 
@@ -151,17 +139,16 @@ function StripeSubscriptionButton_(
           show={showConfirmModal}
           onCancel={() => setShowConfirmModal(false)}
           onConfirm={handleConfirm}
-          icon={confirmIcon}
           title={confirmTitle}
           description={confirmDescription}
-          confirmLabel={confirmButtonLabel}
-          cancelLabel={cancelButtonLabel}
+          iconSlot={confirmIconSlot}
+          confirmButtonSlot={confirmButtonSlot}
+          cancelButtonSlot={cancelButtonSlot}
           loading={loading}
         />
         {cloneElement(children as React.ReactElement<any>, {
           onClick: handleClick,
           disabled: disabled || loading,
-          className,
           ref,
         })}
       </>
@@ -174,17 +161,16 @@ function StripeSubscriptionButton_(
         show={showConfirmModal}
         onCancel={() => setShowConfirmModal(false)}
         onConfirm={handleConfirm}
-        icon={confirmIcon}
         title={confirmTitle}
         description={confirmDescription}
-        confirmLabel={confirmButtonLabel}
-        cancelLabel={cancelButtonLabel}
+        iconSlot={confirmIconSlot}
+        confirmButtonSlot={confirmButtonSlot}
+        cancelButtonSlot={cancelButtonSlot}
         loading={loading}
       />
       <button
         type="button"
         ref={ref}
-        className={className}
         disabled={disabled || loading}
         onClick={handleClick}
       >

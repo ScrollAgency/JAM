@@ -2,25 +2,32 @@ import type React from "react";
 import { X } from "lucide-react";
 
 export interface ConfirmModalProps {
-  icon?: React.ReactNode;
   title?: string;
   description?: string;
+
+  iconSlot?: React.ReactNode;
+  cancelButtonSlot?: React.ReactNode;
+  confirmButtonSlot?: React.ReactNode;
+
   onCancel: () => void;
   onConfirm: () => void;
-  cancelLabel?: string;
-  confirmLabel?: string;
+
   show: boolean;
   loading?: boolean;
 }
 
 export const ConfirmModal = ({
-  icon,
+
   title = "Voulez-vous résilier votre abonnement ?",
   description = "Votre abonnement sera actif jusqu’à la fin du mois en cours. Sans abonnement, vous ne pourrez plus utiliser la plateforme.",
+  
+  iconSlot,
+  cancelButtonSlot,
+  confirmButtonSlot,
+  
   onCancel,
   onConfirm,
-  cancelLabel = "Annuler",
-  confirmLabel = "Résilier",
+
   show,
   loading = false,
 }: ConfirmModalProps) => {
@@ -32,20 +39,25 @@ export const ConfirmModal = ({
         <button type="button" className="absolute top-4 right-4" onClick={onCancel}>
           <X />
         </button>
-        {icon && <div className="mb-4 flex justify-center">{icon}</div>}
+        {iconSlot && <div className="mb-4 flex justify-center">{iconSlot}</div>}
         <h2 className="text-xl font-semibold mb-2">{title}</h2>
         <p className="text-sm text-gray-600 mb-6">{description}</p>
         <div className="flex justify-center gap-4">
-          <button type="button" onClick={onCancel} className="px-4 py-2 rounded-lg border">
-            {cancelLabel}
-          </button>
-          <button 
-            type="button"
-            onClick={onConfirm}
-            className="px-4 py-2 rounded-lg bg-red-600 text-white hover:bg-red-700"
-          >
-            {loading ? "Chargement..." : confirmLabel}
-          </button>
+          {cancelButtonSlot ?? (
+            <button type="button" onClick={onCancel} className="px-4 py-2 rounded-lg border" disabled={loading}>
+              "Annuler"
+            </button>
+          )}
+          {confirmButtonSlot ?? (
+            <button 
+              type="button"
+              onClick={onConfirm}
+              className="px-4 py-2 rounded-lg bg-red-600 text-white hover:bg-red-700"
+              disabled={loading}
+            >
+              {loading ? "Chargement..." : "Confirmer"}
+            </button>
+          )}
         </div>
       </div>
     </div>
