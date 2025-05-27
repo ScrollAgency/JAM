@@ -2,6 +2,8 @@ import * as React from "react";
 import type { HTMLElementRefOf } from "@plasmicapp/react-web";
 import { useState, cloneElement, isValidElement } from "react";
 import { loadStripe } from "@stripe/stripe-js";
+import { ConfirmModal } from "./ConfirmModal";
+import { AlertCircle } from "lucide-react";
 
 export interface StripeSubscriptionButtonProps {
   stripeAction: "create" | "update" | "cancel";
@@ -16,6 +18,14 @@ export interface StripeSubscriptionButtonProps {
   onSuccess?: () => void;
   onError?: (error: Error) => void;
   onStatusChange?: (status: "success" | "error") => void;
+
+  // Props confirmation modal
+  confirmTitle?: string;
+  confirmDescription?: string;
+  confirmIcon?: React.ReactNode;
+  confirmButtonLabel?: string;
+  cancelButtonLabel?: string;
+  showConfirmationModal?: boolean;
 }
 
 function StripeSubscriptionButton_(
@@ -35,66 +45,82 @@ function StripeSubscriptionButton_(
     onSuccess,
     onError,
     onStatusChange,
+
+    // Modal props avec valeurs par défaut
+    confirmTitle = "Voulez-vous vraiment procéder ?",
+    confirmDescription = "Cette action est irréversible.",
+    confirmIcon = <AlertCircle size={40} className="text-red-500" />,
+    confirmButtonLabel = "Confirmer",
+    cancelButtonLabel = "Annuler",
+    showConfirmationModal = true,
   } = props;
 
   const [loading, setLoading] = useState(false);
+  const [showConfirmModal, setShowConfirmModal] = useState(false);
 
-  const handleClick = async () => {
+  // Appelé une fois la confirmation validée
+  const handleConfirm = async () => {
+    setShowConfirmModal(false);
     setLoading(true);
     try {
       if (stripeAction === "cancel") {
-        const confirmed = window.confirm("Souhaitez-vous vraiment annuler votre abonnement ?");
-        if (!confirmed) {
-          setLoading(false);
-          return;
+        const res = await fetch("/api/stripe/manage-subscription", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            action: "cancel",
+            customerEmail,
+          }),
+        });
+
+        if (!res.ok) {
+          const errorData = await res.json();
+          throw new Error(errorData.error || "Erreur lors de l’annulation");
         }
-      }
 
-      const stripe = await loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY || "");
-      if (!stripe) throw new Error("Stripe.js non initialisé");
-
-      const res = await fetch("/api/stripe/manage-subscription", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          action: stripeAction,
-          priceId,
-          clientReferenceId,
-          customerEmail,
-          successUrl,
-          cancelUrl,
-        }),
-      });
-
-      if (!res.ok) {
-        const errorData = await res.json();
-        throw new Error(errorData.error || "Erreur lors de la gestion de l’abonnement");
-      }
-
-      const data = await res.json();
-
-      // Create subscription
-      if (stripeAction === "create") {
-        await stripe.redirectToCheckout({ sessionId: data.sessionId });
-
-      // Update subscription
-      } else if (stripeAction === "update") {
-        if (!data.success) {
-          throw new Error("La mise à jour de l'abonnement a échoué");
-        }
         onStatusChange?.("success");
         onSuccess?.();
+      } else {
+        // create ou update
+        const stripe = await loadStripe(
+          process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY || ""
+        );
+        if (!stripe) throw new Error("Stripe.js non initialisé");
 
-      // Cancel subscription
-      } else if (stripeAction === "cancel") {
-        alert("Abonnement annulé avec succès.");
-        onStatusChange?.("success");
+        const res = await fetch("/api/stripe/manage-subscription", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            action: stripeAction,
+            priceId,
+            clientReferenceId,
+            customerEmail,
+            successUrl,
+            cancelUrl,
+          }),
+        });
+
+        if (!res.ok) {
+          const errorData = await res.json();
+          throw new Error(errorData.error || "Erreur lors de la gestion de l’abonnement");
+        }
+
+        const data = await res.json();
+
+        if (stripeAction === "create") {
+          onStatusChange?.("success");
+          await stripe.redirectToCheckout({ sessionId: data.sessionId });
+        } else if (stripeAction === "update") {
+          if (!data.success) {
+            throw new Error("La mise à jour de l'abonnement a échoué");
+          }
+          onStatusChange?.("success");
+          onSuccess?.();
+        }
       }
-
-      onSuccess?.();
     } catch (error: any) {
       console.error("Erreur Stripe :", error);
-      alert("Une erreur est survenue. Merci de réessayer.");
+      alert(error.message); // Tu pourras remplacer par ta modale personnalisée
       onError?.(error);
       if (stripeAction !== "create") {
         onStatusChange?.("error");
@@ -104,25 +130,67 @@ function StripeSubscriptionButton_(
     }
   };
 
+  // Bouton click: soit on affiche la modale si demandé, soit on exécute directement
+  const handleClick = () => {
+    if (
+      (stripeAction === "cancel" || stripeAction === "update") &&
+      showConfirmationModal
+    ) {
+      setShowConfirmModal(true);
+      return;
+    }
+
+    // Pour create ou si pas de modale confirmation
+    handleConfirm();
+  };
+
   if (isValidElement(children)) {
-    return cloneElement(children as React.ReactElement<any>, {
-      onClick: handleClick,
-      disabled: disabled || loading,
-      className,
-      ref,
-    });
+    return (
+      <>
+        <ConfirmModal
+          show={showConfirmModal}
+          onCancel={() => setShowConfirmModal(false)}
+          onConfirm={handleConfirm}
+          icon={confirmIcon}
+          title={confirmTitle}
+          description={confirmDescription}
+          confirmLabel={confirmButtonLabel}
+          cancelLabel={cancelButtonLabel}
+          loading={loading}
+        />
+        {cloneElement(children as React.ReactElement<any>, {
+          onClick: handleClick,
+          disabled: disabled || loading,
+          className,
+          ref,
+        })}
+      </>
+    );
   }
 
   return (
-    <button
-      type="button"
-      ref={ref}
-      className={className}
-      disabled={disabled || loading}
-      onClick={handleClick}
-    >
-      {loading ? "Chargement..." : children || "Abonnement"}
-    </button>
+    <>
+      <ConfirmModal
+        show={showConfirmModal}
+        onCancel={() => setShowConfirmModal(false)}
+        onConfirm={handleConfirm}
+        icon={confirmIcon}
+        title={confirmTitle}
+        description={confirmDescription}
+        confirmLabel={confirmButtonLabel}
+        cancelLabel={cancelButtonLabel}
+        loading={loading}
+      />
+      <button
+        type="button"
+        ref={ref}
+        className={className}
+        disabled={disabled || loading}
+        onClick={handleClick}
+      >
+        {loading ? "Chargement..." : children || "Abonnement"}
+      </button>
+    </>
   );
 }
 
