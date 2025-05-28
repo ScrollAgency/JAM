@@ -716,7 +716,7 @@ function PlasmicAccueil__RenderFunc(props: {
         initFunc: ({ $props, $state, $queries, $ctx }) =>
           (() => {
             try {
-              return $ctx.query.name;
+              return "";
             } catch (e) {
               if (
                 e instanceof TypeError ||
@@ -737,7 +737,7 @@ function PlasmicAccueil__RenderFunc(props: {
         initFunc: ({ $props, $state, $queries, $ctx }) =>
           (() => {
             try {
-              return $ctx.query.city;
+              return "";
             } catch (e) {
               if (
                 e instanceof TypeError ||
@@ -2055,34 +2055,7 @@ function PlasmicAccueil__RenderFunc(props: {
                                     AntdInput_Helpers ?? {},
                                     child$Props
                                   );
-                                  initializePlasmicStates(
-                                    $state,
-                                    [
-                                      {
-                                        name: "input3.value",
-                                        initFunc: ({
-                                          $props,
-                                          $state,
-                                          $queries
-                                        }) =>
-                                          (() => {
-                                            try {
-                                              return $ctx.query.name;
-                                            } catch (e) {
-                                              if (
-                                                e instanceof TypeError ||
-                                                e?.plasmicType ===
-                                                  "PlasmicUndefinedDataError"
-                                              ) {
-                                                return undefined;
-                                              }
-                                              throw e;
-                                            }
-                                          })()
-                                      }
-                                    ],
-                                    []
-                                  );
+
                                   return (
                                     <AntdInput
                                       data-plasmic-name={"input3"}
@@ -2271,34 +2244,7 @@ function PlasmicAccueil__RenderFunc(props: {
                                     AntdInput_Helpers ?? {},
                                     child$Props
                                   );
-                                  initializePlasmicStates(
-                                    $state,
-                                    [
-                                      {
-                                        name: "input4.value",
-                                        initFunc: ({
-                                          $props,
-                                          $state,
-                                          $queries
-                                        }) =>
-                                          (() => {
-                                            try {
-                                              return $ctx.query.city;
-                                            } catch (e) {
-                                              if (
-                                                e instanceof TypeError ||
-                                                e?.plasmicType ===
-                                                  "PlasmicUndefinedDataError"
-                                              ) {
-                                                return undefined;
-                                              }
-                                              throw e;
-                                            }
-                                          })()
-                                      }
-                                    ],
-                                    []
-                                  );
+
                                   return (
                                     <AntdInput
                                       data-plasmic-name={"input4"}
