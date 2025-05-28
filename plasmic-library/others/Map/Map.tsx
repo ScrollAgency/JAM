@@ -58,7 +58,7 @@ const Mapbox: React.FC<MapboxProps> = ({
 
 
 
-   // 1. Créer la carte
+   // 1. Créer la carte 
    useEffect(() => {
       if (!mapContainerRef.current || mapRef.current || !process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN) return;
 
