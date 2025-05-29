@@ -437,7 +437,7 @@ function PlasmicAccueil__RenderFunc(props: {
         path: "menuOnOff",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => true
+        initFunc: ({ $props, $state, $queries, $ctx }) => false
       },
       {
         path: "city",
@@ -557,7 +557,9 @@ function PlasmicAccueil__RenderFunc(props: {
         initFunc: ({ $props, $state, $queries, $ctx }) =>
           (() => {
             try {
-              return false;
+              return Object.values($state.formFilter.value).some(
+                val => val !== "" && val !== undefined
+              );
             } catch (e) {
               if (
                 e instanceof TypeError ||
@@ -1071,24 +1073,40 @@ function PlasmicAccueil__RenderFunc(props: {
   const plasmicInvalidate = usePlasmicInvalidate();
 
   const new$Queries: Record<string, ReturnType<typeof usePlasmicDataOp>> = {
-    getJobOffers: usePlasmicDataOp(() => {
+    getJobOffersMobile: usePlasmicDataOp(() => {
       return {
         sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
-        opId: "208a862c-6b2b-45e3-b89c-6c733ebcdd5b",
+        opId: "d0186466-dcbb-4702-a724-88cda73c66bb",
         userArgs: {
-          query: [$state.isLastMinute]
+          query: [
+            $state.formFilter2?.value?.contract_type,
+            $state.formFilter2?.value?.contract_type == undefined ||
+              $state.formFilter2?.value?.contract_type.length == 0,
+            $state.formFilter2?.value?.salary,
+            $state.formFilter2?.value?.salary == undefined ||
+              $state.formFilter2?.value?.salary.length == 0,
+            $state.formFilter2?.value?.availability_status,
+            $state.formFilter2?.value?.availability_status == undefined ||
+              $state.formFilter2?.value?.availability_status.length == 0,
+            $state.formFilter2?.value?.working_time,
+            $state.formFilter2?.value?.working_time == undefined ||
+              $state.formFilter2?.value?.working_time.length == 0,
+            $state.formFilter2?.value?.work_mode,
+            $state.formFilter2?.value?.work_mode == undefined ||
+              $state.formFilter2?.value?.work_mode.length == 0,
+            $state.formFilter2?.value?.company_size,
+            $state.formFilter2?.value?.company_size == undefined ||
+              $state.formFilter2?.value?.work_mode.length == 0,
+            $state.formFilter2?.value?.sector_activity,
+            $state.formFilter2?.value?.sector_activity == undefined ||
+              $state.formFilter2?.value?.sector_activity.length == 0,
+            $state.keyWords,
+            $state.keyWords,
+            $state.searchLocation,
+            $state.isLastMinute
+          ]
         },
-        cacheKey: `plasmic.$.208a862c-6b2b-45e3-b89c-6c733ebcdd5b.$.`,
-        invalidatedKeys: null,
-        roleId: null
-      };
-    }),
-    getMarker: usePlasmicDataOp(() => {
-      return {
-        sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
-        opId: "2187553f-3b67-4b98-9ce3-f06f8a7d02d3",
-        userArgs: {},
-        cacheKey: `plasmic.$.2187553f-3b67-4b98-9ce3-f06f8a7d02d3.$.`,
+        cacheKey: `plasmic.$.d0186466-dcbb-4702-a724-88cda73c66bb.$.`,
         invalidatedKeys: null,
         roleId: null
       };
@@ -1278,50 +1296,6 @@ function PlasmicAccueil__RenderFunc(props: {
         roleId: null
       };
     }),
-    getJobsByCriteriaMobile: usePlasmicDataOp(() => {
-      return {
-        sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
-        opId: "01335337-0b9f-474b-824e-94d2a6f1fcf1",
-        userArgs: {
-          query: [
-            $state.formFilter2?.value?.contract_type,
-            $state.formFilter2?.value?.contract_type == undefined,
-            $state.formFilter2?.value?.contract_type == undefined ||
-              $state.formFilter2.value.contract_type.length == 0,
-            $state.formFilter2?.value?.working_time,
-            $state.formFilter2?.value?.working_time == undefined,
-            $state.formFilter2?.value?.working_time == undefined ||
-              $state.formFilter2.value.working_time.length == 0,
-            $state.formFilter2?.value?.availability_status,
-            $state.formFilter2?.value?.availability_status == undefined,
-            $state.formFilter2?.value?.availability_status == undefined ||
-              $state.formFilter2.value.availability_status.length == 0,
-            $state.formFilter2?.value?.work_mode,
-            $state.formFilter2?.value?.work_mode == undefined,
-            $state.formFilter2?.value?.work_mode == undefined ||
-              $state.formFilter2.value.work_mode.length == 0,
-            $state.formFilter2?.value?.company_size,
-            $state.formFilter2?.value?.company_size == undefined,
-            $state.formFilter2?.value?.company_size == undefined ||
-              $state.formFilter.value.company_size.length == 0,
-            $state.formFilter2?.value?.salary,
-            $state.formFilter2?.value?.salary == undefined,
-            $state.formFilter2?.value?.salary == undefined ||
-              $state.formFilter2.value.salary.length == 0,
-            $state.formFilter2?.value?.sector_activity,
-            $state.formFilter2?.value?.sector_activity == undefined,
-            $state.formFilter2?.value?.sector_activity == undefined ||
-              $state.formFilter2.value.sector_activity.length == 0,
-            $state.keyWords,
-            $state.keyWords,
-            $state.searchLocation
-          ]
-        },
-        cacheKey: `plasmic.$.01335337-0b9f-474b-824e-94d2a6f1fcf1.$.`,
-        invalidatedKeys: null,
-        roleId: null
-      };
-    }),
     getJobByAlertId: usePlasmicDataOp(() => {
       return {
         sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
@@ -1352,6 +1326,44 @@ function PlasmicAccueil__RenderFunc(props: {
         opId: "85eae0b7-ce5b-4375-ae46-819180244b88",
         userArgs: {},
         cacheKey: `plasmic.$.85eae0b7-ce5b-4375-ae46-819180244b88.$.`,
+        invalidatedKeys: null,
+        roleId: null
+      };
+    }),
+    getJobOffers: usePlasmicDataOp(() => {
+      return {
+        sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
+        opId: "d0186466-dcbb-4702-a724-88cda73c66bb",
+        userArgs: {
+          query: [
+            $state.formFilter?.value?.contract_type,
+            $state.formFilter?.value?.contract_type == undefined ||
+              $state.formFilter?.value?.contract_type.length == 0,
+            $state.formFilter?.value?.salary,
+            $state.formFilter?.value?.salary == undefined ||
+              $state.formFilter?.value?.salary.length == 0,
+            $state.formFilter?.value?.availability_status,
+            $state.formFilter?.value?.availability_status == undefined ||
+              $state.formFilter?.value?.availability_status.length == 0,
+            $state.formFilter?.value?.working_time,
+            $state.formFilter?.value?.working_time == undefined ||
+              $state.formFilter?.value?.working_time.length == 0,
+            $state.formFilter?.value?.work_mode,
+            $state.formFilter?.value?.work_mode == undefined ||
+              $state.formFilter?.value?.work_mode.length == 0,
+            $state.formFilter?.value?.company_size,
+            $state.formFilter?.value?.company_size == undefined ||
+              $state.formFilter?.value?.work_mode.length == 0,
+            $state.formFilter?.value?.sector_activity,
+            $state.formFilter?.value?.sector_activity == undefined ||
+              $state.formFilter?.value?.sector_activity.length == 0,
+            $state.keyWords,
+            $state.keyWords,
+            $state.searchLocation,
+            $state.isLastMinute
+          ]
+        },
+        cacheKey: `plasmic.$.d0186466-dcbb-4702-a724-88cda73c66bb.$.`,
         invalidatedKeys: null,
         roleId: null
       };
@@ -3420,30 +3432,6 @@ function PlasmicAccueil__RenderFunc(props: {
                         "__wab_instance",
                         sty.mapBox__rvf40
                       )}
-                      iconUrl={(() => {
-                        try {
-                          return (() => {
-                            switch ($queries.getMarker.data[$state.state]) {
-                              case "liked":
-                                return "https://idwomihieftgogbgivic.supabase.co/storage/v1/object/public/img/Marker/State=PinLiked,%20ShowSalary=False.svg";
-                              case "new":
-                                return "https://idwomihieftgogbgivic.supabase.co/storage/v1/object/public/img/Marker/State=PinApplied,%20ShowSalary=False.svg";
-                              case "applied":
-                                return "https://idwomihieftgogbgivic.supabase.co/storage/v1/object/public/img/Marker/State=PinApplied,%20ShowSalary=False.svg";
-                              case "base":
-                                return "https://idwomihieftgogbgivic.supabase.co/storage/v1/object/public/img/Marker/State=PinNew,%20ShowSalary=False.svg";
-                            }
-                          })();
-                        } catch (e) {
-                          if (
-                            e instanceof TypeError ||
-                            e?.plasmicType === "PlasmicUndefinedDataError"
-                          ) {
-                            return "/plasmic/jam_production_🚀/images/frame.svg";
-                          }
-                          throw e;
-                        }
-                      })()}
                       latitude={(() => {
                         try {
                           return $state.jobCoordinates.latitude;
@@ -3475,7 +3463,7 @@ function PlasmicAccueil__RenderFunc(props: {
                       }
                       markers={(() => {
                         try {
-                          return $queries.getJobOffers.data;
+                          return $queries.getJobOffersMobile.data;
                         } catch (e) {
                           if (
                             e instanceof TypeError ||
@@ -3503,46 +3491,7 @@ function PlasmicAccueil__RenderFunc(props: {
                         onClick={async event => {
                           const $steps = {};
 
-                          $steps["updateMenuOnOff"] = true
-                            ? (() => {
-                                const actionArgs = {
-                                  variable: {
-                                    objRoot: $state,
-                                    variablePath: ["menuOnOff"]
-                                  },
-                                  operation: 4
-                                };
-                                return (({
-                                  variable,
-                                  value,
-                                  startIndex,
-                                  deleteCount
-                                }) => {
-                                  if (!variable) {
-                                    return;
-                                  }
-                                  const { objRoot, variablePath } = variable;
-
-                                  const oldValue = $stateGet(
-                                    objRoot,
-                                    variablePath
-                                  );
-                                  $stateSet(objRoot, variablePath, !oldValue);
-                                  return !oldValue;
-                                })?.apply(null, [actionArgs]);
-                              })()
-                            : undefined;
-                          if (
-                            $steps["updateMenuOnOff"] != null &&
-                            typeof $steps["updateMenuOnOff"] === "object" &&
-                            typeof $steps["updateMenuOnOff"].then === "function"
-                          ) {
-                            $steps["updateMenuOnOff"] = await $steps[
-                              "updateMenuOnOff"
-                            ];
-                          }
-
-                          $steps["updateIsDiv1Visible"] = true
+                          $steps["updateIsDiv1Visible2"] = true
                             ? (() => {
                                 const actionArgs = {
                                   variable: {
@@ -3572,13 +3521,14 @@ function PlasmicAccueil__RenderFunc(props: {
                               })()
                             : undefined;
                           if (
-                            $steps["updateIsDiv1Visible"] != null &&
-                            typeof $steps["updateIsDiv1Visible"] === "object" &&
-                            typeof $steps["updateIsDiv1Visible"].then ===
+                            $steps["updateIsDiv1Visible2"] != null &&
+                            typeof $steps["updateIsDiv1Visible2"] ===
+                              "object" &&
+                            typeof $steps["updateIsDiv1Visible2"].then ===
                               "function"
                           ) {
-                            $steps["updateIsDiv1Visible"] = await $steps[
-                              "updateIsDiv1Visible"
+                            $steps["updateIsDiv1Visible2"] = await $steps[
+                              "updateIsDiv1Visible2"
                             ];
                           }
                         }}
@@ -3602,13 +3552,11 @@ function PlasmicAccueil__RenderFunc(props: {
                                     if ($state.isDiv1Visible == false) {
                                       return "Afficher la liste des résultats";
                                     } else if (
-                                      $queries.getJobsByCriteria.data.length ===
-                                      0
+                                      $queries.getJobOffers.data.length === 0
                                     ) {
                                       return "Aucun resultat";
                                     } else if (
-                                      $queries.getJobsByCriteriaMobile.data
-                                        .length === 0 &&
+                                      $queries.getJobOffersMobile === 0 &&
                                       $state.formFilter2Submited
                                     ) {
                                       return "Aucun resultat";
@@ -3633,19 +3581,14 @@ function PlasmicAccueil__RenderFunc(props: {
                               {(() => {
                                 try {
                                   return (() => {
-                                    if (
-                                      $queries.getJobsByCriteria.data.length >
-                                        0 &&
-                                      $state.isDiv1Visible
-                                    ) {
-                                      return "Masquer la liste des résultats";
+                                    if ($state.isDiv1Visible == false) {
+                                      return "Afficher la liste des résultats";
                                     } else if (
-                                      $queries.getJobsByCriteria.data.length ===
-                                      0
+                                      $queries.getJobOffers.data.length === 0
                                     ) {
                                       return "Aucun resultat";
                                     } else {
-                                      return "Afficher la liste des résultats";
+                                      return "Masquer la liste des résultats";
                                     }
                                   })();
                                 } catch (e) {
@@ -4180,26 +4123,7 @@ function PlasmicAccueil__RenderFunc(props: {
                         ? true
                         : (() => {
                             try {
-                              return (() => {
-                                const hasFilters =
-                                  ($state.formFilter.value !== undefined &&
-                                    Object.keys($state.formFilter.value)
-                                      .length > 0) ||
-                                  $state.formFilter2.value !== undefined ||
-                                  $state.keyWords !== "" ||
-                                  $state.searchLocation !== "";
-                                if (hasFilters) {
-                                  if ($state.menuOnOff) {
-                                    return (
-                                      $queries.getJobsByCriteria.data.length > 0
-                                    );
-                                  } else {
-                                    return false;
-                                  }
-                                } else {
-                                  return $state.isDiv1Visible;
-                                }
-                              })();
+                              return $state.isDiv1Visible;
                             } catch (e) {
                               if (
                                 e instanceof TypeError ||
@@ -4225,22 +4149,7 @@ function PlasmicAccueil__RenderFunc(props: {
                           !_par ? [] : Array.isArray(_par) ? _par : [_par])(
                           (() => {
                             try {
-                              return (() => {
-                                if (
-                                  ($state.formFilter.value == undefined ||
-                                    Object.keys($state.formFilter.value)
-                                      .length === 0) &&
-                                  $state.formFilter2.value == undefined &&
-                                  $state.keyWords == "" &&
-                                  $state.searchLocation == ""
-                                ) {
-                                  return $queries.getJobOffers.data;
-                                } else if ($state.formFilter2Submited) {
-                                  return $queries.getJobsByCriteriaMobile.data;
-                                } else {
-                                  return $queries.getJobsByCriteria.data;
-                                }
-                              })();
+                              return $queries.getJobOffers.data;
                             } catch (e) {
                               if (
                                 e instanceof TypeError ||
@@ -5666,34 +5575,59 @@ function PlasmicAccueil__RenderFunc(props: {
                           "__wab_instance",
                           sty.mapBox___0IljK
                         )}
-                        iconUrl={(() => {
+                        iconUrl={"/plasmic/jam_production_🚀/images/frame.svg"}
+                        latitude={
+                          hasVariant(globalVariants, "screen", "mobileOnly")
+                            ? (() => {
+                                try {
+                                  return $state.jobCoordinates.latitude;
+                                } catch (e) {
+                                  if (
+                                    e instanceof TypeError ||
+                                    e?.plasmicType ===
+                                      "PlasmicUndefinedDataError"
+                                  ) {
+                                    return undefined;
+                                  }
+                                  throw e;
+                                }
+                              })()
+                            : undefined
+                        }
+                        longitude={
+                          hasVariant(globalVariants, "screen", "mobileOnly")
+                            ? (() => {
+                                try {
+                                  return $state.jobCoordinates.longitude;
+                                } catch (e) {
+                                  if (
+                                    e instanceof TypeError ||
+                                    e?.plasmicType ===
+                                      "PlasmicUndefinedDataError"
+                                  ) {
+                                    return undefined;
+                                  }
+                                  throw e;
+                                }
+                              })()
+                            : undefined
+                        }
+                        mapStyle={
+                          "mapbox://styles/scroll/cm6gi9ljw003t01s36b0jfl80"
+                        }
+                        markers={(() => {
                           try {
-                            return (() => {
-                              switch ($queries.getMarker.data[$state.state]) {
-                                case "liked":
-                                  return "https://idwomihieftgogbgivic.supabase.co/storage/v1/object/public/img/Marker/State=PinLiked,%20ShowSalary=False.svg";
-                                case "new":
-                                  return "https://idwomihieftgogbgivic.supabase.co/storage/v1/object/public/img/Marker/State=PinApplied,%20ShowSalary=False.svg";
-                                case "applied":
-                                  return "https://idwomihieftgogbgivic.supabase.co/storage/v1/object/public/img/Marker/State=PinApplied,%20ShowSalary=False.svg";
-                                case "base":
-                                  return "https://idwomihieftgogbgivic.supabase.co/storage/v1/object/public/img/Marker/State=PinNew,%20ShowSalary=False.svg";
-                              }
-                            })();
+                            return $queries.getJobOffers.data;
                           } catch (e) {
                             if (
                               e instanceof TypeError ||
                               e?.plasmicType === "PlasmicUndefinedDataError"
                             ) {
-                              return "/plasmic/jam_production_🚀/images/frame.svg";
+                              return [];
                             }
                             throw e;
                           }
                         })()}
-                        mapStyle={
-                          "mapbox://styles/scroll/cm6gi9ljw003t01s36b0jfl80"
-                        }
-                        markers={[]}
                         searchAddress={(() => {
                           try {
                             return $state.city;
@@ -5820,14 +5754,8 @@ function PlasmicAccueil__RenderFunc(props: {
                                     if ($state.isDiv1Visible == false) {
                                       return "Afficher la liste des résultats";
                                     } else if (
-                                      $queries.getJobsByCriteria.data.length ===
-                                      0
-                                    ) {
-                                      return "Aucun resultat";
-                                    } else if (
-                                      $queries.getJobsByCriteriaMobile.data
-                                        .length === 0 &&
-                                      $state.formFilter2Submited
+                                      $queries.getJobOffersMobile.data
+                                        .length === 0
                                     ) {
                                       return "Aucun resultat";
                                     } else {
@@ -6168,18 +6096,10 @@ function PlasmicAccueil__RenderFunc(props: {
                             (() => {
                               try {
                                 return (() => {
-                                  if (
-                                    $state.formFilter.value == undefined &&
-                                    $state.formFilter2.value == undefined &&
-                                    $state.keyWords == "" &&
-                                    $state.searchLocation == ""
-                                  ) {
-                                    return $queries.getJobOffers.data;
-                                  } else if ($state.formFilter2Submited) {
-                                    return $queries.getJobsByCriteriaMobile
-                                      .data;
+                                  if ($state.formFilter2Submited) {
+                                    return $queries.getJobOffersMobile.data;
                                   } else {
-                                    return $queries.getJobsByCriteria.data;
+                                    return $queries.getJobOffers.data;
                                   }
                                 })();
                               } catch (e) {
