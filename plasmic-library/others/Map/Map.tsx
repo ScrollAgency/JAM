@@ -21,6 +21,9 @@ interface MarkerData {
    annonce?: boolean;
    sector_activity?: string;
    is_last_minute?: boolean;
+   is_applied?: boolean;
+   postal_code?: string;
+   is_liked?: boolean;
 }
 
 interface MapboxProps {
@@ -122,31 +125,40 @@ const Mapbox: React.FC<MapboxProps> = ({
          const {
             latitude,
             longitude,
+            postal_code,
             state,
             title,
             location,
             created_at,
             company_name,
             logo_file,
-            website,
             contract_type,
             working_time,
             salary,
             work_mode,
             sector_activity,
             is_last_minute,
+            is_applied,
+            is_liked,
          } = markerData;
 
          const today = new Date().toISOString().slice(0, 10); // "2025-05-27"
-         const createdDate = markerData.created_at?.slice(0, 10); // extrait la date
+         const createdDate = created_at?.slice(0, 10); // extrait la date
 
          let markerState = 'base';
 
-         if (markerData.is_last_minute) {
+         if (is_last_minute) {
             markerState = 'last_minute';
          } else if (createdDate === today) {
             markerState = 'new';
+         } else if (is_applied) {
+            markerState = 'applied';
+         } else if (is_liked) {
+            markerState = 'liked';
+         } else {
+            markerState = 'base';
          }
+
 
 
          const markerElement = document.createElement('div');
@@ -158,54 +170,81 @@ const Mapbox: React.FC<MapboxProps> = ({
          markerElement.style.backgroundSize = 'cover';
 
          const popupHtml = `
-        <div class="popup-content">
-          <div class="popup-header">
-            ${markerState === 'new' ? '<div class="new-job">Nouveau</div>' : ''}
+            
+            ${markerState === 'applied' ? '<div class="applied-job">POSTULÉ</div>' : ''}
+            ${markerState === 'new' ? '<div class="new-job">NOUVEAU</div>' : ''}       
             ${is_last_minute ? `
-               <div class="popup-img">
-               <img src="//idwomihieftgogbgivic.supabase.co/storage/v1/object/public/img/ph_clock-countdown-fill.svg" alt="Countdown Icon" />
-               LAST MINUTE
-                  </div>
-                  ` : ''}
+               <div class="state-job">
+                  <img src="//idwomihieftgogbgivic.supabase.co/storage/v1/object/public/img/ph_clock-countdown-fill.svg" alt="Countdown Icon" />
+                  <span class="state-job-title">LAST MINUTE</span>
+               </div>
+            ` : ''}
 
             ${state === 'liked' ? '<div class="popup-img">Favori</div>' : ''}
-            ${state === 'applied'
-               ? `<div class="popup-header w-1/3 pl-1 p-1.2 h-10 rounded-br-lg color-white absolute top-0 left-0 items-center popup-img flex bg-gradient-to-b from-[#FF4D84] to-[#F36320] align-center justify-content-center gap-10px"><img class="w-1/8" src="//idwomihieftgogbgivic.supabase.co/storage/v1/object/public/img/ph_clock-countdown-fill.svg"/><p class="text-[#ffffff]">POSTULÉ</p></div>`
-               : ''
-            }
 
-            <img class="business_logo" src="${logo_file}" alt="${title}" />
+
+
+            <img class="company_logo" src="${logo_file}" alt="${title}" />
 
             <h3>${title || 'Titre non défini'}</h3>
-          </div>
 
-         <div class="flex bg-[#ffffff]">
 
-            <img src="//idwomihieftgogbgivic.supabase.co/storage/v1/object/public/img/ph_map-pin.svg"/>
+            <div class="location">
+               <img
+                  src="//idwomihieftgogbgivic.supabase.co/storage/v1/object/public/img/ph_map-pin.svg"
+                  class="w-4 h-4"
+                  alt="Localisation"
+               />
+               <p>
+                  ${location || 'Localisation non définie'}${postal_code ? ` (${postal_code.slice(0, 2)})` : ''} ${company_name ? `, ${company_name}` : ''}
+               </p>
+            </div>
 
-            <p class="w-full">${location || 'Localisation non définie'}${company_name ? `, ${company_name}` : ''}</p>
 
-            <a href="${website || '#'}" target="_blank">${website ? website.replace(/^https?:\/\//, '') : 'N/A'}</a>
 
-         </div>
 
-         <div class="popup-info">
-            <div><img src="https://idwomihieftgogbgivic.supabase.co/storage/v1/object/public/img//ph_briefcase.svg" > ${sector_activity || 'N/A'}</div>
-            <div><img src="https://idwomihieftgogbgivic.supabase.co/storage/v1/object/public/img//ph_file-text.svg" >${contract_type || 'N/A'}</div>
-            <div><img src="https://idwomihieftgogbgivic.supabase.co/storage/v1/object/public/img//ph_clock.svg"> ${working_time || 'N/A'}</div>
-            <div><img src="https://idwomihieftgogbgivic.supabase.co/storage/v1/object/public/img//ph_coins-light.svg">${salary || 'N/A'}</div>
-            <div><img src="https://idwomihieftgogbgivic.supabase.co/storage/v1/object/public/img//ph_office-chair.svg"> ${work_mode || 'N/A'}</div>
-         </div>
-        </div>`;
+
+            <div class="popup-info">
+               <div><img src="https://idwomihieftgogbgivic.supabase.co/storage/v1/object/public/img//ph_briefcase.svg" > ${sector_activity || 'N/A'}</div>
+               <div><img src="https://idwomihieftgogbgivic.supabase.co/storage/v1/object/public/img//ph_file-text.svg" >${contract_type || 'N/A'}</div>
+               <div><img src="https://idwomihieftgogbgivic.supabase.co/storage/v1/object/public/img//ph_clock.svg"> ${working_time || 'N/A'}</div>
+               <div><img src="https://idwomihieftgogbgivic.supabase.co/storage/v1/object/public/img//ph_coins-light.svg">${salary || 'N/A'}</div>
+               <div><img src="https://idwomihieftgogbgivic.supabase.co/storage/v1/object/public/img//ph_office-chair.svg"> ${work_mode || 'N/A'}</div>
+            </div>
+
+
+         `;
+
+
 
          const popup = new mapboxgl.Popup({ offset: 25 }).setHTML(popupHtml);
-
          const marker = new mapboxgl.Marker({ element: markerElement })
             .setLngLat([longitude, latitude])
             .setPopup(popup)
             .addTo(mapRef.current!);
 
+         // ✅ Ajoute cette partie juste après
+         popup.on('open', () => {
+            const popupContent = document.querySelector('.mapboxgl-popup-content');
+            if (popupContent) {
+               if (is_last_minute) {
+                  popupContent.classList.add('last-minute-border');
+               }
+               if (markerState === 'new' && !is_last_minute) {
+                  popupContent.classList.add('border-new');
+               }
+               if (is_applied) {
+                  popupContent.classList.add('applied-border');
+               }
+               if (is_liked) {
+                  popupContent.classList.add('liked-border');
+               }
+            }
+         });
+
+
          markersRef.current[title || `${latitude}-${longitude}`] = marker;
+
       });
    }, [markers, mapLoaded, calculateMarkerSize]);
 
@@ -213,207 +252,279 @@ const Mapbox: React.FC<MapboxProps> = ({
       <>
          <style>
             {`
-        @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap');
-        * {
-          font-family: 'DM Sans', sans-serif;
-        }
-        .custom-marker {
-            border: none;
-            cursor: pointer;
-            transition: width 0.3s ease, height 0.3s ease;
-          }
-          .custom-marker:hover {
-            transform: scale(1.8);
-          }
-          .custom-marker.base {
-            background-image: url('https://idwomihieftgogbgivic.supabase.co/storage/v1/object/public/img/Marker/State=PinApplied,%20ShowSalary=False.svg');
-          }
-          .custom-marker.liked {
-            background-image: url('https://idwomihieftgogbgivic.supabase.co/storage/v1/object/public/img/Marker/State=PinLiked,%20ShowSalary=False.svg');
-          }
-          .custom-marker.new {
-            background-image: url('https://idwomihieftgogbgivic.supabase.co/storage/v1/object/public/img/Marker/State=PinNew,%20ShowSalary=False.svg');
-          }
-          .custom-marker.last_minute {
-            background-image: url('https://idwomihieftgogbgivic.supabase.co/storage/v1/object/public/img/Marker/State=PinLastMin,%20ShowSalary=False.svg');
-          }
-          .custom-marker.applied {
-            background-image: url('https://idwomihieftgogbgivic.supabase.co/storage/v1/object/public/img/Marker/State=PinApplied,%20ShowSalary=False.svg');
-          }
-          .mapboxgl-popup-content {
-            width: 350px;
-            font-family: 'Arial', sans-serif;
-            background: #fff;
-            border-radius: 16px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-            padding: 16px;
-            position: relative;
-            line-height: 0.5;
-            z-index: 9999;
-            border: 1px solid #FF4D84;
-            overflow: hidden;
-          }
-          .mapboxgl-popup-close-button {
-            display: none;
-          }
-          .mapboxgl-popup-content .state {
-            background: #FF4D84;
-            position: absolute;
-            top: -4px;
-            left: 0px;
-            color: #fff;
-            padding: 8px 8px;
-            border-radius: 0 0 12px 0;
-            font-size: 12px;
+            @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 
-          }
-          .mapboxgl-popup-img{
-            display: flex;
-            background: #000000;
-          }
+            * {
+               font-family: 'DM Sans', sans-serif;
+            }
 
-.popup-img {
-  position: absolute;
-  top: 0;
-  left: 0;
-  display: flex;
-  align-items: center; 
-  
-  background: linear-gradient(180deg, #F6165B 0%, #F36320 63.5%);
-  border-radius: 16px 0px 8px;
-  padding: 8px 12px;
-  color: #ffffff;
-  margin-bottom: 10px;
-}
+            .custom-marker {
+               border: none;
+               cursor: pointer;
+               transition: width 0.3s ease, height 0.3s ease;
+            }
+
+            .custom-marker:hover {
+               transform: scale(1.8);
+            }
+            
+            .custom-marker.base {
+               background-image: url('https://idwomihieftgogbgivic.supabase.co/storage/v1/object/public/img/Marker/cartes-et-drapeaux.webp');
+            }
+            
+            .custom-marker.liked {
+               background-image: url('https://idwomihieftgogbgivic.supabase.co/storage/v1/object/public/img/Marker/State=PinLiked,%20ShowSalary=False.svg');
+            }
+            
+            .custom-marker.new {
+               background-image: url('https://idwomihieftgogbgivic.supabase.co/storage/v1/object/public/img/Marker/State=PinNew,%20ShowSalary=False.svg');
+            }
+            
+            .custom-marker.last_minute {
+               background-image: url('https://idwomihieftgogbgivic.supabase.co/storage/v1/object/public/img/Marker/State=PinLastMin,%20ShowSalary=False.svg');
+            }
+
+            .custom-marker.applied {
+               background-image: url('https://idwomihieftgogbgivic.supabase.co/storage/v1/object/public/img/Marker/State=PinApplied,%20ShowSalary=False.svg');
+            }
+
+
+            .mapboxgl-popup-content {
+               width: 350px;
+               font-family: 'Arial', sans-serif;
+               background: #fff;
+               border-radius: 16px;
+               box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+               padding: 30px 16px;
+               display: flex;
+               flex-direction: column;
+               gap: 8px;
+               z-index: 9999;
+               overflow: hidden;
+            }
+
+            .mapboxgl-popup-content.last-minute-border::before {
+               content: '';
+               position: absolute;
+               inset: 0;
+               border-radius: 16px;
+               padding: 2px;
+               background: linear-gradient(180deg, #F6165B 0%, #F36320 63.5%);
+               -webkit-mask:
+                  linear-gradient(#fff 0 0) content-box,
+                  linear-gradient(#fff 0 0);
+               -webkit-mask-composite: xor;
+               mask-composite: exclude;
+               z-index: -1;
+            }
+
+           .mapboxgl-popup-content.last-minute-border {
+               position: relative;
+               border-radius: 16px;
+               background: #fff;
+               z-index: 0;
+            }
+
+            .mapboxgl-popup-content.border-new {
+               position: relative;
+               border-radius: 16px;
+               background: #fff;
+               z-index: 0;
+            }
+
+            .mapboxgl-popup-content.border-new::before {
+               content: '';
+               position: absolute;
+               inset: 0;
+               border-radius: 16px;
+               padding: 2px;
+               background: #BAFE68;
+               -webkit-mask:
+                  linear-gradient(#fff 0 0) content-box,
+                  linear-gradient(#fff 0 0);
+               -webkit-mask-composite: xor;
+               mask-composite: exclude;
+               z-index: -1;
+            }
+
+            .mapboxgl-popup-content.applied-border {
+               position: relative;
+               border-radius: 16px;
+               background: #fff;
+               z-index: 0;
+            }
+
+            .mapboxgl-popup-content.applied-border::before {
+               content: '';
+               position: absolute;
+               inset: 0;
+               border-radius: 16px;
+               padding: 2px;
+               background: #002400;
+               -webkit-mask:
+                  linear-gradient(#fff 0 0) content-box,
+                  linear-gradient(#fff 0 0);
+               -webkit-mask-composite: xor;
+               mask-composite: exclude;
+               z-index: -1;
+            }
+
+            .mapboxgl-popup-content.liked-border {
+               position: relative;
+               border-radius: 16px;
+               background: #fff;
+               z-index: 0;
+            }
+
+            .mapboxgl-popup-content.liked-border::before {
+               content: '';
+               position: absolute;
+               inset: 0;
+               border-radius: 16px;
+               padding: 2px;
+               background: #FF4D84;
+               -webkit-mask:
+                  linear-gradient(#fff 0 0) content-box,
+                  linear-gradient(#fff 0 0);
+               -webkit-mask-composite: xor;
+               mask-composite: exclude;
+               z-index: -1;
+            }
+
+            
+
+
+
+
+
+            .mapboxgl-popup-close-button {
+               display: none; 
+            }
+
 
 
 
             
+            .location {
+               display: flex;
+               align-items: center;
+               justify-content: flex-start;
+            }
 
-          .mapboxgl-popup-content img {
-            width: 10%;
-            height: 10%;
-            border-radius: 8px;
-          }
-          .mapboxgl-popup-content h3 {
-            line-height: 1.2;
-            font-size: 18px;
-            font-weight: bold;
-            margin-bottom: 8px;
-            color: #333;
-            width: 70%;
-          }
-          .mapboxgl-popup-content p {
-            font-size: 14px;
-            margin: 4px 0;
-          }
-          .mapboxgl-popup-content a {
-            color: #007bff;
-            text-decoration: none;
-            font-weight: bold;
-          }
-          .mapboxgl-popup-content a:hover {
-            text-decoration: underline;
-          }
-          .popup-badge {
-            display: inline-block;
-            background: linear-gradient(90deg, #ff6b6b, #ff8e53);
-            color: white;
-            font-size: 12px;
-            font-weight: bold;
-            padding: 4px 10px;
-            border-radius: 8px;
-            margin-bottom: 10px;
-          }
-          .popup-header {
-            align-items: center;
-            gap: 13px!important;
-            height: 30px;
-            text-align: center;
-          }
-          .popup-header img {
-            width: 20px;
-            height: 20px;
-            object-fit: fit;
-          }
-          .popup-header h3 {
-            position: absolute;
-            top: 50px;
-            left: 50%
-            font-size: 20px;
-            font-weight: bold;
-            width: 70%;
-          }
-            .business_logo {
-            width: 100px!important;
-            border-radius: 8px;
-            position: absolute;
-            top: 15px;
-            left: 50%;
-            transform: translateX(-50%);
-          }
-          .popup-info {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 6px;
-            padding-left:2.5%;
-            padding-right:2.5%;
-          }
-          .popup-info div {
-            background: #F4F4F4;
-            padding: 6px 10px;
-            border-radius: 16px;
-            font-size: 12px;
-            font-weight: bold;
-            color: #000;
-            display: flex;
-            align-items: center;
-            gap: 4px;
-          }
-          .popup-info div img {
-            width: 14px;
-            height: 14px;
-          }
-            .mapboxgl-ctrl-bottom-right {
-            display: none;
-          }
-            .adress {
-            background: #ffffff!important;
-            padding-left:5%;
-            padding-right:5%;
-            color: #000000!important;
-            font-decoration: none!important;
-            width: 100%;
-        }
-            .adress a, .adress p {
-            color: #000000!important;
-            text-decoration: none!important;
-            transition: 0.3s;
-            font-weight: bold;
-            font-size: 12px;
-            width: 100%;
-            display: inline-block;
-            line-height: 1;
-        }
-            .adress a:hover {
-            text-decoration: underline!important;
-            transition: 0.3s;
-        }
+
+
+
+
+
+
+
+
+            .state-job {
+               position: absolute;
+               top: 0;
+               left: 0;
+               display: flex;
+               gap: 10px;
+               flex-direction: row;
+               justify-content: center;
+               align-items: center; 
+               background: linear-gradient(180deg, #F6165B 0%, #F36320 63.5%);
+               border-radius: 16px 0px 8px;
+               padding: 4px 12px 4px 8px;
+               color: #ffffff;
+            }
+
+            .state-job-title {
+               font-weight: normal;
+               font-family: 'DM Sans';
+               font-size: 14px
+            }
+
+            .mapboxgl-popup-content h3 {
+               line-height: 1.2;
+               font-size: 18px;
+               font-weight: bold;
+               color: #333;
+               width: 70%;
+            }
+            
+            .mapboxgl-popup-content p {
+               font-size: 14px;
+            }
+
+            .mapboxgl-popup-content a {
+               color:rgb(0, 0, 0);
+               text-decoration: none;
+               font-weight: bold;
+            }
+            
+
+
+
+            .company_logo {
+               width: 100px!important;
+               border-radius: 8px;
+            }
+            
+            .popup-info {
+               display: flex;
+               flex-wrap: wrap;
+               gap: 6px;
+               padding-left:2.5%;
+               padding-right:2.5%;
+            }
+
+
+            .popup-info div {
+               background: #F4F4F4;
+               padding: 6px 10px;
+               border-radius: 16px;
+               font-size: 12px;
+               font-weight: bold;
+               color: #000;
+               display: flex;
+               align-items: center;
+               gap: 4px;
+            }
+            
+            .popup-info div img {
+               width: 14px;
+               height: 14px;
+            }
+
+
             .new-job {
-            position: absolute;
-            top: 0;
-            left: 0;
-            display: flex;
-            align-items: center; 
-  
-           background: #BAFE68;
-             border-radius: 16px 0px 8px;
-            padding: 8px 12px;
-            color: #000000;
-            margin-bottom: 10px;
-}
+               position: absolute;
+               top: 0;
+               left: 0;
+               display: flex;
+               align-items: center; 
+               background: #BAFE68;
+               border-radius: 16px 0px 8px;
+               padding: 8px 12px;
+               color: #000000;
+               margin-bottom: 10px;
+            }
+
+            applied-job {
+               position: absolute;
+               top: 0;
+               left: 0;
+               display: flex;
+               align-items: center; 
+               background: #002400;
+               border-radius: 16px 0px 8px;
+               padding: 8px 12px;
+               color:rgb(255, 255, 255);
+               margin-bottom: 10px; 
+            }   
+
         `}
          </style>
+
+
+
+
          <div
             ref={mapContainerRef}
             className={`mapbox-map ${className}`}
@@ -424,7 +535,3 @@ const Mapbox: React.FC<MapboxProps> = ({
 };
 
 export default Mapbox;
-
-
-
-
