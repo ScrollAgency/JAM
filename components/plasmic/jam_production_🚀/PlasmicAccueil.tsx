@@ -192,6 +192,8 @@ export type PlasmicAccueil__OverridesType = {
   jobCard20?: Flex__<typeof JobCard20>;
   buttonLastMin2?: Flex__<"button">;
   text7?: Flex__<"div">;
+  buttonLastMin3?: Flex__<"button">;
+  text8?: Flex__<"div">;
   mapJobs2?: Flex__<"div">;
   postes2?: Flex__<"div">;
   button9?: Flex__<"div">;
@@ -1116,7 +1118,7 @@ function PlasmicAccueil__RenderFunc(props: {
         sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
         opId: "24ab9e7e-7e19-4ab2-82fc-82df12596da0",
         userArgs: {
-          filters: [$ctx.SupabaseUser.user.id]
+          filters: [$ctx.SupabaseUser?.user?.id]
         },
         cacheKey: `plasmic.$.24ab9e7e-7e19-4ab2-82fc-82df12596da0.$.`,
         invalidatedKeys: null,
@@ -1219,9 +1221,9 @@ function PlasmicAccueil__RenderFunc(props: {
         opId: "8be05618-e3eb-4b37-889a-c18c2902bc93",
         userArgs: {
           path: [
-            $queries.getUser.data[0].id +
+            $queries.getUser?.data[0]?.id +
               "/" +
-              $queries.getUser.data[0].profile_photo
+              $queries.getUser?.data[0]?.profile_photo
           ]
         },
         cacheKey: `plasmic.$.8be05618-e3eb-4b37-889a-c18c2902bc93.$.`,
@@ -1313,7 +1315,7 @@ function PlasmicAccueil__RenderFunc(props: {
         sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
         opId: "a3e4c858-0549-4f80-9f4b-d2e2d7018c4e",
         userArgs: {
-          filters: [$ctx.SupabaseUser.user.id]
+          filters: [$ctx.SupabaseUser?.user?.id]
         },
         cacheKey: `plasmic.$.a3e4c858-0549-4f80-9f4b-d2e2d7018c4e.$.`,
         invalidatedKeys: null,
@@ -1333,7 +1335,7 @@ function PlasmicAccueil__RenderFunc(props: {
     getJobOffers: usePlasmicDataOp(() => {
       return {
         sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
-        opId: "d4864e3f-5153-4050-8784-66913e3dd9fb",
+        opId: "d6d251ec-30d5-4bb4-8ded-c4c02dacf020",
         userArgs: {
           query: [
             $state.formFilter?.value?.contract_type,
@@ -1363,7 +1365,7 @@ function PlasmicAccueil__RenderFunc(props: {
             $state.isLastMinute
           ]
         },
-        cacheKey: `plasmic.$.d4864e3f-5153-4050-8784-66913e3dd9fb.$.`,
+        cacheKey: `plasmic.$.d6d251ec-30d5-4bb4-8ded-c4c02dacf020.$.`,
         invalidatedKeys: null,
         roleId: null
       };
@@ -2121,50 +2123,6 @@ function PlasmicAccueil__RenderFunc(props: {
 
                                       (async event => {
                                         const $steps = {};
-
-                                        $steps["updateCardLieu"] = true
-                                          ? (() => {
-                                              const actionArgs = {
-                                                variable: {
-                                                  objRoot: $state,
-                                                  variablePath: ["city"]
-                                                },
-                                                operation: 0,
-                                                value: ""
-                                              };
-                                              return (({
-                                                variable,
-                                                value,
-                                                startIndex,
-                                                deleteCount
-                                              }) => {
-                                                if (!variable) {
-                                                  return;
-                                                }
-                                                const {
-                                                  objRoot,
-                                                  variablePath
-                                                } = variable;
-
-                                                $stateSet(
-                                                  objRoot,
-                                                  variablePath,
-                                                  value
-                                                );
-                                                return value;
-                                              })?.apply(null, [actionArgs]);
-                                            })()
-                                          : undefined;
-                                        if (
-                                          $steps["updateCardLieu"] != null &&
-                                          typeof $steps["updateCardLieu"] ===
-                                            "object" &&
-                                          typeof $steps["updateCardLieu"]
-                                            .then === "function"
-                                        ) {
-                                          $steps["updateCardLieu"] =
-                                            await $steps["updateCardLieu"];
-                                        }
 
                                         $steps["updateSearchLocation"] = true
                                           ? (() => {
@@ -3463,13 +3421,43 @@ function PlasmicAccueil__RenderFunc(props: {
                       }
                       markers={(() => {
                         try {
-                          return $queries.getJobOffersMobile.data;
+                          return (() => {
+                            const jobOffers = $queries.getJobOffers.data ?? [];
+                            const applications =
+                              $queries.getApplication.data ?? [];
+                            const userLikes = $queries.getUsersLikes.data ?? [];
+                            const appliedJobIds = new Set(
+                              applications.map(app => app.job_id)
+                            );
+                            const likedJobIds = new Set(
+                              userLikes.map(like => like.job_id)
+                            );
+                            const enrichedJobOffers = jobOffers.map(offer => ({
+                              ...offer,
+                              is_applied: appliedJobIds.has(offer.id),
+                              is_liked: likedJobIds.has(offer.id)
+                            }));
+                            return enrichedJobOffers;
+                          })();
                         } catch (e) {
                           if (
                             e instanceof TypeError ||
                             e?.plasmicType === "PlasmicUndefinedDataError"
                           ) {
                             return [];
+                          }
+                          throw e;
+                        }
+                      })()}
+                      searchAddress={(() => {
+                        try {
+                          return $state.searchLocation;
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return undefined;
                           }
                           throw e;
                         }
@@ -5497,80 +5485,185 @@ function PlasmicAccueil__RenderFunc(props: {
                         })}
                       </Stack__>
                     ) : null}
-                    <Stack__
-                      as={"button"}
-                      data-plasmic-name={"buttonLastMin2"}
-                      data-plasmic-override={overrides.buttonLastMin2}
-                      hasGap={true}
-                      className={classNames(
-                        projectcss.all,
-                        projectcss.button,
-                        sty.buttonLastMin2
-                      )}
-                      onClick={async event => {
-                        const $steps = {};
-
-                        $steps["updateIsLastMinute"] = true
-                          ? (() => {
-                              const actionArgs = {
-                                variable: {
-                                  objRoot: $state,
-                                  variablePath: ["isLastMinute"]
-                                },
-                                operation: 4
-                              };
-                              return (({
-                                variable,
-                                value,
-                                startIndex,
-                                deleteCount
-                              }) => {
-                                if (!variable) {
-                                  return;
-                                }
-                                const { objRoot, variablePath } = variable;
-
-                                const oldValue = $stateGet(
-                                  objRoot,
-                                  variablePath
-                                );
-                                $stateSet(objRoot, variablePath, !oldValue);
-                                return !oldValue;
-                              })?.apply(null, [actionArgs]);
-                            })()
-                          : undefined;
+                    {(() => {
+                      try {
+                        return $state.isLastMinute == false;
+                      } catch (e) {
                         if (
-                          $steps["updateIsLastMinute"] != null &&
-                          typeof $steps["updateIsLastMinute"] === "object" &&
-                          typeof $steps["updateIsLastMinute"].then ===
-                            "function"
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
                         ) {
-                          $steps["updateIsLastMinute"] = await $steps[
-                            "updateIsLastMinute"
-                          ];
+                          return true;
                         }
-                      }}
-                      ref={ref => {
-                        $refs["buttonLastMin2"] = ref;
-                      }}
-                    >
-                      <PhClockCountdownFill3Icon
-                        className={classNames(projectcss.all, sty.svg___6TKkr)}
-                        role={"img"}
-                      />
-
-                      <div
-                        data-plasmic-name={"text7"}
-                        data-plasmic-override={overrides.text7}
+                        throw e;
+                      }
+                    })() ? (
+                      <Stack__
+                        as={"button"}
+                        data-plasmic-name={"buttonLastMin2"}
+                        data-plasmic-override={overrides.buttonLastMin2}
+                        hasGap={true}
                         className={classNames(
                           projectcss.all,
-                          projectcss.__wab_text,
-                          sty.text7
+                          projectcss.button,
+                          sty.buttonLastMin2
                         )}
+                        onClick={async event => {
+                          const $steps = {};
+
+                          $steps["updateIsLastMinute"] = true
+                            ? (() => {
+                                const actionArgs = {
+                                  variable: {
+                                    objRoot: $state,
+                                    variablePath: ["isLastMinute"]
+                                  },
+                                  operation: 4
+                                };
+                                return (({
+                                  variable,
+                                  value,
+                                  startIndex,
+                                  deleteCount
+                                }) => {
+                                  if (!variable) {
+                                    return;
+                                  }
+                                  const { objRoot, variablePath } = variable;
+
+                                  const oldValue = $stateGet(
+                                    objRoot,
+                                    variablePath
+                                  );
+                                  $stateSet(objRoot, variablePath, !oldValue);
+                                  return !oldValue;
+                                })?.apply(null, [actionArgs]);
+                              })()
+                            : undefined;
+                          if (
+                            $steps["updateIsLastMinute"] != null &&
+                            typeof $steps["updateIsLastMinute"] === "object" &&
+                            typeof $steps["updateIsLastMinute"].then ===
+                              "function"
+                          ) {
+                            $steps["updateIsLastMinute"] = await $steps[
+                              "updateIsLastMinute"
+                            ];
+                          }
+                        }}
+                        ref={ref => {
+                          $refs["buttonLastMin2"] = ref;
+                        }}
                       >
-                        {"LAST MINUTE"}
-                      </div>
-                    </Stack__>
+                        <PhClockCountdownFill3Icon
+                          className={classNames(
+                            projectcss.all,
+                            sty.svg___6TKkr
+                          )}
+                          role={"img"}
+                        />
+
+                        <div
+                          data-plasmic-name={"text7"}
+                          data-plasmic-override={overrides.text7}
+                          className={classNames(
+                            projectcss.all,
+                            projectcss.__wab_text,
+                            sty.text7
+                          )}
+                        >
+                          {"LAST MINUTE"}
+                        </div>
+                      </Stack__>
+                    ) : null}
+                    {(() => {
+                      try {
+                        return $state.isLastMinute === true;
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return true;
+                        }
+                        throw e;
+                      }
+                    })() ? (
+                      <Stack__
+                        as={"button"}
+                        data-plasmic-name={"buttonLastMin3"}
+                        data-plasmic-override={overrides.buttonLastMin3}
+                        hasGap={true}
+                        className={classNames(
+                          projectcss.all,
+                          projectcss.button,
+                          sty.buttonLastMin3
+                        )}
+                        onClick={async event => {
+                          const $steps = {};
+
+                          $steps["updateIsLastMinute"] = true
+                            ? (() => {
+                                const actionArgs = {
+                                  variable: {
+                                    objRoot: $state,
+                                    variablePath: ["isLastMinute"]
+                                  },
+                                  operation: 4
+                                };
+                                return (({
+                                  variable,
+                                  value,
+                                  startIndex,
+                                  deleteCount
+                                }) => {
+                                  if (!variable) {
+                                    return;
+                                  }
+                                  const { objRoot, variablePath } = variable;
+
+                                  const oldValue = $stateGet(
+                                    objRoot,
+                                    variablePath
+                                  );
+                                  $stateSet(objRoot, variablePath, !oldValue);
+                                  return !oldValue;
+                                })?.apply(null, [actionArgs]);
+                              })()
+                            : undefined;
+                          if (
+                            $steps["updateIsLastMinute"] != null &&
+                            typeof $steps["updateIsLastMinute"] === "object" &&
+                            typeof $steps["updateIsLastMinute"].then ===
+                              "function"
+                          ) {
+                            $steps["updateIsLastMinute"] = await $steps[
+                              "updateIsLastMinute"
+                            ];
+                          }
+                        }}
+                        ref={ref => {
+                          $refs["buttonLastMin3"] = ref;
+                        }}
+                      >
+                        <PhClockCountdownFill3Icon
+                          className={classNames(projectcss.all, sty.svg__numZh)}
+                          role={"img"}
+                        />
+
+                        <div
+                          data-plasmic-name={"text8"}
+                          data-plasmic-override={overrides.text8}
+                          className={classNames(
+                            projectcss.all,
+                            projectcss.__wab_text,
+                            sty.text8
+                          )}
+                        >
+                          {"LAST MINUTE"}
+                        </div>
+                      </Stack__>
+                    ) : null}
                   </Stack__>
                   {(
                     hasVariant(globalVariants, "screen", "mobileOnly")
@@ -13293,6 +13386,8 @@ const PlasmicDescendants = {
     "jobCard20",
     "buttonLastMin2",
     "text7",
+    "buttonLastMin3",
+    "text8",
     "mapJobs2",
     "postes2",
     "button9",
@@ -13525,6 +13620,8 @@ const PlasmicDescendants = {
     "jobCard20",
     "buttonLastMin2",
     "text7",
+    "buttonLastMin3",
+    "text8",
     "mapJobs2",
     "postes2",
     "button9",
@@ -13598,6 +13695,8 @@ const PlasmicDescendants = {
     "jobCard20",
     "buttonLastMin2",
     "text7",
+    "buttonLastMin3",
+    "text8",
     "mapJobs2",
     "postes2",
     "button9",
@@ -13652,6 +13751,8 @@ const PlasmicDescendants = {
     "jobCard20",
     "buttonLastMin2",
     "text7",
+    "buttonLastMin3",
+    "text8",
     "mapJobs2",
     "postes2",
     "button9",
@@ -13738,7 +13839,9 @@ const PlasmicDescendants = {
     "dislike",
     "jobCard20",
     "buttonLastMin2",
-    "text7"
+    "text7",
+    "buttonLastMin3",
+    "text8"
   ],
   postes: ["postes"],
   button4: ["button4", "button3", "button7", "featuredIcon7", "featuredIcon8"],
@@ -13767,6 +13870,8 @@ const PlasmicDescendants = {
   jobCard20: ["jobCard20"],
   buttonLastMin2: ["buttonLastMin2", "text7"],
   text7: ["text7"],
+  buttonLastMin3: ["buttonLastMin3", "text8"],
+  text8: ["text8"],
   mapJobs2: [
     "mapJobs2",
     "postes2",
@@ -14659,6 +14764,8 @@ type NodeDefaultElementType = {
   jobCard20: typeof JobCard20;
   buttonLastMin2: "button";
   text7: "div";
+  buttonLastMin3: "button";
+  text8: "div";
   mapJobs2: "div";
   postes2: "div";
   button9: "div";
@@ -14955,6 +15062,8 @@ export const PlasmicAccueil = Object.assign(
     jobCard20: makeNodeComponent("jobCard20"),
     buttonLastMin2: makeNodeComponent("buttonLastMin2"),
     text7: makeNodeComponent("text7"),
+    buttonLastMin3: makeNodeComponent("buttonLastMin3"),
+    text8: makeNodeComponent("text8"),
     mapJobs2: makeNodeComponent("mapJobs2"),
     postes2: makeNodeComponent("postes2"),
     button9: makeNodeComponent("button9"),

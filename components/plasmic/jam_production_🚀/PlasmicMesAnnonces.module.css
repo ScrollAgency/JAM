@@ -723,8 +723,8 @@
   object-fit: cover;
   max-width: 100%;
   color: #000;
-  width: 24px;
-  height: 24px;
+  width: 18px;
+  height: 18px;
   display: block;
   position: relative;
   overflow: hidden;
@@ -738,7 +738,7 @@
   text-align: left;
   font-family: "DM Sans", sans-serif;
   font-weight: 500;
-  font-size: 16px;
+  font-size: 14px;
   min-width: 0;
 }
 .frame49 {
@@ -752,8 +752,8 @@
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
-  margin-left: calc(0px - 8px);
-  width: calc(100% + 8px);
+  margin-left: calc(0px - 4px);
+  width: calc(100% + 4px);
 }
 .frame49 > :global(.__wab_flex-container) > *,
 .frame49 > :global(.__wab_flex-container) > :global(.__wab_slot) > *,
@@ -763,14 +763,14 @@
   > :global(.__wab_slot)
   > picture
   > img {
-  margin-left: 8px;
+  margin-left: 4px;
 }
 .svg__vBps1 {
   object-fit: cover;
   max-width: 100%;
   color: #000;
-  width: 24px;
-  height: 24px;
+  width: 18px;
+  height: 18px;
   display: block;
   position: relative;
   overflow: hidden;
@@ -784,7 +784,7 @@
   text-align: left;
   font-family: "DM Sans", sans-serif;
   font-weight: 500;
-  font-size: 16px;
+  font-size: 14px;
   min-width: 0;
 }
 .frame50 {
@@ -798,8 +798,8 @@
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
-  margin-left: calc(0px - 8px);
-  width: calc(100% + 8px);
+  margin-left: calc(0px - 4px);
+  width: calc(100% + 4px);
 }
 .frame50 > :global(.__wab_flex-container) > *,
 .frame50 > :global(.__wab_flex-container) > :global(.__wab_slot) > *,
@@ -809,14 +809,14 @@
   > :global(.__wab_slot)
   > picture
   > img {
-  margin-left: 8px;
+  margin-left: 4px;
 }
 .svg___7Ggja {
   object-fit: cover;
   max-width: 100%;
   color: #000;
-  width: 24px;
-  height: 24px;
+  width: 18px;
+  height: 18px;
   display: block;
   position: relative;
   overflow: hidden;
@@ -830,7 +830,7 @@
   text-align: left;
   font-family: "DM Sans", sans-serif;
   font-weight: 500;
-  font-size: 16px;
+  font-size: 14px;
   min-width: 0;
 }
 .frame51 {
@@ -844,8 +844,8 @@
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
-  margin-left: calc(0px - 8px);
-  width: calc(100% + 8px);
+  margin-left: calc(0px - 4px);
+  width: calc(100% + 4px);
 }
 .frame51 > :global(.__wab_flex-container) > *,
 .frame51 > :global(.__wab_flex-container) > :global(.__wab_slot) > *,
@@ -855,14 +855,14 @@
   > :global(.__wab_slot)
   > picture
   > img {
-  margin-left: 8px;
+  margin-left: 4px;
 }
 .svg__hLv75 {
   object-fit: cover;
   max-width: 100%;
   color: #000;
-  width: 20.06779670715332px;
-  height: 20.06779670715332px;
+  width: 18px;
+  height: 18px;
   display: block;
   position: relative;
   overflow: hidden;
@@ -876,7 +876,7 @@
   text-align: left;
   font-family: "DM Sans", sans-serif;
   font-weight: 500;
-  font-size: 16px;
+  font-size: 14px;
   min-width: 0;
 }
 .frame52 {
@@ -1027,6 +1027,7 @@
   font-family: "DM Sans", sans-serif;
   font-weight: 400;
   font-size: 16px;
+  line-height: 130%;
   min-width: 0;
 }
 .benefits {
@@ -1062,12 +1063,12 @@
   width: auto;
   height: auto;
   max-width: 100%;
-  background: var(--token-KO6AQ_V48wtR);
+  background: #f4ffe6;
   font-size: 12px;
   font-family: "Inter", sans-serif;
-  font-weight: 400;
+  font-weight: 500;
   font-style: normal;
-  color: var(--token-ceD1eQOG2geq);
+  color: var(--token-tUlf7BrDP8BN);
   text-align: left;
   text-transform: none;
   line-height: 1.5;
@@ -1076,7 +1077,7 @@
   user-select: text;
   text-decoration-line: none;
   text-overflow: clip;
-  border-radius: 16px;
+  border-radius: 8px;
   padding: 2px 8px;
 }
 .expectedProfileContainer {
@@ -1147,6 +1148,7 @@
   text-align: left;
   font-family: "DM Sans", sans-serif;
   font-size: 16px;
+  line-height: 130%;
 }
 .company {
   height: auto;
@@ -1414,6 +1416,7 @@
   text-align: left;
   font-family: "DM Sans", sans-serif;
   font-size: 16px;
+  line-height: 130%;
 }
 .modal2:global(.__wab_instance):global(.__wab_instance) {
   max-width: 100%;

@@ -128,7 +128,7 @@ export type PlasmicMesAlertes__OverridesType = {
   text6?: Flex__<"div">;
   supportingText2?: Flex__<"div">;
   jobTitle?: Flex__<"h2">;
-  department?: Flex__<"div">;
+  ville?: Flex__<"div">;
   tags?: Flex__<"div">;
   deleteEdit?: Flex__<"div">;
   mobileNavbarBottom?: Flex__<typeof MobileNavbarBottom>;
@@ -842,12 +842,12 @@ function PlasmicMesAlertes__RenderFunc(props: {
                               </h2>
                               <Stack__
                                 as={"div"}
-                                data-plasmic-name={"department"}
-                                data-plasmic-override={overrides.department}
+                                data-plasmic-name={"ville"}
+                                data-plasmic-override={overrides.ville}
                                 hasGap={true}
                                 className={classNames(
                                   projectcss.all,
-                                  sty.department
+                                  sty.ville
                                 )}
                               >
                                 <Vector20Icon
@@ -869,8 +869,7 @@ function PlasmicMesAlertes__RenderFunc(props: {
                                   <React.Fragment>
                                     {(() => {
                                       try {
-                                        return currentItem.search_criteria
-                                          .department;
+                                        return currentItem.search_criteria.city;
                                       } catch (e) {
                                         if (
                                           e instanceof TypeError ||
@@ -2718,7 +2717,7 @@ const PlasmicDescendants = {
     "text6",
     "supportingText2",
     "jobTitle",
-    "department",
+    "ville",
     "tags",
     "deleteEdit",
     "mobileNavbarBottom",
@@ -2758,7 +2757,7 @@ const PlasmicDescendants = {
     "text6",
     "supportingText2",
     "jobTitle",
-    "department",
+    "ville",
     "tags",
     "deleteEdit"
   ],
@@ -2772,7 +2771,7 @@ const PlasmicDescendants = {
     "text6",
     "supportingText2",
     "jobTitle",
-    "department",
+    "ville",
     "tags",
     "deleteEdit"
   ],
@@ -2793,7 +2792,7 @@ const PlasmicDescendants = {
   text6: ["text6"],
   supportingText2: ["supportingText2"],
   jobTitle: ["jobTitle"],
-  department: ["department"],
+  ville: ["ville"],
   tags: ["tags"],
   deleteEdit: ["deleteEdit"],
   mobileNavbarBottom: ["mobileNavbarBottom"],
@@ -2897,7 +2896,7 @@ type NodeDefaultElementType = {
   text6: "div";
   supportingText2: "div";
   jobTitle: "h2";
-  department: "div";
+  ville: "div";
   tags: "div";
   deleteEdit: "div";
   mobileNavbarBottom: typeof MobileNavbarBottom;
@@ -2997,7 +2996,7 @@ export const PlasmicMesAlertes = Object.assign(
     text6: makeNodeComponent("text6"),
     supportingText2: makeNodeComponent("supportingText2"),
     jobTitle: makeNodeComponent("jobTitle"),
-    department: makeNodeComponent("department"),
+    ville: makeNodeComponent("ville"),
     tags: makeNodeComponent("tags"),
     deleteEdit: makeNodeComponent("deleteEdit"),
     mobileNavbarBottom: makeNodeComponent("mobileNavbarBottom"),

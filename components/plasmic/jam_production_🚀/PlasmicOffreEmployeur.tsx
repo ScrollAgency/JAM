@@ -3622,7 +3622,15 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                         <React.Fragment>
                           {(() => {
                             try {
-                              return $state.jobObject[0].location;
+                              return (
+                                $state.jobObject[0].location +
+                                " (" +
+                                $state.jobObject[0].postal_code.substring(
+                                  0,
+                                  2
+                                ) +
+                                ")"
+                              );
                             } catch (e) {
                               if (
                                 e instanceof TypeError ||
@@ -9628,7 +9636,11 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                                         "86a865c1-0261-4284-930f-6ef2f6f1060b",
                                         "d0186466-dcbb-4702-a724-88cda73c66bb",
                                         "e38cc2f4-cfb6-40a3-bc90-0b9ce2786a30",
-                                        "1284f981-03a5-4aae-9f90-4a9eb18e1c6b"
+                                        "1284f981-03a5-4aae-9f90-4a9eb18e1c6b",
+                                        "1284f981-03a5-4aae-9f90-4a9eb18e1c6b",
+                                        "44279b1d-8867-4128-97b8-520ffe67ab32",
+                                        "9258b35e-6135-4ba7-8ce4-fe23b60361d6",
+                                        "c91b3dad-0831-48c9-8dd7-50555a9ed2f8"
                                       ],
                                       roleId: null
                                     }
@@ -9684,8 +9696,10 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                                                 $queries.offreStripeUserInfos
                                                   .data[0].recharge_lastminute
                                               ),
-                                          $queries.offreStripeUserInfos.data[0]
-                                            .recharge_classic - 1
+                                          !$state._switch.isSelected
+                                            ? $queries.offreStripeUserInfos
+                                                .data[0].recharge_classic - 1
+                                            : undefined
                                         ],
                                         conditions: [$ctx.SupabaseUser.user.id]
                                       },
