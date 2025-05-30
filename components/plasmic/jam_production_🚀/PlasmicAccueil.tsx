@@ -373,7 +373,7 @@ export type PlasmicAccueil__OverridesType = {
   select19?: Flex__<typeof AntdSelect>;
   select20?: Flex__<typeof AntdSelect>;
   select21?: Flex__<typeof AntdSelect>;
-  buttonLastMin?: Flex__<"div">;
+  buttonLastMin?: Flex__<"button">;
   text5?: Flex__<"div">;
   textLinkBase?: Flex__<"a"> & Partial<LinkProps>;
   text6?: Flex__<"div">;
@@ -1299,11 +1299,11 @@ function PlasmicAccueil__RenderFunc(props: {
     getJobByAlertId: usePlasmicDataOp(() => {
       return {
         sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
-        opId: "c8980992-071d-4985-ad09-8cccc6a60c00",
+        opId: "43adfa1c-e51d-4d59-86cb-4e2c2456c3f6",
         userArgs: {
           query: [$ctx.query.job_id]
         },
-        cacheKey: `plasmic.$.c8980992-071d-4985-ad09-8cccc6a60c00.$.`,
+        cacheKey: `plasmic.$.43adfa1c-e51d-4d59-86cb-4e2c2456c3f6.$.`,
         invalidatedKeys: null,
         roleId: null
       };
@@ -1333,7 +1333,7 @@ function PlasmicAccueil__RenderFunc(props: {
     getJobOffers: usePlasmicDataOp(() => {
       return {
         sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
-        opId: "d0186466-dcbb-4702-a724-88cda73c66bb",
+        opId: "d4864e3f-5153-4050-8784-66913e3dd9fb",
         userArgs: {
           query: [
             $state.formFilter?.value?.contract_type,
@@ -1363,7 +1363,7 @@ function PlasmicAccueil__RenderFunc(props: {
             $state.isLastMinute
           ]
         },
-        cacheKey: `plasmic.$.d0186466-dcbb-4702-a724-88cda73c66bb.$.`,
+        cacheKey: `plasmic.$.d4864e3f-5153-4050-8784-66913e3dd9fb.$.`,
         invalidatedKeys: null,
         roleId: null
       };
@@ -7537,7 +7537,12 @@ function PlasmicAccueil__RenderFunc(props: {
                         <React.Fragment>
                           {(() => {
                             try {
-                              return $state.jobObject.location;
+                              return `${
+                                $state.jobObject.location
+                              } (${$state.jobObject.company_postal_code.substring(
+                                0,
+                                2
+                              )})`;
                             } catch (e) {
                               if (
                                 e instanceof TypeError ||
@@ -8105,124 +8110,181 @@ function PlasmicAccueil__RenderFunc(props: {
                       hasGap={true}
                       className={classNames(projectcss.all, sty.companyDetail)}
                     >
-                      <Stack__
-                        as={"div"}
-                        data-plasmic-name={"sectorActivity"}
-                        data-plasmic-override={overrides.sectorActivity}
-                        hasGap={true}
-                        className={classNames(
-                          projectcss.all,
-                          sty.sectorActivity
-                        )}
-                      >
-                        <IconPhBriefcase2Icon
-                          className={classNames(projectcss.all, sty.svg__x2Ev5)}
-                          role={"img"}
-                        />
-
-                        <div
-                          data-plasmic-name={"dkTrucksPark5"}
-                          data-plasmic-override={overrides.dkTrucksPark5}
+                      {(() => {
+                        try {
+                          return $state.jobObject.company_sector !== null;
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return true;
+                          }
+                          throw e;
+                        }
+                      })() ? (
+                        <Stack__
+                          as={"div"}
+                          data-plasmic-name={"sectorActivity"}
+                          data-plasmic-override={overrides.sectorActivity}
+                          hasGap={true}
                           className={classNames(
                             projectcss.all,
-                            projectcss.__wab_text,
-                            sty.dkTrucksPark5
+                            sty.sectorActivity
                           )}
                         >
-                          <React.Fragment>
-                            {(() => {
-                              try {
-                                return $state.jobObject.company_sector;
-                              } catch (e) {
-                                if (
-                                  e instanceof TypeError ||
-                                  e?.plasmicType === "PlasmicUndefinedDataError"
-                                ) {
-                                  return "Design";
-                                }
-                                throw e;
-                              }
-                            })()}
-                          </React.Fragment>
-                        </div>
-                      </Stack__>
-                      <Stack__
-                        as={"div"}
-                        data-plasmic-name={"companySize"}
-                        data-plasmic-override={overrides.companySize}
-                        hasGap={true}
-                        className={classNames(projectcss.all, sty.companySize)}
-                      >
-                        <PhUsersThreeIcon
-                          className={classNames(projectcss.all, sty.svg__dpSE)}
-                          role={"img"}
-                        />
+                          <IconPhBriefcase2Icon
+                            className={classNames(
+                              projectcss.all,
+                              sty.svg__x2Ev5
+                            )}
+                            role={"img"}
+                          />
 
-                        <div
-                          data-plasmic-name={"dkTrucksPark6"}
-                          data-plasmic-override={overrides.dkTrucksPark6}
+                          <div
+                            data-plasmic-name={"dkTrucksPark5"}
+                            data-plasmic-override={overrides.dkTrucksPark5}
+                            className={classNames(
+                              projectcss.all,
+                              projectcss.__wab_text,
+                              sty.dkTrucksPark5
+                            )}
+                          >
+                            <React.Fragment>
+                              {(() => {
+                                try {
+                                  return $state.jobObject.company_sector;
+                                } catch (e) {
+                                  if (
+                                    e instanceof TypeError ||
+                                    e?.plasmicType ===
+                                      "PlasmicUndefinedDataError"
+                                  ) {
+                                    return "Design";
+                                  }
+                                  throw e;
+                                }
+                              })()}
+                            </React.Fragment>
+                          </div>
+                        </Stack__>
+                      ) : null}
+                      {(() => {
+                        try {
+                          return $state.jobObject.company_size !== null;
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return true;
+                          }
+                          throw e;
+                        }
+                      })() ? (
+                        <Stack__
+                          as={"div"}
+                          data-plasmic-name={"companySize"}
+                          data-plasmic-override={overrides.companySize}
+                          hasGap={true}
                           className={classNames(
                             projectcss.all,
-                            projectcss.__wab_text,
-                            sty.dkTrucksPark6
+                            sty.companySize
                           )}
                         >
-                          <React.Fragment>
-                            {(() => {
-                              try {
-                                return $state.jobObject.company_size;
-                              } catch (e) {
-                                if (
-                                  e instanceof TypeError ||
-                                  e?.plasmicType === "PlasmicUndefinedDataError"
-                                ) {
-                                  return "450";
-                                }
-                                throw e;
-                              }
-                            })()}
-                          </React.Fragment>
-                        </div>
-                      </Stack__>
-                      <Stack__
-                        as={"div"}
-                        data-plasmic-name={"companyLocation"}
-                        data-plasmic-override={overrides.companyLocation}
-                        hasGap={true}
-                        className={classNames(
-                          projectcss.all,
-                          sty.companyLocation
-                        )}
-                      >
-                        <PhMapTrifoldFillIcon
-                          className={classNames(projectcss.all, sty.svg__uq5EX)}
-                          role={"img"}
-                        />
+                          <PhUsersThreeIcon
+                            className={classNames(
+                              projectcss.all,
+                              sty.svg__dpSE
+                            )}
+                            role={"img"}
+                          />
 
-                        <div
+                          <div
+                            data-plasmic-name={"dkTrucksPark6"}
+                            data-plasmic-override={overrides.dkTrucksPark6}
+                            className={classNames(
+                              projectcss.all,
+                              projectcss.__wab_text,
+                              sty.dkTrucksPark6
+                            )}
+                          >
+                            <React.Fragment>
+                              {(() => {
+                                try {
+                                  return $state.jobObject.company_size;
+                                } catch (e) {
+                                  if (
+                                    e instanceof TypeError ||
+                                    e?.plasmicType ===
+                                      "PlasmicUndefinedDataError"
+                                  ) {
+                                    return "450";
+                                  }
+                                  throw e;
+                                }
+                              })()}
+                            </React.Fragment>
+                          </div>
+                        </Stack__>
+                      ) : null}
+                      {(() => {
+                        try {
+                          return $state.jobObject.company_address !== null;
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return true;
+                          }
+                          throw e;
+                        }
+                      })() ? (
+                        <Stack__
+                          as={"div"}
+                          data-plasmic-name={"companyLocation"}
+                          data-plasmic-override={overrides.companyLocation}
+                          hasGap={true}
                           className={classNames(
                             projectcss.all,
-                            projectcss.__wab_text,
-                            sty.text__ozaHn
+                            sty.companyLocation
                           )}
                         >
-                          <React.Fragment>
-                            {(() => {
-                              try {
-                                return $state.jobObject.company_address;
-                              } catch (e) {
-                                if (
-                                  e instanceof TypeError ||
-                                  e?.plasmicType === "PlasmicUndefinedDataError"
-                                ) {
-                                  return "11 rue des Taillandiers 75011 Paris";
+                          <PhMapTrifoldFillIcon
+                            className={classNames(
+                              projectcss.all,
+                              sty.svg__uq5EX
+                            )}
+                            role={"img"}
+                          />
+
+                          <div
+                            className={classNames(
+                              projectcss.all,
+                              projectcss.__wab_text,
+                              sty.text__ozaHn
+                            )}
+                          >
+                            <React.Fragment>
+                              {(() => {
+                                try {
+                                  return $state.jobObject.company_address;
+                                } catch (e) {
+                                  if (
+                                    e instanceof TypeError ||
+                                    e?.plasmicType ===
+                                      "PlasmicUndefinedDataError"
+                                  ) {
+                                    return "11 rue des Taillandiers 75011 Paris";
+                                  }
+                                  throw e;
                                 }
-                                throw e;
-                              }
-                            })()}
-                          </React.Fragment>
-                        </div>
-                      </Stack__>
+                              })()}
+                            </React.Fragment>
+                          </div>
+                        </Stack__>
+                      ) : null}
                     </Stack__>
                   </Stack__>
                   <div
@@ -12835,14 +12897,62 @@ function PlasmicAccueil__RenderFunc(props: {
                           />
                         ) : null}
                         <Stack__
-                          as={"div"}
+                          as={"button"}
                           data-plasmic-name={"buttonLastMin"}
                           data-plasmic-override={overrides.buttonLastMin}
                           hasGap={true}
                           className={classNames(
                             projectcss.all,
+                            projectcss.button,
                             sty.buttonLastMin
                           )}
+                          onClick={async event => {
+                            const $steps = {};
+
+                            $steps["updateIsLastMinute"] = true
+                              ? (() => {
+                                  const actionArgs = {
+                                    variable: {
+                                      objRoot: $state,
+                                      variablePath: ["isLastMinute"]
+                                    },
+                                    operation: 4
+                                  };
+                                  return (({
+                                    variable,
+                                    value,
+                                    startIndex,
+                                    deleteCount
+                                  }) => {
+                                    if (!variable) {
+                                      return;
+                                    }
+                                    const { objRoot, variablePath } = variable;
+
+                                    const oldValue = $stateGet(
+                                      objRoot,
+                                      variablePath
+                                    );
+                                    $stateSet(objRoot, variablePath, !oldValue);
+                                    return !oldValue;
+                                  })?.apply(null, [actionArgs]);
+                                })()
+                              : undefined;
+                            if (
+                              $steps["updateIsLastMinute"] != null &&
+                              typeof $steps["updateIsLastMinute"] ===
+                                "object" &&
+                              typeof $steps["updateIsLastMinute"].then ===
+                                "function"
+                            ) {
+                              $steps["updateIsLastMinute"] = await $steps[
+                                "updateIsLastMinute"
+                              ];
+                            }
+                          }}
+                          ref={ref => {
+                            $refs["buttonLastMin"] = ref;
+                          }}
                         >
                           <PhClockCountdownFillIcon
                             className={classNames(
@@ -14730,7 +14840,7 @@ type NodeDefaultElementType = {
   select19: typeof AntdSelect;
   select20: typeof AntdSelect;
   select21: typeof AntdSelect;
-  buttonLastMin: "div";
+  buttonLastMin: "button";
   text5: "div";
   textLinkBase: "a";
   text6: "div";

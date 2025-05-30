@@ -142,6 +142,8 @@ export type PlasmicMesAlertes__OverridesType = {
   select?: Flex__<typeof AntdSelect>;
   select4?: Flex__<typeof AntdSelect>;
   select2?: Flex__<typeof AntdSelect>;
+  textInput3?: Flex__<typeof TextInput>;
+  textInput4?: Flex__<typeof TextInput>;
   deleteAlert?: Flex__<typeof Modal>;
   modal3?: Flex__<"div">;
   content?: Flex__<"div">;
@@ -273,6 +275,18 @@ function PlasmicMesAlertes__RenderFunc(props: {
         type: "private",
         variableType: "text",
         initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+      },
+      {
+        path: "textInput3.value",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+      },
+      {
+        path: "textInput4.value",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
       }
     ],
     [$props, $ctx, $refs]
@@ -302,7 +316,7 @@ function PlasmicMesAlertes__RenderFunc(props: {
         sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
         opId: "51cfa6ad-54c7-439f-ad10-406a19a5bdf9",
         userArgs: {
-          filters: [$ctx.SupabaseUser.user.id]
+          filters: [$ctx.SupabaseUser?.user?.id]
         },
         cacheKey: `plasmic.$.51cfa6ad-54c7-439f-ad10-406a19a5bdf9.$.`,
         invalidatedKeys: null,
@@ -317,6 +331,18 @@ function PlasmicMesAlertes__RenderFunc(props: {
           query: [$state.form?.value?.job_title]
         },
         cacheKey: `plasmic.$.ddc50872-b953-4597-bc64-96561ba6c1ce.$.`,
+        invalidatedKeys: null,
+        roleId: null
+      };
+    }),
+    getCoordinates: usePlasmicDataOp(() => {
+      return {
+        sourceId: "3fRequBPthJKGmQ2njgcZi",
+        opId: "aa010057-e02c-4841-8097-37c029a66625",
+        userArgs: {
+          headers: [$state.form.value.city]
+        },
+        cacheKey: `plasmic.$.aa010057-e02c-4841-8097-37c029a66625.$.`,
         invalidatedKeys: null,
         roleId: null
       };
@@ -1702,6 +1728,22 @@ function PlasmicMesAlertes__RenderFunc(props: {
                             "__wab_instance",
                             sty.textInput
                           )}
+                          defaultValue={(() => {
+                            try {
+                              return (
+                                $state.currentAlert.search_criteria
+                                  ?.job_title ?? ""
+                              );
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return undefined;
+                              }
+                              throw e;
+                            }
+                          })()}
                           inputType={"text"}
                           onChange={async (...eventArgs: any) => {
                             generateStateOnChangeProp($state, [
@@ -1738,6 +1780,22 @@ function PlasmicMesAlertes__RenderFunc(props: {
                             "__wab_instance",
                             sty.textInput2
                           )}
+                          defaultValue={(() => {
+                            try {
+                              return (
+                                $state.currentAlert.search_criteria
+                                  ?.department ?? ""
+                              );
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return undefined;
+                              }
+                              throw e;
+                            }
+                          })()}
                           inputType={"text"}
                           onChange={async (...eventArgs: any) => {
                             generateStateOnChangeProp($state, [
@@ -2123,6 +2181,129 @@ function PlasmicMesAlertes__RenderFunc(props: {
                         }
                         submitsForm={true}
                       />
+
+                      <FormItemWrapper
+                        className={classNames(
+                          "__wab_instance",
+                          sty.formField__ecb3C
+                        )}
+                        hidden={true}
+                        initialValue={
+                          $queries.getCoordinates?.data?.response?.features[0]
+                            ?.geometry?.coordinates[1]
+                        }
+                        label={
+                          <div
+                            className={classNames(
+                              projectcss.all,
+                              projectcss.__wab_text,
+                              sty.text___7Qidm
+                            )}
+                          >
+                            {"Label"}
+                          </div>
+                        }
+                        name={"latitude"}
+                        noLabel={true}
+                      >
+                        <TextInput
+                          data-plasmic-name={"textInput3"}
+                          data-plasmic-override={overrides.textInput3}
+                          className={classNames(
+                            "__wab_instance",
+                            sty.textInput3
+                          )}
+                          defaultValue={(() => {
+                            try {
+                              return $queries.getCoordinates?.data?.response
+                                ?.features[0]?.geometry?.coordinates[1];
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return undefined;
+                              }
+                              throw e;
+                            }
+                          })()}
+                          onChange={async (...eventArgs: any) => {
+                            generateStateOnChangeProp($state, [
+                              "textInput3",
+                              "value"
+                            ]).apply(null, eventArgs);
+
+                            if (
+                              eventArgs.length > 1 &&
+                              eventArgs[1] &&
+                              eventArgs[1]._plasmic_state_init_
+                            ) {
+                              return;
+                            }
+                          }}
+                        />
+                      </FormItemWrapper>
+                      <FormItemWrapper
+                        className={classNames(
+                          "__wab_instance",
+                          sty.formField___0B
+                        )}
+                        hidden={true}
+                        initialValue={
+                          $queries.getCoordinates?.data?.response?.features[0]
+                            ?.geometry?.coordinates[0]
+                        }
+                        label={
+                          <div
+                            className={classNames(
+                              projectcss.all,
+                              projectcss.__wab_text,
+                              sty.text__vsQFv
+                            )}
+                          >
+                            {"Label"}
+                          </div>
+                        }
+                        name={"longitude"}
+                        noLabel={true}
+                      >
+                        <TextInput
+                          data-plasmic-name={"textInput4"}
+                          data-plasmic-override={overrides.textInput4}
+                          className={classNames(
+                            "__wab_instance",
+                            sty.textInput4
+                          )}
+                          defaultValue={(() => {
+                            try {
+                              return $queries.getCoordinates?.data?.response
+                                ?.features[0]?.geometry?.coordinates[0];
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return undefined;
+                              }
+                              throw e;
+                            }
+                          })()}
+                          onChange={async (...eventArgs: any) => {
+                            generateStateOnChangeProp($state, [
+                              "textInput4",
+                              "value"
+                            ]).apply(null, eventArgs);
+
+                            if (
+                              eventArgs.length > 1 &&
+                              eventArgs[1] &&
+                              eventArgs[1]._plasmic_state_init_
+                            ) {
+                              return;
+                            }
+                          }}
+                        />
+                      </FormItemWrapper>
                     </FormWrapper>
                   );
                 })()}
@@ -2551,6 +2732,8 @@ const PlasmicDescendants = {
     "select",
     "select4",
     "select2",
+    "textInput3",
+    "textInput4",
     "deleteAlert",
     "modal3",
     "content",
@@ -2624,7 +2807,9 @@ const PlasmicDescendants = {
     "textInput2",
     "select",
     "select4",
-    "select2"
+    "select2",
+    "textInput3",
+    "textInput4"
   ],
   button: ["button"],
   alerteModal: [
@@ -2635,15 +2820,28 @@ const PlasmicDescendants = {
     "textInput2",
     "select",
     "select4",
-    "select2"
+    "select2",
+    "textInput3",
+    "textInput4"
   ],
   modalTitle: ["modalTitle"],
-  form: ["form", "textInput", "textInput2", "select", "select4", "select2"],
+  form: [
+    "form",
+    "textInput",
+    "textInput2",
+    "select",
+    "select4",
+    "select2",
+    "textInput3",
+    "textInput4"
+  ],
   textInput: ["textInput"],
   textInput2: ["textInput2"],
   select: ["select"],
   select4: ["select4"],
   select2: ["select2"],
+  textInput3: ["textInput3"],
+  textInput4: ["textInput4"],
   deleteAlert: [
     "deleteAlert",
     "modal3",
@@ -2713,6 +2911,8 @@ type NodeDefaultElementType = {
   select: typeof AntdSelect;
   select4: typeof AntdSelect;
   select2: typeof AntdSelect;
+  textInput3: typeof TextInput;
+  textInput4: typeof TextInput;
   deleteAlert: typeof Modal;
   modal3: "div";
   content: "div";
@@ -2811,6 +3011,8 @@ export const PlasmicMesAlertes = Object.assign(
     select: makeNodeComponent("select"),
     select4: makeNodeComponent("select4"),
     select2: makeNodeComponent("select2"),
+    textInput3: makeNodeComponent("textInput3"),
+    textInput4: makeNodeComponent("textInput4"),
     deleteAlert: makeNodeComponent("deleteAlert"),
     modal3: makeNodeComponent("modal3"),
     content: makeNodeComponent("content"),

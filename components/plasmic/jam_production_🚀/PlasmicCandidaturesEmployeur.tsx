@@ -273,7 +273,7 @@ function PlasmicCandidaturesEmployeur__RenderFunc(props: {
   const plasmicInvalidate = usePlasmicInvalidate();
 
   const new$Queries: Record<string, ReturnType<typeof usePlasmicDataOp>> = {
-    getJobapplicationsByJobOffers: usePlasmicDataOp(() => {
+    empGetJobapplicationsByJobOffers: usePlasmicDataOp(() => {
       return {
         sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
         opId: "e8423daf-ebd1-4f73-8beb-6a1046378158",
@@ -698,7 +698,7 @@ function PlasmicCandidaturesEmployeur__RenderFunc(props: {
                     <React.Fragment>
                       {(() => {
                         try {
-                          return `${$queries.getJobapplicationsByJobOffers.data.length} candidatures`;
+                          return `${$queries.empGetJobapplicationsByJobOffers.data.length} candidatures`;
                         } catch (e) {
                           if (
                             e instanceof TypeError ||
@@ -1099,11 +1099,11 @@ function PlasmicCandidaturesEmployeur__RenderFunc(props: {
                               opId: "8be05618-e3eb-4b37-889a-c18c2902bc93",
                               userArgs: {
                                 path: [
-                                  $queries.getJobapplicationsByJobOffers.data.find(
+                                  $queries.empGetJobapplicationsByJobOffers.data.find(
                                     ja => ja.id === $state.currentJaId
                                   )?.user_id +
                                     "/" +
-                                    $queries.getJobapplicationsByJobOffers.data.find(
+                                    $queries.empGetJobapplicationsByJobOffers.data.find(
                                       ja => ja.id === $state.currentJaId
                                     )?.cv_nom
                                 ]
@@ -1261,11 +1261,11 @@ function PlasmicCandidaturesEmployeur__RenderFunc(props: {
                               opId: "8be05618-e3eb-4b37-889a-c18c2902bc93",
                               userArgs: {
                                 path: [
-                                  $queries.getJobapplicationsByJobOffers.data.find(
+                                  $queries.empGetJobapplicationsByJobOffers.data.find(
                                     ja => ja.id === $state.currentJaId
                                   )?.user_id +
                                     "/" +
-                                    $queries.getJobapplicationsByJobOffers.data.find(
+                                    $queries.empGetJobapplicationsByJobOffers.data.find(
                                       ja => ja.id === $state.currentJaId
                                     )?.lm_nom
                                 ]
@@ -1391,7 +1391,7 @@ function PlasmicCandidaturesEmployeur__RenderFunc(props: {
                   }}
                   tasks={(() => {
                     try {
-                      return $queries.getJobapplicationsByJobOffers.data;
+                      return $queries.empGetJobapplicationsByJobOffers.data;
                     } catch (e) {
                       if (
                         e instanceof TypeError ||
@@ -2110,22 +2110,23 @@ function PlasmicCandidaturesEmployeur__RenderFunc(props: {
                       onClick={async event => {
                         const $steps = {};
 
-                        $steps["invokeGlobalAction"] =
-                          $state.ponctualite !== 0 ||
-                          $state.prestation !== 0 ||
-                          ($state.respect !== 0) === false
-                            ? (() => {
-                                const actionArgs = {
-                                  args: [
-                                    "error",
-                                    "Veuillez saisir une note sup\u00e9rieure \u00e0 0."
-                                  ]
-                                };
-                                return $globalActions[
-                                  "plasmic-antd5-config-provider.showNotification"
-                                ]?.apply(null, [...actionArgs.args]);
-                              })()
-                            : undefined;
+                        $steps["invokeGlobalAction"] = !(
+                          $state.ponctualite !== 0 &&
+                          $state.prestation !== 0 &&
+                          $state.respect !== 0
+                        )
+                          ? (() => {
+                              const actionArgs = {
+                                args: [
+                                  "error",
+                                  "Veuillez saisir une note sup\u00e9rieure \u00e0 0."
+                                ]
+                              };
+                              return $globalActions[
+                                "plasmic-antd5-config-provider.showNotification"
+                              ]?.apply(null, [...actionArgs.args]);
+                            })()
+                          : undefined;
                         if (
                           $steps["invokeGlobalAction"] != null &&
                           typeof $steps["invokeGlobalAction"] === "object" &&
@@ -2138,8 +2139,8 @@ function PlasmicCandidaturesEmployeur__RenderFunc(props: {
                         }
 
                         $steps["postgresUpdateById"] =
-                          $state.ponctualite !== 0 ||
-                          $state.prestation !== 0 ||
+                          $state.ponctualite !== 0 &&
+                          $state.prestation !== 0 &&
                           $state.respect !== 0
                             ? (() => {
                                 const actionArgs = {
@@ -2165,7 +2166,7 @@ function PlasmicCandidaturesEmployeur__RenderFunc(props: {
                                     },
                                     cacheKey: null,
                                     invalidatedKeys: [
-                                      "2f7b34e5-91d1-4f7a-abab-21d56504b2bb"
+                                      "e8423daf-ebd1-4f73-8beb-6a1046378158"
                                     ],
                                     roleId: null
                                   }
@@ -2205,8 +2206,8 @@ function PlasmicCandidaturesEmployeur__RenderFunc(props: {
                         }
 
                         $steps["goToCandidaturesEmployeur"] =
-                          $state.ponctualite !== 0 ||
-                          $state.prestation !== 0 ||
+                          $state.ponctualite !== 0 &&
+                          $state.prestation !== 0 &&
                           $state.respect !== 0
                             ? (() => {
                                 const actionArgs = {

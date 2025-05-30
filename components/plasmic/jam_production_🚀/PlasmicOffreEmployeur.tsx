@@ -9767,6 +9767,31 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                                 "updateCreateOffreIsOpen"
                               ];
                             }
+
+                            $steps["invokeGlobalAction"] = true
+                              ? (() => {
+                                  const actionArgs = {
+                                    args: [
+                                      "success",
+                                      "Votre offre est publi\u00e9e et visible des candidats"
+                                    ]
+                                  };
+                                  return $globalActions[
+                                    "plasmic-antd5-config-provider.showNotification"
+                                  ]?.apply(null, [...actionArgs.args]);
+                                })()
+                              : undefined;
+                            if (
+                              $steps["invokeGlobalAction"] != null &&
+                              typeof $steps["invokeGlobalAction"] ===
+                                "object" &&
+                              typeof $steps["invokeGlobalAction"].then ===
+                                "function"
+                            ) {
+                              $steps["invokeGlobalAction"] = await $steps[
+                                "invokeGlobalAction"
+                              ];
+                            }
                           }}
                           submitsForm={true}
                         />
