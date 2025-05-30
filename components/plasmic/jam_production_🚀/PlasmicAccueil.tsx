@@ -3531,6 +3531,45 @@ function PlasmicAccueil__RenderFunc(props: {
                               "updateIsDiv1Visible2"
                             ];
                           }
+
+                          $steps["updateMenuOnOff"] = true
+                            ? (() => {
+                                const actionArgs = {
+                                  variable: {
+                                    objRoot: $state,
+                                    variablePath: ["menuOnOff"]
+                                  },
+                                  operation: 4
+                                };
+                                return (({
+                                  variable,
+                                  value,
+                                  startIndex,
+                                  deleteCount
+                                }) => {
+                                  if (!variable) {
+                                    return;
+                                  }
+                                  const { objRoot, variablePath } = variable;
+
+                                  const oldValue = $stateGet(
+                                    objRoot,
+                                    variablePath
+                                  );
+                                  $stateSet(objRoot, variablePath, !oldValue);
+                                  return !oldValue;
+                                })?.apply(null, [actionArgs]);
+                              })()
+                            : undefined;
+                          if (
+                            $steps["updateMenuOnOff"] != null &&
+                            typeof $steps["updateMenuOnOff"] === "object" &&
+                            typeof $steps["updateMenuOnOff"].then === "function"
+                          ) {
+                            $steps["updateMenuOnOff"] = await $steps[
+                              "updateMenuOnOff"
+                            ];
+                          }
                         }}
                       >
                         <div
@@ -3627,20 +3666,7 @@ function PlasmicAccueil__RenderFunc(props: {
                                   throw e;
                                 }
                               })()
-                            : (() => {
-                                try {
-                                  return !$state.menuOnOff;
-                                } catch (e) {
-                                  if (
-                                    e instanceof TypeError ||
-                                    e?.plasmicType ===
-                                      "PlasmicUndefinedDataError"
-                                  ) {
-                                    return true;
-                                  }
-                                  throw e;
-                                }
-                              })()
+                            : false
                         ) ? (
                           <JamButton
                             data-plasmic-name={"button3"}
@@ -3747,19 +3773,7 @@ function PlasmicAccueil__RenderFunc(props: {
                             }}
                           />
                         ) : null}
-                        {(() => {
-                          try {
-                            return $state.menuOnOff;
-                          } catch (e) {
-                            if (
-                              e instanceof TypeError ||
-                              e?.plasmicType === "PlasmicUndefinedDataError"
-                            ) {
-                              return true;
-                            }
-                            throw e;
-                          }
-                        })() ? (
+                        {false ? (
                           <JamButton
                             data-plasmic-name={"button7"}
                             data-plasmic-override={overrides.button7}
