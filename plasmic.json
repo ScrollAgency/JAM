@@ -2020,6 +2020,19 @@
           "cssFilePath": "plasmic/jam_production_🚀/PlasmicJobCard20.module.css",
           "scheme": "blackbox",
           "componentType": "component"
+        },
+        {
+          "id": "F37yYI20eGKt",
+          "name": "AlertInfo",
+          "type": "managed",
+          "projectId": "f7DE9y7qp46fyCw5nuY8f9",
+          "renderModuleFilePath": "plasmic/jam_production_🚀/PlasmicAlertInfo.tsx",
+          "importSpec": {
+            "modulePath": "AlertInfo.tsx"
+          },
+          "cssFilePath": "plasmic/jam_production_🚀/PlasmicAlertInfo.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
         }
       ],
       "icons": [
@@ -3834,6 +3847,26 @@
           "id": "jm665pQ-hGqh",
           "name": "location-pin-svgrepo-com.svg",
           "filePath": "../public/plasmic/jam_production_🚀/images/locationPinSvgrepoComSvg.svg"
+        },
+        {
+          "id": "O8_KuoQLoGCi",
+          "name": "attachement.png",
+          "filePath": "../public/plasmic/jam_production_🚀/images/attachementPng.png"
+        },
+        {
+          "id": "RdKrNrd_MVjv",
+          "name": "attachement.jpg",
+          "filePath": "../public/plasmic/jam_production_🚀/images/attachementJpg.jpg"
+        },
+        {
+          "id": "p1HKRo9m0_z1",
+          "name": "clock (1).png",
+          "filePath": "../public/plasmic/jam_production_🚀/images/clock1Png.png"
+        },
+        {
+          "id": "giVojYR7HNI3",
+          "name": "clock-svgrepo-com.svg",
+          "filePath": "../public/plasmic/jam_production_🚀/images/clockSvgrepoComSvg.svg"
         }
       ],
       "indirect": false,
@@ -4169,6 +4202,28 @@
           "name": "StripeSubscriptionButton",
           "displayName": "StripeSubscriptionButton",
           "componentImportPath": "./components/forms/StripeSubscriptionButton/StripeSubscriptionButton"
+        }
+      ],
+      "customFunctions": []
+    },
+    {
+      "projectId": "kS7YGZfVr6mU43XDQjXELc",
+      "projectApiToken": "ByNEUEKB7Hd9g2PkeOVot8RZTanYGn3rlmcjYTbULlTb9TEjfypxJ4uDH0HeEMQazKWvfHB4CFNXVgy8YmEyA",
+      "projectName": "react-chartjs-2",
+      "version": ">0.0.0",
+      "cssFilePath": "plasmic/react_chartjs_2/plasmic.module.css",
+      "components": [],
+      "icons": [],
+      "images": [],
+      "indirect": true,
+      "globalContextsFilePath": "",
+      "splitsProviderFilePath": "",
+      "codeComponents": [
+        {
+          "id": "0Qywk3bhW-8",
+          "name": "SimpleChart",
+          "displayName": "hostless-react-chartjs-2-simple-chart",
+          "componentImportPath": "@plasmicpkgs/react-chartjs-2"
         }
       ],
       "customFunctions": []

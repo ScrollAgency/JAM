@@ -1,5 +1,6 @@
 .root:global(.__wab_instance) {
   color: #ededed00;
+  height: 48px;
   position: relative;
   font-family: "DM Sans", sans-serif;
   font-size: 16px;
@@ -9,7 +10,9 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  border-radius: 16px;
   padding: 0px;
+  border: 1px solid var(--token-d-0gEGbakN0M);
 }
 .root[data-hovered]:global(.__wab_instance) {
   display: flex;

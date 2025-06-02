@@ -938,7 +938,7 @@ function PlasmicMesAnnonces__RenderFunc(props: {
                         workingTime={(() => {
                           const __composite = { icon: null, text: null };
                           __composite["icon"] =
-                            "https://site-assets.plasmic.app/09559aac36fd99f7328c58c54917e963.svg";
+                            "https://site-assets.plasmic.app/e0ace4705321f39c98f28e815c1fd071.svg";
                           __composite["text"] = currentItem.working_time;
                           return __composite;
                         })()}
@@ -2809,7 +2809,7 @@ function PlasmicMesAnnonces__RenderFunc(props: {
                                     $state.form.value.short_presentation,
                                     $state.form.value.skill,
                                     $state.form.value.transport_mode,
-                                    $state.form.value.id
+                                    $ctx.SupabaseUser.user.id
                                   ]
                                 },
                                 cacheKey: null,

@@ -99,6 +99,7 @@ import sty from "./PlasmicParametresDeCompte.module.css"; // plasmic-import: urN
 
 import PhPencilSimpleIcon from "./icons/PlasmicIcon__PhPencilSimple"; // plasmic-import: 7xHLZEkolpKE/icon
 import PhTrashIcon from "./icons/PlasmicIcon__PhTrash"; // plasmic-import: juO39VElEpcx/icon
+import ChevronDown2Icon from "./icons/PlasmicIcon__ChevronDown2"; // plasmic-import: ImRzoqJkNumw/icon
 import ChevronDownIcon from "./icons/PlasmicIcon__ChevronDown"; // plasmic-import: yud1FH0Ox1FR/icon
 import CircleIcon from "./icons/PlasmicIcon__Circle"; // plasmic-import: je95h6YoQ2jE/icon
 import GroupIcon from "./icons/PlasmicIcon__Group"; // plasmic-import: yIYn4o5HgDaM/icon
@@ -152,6 +153,7 @@ export type PlasmicParametresDeCompte__OverridesType = {
   select4?: Flex__<typeof Select>;
   select2?: Flex__<typeof AntdSelect>;
   textAreaInput?: Flex__<typeof TextAreaInput>;
+  select3?: Flex__<typeof AntdSelect>;
   select8?: Flex__<typeof AntdSelect>;
   select?: Flex__<typeof Select>;
   textInput4?: Flex__<typeof TextInput>;
@@ -423,6 +425,12 @@ function PlasmicParametresDeCompte__RenderFunc(props: {
         type: "private",
         variableType: "object",
         initFunc: ({ $props, $state, $queries, $ctx }) => ({})
+      },
+      {
+        path: "select3.value",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
       }
     ],
     [$props, $ctx, $refs]
@@ -1739,7 +1747,9 @@ function PlasmicParametresDeCompte__RenderFunc(props: {
                         )}
                         initialValue={(() => {
                           try {
-                            return $queries.getMe?.data[0]?.transport_mode;
+                            return (
+                              $queries.getMe?.data[0]?.transport_mode ?? []
+                            );
                           } catch (e) {
                             if (
                               e instanceof TypeError ||
@@ -1820,10 +1830,10 @@ function PlasmicParametresDeCompte__RenderFunc(props: {
                           showSearch={false}
                           size={"large"}
                           suffixIcon={
-                            <ChevronDownIcon
+                            <ChevronDown2Icon
                               className={classNames(
                                 projectcss.all,
-                                sty.svg__c2PO
+                                sty.svg__bwS
                               )}
                               role={"img"}
                             />
@@ -1912,6 +1922,7 @@ function PlasmicParametresDeCompte__RenderFunc(props: {
                           "__wab_instance",
                           sty.formField__cpEfl
                         )}
+                        initialValue={$queries.getMe?.data[0]?.skill ?? []}
                         label={
                           <div
                             className={classNames(
@@ -1925,6 +1936,74 @@ function PlasmicParametresDeCompte__RenderFunc(props: {
                         }
                         name={"skill"}
                       >
+                        <AntdSelect
+                          data-plasmic-name={"select3"}
+                          data-plasmic-override={overrides.select3}
+                          allowClear={true}
+                          bordered={false}
+                          className={classNames("__wab_instance", sty.select3)}
+                          defaultStylesClassName={classNames(
+                            projectcss.root_reset,
+                            projectcss.plasmic_default_styles,
+                            projectcss.plasmic_mixins,
+                            projectcss.plasmic_tokens,
+                            plasmic_antd_5_hostless_css.plasmic_tokens,
+                            plasmic_library_tailwind_3_4_number_tokens_css.plasmic_tokens,
+                            plasmic_plasmic_rich_components_css.plasmic_tokens
+                          )}
+                          dropdownMatchSelectWidth={true}
+                          mode={"multiple"}
+                          onChange={async (...eventArgs: any) => {
+                            generateStateOnChangeProp($state, [
+                              "select3",
+                              "value"
+                            ]).apply(null, eventArgs);
+                          }}
+                          options={(() => {
+                            try {
+                              return $queries.getSoftSkill.data.map(skill => ({
+                                value: skill.skill,
+                                label: skill.skill
+                              }));
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return [];
+                              }
+                              throw e;
+                            }
+                          })()}
+                          placeholder={
+                            <div
+                              className={classNames(
+                                projectcss.all,
+                                projectcss.__wab_text,
+                                sty.text___4SVtn
+                              )}
+                            >
+                              {"Moyens de transport"}
+                            </div>
+                          }
+                          popupScopeClassName={sty["select3__popup"]}
+                          showSearch={false}
+                          size={"large"}
+                          suffixIcon={
+                            <ChevronDown2Icon
+                              className={classNames(
+                                projectcss.all,
+                                sty.svg___0Bqzq
+                              )}
+                              role={"img"}
+                            />
+                          }
+                          value={generateStateValueProp($state, [
+                            "select3",
+                            "value"
+                          ])}
+                        />
+
                         <AntdSelect
                           data-plasmic-name={"select8"}
                           data-plasmic-override={overrides.select8}
@@ -2413,26 +2492,32 @@ function PlasmicParametresDeCompte__RenderFunc(props: {
                             data-plasmic-override={overrides.content}
                             className={classNames(projectcss.all, sty.content)}
                           >
-                            <Stack__
-                              as={PlasmicImg__}
-                              hasGap={true}
-                              alt={""}
-                              className={classNames(sty.img__f3Ftr)}
-                              displayHeight={"39px"}
-                              displayMaxHeight={"none"}
-                              displayMaxWidth={"100%"}
-                              displayMinHeight={"0"}
-                              displayMinWidth={"0"}
-                              displayWidth={"39px"}
-                              loading={"lazy"}
-                              src={{
-                                src: "/plasmic/jam_production_🚀/images/frame1437254220.svg",
-                                fullWidth: 39,
-                                fullHeight: 39,
-                                aspectRatio: 1
-                              }}
-                            />
-
+                            <div
+                              className={classNames(
+                                projectcss.all,
+                                sty.freeBox__mrjhl
+                              )}
+                            >
+                              <Stack__
+                                as={PlasmicImg__}
+                                hasGap={true}
+                                alt={""}
+                                className={classNames(sty.img__liyK)}
+                                displayHeight={"25px"}
+                                displayMaxHeight={"none"}
+                                displayMaxWidth={"100%"}
+                                displayMinHeight={"0"}
+                                displayMinWidth={"0"}
+                                displayWidth={"25px"}
+                                loading={"lazy"}
+                                src={{
+                                  src: "/plasmic/jam_production_🚀/images/attachementJpg.jpg",
+                                  fullWidth: 512,
+                                  fullHeight: 512,
+                                  aspectRatio: undefined
+                                }}
+                              />
+                            </div>
                             <div
                               className={classNames(
                                 projectcss.all,
@@ -2537,26 +2622,32 @@ function PlasmicParametresDeCompte__RenderFunc(props: {
                           data-plasmic-override={overrides.content5}
                           className={classNames(projectcss.all, sty.content5)}
                         >
-                          <Stack__
-                            as={PlasmicImg__}
-                            hasGap={true}
-                            alt={""}
-                            className={classNames(sty.img__jin6E)}
-                            displayHeight={"39px"}
-                            displayMaxHeight={"none"}
-                            displayMaxWidth={"100%"}
-                            displayMinHeight={"0"}
-                            displayMinWidth={"0"}
-                            displayWidth={"39px"}
-                            loading={"lazy"}
-                            src={{
-                              src: "/plasmic/jam_production_🚀/images/frame1437254220.svg",
-                              fullWidth: 39,
-                              fullHeight: 39,
-                              aspectRatio: 1
-                            }}
-                          />
-
+                          <div
+                            className={classNames(
+                              projectcss.all,
+                              sty.freeBox__cmIex
+                            )}
+                          >
+                            <Stack__
+                              as={PlasmicImg__}
+                              hasGap={true}
+                              alt={""}
+                              className={classNames(sty.img__jin6E)}
+                              displayHeight={"25px"}
+                              displayMaxHeight={"none"}
+                              displayMaxWidth={"100%"}
+                              displayMinHeight={"0"}
+                              displayMinWidth={"0"}
+                              displayWidth={"25px"}
+                              loading={"lazy"}
+                              src={{
+                                src: "/plasmic/jam_production_🚀/images/attachementJpg.jpg",
+                                fullWidth: 512,
+                                fullHeight: 512,
+                                aspectRatio: undefined
+                              }}
+                            />
+                          </div>
                           <div
                             className={classNames(
                               projectcss.all,
@@ -2802,26 +2893,32 @@ function PlasmicParametresDeCompte__RenderFunc(props: {
                               sty.freeBox__ywp0V
                             )}
                           >
-                            <Stack__
-                              as={PlasmicImg__}
-                              hasGap={true}
-                              alt={""}
-                              className={classNames(sty.img__nve8Q)}
-                              displayHeight={"39px"}
-                              displayMaxHeight={"none"}
-                              displayMaxWidth={"100%"}
-                              displayMinHeight={"0"}
-                              displayMinWidth={"0"}
-                              displayWidth={"39px"}
-                              loading={"lazy"}
-                              src={{
-                                src: "/plasmic/jam_production_🚀/images/frame1437254220.svg",
-                                fullWidth: 39,
-                                fullHeight: 39,
-                                aspectRatio: 1
-                              }}
-                            />
-
+                            <div
+                              className={classNames(
+                                projectcss.all,
+                                sty.freeBox__oWGo
+                              )}
+                            >
+                              <Stack__
+                                as={PlasmicImg__}
+                                hasGap={true}
+                                alt={""}
+                                className={classNames(sty.img__hAnWf)}
+                                displayHeight={"25px"}
+                                displayMaxHeight={"none"}
+                                displayMaxWidth={"100%"}
+                                displayMinHeight={"0"}
+                                displayMinWidth={"0"}
+                                displayWidth={"25px"}
+                                loading={"lazy"}
+                                src={{
+                                  src: "/plasmic/jam_production_🚀/images/attachementJpg.jpg",
+                                  fullWidth: 512,
+                                  fullHeight: 512,
+                                  aspectRatio: undefined
+                                }}
+                              />
+                            </div>
                             <div
                               className={classNames(
                                 projectcss.all,
@@ -2928,26 +3025,32 @@ function PlasmicParametresDeCompte__RenderFunc(props: {
                           data-plasmic-override={overrides.content3}
                           className={classNames(projectcss.all, sty.content3)}
                         >
-                          <Stack__
-                            as={PlasmicImg__}
-                            hasGap={true}
-                            alt={""}
-                            className={classNames(sty.img__rjW47)}
-                            displayHeight={"39px"}
-                            displayMaxHeight={"none"}
-                            displayMaxWidth={"100%"}
-                            displayMinHeight={"0"}
-                            displayMinWidth={"0"}
-                            displayWidth={"39px"}
-                            loading={"lazy"}
-                            src={{
-                              src: "/plasmic/jam_production_🚀/images/frame1437254220.svg",
-                              fullWidth: 39,
-                              fullHeight: 39,
-                              aspectRatio: 1
-                            }}
-                          />
-
+                          <div
+                            className={classNames(
+                              projectcss.all,
+                              sty.freeBox__ksiuw
+                            )}
+                          >
+                            <Stack__
+                              as={PlasmicImg__}
+                              hasGap={true}
+                              alt={""}
+                              className={classNames(sty.img__zf67Z)}
+                              displayHeight={"25px"}
+                              displayMaxHeight={"none"}
+                              displayMaxWidth={"100%"}
+                              displayMinHeight={"0"}
+                              displayMinWidth={"0"}
+                              displayWidth={"25px"}
+                              loading={"lazy"}
+                              src={{
+                                src: "/plasmic/jam_production_🚀/images/attachementJpg.jpg",
+                                fullWidth: 512,
+                                fullHeight: 512,
+                                aspectRatio: undefined
+                              }}
+                            />
+                          </div>
                           <div
                             className={classNames(
                               projectcss.all,
@@ -3252,82 +3355,85 @@ function PlasmicParametresDeCompte__RenderFunc(props: {
                         </FormWrapper>
                       );
                     })()}
-                  </Stack__>
-                  <Stack__
-                    as={"div"}
-                    data-plasmic-name={"card4"}
-                    data-plasmic-override={overrides.card4}
-                    hasGap={true}
-                    className={classNames(projectcss.all, sty.card4)}
-                  >
-                    <DeleteAccount2
-                      data-plasmic-name={"deleteAccount2"}
-                      data-plasmic-override={overrides.deleteAccount2}
-                      className={classNames(
-                        "__wab_instance",
-                        sty.deleteAccount2
-                      )}
-                      color={"white"}
-                      iconStart={true}
-                      label={
-                        <div
-                          className={classNames(
-                            projectcss.all,
-                            projectcss.__wab_text,
-                            sty.text__sk2Jw
-                          )}
-                        >
-                          {"supprimer le compte"}
-                        </div>
-                      }
-                      onClick={async event => {
-                        const $steps = {};
-
-                        $steps["updateSupprCompteIsOpen"] = true
-                          ? (() => {
-                              const actionArgs = {
-                                variable: {
-                                  objRoot: $state,
-                                  variablePath: ["supprCompte", "isOpen"]
-                                },
-                                operation: 0,
-                                value: true
-                              };
-                              return (({
-                                variable,
-                                value,
-                                startIndex,
-                                deleteCount
-                              }) => {
-                                if (!variable) {
-                                  return;
-                                }
-                                const { objRoot, variablePath } = variable;
-
-                                $stateSet(objRoot, variablePath, value);
-                                return value;
-                              })?.apply(null, [actionArgs]);
-                            })()
-                          : undefined;
-                        if (
-                          $steps["updateSupprCompteIsOpen"] != null &&
-                          typeof $steps["updateSupprCompteIsOpen"] ===
-                            "object" &&
-                          typeof $steps["updateSupprCompteIsOpen"].then ===
-                            "function"
-                        ) {
-                          $steps["updateSupprCompteIsOpen"] = await $steps[
-                            "updateSupprCompteIsOpen"
-                          ];
+                    <Stack__
+                      as={"div"}
+                      data-plasmic-name={"card4"}
+                      data-plasmic-override={overrides.card4}
+                      hasGap={true}
+                      className={classNames(projectcss.all, sty.card4)}
+                    >
+                      <DeleteAccount2
+                        data-plasmic-name={"deleteAccount2"}
+                        data-plasmic-override={overrides.deleteAccount2}
+                        className={classNames(
+                          "__wab_instance",
+                          sty.deleteAccount2
+                        )}
+                        color={"white"}
+                        iconStart={true}
+                        label={
+                          <div
+                            className={classNames(
+                              projectcss.all,
+                              projectcss.__wab_text,
+                              sty.text__sk2Jw
+                            )}
+                          >
+                            {"supprimer le compte"}
+                          </div>
                         }
-                      }}
-                      start={
-                        <PhTrashIcon
-                          className={classNames(projectcss.all, sty.svg__o4Hmo)}
-                          role={"img"}
-                        />
-                      }
-                    />
+                        onClick={async event => {
+                          const $steps = {};
+
+                          $steps["updateSupprCompteIsOpen"] = true
+                            ? (() => {
+                                const actionArgs = {
+                                  variable: {
+                                    objRoot: $state,
+                                    variablePath: ["supprCompte", "isOpen"]
+                                  },
+                                  operation: 0,
+                                  value: true
+                                };
+                                return (({
+                                  variable,
+                                  value,
+                                  startIndex,
+                                  deleteCount
+                                }) => {
+                                  if (!variable) {
+                                    return;
+                                  }
+                                  const { objRoot, variablePath } = variable;
+
+                                  $stateSet(objRoot, variablePath, value);
+                                  return value;
+                                })?.apply(null, [actionArgs]);
+                              })()
+                            : undefined;
+                          if (
+                            $steps["updateSupprCompteIsOpen"] != null &&
+                            typeof $steps["updateSupprCompteIsOpen"] ===
+                              "object" &&
+                            typeof $steps["updateSupprCompteIsOpen"].then ===
+                              "function"
+                          ) {
+                            $steps["updateSupprCompteIsOpen"] = await $steps[
+                              "updateSupprCompteIsOpen"
+                            ];
+                          }
+                        }}
+                        start={
+                          <PhTrashIcon
+                            className={classNames(
+                              projectcss.all,
+                              sty.svg__o4Hmo
+                            )}
+                            role={"img"}
+                          />
+                        }
+                      />
+                    </Stack__>
                   </Stack__>
                 </div>
               </Stack__>
@@ -3700,6 +3806,7 @@ const PlasmicDescendants = {
     "select4",
     "select2",
     "textAreaInput",
+    "select3",
     "select8",
     "select",
     "textInput4",
@@ -3763,6 +3870,7 @@ const PlasmicDescendants = {
     "select4",
     "select2",
     "textAreaInput",
+    "select3",
     "select8",
     "select",
     "textInput4",
@@ -3822,6 +3930,7 @@ const PlasmicDescendants = {
     "select4",
     "select2",
     "textAreaInput",
+    "select3",
     "select8",
     "select",
     "textInput4",
@@ -3875,6 +3984,7 @@ const PlasmicDescendants = {
     "select4",
     "select2",
     "textAreaInput",
+    "select3",
     "select8",
     "select",
     "textInput4"
@@ -3918,6 +4028,7 @@ const PlasmicDescendants = {
     "select4",
     "select2",
     "textAreaInput",
+    "select3",
     "select8",
     "select",
     "textInput4"
@@ -3936,6 +4047,7 @@ const PlasmicDescendants = {
   select4: ["select4"],
   select2: ["select2"],
   textAreaInput: ["textAreaInput"],
+  select3: ["select3"],
   select8: ["select8"],
   select: ["select"],
   textInput4: ["textInput4"],
@@ -4014,7 +4126,7 @@ const PlasmicDescendants = {
     "card4",
     "deleteAccount2"
   ],
-  card3: ["card3", "form", "resetPassword"],
+  card3: ["card3", "form", "resetPassword", "card4", "deleteAccount2"],
   form: ["form", "resetPassword"],
   resetPassword: ["resetPassword"],
   card4: ["card4", "deleteAccount2"],
@@ -4062,6 +4174,7 @@ type NodeDefaultElementType = {
   select4: typeof Select;
   select2: typeof AntdSelect;
   textAreaInput: typeof TextAreaInput;
+  select3: typeof AntdSelect;
   select8: typeof AntdSelect;
   select: typeof Select;
   textInput4: typeof TextInput;
@@ -4185,6 +4298,7 @@ export const PlasmicParametresDeCompte = Object.assign(
     select4: makeNodeComponent("select4"),
     select2: makeNodeComponent("select2"),
     textAreaInput: makeNodeComponent("textAreaInput"),
+    select3: makeNodeComponent("select3"),
     select8: makeNodeComponent("select8"),
     select: makeNodeComponent("select"),
     textInput4: makeNodeComponent("textInput4"),

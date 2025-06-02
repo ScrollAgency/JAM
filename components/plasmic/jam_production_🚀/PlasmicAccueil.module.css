@@ -2481,7 +2481,11 @@
     max-width: none;
     width: 100%;
     min-width: 0;
+    display: none;
   }
+}
+.jobCard202:global(.__wab_instance) {
+  max-width: 100%;
 }
 .section2 {
   width: 100%;
@@ -3429,7 +3433,7 @@
     margin-top: var(--token-gzhQ56cI3Art);
   }
 }
-.buttonBase {
+.employerAccessButton {
   background: rgba(255, 255, 255, 1);
   box-shadow: inset 0px 0px 0px 1px rgba(0, 36, 0, 1);
   filter: drop-shadow(0px 1px 1px rgba(16, 24, 40, 0.05000000074505806));
@@ -3442,7 +3446,7 @@
   border-radius: 16px;
   padding: 10px 16px;
 }
-.buttonBase > :global(.__wab_flex-container) {
+.employerAccessButton > :global(.__wab_flex-container) {
   flex-direction: row;
   align-items: flex-start;
   justify-content: center;
@@ -3450,10 +3454,13 @@
   margin-left: calc(0px - 8px);
   width: calc(100% + 8px);
 }
-.buttonBase > :global(.__wab_flex-container) > *,
-.buttonBase > :global(.__wab_flex-container) > :global(.__wab_slot) > *,
-.buttonBase > :global(.__wab_flex-container) > picture > img,
-.buttonBase
+.employerAccessButton > :global(.__wab_flex-container) > *,
+.employerAccessButton
+  > :global(.__wab_flex-container)
+  > :global(.__wab_slot)
+  > *,
+.employerAccessButton > :global(.__wab_flex-container) > picture > img,
+.employerAccessButton
   > :global(.__wab_flex-container)
   > :global(.__wab_slot)
   > picture
@@ -5632,8 +5639,9 @@
 }
 .formField__qQzPb:global(.__wab_instance) {
   width: 100%;
-  margin-bottom: 24px;
+  padding-bottom: 24px;
   min-width: 0;
+  margin: 0px;
 }
 .textInput4:global(.__wab_instance):global(.__wab_instance) {
   max-width: 100%;
@@ -5647,12 +5655,12 @@
   height: auto;
   max-width: 100%;
   min-width: 0;
-  padding: 0px;
+  padding: 0px 0px 24px;
 }
 .telephone > :global(.__wab_flex-container) {
   flex-direction: row;
-  align-items: stretch;
-  justify-content: center;
+  align-items: flex-end;
+  justify-content: flex-start;
   flex-wrap: nowrap;
   align-content: stretch;
   min-width: 0;
@@ -5671,7 +5679,10 @@
 }
 .formField___4NfFl:global(.__wab_instance) {
   width: auto;
-  margin-bottom: 19px;
+  margin-bottom: 0px;
+  margin-top: 0px;
+  margin-right: 0px;
+  margin-left: calc(0px + var(--token-PKf5XaFatup3)) !important;
 }
 .phoneSelector:global(.__wab_instance) {
   max-width: 100%;
@@ -5681,8 +5692,12 @@
 }
 .formField___7M9Gr:global(.__wab_instance) {
   width: 100%;
-  margin-bottom: 19px;
+  margin-top: 0px;
+  margin-right: 0px;
+  margin-bottom: 0px;
+  margin-left: calc(0px + var(--token-PKf5XaFatup3)) !important;
   min-width: 0;
+  padding: 0px;
 }
 .text__i4Sm9 {
   display: none;
@@ -5690,14 +5705,15 @@
 .textInput3:global(.__wab_instance):global(.__wab_instance) {
   max-width: 100%;
   height: var(--token--_xqF59Qmd-S);
+  margin: 0px;
 }
 .formField__lwGlt:global(.__wab_instance) {
   width: 100%;
-  padding-bottom: 8px;
   color: var(--token-OIYWLyLPYWym);
   font-family: "DM Sans", sans-serif;
   font-size: 16px;
   min-width: 0;
+  padding: 0px 0px 8px;
   margin: 0px;
 }
 .text__dlbwm {
@@ -5894,7 +5910,7 @@
 }
 .formField__mFsz0:global(.__wab_instance) {
   width: 100%;
-  margin-top: 10px;
+  display: block;
   min-width: 0;
 }
 .freeBox__mS8Kr {

@@ -56,7 +56,7 @@
   padding: var(--token-UY9kPePLUyPt);
 }
 .ariaSwitch[data-selected] .switchIndicator {
-  background: var(--token--V1yrEhoM54H);
+  background: var(--token-XkcIRFBUIQDs);
 }
 .ariaSwitch[data-focus-visible] .switchIndicator {
   outline-width: 2px;

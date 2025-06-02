@@ -315,7 +315,13 @@ function PlasmicMesCandidatures__RenderFunc(props: {
                   <React.Fragment>
                     {(() => {
                       try {
-                        return `${$queries.getJobApplicationsByUser.data.length} candidatures`;
+                        return `${
+                          $queries.getJobApplicationsByUser.data.length
+                        } candidature${
+                          $queries.getJobApplicationsByUser.data.length > 1
+                            ? "s"
+                            : ""
+                        }`;
                       } catch (e) {
                         if (
                           e instanceof TypeError ||
@@ -469,7 +475,7 @@ function PlasmicMesCandidatures__RenderFunc(props: {
                         ];
                       }
                     }}
-                    pageSize={10}
+                    pageSize={5}
                     showActionsColumn={false}
                     statusConfig={{
                       en_attente: { label: "En attente", color: "#E6E6E6" },

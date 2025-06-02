@@ -132,7 +132,7 @@ export type PlasmicMesAlertes__OverridesType = {
   tags?: Flex__<"div">;
   deleteEdit?: Flex__<"div">;
   mobileNavbarBottom?: Flex__<typeof MobileNavbarBottom>;
-  createAlert?: Flex__<typeof Modal>;
+  createEditAlert?: Flex__<typeof Modal>;
   button?: Flex__<typeof JamButton>;
   alerteModal?: Flex__<"div">;
   modalTitle?: Flex__<"div">;
@@ -205,7 +205,7 @@ function PlasmicMesAlertes__RenderFunc(props: {
   const stateSpecs: Parameters<typeof useDollarState>[0] = React.useMemo(
     () => [
       {
-        path: "createAlert.isOpen",
+        path: "createEditAlert.isOpen",
         type: "private",
         variableType: "boolean",
         initFunc: ({ $props, $state, $queries, $ctx }) => false
@@ -244,7 +244,7 @@ function PlasmicMesAlertes__RenderFunc(props: {
         path: "deleteAlert.isOpen",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $ctx }) => false
       },
       {
         path: "currentAlert",
@@ -340,7 +340,7 @@ function PlasmicMesAlertes__RenderFunc(props: {
         sourceId: "3fRequBPthJKGmQ2njgcZi",
         opId: "aa010057-e02c-4841-8097-37c029a66625",
         userArgs: {
-          headers: [$state.form.value.city]
+          headers: [$state.form?.value?.city]
         },
         cacheKey: `plasmic.$.aa010057-e02c-4841-8097-37c029a66625.$.`,
         invalidatedKeys: null,
@@ -495,7 +495,7 @@ function PlasmicMesAlertes__RenderFunc(props: {
                           const actionArgs = {
                             variable: {
                               objRoot: $state,
-                              variablePath: ["createAlert", "isOpen"]
+                              variablePath: ["createEditAlert", "isOpen"]
                             },
                             operation: 0,
                             value: true
@@ -717,7 +717,7 @@ function PlasmicMesAlertes__RenderFunc(props: {
                               const actionArgs = {
                                 variable: {
                                   objRoot: $state,
-                                  variablePath: ["createAlert", "isOpen"]
+                                  variablePath: ["createEditAlert", "isOpen"]
                                 },
                                 operation: 0,
                                 value: true
@@ -946,12 +946,12 @@ function PlasmicMesAlertes__RenderFunc(props: {
                                       <PlasmicImg__
                                         alt={""}
                                         className={classNames(sty.img__r7NoV)}
-                                        displayHeight={"10px"}
+                                        displayHeight={"14px"}
                                         displayMaxHeight={"none"}
                                         displayMaxWidth={"100%"}
                                         displayMinHeight={"0"}
                                         displayMinWidth={"0"}
-                                        displayWidth={"10px"}
+                                        displayWidth={"14px"}
                                         loading={"lazy"}
                                         src={{
                                           src: "/plasmic/jam_production_🚀/images/image7.svg",
@@ -1171,8 +1171,7 @@ function PlasmicMesAlertes__RenderFunc(props: {
                                             currentItem.search_criteria
                                               .job_title +
                                             "&city=" +
-                                            currentItem.search_criteria
-                                              .department +
+                                            currentItem.search_criteria.city +
                                             "&work_times=" +
                                             currentItem.search_criteria
                                               .work_times +
@@ -1330,7 +1329,10 @@ function PlasmicMesAlertes__RenderFunc(props: {
                                     const actionArgs = {
                                       variable: {
                                         objRoot: $state,
-                                        variablePath: ["createAlert", "isOpen"]
+                                        variablePath: [
+                                          "createEditAlert",
+                                          "isOpen"
+                                        ]
                                       },
                                       operation: 0,
                                       value: true
@@ -1419,9 +1421,9 @@ function PlasmicMesAlertes__RenderFunc(props: {
           />
 
           <Modal
-            data-plasmic-name={"createAlert"}
-            data-plasmic-override={overrides.createAlert}
-            className={classNames("__wab_instance", sty.createAlert)}
+            data-plasmic-name={"createEditAlert"}
+            data-plasmic-override={overrides.createEditAlert}
+            className={classNames("__wab_instance", sty.createEditAlert)}
             closeOnBackdropClick={false}
             content={
               <Stack__
@@ -1600,7 +1602,7 @@ function PlasmicMesAlertes__RenderFunc(props: {
                             const actionArgs = {
                               variable: {
                                 objRoot: $state,
-                                variablePath: ["createAlert", "isOpen"]
+                                variablePath: ["createEditAlert", "isOpen"]
                               },
                               operation: 0,
                               value: false
@@ -1767,7 +1769,7 @@ function PlasmicMesAlertes__RenderFunc(props: {
                           sty.formField__p9DDn
                         )}
                         initialValue={
-                          $state.currentAlert.search_criteria?.department ?? ""
+                          $state.currentAlert.search_criteria?.city ?? ""
                         }
                         label={"Ville"}
                         name={"city"}
@@ -1782,8 +1784,7 @@ function PlasmicMesAlertes__RenderFunc(props: {
                           defaultValue={(() => {
                             try {
                               return (
-                                $state.currentAlert.search_criteria
-                                  ?.department ?? ""
+                                $state.currentAlert.search_criteria?.city ?? ""
                               );
                             } catch (e) {
                               if (
@@ -2356,7 +2357,7 @@ function PlasmicMesAlertes__RenderFunc(props: {
                             const actionArgs = {
                               variable: {
                                 objRoot: $state,
-                                variablePath: ["createAlert", "isOpen"]
+                                variablePath: ["createEditAlert", "isOpen"]
                               },
                               operation: 0,
                               value: false
@@ -2398,11 +2399,14 @@ function PlasmicMesAlertes__RenderFunc(props: {
                 ) : null}
               </React.Fragment>
             }
-            isOpen={generateStateValueProp($state, ["createAlert", "isOpen"])}
+            isOpen={generateStateValueProp($state, [
+              "createEditAlert",
+              "isOpen"
+            ])}
             noTrigger={true}
             onOpenChange={async (...eventArgs: any) => {
               generateStateOnChangeProp($state, [
-                "createAlert",
+                "createEditAlert",
                 "isOpen"
               ]).apply(null, eventArgs);
 
@@ -2554,7 +2558,6 @@ function PlasmicMesAlertes__RenderFunc(props: {
                         ];
                       }
                     }}
-                    size={"small"}
                     type={"bordered"}
                   />
 
@@ -2721,7 +2724,7 @@ const PlasmicDescendants = {
     "tags",
     "deleteEdit",
     "mobileNavbarBottom",
-    "createAlert",
+    "createEditAlert",
     "button",
     "alerteModal",
     "modalTitle",
@@ -2796,8 +2799,8 @@ const PlasmicDescendants = {
   tags: ["tags"],
   deleteEdit: ["deleteEdit"],
   mobileNavbarBottom: ["mobileNavbarBottom"],
-  createAlert: [
-    "createAlert",
+  createEditAlert: [
+    "createEditAlert",
     "button",
     "alerteModal",
     "modalTitle",
@@ -2900,7 +2903,7 @@ type NodeDefaultElementType = {
   tags: "div";
   deleteEdit: "div";
   mobileNavbarBottom: typeof MobileNavbarBottom;
-  createAlert: typeof Modal;
+  createEditAlert: typeof Modal;
   button: typeof JamButton;
   alerteModal: "div";
   modalTitle: "div";
@@ -3000,7 +3003,7 @@ export const PlasmicMesAlertes = Object.assign(
     tags: makeNodeComponent("tags"),
     deleteEdit: makeNodeComponent("deleteEdit"),
     mobileNavbarBottom: makeNodeComponent("mobileNavbarBottom"),
-    createAlert: makeNodeComponent("createAlert"),
+    createEditAlert: makeNodeComponent("createEditAlert"),
     button: makeNodeComponent("button"),
     alerteModal: makeNodeComponent("alerteModal"),
     modalTitle: makeNodeComponent("modalTitle"),

@@ -239,16 +239,16 @@
 }
 .jobCard:global(.__wab_instance) {
   object-fit: cover;
-  height: 100%;
+  height: 330px;
   display: block;
   width: 361px;
   position: relative;
   left: auto;
   top: auto;
-  min-height: 244px;
   cursor: pointer;
+  flex-shrink: 0;
   padding: 16px;
-  border: 2px solid var(--token-ovRm8DFM9H8a);
+  border: 2px solid #ff6990;
 }
 @media (min-width: 0px) and (max-width: 768px) {
   .jobCard:global(.__wab_instance) {
@@ -265,7 +265,7 @@
   left: 313px;
   top: 22px;
   cursor: pointer;
-  color: var(--token-kSvLe56WmiDs);
+  color: #ff6990;
   flex-shrink: 0;
 }
 @media (min-width: 0px) and (max-width: 768px) {
