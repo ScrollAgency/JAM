@@ -543,6 +543,30 @@ export const DataGridV2: React.FC<DataGridV2Props> = ({
                 >
                   <span className={styles.headerContent}>
                     {column === 'actions' ? 'Actions' : (columnHeaders[column]?.label || columnLabels[column] || column)}
+                    {column !== 'actions' && (
+                      <span style={{ display: 'flex', flexDirection: 'column', marginLeft: 0 }}>
+                        <svg
+                          width="12"
+                          height="12"
+                          viewBox="0 0 12 12"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                          style={{ color: sort.field === column && sort.direction === 'asc' ? '#002402' : '#BDBDBD', marginBottom: '-2px' }}
+                        >
+                          <path d="M6 3L9 6H3L6 3Z" fill="currentColor" />
+                        </svg>
+                        <svg
+                          width="12"
+                          height="12"
+                          viewBox="0 0 12 12"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                          style={{ color: sort.field === column && sort.direction === 'desc' ? '#002402' : '#BDBDBD', marginTop: '-2px' }}
+                        >
+                          <path d="M6 9L3 6H9L6 9Z" fill="currentColor" />
+                        </svg>
+                      </span>
+                    )}
                     {columnHeaders[column]?.icon}
                     {columnHeaders[column]?.tooltip && (
                       <span className={styles.tooltip}>{columnHeaders[column]?.tooltip}</span>
