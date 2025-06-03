@@ -1,7 +1,6 @@
-import React, { useEffect, useRef, useState, useCallback } from 'react';
+import React, { useEffect, useRef, useState, useCallback, useMemo } from 'react';
 import mapboxgl from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
-import './Map.module.css';
 
 interface MarkerData {
    latitude: number;
@@ -22,8 +21,8 @@ interface MarkerData {
    sector_activity?: string;
    is_last_minute?: boolean;
    is_applied?: boolean;
-   postal_code?: string;
    is_liked?: boolean;
+   postal_code?: string;
 }
 
 interface MapboxProps {
@@ -39,33 +38,31 @@ const Mapbox: React.FC<MapboxProps> = ({
    mapStyle = 'mapbox://styles/mapbox/streets-v11',
    latitude = 48.8566,
    longitude = 2.3522,
-   zoom = 9,
+   zoom = 15,
    markers = [],
    className = '',
 }) => {
-   const mapContainerRef = useRef<HTMLDivElement | null>(null);
+   const mapContainerRef = useRef<HTMLDivElement>(null);
    const mapRef = useRef<mapboxgl.Map | null>(null);
    const markersRef = useRef<Record<string, mapboxgl.Marker>>({});
    const [mapLoaded, setMapLoaded] = useState(false);
 
-   const calculateMarkerSize = useCallback((zoom: number) => {
-      const minSize = 20;
-      const maxSize = 40;
-      const minZoom = 5;
-      const maxZoom = 15;
-      const clampedZoom = Math.min(Math.max(zoom, minZoom), maxZoom);
-      return minSize + ((clampedZoom - minZoom) / (maxZoom - minZoom)) * (maxSize - minSize);
+   const accessToken = process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN;
+
+   const calculateMarkerSize = useCallback((zoomLevel: number) => {
+      const minZoom = 5, maxZoom = 15;
+      const minSize = 20, maxSize = 40;
+      const clamped = Math.min(Math.max(zoomLevel, minZoom), maxZoom);
+      return minSize + ((clamped - minZoom) / (maxZoom - minZoom)) * (maxSize - minSize);
    }, []);
 
+   const today = useMemo(() => new Date().toISOString().slice(0, 10), []);
 
-
-
-
-   // 1. Créer la carte 
+   // === 1. Initialisation de la carte ===
    useEffect(() => {
-      if (!mapContainerRef.current || mapRef.current || !process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN) return;
+      if (!mapContainerRef.current || mapRef.current || !accessToken) return;
 
-      mapboxgl.accessToken = process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN;
+      mapboxgl.accessToken = accessToken;
 
       const map = new mapboxgl.Map({
          container: mapContainerRef.current,
@@ -79,14 +76,11 @@ const Mapbox: React.FC<MapboxProps> = ({
 
       map.on('load', () => {
          setMapLoaded(true);
-
          map.on('zoom', () => {
-            const currentZoom = map.getZoom();
-            const size = calculateMarkerSize(currentZoom);
-            document.querySelectorAll('.custom-marker').forEach((marker) => {
-               const el = marker as HTMLElement;
-               el.style.width = `${size}px`;
-               el.style.height = `${size}px`;
+            const newSize = calculateMarkerSize(map.getZoom());
+            document.querySelectorAll<HTMLElement>('.custom-marker').forEach((el) => {
+               el.style.width = `${newSize}px`;
+               el.style.height = `${newSize}px`;
             });
          });
       });
@@ -97,156 +91,91 @@ const Mapbox: React.FC<MapboxProps> = ({
          map.remove();
          mapRef.current = null;
       };
-   }, [mapStyle, calculateMarkerSize]);
+   }, [accessToken, mapStyle, calculateMarkerSize]);
 
-
-
-
-
-   // 2. Recentrer la carte si lat/lng changent
+   // === 2. Recentrage si lat/lng changent ===
    useEffect(() => {
       if (mapRef.current && mapLoaded) {
          mapRef.current.flyTo({ center: [longitude, latitude], essential: true });
       }
    }, [latitude, longitude, mapLoaded]);
 
-
-
-
-
-   // 3. Affichage des marqueurs
+   // === 3. Affichage des marqueurs ===
    useEffect(() => {
-      if (!mapRef.current || !mapLoaded || markers.length === 0) return;
+      if (!mapRef.current || !mapLoaded) return;
 
-      Object.values(markersRef.current).forEach((marker) => marker.remove());
+      // Supprimer les marqueurs précédents
+      Object.values(markersRef.current).forEach((m) => m.remove());
       markersRef.current = {};
 
-      markers.forEach((markerData) => {
+      // Ajouter les nouveaux marqueurs uniquement si markers est non vide
+      if (markers.length === 0) return;
+
+      markers.forEach((data) => {
          const {
-            latitude,
-            longitude,
-            postal_code,
-            state,
-            title,
-            location,
-            created_at,
-            company_name,
-            logo_file,
-            contract_type,
-            working_time,
-            salary,
-            work_mode,
-            sector_activity,
-            is_last_minute,
-            is_applied,
-            is_liked,
-         } = markerData;
+            latitude, longitude, title, logo_file, location, company_name,
+            contract_type, working_time, salary, work_mode, created_at,
+            sector_activity, is_applied, is_last_minute, is_liked, postal_code,
+         } = data;
 
-         const today = new Date().toISOString().slice(0, 10); // "2025-05-27"
-         const createdDate = created_at?.slice(0, 10); // extrait la date
+         const createdDate = created_at?.slice(0, 10);
+         const markerState =
+            is_last_minute ? 'last_minute' :
+               createdDate === today ? 'new' :
+                  is_applied ? 'applied' :
+                     is_liked ? 'liked' : 'base';
 
-         let markerState = 'base';
+         const el = document.createElement('div');
+         el.className = `custom-marker ${markerState}`;
+         const size = calculateMarkerSize(mapRef.current ? mapRef.current.getZoom() : zoom);
+         Object.assign(el.style, {
+            width: `${size}px`,
+            height: `${size}px`,
+            backgroundSize: 'cover',
+         });
 
-         if (is_last_minute) {
-            markerState = 'last_minute';
-         } else if (createdDate === today) {
-            markerState = 'new';
-         } else if (is_applied) {
-            markerState = 'applied';
-         } else if (is_liked) {
-            markerState = 'liked';
-         } else {
-            markerState = 'base';
-         }
+         const popup = new mapboxgl.Popup({ offset: 25 }).setHTML(`
+        ${markerState === 'applied' ? `
+          <div class="applied-job">
+            <img src="https://idwomihieftgogbgivic.supabase.co/storage/v1/object/public/img//Vector.svg"/>
+            <span class="state-job-title">POSTULÉ</span>
+          </div>
+        ` : ''}
+        ${markerState === 'new' ? '<div class="new-job">NOUVEAU</div>' : ''}
+        ${is_last_minute ? `
+          <div class="state-job">
+            <img src="//idwomihieftgogbgivic.supabase.co/storage/v1/object/public/img/ph_clock-countdown-fill.svg" alt="Countdown Icon" />
+            <span class="state-job-title">LAST MINUTE</span>
+          </div>
+        ` : ''}
+        <img class="company_logo" src="${logo_file}" alt="${title}" />
+        <h3>${title || 'Titre non défini'}</h3>
+        <div class="location">
+          <img src="//idwomihieftgogbgivic.supabase.co/storage/v1/object/public/img/ph_map-pin.svg" class="w-4 h-4" />
+          <p>${location || 'Non définie'}${postal_code ? ` (${postal_code.slice(0, 2)})` : ''}${company_name ? `, ${company_name}` : ''}</p>
+        </div>
+        <div class="popup-info">
+          <div><img src="https://idwomihieftgogbgivic.supabase.co/storage/v1/object/public/img//ph_briefcase.svg"> ${sector_activity || 'N/A'}</div>
+          <div><img src="https://idwomihieftgogbgivic.supabase.co/storage/v1/object/public/img//ph_file-text.svg"> ${contract_type || 'N/A'}</div>
+          <div><img src="https://idwomihieftgogbgivic.supabase.co/storage/v1/object/public/img//ph_clock.svg"> ${working_time || 'N/A'}</div>
+          <div><img src="https://idwomihieftgogbgivic.supabase.co/storage/v1/object/public/img//ph_coins-light.svg"> ${salary || 'N/A'}</div>
+          <div><img src="https://idwomihieftgogbgivic.supabase.co/storage/v1/object/public/img//ph_office-chair.svg"> ${work_mode || 'N/A'}</div>
+        </div>
+      `);
 
+         popup.on('open', () => {
+            const content = document.querySelector('.mapboxgl-popup-content');
+            if (content) content.classList.add(`${markerState.replace('_', '-')}-border`);
+         });
 
-
-         const markerElement = document.createElement('div');
-         markerElement.className = `custom-marker ${markerState}`;
-         const currentZoom = mapRef.current!.getZoom();
-         const size = calculateMarkerSize(currentZoom);
-         markerElement.style.width = `${size}px`;
-         markerElement.style.height = `${size}px`;
-         markerElement.style.backgroundSize = 'cover';
-
-         const popupHtml = `
-            
-            ${markerState === 'applied' ? '<div class="applied-job">POSTULÉ</div>' : ''}
-            ${markerState === 'new' ? '<div class="new-job">NOUVEAU</div>' : ''}       
-            ${is_last_minute ? `
-               <div class="state-job">
-                  <img src="//idwomihieftgogbgivic.supabase.co/storage/v1/object/public/img/ph_clock-countdown-fill.svg" alt="Countdown Icon" />
-                  <span class="state-job-title">LAST MINUTE</span>
-               </div>
-            ` : ''}
-
-            ${state === 'liked' ? '<div class="popup-img">Favori</div>' : ''}
-
-
-
-            <img class="company_logo" src="${logo_file}" alt="${title}" />
-
-            <h3>${title || 'Titre non défini'}</h3>
-
-
-            <div class="location">
-               <img
-                  src="//idwomihieftgogbgivic.supabase.co/storage/v1/object/public/img/ph_map-pin.svg"
-                  class="w-4 h-4"
-                  alt="Localisation"
-               />
-               <p>
-                  ${location || 'Localisation non définie'}${postal_code ? ` (${postal_code.slice(0, 2)})` : ''} ${company_name ? `, ${company_name}` : ''}
-               </p>
-            </div>
-
-
-
-
-
-            <div class="popup-info">
-               <div><img src="https://idwomihieftgogbgivic.supabase.co/storage/v1/object/public/img//ph_briefcase.svg" > ${sector_activity || 'N/A'}</div>
-               <div><img src="https://idwomihieftgogbgivic.supabase.co/storage/v1/object/public/img//ph_file-text.svg" >${contract_type || 'N/A'}</div>
-               <div><img src="https://idwomihieftgogbgivic.supabase.co/storage/v1/object/public/img//ph_clock.svg"> ${working_time || 'N/A'}</div>
-               <div><img src="https://idwomihieftgogbgivic.supabase.co/storage/v1/object/public/img//ph_coins-light.svg">${salary || 'N/A'}</div>
-               <div><img src="https://idwomihieftgogbgivic.supabase.co/storage/v1/object/public/img//ph_office-chair.svg"> ${work_mode || 'N/A'}</div>
-            </div>
-
-
-         `;
-
-
-
-         const popup = new mapboxgl.Popup({ offset: 25 }).setHTML(popupHtml);
-         const marker = new mapboxgl.Marker({ element: markerElement })
+         const marker = new mapboxgl.Marker({ element: el })
             .setLngLat([longitude, latitude])
             .setPopup(popup)
             .addTo(mapRef.current!);
 
-         // ✅ Ajoute cette partie juste après
-         popup.on('open', () => {
-            const popupContent = document.querySelector('.mapboxgl-popup-content');
-            if (popupContent) {
-               if (is_last_minute) {
-                  popupContent.classList.add('last-minute-border');
-               }
-               if (markerState === 'new' && !is_last_minute) {
-                  popupContent.classList.add('border-new');
-               }
-               if (is_applied) {
-                  popupContent.classList.add('applied-border');
-               }
-               if (is_liked) {
-                  popupContent.classList.add('liked-border');
-               }
-            }
-         });
-
-
          markersRef.current[title || `${latitude}-${longitude}`] = marker;
-
       });
-   }, [markers, mapLoaded, calculateMarkerSize]);
+   }, [markers, mapLoaded, calculateMarkerSize, today]);
 
    return (
       <>
@@ -409,14 +338,9 @@ const Mapbox: React.FC<MapboxProps> = ({
                display: flex;
                align-items: center;
                justify-content: flex-start;
+               gap: 4px;
+               color: #000000;
             }
-
-
-
-
-
-
-
 
 
             .state-job {
@@ -501,30 +425,28 @@ const Mapbox: React.FC<MapboxProps> = ({
                align-items: center; 
                background: #BAFE68;
                border-radius: 16px 0px 8px;
-               padding: 8px 12px;
+               padding: 4px 12px 4px 16px;
                color: #000000;
                margin-bottom: 10px;
             }
 
-            applied-job {
+            .applied-job {
                position: absolute;
                top: 0;
                left: 0;
                display: flex;
+               gap: 10px;
+               flex-direction: row;
                align-items: center; 
                background: #002400;
                border-radius: 16px 0px 8px;
-               padding: 8px 12px;
-               color:rgb(255, 255, 255);
-               margin-bottom: 10px; 
+               padding: 4px 12px 4px 8px;
+               color: #ffffff; 
+               width: fit-content;
             }   
 
         `}
          </style>
-
-
-
-
          <div
             ref={mapContainerRef}
             className={`mapbox-map ${className}`}
