@@ -622,14 +622,14 @@ export const DataGridV2: React.FC<DataGridV2Props> = ({
               disabled={currentPage === 1}
             >
               <svg
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
+                width="21"
+                height="18"
+                viewBox="0 0 21 18"
                 fill="none"
-                xmlns="http://www.w3.org/2000/svg"
                 style={{ marginRight: '8px', display: 'inline', verticalAlign: 'middle' }}
               >
-                <path d="M15 6L9 12L15 18" stroke="#002402" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+                <line x1="17" y1="9" x2="3" y2="9" stroke="#002402" strokeWidth="2.5" strokeLinecap="round"/>
+                <polyline points="7,4 3,9 7,14" fill="none" stroke="#002402" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
               PRECEDENT
             </button>
@@ -654,14 +654,14 @@ export const DataGridV2: React.FC<DataGridV2Props> = ({
             >
               SUIVANT
               <svg
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
+                width="21"
+                height="18"
+                viewBox="0 0 21 18"
                 fill="none"
-                xmlns="http://www.w3.org/2000/svg"
                 style={{ marginLeft: '8px', display: 'inline', verticalAlign: 'middle' }}
               >
-                <path d="M9 6L15 12L9 18" stroke="#002402" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+                <line x1="3" y1="9" x2="17" y2="9" stroke="#002402" strokeWidth="2.5" strokeLinecap="round"/>
+                <polyline points="13,4 17,9 13,14" fill="none" stroke="#002402" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
             </button>
           </div>
