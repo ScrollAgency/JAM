@@ -621,9 +621,7 @@ export const DataGridV2: React.FC<DataGridV2Props> = ({
               onClick={() => currentPage > 1 && onPageChange?.(currentPage - 1)}
               disabled={currentPage === 1}
             >
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ marginRight: '4px' }}>
-                <path d="M10 12L6 8L10 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
+              <span style={{ fontSize: '18px', marginRight: '8px', fontWeight: 'bold' }}>←</span>
               PRECEDENT
             </button>
 
@@ -646,9 +644,7 @@ export const DataGridV2: React.FC<DataGridV2Props> = ({
               disabled={currentPage === totalPages}
             >
               SUIVANT
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ marginLeft: '4px' }}>
-                <path d="M6 12L10 8L6 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
+              <span style={{ fontSize: '18px', marginLeft: '8px', fontWeight: 'bold' }}>→</span>
             </button>
           </div>
         )}
