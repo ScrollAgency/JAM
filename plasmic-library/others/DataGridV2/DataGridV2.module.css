@@ -72,14 +72,14 @@
   border-bottom: 1px solid var(--border-color);
 }
 
-.headerCell:hover {
-  background-color: var(--hover-bg-color, #E5E7EB);
-}
+/* .headerCell:hover {
+   Suppression du hover sur l'en-tête 
+} */
 
 .headerContent {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 8px; /* Espace entre le titre et les chevrons */
 }
 
 .tooltip {
@@ -269,12 +269,12 @@
   padding: 8px 16px;
   border-radius: 24px;
   background-color: white;
-  color: #131013;
+  color: #002402;
   font-size: 14px;
   font-weight: 600;
   cursor: pointer;
   transition: background-color 0.2s;
-  border: 1px solid #E5E7EB;
+  border: 1px solid #002402;
   display: flex;
   align-items: center;
 }
