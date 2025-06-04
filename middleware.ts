@@ -17,8 +17,6 @@ const publicRoutes = [
 
     '/first-install',
     '/plasmic-library',
-
-    '/parametres',
 ]
 
 export async function middleware(request: NextRequest) {
