@@ -289,6 +289,9 @@ export const DataGridV2: React.FC<DataGridV2Props> = ({
 
   const renderCell = (column: string, value: string | null | undefined, task: Task) => {
     if (column === 'actions') {
+      if (task.status === 'refuse' || task.status === 'refusé' || task.status === 'Refuser') {
+        return null;
+      }
       return (
         <div className={styles.actions}>
           <button
