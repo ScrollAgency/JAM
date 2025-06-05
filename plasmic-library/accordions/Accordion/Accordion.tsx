@@ -38,14 +38,14 @@ function AccordionTrigger({
       <AccordionPrimitive.Trigger
         data-slot="accordion-trigger"
         className={cn(
-          "flex flex-1 items-center justify-between gap-4 rounded-lg py-4 px-5 text-left text-base font-medium text-white transition-all outline-none focus-visible:ring-2 focus-visible:ring-green-400 focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-900", // Adjusted padding, text, focus style
+          "group flex flex-1 items-center justify-between gap-4 rounded-lg py-4 px-5 text-left text-base font-medium text-white transition-all outline-none focus-visible:ring-2 focus-visible:ring-green-400 focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-900", // Added 'group', Adjusted padding, text, focus style
           className
         )}
         {...props}
       >
         {children}
-        <PlusCircle className="size-6 shrink-0 text-[#BAFE68] data-[state=open]:hidden" />
-        <MinusCircle className="size-6 shrink-0 text-[#BAFE68] data-[state=closed]:hidden" />
+        <PlusCircle className="size-6 shrink-0 text-[#BAFE68] group-data-[state=open]:hidden" />
+        <MinusCircle className="size-6 shrink-0 text-[#BAFE68] group-data-[state=closed]:hidden" />
       </AccordionPrimitive.Trigger>
     </AccordionPrimitive.Header>
   )
