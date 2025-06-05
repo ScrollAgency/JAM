@@ -44,8 +44,8 @@ function AccordionTrigger({
         {...props}
       >
         {children}
-        <PlusCircle className="size-6 shrink-0 text-green-400 data-[state=open]:hidden" />
-        <MinusCircle className="size-6 shrink-0 text-green-400 data-[state=closed]:hidden" />
+        <PlusCircle className="size-6 shrink-0 text-[#BAFE68] data-[state=open]:hidden" />
+        <MinusCircle className="size-6 shrink-0 text-[#BAFE68] data-[state=closed]:hidden" />
       </AccordionPrimitive.Trigger>
     </AccordionPrimitive.Header>
   )
