@@ -18,6 +18,14 @@ export { default as ForgotPasswordMeta } from "./authentication/ForgotPassword/F
 export { default as ResetPassword } from "./authentication/ResetPassword/ResetPassword";
 export { default as ResetPasswordMeta } from "./authentication/ResetPassword/ResetPassword.meta";
 
+// Accordions
+//       Accordion
+export { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "./accordions/Accordion/Accordion";
+export { default as AccordionMeta } from "./accordions/Accordion/Accordion.meta";
+export { default as AccordionItemMeta } from "./accordions/Accordion/AccordionItem.meta";
+export { default as AccordionTriggerMeta } from "./accordions/Accordion/AccordionTrigger.meta";
+export { default as AccordionContentMeta } from "./accordions/Accordion/AccordionContent.meta";
+
 // Badges
 //       JamBadge
 export { default as JamBadge } from "./badges/JamBadge/JamBadge";

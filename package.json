@@ -17,6 +17,7 @@
     "@plasmicapp/react-web": "^0.2.361",
     "@plasmicpkgs/antd5": "^0.0.262",
     "@playwright/test": "^1.51.0",
+    "@radix-ui/react-accordion": "^1.2.11",
     "@radix-ui/react-separator": "^1.1.6",
     "@stripe/stripe-js": "^7.3.0",
     "@supabase/auth-helpers-nextjs": "^0.10.0",
