@@ -16,6 +16,10 @@ const MapBoxMeta = {
             type: "object",
             defaultValue: [],
         },
+        onPopupClick: {
+            type: "eventHandler",
+            argTypes: [{ name: "id", type: "string" }],
+        },
     },
     importPath: "./components/others/MapBox/MapBox",
 }

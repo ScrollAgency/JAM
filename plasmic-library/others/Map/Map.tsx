@@ -3,6 +3,7 @@ import mapboxgl from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 
 interface MarkerData {
+   id?: string;
    latitude: number;
    longitude: number;
    state?: string;
@@ -32,6 +33,7 @@ interface MapboxProps {
    zoom?: number;
    markers?: MarkerData[];
    className?: string;
+   onPopupClick?: () => void;
 }
 
 const Mapbox: React.FC<MapboxProps> = ({
@@ -41,6 +43,7 @@ const Mapbox: React.FC<MapboxProps> = ({
    zoom = 15,
    markers = [],
    className = '',
+   onPopupClick,
 }) => {
    const mapContainerRef = useRef<HTMLDivElement>(null);
    const mapRef = useRef<mapboxgl.Map | null>(null);
@@ -113,7 +116,7 @@ const Mapbox: React.FC<MapboxProps> = ({
 
       markers.forEach((data) => {
          const {
-            latitude, longitude, title, logo_file, location, company_name,
+            id, latitude, longitude, title, logo_file, location, company_name,
             contract_type, working_time, salary, work_mode, created_at,
             sector_activity, is_applied, is_last_minute, is_liked, postal_code,
          } = data;
@@ -164,9 +167,28 @@ const Mapbox: React.FC<MapboxProps> = ({
       `);
 
          popup.on('open', () => {
-            const content = document.querySelector('.mapboxgl-popup-content');
-            if (content) content.classList.add(`${markerState.replace('_', '-')}-border`);
+            const content = popup.getElement();
+            if (content) {
+               content.classList.add(`${markerState.replace('_', '-')}-border`);
+
+               // Éviter d'ajouter plusieurs fois le même listener au clic
+               const handleClick = () => {
+                  if (id) {
+                     const url = new URL(window.location.href);
+                     url.searchParams.set('job_id', id);
+                     window.history.pushState({}, '', url.toString());
+                  }
+                  if (onPopupClick) {
+                     onPopupClick();
+                  }
+               };
+
+               // Pour éviter la duplication d'écouteurs, on peut retirer avant d'ajouter
+               content.removeEventListener('click', handleClick);
+               content.addEventListener('click', handleClick);
+            }
          });
+
 
          const marker = new mapboxgl.Marker({ element: el })
             .setLngLat([longitude, latitude])
