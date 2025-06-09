@@ -5,6 +5,7 @@ const loginPage = '/login'
 
 const publicRoutes = [
     '/',
+    '/accueil-employeur',
     '/plasmic-host',
 
     '/login',
