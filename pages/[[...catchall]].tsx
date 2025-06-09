@@ -17,18 +17,10 @@ export default function PlasmicLoaderPage(props: {
 }) {
   const { plasmicData, queryCache } = props;
   const router = useRouter();
-
-  // Si la page est en fallback (mode "blocking"), afficher un loader
-  if (router.isFallback) {
-    return <div>Chargement…</div>;
-  }
-
   if (!plasmicData || plasmicData.entryCompMetas.length === 0) {
     return <Error statusCode={404} />;
   }
-
   const pageMeta = plasmicData.entryCompMetas[0];
-
   return (
     <PlasmicRootProvider
       loader={PLASMIC}
@@ -45,26 +37,14 @@ export default function PlasmicLoaderPage(props: {
 
 export const getStaticProps: GetStaticProps = async (context) => {
   const { catchall } = context.params ?? {};
-
-  const plasmicPath = Array.isArray(catchall)
-    ? `/${catchall.join("/")}`
-    : typeof catchall === "string"
-    ? `/${catchall}`
-    : "/";
-
-  console.log("🔍 [Plasmic Catchall] Fetching path:", plasmicPath);
-
+  const plasmicPath = typeof catchall === 'string' ? catchall : Array.isArray(catchall) ? `/${catchall.join('/')}` : '/';
   const plasmicData = await PLASMIC.maybeFetchComponentData(plasmicPath);
-
   if (!plasmicData) {
-    console.warn("⚠️ No Plasmic data found for path:", plasmicPath);
-    return {
-      notFound: true,
-    };
+    // non-Plasmic catch-all
+    return { props: {} };
   }
-
   const pageMeta = plasmicData.entryCompMetas[0];
-
+  // Cache the necessary data fetched for the page
   const queryCache = await extractPlasmicQueryData(
     <PlasmicRootProvider
       loader={PLASMIC}
@@ -75,25 +55,18 @@ export const getStaticProps: GetStaticProps = async (context) => {
       <PlasmicComponent component={pageMeta.displayName} />
     </PlasmicRootProvider>
   );
-
-  return {
-    props: {
-      plasmicData,
-      queryCache,
-    },
-    revalidate: 60,
-  };
-};
+  // Use revalidate if you want incremental static regeneration
+  return { props: { plasmicData, queryCache }, revalidate: 60 };
+}
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const pageModules = await PLASMIC.fetchPages();
-
   return {
     paths: pageModules.map((mod) => ({
       params: {
         catchall: mod.path.substring(1).split("/"),
       },
     })),
-    fallback: "blocking", // assure un bon rendu à la première visite
+    fallback: "blocking",
   };
-};
+}
