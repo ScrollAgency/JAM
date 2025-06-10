@@ -80,7 +80,6 @@ import { UploadWrapper } from "@plasmicpkgs/antd5/skinny/registerUpload";
 import TextAreaInput from "../../TextAreaInput"; // plasmic-import: nVAUbPc6gpoz/component
 import Select from "../../Select"; // plasmic-import: ZMB-SB-xJDyQ/component
 import MenuItem from "../../MenuItem"; // plasmic-import: plmAgyhhAdMc/component
-import { AntdSelect } from "@plasmicpkgs/antd5/skinny/registerSelect";
 import MobileNavbarBottom2 from "../../MobileNavbarBottom2"; // plasmic-import: gAnwjyfMiBe9/component
 import { Fetcher } from "@plasmicapp/react-web/lib/data-sources";
 
@@ -99,7 +98,6 @@ import GroupIcon from "./icons/PlasmicIcon__Group"; // plasmic-import: yIYn4o5Hg
 import PhTrashIcon from "./icons/PlasmicIcon__PhTrash"; // plasmic-import: juO39VElEpcx/icon
 import PictogramIcon from "./icons/PlasmicIcon__Pictogram"; // plasmic-import: KlZQiGxQTluF/icon
 import PhPencilSimpleIcon from "./icons/PlasmicIcon__PhPencilSimple"; // plasmic-import: 7xHLZEkolpKE/icon
-import ChevronDownIcon from "./icons/PlasmicIcon__ChevronDown"; // plasmic-import: yud1FH0Ox1FR/icon
 import SolarLogoutOutlineIcon from "./icons/PlasmicIcon__SolarLogoutOutline"; // plasmic-import: UZfkN-2mqbQ1/icon
 
 createPlasmicElementProxy;
@@ -148,10 +146,9 @@ export type PlasmicParametresEmployeur__OverridesType = {
   codePostal?: Flex__<typeof TextInput>;
   ville?: Flex__<typeof TextInput>;
   select6?: Flex__<typeof Select>;
-  menuItem?: Flex__<typeof MenuItem>;
   textInput6?: Flex__<typeof TextInput>;
-  select3?: Flex__<typeof AntdSelect>;
-  select5?: Flex__<typeof AntdSelect>;
+  select?: Flex__<typeof Select>;
+  select2?: Flex__<typeof Select>;
   textInput4?: Flex__<typeof TextInput>;
   expandTab?: Flex__<"div">;
   mobileNavbarBottom2?: Flex__<typeof MobileNavbarBottom2>;
@@ -302,18 +299,6 @@ function PlasmicParametresEmployeur__RenderFunc(props: {
         initFunc: ({ $props, $state, $queries, $ctx }) => undefined
       },
       {
-        path: "select3.value",
-        type: "private",
-        variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
-      },
-      {
-        path: "select5.value",
-        type: "private",
-        variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
-      },
-      {
         path: "formulaire2.value",
         type: "private",
         variableType: "object",
@@ -360,6 +345,18 @@ function PlasmicParametresEmployeur__RenderFunc(props: {
         type: "private",
         variableType: "text",
         initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+      },
+      {
+        path: "select.value",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+      },
+      {
+        path: "select2.value",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
       }
     ],
     [$props, $ctx, $refs]
@@ -399,7 +396,7 @@ function PlasmicParametresEmployeur__RenderFunc(props: {
     paramEmpGetPp: usePlasmicDataOp(() => {
       return {
         sourceId: "rtEg85U6Vbyi94cRAe93i7",
-        opId: "8be05618-e3eb-4b37-889a-c18c2902bc93",
+        opId: "c1aa4a8a-4072-41ae-bd85-9a0ae0f16d97",
         userArgs: {
           path: [
             $queries.paramEmpGetUser.data[0].id +
@@ -407,7 +404,7 @@ function PlasmicParametresEmployeur__RenderFunc(props: {
               $queries.paramEmpGetUser.data[0].profile_photo
           ]
         },
-        cacheKey: `plasmic.$.8be05618-e3eb-4b37-889a-c18c2902bc93.$.`,
+        cacheKey: `plasmic.$.c1aa4a8a-4072-41ae-bd85-9a0ae0f16d97.$.`,
         invalidatedKeys: null,
         roleId: null
       };
@@ -533,19 +530,7 @@ function PlasmicParametresEmployeur__RenderFunc(props: {
                           inputType: "Text Area"
                         }
                       ],
-                      initialValues: (() => {
-                        try {
-                          return $queries.paramEmpGetUser.data[0];
-                        } catch (e) {
-                          if (
-                            e instanceof TypeError ||
-                            e?.plasmicType === "PlasmicUndefinedDataError"
-                          ) {
-                            return undefined;
-                          }
-                          throw e;
-                        }
-                      })(),
+                      initialValues: undefined,
                       labelCol: { span: 8, horizontalOnly: true },
                       layout: "vertical",
                       mode: "advanced",
@@ -715,6 +700,20 @@ function PlasmicParametresEmployeur__RenderFunc(props: {
                               "__wab_instance",
                               sty.firstName
                             )}
+                            defaultValue={(() => {
+                              try {
+                                return $queries.paramEmpGetUser.data[0]
+                                  .first_name;
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return undefined;
+                                }
+                                throw e;
+                              }
+                            })()}
                             onChange={async (...eventArgs: any) => {
                               generateStateOnChangeProp($state, [
                                 "firstName",
@@ -757,6 +756,20 @@ function PlasmicParametresEmployeur__RenderFunc(props: {
                               "__wab_instance",
                               sty.lastName
                             )}
+                            defaultValue={(() => {
+                              try {
+                                return $queries.paramEmpGetUser.data[0]
+                                  .last_name;
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return undefined;
+                                }
+                                throw e;
+                              }
+                            })()}
                             onChange={async (...eventArgs: any) => {
                               generateStateOnChangeProp($state, [
                                 "lastName",
@@ -799,6 +812,19 @@ function PlasmicParametresEmployeur__RenderFunc(props: {
                               "__wab_instance",
                               sty.textInput3
                             )}
+                            defaultValue={(() => {
+                              try {
+                                return $queries.paramEmpGetUser.data[0].email;
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return undefined;
+                                }
+                                throw e;
+                              }
+                            })()}
                             disabled={true}
                             onChange={async (...eventArgs: any) => {
                               generateStateOnChangeProp($state, [
@@ -915,6 +941,7 @@ function PlasmicParametresEmployeur__RenderFunc(props: {
                             "__wab_instance",
                             sty.button__exwFy
                           )}
+                          color={"white"}
                           end={
                             <GroupIcon
                               className={classNames(
@@ -937,6 +964,7 @@ function PlasmicParametresEmployeur__RenderFunc(props: {
                             </div>
                           }
                           submitsForm={true}
+                          type={"bordered"}
                         />
 
                         <div
@@ -1206,7 +1234,7 @@ function PlasmicParametresEmployeur__RenderFunc(props: {
                           showCancelButton={false}
                           showPasswordToggle={true}
                           showSubmitButton={false}
-                          submitButtonStyle={"primary"}
+                          submitButtonStyle={``}
                           submitButtonText={"Réinitialiser"}
                           title={``}
                           titleHeading={"h1"}
@@ -1224,6 +1252,7 @@ function PlasmicParametresEmployeur__RenderFunc(props: {
                               "__wab_instance",
                               sty.button__keiMx
                             )}
+                            color={"white"}
                             end={
                               <GroupIcon
                                 className={classNames(
@@ -1246,6 +1275,7 @@ function PlasmicParametresEmployeur__RenderFunc(props: {
                               </div>
                             }
                             submitsForm={true}
+                            type={"bordered"}
                           />
                         </div>
                       </FormWrapper>
@@ -1300,7 +1330,7 @@ function PlasmicParametresEmployeur__RenderFunc(props: {
                                   },
                                   cacheKey: null,
                                   invalidatedKeys: [
-                                    "8be05618-e3eb-4b37-889a-c18c2902bc93",
+                                    "c1aa4a8a-4072-41ae-bd85-9a0ae0f16d97",
                                     "9f412504-e938-4e59-9fca-bfe70cfa0a98"
                                   ],
                                   roleId: null
@@ -1356,7 +1386,7 @@ function PlasmicParametresEmployeur__RenderFunc(props: {
                                   },
                                   cacheKey: null,
                                   invalidatedKeys: [
-                                    "8be05618-e3eb-4b37-889a-c18c2902bc93",
+                                    "c1aa4a8a-4072-41ae-bd85-9a0ae0f16d97",
                                     "9f412504-e938-4e59-9fca-bfe70cfa0a98"
                                   ],
                                   roleId: null
@@ -1589,26 +1619,14 @@ function PlasmicParametresEmployeur__RenderFunc(props: {
                         inputType: "Text Area"
                       }
                     ],
-                    initialValues: (() => {
-                      try {
-                        return $queries.paramGetCompanyById.data[0];
-                      } catch (e) {
-                        if (
-                          e instanceof TypeError ||
-                          e?.plasmicType === "PlasmicUndefinedDataError"
-                        ) {
-                          return undefined;
-                        }
-                        throw e;
-                      }
-                    })(),
+                    initialValues: undefined,
                     labelCol: { span: 8, horizontalOnly: true },
                     layout: "vertical",
                     mode: "advanced",
                     onFinish: async values => {
                       const $steps = {};
 
-                      $steps["postgresUpdateMany"] = true
+                      $steps["updateUser"] = true
                         ? (() => {
                             const actionArgs = {
                               dataOp: {
@@ -1658,13 +1676,11 @@ function PlasmicParametresEmployeur__RenderFunc(props: {
                           })()
                         : undefined;
                       if (
-                        $steps["postgresUpdateMany"] != null &&
-                        typeof $steps["postgresUpdateMany"] === "object" &&
-                        typeof $steps["postgresUpdateMany"].then === "function"
+                        $steps["updateUser"] != null &&
+                        typeof $steps["updateUser"] === "object" &&
+                        typeof $steps["updateUser"].then === "function"
                       ) {
-                        $steps["postgresUpdateMany"] = await $steps[
-                          "postgresUpdateMany"
-                        ];
+                        $steps["updateUser"] = await $steps["updateUser"];
                       }
 
                       $steps["invokeGlobalAction"] = true
@@ -1773,6 +1789,19 @@ function PlasmicParametresEmployeur__RenderFunc(props: {
                             "__wab_instance",
                             sty.textInput5
                           )}
+                          defaultValue={(() => {
+                            try {
+                              return $queries.paramGetCompanyById.data[0].name;
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return undefined;
+                              }
+                              throw e;
+                            }
+                          })()}
                           onChange={async (...eventArgs: any) => {
                             generateStateOnChangeProp($state, [
                               "textInput5",
@@ -1815,6 +1844,20 @@ function PlasmicParametresEmployeur__RenderFunc(props: {
                             "__wab_instance",
                             sty.textAreaInput
                           )}
+                          defaultValue={(() => {
+                            try {
+                              return $queries.paramGetCompanyById.data[0]
+                                .descriptions;
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return undefined;
+                              }
+                              throw e;
+                            }
+                          })()}
                           onChange={async (...eventArgs: any) => {
                             generateStateOnChangeProp($state, [
                               "textAreaInput",
@@ -1854,6 +1897,20 @@ function PlasmicParametresEmployeur__RenderFunc(props: {
                           data-plasmic-name={"rue"}
                           data-plasmic-override={overrides.rue}
                           className={classNames("__wab_instance", sty.rue)}
+                          defaultValue={(() => {
+                            try {
+                              return $queries.paramGetCompanyById?.data[0]
+                                ?.address;
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return undefined;
+                              }
+                              throw e;
+                            }
+                          })()}
                           onChange={async (...eventArgs: any) => {
                             generateStateOnChangeProp($state, [
                               "rue",
@@ -1908,6 +1965,20 @@ function PlasmicParametresEmployeur__RenderFunc(props: {
                               "__wab_instance",
                               sty.codePostal
                             )}
+                            defaultValue={(() => {
+                              try {
+                                return $queries.paramGetCompanyById?.data[0]
+                                  ?.postal_code;
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return undefined;
+                                }
+                                throw e;
+                              }
+                            })()}
                             onChange={async (...eventArgs: any) => {
                               generateStateOnChangeProp($state, [
                                 "codePostal",
@@ -1948,6 +2019,20 @@ function PlasmicParametresEmployeur__RenderFunc(props: {
                             data-plasmic-name={"ville"}
                             data-plasmic-override={overrides.ville}
                             className={classNames("__wab_instance", sty.ville)}
+                            defaultValue={(() => {
+                              try {
+                                return $queries.paramGetCompanyById?.data[0]
+                                  ?.location;
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return undefined;
+                                }
+                                throw e;
+                              }
+                            })()}
                             onChange={async (...eventArgs: any) => {
                               generateStateOnChangeProp($state, [
                                 "ville",
@@ -1991,8 +2076,8 @@ function PlasmicParametresEmployeur__RenderFunc(props: {
                           className={classNames("__wab_instance", sty.select6)}
                           initialSelectedValue={(() => {
                             try {
-                              return $queries.paramGetCompanyById.data[0]
-                                .country;
+                              return $queries.paramGetCompanyById?.data[0]
+                                ?.country;
                             } catch (e) {
                               if (
                                 e instanceof TypeError ||
@@ -2023,11 +2108,9 @@ function PlasmicParametresEmployeur__RenderFunc(props: {
                             const currentIndex = __plasmic_idx_0;
                             return (
                               <MenuItem
-                                data-plasmic-name={"menuItem"}
-                                data-plasmic-override={overrides.menuItem}
                                 className={classNames(
                                   "__wab_instance",
-                                  sty.menuItem
+                                  sty.menuItem__hxhHy
                                 )}
                                 key={currentIndex}
                                 label={(() => {
@@ -2104,6 +2187,20 @@ function PlasmicParametresEmployeur__RenderFunc(props: {
                             "__wab_instance",
                             sty.textInput6
                           )}
+                          defaultValue={(() => {
+                            try {
+                              return $queries.paramGetCompanyById?.data[0]
+                                ?.siren;
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return undefined;
+                              }
+                              throw e;
+                            }
+                          })()}
                           onChange={async (...eventArgs: any) => {
                             generateStateOnChangeProp($state, [
                               "textInput6",
@@ -2139,58 +2236,99 @@ function PlasmicParametresEmployeur__RenderFunc(props: {
                         }
                         name={"sector"}
                       >
-                        <AntdSelect
-                          data-plasmic-name={"select3"}
-                          data-plasmic-override={overrides.select3}
-                          className={classNames("__wab_instance", sty.select3)}
-                          defaultStylesClassName={classNames(
-                            projectcss.root_reset,
-                            projectcss.plasmic_default_styles,
-                            projectcss.plasmic_mixins,
-                            projectcss.plasmic_tokens,
-                            plasmic_antd_5_hostless_css.plasmic_tokens,
-                            plasmic_library_tailwind_3_4_number_tokens_css.plasmic_tokens,
-                            plasmic_plasmic_rich_components_css.plasmic_tokens
-                          )}
-                          onChange={async (...eventArgs: any) => {
-                            generateStateOnChangeProp($state, [
-                              "select3",
-                              "value"
-                            ]).apply(null, eventArgs);
-                          }}
-                          options={(() => {
+                        <Select
+                          data-plasmic-name={"select"}
+                          data-plasmic-override={overrides.select}
+                          className={classNames("__wab_instance", sty.select)}
+                          initialSelectedValue={(() => {
                             try {
-                              return $queries.getCriteria.data
-                                .filter(item => item.type === "sector_activity")
-                                .map(item => ({
-                                  value: item.name,
-                                  label: item.name
-                                }));
+                              return $queries.paramGetCompanyById?.data[0]
+                                ?.sector;
                             } catch (e) {
                               if (
                                 e instanceof TypeError ||
                                 e?.plasmicType === "PlasmicUndefinedDataError"
                               ) {
-                                return [];
+                                return undefined;
                               }
                               throw e;
                             }
                           })()}
-                          placeholder={""}
-                          popupScopeClassName={sty["select3__popup"]}
-                          suffixIcon={
-                            <ChevronDownIcon
-                              className={classNames(
-                                projectcss.all,
-                                sty.svg__maaqq
-                              )}
-                              role={"img"}
-                            />
-                          }
-                          value={generateStateValueProp($state, [
-                            "select3",
-                            "value"
-                          ])}
+                          items={(_par =>
+                            !_par ? [] : Array.isArray(_par) ? _par : [_par])(
+                            (() => {
+                              try {
+                                return $queries.getCriteria.data
+                                  .filter(
+                                    item => item.type === "sector_activity"
+                                  )
+                                  .map(item => ({
+                                    value: item.name,
+                                    label: item.name
+                                  }));
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return [];
+                                }
+                                throw e;
+                              }
+                            })()
+                          ).map((__plasmic_item_0, __plasmic_idx_0) => {
+                            const currentItem = __plasmic_item_0;
+                            const currentIndex = __plasmic_idx_0;
+                            return (
+                              <MenuItem
+                                key={currentIndex}
+                                label={(() => {
+                                  try {
+                                    return currentItem.label;
+                                  } catch (e) {
+                                    if (
+                                      e instanceof TypeError ||
+                                      e?.plasmicType ===
+                                        "PlasmicUndefinedDataError"
+                                    ) {
+                                      return undefined;
+                                    }
+                                    throw e;
+                                  }
+                                })()}
+                                value={(() => {
+                                  try {
+                                    return currentItem.value;
+                                  } catch (e) {
+                                    if (
+                                      e instanceof TypeError ||
+                                      e?.plasmicType ===
+                                        "PlasmicUndefinedDataError"
+                                    ) {
+                                      return undefined;
+                                    }
+                                    throw e;
+                                  }
+                                })()}
+                              />
+                            );
+                          })}
+                          onChange={async (...eventArgs: any) => {
+                            generateStateOnChangeProp($state, [
+                              "select",
+                              "value"
+                            ]).apply(null, eventArgs);
+
+                            if (
+                              eventArgs.length > 1 &&
+                              eventArgs[1] &&
+                              eventArgs[1]._plasmic_state_init_
+                            ) {
+                              return;
+                            }
+                          }}
+                          placeholder={"Secteur d'activit\u00e9"}
+                          showLabel={false}
                         />
                       </FormItemWrapper>
                       <FormItemWrapper
@@ -2211,58 +2349,97 @@ function PlasmicParametresEmployeur__RenderFunc(props: {
                         }
                         name={"team_size"}
                       >
-                        <AntdSelect
-                          data-plasmic-name={"select5"}
-                          data-plasmic-override={overrides.select5}
-                          className={classNames("__wab_instance", sty.select5)}
-                          defaultStylesClassName={classNames(
-                            projectcss.root_reset,
-                            projectcss.plasmic_default_styles,
-                            projectcss.plasmic_mixins,
-                            projectcss.plasmic_tokens,
-                            plasmic_antd_5_hostless_css.plasmic_tokens,
-                            plasmic_library_tailwind_3_4_number_tokens_css.plasmic_tokens,
-                            plasmic_plasmic_rich_components_css.plasmic_tokens
-                          )}
-                          onChange={async (...eventArgs: any) => {
-                            generateStateOnChangeProp($state, [
-                              "select5",
-                              "value"
-                            ]).apply(null, eventArgs);
-                          }}
-                          options={(() => {
+                        <Select
+                          data-plasmic-name={"select2"}
+                          data-plasmic-override={overrides.select2}
+                          className={classNames("__wab_instance", sty.select2)}
+                          initialSelectedValue={(() => {
                             try {
-                              return $queries.getCriteria.data
-                                .filter(item => item.type === "company_size")
-                                .map(item => ({
-                                  value: item.name,
-                                  label: item.name
-                                }));
+                              return $queries.paramGetCompanyById?.data[0]
+                                ?.team_size;
                             } catch (e) {
                               if (
                                 e instanceof TypeError ||
                                 e?.plasmicType === "PlasmicUndefinedDataError"
                               ) {
-                                return [];
+                                return undefined;
                               }
                               throw e;
                             }
                           })()}
-                          placeholder={""}
-                          popupScopeClassName={sty["select5__popup"]}
-                          suffixIcon={
-                            <ChevronDownIcon
-                              className={classNames(
-                                projectcss.all,
-                                sty.svg__yMeZb
-                              )}
-                              role={"img"}
-                            />
-                          }
-                          value={generateStateValueProp($state, [
-                            "select5",
-                            "value"
-                          ])}
+                          items={(_par =>
+                            !_par ? [] : Array.isArray(_par) ? _par : [_par])(
+                            (() => {
+                              try {
+                                return $queries.getCriteria.data
+                                  .filter(item => item.type === "company_size")
+                                  .map(item => ({
+                                    value: item.name,
+                                    label: item.name
+                                  }));
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return [];
+                                }
+                                throw e;
+                              }
+                            })()
+                          ).map((__plasmic_item_0, __plasmic_idx_0) => {
+                            const currentItem = __plasmic_item_0;
+                            const currentIndex = __plasmic_idx_0;
+                            return (
+                              <MenuItem
+                                key={currentIndex}
+                                label={(() => {
+                                  try {
+                                    return currentItem.label;
+                                  } catch (e) {
+                                    if (
+                                      e instanceof TypeError ||
+                                      e?.plasmicType ===
+                                        "PlasmicUndefinedDataError"
+                                    ) {
+                                      return undefined;
+                                    }
+                                    throw e;
+                                  }
+                                })()}
+                                value={(() => {
+                                  try {
+                                    return currentItem.value;
+                                  } catch (e) {
+                                    if (
+                                      e instanceof TypeError ||
+                                      e?.plasmicType ===
+                                        "PlasmicUndefinedDataError"
+                                    ) {
+                                      return undefined;
+                                    }
+                                    throw e;
+                                  }
+                                })()}
+                              />
+                            );
+                          })}
+                          onChange={async (...eventArgs: any) => {
+                            generateStateOnChangeProp($state, [
+                              "select2",
+                              "value"
+                            ]).apply(null, eventArgs);
+
+                            if (
+                              eventArgs.length > 1 &&
+                              eventArgs[1] &&
+                              eventArgs[1]._plasmic_state_init_
+                            ) {
+                              return;
+                            }
+                          }}
+                          placeholder={"Taille de l'entreprise"}
+                          showLabel={false}
                         />
                       </FormItemWrapper>
                       <FormItemWrapper
@@ -2290,6 +2467,20 @@ function PlasmicParametresEmployeur__RenderFunc(props: {
                             "__wab_instance",
                             sty.textInput4
                           )}
+                          defaultValue={(() => {
+                            try {
+                              return $queries.paramGetCompanyById?.data[0]
+                                ?.website;
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return undefined;
+                              }
+                              throw e;
+                            }
+                          })()}
                           onChange={async (...eventArgs: any) => {
                             generateStateOnChangeProp($state, [
                               "textInput4",
@@ -2312,6 +2503,7 @@ function PlasmicParametresEmployeur__RenderFunc(props: {
                           "__wab_instance",
                           sty.button__oo2UE
                         )}
+                        color={"white"}
                         end={
                           <GroupIcon
                             className={classNames(
@@ -2334,6 +2526,7 @@ function PlasmicParametresEmployeur__RenderFunc(props: {
                           </div>
                         }
                         submitsForm={true}
+                        type={"bordered"}
                       />
                     </FormWrapper>
                   );
@@ -2434,10 +2627,9 @@ const PlasmicDescendants = {
     "codePostal",
     "ville",
     "select6",
-    "menuItem",
     "textInput6",
-    "select3",
-    "select5",
+    "select",
+    "select2",
     "textInput4",
     "expandTab",
     "mobileNavbarBottom2"
@@ -2475,10 +2667,9 @@ const PlasmicDescendants = {
     "codePostal",
     "ville",
     "select6",
-    "menuItem",
     "textInput6",
-    "select3",
-    "select5",
+    "select",
+    "select2",
     "textInput4",
     "expandTab"
   ],
@@ -2531,10 +2722,9 @@ const PlasmicDescendants = {
     "codePostal",
     "ville",
     "select6",
-    "menuItem",
     "textInput6",
-    "select3",
-    "select5",
+    "select",
+    "select2",
     "textInput4"
   ],
   frame1437254343: [
@@ -2561,10 +2751,9 @@ const PlasmicDescendants = {
     "codePostal",
     "ville",
     "select6",
-    "menuItem",
     "textInput6",
-    "select3",
-    "select5",
+    "select",
+    "select2",
     "textInput4"
   ],
   textInput5: ["textInput5"],
@@ -2573,11 +2762,10 @@ const PlasmicDescendants = {
   codePosteVille: ["codePosteVille", "codePostal", "ville"],
   codePostal: ["codePostal"],
   ville: ["ville"],
-  select6: ["select6", "menuItem"],
-  menuItem: ["menuItem"],
+  select6: ["select6"],
   textInput6: ["textInput6"],
-  select3: ["select3"],
-  select5: ["select5"],
+  select: ["select"],
+  select2: ["select2"],
   textInput4: ["textInput4"],
   expandTab: ["expandTab"],
   mobileNavbarBottom2: ["mobileNavbarBottom2"]
@@ -2619,10 +2807,9 @@ type NodeDefaultElementType = {
   codePostal: typeof TextInput;
   ville: typeof TextInput;
   select6: typeof Select;
-  menuItem: typeof MenuItem;
   textInput6: typeof TextInput;
-  select3: typeof AntdSelect;
-  select5: typeof AntdSelect;
+  select: typeof Select;
+  select2: typeof Select;
   textInput4: typeof TextInput;
   expandTab: "div";
   mobileNavbarBottom2: typeof MobileNavbarBottom2;
@@ -2720,10 +2907,9 @@ export const PlasmicParametresEmployeur = Object.assign(
     codePostal: makeNodeComponent("codePostal"),
     ville: makeNodeComponent("ville"),
     select6: makeNodeComponent("select6"),
-    menuItem: makeNodeComponent("menuItem"),
     textInput6: makeNodeComponent("textInput6"),
-    select3: makeNodeComponent("select3"),
-    select5: makeNodeComponent("select5"),
+    select: makeNodeComponent("select"),
+    select2: makeNodeComponent("select2"),
     textInput4: makeNodeComponent("textInput4"),
     expandTab: makeNodeComponent("expandTab"),
     mobileNavbarBottom2: makeNodeComponent("mobileNavbarBottom2"),

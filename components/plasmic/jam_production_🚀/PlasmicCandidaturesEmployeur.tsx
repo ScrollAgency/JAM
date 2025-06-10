@@ -87,6 +87,7 @@ import sty from "./PlasmicCandidaturesEmployeur.module.css"; // plasmic-import: 
 import IconPhBriefcaseIcon from "./icons/PlasmicIcon__IconPhBriefcase"; // plasmic-import: E-c3RGwvaig6/icon
 import IconPhFileTextIcon from "./icons/PlasmicIcon__IconPhFileText"; // plasmic-import: FeEx4DkPe8hp/icon
 import IconPhClockCountdownIcon from "./icons/PlasmicIcon__IconPhClockCountdown"; // plasmic-import: ZcpjJL-rRIkk/icon
+import IconPhClockIcon from "./icons/PlasmicIcon__IconPhClock"; // plasmic-import: vCpr2sLhwGJi/icon
 import IconPhCoinsLightIcon from "./icons/PlasmicIcon__IconPhCoinsLight"; // plasmic-import: _nES3m4j5H0g/icon
 import IconPhOfficeChairIcon from "./icons/PlasmicIcon__IconPhOfficeChair"; // plasmic-import: bLcbhEnKY1XN/icon
 import CircleIcon from "./icons/PlasmicIcon__Circle"; // plasmic-import: je95h6YoQ2jE/icon
@@ -418,9 +419,11 @@ function PlasmicCandidaturesEmployeur__RenderFunc(props: {
                 hasGap={true}
                 className={classNames(projectcss.all, sty.infos)}
               >
-                <div
+                <Stack__
+                  as={"div"}
                   data-plasmic-name={"sector"}
                   data-plasmic-override={overrides.sector}
+                  hasGap={true}
                   className={classNames(projectcss.all, sty.sector)}
                 >
                   <IconPhBriefcaseIcon
@@ -451,10 +454,12 @@ function PlasmicCandidaturesEmployeur__RenderFunc(props: {
                       })()}
                     </React.Fragment>
                   </div>
-                </div>
-                <div
+                </Stack__>
+                <Stack__
+                  as={"div"}
                   data-plasmic-name={"contract"}
                   data-plasmic-override={overrides.contract}
+                  hasGap={true}
                   className={classNames(projectcss.all, sty.contract)}
                 >
                   <IconPhFileTextIcon
@@ -485,10 +490,12 @@ function PlasmicCandidaturesEmployeur__RenderFunc(props: {
                       })()}
                     </React.Fragment>
                   </div>
-                </div>
-                <div
+                </Stack__>
+                <Stack__
+                  as={"div"}
                   data-plasmic-name={"avaibility"}
                   data-plasmic-override={overrides.avaibility}
+                  hasGap={true}
                   className={classNames(projectcss.all, sty.avaibility)}
                 >
                   <IconPhClockCountdownIcon
@@ -519,13 +526,15 @@ function PlasmicCandidaturesEmployeur__RenderFunc(props: {
                       })()}
                     </React.Fragment>
                   </div>
-                </div>
-                <div
+                </Stack__>
+                <Stack__
+                  as={"div"}
                   data-plasmic-name={"hours"}
                   data-plasmic-override={overrides.hours}
+                  hasGap={true}
                   className={classNames(projectcss.all, sty.hours)}
                 >
-                  <IconPhClockCountdownIcon
+                  <IconPhClockIcon
                     className={classNames(projectcss.all, sty.svg__wmyRf)}
                     role={"img"}
                   />
@@ -553,10 +562,12 @@ function PlasmicCandidaturesEmployeur__RenderFunc(props: {
                       })()}
                     </React.Fragment>
                   </div>
-                </div>
-                <div
+                </Stack__>
+                <Stack__
+                  as={"div"}
                   data-plasmic-name={"salary"}
                   data-plasmic-override={overrides.salary}
+                  hasGap={true}
                   className={classNames(projectcss.all, sty.salary)}
                 >
                   <IconPhCoinsLightIcon
@@ -587,10 +598,12 @@ function PlasmicCandidaturesEmployeur__RenderFunc(props: {
                       })()}
                     </React.Fragment>
                   </div>
-                </div>
-                <div
+                </Stack__>
+                <Stack__
+                  as={"div"}
                   data-plasmic-name={"workMode"}
                   data-plasmic-override={overrides.workMode}
+                  hasGap={true}
                   className={classNames(projectcss.all, sty.workMode)}
                 >
                   <IconPhOfficeChairIcon
@@ -621,7 +634,7 @@ function PlasmicCandidaturesEmployeur__RenderFunc(props: {
                       })()}
                     </React.Fragment>
                   </div>
-                </div>
+                </Stack__>
               </Stack__>
               <Button
                 className={classNames("__wab_instance", sty.button__eGc2W)}
@@ -1381,13 +1394,27 @@ function PlasmicCandidaturesEmployeur__RenderFunc(props: {
                     }
                   }}
                   pageSize={
-                    hasVariant(globalVariants, "screen", "mobileOnly") ? 5 : 10
+                    hasVariant(globalVariants, "screen", "mobileOnly") ? 5 : 5
                   }
-                  showActionsColumn={true}
+                  showActionsColumn={(() => {
+                    try {
+                      return !$queries.empGetJobapplicationsByJobOffers.data.some(
+                        application => application.status === "accepte"
+                      );
+                    } catch (e) {
+                      if (
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
+                      ) {
+                        return true;
+                      }
+                      throw e;
+                    }
+                  })()}
                   statusConfig={{
                     en_attente: { label: "En attente", color: "#E6E6E6" },
-                    accepte: { label: "Accepter", color: "#f1fbf3" },
-                    refuse: { label: "Refuser", color: "#fef3f2" }
+                    accepte: { label: "Accept\u00e9e", color: "#f1fbf3" },
+                    refuse: { label: "Refus\u00e9e", color: "#fef3f2" }
                   }}
                   tasks={(() => {
                     try {
@@ -1533,6 +1560,51 @@ function PlasmicCandidaturesEmployeur__RenderFunc(props: {
                     }
                     onClick={async event => {
                       const $steps = {};
+
+                      $steps["postgresUpdateMany"] = true
+                        ? (() => {
+                            const actionArgs = {
+                              dataOp: {
+                                sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
+                                opId: "12230860-e43c-4e60-b759-ae07b3196c1a",
+                                userArgs: {
+                                  conditions: [$ctx.params.job_id]
+                                },
+                                cacheKey: null,
+                                invalidatedKeys: ["plasmic_refresh_all"],
+                                roleId: null
+                              }
+                            };
+                            return (async ({ dataOp, continueOnError }) => {
+                              try {
+                                const response = await executePlasmicDataOp(
+                                  dataOp,
+                                  {
+                                    userAuthToken:
+                                      dataSourcesCtx?.userAuthToken,
+                                    user: dataSourcesCtx?.user
+                                  }
+                                );
+                                await plasmicInvalidate(dataOp.invalidatedKeys);
+                                return response;
+                              } catch (e) {
+                                if (!continueOnError) {
+                                  throw e;
+                                }
+                                return e;
+                              }
+                            })?.apply(null, [actionArgs]);
+                          })()
+                        : undefined;
+                      if (
+                        $steps["postgresUpdateMany"] != null &&
+                        typeof $steps["postgresUpdateMany"] === "object" &&
+                        typeof $steps["postgresUpdateMany"].then === "function"
+                      ) {
+                        $steps["postgresUpdateMany"] = await $steps[
+                          "postgresUpdateMany"
+                        ];
+                      }
 
                       $steps["postgresUpdateById"] = true
                         ? (() => {
@@ -1700,6 +1772,7 @@ function PlasmicCandidaturesEmployeur__RenderFunc(props: {
                 "successsApplications",
                 "isOpen"
               ])}
+              noTrigger={true}
               onOpenChange={async (...eventArgs: any) => {
                 generateStateOnChangeProp($state, [
                   "successsApplications",
@@ -1884,6 +1957,7 @@ function PlasmicCandidaturesEmployeur__RenderFunc(props: {
                             sty.notationEtoiles__mEv21
                           )
                         }
+                        enableHover={true}
                         onChange={async value => {
                           const $steps = {};
 
@@ -1957,6 +2031,7 @@ function PlasmicCandidaturesEmployeur__RenderFunc(props: {
                             sty.notationEtoiles__lGgib
                           )
                         }
+                        enableHover={true}
                         onChange={async value => {
                           const $steps = {};
 
@@ -2029,6 +2104,7 @@ function PlasmicCandidaturesEmployeur__RenderFunc(props: {
                             sty.notationEtoiles__ik66B
                           )
                         }
+                        enableHover={true}
                         onChange={async value => {
                           const $steps = {};
 
@@ -2439,6 +2515,8 @@ function PlasmicCandidaturesEmployeur__RenderFunc(props: {
                         throw e;
                       }
                     })()}
+                    srcDoc={"<div><h3>Heading</h3><p>Example text...</p></div>"}
+                    useHtml={false}
                   />
                 </Stack__>
               }
@@ -2506,6 +2584,7 @@ function PlasmicCandidaturesEmployeur__RenderFunc(props: {
                 "lettreDeMotivation",
                 "isOpen"
               ])}
+              noTrigger={true}
               onOpenChange={async (...eventArgs: any) => {
                 generateStateOnChangeProp($state, [
                   "lettreDeMotivation",
@@ -2549,6 +2628,8 @@ function PlasmicCandidaturesEmployeur__RenderFunc(props: {
                         throw e;
                       }
                     })()}
+                    srcDoc={"<div><h3>Heading</h3><p>Example text...</p></div>"}
+                    useHtml={false}
                   />
                 </Stack__>
               }
@@ -2667,6 +2748,7 @@ function PlasmicCandidaturesEmployeur__RenderFunc(props: {
               }
               heading={null}
               isOpen={generateStateValueProp($state, ["cv", "isOpen"])}
+              noTrigger={true}
               onOpenChange={async (...eventArgs: any) => {
                 generateStateOnChangeProp($state, ["cv", "isOpen"]).apply(
                   null,

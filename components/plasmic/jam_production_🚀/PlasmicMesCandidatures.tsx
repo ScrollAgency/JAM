@@ -59,6 +59,7 @@ import {
   useGlobalActions
 } from "@plasmicapp/react-web/lib/host";
 
+import { usePlasmicDataSourceContext } from "@plasmicapp/data-sources-context";
 import {
   executePlasmicDataOp,
   usePlasmicDataOp,
@@ -70,6 +71,7 @@ import MobileNavbarTop from "../../MobileNavbarTop"; // plasmic-import: mAg8Ml3X
 import Button from "../../Button"; // plasmic-import: 9ixtKbGKv7x-/component
 import { DataGridV2 } from "../../others/DataGridV2/DataGridV2"; // plasmic-import: iL_5-0entnZc/codeComponent
 import MobileNavbarBottom from "../../MobileNavbarBottom"; // plasmic-import: BIS-N7QZzUVV/component
+import { SideEffect } from "@plasmicpkgs/plasmic-basic-components";
 import { Fetcher } from "@plasmicapp/react-web/lib/data-sources";
 
 import { useScreenVariants as useScreenVariantshm8Nko4B5BDd } from "./PlasmicGlobalVariant__Screen"; // plasmic-import: HM8Nko4B5BDd/globalVariant
@@ -103,7 +105,6 @@ export type PlasmicMesCandidatures__OverridesType = {
   slidebarMenu?: Flex__<typeof Sidebar>;
   mobileNavbarTop?: Flex__<typeof MobileNavbarTop>;
   main?: Flex__<"main">;
-  freeBox?: Flex__<"div">;
   heading2?: Flex__<"div">;
   contract2?: Flex__<"div">;
   card2?: Flex__<"div">;
@@ -115,6 +116,7 @@ export type PlasmicMesCandidatures__OverridesType = {
   text6?: Flex__<"div">;
   supportingText2?: Flex__<"div">;
   mobileNavbarBottom?: Flex__<typeof MobileNavbarBottom>;
+  sideEffect?: Flex__<typeof SideEffect>;
 };
 
 export interface DefaultMesCandidaturesProps {}
@@ -197,16 +199,18 @@ function PlasmicMesCandidatures__RenderFunc(props: {
     $queries: $queries,
     $refs
   });
+  const dataSourcesCtx = usePlasmicDataSourceContext();
+  const plasmicInvalidate = usePlasmicInvalidate();
 
   const new$Queries: Record<string, ReturnType<typeof usePlasmicDataOp>> = {
-    getJobApplicationsByUser: usePlasmicDataOp(() => {
+    candidaturesGetJobApplicationsByUser: usePlasmicDataOp(() => {
       return {
         sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
-        opId: "301202d9-891a-49a9-b3d0-ef2dcb996a19",
+        opId: "bbea59bc-f1eb-462f-be90-e4846dc1da5f",
         userArgs: {
           query: [$ctx.SupabaseUser.user.id]
         },
-        cacheKey: `plasmic.$.301202d9-891a-49a9-b3d0-ef2dcb996a19.$.`,
+        cacheKey: `plasmic.$.bbea59bc-f1eb-462f-be90-e4846dc1da5f.$.`,
         invalidatedKeys: null,
         roleId: null
       };
@@ -284,57 +288,63 @@ function PlasmicMesCandidatures__RenderFunc(props: {
           >
             <Stack__
               as={"div"}
-              data-plasmic-name={"freeBox"}
-              data-plasmic-override={overrides.freeBox}
               hasGap={true}
-              className={classNames(projectcss.all, sty.freeBox)}
+              className={classNames(projectcss.all, sty.freeBox__mwkAc)}
             >
-              <div
-                data-plasmic-name={"heading2"}
-                data-plasmic-override={overrides.heading2}
-                className={classNames(
-                  projectcss.all,
-                  projectcss.__wab_text,
-                  sty.heading2
-                )}
-              >
-                {"Mes candidatures"}
-              </div>
-              <div
-                data-plasmic-name={"contract2"}
-                data-plasmic-override={overrides.contract2}
-                className={classNames(projectcss.all, sty.contract2)}
+              <Stack__
+                as={"div"}
+                hasGap={true}
+                className={classNames(projectcss.all, sty.freeBox__am21O)}
               >
                 <div
+                  data-plasmic-name={"heading2"}
+                  data-plasmic-override={overrides.heading2}
                   className={classNames(
                     projectcss.all,
                     projectcss.__wab_text,
-                    sty.text___9ExXh
+                    sty.heading2
                   )}
                 >
-                  <React.Fragment>
-                    {(() => {
-                      try {
-                        return `${
-                          $queries.getJobApplicationsByUser.data.length
-                        } candidature${
-                          $queries.getJobApplicationsByUser.data.length > 1
-                            ? "s"
-                            : ""
-                        }`;
-                      } catch (e) {
-                        if (
-                          e instanceof TypeError ||
-                          e?.plasmicType === "PlasmicUndefinedDataError"
-                        ) {
-                          return "";
-                        }
-                        throw e;
-                      }
-                    })()}
-                  </React.Fragment>
+                  {"Mes candidatures"}
                 </div>
-              </div>
+                <div
+                  data-plasmic-name={"contract2"}
+                  data-plasmic-override={overrides.contract2}
+                  className={classNames(projectcss.all, sty.contract2)}
+                >
+                  <div
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.__wab_text,
+                      sty.text___9ExXh
+                    )}
+                  >
+                    <React.Fragment>
+                      {(() => {
+                        try {
+                          return `${
+                            $queries.candidaturesGetJobApplicationsByUser.data
+                              .length ?? 0
+                          } candidature${
+                            $queries.candidaturesGetJobApplicationsByUser.data
+                              .length > 1
+                              ? "s"
+                              : ""
+                          }`;
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return "";
+                          }
+                          throw e;
+                        }
+                      })()}
+                    </React.Fragment>
+                  </div>
+                </div>
+              </Stack__>
               <Button
                 className={classNames("__wab_instance", sty.button__zGvnp)}
                 end={
@@ -394,7 +404,10 @@ function PlasmicMesCandidatures__RenderFunc(props: {
             >
               {(() => {
                 try {
-                  return $queries.getJobApplicationsByUser.data.length > 0;
+                  return (
+                    $queries.candidaturesGetJobApplicationsByUser.data.length >
+                    0
+                  );
                 } catch (e) {
                   if (
                     e instanceof TypeError ||
@@ -475,16 +488,20 @@ function PlasmicMesCandidatures__RenderFunc(props: {
                         ];
                       }
                     }}
-                    pageSize={5}
+                    pageSize={10}
                     showActionsColumn={false}
                     statusConfig={{
                       en_attente: { label: "En attente", color: "#E6E6E6" },
+                      deleted: {
+                        label: "Cette annonce n\u2019est plus disponible"
+                      },
                       accepte: { label: "Accepter", color: "#f1fbf3" },
                       refuse: { label: "Refuser", color: "#fef3f2" }
                     }}
                     tasks={(() => {
                       try {
-                        return $queries.getJobApplicationsByUser.data;
+                        return $queries.candidaturesGetJobApplicationsByUser
+                          .data;
                       } catch (e) {
                         if (
                           e instanceof TypeError ||
@@ -517,7 +534,8 @@ function PlasmicMesCandidatures__RenderFunc(props: {
                   ? (() => {
                       try {
                         return (
-                          $queries.getJobApplicationsByUser.data.length == 0
+                          $queries.candidaturesGetJobApplicationsByUser.data
+                            .length == 0
                         );
                       } catch (e) {
                         if (
@@ -532,7 +550,8 @@ function PlasmicMesCandidatures__RenderFunc(props: {
                   : (() => {
                       try {
                         return (
-                          $queries.getJobApplicationsByUser.data.length === 0
+                          $queries.candidaturesGetJobApplicationsByUser.data
+                            .length === 0
                         );
                       } catch (e) {
                         if (
@@ -656,6 +675,38 @@ function PlasmicMesCandidatures__RenderFunc(props: {
             data-plasmic-override={overrides.mobileNavbarBottom}
             className={classNames("__wab_instance", sty.mobileNavbarBottom)}
           />
+
+          <SideEffect
+            data-plasmic-name={"sideEffect"}
+            data-plasmic-override={overrides.sideEffect}
+            className={classNames("__wab_instance", sty.sideEffect)}
+            onMount={async () => {
+              const $steps = {};
+
+              $steps["refreshData"] = true
+                ? (() => {
+                    const actionArgs = {
+                      queryInvalidation: [
+                        "bbea59bc-f1eb-462f-be90-e4846dc1da5f"
+                      ]
+                    };
+                    return (async ({ queryInvalidation }) => {
+                      if (!queryInvalidation) {
+                        return;
+                      }
+                      await plasmicInvalidate(queryInvalidation);
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["refreshData"] != null &&
+                typeof $steps["refreshData"] === "object" &&
+                typeof $steps["refreshData"].then === "function"
+              ) {
+                $steps["refreshData"] = await $steps["refreshData"];
+              }
+            }}
+          />
         </div>
       </div>
     </React.Fragment>
@@ -668,7 +719,6 @@ const PlasmicDescendants = {
     "slidebarMenu",
     "mobileNavbarTop",
     "main",
-    "freeBox",
     "heading2",
     "contract2",
     "card2",
@@ -679,13 +729,13 @@ const PlasmicDescendants = {
     "textAndSupportingText2",
     "text6",
     "supportingText2",
-    "mobileNavbarBottom"
+    "mobileNavbarBottom",
+    "sideEffect"
   ],
   slidebarMenu: ["slidebarMenu"],
   mobileNavbarTop: ["mobileNavbarTop"],
   main: [
     "main",
-    "freeBox",
     "heading2",
     "contract2",
     "card2",
@@ -697,7 +747,6 @@ const PlasmicDescendants = {
     "text6",
     "supportingText2"
   ],
-  freeBox: ["freeBox", "heading2", "contract2"],
   heading2: ["heading2"],
   contract2: ["contract2"],
   card2: [
@@ -727,7 +776,8 @@ const PlasmicDescendants = {
   ],
   text6: ["text6"],
   supportingText2: ["supportingText2"],
-  mobileNavbarBottom: ["mobileNavbarBottom"]
+  mobileNavbarBottom: ["mobileNavbarBottom"],
+  sideEffect: ["sideEffect"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -737,7 +787,6 @@ type NodeDefaultElementType = {
   slidebarMenu: typeof Sidebar;
   mobileNavbarTop: typeof MobileNavbarTop;
   main: "main";
-  freeBox: "div";
   heading2: "div";
   contract2: "div";
   card2: "div";
@@ -749,6 +798,7 @@ type NodeDefaultElementType = {
   text6: "div";
   supportingText2: "div";
   mobileNavbarBottom: typeof MobileNavbarBottom;
+  sideEffect: typeof SideEffect;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -814,7 +864,6 @@ export const PlasmicMesCandidatures = Object.assign(
     slidebarMenu: makeNodeComponent("slidebarMenu"),
     mobileNavbarTop: makeNodeComponent("mobileNavbarTop"),
     main: makeNodeComponent("main"),
-    freeBox: makeNodeComponent("freeBox"),
     heading2: makeNodeComponent("heading2"),
     contract2: makeNodeComponent("contract2"),
     card2: makeNodeComponent("card2"),
@@ -826,6 +875,7 @@ export const PlasmicMesCandidatures = Object.assign(
     text6: makeNodeComponent("text6"),
     supportingText2: makeNodeComponent("supportingText2"),
     mobileNavbarBottom: makeNodeComponent("mobileNavbarBottom"),
+    sideEffect: makeNodeComponent("sideEffect"),
 
     // Metadata about props expected for PlasmicMesCandidatures
     internalVariantProps: PlasmicMesCandidatures__VariantProps,

@@ -66,9 +66,9 @@ import {
   usePlasmicInvalidate
 } from "@plasmicapp/react-web/lib/data-sources";
 
-import { PageLoader } from "../../others/PageLoader/PageLoader"; // plasmic-import: FHDrnDhA4DZe/codeComponent
 import MobileNavbarTop from "../../MobileNavbarTop"; // plasmic-import: mAg8Ml3XUEhy/component
 import Sidebar from "../../Sidebar"; // plasmic-import: M06HuWMcBQV2/component
+import { SideEffect } from "@plasmicpkgs/plasmic-basic-components";
 import { JobCard } from "../../cards/JobCard/JobCard"; // plasmic-import: epi6kICoBl8S/codeComponent
 import Button from "../../Button"; // plasmic-import: 9ixtKbGKv7x-/component
 import MobileNavbarBottom from "../../MobileNavbarBottom"; // plasmic-import: BIS-N7QZzUVV/component
@@ -107,6 +107,7 @@ import PhFileTextIcon from "./icons/PlasmicIcon__PhFileText"; // plasmic-import:
 import PhClockIcon from "./icons/PlasmicIcon__PhClock"; // plasmic-import: r6dP5yPLK2Mb/icon
 import PhCoinsLightIcon from "./icons/PlasmicIcon__PhCoinsLight"; // plasmic-import: 4H-jk36Nk9q0/icon
 import PhClockCountdownIcon from "./icons/PlasmicIcon__PhClockCountdown"; // plasmic-import: EKdA7LX61Arw/icon
+import PhCheckBoldIcon from "./icons/PlasmicIcon__PhCheckBold"; // plasmic-import: SpNcYHveG8zb/icon
 import ShareIcon from "./icons/PlasmicIcon__Share"; // plasmic-import: gyaylpgjJPpA/icon
 import IconPhBriefcase2Icon from "./icons/PlasmicIcon__IconPhBriefcase2"; // plasmic-import: QT5tozis-7ZJ/icon
 import PhUsersThreeIcon from "./icons/PlasmicIcon__PhUsersThree"; // plasmic-import: 5hJF42npUKid/icon
@@ -114,6 +115,7 @@ import PhMapTrifoldFillIcon from "./icons/PlasmicIcon__PhMapTrifoldFill"; // pla
 import PhPencilSimpleIcon from "./icons/PlasmicIcon__PhPencilSimple"; // plasmic-import: 7xHLZEkolpKE/icon
 import PhTrashIcon from "./icons/PlasmicIcon__PhTrash"; // plasmic-import: juO39VElEpcx/icon
 import Line10Icon from "./icons/PlasmicIcon__Line10"; // plasmic-import: okDoJMf2ty5e/icon
+import PlusIcon from "./icons/PlasmicIcon__Plus"; // plasmic-import: I5WL24ilJ3LK/icon
 
 createPlasmicElementProxy;
 
@@ -128,11 +130,11 @@ export const PlasmicMesAnnonces__ArgProps = new Array<ArgPropType>();
 
 export type PlasmicMesAnnonces__OverridesType = {
   annonces?: Flex__<"div">;
-  pageLoader?: Flex__<typeof PageLoader>;
   mobileNavbarTop?: Flex__<typeof MobileNavbarTop>;
   sidebar?: Flex__<typeof Sidebar>;
   main?: Flex__<"main">;
   h1?: Flex__<"h1">;
+  sideEffect?: Flex__<typeof SideEffect>;
   annonces2?: Flex__<"div">;
   jobCard?: Flex__<typeof JobCard>;
   noAnnonce?: Flex__<"div">;
@@ -152,7 +154,7 @@ export type PlasmicMesAnnonces__OverridesType = {
   frame49?: Flex__<"div">;
   frame50?: Flex__<"div">;
   frame51?: Flex__<"div">;
-  frame52?: Flex__<"div">;
+  appliedBtn?: Flex__<"div">;
   frame53?: Flex__<"div">;
   jobDescriptionContainer?: Flex__<"div">;
   jobDescription?: Flex__<"div">;
@@ -288,12 +290,6 @@ function PlasmicMesAnnonces__RenderFunc(props: {
         type: "private",
         variableType: "boolean",
         initFunc: ({ $props, $state, $queries, $ctx }) => undefined
-      },
-      {
-        path: "jobId",
-        type: "private",
-        variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => "1"
       },
       {
         path: "modal2.isOpen",
@@ -434,6 +430,216 @@ function PlasmicMesAnnonces__RenderFunc(props: {
         type: "private",
         variableType: "boolean",
         initFunc: ({ $props, $state, $queries, $ctx }) => false
+      },
+      {
+        path: "currentJobObject",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $ctx }) => ({})
+      },
+      {
+        path: "country",
+        type: "private",
+        variableType: "array",
+        initFunc: ({ $props, $state, $queries, $ctx }) => [
+          "Afghanistan",
+          "Afrique du Sud",
+          "Albanie",
+          "Alg\u00e9rie",
+          "Allemagne",
+          "Andorre",
+          "Angola",
+          "Antigua-et-Barbuda",
+          "Arabie saoudite",
+          "Argentine",
+          "Arm\u00e9nie",
+          "Australie",
+          "Autriche",
+          "Azerba\u00efdjan",
+          "Bahamas",
+          "Bahre\u00efn",
+          "Bangladesh",
+          "Barbade",
+          "Belgique",
+          "Belize",
+          "B\u00e9nin",
+          "Bhoutan",
+          "Bi\u00e9lorussie",
+          "Birmanie (Myanmar)",
+          "Bolivie",
+          "Bosnie-Herz\u00e9govine",
+          "Botswana",
+          "Br\u00e9sil",
+          "Brunei",
+          "Bulgarie",
+          "Burkina Faso",
+          "Burundi",
+          "Cambodge",
+          "Cameroun",
+          "Canada",
+          "Cap-Vert",
+          "Centrafrique (R\u00e9publique)",
+          "Chili",
+          "Chine",
+          "Chypre",
+          "Colombie",
+          "Comores",
+          "Congo (R\u00e9publique d\u00e9mocratique du)",
+          "Congo (R\u00e9publique du)",
+          "Cor\u00e9e du Nord",
+          "Cor\u00e9e du Sud",
+          "Costa Rica",
+          "C\u00f4te d'Ivoire",
+          "Croatie",
+          "Cuba",
+          "Danemark",
+          "Djibouti",
+          "Dominique",
+          "\u00c9gypte",
+          "\u00c9mirats arabes unis",
+          "\u00c9quateur",
+          "\u00c9rythr\u00e9e",
+          "Espagne",
+          "Estonie",
+          "Eswatini",
+          "\u00c9tats-Unis",
+          "\u00c9thiopie",
+          "Fidji",
+          "Finlande",
+          "France",
+          "Gabon",
+          "Gambie",
+          "G\u00e9orgie",
+          "Ghana",
+          "Gr\u00e8ce",
+          "Grenade",
+          "Guatemala",
+          "Guin\u00e9e",
+          "Guin\u00e9e-Bissau",
+          "Guin\u00e9e \u00e9quatoriale",
+          "Guyana",
+          "Ha\u00efti",
+          "Honduras",
+          "Hongrie",
+          "\u00celes Marshall",
+          "\u00celes Salomon",
+          "Inde",
+          "Indon\u00e9sie",
+          "Irak",
+          "Iran",
+          "Irlande",
+          "Islande",
+          "Isra\u00ebl",
+          "Italie",
+          "Jama\u00efque",
+          "Japon",
+          "Jordanie",
+          "Kazakhstan",
+          "Kenya",
+          "Kirghizistan",
+          "Kiribati",
+          "Kosovo",
+          "Kowe\u00eft",
+          "Laos",
+          "Lesotho",
+          "Lettonie",
+          "Liban",
+          "Liberia",
+          "Libye",
+          "Liechtenstein",
+          "Lituanie",
+          "Luxembourg",
+          "Mac\u00e9doine du Nord",
+          "Madagascar",
+          "Malaisie",
+          "Malawi",
+          "Maldives",
+          "Mali",
+          "Malte",
+          "Maroc",
+          "Maurice",
+          "Mauritanie",
+          "Mexique",
+          "Micron\u00e9sie",
+          "Moldavie",
+          "Monaco",
+          "Mongolie",
+          "Mont\u00e9n\u00e9gro",
+          "Mozambique",
+          "Namibie",
+          "Nauru",
+          "N\u00e9pal",
+          "Nicaragua",
+          "Niger",
+          "Nigeria",
+          "Norv\u00e8ge",
+          "Nouvelle-Z\u00e9lande",
+          "Oman",
+          "Ouganda",
+          "Ouzb\u00e9kistan",
+          "Pakistan",
+          "Palaos",
+          "Palestine",
+          "Panama",
+          "Papouasie-Nouvelle-Guin\u00e9e",
+          "Paraguay",
+          "Pays-Bas",
+          "P\u00e9rou",
+          "Philippines",
+          "Pologne",
+          "Portugal",
+          "Qatar",
+          "R\u00e9publique dominicaine",
+          "R\u00e9publique tch\u00e8que",
+          "Roumanie",
+          "Royaume-Uni",
+          "Russie",
+          "Rwanda",
+          "Saint-Christophe-et-Ni\u00e9v\u00e8s",
+          "Sainte-Lucie",
+          "Saint-Marin",
+          "Saint-Vincent-et-les-Grenadines",
+          "Salvador",
+          "Samoa",
+          "Sao Tom\u00e9-et-Principe",
+          "S\u00e9n\u00e9gal",
+          "Serbie",
+          "Seychelles",
+          "Sierra Leone",
+          "Singapour",
+          "Slovaquie",
+          "Slov\u00e9nie",
+          "Somalie",
+          "Soudan",
+          "Soudan du Sud",
+          "Sri Lanka",
+          "Su\u00e8de",
+          "Suisse",
+          "Suriname",
+          "Syrie",
+          "Tadjikistan",
+          "Ta\u00efwan",
+          "Tanzanie",
+          "Tchad",
+          "Tha\u00eflande",
+          "Timor oriental",
+          "Togo",
+          "Tonga",
+          "Trinit\u00e9-et-Tobago",
+          "Tunisie",
+          "Turkm\u00e9nistan",
+          "Turquie",
+          "Tuvalu",
+          "Ukraine",
+          "Uruguay",
+          "Vanuatu",
+          "Vatican",
+          "Venezuela",
+          "Vi\u00eat Nam",
+          "Y\u00e9men",
+          "Zambie",
+          "Zimbabwe"
+        ]
       }
     ],
     [$props, $ctx, $refs]
@@ -462,58 +668,14 @@ function PlasmicMesAnnonces__RenderFunc(props: {
         roleId: null
       };
     }),
-    cardJobLiked: usePlasmicDataOp(() => {
+    userLikedJobs: usePlasmicDataOp(() => {
       return {
         sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
-        opId: "ee40aeb1-9965-4045-8d4f-b223146962b1",
+        opId: "364ee000-dda0-48b7-9da1-2f18291d1797",
         userArgs: {
-          query: [$ctx.SupabaseUser.user.id]
+          query: [$ctx.SupabaseUser.user?.id]
         },
-        cacheKey: `plasmic.$.ee40aeb1-9965-4045-8d4f-b223146962b1.$.`,
-        invalidatedKeys: null,
-        roleId: null
-      };
-    }),
-    getJobById: usePlasmicDataOp(() => {
-      return {
-        sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
-        opId: "25a00478-4e30-4965-8940-e968e2ffc8ce",
-        userArgs: {
-          keys: [$state.jobId]
-        },
-        cacheKey: `plasmic.$.25a00478-4e30-4965-8940-e968e2ffc8ce.$.`,
-        invalidatedKeys: null,
-        roleId: null
-      };
-    }),
-    getCompanyById: usePlasmicDataOp(() => {
-      return {
-        sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
-        opId: "a552b22b-2946-4fd1-9ca2-36439cbb13a7",
-        userArgs: {
-          keys: [$queries.getJobById?.data[0]?.company_id]
-        },
-        cacheKey: `plasmic.$.a552b22b-2946-4fd1-9ca2-36439cbb13a7.$.`,
-        invalidatedKeys: null,
-        roleId: null
-      };
-    }),
-    getCriteriaByJobId: usePlasmicDataOp(() => {
-      return {
-        sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
-        opId: "e572e8d5-6ba8-4999-8195-2d3913411ba3",
-        userArgs: {
-          filters: [
-            $queries.getJobById.data[0].contract_type_id,
-            $queries.getJobById.data[0].sector_activity_id,
-            $queries.getJobById.data[0].availability_status_id,
-            $queries.getJobById.data[0].working_time_id,
-            $queries.getJobById.data[0].work_mode_id,
-            $queries.getJobById.data[0].company_size_id,
-            $queries.getJobById.data[0].salary_id
-          ]
-        },
-        cacheKey: `plasmic.$.e572e8d5-6ba8-4999-8195-2d3913411ba3.$.`,
+        cacheKey: `plasmic.$.364ee000-dda0-48b7-9da1-2f18291d1797.$.`,
         invalidatedKeys: null,
         roleId: null
       };
@@ -548,16 +710,6 @@ function PlasmicMesAnnonces__RenderFunc(props: {
         roleId: null
       };
     }),
-    getCountries: usePlasmicDataOp(() => {
-      return {
-        sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
-        opId: "55fe18eb-11a3-411e-bf08-f786d3cb4a98",
-        userArgs: {},
-        cacheKey: `plasmic.$.55fe18eb-11a3-411e-bf08-f786d3cb4a98.$.`,
-        invalidatedKeys: null,
-        roleId: null
-      };
-    }),
     getTransportModes: usePlasmicDataOp(() => {
       return {
         sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
@@ -584,6 +736,34 @@ function PlasmicMesAnnonces__RenderFunc(props: {
         opId: "b2a4d57d-9e60-42ef-90a4-3c0c39a3cc9e",
         userArgs: {},
         cacheKey: `plasmic.$.b2a4d57d-9e60-42ef-90a4-3c0c39a3cc9e.$.`,
+        invalidatedKeys: null,
+        roleId: null
+      };
+    }),
+    userApplications: usePlasmicDataOp(() => {
+      return {
+        sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
+        opId: "a3e4c858-0549-4f80-9f4b-d2e2d7018c4e",
+        userArgs: {
+          filters: [$ctx.SupabaseUser.user.id]
+        },
+        cacheKey: `plasmic.$.a3e4c858-0549-4f80-9f4b-d2e2d7018c4e.$.`,
+        invalidatedKeys: null,
+        roleId: null
+      };
+    }),
+    fetchUserCoordinates: usePlasmicDataOp(() => {
+      return {
+        sourceId: "3fRequBPthJKGmQ2njgcZi",
+        opId: "65bb2e57-e5e0-4bd7-9479-d9c8f9ccecef",
+        userArgs: {
+          params: [
+            $state.form?.value?.address,
+            $state.form?.value?.city,
+            $state.form?.value?.Country
+          ]
+        },
+        cacheKey: `plasmic.$.65bb2e57-e5e0-4bd7-9479-d9c8f9ccecef.$.`,
         invalidatedKeys: null,
         roleId: null
       };
@@ -627,68 +807,6 @@ function PlasmicMesAnnonces__RenderFunc(props: {
             sty.annonces
           )}
         >
-          <PageLoader
-            data-plasmic-name={"pageLoader"}
-            data-plasmic-override={overrides.pageLoader}
-            className={classNames("__wab_instance", sty.pageLoader)}
-            onMount={async () => {
-              const $steps = {};
-
-              $steps["refreshData"] = !$state.isRefreshed
-                ? (() => {
-                    const actionArgs = {
-                      queryInvalidation: [
-                        "24ab9e7e-7e19-4ab2-82fc-82df12596da0"
-                      ]
-                    };
-                    return (async ({ queryInvalidation }) => {
-                      if (!queryInvalidation) {
-                        return;
-                      }
-                      await plasmicInvalidate(queryInvalidation);
-                    })?.apply(null, [actionArgs]);
-                  })()
-                : undefined;
-              if (
-                $steps["refreshData"] != null &&
-                typeof $steps["refreshData"] === "object" &&
-                typeof $steps["refreshData"].then === "function"
-              ) {
-                $steps["refreshData"] = await $steps["refreshData"];
-              }
-
-              $steps["updateIsRefreshed"] = true
-                ? (() => {
-                    const actionArgs = {
-                      variable: {
-                        objRoot: $state,
-                        variablePath: ["isRefreshed"]
-                      },
-                      operation: 0,
-                      value: true
-                    };
-                    return (({ variable, value, startIndex, deleteCount }) => {
-                      if (!variable) {
-                        return;
-                      }
-                      const { objRoot, variablePath } = variable;
-
-                      $stateSet(objRoot, variablePath, value);
-                      return value;
-                    })?.apply(null, [actionArgs]);
-                  })()
-                : undefined;
-              if (
-                $steps["updateIsRefreshed"] != null &&
-                typeof $steps["updateIsRefreshed"] === "object" &&
-                typeof $steps["updateIsRefreshed"].then === "function"
-              ) {
-                $steps["updateIsRefreshed"] = await $steps["updateIsRefreshed"];
-              }
-            }}
-            shouldRun={true}
-          />
-
           <MobileNavbarTop
             data-plasmic-name={"mobileNavbarTop"}
             data-plasmic-override={overrides.mobileNavbarTop}
@@ -720,9 +838,41 @@ function PlasmicMesAnnonces__RenderFunc(props: {
             >
               {"Mes annonces sauvegard\u00e9es"}
             </h1>
+            <SideEffect
+              data-plasmic-name={"sideEffect"}
+              data-plasmic-override={overrides.sideEffect}
+              className={classNames("__wab_instance", sty.sideEffect)}
+              onMount={async () => {
+                const $steps = {};
+
+                $steps["refreshData"] = true
+                  ? (() => {
+                      const actionArgs = {
+                        queryInvalidation: [
+                          "364ee000-dda0-48b7-9da1-2f18291d1797"
+                        ]
+                      };
+                      return (async ({ queryInvalidation }) => {
+                        if (!queryInvalidation) {
+                          return;
+                        }
+                        await plasmicInvalidate(queryInvalidation);
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["refreshData"] != null &&
+                  typeof $steps["refreshData"] === "object" &&
+                  typeof $steps["refreshData"].then === "function"
+                ) {
+                  $steps["refreshData"] = await $steps["refreshData"];
+                }
+              }}
+            />
+
             {(() => {
               try {
-                return $queries.jobsLiked.data.length > 0;
+                return $queries.userLikedJobs.data.length > 0;
               } catch (e) {
                 if (
                   e instanceof TypeError ||
@@ -743,7 +893,7 @@ function PlasmicMesAnnonces__RenderFunc(props: {
                 {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
                   (() => {
                     try {
-                      return $queries.cardJobLiked.data;
+                      return $queries.userLikedJobs.data;
                     } catch (e) {
                       if (
                         e instanceof TypeError ||
@@ -776,7 +926,7 @@ function PlasmicMesAnnonces__RenderFunc(props: {
                         })()}
                         city={(() => {
                           try {
-                            return currentItem.job_location;
+                            return currentItem.location;
                           } catch (e) {
                             if (
                               e instanceof TypeError ||
@@ -833,15 +983,15 @@ function PlasmicMesAnnonces__RenderFunc(props: {
                         onClick={async event => {
                           const $steps = {};
 
-                          $steps["updateVariable"] = true
+                          $steps["updateJobObjetct"] = true
                             ? (() => {
                                 const actionArgs = {
                                   variable: {
                                     objRoot: $state,
-                                    variablePath: ["jobId"]
+                                    variablePath: ["currentJobObject"]
                                   },
                                   operation: 0,
-                                  value: currentItem.job_id
+                                  value: currentItem
                                 };
                                 return (({
                                   variable,
@@ -860,16 +1010,17 @@ function PlasmicMesAnnonces__RenderFunc(props: {
                               })()
                             : undefined;
                           if (
-                            $steps["updateVariable"] != null &&
-                            typeof $steps["updateVariable"] === "object" &&
-                            typeof $steps["updateVariable"].then === "function"
+                            $steps["updateJobObjetct"] != null &&
+                            typeof $steps["updateJobObjetct"] === "object" &&
+                            typeof $steps["updateJobObjetct"].then ===
+                              "function"
                           ) {
-                            $steps["updateVariable"] = await $steps[
-                              "updateVariable"
+                            $steps["updateJobObjetct"] = await $steps[
+                              "updateJobObjetct"
                             ];
                           }
 
-                          $steps["updateModalIsOpen"] = true
+                          $steps["openModal"] = true
                             ? (() => {
                                 const actionArgs = {
                                   variable: {
@@ -896,14 +1047,11 @@ function PlasmicMesAnnonces__RenderFunc(props: {
                               })()
                             : undefined;
                           if (
-                            $steps["updateModalIsOpen"] != null &&
-                            typeof $steps["updateModalIsOpen"] === "object" &&
-                            typeof $steps["updateModalIsOpen"].then ===
-                              "function"
+                            $steps["openModal"] != null &&
+                            typeof $steps["openModal"] === "object" &&
+                            typeof $steps["openModal"].then === "function"
                           ) {
-                            $steps["updateModalIsOpen"] = await $steps[
-                              "updateModalIsOpen"
-                            ];
+                            $steps["openModal"] = await $steps["openModal"];
                           }
                         }}
                         salary={(() => {
@@ -917,7 +1065,7 @@ function PlasmicMesAnnonces__RenderFunc(props: {
                         tags={[]}
                         title={(() => {
                           try {
-                            return currentItem.job_title;
+                            return currentItem.title;
                           } catch (e) {
                             if (
                               e instanceof TypeError ||
@@ -956,11 +1104,12 @@ function PlasmicMesAnnonces__RenderFunc(props: {
                                     sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
                                     opId: "21389a04-150f-4bd5-bdca-85fbbce35635",
                                     userArgs: {
-                                      conditions: [currentItem.job_id]
+                                      conditions: [currentItem.id]
                                     },
                                     cacheKey: null,
                                     invalidatedKeys: [
-                                      "ee40aeb1-9965-4045-8d4f-b223146962b1"
+                                      "364ee000-dda0-48b7-9da1-2f18291d1797",
+                                      "24ab9e7e-7e19-4ab2-82fc-82df12596da0"
                                     ],
                                     roleId: null
                                   }
@@ -1026,7 +1175,7 @@ function PlasmicMesAnnonces__RenderFunc(props: {
                                     "success",
                                     (() => {
                                       try {
-                                        return `L'annonce ${currentItem.job_title} a bien été retirée de vos favoris`;
+                                        return `L'annonce ${currentItem.title} a bien été retirée de vos favoris`;
                                       } catch (e) {
                                         if (
                                           e instanceof TypeError ||
@@ -1080,7 +1229,7 @@ function PlasmicMesAnnonces__RenderFunc(props: {
                   })()
                 : (() => {
                     try {
-                      return $queries.jobsLiked.data.length == 0;
+                      return $queries.userLikedJobs?.data?.length == 0;
                     } catch (e) {
                       if (
                         e instanceof TypeError ||
@@ -1234,7 +1383,7 @@ function PlasmicMesAnnonces__RenderFunc(props: {
                       <React.Fragment>
                         {(() => {
                           try {
-                            return $queries.getJobById.data[0].title;
+                            return $state.currentJobObject.title;
                           } catch (e) {
                             if (
                               e instanceof TypeError ||
@@ -1275,7 +1424,7 @@ function PlasmicMesAnnonces__RenderFunc(props: {
                         <React.Fragment>
                           {(() => {
                             try {
-                              return $queries.getJobById.data[0].location;
+                              return $state.currentJobObject.location;
                             } catch (e) {
                               if (
                                 e instanceof TypeError ||
@@ -1301,12 +1450,12 @@ function PlasmicMesAnnonces__RenderFunc(props: {
                       <React.Fragment>
                         {(() => {
                           try {
-                            return (
-                              "Publié le " +
-                              new Date($queries.getJobById.data[0].created_at)
-                                .toISOString()
-                                .split("T")[0]
-                            );
+                            return $state.currentJobObject.created_at
+                              ? "Publié le " +
+                                  new Date($state.currentJobObject.created_at)
+                                    .toISOString()
+                                    .split("T")[0]
+                              : "";
                           } catch (e) {
                             if (
                               e instanceof TypeError ||
@@ -1356,7 +1505,7 @@ function PlasmicMesAnnonces__RenderFunc(props: {
                           <React.Fragment>
                             {(() => {
                               try {
-                                return $queries.getCriteriaByJobId.data[0].name;
+                                return $state.currentJobObject.contract_type;
                               } catch (e) {
                                 if (
                                   e instanceof TypeError ||
@@ -1392,7 +1541,7 @@ function PlasmicMesAnnonces__RenderFunc(props: {
                           <React.Fragment>
                             {(() => {
                               try {
-                                return $queries.getCriteriaByJobId.data[3].name;
+                                return $state.currentJobObject.working_time;
                               } catch (e) {
                                 if (
                                   e instanceof TypeError ||
@@ -1431,7 +1580,7 @@ function PlasmicMesAnnonces__RenderFunc(props: {
                           <React.Fragment>
                             {(() => {
                               try {
-                                return $queries.getCriteriaByJobId.data[5].name;
+                                return $state.currentJobObject.salary;
                               } catch (e) {
                                 if (
                                   e instanceof TypeError ||
@@ -1467,7 +1616,8 @@ function PlasmicMesAnnonces__RenderFunc(props: {
                           <React.Fragment>
                             {(() => {
                               try {
-                                return $queries.getCriteriaByJobId.data[2].name;
+                                return $state.currentJobObject
+                                  .availability_status;
                               } catch (e) {
                                 if (
                                   e instanceof TypeError ||
@@ -1482,13 +1632,24 @@ function PlasmicMesAnnonces__RenderFunc(props: {
                         </div>
                       </Stack__>
                     </Stack__>
-                    <Stack__
-                      as={"div"}
-                      data-plasmic-name={"frame52"}
-                      data-plasmic-override={overrides.frame52}
-                      hasGap={true}
-                      className={classNames(projectcss.all, sty.frame52)}
-                    >
+                    {(() => {
+                      try {
+                        return $queries.userApplications.data.some(
+                          application =>
+                            application.job_id == $state.currentJobObject.id
+                        )
+                          ? false
+                          : true;
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return true;
+                        }
+                        throw e;
+                      }
+                    })() ? (
                       <Button
                         className={classNames(
                           "__wab_instance",
@@ -1546,7 +1707,51 @@ function PlasmicMesAnnonces__RenderFunc(props: {
                           }
                         }}
                       />
-                    </Stack__>
+                    ) : null}
+                    {(() => {
+                      try {
+                        return $queries.userApplications.data.some(
+                          application =>
+                            application.job_id == $state.currentJobObject.id
+                        )
+                          ? true
+                          : false;
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return true;
+                        }
+                        throw e;
+                      }
+                    })() ? (
+                      <Stack__
+                        as={"div"}
+                        data-plasmic-name={"appliedBtn"}
+                        data-plasmic-override={overrides.appliedBtn}
+                        hasGap={true}
+                        className={classNames(projectcss.all, sty.appliedBtn)}
+                      >
+                        <PhCheckBoldIcon
+                          className={classNames(
+                            projectcss.all,
+                            sty.svg___3QAXy
+                          )}
+                          role={"img"}
+                        />
+
+                        <div
+                          className={classNames(
+                            projectcss.all,
+                            projectcss.__wab_text,
+                            sty.text__tj2Ed
+                          )}
+                        >
+                          {"Postul\u00e9"}
+                        </div>
+                      </Stack__>
+                    ) : null}
                   </Stack__>
                   <Stack__
                     as={"div"}
@@ -1597,7 +1802,7 @@ function PlasmicMesAnnonces__RenderFunc(props: {
                     <React.Fragment>
                       {(() => {
                         try {
-                          return $queries.getJobById.data[0].description;
+                          return $state.currentJobObject.description;
                         } catch (e) {
                           if (
                             e instanceof TypeError ||
@@ -1621,7 +1826,7 @@ function PlasmicMesAnnonces__RenderFunc(props: {
                       !_par ? [] : Array.isArray(_par) ? _par : [_par])(
                       (() => {
                         try {
-                          return $queries.getJobById.data[0].benefits
+                          return $state.currentJobObject.benefits
                             .replace(/{/g, "")
                             .replace(/}/g, "")
                             .replace(/"/g, "")
@@ -1699,7 +1904,7 @@ function PlasmicMesAnnonces__RenderFunc(props: {
                     <React.Fragment>
                       {(() => {
                         try {
-                          return $queries.getJobById.data[0].requirements;
+                          return $state.currentJobObject.requirements;
                         } catch (e) {
                           if (
                             e instanceof TypeError ||
@@ -1746,7 +1951,7 @@ function PlasmicMesAnnonces__RenderFunc(props: {
                       loading={"lazy"}
                       src={(() => {
                         try {
-                          return $queries.getCompanyById.data[0].logo_file;
+                          return $state.currentJobObject.logo_file;
                         } catch (e) {
                           if (
                             e instanceof TypeError ||
@@ -1778,7 +1983,7 @@ function PlasmicMesAnnonces__RenderFunc(props: {
                       <React.Fragment>
                         {(() => {
                           try {
-                            return $queries.getCompanyById.data[0].name;
+                            return $state.currentJobObject.company_name;
                           } catch (e) {
                             if (
                               e instanceof TypeError ||
@@ -1823,7 +2028,7 @@ function PlasmicMesAnnonces__RenderFunc(props: {
                           <React.Fragment>
                             {(() => {
                               try {
-                                return $queries.getCriteriaByJobId.data[1].name;
+                                return $state.currentJobObject.sector_activity;
                               } catch (e) {
                                 if (
                                   e instanceof TypeError ||
@@ -1859,7 +2064,7 @@ function PlasmicMesAnnonces__RenderFunc(props: {
                           <React.Fragment>
                             {(() => {
                               try {
-                                return $queries.getCriteriaByJobId.data[5].name;
+                                return $state.currentJobObject.company_size;
                               } catch (e) {
                                 if (
                                   e instanceof TypeError ||
@@ -1898,7 +2103,7 @@ function PlasmicMesAnnonces__RenderFunc(props: {
                           <React.Fragment>
                             {(() => {
                               try {
-                                return $queries.getCompanyById.data[0].location;
+                                return $state.currentJobObject.company_address;
                               } catch (e) {
                                 if (
                                   e instanceof TypeError ||
@@ -1926,7 +2131,7 @@ function PlasmicMesAnnonces__RenderFunc(props: {
                     <React.Fragment>
                       {(() => {
                         try {
-                          return $queries.getCompanyById.data[0].description;
+                          return $state.currentJobObject.company_description;
                         } catch (e) {
                           if (
                             e instanceof TypeError ||
@@ -2020,6 +2225,7 @@ function PlasmicMesAnnonces__RenderFunc(props: {
               ) : null
             }
             isOpen={generateStateValueProp($state, ["modal", "isOpen"])}
+            noTrigger={true}
             onOpenChange={async (...eventArgs: any) => {
               generateStateOnChangeProp($state, ["modal", "isOpen"]).apply(
                 null,
@@ -2092,7 +2298,7 @@ function PlasmicMesAnnonces__RenderFunc(props: {
                           <React.Fragment>
                             {(() => {
                               try {
-                                return $queries.getJobById.data[0].title;
+                                return $state.currentJobObject.title;
                               } catch (e) {
                                 if (
                                   e instanceof TypeError ||
@@ -2130,7 +2336,7 @@ function PlasmicMesAnnonces__RenderFunc(props: {
                             <React.Fragment>
                               {(() => {
                                 try {
-                                  return $queries.getJobById.data[0].location;
+                                  return $state.currentJobObject.location;
                                 } catch (e) {
                                   if (
                                     e instanceof TypeError ||
@@ -2156,12 +2362,12 @@ function PlasmicMesAnnonces__RenderFunc(props: {
                         <React.Fragment>
                           {(() => {
                             try {
-                              return (
-                                "Publié le " +
-                                new Date($queries.getJobById.data[0].created_at)
-                                  .toISOString()
-                                  .split("T")[0]
-                              );
+                              return $state.currentJobObject.created_at
+                                ? "Publié le " +
+                                    new Date($state.currentJobObject.created_at)
+                                      .toISOString()
+                                      .split("T")[0]
+                                : "";
                             } catch (e) {
                               if (
                                 e instanceof TypeError ||
@@ -2214,8 +2420,7 @@ function PlasmicMesAnnonces__RenderFunc(props: {
                             <React.Fragment>
                               {(() => {
                                 try {
-                                  return $queries.getCriteriaByJobId.data[3]
-                                    .name;
+                                  return $state.currentJobObject.contract_type;
                                 } catch (e) {
                                   if (
                                     e instanceof TypeError ||
@@ -2255,8 +2460,7 @@ function PlasmicMesAnnonces__RenderFunc(props: {
                             <React.Fragment>
                               {(() => {
                                 try {
-                                  return $queries.getCriteriaByJobId.data[2]
-                                    .name;
+                                  return $state.currentJobObject.working_time;
                                 } catch (e) {
                                   if (
                                     e instanceof TypeError ||
@@ -2296,8 +2500,7 @@ function PlasmicMesAnnonces__RenderFunc(props: {
                             <React.Fragment>
                               {(() => {
                                 try {
-                                  return $queries.getCriteriaByJobId.data[5]
-                                    .name;
+                                  return $state.currentJobObject.salary;
                                 } catch (e) {
                                   if (
                                     e instanceof TypeError ||
@@ -2337,8 +2540,8 @@ function PlasmicMesAnnonces__RenderFunc(props: {
                             <React.Fragment>
                               {(() => {
                                 try {
-                                  return $queries.getCriteriaByJobId.data[0]
-                                    .name;
+                                  return $state.currentJobObject
+                                    .availability_status;
                                 } catch (e) {
                                   if (
                                     e instanceof TypeError ||
@@ -2386,7 +2589,7 @@ function PlasmicMesAnnonces__RenderFunc(props: {
                             <React.Fragment>
                               {(() => {
                                 try {
-                                  return $queries.getCompanyById.data[0].name;
+                                  return $state.currentJobObject.company_name;
                                 } catch (e) {
                                   if (
                                     e instanceof TypeError ||
@@ -2435,8 +2638,8 @@ function PlasmicMesAnnonces__RenderFunc(props: {
                                 <React.Fragment>
                                   {(() => {
                                     try {
-                                      return $queries.getCriteriaByJobId.data[1]
-                                        .name;
+                                      return $state.currentJobObject
+                                        .sector_activity;
                                     } catch (e) {
                                       if (
                                         e instanceof TypeError ||
@@ -2479,8 +2682,8 @@ function PlasmicMesAnnonces__RenderFunc(props: {
                                 <React.Fragment>
                                   {(() => {
                                     try {
-                                      return $queries.getCriteriaByJobId.data[5]
-                                        .name;
+                                      return $state.currentJobObject
+                                        .company_size;
                                     } catch (e) {
                                       if (
                                         e instanceof TypeError ||
@@ -2533,8 +2736,8 @@ function PlasmicMesAnnonces__RenderFunc(props: {
                                   <React.Fragment>
                                     {(() => {
                                       try {
-                                        return $queries.getCompanyById.data[0]
-                                          .location;
+                                        return $state.currentJobObject
+                                          .company_address;
                                       } catch (e) {
                                         if (
                                           e instanceof TypeError ||
@@ -2572,7 +2775,7 @@ function PlasmicMesAnnonces__RenderFunc(props: {
                           loading={"lazy"}
                           src={(() => {
                             try {
-                              return $queries.getCompanyById.data[0].logo_file;
+                              return $state.currentJobObject.logo_file;
                             } catch (e) {
                               if (
                                 e instanceof TypeError ||
@@ -2607,19 +2810,6 @@ function PlasmicMesAnnonces__RenderFunc(props: {
                         inputType: "Text Area"
                       }
                     ],
-                    initialValues: (() => {
-                      try {
-                        return $queries.getUser.data[0];
-                      } catch (e) {
-                        if (
-                          e instanceof TypeError ||
-                          e?.plasmicType === "PlasmicUndefinedDataError"
-                        ) {
-                          return undefined;
-                        }
-                        throw e;
-                      }
-                    })(),
                     labelCol: { span: 8, horizontalOnly: true },
                     layout: "vertical",
                     mode: "advanced",
@@ -2728,12 +2918,12 @@ function PlasmicMesAnnonces__RenderFunc(props: {
                         $steps["lettreMotiv"] = await $steps["lettreMotiv"];
                       }
 
-                      $steps["updateTableUser"] = true
+                      $steps["updateUser"] = true
                         ? (() => {
                             const actionArgs = {
                               dataOp: {
                                 sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
-                                opId: "b385d301-242a-407b-b31c-7c095bae0ea9",
+                                opId: "71c51a9c-8556-45fb-8a36-acb9ebbbf8c3",
                                 userArgs: {
                                   variables: [
                                     $state.form.value.address,
@@ -2750,7 +2940,11 @@ function PlasmicMesAnnonces__RenderFunc(props: {
                                     $state.form.value.short_presentation,
                                     $state.form.value.skill,
                                     $state.form.value.transport_mode,
-                                    new Date().toISOString()
+                                    new Date().toISOString(),
+                                    $queries.fetchUserCoordinates.data.response
+                                      .features[0].geometry.coordinates[0],
+                                    $queries.fetchUserCoordinates.data.response
+                                      .features[0].geometry.coordinates[1]
                                   ],
                                   conditions: [$ctx.SupabaseUser.user.id]
                                 },
@@ -2781,16 +2975,21 @@ function PlasmicMesAnnonces__RenderFunc(props: {
                           })()
                         : undefined;
                       if (
-                        $steps["updateTableUser"] != null &&
-                        typeof $steps["updateTableUser"] === "object" &&
-                        typeof $steps["updateTableUser"].then === "function"
+                        $steps["updateUser"] != null &&
+                        typeof $steps["updateUser"] === "object" &&
+                        typeof $steps["updateUser"].then === "function"
                       ) {
-                        $steps["updateTableUser"] = await $steps[
-                          "updateTableUser"
-                        ];
+                        $steps["updateUser"] = await $steps["updateUser"];
                       }
 
-                      $steps["createApplications"] = true
+                      $steps["createApplication"] = (
+                        $queries.userApplications.data.some(
+                          application =>
+                            application.job_id == $state.currentJobObject.id
+                        )
+                          ? false
+                          : true
+                      )
                         ? (() => {
                             const actionArgs = {
                               dataOp: {
@@ -2802,7 +3001,7 @@ function PlasmicMesAnnonces__RenderFunc(props: {
                                     $state.form.value.city,
                                     $steps.lettreMotiv?.path.split("/")[1],
                                     $steps.cv?.path.split("/")[1],
-                                    $queries.getJobById.data[0].id,
+                                    $queries.userLikedJobs.data[0].id,
                                     $state.form.value.level,
                                     $state.form.value.linkedin_url,
                                     $state.form.value.postal_code,
@@ -2813,7 +3012,10 @@ function PlasmicMesAnnonces__RenderFunc(props: {
                                   ]
                                 },
                                 cacheKey: null,
-                                invalidatedKeys: [],
+                                invalidatedKeys: [
+                                  "bbea59bc-f1eb-462f-be90-e4846dc1da5f",
+                                  "a3e4c858-0549-4f80-9f4b-d2e2d7018c4e"
+                                ],
                                 roleId: null
                               }
                             };
@@ -2839,16 +3041,74 @@ function PlasmicMesAnnonces__RenderFunc(props: {
                           })()
                         : undefined;
                       if (
-                        $steps["createApplications"] != null &&
-                        typeof $steps["createApplications"] === "object" &&
-                        typeof $steps["createApplications"].then === "function"
+                        $steps["createApplication"] != null &&
+                        typeof $steps["createApplication"] === "object" &&
+                        typeof $steps["createApplication"].then === "function"
                       ) {
-                        $steps["createApplications"] = await $steps[
-                          "createApplications"
+                        $steps["createApplication"] = await $steps[
+                          "createApplication"
                         ];
                       }
 
-                      $steps["updateModal2IsOpen"] = true
+                      $steps["errorMsg"] = (
+                        $queries.userApplications.data.some(
+                          application =>
+                            application.job_id == $state.currentJobObject.id
+                        )
+                          ? true
+                          : false
+                      )
+                        ? (() => {
+                            const actionArgs = {
+                              args: [
+                                "warning",
+                                "Attention",
+                                "Vous avez d\u00e9j\u00e0 postul\u00e9 \u00e0 cette offre."
+                              ]
+                            };
+                            return $globalActions[
+                              "plasmic-antd5-config-provider.showNotification"
+                            ]?.apply(null, [...actionArgs.args]);
+                          })()
+                        : undefined;
+                      if (
+                        $steps["errorMsg"] != null &&
+                        typeof $steps["errorMsg"] === "object" &&
+                        typeof $steps["errorMsg"].then === "function"
+                      ) {
+                        $steps["errorMsg"] = await $steps["errorMsg"];
+                      }
+
+                      $steps["succesMsg"] = (
+                        $queries.userApplications.data.some(
+                          application =>
+                            application.job_id == $state.currentJobObject.id
+                        )
+                          ? false
+                          : true
+                      )
+                        ? (() => {
+                            const actionArgs = {
+                              args: [
+                                "success",
+                                "Merci",
+                                "Votre candidature a \u00e9t\u00e9 envoy\u00e9 !"
+                              ]
+                            };
+                            return $globalActions[
+                              "plasmic-antd5-config-provider.showNotification"
+                            ]?.apply(null, [...actionArgs.args]);
+                          })()
+                        : undefined;
+                      if (
+                        $steps["succesMsg"] != null &&
+                        typeof $steps["succesMsg"] === "object" &&
+                        typeof $steps["succesMsg"].then === "function"
+                      ) {
+                        $steps["succesMsg"] = await $steps["succesMsg"];
+                      }
+
+                      $steps["closeModal2"] = true
                         ? (() => {
                             const actionArgs = {
                               variable: {
@@ -2875,16 +3135,14 @@ function PlasmicMesAnnonces__RenderFunc(props: {
                           })()
                         : undefined;
                       if (
-                        $steps["updateModal2IsOpen"] != null &&
-                        typeof $steps["updateModal2IsOpen"] === "object" &&
-                        typeof $steps["updateModal2IsOpen"].then === "function"
+                        $steps["closeModal2"] != null &&
+                        typeof $steps["closeModal2"] === "object" &&
+                        typeof $steps["closeModal2"].then === "function"
                       ) {
-                        $steps["updateModal2IsOpen"] = await $steps[
-                          "updateModal2IsOpen"
-                        ];
+                        $steps["closeModal2"] = await $steps["closeModal2"];
                       }
 
-                      $steps["updateModalIsOpen"] = true
+                      $steps["closeModal"] = true
                         ? (() => {
                             const actionArgs = {
                               variable: {
@@ -2911,12 +3169,36 @@ function PlasmicMesAnnonces__RenderFunc(props: {
                           })()
                         : undefined;
                       if (
-                        $steps["updateModalIsOpen"] != null &&
-                        typeof $steps["updateModalIsOpen"] === "object" &&
-                        typeof $steps["updateModalIsOpen"].then === "function"
+                        $steps["closeModal"] != null &&
+                        typeof $steps["closeModal"] === "object" &&
+                        typeof $steps["closeModal"].then === "function"
                       ) {
-                        $steps["updateModalIsOpen"] = await $steps[
-                          "updateModalIsOpen"
+                        $steps["closeModal"] = await $steps["closeModal"];
+                      }
+                    },
+                    onFinishFailed: async data => {
+                      const $steps = {};
+
+                      $steps["invokeGlobalAction"] = true
+                        ? (() => {
+                            const actionArgs = {
+                              args: [
+                                "error",
+                                "Veuillez remplir toutes les informations obligatoires"
+                              ]
+                            };
+                            return $globalActions[
+                              "plasmic-antd5-config-provider.showNotification"
+                            ]?.apply(null, [...actionArgs.args]);
+                          })()
+                        : undefined;
+                      if (
+                        $steps["invokeGlobalAction"] != null &&
+                        typeof $steps["invokeGlobalAction"] === "object" &&
+                        typeof $steps["invokeGlobalAction"].then === "function"
+                      ) {
+                        $steps["invokeGlobalAction"] = await $steps[
+                          "invokeGlobalAction"
                         ];
                       }
                     },
@@ -3341,6 +3623,19 @@ function PlasmicMesAnnonces__RenderFunc(props: {
                               "__wab_instance",
                               sty.textInput1
                             )}
+                            defaultValue={(() => {
+                              try {
+                                return $queries.getUser.data[0].first_name;
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return undefined;
+                                }
+                                throw e;
+                              }
+                            })()}
                             onChange={async (...eventArgs: any) => {
                               generateStateOnChangeProp($state, [
                                 "textInput1",
@@ -3383,6 +3678,19 @@ function PlasmicMesAnnonces__RenderFunc(props: {
                               "__wab_instance",
                               sty.textInput2
                             )}
+                            defaultValue={(() => {
+                              try {
+                                return $queries.getUser.data[0].last_name;
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return undefined;
+                                }
+                                throw e;
+                              }
+                            })()}
                             onChange={async (...eventArgs: any) => {
                               generateStateOnChangeProp($state, [
                                 "textInput2",
@@ -3426,6 +3734,19 @@ function PlasmicMesAnnonces__RenderFunc(props: {
                             "__wab_instance",
                             sty.textInput4
                           )}
+                          defaultValue={(() => {
+                            try {
+                              return $queries.getUser.data[0].email;
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return undefined;
+                              }
+                              throw e;
+                            }
+                          })()}
                           disabled={true}
                           inputType={"email"}
                           onChange={async (...eventArgs: any) => {
@@ -3504,6 +3825,19 @@ function PlasmicMesAnnonces__RenderFunc(props: {
                               "__wab_instance",
                               sty.textInput3
                             )}
+                            defaultValue={(() => {
+                              try {
+                                return $queries.getUser.data[0].phone_number;
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return undefined;
+                                }
+                                throw e;
+                              }
+                            })()}
                             inputType={"tel"}
                             onChange={async (...eventArgs: any) => {
                               generateStateOnChangeProp($state, [
@@ -3535,6 +3869,19 @@ function PlasmicMesAnnonces__RenderFunc(props: {
                           data-plasmic-name={"rue"}
                           data-plasmic-override={overrides.rue}
                           className={classNames("__wab_instance", sty.rue)}
+                          defaultValue={(() => {
+                            try {
+                              return $queries.getUser.data[0].address;
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return undefined;
+                              }
+                              throw e;
+                            }
+                          })()}
                           inputType={"text"}
                           onChange={async (...eventArgs: any) => {
                             generateStateOnChangeProp($state, [
@@ -3580,6 +3927,19 @@ function PlasmicMesAnnonces__RenderFunc(props: {
                               "__wab_instance",
                               sty.codePostal
                             )}
+                            defaultValue={(() => {
+                              try {
+                                return $queries.getUser.data[0].postal_code;
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return undefined;
+                                }
+                                throw e;
+                              }
+                            })()}
                             onChange={async (...eventArgs: any) => {
                               generateStateOnChangeProp($state, [
                                 "codePostal",
@@ -3610,6 +3970,19 @@ function PlasmicMesAnnonces__RenderFunc(props: {
                             data-plasmic-name={"ville"}
                             data-plasmic-override={overrides.ville}
                             className={classNames("__wab_instance", sty.ville)}
+                            defaultValue={(() => {
+                              try {
+                                return $queries.getUser.data[0].city;
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return undefined;
+                                }
+                                throw e;
+                              }
+                            })()}
                             onChange={async (...eventArgs: any) => {
                               generateStateOnChangeProp($state, [
                                 "ville",
@@ -3688,6 +4061,7 @@ function PlasmicMesAnnonces__RenderFunc(props: {
                           "__wab_instance",
                           sty.formField__t6BZ4
                         )}
+                        initialValue={$queries.getUser?.data[0]?.country}
                         label={null}
                         name={"Country"}
                         noLabel={true}
@@ -3701,7 +4075,7 @@ function PlasmicMesAnnonces__RenderFunc(props: {
                             !_par ? [] : Array.isArray(_par) ? _par : [_par])(
                             (() => {
                               try {
-                                return $queries.getCountries.data;
+                                return $state.country;
                               } catch (e) {
                                 if (
                                   e instanceof TypeError ||
@@ -3724,7 +4098,7 @@ function PlasmicMesAnnonces__RenderFunc(props: {
                                 key={currentIndex}
                                 label={(() => {
                                   try {
-                                    return currentItem.Name;
+                                    return currentItem;
                                   } catch (e) {
                                     if (
                                       e instanceof TypeError ||
@@ -3738,7 +4112,7 @@ function PlasmicMesAnnonces__RenderFunc(props: {
                                 })()}
                                 value={(() => {
                                   try {
-                                    return currentItem.Name;
+                                    return currentItem;
                                   } catch (e) {
                                     if (
                                       e instanceof TypeError ||
@@ -3781,6 +4155,19 @@ function PlasmicMesAnnonces__RenderFunc(props: {
                           "__wab_instance",
                           sty.formField__axNyR
                         )}
+                        initialValue={(() => {
+                          try {
+                            return $queries.getUser.data[0].transport_mode;
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return undefined;
+                            }
+                            throw e;
+                          }
+                        })()}
                         label={"Moyens de transport"}
                         name={"transport_mode"}
                         noLabel={false}
@@ -3788,6 +4175,7 @@ function PlasmicMesAnnonces__RenderFunc(props: {
                         <AntdSelect
                           data-plasmic-name={"select3"}
                           data-plasmic-override={overrides.select3}
+                          bordered={false}
                           className={classNames("__wab_instance", sty.select3)}
                           defaultStylesClassName={classNames(
                             projectcss.root_reset,
@@ -3847,6 +4235,19 @@ function PlasmicMesAnnonces__RenderFunc(props: {
                           "__wab_instance",
                           sty.formField__ePjz3
                         )}
+                        initialValue={(() => {
+                          try {
+                            return $queries.getUser.data[0].short_presentation;
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return undefined;
+                            }
+                            throw e;
+                          }
+                        })()}
                         label={
                           <div
                             className={classNames(
@@ -3925,6 +4326,19 @@ function PlasmicMesAnnonces__RenderFunc(props: {
                           "__wab_instance",
                           sty.formField__fe2OV
                         )}
+                        initialValue={(() => {
+                          try {
+                            return $queries.getUser.data[0].skill;
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return undefined;
+                            }
+                            throw e;
+                          }
+                        })()}
                         label={
                           <div
                             className={classNames(
@@ -3975,15 +4389,32 @@ function PlasmicMesAnnonces__RenderFunc(props: {
                             }
                           })()}
                           placeholder={
-                            <div
+                            <Stack__
+                              as={"div"}
+                              hasGap={true}
                               className={classNames(
                                 projectcss.all,
-                                projectcss.__wab_text,
-                                sty.text__sGY4
+                                sty.freeBox__iWnQ
                               )}
                             >
-                              {"Ajouter"}
-                            </div>
+                              <PlusIcon
+                                className={classNames(
+                                  projectcss.all,
+                                  sty.svg__k3YsR
+                                )}
+                                role={"img"}
+                              />
+
+                              <div
+                                className={classNames(
+                                  projectcss.all,
+                                  projectcss.__wab_text,
+                                  sty.text__sGY4
+                                )}
+                              >
+                                {"Ajouter"}
+                              </div>
+                            </Stack__>
                           }
                           popupScopeClassName={sty["select7__popup"]}
                           size={"large"}
@@ -4559,6 +4990,7 @@ function PlasmicMesAnnonces__RenderFunc(props: {
                           "__wab_instance",
                           sty.formField__uOtGr
                         )}
+                        initialValue={$queries.getUser?.data[0]?.linkedin_url}
                         label={
                           <div
                             className={classNames(
@@ -4697,6 +5129,7 @@ function PlasmicMesAnnonces__RenderFunc(props: {
               ) : null
             }
             isOpen={generateStateValueProp($state, ["modal2", "isOpen"])}
+            noTrigger={true}
             onOpenChange={async (...eventArgs: any) => {
               generateStateOnChangeProp($state, ["modal2", "isOpen"]).apply(
                 null,
@@ -4723,11 +5156,11 @@ function PlasmicMesAnnonces__RenderFunc(props: {
 const PlasmicDescendants = {
   annonces: [
     "annonces",
-    "pageLoader",
     "mobileNavbarTop",
     "sidebar",
     "main",
     "h1",
+    "sideEffect",
     "annonces2",
     "jobCard",
     "noAnnonce",
@@ -4747,7 +5180,7 @@ const PlasmicDescendants = {
     "frame49",
     "frame50",
     "frame51",
-    "frame52",
+    "appliedBtn",
     "frame53",
     "jobDescriptionContainer",
     "jobDescription",
@@ -4829,12 +5262,12 @@ const PlasmicDescendants = {
     "fileUploader2",
     "textInput6"
   ],
-  pageLoader: ["pageLoader"],
   mobileNavbarTop: ["mobileNavbarTop"],
   sidebar: ["sidebar"],
   main: [
     "main",
     "h1",
+    "sideEffect",
     "annonces2",
     "jobCard",
     "noAnnonce",
@@ -4844,6 +5277,7 @@ const PlasmicDescendants = {
     "supportingText2"
   ],
   h1: ["h1"],
+  sideEffect: ["sideEffect"],
   annonces2: ["annonces2", "jobCard"],
   jobCard: ["jobCard"],
   noAnnonce: [
@@ -4874,7 +5308,7 @@ const PlasmicDescendants = {
     "frame49",
     "frame50",
     "frame51",
-    "frame52",
+    "appliedBtn",
     "frame53",
     "jobDescriptionContainer",
     "jobDescription",
@@ -4902,7 +5336,7 @@ const PlasmicDescendants = {
     "frame49",
     "frame50",
     "frame51",
-    "frame52",
+    "appliedBtn",
     "frame53"
   ],
   jobName: ["jobName"],
@@ -4915,14 +5349,14 @@ const PlasmicDescendants = {
     "frame49",
     "frame50",
     "frame51",
-    "frame52"
+    "appliedBtn"
   ],
   frame47: ["frame47", "frame48", "frame49", "frame50", "frame51"],
   frame48: ["frame48"],
   frame49: ["frame49"],
   frame50: ["frame50"],
   frame51: ["frame51"],
-  frame52: ["frame52"],
+  appliedBtn: ["appliedBtn"],
   frame53: ["frame53"],
   jobDescriptionContainer: [
     "jobDescriptionContainer",
@@ -5208,11 +5642,11 @@ type DescendantsType<T extends NodeNameType> =
   (typeof PlasmicDescendants)[T][number];
 type NodeDefaultElementType = {
   annonces: "div";
-  pageLoader: typeof PageLoader;
   mobileNavbarTop: typeof MobileNavbarTop;
   sidebar: typeof Sidebar;
   main: "main";
   h1: "h1";
+  sideEffect: typeof SideEffect;
   annonces2: "div";
   jobCard: typeof JobCard;
   noAnnonce: "div";
@@ -5232,7 +5666,7 @@ type NodeDefaultElementType = {
   frame49: "div";
   frame50: "div";
   frame51: "div";
-  frame52: "div";
+  appliedBtn: "div";
   frame53: "div";
   jobDescriptionContainer: "div";
   jobDescription: "div";
@@ -5375,11 +5809,11 @@ export const PlasmicMesAnnonces = Object.assign(
   makeNodeComponent("annonces"),
   {
     // Helper components rendering sub-elements
-    pageLoader: makeNodeComponent("pageLoader"),
     mobileNavbarTop: makeNodeComponent("mobileNavbarTop"),
     sidebar: makeNodeComponent("sidebar"),
     main: makeNodeComponent("main"),
     h1: makeNodeComponent("h1"),
+    sideEffect: makeNodeComponent("sideEffect"),
     annonces2: makeNodeComponent("annonces2"),
     jobCard: makeNodeComponent("jobCard"),
     noAnnonce: makeNodeComponent("noAnnonce"),
@@ -5399,7 +5833,7 @@ export const PlasmicMesAnnonces = Object.assign(
     frame49: makeNodeComponent("frame49"),
     frame50: makeNodeComponent("frame50"),
     frame51: makeNodeComponent("frame51"),
-    frame52: makeNodeComponent("frame52"),
+    appliedBtn: makeNodeComponent("appliedBtn"),
     frame53: makeNodeComponent("frame53"),
     jobDescriptionContainer: makeNodeComponent("jobDescriptionContainer"),
     jobDescription: makeNodeComponent("jobDescription"),

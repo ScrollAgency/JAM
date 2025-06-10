@@ -312,9 +312,6 @@ function PlasmicButton__RenderFunc(props: {
             "color",
             "errorDestructive"
           ),
-          [sty.rootcolor_errorDestructive_type_bordered]:
-            hasVariant($state, "color", "errorDestructive") &&
-            hasVariant($state, "type", "bordered"),
           [sty.rootcolor_errorDestructive_type_soft]:
             hasVariant($state, "color", "errorDestructive") &&
             hasVariant($state, "type", "soft"),
@@ -581,9 +578,6 @@ function PlasmicButton__RenderFunc(props: {
                 "color",
                 "errorDestructive"
               ),
-              [sty.slotTargetStartcolor_errorDestructive_type_bordered]:
-                hasVariant($state, "color", "errorDestructive") &&
-                hasVariant($state, "type", "bordered"),
               [sty.slotTargetStartcolor_errorDestructive_type_soft]:
                 hasVariant($state, "color", "errorDestructive") &&
                 hasVariant($state, "type", "soft"),
@@ -688,9 +682,6 @@ function PlasmicButton__RenderFunc(props: {
               "color",
               "errorDestructive"
             ),
-            [sty.slotTargetLabelcolor_errorDestructive_type_bordered]:
-              hasVariant($state, "color", "errorDestructive") &&
-              hasVariant($state, "type", "bordered"),
             [sty.slotTargetLabelcolor_errorDestructive_type_soft]:
               hasVariant($state, "color", "errorDestructive") &&
               hasVariant($state, "type", "soft"),
@@ -815,9 +806,6 @@ function PlasmicButton__RenderFunc(props: {
                 "color",
                 "errorDestructive"
               ),
-              [sty.slotTargetEndcolor_errorDestructive_type_bordered]:
-                hasVariant($state, "color", "errorDestructive") &&
-                hasVariant($state, "type", "bordered"),
               [sty.slotTargetEndcolor_errorDestructive_type_soft]:
                 hasVariant($state, "color", "errorDestructive") &&
                 hasVariant($state, "type", "soft"),

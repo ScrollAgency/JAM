@@ -73,9 +73,8 @@ import { formHelpers as FormWrapper_Helpers } from "@plasmicpkgs/antd5/skinny/Fo
 import { FormItemWrapper } from "@plasmicpkgs/antd5/skinny/FormItem";
 import { AntdInput } from "@plasmicpkgs/antd5/skinny/registerInput";
 import { inputHelpers as AntdInput_Helpers } from "@plasmicpkgs/antd5/skinny/registerInput";
-import { AntdSelect } from "@plasmicpkgs/antd5/skinny/registerSelect";
 import Button from "../../Button"; // plasmic-import: 9ixtKbGKv7x-/component
-import { AntdAvatar } from "@plasmicpkgs/antd5/skinny/registerAvatar";
+import Avatar from "../../Avatar"; // plasmic-import: NvJprRnpeGpU/component
 import { Notation } from "../../../plasmic-library/others/Notation/Notation"; // plasmic-import: z82NxL6AqE3T/codeComponent
 import Modal from "../../Modal"; // plasmic-import: fsC3QwUZz9uz/component
 import { JamButton } from "../../forms/JamButton/JamButton"; // plasmic-import: UiI0wt2mxfuf/codeComponent
@@ -124,7 +123,7 @@ export type PlasmicRechercheCandidat__OverridesType = {
   filterForm?: Flex__<typeof FormWrapper>;
   input?: Flex__<typeof AntdInput>;
   input2?: Flex__<typeof AntdInput>;
-  select9?: Flex__<typeof AntdSelect>;
+  img?: Flex__<typeof PlasmicImg__>;
   button?: Flex__<typeof Button>;
   results?: Flex__<"div">;
   resultsDetails?: Flex__<"div">;
@@ -136,7 +135,7 @@ export type PlasmicRechercheCandidat__OverridesType = {
   cards?: Flex__<"div">;
   card?: Flex__<"div">;
   cardHeader?: Flex__<"div">;
-  avatar?: Flex__<typeof AntdAvatar>;
+  file?: Flex__<typeof Avatar>;
   userInfo?: Flex__<"div">;
   firstnameLastname?: Flex__<"p">;
   contatcInfo?: Flex__<"div">;
@@ -273,7 +272,7 @@ function PlasmicRechercheCandidat__RenderFunc(props: {
         initFunc: ({ $props, $state, $queries, $ctx }) =>
           (() => {
             try {
-              return "";
+              return $queries.companyLocation.data[0].location;
             } catch (e) {
               if (
                 e instanceof TypeError ||
@@ -297,19 +296,26 @@ function PlasmicRechercheCandidat__RenderFunc(props: {
         path: "cityTab",
         type: "private",
         variableType: "array",
-        initFunc: ({ $props, $state, $queries, $ctx }) => []
+        initFunc: ({ $props, $state, $queries, $ctx }) =>
+          (() => {
+            try {
+              return [$queries.companyLocation.data[0].location];
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return [];
+              }
+              throw e;
+            }
+          })()
       },
       {
         path: "listWords",
         type: "private",
         variableType: "text",
         initFunc: ({ $props, $state, $queries, $ctx }) => ""
-      },
-      {
-        path: "select9.value",
-        type: "private",
-        variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
       },
       {
         path: "cvModal.isOpen",
@@ -334,6 +340,34 @@ function PlasmicRechercheCandidat__RenderFunc(props: {
         type: "private",
         variableType: "boolean",
         initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+      },
+      {
+        path: "variable",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $ctx }) => ""
+      },
+      {
+        path: "userId",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $ctx }) => ""
+      },
+      {
+        path: "profilePhoto",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $ctx }) => ""
+      },
+      {
+        path: "file[].userId",
+        type: "private",
+        variableType: "text"
+      },
+      {
+        path: "file[].photoUrl",
+        type: "private",
+        variableType: "text"
       }
     ],
     [$props, $ctx, $refs]
@@ -370,12 +404,14 @@ function PlasmicRechercheCandidat__RenderFunc(props: {
         roleId: null
       };
     }),
-    query: usePlasmicDataOp(() => {
+    companyLocation: usePlasmicDataOp(() => {
       return {
         sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
-        opId: "02c1d377-8035-4d08-8525-fbc16ece74b8",
-        userArgs: {},
-        cacheKey: `plasmic.$.02c1d377-8035-4d08-8525-fbc16ece74b8.$.`,
+        opId: "7e1403fe-b5d5-4d8a-b842-83976cee09cb",
+        userArgs: {
+          query: [$ctx.SupabaseUser?.user?.id]
+        },
+        cacheKey: `plasmic.$.7e1403fe-b5d5-4d8a-b842-83976cee09cb.$.`,
         invalidatedKeys: null,
         roleId: null
       };
@@ -706,8 +742,10 @@ function PlasmicRechercheCandidat__RenderFunc(props: {
                             placeholder: "Localisation",
                             prefix: (
                               <PlasmicImg__
+                                data-plasmic-name={"img"}
+                                data-plasmic-override={overrides.img}
                                 alt={""}
-                                className={classNames(sty.img__eRoUe)}
+                                className={classNames(sty.img)}
                                 displayHeight={"20px"}
                                 displayMaxHeight={"none"}
                                 displayMaxWidth={"none"}
@@ -716,9 +754,9 @@ function PlasmicRechercheCandidat__RenderFunc(props: {
                                 displayWidth={"20px"}
                                 loading={"lazy"}
                                 src={{
-                                  src: "/plasmic/jam_production_🚀/images/phMapPinPng.png",
-                                  fullWidth: 20,
-                                  fullHeight: 20,
+                                  src: "/plasmic/jam_production_🚀/images/locationPinSvgrepoComSvg.svg",
+                                  fullWidth: 800,
+                                  fullHeight: 800,
                                   aspectRatio: undefined
                                 }}
                               />
@@ -752,91 +790,6 @@ function PlasmicRechercheCandidat__RenderFunc(props: {
                         })()}
                       </div>
                     </FormItemWrapper>
-                    <AntdSelect
-                      data-plasmic-name={"select9"}
-                      data-plasmic-override={overrides.select9}
-                      allowClear={true}
-                      bordered={false}
-                      className={classNames("__wab_instance", sty.select9)}
-                      defaultStylesClassName={classNames(
-                        projectcss.root_reset,
-                        projectcss.plasmic_default_styles,
-                        projectcss.plasmic_mixins,
-                        projectcss.plasmic_tokens,
-                        plasmic_antd_5_hostless_css.plasmic_tokens,
-                        plasmic_library_tailwind_3_4_number_tokens_css.plasmic_tokens,
-                        plasmic_plasmic_rich_components_css.plasmic_tokens
-                      )}
-                      mode={"single"}
-                      onChange={async (...eventArgs: any) => {
-                        generateStateOnChangeProp($state, [
-                          "select9",
-                          "value"
-                        ]).apply(null, eventArgs);
-                      }}
-                      options={(() => {
-                        try {
-                          return $queries.getCriteria.data
-                            .filter(item => item.type === "availability_status")
-                            .map(item => ({
-                              value: item.name,
-                              label: item.name
-                            }));
-                        } catch (e) {
-                          if (
-                            e instanceof TypeError ||
-                            e?.plasmicType === "PlasmicUndefinedDataError"
-                          ) {
-                            return [];
-                          }
-                          throw e;
-                        }
-                      })()}
-                      placeholder={
-                        <Stack__
-                          as={"div"}
-                          hasGap={true}
-                          className={classNames(
-                            projectcss.all,
-                            sty.freeBox__ectx9
-                          )}
-                        >
-                          <PlasmicImg__
-                            alt={""}
-                            className={classNames(sty.img__hRSm)}
-                            displayHeight={"16px"}
-                            displayMaxHeight={"none"}
-                            displayMaxWidth={"100%"}
-                            displayMinHeight={"0"}
-                            displayMinWidth={"0"}
-                            displayWidth={"14px"}
-                            loading={"lazy"}
-                            src={{
-                              src: "/plasmic/jam_production_🚀/images/image3.svg",
-                              fullWidth: 20,
-                              fullHeight: 20,
-                              aspectRatio: 1
-                            }}
-                          />
-
-                          <div
-                            className={classNames(
-                              projectcss.all,
-                              projectcss.__wab_text,
-                              sty.text__l3OvF
-                            )}
-                          >
-                            {"Disponibilit\u00e9"}
-                          </div>
-                        </Stack__>
-                      }
-                      popupScopeClassName={sty["select9__popup"]}
-                      size={"large"}
-                      value={generateStateValueProp($state, [
-                        "select9",
-                        "value"
-                      ])}
-                    />
                   </Stack__>
                   <Button
                     data-plasmic-name={"button"}
@@ -1142,7 +1095,25 @@ function PlasmicRechercheCandidat__RenderFunc(props: {
                 data-plasmic-name={"cards"}
                 data-plasmic-override={overrides.cards}
                 hasGap={true}
-                className={classNames(projectcss.all, sty.cards)}
+                className={classNames(
+                  projectcss.all,
+                  sty.cards,
+                  (() => {
+                    try {
+                      return $queries.getCandidates.data.length >= 3
+                        ? "stretch"
+                        : "";
+                    } catch (e) {
+                      if (
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
+                      ) {
+                        return undefined;
+                      }
+                      throw e;
+                    }
+                  })()
+                )}
               >
                 {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
                   (() => {
@@ -1175,18 +1146,101 @@ function PlasmicRechercheCandidat__RenderFunc(props: {
                         hasGap={true}
                         className={classNames(projectcss.all, sty.cardHeader)}
                       >
-                        <AntdAvatar
-                          data-plasmic-name={"avatar"}
-                          data-plasmic-override={overrides.avatar}
-                          className={classNames("__wab_instance", sty.avatar)}
-                          letters={"AB"}
-                          shape={"circle"}
-                          size={"small"}
-                          src={
-                            "https://images.icon-icons.com/1769/PNG/512/4092564-about-mobile-ui-profile-ui-user-website_114033.png"
-                          }
-                        />
+                        {(() => {
+                          const child$Props = {
+                            className: classNames("__wab_instance", sty.file),
+                            onPhotoUrlChange: async (...eventArgs: any) => {
+                              generateStateOnChangeProp($state, [
+                                "file",
+                                __plasmic_idx_0,
+                                "photoUrl"
+                              ]).apply(null, eventArgs);
 
+                              if (
+                                eventArgs.length > 1 &&
+                                eventArgs[1] &&
+                                eventArgs[1]._plasmic_state_init_
+                              ) {
+                                return;
+                              }
+                            },
+                            onUserIdChange: async (...eventArgs: any) => {
+                              generateStateOnChangeProp($state, [
+                                "file",
+                                __plasmic_idx_0,
+                                "userId"
+                              ]).apply(null, eventArgs);
+
+                              if (
+                                eventArgs.length > 1 &&
+                                eventArgs[1] &&
+                                eventArgs[1]._plasmic_state_init_
+                              ) {
+                                return;
+                              }
+                            },
+                            photoUrl: generateStateValueProp($state, [
+                              "file",
+                              __plasmic_idx_0,
+                              "photoUrl"
+                            ]),
+                            userId: generateStateValueProp($state, [
+                              "file",
+                              __plasmic_idx_0,
+                              "userId"
+                            ])
+                          };
+
+                          initializePlasmicStates(
+                            $state,
+                            [
+                              {
+                                name: "file[].userId",
+                                initFunc: ({ $props, $state, $queries }) =>
+                                  (() => {
+                                    try {
+                                      return currentItem.id;
+                                    } catch (e) {
+                                      if (
+                                        e instanceof TypeError ||
+                                        e?.plasmicType ===
+                                          "PlasmicUndefinedDataError"
+                                      ) {
+                                        return undefined;
+                                      }
+                                      throw e;
+                                    }
+                                  })()
+                              },
+                              {
+                                name: "file[].photoUrl",
+                                initFunc: ({ $props, $state, $queries }) =>
+                                  (() => {
+                                    try {
+                                      return currentItem.profile_photo;
+                                    } catch (e) {
+                                      if (
+                                        e instanceof TypeError ||
+                                        e?.plasmicType ===
+                                          "PlasmicUndefinedDataError"
+                                      ) {
+                                        return undefined;
+                                      }
+                                      throw e;
+                                    }
+                                  })()
+                              }
+                            ],
+                            [__plasmic_idx_0]
+                          );
+                          return (
+                            <Avatar
+                              data-plasmic-name={"file"}
+                              data-plasmic-override={overrides.file}
+                              {...child$Props}
+                            />
+                          );
+                        })()}
                         <Stack__
                           as={"div"}
                           data-plasmic-name={"userInfo"}
@@ -1381,326 +1435,353 @@ function PlasmicRechercheCandidat__RenderFunc(props: {
                           hasGap={true}
                           className={classNames(projectcss.all, sty.documents)}
                         >
-                          <Button
-                            data-plasmic-name={"cvButton"}
-                            data-plasmic-override={overrides.cvButton}
-                            className={classNames(
-                              "__wab_instance",
-                              sty.cvButton
-                            )}
-                            color={"white"}
-                            label={
-                              <div
-                                className={classNames(
-                                  projectcss.all,
-                                  projectcss.__wab_text,
-                                  sty.text__jMxlj
-                                )}
-                              >
-                                {"CV"}
-                              </div>
+                          {(() => {
+                            try {
+                              return currentItem.cv_file !== null;
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return true;
+                              }
+                              throw e;
                             }
-                            onClick={async event => {
-                              const $steps = {};
+                          })() ? (
+                            <Button
+                              data-plasmic-name={"cvButton"}
+                              data-plasmic-override={overrides.cvButton}
+                              className={classNames(
+                                "__wab_instance",
+                                sty.cvButton
+                              )}
+                              color={"white"}
+                              label={
+                                <div
+                                  className={classNames(
+                                    projectcss.all,
+                                    projectcss.__wab_text,
+                                    sty.text__jMxlj
+                                  )}
+                                >
+                                  {"CV"}
+                                </div>
+                              }
+                              onClick={async event => {
+                                const $steps = {};
 
-                              $steps["supabaseGetSignedFileUrl"] = true
-                                ? (() => {
-                                    const actionArgs = {
-                                      dataOp: {
-                                        sourceId: "rtEg85U6Vbyi94cRAe93i7",
-                                        opId: "8be05618-e3eb-4b37-889a-c18c2902bc93",
-                                        userArgs: {
-                                          path: [
-                                            currentItem.id +
-                                              "/" +
-                                              currentItem.cv_file
+                                $steps["supabaseGetSignedFileUrl"] = true
+                                  ? (() => {
+                                      const actionArgs = {
+                                        dataOp: {
+                                          sourceId: "rtEg85U6Vbyi94cRAe93i7",
+                                          opId: "8be05618-e3eb-4b37-889a-c18c2902bc93",
+                                          userArgs: {
+                                            path: [
+                                              currentItem.id +
+                                                "/" +
+                                                currentItem.cv_file
+                                            ]
+                                          },
+                                          cacheKey: null,
+                                          invalidatedKeys: null,
+                                          roleId: null
+                                        }
+                                      };
+                                      return (async ({
+                                        dataOp,
+                                        continueOnError
+                                      }) => {
+                                        try {
+                                          const response =
+                                            await executePlasmicDataOp(dataOp, {
+                                              userAuthToken:
+                                                dataSourcesCtx?.userAuthToken,
+                                              user: dataSourcesCtx?.user
+                                            });
+                                          await plasmicInvalidate(
+                                            dataOp.invalidatedKeys
+                                          );
+                                          return response;
+                                        } catch (e) {
+                                          if (!continueOnError) {
+                                            throw e;
+                                          }
+                                          return e;
+                                        }
+                                      })?.apply(null, [actionArgs]);
+                                    })()
+                                  : undefined;
+                                if (
+                                  $steps["supabaseGetSignedFileUrl"] != null &&
+                                  typeof $steps["supabaseGetSignedFileUrl"] ===
+                                    "object" &&
+                                  typeof $steps["supabaseGetSignedFileUrl"]
+                                    .then === "function"
+                                ) {
+                                  $steps["supabaseGetSignedFileUrl"] =
+                                    await $steps["supabaseGetSignedFileUrl"];
+                                }
+
+                                $steps["updateCurrentCvUrl"] = true
+                                  ? (() => {
+                                      const actionArgs = {
+                                        variable: {
+                                          objRoot: $state,
+                                          variablePath: ["currentCvUrl"]
+                                        },
+                                        operation: 0,
+                                        value:
+                                          $steps.supabaseGetSignedFileUrl
+                                            ?.signedUrl
+                                      };
+                                      return (({
+                                        variable,
+                                        value,
+                                        startIndex,
+                                        deleteCount
+                                      }) => {
+                                        if (!variable) {
+                                          return;
+                                        }
+                                        const { objRoot, variablePath } =
+                                          variable;
+
+                                        $stateSet(objRoot, variablePath, value);
+                                        return value;
+                                      })?.apply(null, [actionArgs]);
+                                    })()
+                                  : undefined;
+                                if (
+                                  $steps["updateCurrentCvUrl"] != null &&
+                                  typeof $steps["updateCurrentCvUrl"] ===
+                                    "object" &&
+                                  typeof $steps["updateCurrentCvUrl"].then ===
+                                    "function"
+                                ) {
+                                  $steps["updateCurrentCvUrl"] = await $steps[
+                                    "updateCurrentCvUrl"
+                                  ];
+                                }
+
+                                $steps["updateModalIsOpen"] = true
+                                  ? (() => {
+                                      const actionArgs = {
+                                        variable: {
+                                          objRoot: $state,
+                                          variablePath: ["cvModal", "isOpen"]
+                                        },
+                                        operation: 0,
+                                        value: true
+                                      };
+                                      return (({
+                                        variable,
+                                        value,
+                                        startIndex,
+                                        deleteCount
+                                      }) => {
+                                        if (!variable) {
+                                          return;
+                                        }
+                                        const { objRoot, variablePath } =
+                                          variable;
+
+                                        $stateSet(objRoot, variablePath, value);
+                                        return value;
+                                      })?.apply(null, [actionArgs]);
+                                    })()
+                                  : undefined;
+                                if (
+                                  $steps["updateModalIsOpen"] != null &&
+                                  typeof $steps["updateModalIsOpen"] ===
+                                    "object" &&
+                                  typeof $steps["updateModalIsOpen"].then ===
+                                    "function"
+                                ) {
+                                  $steps["updateModalIsOpen"] = await $steps[
+                                    "updateModalIsOpen"
+                                  ];
+                                }
+                              }}
+                              size={"small"}
+                              type={"bordered"}
+                            />
+                          ) : null}
+                          {(() => {
+                            try {
+                              return currentItem.cover_letter_file !== null;
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return true;
+                              }
+                              throw e;
+                            }
+                          })() ? (
+                            <Button
+                              data-plasmic-name={"ldmButton"}
+                              data-plasmic-override={overrides.ldmButton}
+                              className={classNames(
+                                "__wab_instance",
+                                sty.ldmButton
+                              )}
+                              color={"white"}
+                              label={
+                                <div
+                                  className={classNames(
+                                    projectcss.all,
+                                    projectcss.__wab_text,
+                                    sty.text__ytpl0
+                                  )}
+                                >
+                                  {"MOTIVATION"}
+                                </div>
+                              }
+                              onClick={async event => {
+                                const $steps = {};
+
+                                $steps["supabaseGetSignedFileUrl"] = true
+                                  ? (() => {
+                                      const actionArgs = {
+                                        dataOp: {
+                                          sourceId: "rtEg85U6Vbyi94cRAe93i7",
+                                          opId: "8be05618-e3eb-4b37-889a-c18c2902bc93",
+                                          userArgs: {
+                                            path: [
+                                              currentItem.id +
+                                                "/" +
+                                                currentItem.cover_letter_file
+                                            ]
+                                          },
+                                          cacheKey: null,
+                                          invalidatedKeys: null,
+                                          roleId: null
+                                        }
+                                      };
+                                      return (async ({
+                                        dataOp,
+                                        continueOnError
+                                      }) => {
+                                        try {
+                                          const response =
+                                            await executePlasmicDataOp(dataOp, {
+                                              userAuthToken:
+                                                dataSourcesCtx?.userAuthToken,
+                                              user: dataSourcesCtx?.user
+                                            });
+                                          await plasmicInvalidate(
+                                            dataOp.invalidatedKeys
+                                          );
+                                          return response;
+                                        } catch (e) {
+                                          if (!continueOnError) {
+                                            throw e;
+                                          }
+                                          return e;
+                                        }
+                                      })?.apply(null, [actionArgs]);
+                                    })()
+                                  : undefined;
+                                if (
+                                  $steps["supabaseGetSignedFileUrl"] != null &&
+                                  typeof $steps["supabaseGetSignedFileUrl"] ===
+                                    "object" &&
+                                  typeof $steps["supabaseGetSignedFileUrl"]
+                                    .then === "function"
+                                ) {
+                                  $steps["supabaseGetSignedFileUrl"] =
+                                    await $steps["supabaseGetSignedFileUrl"];
+                                }
+
+                                $steps["updateCurrentLdmUrl"] = true
+                                  ? (() => {
+                                      const actionArgs = {
+                                        variable: {
+                                          objRoot: $state,
+                                          variablePath: ["currentLdmUrl"]
+                                        },
+                                        operation: 0,
+                                        value:
+                                          $steps.supabaseGetSignedFileUrl
+                                            ?.signedUrl
+                                      };
+                                      return (({
+                                        variable,
+                                        value,
+                                        startIndex,
+                                        deleteCount
+                                      }) => {
+                                        if (!variable) {
+                                          return;
+                                        }
+                                        const { objRoot, variablePath } =
+                                          variable;
+
+                                        $stateSet(objRoot, variablePath, value);
+                                        return value;
+                                      })?.apply(null, [actionArgs]);
+                                    })()
+                                  : undefined;
+                                if (
+                                  $steps["updateCurrentLdmUrl"] != null &&
+                                  typeof $steps["updateCurrentLdmUrl"] ===
+                                    "object" &&
+                                  typeof $steps["updateCurrentLdmUrl"].then ===
+                                    "function"
+                                ) {
+                                  $steps["updateCurrentLdmUrl"] = await $steps[
+                                    "updateCurrentLdmUrl"
+                                  ];
+                                }
+
+                                $steps["updateModalIsOpen"] = true
+                                  ? (() => {
+                                      const actionArgs = {
+                                        variable: {
+                                          objRoot: $state,
+                                          variablePath: [
+                                            "coverLetterModal",
+                                            "isOpen"
                                           ]
                                         },
-                                        cacheKey: null,
-                                        invalidatedKeys: null,
-                                        roleId: null
-                                      }
-                                    };
-                                    return (async ({
-                                      dataOp,
-                                      continueOnError
-                                    }) => {
-                                      try {
-                                        const response =
-                                          await executePlasmicDataOp(dataOp, {
-                                            userAuthToken:
-                                              dataSourcesCtx?.userAuthToken,
-                                            user: dataSourcesCtx?.user
-                                          });
-                                        await plasmicInvalidate(
-                                          dataOp.invalidatedKeys
-                                        );
-                                        return response;
-                                      } catch (e) {
-                                        if (!continueOnError) {
-                                          throw e;
+                                        operation: 0,
+                                        value: true
+                                      };
+                                      return (({
+                                        variable,
+                                        value,
+                                        startIndex,
+                                        deleteCount
+                                      }) => {
+                                        if (!variable) {
+                                          return;
                                         }
-                                        return e;
-                                      }
-                                    })?.apply(null, [actionArgs]);
-                                  })()
-                                : undefined;
-                              if (
-                                $steps["supabaseGetSignedFileUrl"] != null &&
-                                typeof $steps["supabaseGetSignedFileUrl"] ===
-                                  "object" &&
-                                typeof $steps["supabaseGetSignedFileUrl"]
-                                  .then === "function"
-                              ) {
-                                $steps["supabaseGetSignedFileUrl"] =
-                                  await $steps["supabaseGetSignedFileUrl"];
-                              }
+                                        const { objRoot, variablePath } =
+                                          variable;
 
-                              $steps["updateCurrentCvUrl"] = true
-                                ? (() => {
-                                    const actionArgs = {
-                                      variable: {
-                                        objRoot: $state,
-                                        variablePath: ["currentCvUrl"]
-                                      },
-                                      operation: 0,
-                                      value:
-                                        $steps.supabaseGetSignedFileUrl
-                                          ?.signedUrl
-                                    };
-                                    return (({
-                                      variable,
-                                      value,
-                                      startIndex,
-                                      deleteCount
-                                    }) => {
-                                      if (!variable) {
-                                        return;
-                                      }
-                                      const { objRoot, variablePath } =
-                                        variable;
-
-                                      $stateSet(objRoot, variablePath, value);
-                                      return value;
-                                    })?.apply(null, [actionArgs]);
-                                  })()
-                                : undefined;
-                              if (
-                                $steps["updateCurrentCvUrl"] != null &&
-                                typeof $steps["updateCurrentCvUrl"] ===
-                                  "object" &&
-                                typeof $steps["updateCurrentCvUrl"].then ===
-                                  "function"
-                              ) {
-                                $steps["updateCurrentCvUrl"] = await $steps[
-                                  "updateCurrentCvUrl"
-                                ];
-                              }
-
-                              $steps["updateModalIsOpen"] = true
-                                ? (() => {
-                                    const actionArgs = {
-                                      variable: {
-                                        objRoot: $state,
-                                        variablePath: ["cvModal", "isOpen"]
-                                      },
-                                      operation: 0,
-                                      value: true
-                                    };
-                                    return (({
-                                      variable,
-                                      value,
-                                      startIndex,
-                                      deleteCount
-                                    }) => {
-                                      if (!variable) {
-                                        return;
-                                      }
-                                      const { objRoot, variablePath } =
-                                        variable;
-
-                                      $stateSet(objRoot, variablePath, value);
-                                      return value;
-                                    })?.apply(null, [actionArgs]);
-                                  })()
-                                : undefined;
-                              if (
-                                $steps["updateModalIsOpen"] != null &&
-                                typeof $steps["updateModalIsOpen"] ===
-                                  "object" &&
-                                typeof $steps["updateModalIsOpen"].then ===
-                                  "function"
-                              ) {
-                                $steps["updateModalIsOpen"] = await $steps[
-                                  "updateModalIsOpen"
-                                ];
-                              }
-                            }}
-                            size={"small"}
-                            type={"bordered"}
-                          />
-
-                          <Button
-                            data-plasmic-name={"ldmButton"}
-                            data-plasmic-override={overrides.ldmButton}
-                            className={classNames(
-                              "__wab_instance",
-                              sty.ldmButton
-                            )}
-                            color={"white"}
-                            label={
-                              <div
-                                className={classNames(
-                                  projectcss.all,
-                                  projectcss.__wab_text,
-                                  sty.text__ytpl0
-                                )}
-                              >
-                                {"MOTIVATION"}
-                              </div>
-                            }
-                            onClick={async event => {
-                              const $steps = {};
-
-                              $steps["supabaseGetSignedFileUrl"] = true
-                                ? (() => {
-                                    const actionArgs = {
-                                      dataOp: {
-                                        sourceId: "rtEg85U6Vbyi94cRAe93i7",
-                                        opId: "8be05618-e3eb-4b37-889a-c18c2902bc93",
-                                        userArgs: {
-                                          path: [
-                                            currentItem.id +
-                                              "/" +
-                                              currentItem.cover_letter_file
-                                          ]
-                                        },
-                                        cacheKey: null,
-                                        invalidatedKeys: null,
-                                        roleId: null
-                                      }
-                                    };
-                                    return (async ({
-                                      dataOp,
-                                      continueOnError
-                                    }) => {
-                                      try {
-                                        const response =
-                                          await executePlasmicDataOp(dataOp, {
-                                            userAuthToken:
-                                              dataSourcesCtx?.userAuthToken,
-                                            user: dataSourcesCtx?.user
-                                          });
-                                        await plasmicInvalidate(
-                                          dataOp.invalidatedKeys
-                                        );
-                                        return response;
-                                      } catch (e) {
-                                        if (!continueOnError) {
-                                          throw e;
-                                        }
-                                        return e;
-                                      }
-                                    })?.apply(null, [actionArgs]);
-                                  })()
-                                : undefined;
-                              if (
-                                $steps["supabaseGetSignedFileUrl"] != null &&
-                                typeof $steps["supabaseGetSignedFileUrl"] ===
-                                  "object" &&
-                                typeof $steps["supabaseGetSignedFileUrl"]
-                                  .then === "function"
-                              ) {
-                                $steps["supabaseGetSignedFileUrl"] =
-                                  await $steps["supabaseGetSignedFileUrl"];
-                              }
-
-                              $steps["updateCurrentLdmUrl"] = true
-                                ? (() => {
-                                    const actionArgs = {
-                                      variable: {
-                                        objRoot: $state,
-                                        variablePath: ["currentLdmUrl"]
-                                      },
-                                      operation: 0,
-                                      value:
-                                        $steps.supabaseGetSignedFileUrl
-                                          ?.signedUrl
-                                    };
-                                    return (({
-                                      variable,
-                                      value,
-                                      startIndex,
-                                      deleteCount
-                                    }) => {
-                                      if (!variable) {
-                                        return;
-                                      }
-                                      const { objRoot, variablePath } =
-                                        variable;
-
-                                      $stateSet(objRoot, variablePath, value);
-                                      return value;
-                                    })?.apply(null, [actionArgs]);
-                                  })()
-                                : undefined;
-                              if (
-                                $steps["updateCurrentLdmUrl"] != null &&
-                                typeof $steps["updateCurrentLdmUrl"] ===
-                                  "object" &&
-                                typeof $steps["updateCurrentLdmUrl"].then ===
-                                  "function"
-                              ) {
-                                $steps["updateCurrentLdmUrl"] = await $steps[
-                                  "updateCurrentLdmUrl"
-                                ];
-                              }
-
-                              $steps["updateModalIsOpen"] = true
-                                ? (() => {
-                                    const actionArgs = {
-                                      variable: {
-                                        objRoot: $state,
-                                        variablePath: [
-                                          "coverLetterModal",
-                                          "isOpen"
-                                        ]
-                                      },
-                                      operation: 0,
-                                      value: true
-                                    };
-                                    return (({
-                                      variable,
-                                      value,
-                                      startIndex,
-                                      deleteCount
-                                    }) => {
-                                      if (!variable) {
-                                        return;
-                                      }
-                                      const { objRoot, variablePath } =
-                                        variable;
-
-                                      $stateSet(objRoot, variablePath, value);
-                                      return value;
-                                    })?.apply(null, [actionArgs]);
-                                  })()
-                                : undefined;
-                              if (
-                                $steps["updateModalIsOpen"] != null &&
-                                typeof $steps["updateModalIsOpen"] ===
-                                  "object" &&
-                                typeof $steps["updateModalIsOpen"].then ===
-                                  "function"
-                              ) {
-                                $steps["updateModalIsOpen"] = await $steps[
-                                  "updateModalIsOpen"
-                                ];
-                              }
-                            }}
-                            size={"small"}
-                            type={"bordered"}
-                          />
+                                        $stateSet(objRoot, variablePath, value);
+                                        return value;
+                                      })?.apply(null, [actionArgs]);
+                                    })()
+                                  : undefined;
+                                if (
+                                  $steps["updateModalIsOpen"] != null &&
+                                  typeof $steps["updateModalIsOpen"] ===
+                                    "object" &&
+                                  typeof $steps["updateModalIsOpen"].then ===
+                                    "function"
+                                ) {
+                                  $steps["updateModalIsOpen"] = await $steps[
+                                    "updateModalIsOpen"
+                                  ];
+                                }
+                              }}
+                              size={"small"}
+                              type={"bordered"}
+                            />
+                          ) : null}
                         </Stack__>
                         <Stack__
                           as={"div"}
@@ -1922,6 +2003,7 @@ function PlasmicRechercheCandidat__RenderFunc(props: {
                                         sty.notationEtoiles__pti6
                                       )
                                     }
+                                    enableHover={false}
                                     value={(() => {
                                       try {
                                         return currentItem.punctuality;
@@ -2017,6 +2099,7 @@ function PlasmicRechercheCandidat__RenderFunc(props: {
                                         sty.notationEtoiles__dU7Gk
                                       )
                                     }
+                                    enableHover={false}
                                     value={(() => {
                                       try {
                                         return currentItem.respect;
@@ -2110,6 +2193,7 @@ function PlasmicRechercheCandidat__RenderFunc(props: {
                                         sty.notationEtoiles__xUrCm
                                       )
                                     }
+                                    enableHover={false}
                                     value={(() => {
                                       try {
                                         return currentItem.performance;
@@ -2327,22 +2411,26 @@ function PlasmicRechercheCandidat__RenderFunc(props: {
             data-plasmic-override={overrides.cvModal}
             className={classNames("__wab_instance", sty.cvModal)}
             content={
-              <Iframe
-                className={classNames("__wab_instance", sty.iframe__fpPf6)}
-                src={(() => {
-                  try {
-                    return $state.currentCvUrl;
-                  } catch (e) {
-                    if (
-                      e instanceof TypeError ||
-                      e?.plasmicType === "PlasmicUndefinedDataError"
-                    ) {
-                      return undefined;
+              <div className={classNames(projectcss.all, sty.freeBox__xvBw9)}>
+                <Iframe
+                  className={classNames("__wab_instance", sty.iframe__fpPf6)}
+                  src={(() => {
+                    try {
+                      return $state.currentCvUrl;
+                    } catch (e) {
+                      if (
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
+                      ) {
+                        return undefined;
+                      }
+                      throw e;
                     }
-                    throw e;
-                  }
-                })()}
-              />
+                  })()}
+                  srcDoc={"<div><h3>Heading</h3><p>Example text...</p></div>"}
+                  useHtml={false}
+                />
+              </div>
             }
             heading={
               <h3
@@ -2381,22 +2469,26 @@ function PlasmicRechercheCandidat__RenderFunc(props: {
             data-plasmic-override={overrides.coverLetterModal}
             className={classNames("__wab_instance", sty.coverLetterModal)}
             content={
-              <Iframe
-                className={classNames("__wab_instance", sty.iframe__pxGb)}
-                src={(() => {
-                  try {
-                    return $state.currentLdmUrl;
-                  } catch (e) {
-                    if (
-                      e instanceof TypeError ||
-                      e?.plasmicType === "PlasmicUndefinedDataError"
-                    ) {
-                      return undefined;
+              <div className={classNames(projectcss.all, sty.freeBox__kVaVj)}>
+                <Iframe
+                  className={classNames("__wab_instance", sty.iframe__pxGb)}
+                  src={(() => {
+                    try {
+                      return $state.currentLdmUrl;
+                    } catch (e) {
+                      if (
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
+                      ) {
+                        return undefined;
+                      }
+                      throw e;
                     }
-                    throw e;
-                  }
-                })()}
-              />
+                  })()}
+                  srcDoc={"<div><h3>Heading</h3><p>Example text...</p></div>"}
+                  useHtml={false}
+                />
+              </div>
             }
             heading={
               <h3
@@ -2454,7 +2546,7 @@ const PlasmicDescendants = {
     "filterForm",
     "input",
     "input2",
-    "select9",
+    "img",
     "button",
     "results",
     "resultsDetails",
@@ -2466,7 +2558,7 @@ const PlasmicDescendants = {
     "cards",
     "card",
     "cardHeader",
-    "avatar",
+    "file",
     "userInfo",
     "firstnameLastname",
     "contatcInfo",
@@ -2518,7 +2610,7 @@ const PlasmicDescendants = {
     "filterForm",
     "input",
     "input2",
-    "select9",
+    "img",
     "button",
     "results",
     "resultsDetails",
@@ -2530,7 +2622,7 @@ const PlasmicDescendants = {
     "cards",
     "card",
     "cardHeader",
-    "avatar",
+    "file",
     "userInfo",
     "firstnameLastname",
     "contatcInfo",
@@ -2572,10 +2664,10 @@ const PlasmicDescendants = {
     "supportingText2"
   ],
   h1: ["h1"],
-  filterForm: ["filterForm", "input", "input2", "select9", "button"],
+  filterForm: ["filterForm", "input", "input2", "img", "button"],
   input: ["input"],
-  input2: ["input2"],
-  select9: ["select9"],
+  input2: ["input2", "img"],
+  img: ["img"],
   button: ["button"],
   results: [
     "results",
@@ -2588,7 +2680,7 @@ const PlasmicDescendants = {
     "cards",
     "card",
     "cardHeader",
-    "avatar",
+    "file",
     "userInfo",
     "firstnameLastname",
     "contatcInfo",
@@ -2646,7 +2738,7 @@ const PlasmicDescendants = {
     "cards",
     "card",
     "cardHeader",
-    "avatar",
+    "file",
     "userInfo",
     "firstnameLastname",
     "contatcInfo",
@@ -2678,7 +2770,7 @@ const PlasmicDescendants = {
   card: [
     "card",
     "cardHeader",
-    "avatar",
+    "file",
     "userInfo",
     "firstnameLastname",
     "contatcInfo",
@@ -2709,7 +2801,7 @@ const PlasmicDescendants = {
   ],
   cardHeader: [
     "cardHeader",
-    "avatar",
+    "file",
     "userInfo",
     "firstnameLastname",
     "contatcInfo",
@@ -2718,7 +2810,7 @@ const PlasmicDescendants = {
     "phoneNumber",
     "email"
   ],
-  avatar: ["avatar"],
+  file: ["file"],
   userInfo: [
     "userInfo",
     "firstnameLastname",
@@ -2851,7 +2943,7 @@ type NodeDefaultElementType = {
   filterForm: typeof FormWrapper;
   input: typeof AntdInput;
   input2: typeof AntdInput;
-  select9: typeof AntdSelect;
+  img: typeof PlasmicImg__;
   button: typeof Button;
   results: "div";
   resultsDetails: "div";
@@ -2863,7 +2955,7 @@ type NodeDefaultElementType = {
   cards: "div";
   card: "div";
   cardHeader: "div";
-  avatar: typeof AntdAvatar;
+  file: typeof Avatar;
   userInfo: "div";
   firstnameLastname: "p";
   contatcInfo: "div";
@@ -2975,7 +3067,7 @@ export const PlasmicRechercheCandidat = Object.assign(
     filterForm: makeNodeComponent("filterForm"),
     input: makeNodeComponent("input"),
     input2: makeNodeComponent("input2"),
-    select9: makeNodeComponent("select9"),
+    img: makeNodeComponent("img"),
     button: makeNodeComponent("button"),
     results: makeNodeComponent("results"),
     resultsDetails: makeNodeComponent("resultsDetails"),
@@ -2987,7 +3079,7 @@ export const PlasmicRechercheCandidat = Object.assign(
     cards: makeNodeComponent("cards"),
     card: makeNodeComponent("card"),
     cardHeader: makeNodeComponent("cardHeader"),
-    avatar: makeNodeComponent("avatar"),
+    file: makeNodeComponent("file"),
     userInfo: makeNodeComponent("userInfo"),
     firstnameLastname: makeNodeComponent("firstnameLastname"),
     contatcInfo: makeNodeComponent("contatcInfo"),

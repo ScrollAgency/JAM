@@ -476,6 +476,10 @@
   --plasmic-mixin-unnamed-style-preset-6_white-space: var(
     --mixin-uFiPJf9jLYNa_white-space
   );
+  --mixin-F-6yej_gOfQC_white-space: pre-wrap;
+  --plasmic-mixin-unnamed-style-preset_white-space: var(
+    --mixin-F-6yej_gOfQC_white-space
+  );
 }
 
 :where(.all) {

@@ -76,8 +76,8 @@ import SearchIcon from "./icons/PlasmicIcon__Search"; // plasmic-import: PEpkd9P
 import PictogramIcon from "./icons/PlasmicIcon__Pictogram"; // plasmic-import: KlZQiGxQTluF/icon
 import GridFourIcon from "./icons/PlasmicIcon__GridFour"; // plasmic-import: KzAe7cfwmhYT/icon
 import HeartStraightIcon from "./icons/PlasmicIcon__HeartStraight"; // plasmic-import: 2A8amxR7FAse/icon
-import PhGearFillIcon from "./icons/PlasmicIcon__PhGearFill"; // plasmic-import: M0oN64eO6n3z/icon
 import EnvelopeSimple2Icon from "./icons/PlasmicIcon__EnvelopeSimple2"; // plasmic-import: 44ROc7g2Vqof/icon
+import PhGearFillIcon from "./icons/PlasmicIcon__PhGearFill"; // plasmic-import: M0oN64eO6n3z/icon
 import SolarLogoutOutlineIcon from "./icons/PlasmicIcon__SolarLogoutOutline"; // plasmic-import: UZfkN-2mqbQ1/icon
 
 createPlasmicElementProxy;
@@ -425,6 +425,69 @@ function PlasmicSidebar__RenderFunc(props: {
           />
 
           <SideBarButton
+            className={classNames("__wab_instance", sty.sideBarButton__xlKVn)}
+            iconStart={true}
+            label={
+              <div
+                className={classNames(
+                  projectcss.all,
+                  projectcss.__wab_text,
+                  sty.text__lb6Xu
+                )}
+              >
+                {"mes alertes"}
+              </div>
+            }
+            onClick={async event => {
+              const $steps = {};
+
+              $steps["goToMesAlertes"] = true
+                ? (() => {
+                    const actionArgs = { destination: `/alertes` };
+                    return (({ destination }) => {
+                      if (
+                        typeof destination === "string" &&
+                        destination.startsWith("#")
+                      ) {
+                        document
+                          .getElementById(destination.substr(1))
+                          .scrollIntoView({ behavior: "smooth" });
+                      } else {
+                        __nextRouter?.push(destination);
+                      }
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["goToMesAlertes"] != null &&
+                typeof $steps["goToMesAlertes"] === "object" &&
+                typeof $steps["goToMesAlertes"].then === "function"
+              ) {
+                $steps["goToMesAlertes"] = await $steps["goToMesAlertes"];
+              }
+            }}
+            start={
+              <EnvelopeSimple2Icon
+                className={classNames(projectcss.all, sty.svg__x4G2D)}
+                role={"img"}
+              />
+            }
+            type={(() => {
+              try {
+                return $ctx.pagePath === "/alertes" ? "actif" : "";
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return "actif";
+                }
+                throw e;
+              }
+            })()}
+          />
+
+          <SideBarButton
             className={classNames("__wab_instance", sty.sideBarButton__uGb2)}
             iconStart={true}
             label={
@@ -477,69 +540,6 @@ function PlasmicSidebar__RenderFunc(props: {
             type={(() => {
               try {
                 return $ctx.pagePath === "/parametres" ? "actif" : "";
-              } catch (e) {
-                if (
-                  e instanceof TypeError ||
-                  e?.plasmicType === "PlasmicUndefinedDataError"
-                ) {
-                  return "actif";
-                }
-                throw e;
-              }
-            })()}
-          />
-
-          <SideBarButton
-            className={classNames("__wab_instance", sty.sideBarButton__xlKVn)}
-            iconStart={true}
-            label={
-              <div
-                className={classNames(
-                  projectcss.all,
-                  projectcss.__wab_text,
-                  sty.text__lb6Xu
-                )}
-              >
-                {"mes alertes"}
-              </div>
-            }
-            onClick={async event => {
-              const $steps = {};
-
-              $steps["goToMesAlertes"] = true
-                ? (() => {
-                    const actionArgs = { destination: `/alertes` };
-                    return (({ destination }) => {
-                      if (
-                        typeof destination === "string" &&
-                        destination.startsWith("#")
-                      ) {
-                        document
-                          .getElementById(destination.substr(1))
-                          .scrollIntoView({ behavior: "smooth" });
-                      } else {
-                        __nextRouter?.push(destination);
-                      }
-                    })?.apply(null, [actionArgs]);
-                  })()
-                : undefined;
-              if (
-                $steps["goToMesAlertes"] != null &&
-                typeof $steps["goToMesAlertes"] === "object" &&
-                typeof $steps["goToMesAlertes"].then === "function"
-              ) {
-                $steps["goToMesAlertes"] = await $steps["goToMesAlertes"];
-              }
-            }}
-            start={
-              <EnvelopeSimple2Icon
-                className={classNames(projectcss.all, sty.svg__x4G2D)}
-                role={"img"}
-              />
-            }
-            type={(() => {
-              try {
-                return $ctx.pagePath === "/alertes" ? "actif" : "";
               } catch (e) {
                 if (
                   e instanceof TypeError ||

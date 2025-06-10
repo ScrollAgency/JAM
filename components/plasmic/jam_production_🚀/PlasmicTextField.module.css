@@ -40,25 +40,8 @@
   position: relative;
   height: 1em;
 }
-.textInput:global(.__wab_instance):global(.__wab_instance) {
-  flex-shrink: 0;
-}
-.ariaTextField[data-disabled]
-  .textInput:global(.__wab_instance):global(.__wab_instance) {
-  flex-shrink: 0;
-}
 .textInputmultiLine:global(.__wab_instance):global(.__wab_instance) {
-  flex-shrink: 0;
   display: none;
-}
-.textInputiconStart:global(.__wab_instance):global(.__wab_instance) {
-  flex-shrink: 0;
-}
-.textInputiconEnd:global(.__wab_instance):global(.__wab_instance) {
-  flex-shrink: 0;
-}
-.textInputiconStart_iconEnd:global(.__wab_instance):global(.__wab_instance) {
-  flex-shrink: 0;
 }
 .textAreaInputmultiLine:global(.__wab_instance):global(.__wab_instance) {
   display: block;

@@ -194,6 +194,7 @@
   max-width: 100%;
   width: 40px;
   height: 40px;
+  color: var(--token-qVvTulujfE86);
   flex-shrink: 0;
 }
 .text__mmRiR {
@@ -221,7 +222,7 @@
 .svg__qc3Uz {
   object-fit: cover;
   max-width: 100%;
-  width: 13px;
-  height: 13px;
+  width: 15px;
+  height: 15px;
   flex-shrink: 0;
 }

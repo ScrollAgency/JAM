@@ -95,7 +95,7 @@ import GroupIcon from "./icons/PlasmicIcon__Group"; // plasmic-import: yIYn4o5Hg
 import NotificationBellSvgrepoComSvgIcon from "./icons/PlasmicIcon__NotificationBellSvgrepoComSvg"; // plasmic-import: dIeWzMIIc5ij/icon
 import Vector20Icon from "./icons/PlasmicIcon__Vector20"; // plasmic-import: 3oXUWH4aUqgx/icon
 import Vector21Icon from "./icons/PlasmicIcon__Vector21"; // plasmic-import: 4EUB4wFLEPEm/icon
-import IconPhClockCountdownIcon from "./icons/PlasmicIcon__IconPhClockCountdown"; // plasmic-import: ZcpjJL-rRIkk/icon
+import IconPhClockIcon from "./icons/PlasmicIcon__IconPhClock"; // plasmic-import: vCpr2sLhwGJi/icon
 import PhTrashIcon from "./icons/PlasmicIcon__PhTrash"; // plasmic-import: juO39VElEpcx/icon
 import PencilSimpleLineIcon from "./icons/PlasmicIcon__PencilSimpleLine"; // plasmic-import: l9xLeGEs7UWH/icon
 import IconPhBriefcaseIcon from "./icons/PlasmicIcon__IconPhBriefcase"; // plasmic-import: E-c3RGwvaig6/icon
@@ -323,18 +323,6 @@ function PlasmicMesAlertes__RenderFunc(props: {
         roleId: null
       };
     }),
-    getJobOffersByJobName: usePlasmicDataOp(() => {
-      return {
-        sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
-        opId: "ddc50872-b953-4597-bc64-96561ba6c1ce",
-        userArgs: {
-          query: [$state.form?.value?.job_title]
-        },
-        cacheKey: `plasmic.$.ddc50872-b953-4597-bc64-96561ba6c1ce.$.`,
-        invalidatedKeys: null,
-        roleId: null
-      };
-    }),
     getCoordinates: usePlasmicDataOp(() => {
       return {
         sourceId: "3fRequBPthJKGmQ2njgcZi",
@@ -389,7 +377,7 @@ function PlasmicMesAlertes__RenderFunc(props: {
           <Sidebar
             data-plasmic-name={"sidebar"}
             data-plasmic-override={overrides.sidebar}
-            className={classNames("__wab_instance")}
+            className={classNames("__wab_instance", sty.sidebar)}
           />
 
           <MobileNavbarTop
@@ -926,41 +914,24 @@ function PlasmicMesAlertes__RenderFunc(props: {
                                     )}
                                     key={currentIndex}
                                   >
-                                    {(() => {
-                                      try {
-                                        return (
-                                          $queries.getJobOffersByJobName.data[0]
-                                            .job_title != ""
-                                        );
-                                      } catch (e) {
-                                        if (
-                                          e instanceof TypeError ||
-                                          e?.plasmicType ===
-                                            "PlasmicUndefinedDataError"
-                                        ) {
-                                          return true;
-                                        }
-                                        throw e;
-                                      }
-                                    })() ? (
-                                      <PlasmicImg__
-                                        alt={""}
-                                        className={classNames(sty.img__r7NoV)}
-                                        displayHeight={"14px"}
-                                        displayMaxHeight={"none"}
-                                        displayMaxWidth={"100%"}
-                                        displayMinHeight={"0"}
-                                        displayMinWidth={"0"}
-                                        displayWidth={"14px"}
-                                        loading={"lazy"}
-                                        src={{
-                                          src: "/plasmic/jam_production_🚀/images/image7.svg",
-                                          fullWidth: 20,
-                                          fullHeight: 20,
-                                          aspectRatio: 1
-                                        }}
-                                      />
-                                    ) : null}
+                                    <PlasmicImg__
+                                      alt={""}
+                                      className={classNames(sty.img__r7NoV)}
+                                      displayHeight={"14px"}
+                                      displayMaxHeight={"none"}
+                                      displayMaxWidth={"100%"}
+                                      displayMinHeight={"0"}
+                                      displayMinWidth={"0"}
+                                      displayWidth={"14px"}
+                                      loading={"lazy"}
+                                      src={{
+                                        src: "/plasmic/jam_production_🚀/images/image7.svg",
+                                        fullWidth: 20,
+                                        fullHeight: 20,
+                                        aspectRatio: 1
+                                      }}
+                                    />
+
                                     <p
                                       className={classNames(
                                         projectcss.all,
@@ -1093,7 +1064,7 @@ function PlasmicMesAlertes__RenderFunc(props: {
                                     )}
                                     key={currentIndex}
                                   >
-                                    <IconPhClockCountdownIcon
+                                    <IconPhClockIcon
                                       className={classNames(
                                         projectcss.all,
                                         sty.svg__j4AcK
@@ -1721,6 +1692,7 @@ function PlasmicMesAlertes__RenderFunc(props: {
                         }
                         label={"Intitul\u00e9 du poste"}
                         name={"job_title"}
+                        rules={[{ ruleType: "required" }]}
                       >
                         <TextInput
                           data-plasmic-name={"textInput"}
@@ -1773,6 +1745,7 @@ function PlasmicMesAlertes__RenderFunc(props: {
                         }
                         label={"Ville"}
                         name={"city"}
+                        rules={[{ ruleType: "required" }]}
                       >
                         <TextInput
                           data-plasmic-name={"textInput2"}
@@ -1914,7 +1887,7 @@ function PlasmicMesAlertes__RenderFunc(props: {
                                 sty.freeBox__lbmq
                               )}
                             >
-                              <IconPhClockCountdownIcon
+                              <IconPhClockIcon
                                 className={classNames(
                                   projectcss.all,
                                   sty.svg___5AhZb
@@ -2076,7 +2049,7 @@ function PlasmicMesAlertes__RenderFunc(props: {
                             plasmic_library_tailwind_3_4_number_tokens_css.plasmic_tokens,
                             plasmic_plasmic_rich_components_css.plasmic_tokens
                           )}
-                          mode={"multiple"}
+                          mode={"single"}
                           onChange={async (...eventArgs: any) => {
                             generateStateOnChangeProp($state, [
                               "select2",

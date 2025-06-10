@@ -1,0 +1,201 @@
+.lastMinuteToggle {
+  display: flex;
+  width: auto;
+  height: auto;
+  flex-direction: row;
+  cursor: pointer;
+  background: none;
+  position: relative;
+  padding: 0px;
+}
+.lastMinuteToggle > :global(.__wab_flex-container) {
+  align-items: center;
+  justify-content: flex-end;
+  flex-direction: row;
+  margin-left: calc(0px - var(--token-cfon0PHiXQoL));
+  width: calc(100% + var(--token-cfon0PHiXQoL));
+}
+.lastMinuteToggle > :global(.__wab_flex-container) > *,
+.lastMinuteToggle > :global(.__wab_flex-container) > :global(.__wab_slot) > *,
+.lastMinuteToggle > :global(.__wab_flex-container) > picture > img,
+.lastMinuteToggle
+  > :global(.__wab_flex-container)
+  > :global(.__wab_slot)
+  > picture
+  > img {
+  margin-left: var(--token-cfon0PHiXQoL);
+}
+.tooltip:global(.__wab_instance):global(.__wab_instance) {
+  width: 100%;
+  min-width: 0;
+}
+.freeBox {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  min-width: 0;
+}
+.freeBox > :global(.__wab_flex-container) {
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  min-width: 0;
+  margin-left: calc(0px - 8px);
+  width: calc(100% + 8px);
+}
+.freeBox > :global(.__wab_flex-container) > *,
+.freeBox > :global(.__wab_flex-container) > :global(.__wab_slot) > *,
+.freeBox > :global(.__wab_flex-container) > picture > img,
+.freeBox
+  > :global(.__wab_flex-container)
+  > :global(.__wab_slot)
+  > picture
+  > img {
+  margin-left: 8px;
+}
+.img {
+  object-fit: cover;
+  max-width: 100%;
+  width: 17px;
+  height: 17px;
+  display: block;
+  flex-shrink: 0;
+}
+.img > picture > img {
+  object-fit: cover;
+}
+.svg___6G6Sw {
+  object-fit: cover;
+  max-width: 100%;
+  color: #c8c8c8;
+  width: 17px;
+  height: 17px;
+  display: block;
+  flex-shrink: 0;
+}
+.svg__lhe24 {
+  object-fit: cover;
+  max-width: 100%;
+  width: 20px;
+  height: 20px;
+  color: #535353;
+  flex-shrink: 0;
+}
+.text__qjpnd {
+  position: relative;
+  color: var(--token-X0hEa-utMcvr);
+  font-family: "DM Sans", sans-serif;
+  font-weight: 700;
+  font-size: 12px;
+  width: auto;
+  user-select: none;
+  white-space: pre;
+}
+.switch2:global(.__wab_instance):global(.__wab_instance) {
+  max-width: 100%;
+}
+.textAndSupportingText {
+  width: 296px;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+}
+.textAndSupportingText > :global(.__wab_flex-container) {
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  margin-top: calc(0px - 4px);
+  height: calc(100% + 4px);
+}
+.textAndSupportingText > :global(.__wab_flex-container) > *,
+.textAndSupportingText
+  > :global(.__wab_flex-container)
+  > :global(.__wab_slot)
+  > *,
+.textAndSupportingText > :global(.__wab_flex-container) > picture > img,
+.textAndSupportingText
+  > :global(.__wab_flex-container)
+  > :global(.__wab_slot)
+  > picture
+  > img {
+  margin-top: 4px;
+}
+.text {
+  display: block;
+  font-size: 12px;
+  font-family: "DM Sans", sans-serif;
+  font-weight: 600;
+  letter-spacing: 0em;
+  line-height: 18px;
+  color: rgba(255, 255, 255, 1);
+  align-self: stretch;
+  position: relative;
+}
+.supportingText {
+  display: block;
+  font-size: 12px;
+  letter-spacing: 0em;
+  line-height: 18px;
+  align-self: stretch;
+  position: relative;
+  padding-bottom: 0px;
+  font-family: "DM Sans", sans-serif;
+}
+.text__ryVx {
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  font-family: "DM Sans", sans-serif;
+  font-size: 10px;
+  min-width: 0;
+}
+.textAndSupportingText2 {
+  width: 296px;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+}
+.textAndSupportingText2 > :global(.__wab_flex-container) {
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  margin-top: calc(0px - 4px);
+  height: calc(100% + 4px);
+}
+.textAndSupportingText2 > :global(.__wab_flex-container) > *,
+.textAndSupportingText2
+  > :global(.__wab_flex-container)
+  > :global(.__wab_slot)
+  > *,
+.textAndSupportingText2 > :global(.__wab_flex-container) > picture > img,
+.textAndSupportingText2
+  > :global(.__wab_flex-container)
+  > :global(.__wab_slot)
+  > picture
+  > img {
+  margin-top: 4px;
+}
+.text2 {
+  display: block;
+  font-size: 12px;
+  font-family: "DM Sans", sans-serif;
+  font-weight: 600;
+  letter-spacing: 0em;
+  line-height: 18px;
+  color: rgba(255, 255, 255, 1);
+  align-self: stretch;
+  position: relative;
+}
+.supportingText2 {
+  display: block;
+  font-size: 12px;
+  letter-spacing: 0em;
+  line-height: 18px;
+  color: rgba(255, 255, 255, 1);
+  align-self: stretch;
+  position: relative;
+}

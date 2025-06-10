@@ -279,9 +279,9 @@ function PlasmicSidebar3__RenderFunc(props: {
             onClick={async event => {
               const $steps = {};
 
-              $steps["goToMesCandidatures"] = true
+              $steps["goToOffreAdmin"] = true
                 ? (() => {
-                    const actionArgs = { destination: `/candidatures` };
+                    const actionArgs = { destination: `/offre_admin` };
                     return (({ destination }) => {
                       if (
                         typeof destination === "string" &&
@@ -297,13 +297,11 @@ function PlasmicSidebar3__RenderFunc(props: {
                   })()
                 : undefined;
               if (
-                $steps["goToMesCandidatures"] != null &&
-                typeof $steps["goToMesCandidatures"] === "object" &&
-                typeof $steps["goToMesCandidatures"].then === "function"
+                $steps["goToOffreAdmin"] != null &&
+                typeof $steps["goToOffreAdmin"] === "object" &&
+                typeof $steps["goToOffreAdmin"].then === "function"
               ) {
-                $steps["goToMesCandidatures"] = await $steps[
-                  "goToMesCandidatures"
-                ];
+                $steps["goToOffreAdmin"] = await $steps["goToOffreAdmin"];
               }
             }}
             start={
@@ -347,7 +345,7 @@ function PlasmicSidebar3__RenderFunc(props: {
 
               $steps["goToAccueil"] = true
                 ? (() => {
-                    const actionArgs = { destination: `/` };
+                    const actionArgs = { destination: `/user_admin` };
                     return (({ destination }) => {
                       if (
                         typeof destination === "string" &&

@@ -52,8 +52,9 @@
   position: relative;
   flex-grow: 0;
   flex-direction: column;
-  flex-shrink: 0;
-  width: 80%;
+  flex-shrink: 1;
+  width: 100%;
+  min-width: 0;
   min-height: 0;
   padding: 64px;
 }
@@ -61,6 +62,7 @@
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
+  min-width: 0;
   min-height: 0;
   margin-top: calc(0px - 32px);
   height: calc(100% + 32px);
@@ -111,7 +113,7 @@
     margin-top: 32px;
   }
 }
-.freeBox {
+.freeBox__mwkAc {
   display: flex;
   flex-direction: row;
   position: relative;
@@ -121,20 +123,19 @@
   top: auto;
   left: auto;
   min-width: 0;
-  padding: 8px;
 }
-.freeBox > :global(.__wab_flex-container) {
+.freeBox__mwkAc > :global(.__wab_flex-container) {
   flex-direction: row;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: space-between;
   min-width: 0;
   margin-left: calc(0px - 12px);
   width: calc(100% + 12px);
 }
-.freeBox > :global(.__wab_flex-container) > *,
-.freeBox > :global(.__wab_flex-container) > :global(.__wab_slot) > *,
-.freeBox > :global(.__wab_flex-container) > picture > img,
-.freeBox
+.freeBox__mwkAc > :global(.__wab_flex-container) > *,
+.freeBox__mwkAc > :global(.__wab_flex-container) > :global(.__wab_slot) > *,
+.freeBox__mwkAc > :global(.__wab_flex-container) > picture > img,
+.freeBox__mwkAc
   > :global(.__wab_flex-container)
   > :global(.__wab_slot)
   > picture
@@ -142,10 +143,35 @@
   margin-left: 12px;
 }
 @media (min-width: 0px) and (max-width: 768px) {
-  .freeBox {
+  .freeBox__mwkAc {
     top: auto;
     left: auto;
   }
+}
+.freeBox__am21O {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+}
+.freeBox__am21O > :global(.__wab_flex-container) {
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: flex-start;
+  margin-left: calc(0px - 8px);
+  width: calc(100% + 8px);
+}
+.freeBox__am21O > :global(.__wab_flex-container) > *,
+.freeBox__am21O > :global(.__wab_flex-container) > :global(.__wab_slot) > *,
+.freeBox__am21O > :global(.__wab_flex-container) > picture > img,
+.freeBox__am21O
+  > :global(.__wab_flex-container)
+  > :global(.__wab_slot)
+  > picture
+  > img {
+  margin-left: 8px;
 }
 .heading2 {
   display: block;
@@ -195,11 +221,11 @@
 }
 .button__zGvnp:global(.__wab_instance):global(.__wab_instance) {
   max-width: 100%;
-  position: absolute;
+  position: relative;
   left: auto;
-  top: 0;
-  right: 0;
-  bottom: 0;
+  top: auto;
+  right: auto;
+  bottom: auto;
 }
 @media (min-width: 0px) and (max-width: 768px) {
   .button__zGvnp:global(.__wab_instance):global(.__wab_instance) {
@@ -207,7 +233,7 @@
     display: none;
   }
 }
-.svg__sffNh {
+.svg__gcX46 {
   position: relative;
   color: var(--token-OIYWLyLPYWym);
   height: 1em;
@@ -225,13 +251,14 @@
   background: rgba(255, 255, 255, 1);
   box-shadow: inset 0px 0px 0px 1px rgba(244, 255, 230, 1);
   transform: scale(0.9999999403953552, 0.9999999403953552);
-  height: auto;
+  height: 100%;
   display: flex;
   transform-origin: top left;
   position: relative;
   flex-direction: column;
   width: 100%;
   min-width: 0;
+  min-height: 0;
   border-radius: 24px;
 }
 .card2 > :global(.__wab_flex-container) {
@@ -239,6 +266,7 @@
   align-items: center;
   justify-content: flex-start;
   min-width: 0;
+  min-height: 0;
   margin-top: calc(0px - 32px);
   height: calc(100% + 32px);
 }
@@ -307,7 +335,7 @@
 }
 .noApplications {
   transform: scale(1.0000001192092896, 1.0000001192092896);
-  height: auto;
+  height: 100%;
   display: flex;
   transform-origin: top left;
   position: relative;
@@ -315,12 +343,17 @@
   flex-direction: column;
   left: auto;
   top: auto;
+  width: 100%;
+  min-width: 0;
+  min-height: 0;
   padding: 64px;
 }
 .noApplications > :global(.__wab_flex-container) {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  min-width: 0;
+  min-height: 0;
   margin-top: calc(0px - 16px);
   height: calc(100% + 16px);
 }
@@ -368,9 +401,10 @@
 .svg__v41Xv {
   object-fit: cover;
   color: #343330;
-  height: 1em;
+  height: 20px;
   display: block;
   position: relative;
+  width: 20px;
   flex-shrink: 0;
 }
 @media (min-width: 0px) and (max-width: 768px) {
@@ -444,7 +478,7 @@
 .button__tXxvk:global(.__wab_instance):global(.__wab_instance) {
   max-width: 100%;
 }
-.svg__e51BJ {
+.svg__hz3Ic {
   position: relative;
   color: var(--token-OIYWLyLPYWym);
   height: 1em;
@@ -475,4 +509,8 @@
     right: 0px;
     min-width: 0;
   }
+}
+.sideEffect:global(.__wab_instance) {
+  max-width: 100%;
+  object-fit: cover;
 }

@@ -163,6 +163,8 @@ function PlasmicProductCard__RenderFunc(props: {
   const refsRef = React.useRef({});
   const $refs = refsRef.current;
 
+  const $globalActions = useGlobalActions?.();
+
   let [$queries, setDollarQueries] = React.useState<
     Record<string, ReturnType<typeof usePlasmicDataOp>>
   >({});
@@ -429,13 +431,20 @@ function PlasmicProductCard__RenderFunc(props: {
                 className={classNames(
                   projectcss.all,
                   projectcss.__wab_text,
-                  sty.text__mmRiR
+                  sty.text__mmRiR,
+                  {
+                    [sty.textactive__mmRiRvGmp]: hasVariant(
+                      $state,
+                      "active",
+                      "active"
+                    )
+                  }
                 )}
               >
                 <React.Fragment>
                   {(() => {
                     try {
-                      return currentItem;
+                      return currentItem.replace("last minute", "LAST MINUTE");
                     } catch (e) {
                       if (
                         e instanceof TypeError ||
@@ -451,7 +460,7 @@ function PlasmicProductCard__RenderFunc(props: {
               <div className={classNames(projectcss.all, sty.freeBox__ztspQ)}>
                 {(() => {
                   try {
-                    return currentItem !== "";
+                    return currentIndex === 0;
                   } catch (e) {
                     if (
                       e instanceof TypeError ||
@@ -464,6 +473,52 @@ function PlasmicProductCard__RenderFunc(props: {
                 })() ? (
                   <Icon11Icon
                     className={classNames(projectcss.all, sty.svg__qc3Uz)}
+                    onClick={async event => {
+                      const $steps = {};
+
+                      $steps["runCode"] = true
+                        ? (() => {
+                            const actionArgs = {
+                              customFunction: async () => {
+                                return event.stopPropagation();
+                              }
+                            };
+                            return (({ customFunction }) => {
+                              return customFunction();
+                            })?.apply(null, [actionArgs]);
+                          })()
+                        : undefined;
+                      if (
+                        $steps["runCode"] != null &&
+                        typeof $steps["runCode"] === "object" &&
+                        typeof $steps["runCode"].then === "function"
+                      ) {
+                        $steps["runCode"] = await $steps["runCode"];
+                      }
+
+                      $steps["invokeGlobalAction"] = true
+                        ? (() => {
+                            const actionArgs = {
+                              args: [
+                                "info",
+                                "Si vous r\u00e9siliez avant la fin de votre essai gratuit de 30 jours, votre carte ne sera pas d\u00e9bit\u00e9e."
+                              ]
+                            };
+                            return $globalActions[
+                              "plasmic-antd5-config-provider.showNotification"
+                            ]?.apply(null, [...actionArgs.args]);
+                          })()
+                        : undefined;
+                      if (
+                        $steps["invokeGlobalAction"] != null &&
+                        typeof $steps["invokeGlobalAction"] === "object" &&
+                        typeof $steps["invokeGlobalAction"].then === "function"
+                      ) {
+                        $steps["invokeGlobalAction"] = await $steps[
+                          "invokeGlobalAction"
+                        ];
+                      }
+                    }}
                     role={"img"}
                   />
                 ) : null}

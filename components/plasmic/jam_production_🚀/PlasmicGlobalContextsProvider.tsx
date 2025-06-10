@@ -9,19 +9,21 @@ import { hasVariant, ensureGlobalVariants } from "@plasmicapp/react-web";
 import { AntdConfigProvider } from "@plasmicpkgs/antd5/skinny/registerConfigProvider";
 import { SupabaseUserGlobalContext } from "../../../index"; // plasmic-import: tNrCv3fe8u3Y/codeComponent
 import { CommerceProviderComponent } from "@plasmicpkgs/commerce-shopify";
+import { EmbedCss } from "@plasmicpkgs/plasmic-embed-css";
 
 export interface GlobalContextsProviderProps {
   children?: React.ReactElement;
   antdConfigProviderProps?: Partial<
     Omit<React.ComponentProps<typeof AntdConfigProvider>, "children">
   >;
-
   supabaseUserGlobalContextProps?: Partial<
     Omit<React.ComponentProps<typeof SupabaseUserGlobalContext>, "children">
   >;
-
   commerceProviderComponentProps?: Partial<
     Omit<React.ComponentProps<typeof CommerceProviderComponent>, "children">
+  >;
+  embedCssProps?: Partial<
+    Omit<React.ComponentProps<typeof EmbedCss>, "children">
   >;
 }
 
@@ -32,7 +34,8 @@ export default function GlobalContextsProvider(
     children,
     antdConfigProviderProps,
     supabaseUserGlobalContextProps,
-    commerceProviderComponentProps
+    commerceProviderComponentProps,
+    embedCssProps
   } = props;
 
   return (
@@ -46,7 +49,7 @@ export default function GlobalContextsProvider(
       colorBgBase={
         antdConfigProviderProps && "colorBgBase" in antdConfigProviderProps
           ? antdConfigProviderProps.colorBgBase!
-          : "#ffffff"
+          : "#FFFFFF"
       }
       colorError={
         antdConfigProviderProps && "colorError" in antdConfigProviderProps
@@ -152,7 +155,16 @@ export default function GlobalContextsProvider(
               : "next-js-store.myshopify.com"
           }
         >
-          {children}
+          <EmbedCss
+            {...embedCssProps}
+            css={
+              embedCssProps && "css" in embedCssProps
+                ? embedCssProps.css!
+                : "/* CSS snippet */\r\n\r\n.stretch {\r\n  width: 100%;\r\n}\r\n\r\n.last-minute {\r\n  background: linear-gradient(180deg, #F6165B, #F36320); /* Rose \u2192 Orange (haut \u2192 bas) */\r\n  -webkit-background-clip: text;\r\n  -webkit-text-fill-color: transparent;\r\n\r\n  background-clip: text;\r\n  color: transparent;\r\n}\r\n\r\n.zero-charge {\r\n  color: #C8C8C8;\r\n}\r\n\r\ncharge {\r\n  color: #666666;\r\n}"
+            }
+          >
+            {children}
+          </EmbedCss>
         </CommerceProviderComponent>
       </SupabaseUserGlobalContext>
     </AntdConfigProvider>

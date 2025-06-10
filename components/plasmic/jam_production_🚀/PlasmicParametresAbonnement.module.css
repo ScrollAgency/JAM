@@ -240,7 +240,7 @@
   flex-grow: 0;
   min-width: 0;
 }
-.svg__a6V0Q {
+.svg__nMe0E {
   position: relative;
   color: var(--token-OIYWLyLPYWym);
   height: 1em;
@@ -358,7 +358,7 @@
   height: auto;
   max-width: 100%;
   font-family: "DM Sans", sans-serif;
-  font-weight: 700;
+  font-weight: 400;
   font-size: 32px;
   line-height: 120%;
   white-space: pre-wrap;
@@ -450,7 +450,7 @@
 .button__x62Ba:global(.__wab_instance):global(.__wab_instance) {
   max-width: 100%;
 }
-.svg__oiCc7 {
+.svg___5NAf {
   position: relative;
   color: var(--token-OIYWLyLPYWym);
   height: 1em;
@@ -490,7 +490,7 @@
   width: 100%;
   min-width: 0;
 }
-.svg__ig61I {
+.svg___6EZst {
   position: relative;
   color: var(--token-OIYWLyLPYWym);
   height: 1em;
@@ -509,7 +509,7 @@
   width: 100%;
   min-width: 0;
 }
-.svg__kDl6G {
+.svg__ax9S {
   position: relative;
   color: var(--token-OIYWLyLPYWym);
   height: 1em;
@@ -530,7 +530,7 @@
 .button__b144E:global(.__wab_instance):global(.__wab_instance) {
   max-width: 100%;
 }
-.svg__aOgpF {
+.svg__k5J9S {
   position: relative;
   color: var(--token-OIYWLyLPYWym);
   height: 1em;
@@ -570,7 +570,7 @@
   width: 100%;
   min-width: 0;
 }
-.svg__cr6P {
+.svg__uCd5S {
   position: relative;
   color: var(--token-OIYWLyLPYWym);
   height: 1em;
@@ -589,7 +589,7 @@
   width: 100%;
   min-width: 0;
 }
-.svg__yc1MX {
+.svg__vQtOe {
   position: relative;
   color: var(--token-OIYWLyLPYWym);
   height: 1em;
@@ -1294,7 +1294,7 @@
 .button__tmvU4:global(.__wab_instance):global(.__wab_instance) {
   max-width: 100%;
 }
-.svg__dP7Sq {
+.svg__xTkol {
   position: relative;
   color: var(--token-OIYWLyLPYWym);
   height: 1em;
@@ -1303,9 +1303,10 @@
   white-space: pre;
   color: var(--token-nuB3vbLUeNHj);
 }
-.svg__w5ODz {
+.svg__nDeaP {
   position: relative;
   color: var(--token-OIYWLyLPYWym);
+  margin-right: 0px;
   height: 1em;
 }
 .recharges {
@@ -1683,7 +1684,6 @@
 }
 .textInput:global(.__wab_instance):global(.__wab_instance) {
   max-width: 100%;
-  flex-shrink: 0;
 }
 .totalAmount {
   display: flex;
@@ -1759,7 +1759,7 @@
 .button__jSo:global(.__wab_instance):global(.__wab_instance) {
   max-width: 100%;
 }
-.svg__zQ6Aj {
+.svg__zEaax {
   position: relative;
   color: var(--token-OIYWLyLPYWym);
   height: 1em;

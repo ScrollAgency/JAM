@@ -396,6 +396,29 @@ function PlasmicConnexion__RenderFunc(props: {
                 }}
                 onError={async error => {
                   const $steps = {};
+
+                  $steps["invokeGlobalAction"] = true
+                    ? (() => {
+                        const actionArgs = {
+                          args: [
+                            "error",
+                            "\u00c9chec de la connexion. Veuillez v\u00e9rifier vos identifiants et r\u00e9essayer."
+                          ]
+                        };
+                        return $globalActions[
+                          "plasmic-antd5-config-provider.showNotification"
+                        ]?.apply(null, [...actionArgs.args]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["invokeGlobalAction"] != null &&
+                    typeof $steps["invokeGlobalAction"] === "object" &&
+                    typeof $steps["invokeGlobalAction"].then === "function"
+                  ) {
+                    $steps["invokeGlobalAction"] = await $steps[
+                      "invokeGlobalAction"
+                    ];
+                  }
                 }}
                 onPasswordChange={async (...eventArgs: any) => {
                   generateStateOnChangeProp($state, [

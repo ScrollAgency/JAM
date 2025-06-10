@@ -24,7 +24,7 @@
   align-items: center;
   outline-style: none;
   height: 48px;
-  color: var(--token-ceD1eQOG2geq);
+  color: var(--token-OIYWLyLPYWym);
   min-width: 0;
   border-radius: 16px;
   padding: var(--token-6E_dkwkzSygq);
@@ -37,21 +37,28 @@
   outline-color: var(--token--V1yrEhoM54H);
 }
 .ariaSelect[data-focused] .ariaButton:global(.__wab_instance) {
-  filter: drop-shadow(0px 0px 4px #e8ffcc) drop-shadow(0px 1px 2px #1018280d);
+  filter: none;
   border-radius: 16px;
-  border: 1px solid var(--token-nuB3vbLUeNHj);
+  border: 1px solid var(--token--V1yrEhoM54H);
 }
 .ariaSelectedValue:global(.__wab_instance) {
-  font-size: var(--token-aRuWp9ICGc-Q);
-  line-height: var(--token-QTSTTNIaGHpG);
-  color: var(--token-vE7ENHhK130K);
+  color: var(--token-qVvTulujfE86);
+  font-family: "DM Sans", sans-serif;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0%;
 }
 .text {
   position: relative;
   width: 100%;
   height: auto;
   max-width: 100%;
-  color: var(--token-3qu294j6Zo_Y);
+  color: #989898;
+  font-family: "DM Sans", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0%;
   min-width: 0;
 }
 .svg {

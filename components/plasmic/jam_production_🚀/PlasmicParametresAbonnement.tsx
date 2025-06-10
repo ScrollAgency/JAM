@@ -253,8 +253,7 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
               return (
                 ($ctx.query.credit === "success" &&
                   $ctx.query.sessionId !== "") ||
-                ($ctx.query.paiement === "ok" &&
-                  $state.modalCreditsAlerts === true)
+                $ctx.query.paiement === "ok"
               );
             } catch (e) {
               if (
@@ -868,7 +867,7 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                             sty.text___2T0Rb
                           )}
                         >
-                          {"Merci !"}
+                          {"Paiement re\u00e7u !"}
                         </div>
                       ) : null}
                       {(() => {
@@ -963,6 +962,39 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                           {"publier une offre d'emploi"}
                         </div>
                       }
+                      onClick={async event => {
+                        const $steps = {};
+
+                        $steps["goToOffreEmployeur"] = true
+                          ? (() => {
+                              const actionArgs = {
+                                destination: `/offre-employeur`
+                              };
+                              return (({ destination }) => {
+                                if (
+                                  typeof destination === "string" &&
+                                  destination.startsWith("#")
+                                ) {
+                                  document
+                                    .getElementById(destination.substr(1))
+                                    .scrollIntoView({ behavior: "smooth" });
+                                } else {
+                                  __nextRouter?.push(destination);
+                                }
+                              })?.apply(null, [actionArgs]);
+                            })()
+                          : undefined;
+                        if (
+                          $steps["goToOffreEmployeur"] != null &&
+                          typeof $steps["goToOffreEmployeur"] === "object" &&
+                          typeof $steps["goToOffreEmployeur"].then ===
+                            "function"
+                        ) {
+                          $steps["goToOffreEmployeur"] = await $steps[
+                            "goToOffreEmployeur"
+                          ];
+                        }
+                      }}
                     />
                   </div>
                 ) : null,
@@ -1066,8 +1098,7 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                           return (
                             ($ctx.query.credit === "success" &&
                               $ctx.query.sessionId !== "") ||
-                            ($ctx.query.paiement === "ok" &&
-                              $state.modalCreditsAlerts === true)
+                            $ctx.query.paiement === "ok"
                           );
                         } catch (e) {
                           if (
@@ -1507,7 +1538,26 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                           }
                         />
                       }
-                      confirmDescription={"Texte de confirmation"}
+                      confirmDescription={(() => {
+                        try {
+                          return `Votre nouvel abonnement commencera le ${new Date(
+                            $ctx.SupabaseUser.user.created_at
+                          ).toLocaleDateString("fr-FR", {
+                            weekday: "long",
+                            year: "numeric",
+                            month: "long",
+                            day: "numeric"
+                          })}.`;
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return undefined;
+                          }
+                          throw e;
+                        }
+                      })()}
                       confirmIconSlot={
                         <div
                           className={classNames(

@@ -186,7 +186,7 @@ function PlasmicSidebar2__RenderFunc(props: {
   });
 
   const new$Queries: Record<string, ReturnType<typeof usePlasmicDataOp>> = {
-    getUserStripeInfos: usePlasmicDataOp(() => {
+    sidebarGetUserStripeInfos: usePlasmicDataOp(() => {
       return {
         sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
         opId: "1284f981-03a5-4aae-9f90-4a9eb18e1c6b",
@@ -198,12 +198,12 @@ function PlasmicSidebar2__RenderFunc(props: {
         roleId: null
       };
     }),
-    userMonthlyRecharge: usePlasmicDataOp(() => {
+    sidebarUserMonthlyRecharge: usePlasmicDataOp(() => {
       return {
         sourceId: "5T6gSzGCrEfYgV9rAkCoaD",
         opId: "9258b35e-6135-4ba7-8ce4-fe23b60361d6",
         userArgs: {
-          params: [$queries.getUserStripeInfos.data[0].customer_id]
+          params: [$queries.sidebarGetUserStripeInfos.data[0].customer_id]
         },
         cacheKey: `plasmic.$.9258b35e-6135-4ba7-8ce4-fe23b60361d6.$.`,
         invalidatedKeys: null,
@@ -323,9 +323,9 @@ function PlasmicSidebar2__RenderFunc(props: {
             onClick={async event => {
               const $steps = {};
 
-              $steps["goToMesCandidatures"] = true
+              $steps["goToOffreEmployeur"] = true
                 ? (() => {
-                    const actionArgs = { destination: `/candidatures` };
+                    const actionArgs = { destination: `/offre-employeur` };
                     return (({ destination }) => {
                       if (
                         typeof destination === "string" &&
@@ -341,12 +341,12 @@ function PlasmicSidebar2__RenderFunc(props: {
                   })()
                 : undefined;
               if (
-                $steps["goToMesCandidatures"] != null &&
-                typeof $steps["goToMesCandidatures"] === "object" &&
-                typeof $steps["goToMesCandidatures"].then === "function"
+                $steps["goToOffreEmployeur"] != null &&
+                typeof $steps["goToOffreEmployeur"] === "object" &&
+                typeof $steps["goToOffreEmployeur"].then === "function"
               ) {
-                $steps["goToMesCandidatures"] = await $steps[
-                  "goToMesCandidatures"
+                $steps["goToOffreEmployeur"] = await $steps[
+                  "goToOffreEmployeur"
                 ];
               }
             }}
@@ -394,7 +394,7 @@ function PlasmicSidebar2__RenderFunc(props: {
 
               $steps["goToAccueil"] = true
                 ? (() => {
-                    const actionArgs = { destination: `/` };
+                    const actionArgs = { destination: `/recherche-candidat` };
                     return (({ destination }) => {
                       if (
                         typeof destination === "string" &&
@@ -456,9 +456,9 @@ function PlasmicSidebar2__RenderFunc(props: {
             onClick={async event => {
               const $steps = {};
 
-              $steps["goToParametresDeCompte"] = true
+              $steps["goToParametresEmployeur"] = true
                 ? (() => {
-                    const actionArgs = { destination: `/parametres` };
+                    const actionArgs = { destination: `/parametres-employeur` };
                     return (({ destination }) => {
                       if (
                         typeof destination === "string" &&
@@ -474,12 +474,12 @@ function PlasmicSidebar2__RenderFunc(props: {
                   })()
                 : undefined;
               if (
-                $steps["goToParametresDeCompte"] != null &&
-                typeof $steps["goToParametresDeCompte"] === "object" &&
-                typeof $steps["goToParametresDeCompte"].then === "function"
+                $steps["goToParametresEmployeur"] != null &&
+                typeof $steps["goToParametresEmployeur"] === "object" &&
+                typeof $steps["goToParametresEmployeur"].then === "function"
               ) {
-                $steps["goToParametresDeCompte"] = await $steps[
-                  "goToParametresDeCompte"
+                $steps["goToParametresEmployeur"] = await $steps[
+                  "goToParametresEmployeur"
                 ];
               }
             }}
@@ -542,7 +542,9 @@ function PlasmicSidebar2__RenderFunc(props: {
 
                 $steps["goToParametresDeCompte"] = true
                   ? (() => {
-                      const actionArgs = { destination: `/parametres` };
+                      const actionArgs = {
+                        destination: `/parametres-employeur`
+                      };
                       return (({ destination }) => {
                         if (
                           typeof destination === "string" &&
@@ -620,7 +622,9 @@ function PlasmicSidebar2__RenderFunc(props: {
 
                 $steps["goToParametresDeCompte"] = true
                   ? (() => {
-                      const actionArgs = { destination: `/parametres` };
+                      const actionArgs = {
+                        destination: `/parametres-abonnement`
+                      };
                       return (({ destination }) => {
                         if (
                           typeof destination === "string" &&
@@ -716,10 +720,10 @@ function PlasmicSidebar2__RenderFunc(props: {
                   {(() => {
                     try {
                       return (
-                        $queries.userMonthlyRecharge.data.response.solde
+                        $queries.sidebarUserMonthlyRecharge.data.response.solde
                           .totalClassic +
                         "/" +
-                        $queries.userMonthlyRecharge.data.response.total
+                        $queries.sidebarUserMonthlyRecharge.data.response.total
                           .totalClassic
                       );
                     } catch (e) {
@@ -771,10 +775,10 @@ function PlasmicSidebar2__RenderFunc(props: {
                   {(() => {
                     try {
                       return (
-                        $queries.userMonthlyRecharge.data.response.solde
+                        $queries.sidebarUserMonthlyRecharge.data.response.solde
                           .totalLastMinute +
                         "/" +
-                        $queries.userMonthlyRecharge.data.response.total
+                        $queries.sidebarUserMonthlyRecharge.data.response.total
                           .totalLastMinute
                       );
                     } catch (e) {
@@ -826,10 +830,10 @@ function PlasmicSidebar2__RenderFunc(props: {
                   {(() => {
                     try {
                       return (
-                        $queries.userMonthlyRecharge.data.response.solde
+                        $queries.sidebarUserMonthlyRecharge.data.response.solde
                           .totalBoost +
                         "/" +
-                        $queries.userMonthlyRecharge.data.response.total
+                        $queries.sidebarUserMonthlyRecharge.data.response.total
                           .totalBoost
                       );
                     } catch (e) {

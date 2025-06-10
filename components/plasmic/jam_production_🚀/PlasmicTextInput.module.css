@@ -1,13 +1,13 @@
 .ariaInput:global(.__wab_instance) {
   box-sizing: border-box;
-  box-shadow: none;
-  line-height: var(--token-QTSTTNIaGHpG);
   width: 100%;
   position: relative;
-  height: 48px;
+  font-family: "DM Sans", sans-serif;
+  line-height: 24px;
+  letter-spacing: 0%;
   color: var(--token-qVvTulujfE86);
-  font-size: var(--token-aRuWp9ICGc-Q);
-  font-family: var(--token-iPHCqhfXwTyN);
+  font-size: 16px;
+  background: #ffffff;
   min-width: 0;
   border-radius: 16px;
   padding: 12px;

@@ -68,8 +68,6 @@ import MenuPopover from "../../MenuPopover"; // plasmic-import: _rdh0nLceaRv/com
 import MenuItem from "../../MenuItem"; // plasmic-import: plmAgyhhAdMc/component
 import MenuSection from "../../MenuSection"; // plasmic-import: MUvYPH7rZO6i/component
 
-import { useScreenVariants as useScreenVariantshm8Nko4B5BDd } from "./PlasmicGlobalVariant__Screen"; // plasmic-import: HM8Nko4B5BDd/globalVariant
-
 import "@plasmicapp/react-web/lib/plasmic.css";
 
 import plasmic_antd_5_hostless_css from "../antd_5_hostless/plasmic.module.css"; // plasmic-import: ohDidvG9XsCeFumugENU3J/projectcss
@@ -217,10 +215,6 @@ function PlasmicSelect__RenderFunc(props: {
     $ctx,
     $queries: {},
     $refs
-  });
-
-  const globalVariants = ensureGlobalVariants({
-    screen: useScreenVariantshm8Nko4B5BDd()
   });
 
   const [$ccVariants, setDollarCcVariants] = React.useState<
