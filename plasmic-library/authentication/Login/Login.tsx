@@ -31,13 +31,17 @@ export interface LoginProps {
   // Links
   forgotPasswordText?: string;
   createAccountText?: string;
-  signUpLinkText?: string;
+  signUpPrefixText?: string;  // Texte régulier (ex: "Pas encore de compte ?")
+  signUpLinkLabel?: string;   // Texte du lien (ex: "INSCRIPTION")
+
   forgotPasswordPosition?: 'left' | 'right';
 
   // Buttons
   buttonStyle?: "primary" | "secondary" | "tertiary";
   submitButtonText?: string;
-  
+  submitButtonIcon?: React.ReactNode;
+  submitButtonIconPosition?: "left" | "right"; // default: right
+
   // OAuth
   googleButtonText?: string;
   appleButtonText?: string;
@@ -59,20 +63,20 @@ export interface LoginProps {
 }
 
 function Login_(
-  props: LoginProps, 
+  props: LoginProps,
   ref: HTMLElementRefOf<"div">
 ) {
   const {
     // Wrapper
-    wrapperStyle = "card", 
+    wrapperStyle = "card",
     padding = "48px",
 
     // Title
-    titleHeading = "h1",  
-    title = "Connexion",  
+    titleHeading = "h1",
+    title = "Connexion",
 
     // Input
-    inputStyle = "simple", 
+    inputStyle = "simple",
 
     // Email
     emailLabel = "Email",
@@ -86,12 +90,16 @@ function Login_(
     // Links
     forgotPasswordText = "Mot de passe oublié ?",
     createAccountText = "Créer un compte",
-    signUpLinkText = "Pas encore de compte ? INSCRIPTION",
+    signUpPrefixText = "Pas encore de compte ?",
+    signUpLinkLabel = "INSCRIPTION",
+
     forgotPasswordPosition = "left",
 
     // Buttons
-    buttonStyle = "primary", 
-    submitButtonText = "Connexion",  
+    buttonStyle = "primary",
+    submitButtonText = "CONNEXION",
+    submitButtonIcon,
+    submitButtonIconPosition = "right",
 
     // OAuth
     googleButtonText = "GOOGLE",
@@ -105,14 +113,14 @@ function Login_(
     showBottomSignupLink = false,
 
     // Events handlers
-    onEmailChange,  
+    onEmailChange,
     onPasswordChange,
     onGoogleSignIn,
     onAppleSignIn,
     onSubmit,
     onError,
   } = props;
-  
+
   const Title = titleHeading as keyof JSX.IntrinsicElements;
   const [email, setEmail] = useState(props.email || "");
   const [password, setPassword] = useState(props.password || "");
@@ -158,16 +166,16 @@ function Login_(
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    
+
     try {
       // Validate all form fields before submission
       validateForm();
 
       setIsSubmitting(true);
-      
+
       // Wait for the onSubmit promise to resolve
       await onSubmit?.(event);
-      
+
     } catch (error) {
       handleError(error instanceof Error ? error : new Error(String(error)));
     } finally {
@@ -231,7 +239,7 @@ function Login_(
   return (
     <div
       ref={ref}
-      style={{ 
+      style={{
         ...presets.wrappers[wrapperStyle] as React.CSSProperties,
         rowGap: "16px",
         padding
@@ -241,12 +249,12 @@ function Login_(
 
       <form
         onSubmit={handleSubmit}
-        style={{ ...presets.form as React.CSSProperties, gap: "32px", display: "flex", flexDirection: "column" }}
+        style={{ ...presets.form as React.CSSProperties, gap: "16px", display: "flex", flexDirection: "column" }}
       >
         <div style={{ display: "flex", flexDirection: "column", gap: "0px" }}>
-          <label style={{ 
-            ...presets.formLabel as React.CSSProperties, 
-            fontSize: "14px" 
+          <label style={{
+            ...presets.formLabel as React.CSSProperties,
+            fontSize: "14px"
           }} htmlFor="email">
             {emailLabel}
           </label>
@@ -254,16 +262,16 @@ function Login_(
             type="email"
             id="email"
             placeholder={placeholderEmail}
-            style={presets.inputs[inputStyle]} 
+            style={presets.inputs[inputStyle]}
             value={email}
             onChange={handleEmailChange}
           />
         </div>
 
         <div style={{ display: "flex", flexDirection: "column", gap: "0px" }}>
-          <label style={{ 
-            ...presets.formLabel as React.CSSProperties, 
-            fontSize: "14px" 
+          <label style={{
+            ...presets.formLabel as React.CSSProperties,
+            fontSize: "14px"
           }} htmlFor="password">
             {passwordLabel}
           </label>
@@ -272,12 +280,12 @@ function Login_(
               type={showPassword ? "text" : "password"}
               id="password"
               placeholder={placeholderPassword}
-              style={presets.inputs[inputStyle]} 
+              style={presets.inputs[inputStyle]}
               value={password}
               onChange={handlePasswordChange}
             />
             {showPasswordToggle && (
-              <button 
+              <button
                 type="button"
                 onClick={togglePasswordVisibility}
                 style={presets.togglePasswordVisibility as React.CSSProperties}
@@ -287,24 +295,34 @@ function Login_(
               </button>
             )}
           </div>
+          <div style={{
+            display: "flex",
+            paddingTop: "8px",
+            justifyContent: "space-between",
+            flexDirection: forgotPasswordPosition === "left" ? "row" : "row-reverse"
+          }}>
+            <Link href="/forgot-password"><span style={presets.links.linkLeft}>{forgotPasswordText}</span></Link>
+          </div>
+
         </div>
-        <div style={{ 
-          display: "flex", 
-          justifyContent: "space-between", 
-          flexDirection: forgotPasswordPosition === "left" ? "row" : "row-reverse" 
-        }}>
-          <Link href="/forgot-password"><span style={presets.links.linkLeft}>{forgotPasswordText}</span></Link>
-        </div>
-        <button 
-          type="submit" 
+
+        <button
+          type="submit"
           style={{
             ...presets.buttons[buttonStyle] as React.CSSProperties,
+            color: "#000",
             opacity: isSubmitting ? 0.7 : 1,
-            cursor: isSubmitting ? "not-allowed" : "pointer"
+            cursor: isSubmitting ? "not-allowed" : "pointer",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            gap: "12px", // <-- espace entre texte et icône
           }}
           disabled={isSubmitting}
         >
-          {isSubmitting ? "Connexion..." : submitButtonText}
+          {submitButtonIconPosition === "left" && submitButtonIcon}
+          {isSubmitting ? "CONNEXION..." : submitButtonText}
+          {submitButtonIconPosition !== "left" && submitButtonIcon}
         </button>
 
         {showSocialOAuth && oAuthSeparatorText && (
@@ -321,9 +339,15 @@ function Login_(
 
       {showBottomSignupLink && (
         <div style={{ textAlign: 'center', marginTop: '16px' }}>
-          <Link href="/register" style={presets.links.linkLeft}>{signUpLinkText}</Link>
+          <span style={{ fontSize: "16px", fontWeight: 400, color: "#000" }}>
+            {signUpPrefixText}{" "}
+          </span>
+          <Link href="/register" style={presets.links.linkLeft}>
+            {signUpLinkLabel}
+          </Link>
         </div>
       )}
+
     </div>
   );
 }

@@ -8,7 +8,7 @@ import { EyeIcon, ViewIcon } from "../icons/icons";
 
 const ArrowIcon = () => (
   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M12 4L10.59 5.41L16.17 11H4V13H16.17L10.59 18.59L12 20L20 12L12 4Z" fill="currentColor"/>
+    <path d="M12 4L10.59 5.41L16.17 11H4V13H16.17L10.59 18.59L12 20L20 12L12 4Z" fill="currentColor" />
   </svg>
 );
 
@@ -29,10 +29,13 @@ export interface ResetPasswordProps {
   confirmPasswordLabel?: string;
   confirmPassword?: string;
   eyeIconColor?: string;
+  passwordInfoText?: string;
 
   // Buttons
   buttonSubmitStyle?: "primary" | "secondary" | "tertiary";
   submitButtonText?: string;
+  submitButtonIcon?: React.ReactNode;   // <-- Nouvelle prop pour l'icône du bouton submit
+  submitButtonIconPosition?: "left" | "right";
   buttonAbordStyle?: "primary" | "secondary" | "tertiary";
   cancelButtonText?: string;
   showSubmitButton?: boolean;
@@ -72,23 +75,27 @@ function ResetPassword_(
     // Title
     titleHeading = "h1",
     title = "Réinitialiser le mot de passe",
-    
+
     // Input
     inputStyle = "simple",
 
     // Password
-    passwordLabel= "Nouveau mot de passe*",
-    confirmPasswordLabel= "Répétez le mot de passe*",
+    passwordLabel = "Nouveau mot de passe*",
+    confirmPasswordLabel = "Répétez le mot de passe*",
     eyeIconColor = "#666",
+    passwordInfoText = "Utilisez 8 caractères ou plus en mélangeant lettres, chiffres et symboles.",
+
 
     // Buttons
     buttonSubmitStyle = "primary",
     submitButtonText = "Réinitialiser",
+    submitButtonIcon,
+    submitButtonIconPosition = "right",
     buttonAbordStyle = "tertiary",
     cancelButtonText = "Annuler",
     showSubmitButton = true,
     showCancelButton = true,
-    
+
     // Alert
     alertPosition = 'top',
     maxAlerts = 3,
@@ -197,11 +204,11 @@ function ResetPassword_(
 
   useEffect(() => {
     setPassword(props.password || "");
-  },  [props.password]);
-  
-    useEffect(() => {
-      setConfirmPassword(props.confirmPassword || "");
-    },  [props.confirmPassword]);
+  }, [props.password]);
+
+  useEffect(() => {
+    setConfirmPassword(props.confirmPassword || "");
+  }, [props.confirmPassword]);
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -254,9 +261,9 @@ function ResetPassword_(
         onSubmit={handleSubmit}
         style={{ display: "flex", flexDirection: "column", rowGap: presets.form.rowGap }}
       >
-        <div style={{ rowGap: presets.inputField.rowGap }}>
+        <div style={presets.inputField as React.CSSProperties}>
           <label style={presets.formLabel as React.CSSProperties} htmlFor="passwordInput">{passwordLabel}</label>
-          <div style={presets.passwordInputWrapper as React.CSSProperties}>
+          <div style={{ position: "relative" }}>
             <input
               type={showPassword ? "text" : "password"}
               id="passwordInput"
@@ -269,20 +276,22 @@ function ResetPassword_(
               <button
                 type="button"
                 onClick={togglePasswordVisibility}
-                style={{ ...presets.togglePasswordVisibility, color: eyeIconColor} as React.CSSProperties}
+                style={{ ...presets.togglePasswordVisibility, color: eyeIconColor } as React.CSSProperties}
                 aria-label={showPassword ? "Masquer le mot de passe" : "Afficher le mot de passe"}
               >
                 {showPassword ? <EyeIcon /> : <ViewIcon />}
               </button>
             )}
           </div>
-          <p style={presets.checkPassword as React.CSSProperties}>Utilisez 8 caractères ou plus en mélangeant lettres, chiffres et symboles.</p>
           <div style={presets.strengthBars}>{renderStrengthBars()}</div>
+          <small style={presets.checkPassword as React.CSSProperties}>
+            {passwordInfoText}
+          </small>
         </div>
 
-        <div style={{ rowGap: presets.inputField.rowGap }}>
+        <div style={presets.inputField as React.CSSProperties}>
           <label style={presets.formLabel as React.CSSProperties} htmlFor="confirmPasswordInput">{confirmPasswordLabel}</label>
-          <div style={presets.passwordInputWrapper as React.CSSProperties}>
+          <div style={{ position: "relative" }}>
             <input
               type={showConfirmPassword ? "text" : "password"}
               id="confirmPasswordInput"
@@ -307,9 +316,18 @@ function ResetPassword_(
         {showSubmitButton && (
           <button
             type="submit"
-            style={presets.buttons[buttonSubmitStyle] as React.CSSProperties}
+            style={{
+              ...(presets.buttons[buttonSubmitStyle] as React.CSSProperties),
+              color: "#000",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "12px", // espace entre texte et icône
+            }}
           >
+            {submitButtonIconPosition === "left" && submitButtonIcon}
             {submitButtonText}
+            {submitButtonIconPosition !== "left" && submitButtonIcon}
           </button>
         )}
       </form>

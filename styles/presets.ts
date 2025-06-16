@@ -1,4 +1,6 @@
+import { blob } from "stream/consumers";
 import { tokens } from "./tokens-jam";
+import { AlignCenter } from "lucide-react";
 
 export const getTokenValue = (name: string) => tokens.find((token) => token.name === name)?.value || name;
 
@@ -77,7 +79,7 @@ export const presets = {
       fontWeight: "bold",
       fontSize: "48px",
       lineHeight: "120%",
-      color: getTokenValue("black-500"),
+      color: "black",
     },
     heading2: {
       fontFamily: "Improvise, sans-serif",
@@ -119,7 +121,6 @@ export const presets = {
     fontSize: "14px",
     color: getTokenValue("grey-700"),
     lineHeight: "1.4",
-    marginTop: "8px",
     display: "flex",
     gap: "8px",
     alignItems: "center",
@@ -136,7 +137,7 @@ export const presets = {
       fontWeight: "bold",
       fontSize: "18px",
       lineHeight: "24px",
-      borderRadius: "12px",
+      borderRadius: "16px",
       cursor: "pointer",
       "@media (max-width: 768px)": {
         height: "36px",
@@ -244,7 +245,7 @@ export const presets = {
       width: "100%",
       height: "56px",
       color: getTokenValue("information-text"),
-      borderRadius: "12px",
+      borderRadius: "16px",
       borderColor: getTokenValue("grey-200"),
       borderWidth: "1px",
       fontSize: "16px",
@@ -358,7 +359,7 @@ export const presets = {
   // Others
   passwordHint: {
     fontSize: "13px",
-    color: getTokenValue("grey-600"),
+    color: "black",
     marginTop: "4px",
     marginBottom: "4px",
   },
@@ -384,8 +385,8 @@ export const presets = {
   strengthBars: {
     display: "flex",
     gap: "4px",
-    marginTop: "4px",
-    marginBottom: "8px",
+    paddingTop: "16px",
+    paddingBottom: "16px",
   },
 
   strengthBar: {
@@ -447,15 +448,14 @@ export const presets = {
 
   checkboxGroup: {
     display: "flex",
-    alignItems: "flex-start",
+    alignItems: "center",
     gap: "5px",
     margin: "4px 0",
   },
 
   checkboxLabel: {
     fontSize: "14px",
-    color: getTokenValue("grey-700"),
-    lineHeight: "1.4",
+    color: getTokenValue("black"),
   },
 
   oAuthContainer: {

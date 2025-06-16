@@ -2,10 +2,10 @@ const ResetPasswordMeta = {
   name: "ResetPassword",
   section: "🔑 Authentication",
   displayName: "Reset Password",
-  description: "Un formulaire pour réinitialiser le mot de passe avec indicateur de force du mot de passe à couleurs dynamiques, visibilité du mot de passe et système d'alertes intégré",
+  description:
+    "Un formulaire pour réinitialiser le mot de passe avec indicateur de force du mot de passe à couleurs dynamiques, visibilité du mot de passe et système d'alertes intégré",
   thumbnailUrl: "https://plasmic-api.agence-scroll.com/reset-password.png",
   props: {
-
     // Wrapper style
     wrapperStyle: {
       type: "string",
@@ -33,7 +33,7 @@ const ResetPasswordMeta = {
       options: ["simple", "advance"],
       description: "Style des champs de saisie",
     },
-    
+
     // Nouveau mot de passe
     passwordLabel: {
       type: "string",
@@ -71,7 +71,7 @@ const ResetPasswordMeta = {
       type: "boolean",
       defaultValue: true,
     },
-    
+
     // Contrôle de visibilité
     showPasswordToggle: {
       type: "boolean",
@@ -134,6 +134,22 @@ const ResetPasswordMeta = {
       options: ["primary", "secondary", "tertiary"],
       description: "Style du bouton de soumission",
     },
+    submitButtonIcon: {
+      type: "slot",
+      description: "Icône personnalisée pour le bouton de soumission",
+    },
+    submitButtonTextColor: {
+      type: "string",
+      defaultValue: "#000",
+      description: "Couleur du texte du bouton de soumission",
+    },
+    submitButtonIconPosition: {
+      type: "choice",
+      options: ["left", "right"],
+      defaultValue: "left",
+      description: "Position de l'icône dans le bouton de soumission",
+    },
+
     cancelButtonText: {
       type: "string",
       defaultValue: "Annuler",
@@ -169,16 +185,16 @@ const ResetPasswordMeta = {
   // States
   states: {
     password: {
-      type: 'writable',
-      variableType: 'text',
-      valueProp: 'password',
-      onChangeProp: 'onPasswordChange'
+      type: "writable",
+      variableType: "text",
+      valueProp: "password",
+      onChangeProp: "onPasswordChange",
     },
     confirmPassword: {
-      type: 'writable',
-      variableType: 'text',
-      valueProp: 'confirmPassword',
-      onChangeProp: 'onConfirmPasswordChange'
+      type: "writable",
+      variableType: "text",
+      valueProp: "confirmPassword",
+      onChangeProp: "onConfirmPasswordChange",
     },
   },
   importPath: "./components/auth/ResetPassword",

@@ -5,7 +5,6 @@ const LoginMeta = {
   description: "Un formulaire simple pour se connecter",
   thumbnailUrl: "https://plasmic-api.agence-scroll.com/login.png",
   props: {
-
     // Wrapper styles
     wrapperStyle: {
       type: "choice",
@@ -81,18 +80,23 @@ const LoginMeta = {
       defaultValue: "Créer un compte",
       description: "Texte à afficher pour le lien Créer un compte",
     },
-    signUpLinkText: {
+    signUpPrefixText: {
       type: "string",
-      defaultValue: "Pas encore de compte ? INSCRIPTION",
-      description: "Texte à afficher pour le lien Signup du bas",
+      defaultValue: "Pas encore de compte ?",
+      description: "Texte affiché avant le lien d'inscription",
     },
+    signUpLinkLabel: {
+      type: "string",
+      defaultValue: "INSCRIPTION",
+      description: "Texte du lien d'inscription",
+    },
+
     forgotPasswordPosition: {
       type: "choice",
       defaultValue: "left",
       options: ["left", "right"],
       description: "Position du lien forgot password",
     },
-
 
     // Buttons
     buttonStyle: {
@@ -104,6 +108,17 @@ const LoginMeta = {
     submitButtonText: {
       type: "string",
       defaultValue: "Connexion",
+    },
+    submitButtonIcon: {
+      type: "slot",
+      hidePlaceholder: true,
+      description: "Icône à afficher dans le bouton de connexion",
+    },
+    submitButtonIconPosition: {
+      type: "choice",
+      options: ["left", "right"],
+      defaultValue: "right",
+      description: "Position de l'icône dans le bouton de connexion",
     },
 
     // show / hide
@@ -122,7 +137,7 @@ const LoginMeta = {
       defaultValue: false,
       description: "Affiche ou non le lien signup du bas",
     },
-    
+
     // Events handlers
     onEmailChange: {
       type: "eventHandler",
@@ -146,16 +161,16 @@ const LoginMeta = {
   // States
   states: {
     email: {
-      type: 'writable',
-      variableType: 'text',
-      valueProp: 'email',
-      onChangeProp: 'onEmailChange'
+      type: "writable",
+      variableType: "text",
+      valueProp: "email",
+      onChangeProp: "onEmailChange",
     },
     password: {
-      type: 'writable',
-      variableType: 'text',
-      valueProp: 'password',
-      onChangeProp: 'onPasswordChange'
+      type: "writable",
+      variableType: "text",
+      valueProp: "password",
+      onChangeProp: "onPasswordChange",
     },
   },
   importPath: "./components/auth/Login",
