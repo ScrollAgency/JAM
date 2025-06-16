@@ -119,7 +119,7 @@ export const presets = {
     fontFamily: "Manrope, sans-serif",
     fontWeight: "500",
     fontSize: "14px",
-    color: getTokenValue("grey-700"),
+    color: getTokenValue("black"),
     lineHeight: "1.4",
     display: "flex",
     gap: "8px",
