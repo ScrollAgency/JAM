@@ -251,6 +251,14 @@
     margin-top: 16px;
   }
 }
+.text__oFd13 {
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  text-align: center;
+  min-width: 0;
+}
 .freeBox__xXjUr {
   display: flex;
   flex-direction: row;

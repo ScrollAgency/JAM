@@ -675,236 +675,238 @@ function PlasmicSidebar2__RenderFunc(props: {
           hasGap={true}
           className={classNames(projectcss.all, sty.disconnectButton)}
         >
-          <div className={classNames(projectcss.all, sty.freeBox__iiBjj)}>
-            <div
-              className={classNames(
-                projectcss.all,
-                projectcss.__wab_text,
-                sty.text__oJi1F
-              )}
-            >
-              <React.Fragment>
-                <span
-                  className={"plasmic_default__all plasmic_default__span"}
-                  style={{ fontWeight: 600 }}
+          {false ? (
+            <div className={classNames(projectcss.all, sty.freeBox__iiBjj)}>
+              <div
+                className={classNames(
+                  projectcss.all,
+                  projectcss.__wab_text,
+                  sty.text__oJi1F
+                )}
+              >
+                <React.Fragment>
+                  <span
+                    className={"plasmic_default__all plasmic_default__span"}
+                    style={{ fontWeight: 600 }}
+                  >
+                    {"VOS ANNONCES"}
+                  </span>
+                </React.Fragment>
+              </div>
+              <div className={classNames(projectcss.all, sty.freeBox__tWrQc)}>
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__ek9E1
+                  )}
                 >
-                  {"VOS ANNONCES"}
-                </span>
-              </React.Fragment>
-            </div>
-            <div className={classNames(projectcss.all, sty.freeBox__tWrQc)}>
-              <div
-                className={classNames(
-                  projectcss.all,
-                  projectcss.__wab_text,
-                  sty.text__ek9E1
-                )}
-              >
-                <React.Fragment>
-                  <span
-                    className={"plasmic_default__all plasmic_default__span"}
-                    style={{ fontWeight: 500 }}
-                  >
-                    {"Classiques :"}
-                  </span>
-                </React.Fragment>
-              </div>
-              <div
-                className={classNames(
-                  projectcss.all,
-                  projectcss.__wab_text,
-                  sty.text__ngIM,
-                  (() => {
-                    try {
-                      return $queries.sidebarUserMonthlyRecharge.data.response
-                        .solde.totalClassic == 0
-                        ? "grey-600"
-                        : "green-500";
-                    } catch (e) {
-                      if (
-                        e instanceof TypeError ||
-                        e?.plasmicType === "PlasmicUndefinedDataError"
-                      ) {
-                        return undefined;
+                  <React.Fragment>
+                    <span
+                      className={"plasmic_default__all plasmic_default__span"}
+                      style={{ fontWeight: 500 }}
+                    >
+                      {"Classiques :"}
+                    </span>
+                  </React.Fragment>
+                </div>
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__ngIM,
+                    (() => {
+                      try {
+                        return $queries.sidebarUserMonthlyRecharge.data.response
+                          .solde.totalClassic == 0
+                          ? "grey-600"
+                          : "green-500";
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return undefined;
+                        }
+                        throw e;
                       }
-                      throw e;
-                    }
-                  })()
-                )}
-              >
-                <React.Fragment>
-                  {(() => {
-                    try {
-                      return (
-                        $queries.sidebarUserMonthlyRecharge.data.response.solde
-                          .totalClassic +
-                        "/" +
-                        $queries.sidebarUserMonthlyRecharge.data.response.total
-                          .totalClassic
-                      );
-                    } catch (e) {
-                      if (
-                        e instanceof TypeError ||
-                        e?.plasmicType === "PlasmicUndefinedDataError"
-                      ) {
-                        return "";
+                    })()
+                  )}
+                >
+                  <React.Fragment>
+                    {(() => {
+                      try {
+                        return (
+                          ($queries.sidebarUserMonthlyRecharge.data?.response
+                            ?.solde?.totalClassic || 0) +
+                          "/" +
+                          ($queries.sidebarUserMonthlyRecharge.data?.response
+                            ?.total?.totalClassic || 0)
+                        );
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return "";
+                        }
+                        throw e;
                       }
-                      throw e;
-                    }
-                  })()}
-                </React.Fragment>
+                    })()}
+                  </React.Fragment>
+                </div>
               </div>
-            </div>
-            <Separator
-              className={
-                "" + " " + classNames("__wab_instance", sty.separateur__pqhI)
-              }
-              decorative={true}
-              orientation={"horizontal"}
-            />
+              <Separator
+                className={
+                  "" + " " + classNames("__wab_instance", sty.separateur__pqhI)
+                }
+                decorative={true}
+                orientation={"horizontal"}
+              />
 
-            <div className={classNames(projectcss.all, sty.freeBox___8HqIp)}>
-              <div
-                className={classNames(
-                  projectcss.all,
-                  projectcss.__wab_text,
-                  sty.text__ptU3M
-                )}
-              >
-                <React.Fragment>
-                  <span
-                    className={"plasmic_default__all plasmic_default__span"}
-                    style={{ fontWeight: 500 }}
-                  >
-                    {"Last Minute :"}
-                  </span>
-                </React.Fragment>
-              </div>
-              <div
-                className={classNames(
-                  projectcss.all,
-                  projectcss.__wab_text,
-                  sty.text__z3Gq,
-                  (() => {
-                    try {
-                      return $queries.sidebarUserMonthlyRecharge.data.response
-                        .solde.totalLastMinute == 0
-                        ? "grey-600"
-                        : "green-500";
-                    } catch (e) {
-                      if (
-                        e instanceof TypeError ||
-                        e?.plasmicType === "PlasmicUndefinedDataError"
-                      ) {
-                        return undefined;
+              <div className={classNames(projectcss.all, sty.freeBox___8HqIp)}>
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__ptU3M
+                  )}
+                >
+                  <React.Fragment>
+                    <span
+                      className={"plasmic_default__all plasmic_default__span"}
+                      style={{ fontWeight: 500 }}
+                    >
+                      {"Last Minute :"}
+                    </span>
+                  </React.Fragment>
+                </div>
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__z3Gq,
+                    (() => {
+                      try {
+                        return $queries.sidebarUserMonthlyRecharge.data.response
+                          .solde.totalLastMinute == 0
+                          ? "grey-600"
+                          : "green-500";
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return undefined;
+                        }
+                        throw e;
                       }
-                      throw e;
-                    }
-                  })()
-                )}
-              >
-                <React.Fragment>
-                  {(() => {
-                    try {
-                      return (
-                        $queries.sidebarUserMonthlyRecharge.data.response.solde
-                          .totalLastMinute +
-                        "/" +
-                        $queries.sidebarUserMonthlyRecharge.data.response.total
-                          .totalLastMinute
-                      );
-                    } catch (e) {
-                      if (
-                        e instanceof TypeError ||
-                        e?.plasmicType === "PlasmicUndefinedDataError"
-                      ) {
-                        return "";
+                    })()
+                  )}
+                >
+                  <React.Fragment>
+                    {(() => {
+                      try {
+                        return (
+                          ($queries.sidebarUserMonthlyRecharge.data?.response
+                            ?.solde?.totalLastMinute || 0) +
+                          "/" +
+                          ($queries.sidebarUserMonthlyRecharge.data?.response
+                            ?.total?.totalLastMinute || 0)
+                        );
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return "";
+                        }
+                        throw e;
                       }
-                      throw e;
-                    }
-                  })()}
-                </React.Fragment>
+                    })()}
+                  </React.Fragment>
+                </div>
               </div>
-            </div>
-            <Separator
-              className={
-                "" + " " + classNames("__wab_instance", sty.separateur__m5BEk)
-              }
-              decorative={true}
-              orientation={"horizontal"}
-            />
+              <Separator
+                className={
+                  "" + " " + classNames("__wab_instance", sty.separateur__m5BEk)
+                }
+                decorative={true}
+                orientation={"horizontal"}
+              />
 
-            <div className={classNames(projectcss.all, sty.freeBox__qc7WD)}>
-              <div
-                className={classNames(
-                  projectcss.all,
-                  projectcss.__wab_text,
-                  sty.text__qVzSn
-                )}
-              >
-                <React.Fragment>
-                  <span
-                    className={"plasmic_default__all plasmic_default__span"}
-                    style={{ fontWeight: 500 }}
-                  >
-                    {"Boost\u00e9es :"}
-                  </span>
-                </React.Fragment>
-              </div>
-              <div
-                className={classNames(
-                  projectcss.all,
-                  projectcss.__wab_text,
-                  sty.text__yal,
-                  (() => {
-                    try {
-                      return $queries.sidebarUserMonthlyRecharge.data.response
-                        .solde.totalBoost == 0
-                        ? "grey-600"
-                        : "green-500";
-                    } catch (e) {
-                      if (
-                        e instanceof TypeError ||
-                        e?.plasmicType === "PlasmicUndefinedDataError"
-                      ) {
-                        return undefined;
+              <div className={classNames(projectcss.all, sty.freeBox__qc7WD)}>
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__qVzSn
+                  )}
+                >
+                  <React.Fragment>
+                    <span
+                      className={"plasmic_default__all plasmic_default__span"}
+                      style={{ fontWeight: 500 }}
+                    >
+                      {"Boost\u00e9es :"}
+                    </span>
+                  </React.Fragment>
+                </div>
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__yal,
+                    (() => {
+                      try {
+                        return $queries.sidebarUserMonthlyRecharge.data.response
+                          .solde.totalBoost == 0
+                          ? "grey-600"
+                          : "green-500";
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return undefined;
+                        }
+                        throw e;
                       }
-                      throw e;
-                    }
-                  })()
-                )}
-              >
-                <React.Fragment>
-                  {(() => {
-                    try {
-                      return (
-                        $queries.sidebarUserMonthlyRecharge.data.response.solde
-                          .totalBoost +
-                        "/" +
-                        $queries.sidebarUserMonthlyRecharge.data.response.total
-                          .totalBoost
-                      );
-                    } catch (e) {
-                      if (
-                        e instanceof TypeError ||
-                        e?.plasmicType === "PlasmicUndefinedDataError"
-                      ) {
-                        return "";
+                    })()
+                  )}
+                >
+                  <React.Fragment>
+                    {(() => {
+                      try {
+                        return (
+                          ($queries.sidebarUserMonthlyRecharge.data?.response
+                            ?.solde?.totalBoost || 0) +
+                          "/" +
+                          ($queries.sidebarUserMonthlyRecharge.data?.response
+                            ?.total?.totalBoost || 0)
+                        );
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return "";
+                        }
+                        throw e;
                       }
-                      throw e;
-                    }
-                  })()}
-                </React.Fragment>
+                    })()}
+                  </React.Fragment>
+                </div>
               </div>
+              <Separator
+                className={
+                  "" + " " + classNames("__wab_instance", sty.separateur__zMctD)
+                }
+                decorative={true}
+                orientation={"horizontal"}
+              />
             </div>
-            <Separator
-              className={
-                "" + " " + classNames("__wab_instance", sty.separateur__zMctD)
-              }
-              decorative={true}
-              orientation={"horizontal"}
-            />
-          </div>
+          ) : null}
           <SolarLogoutOutlineIcon
             className={classNames(projectcss.all, sty.svg___42UmA)}
             role={"img"}

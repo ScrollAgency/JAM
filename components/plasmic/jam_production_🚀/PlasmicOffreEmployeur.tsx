@@ -1824,6 +1824,29 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                   hasGap={true}
                   className={classNames(projectcss.all, sty.annonces3)}
                 >
+                  {(() => {
+                    try {
+                      return $queries.paramEmpCardJobOffers.isLoading;
+                    } catch (e) {
+                      if (
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
+                      ) {
+                        return true;
+                      }
+                      throw e;
+                    }
+                  })() ? (
+                    <div
+                      className={classNames(
+                        projectcss.all,
+                        projectcss.__wab_text,
+                        sty.text__oFd13
+                      )}
+                    >
+                      {"Chargement..."}
+                    </div>
+                  ) : null}
                   {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
                     (() => {
                       try {
