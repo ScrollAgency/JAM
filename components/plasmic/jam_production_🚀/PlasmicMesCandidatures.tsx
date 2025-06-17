@@ -105,7 +105,7 @@ export type PlasmicMesCandidatures__OverridesType = {
   slidebarMenu?: Flex__<typeof Sidebar>;
   mobileNavbarTop?: Flex__<typeof MobileNavbarTop>;
   main?: Flex__<"main">;
-  heading2?: Flex__<"div">;
+  heading2?: Flex__<"h1">;
   contract2?: Flex__<"div">;
   card2?: Flex__<"div">;
   applications?: Flex__<"div">;
@@ -296,17 +296,18 @@ function PlasmicMesCandidatures__RenderFunc(props: {
                 hasGap={true}
                 className={classNames(projectcss.all, sty.freeBox__am21O)}
               >
-                <div
+                <h1
                   data-plasmic-name={"heading2"}
                   data-plasmic-override={overrides.heading2}
                   className={classNames(
                     projectcss.all,
+                    projectcss.h1,
                     projectcss.__wab_text,
                     sty.heading2
                   )}
                 >
                   {"Mes candidatures"}
-                </div>
+                </h1>
                 <div
                   data-plasmic-name={"contract2"}
                   data-plasmic-override={overrides.contract2}
@@ -787,7 +788,7 @@ type NodeDefaultElementType = {
   slidebarMenu: typeof Sidebar;
   mobileNavbarTop: typeof MobileNavbarTop;
   main: "main";
-  heading2: "div";
+  heading2: "h1";
   contract2: "div";
   card2: "div";
   applications: "div";

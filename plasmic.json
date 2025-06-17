@@ -1875,19 +1875,6 @@
           "path": "/parametres-abonnement"
         },
         {
-          "id": "gAnwjyfMiBe9",
-          "name": "MobileNavbarBottom2",
-          "type": "managed",
-          "projectId": "f7DE9y7qp46fyCw5nuY8f9",
-          "renderModuleFilePath": "plasmic/jam_production_🚀/PlasmicMobileNavbarBottom2.tsx",
-          "importSpec": {
-            "modulePath": "MobileNavbarBottom2.tsx"
-          },
-          "cssFilePath": "plasmic/jam_production_🚀/PlasmicMobileNavbarBottom2.module.css",
-          "scheme": "blackbox",
-          "componentType": "component"
-        },
-        {
           "id": "_xSIsI4MUaab",
           "name": "CandidaturesEmployeur",
           "type": "managed",
@@ -2001,7 +1988,7 @@
           "projectId": "f7DE9y7qp46fyCw5nuY8f9",
           "renderModuleFilePath": "plasmic/jam_production_🚀/PlasmicParametresCandidat.tsx",
           "importSpec": {
-            "modulePath": "../pages/parametres.tsx"
+            "modulePath": "../pages/parametres-candidat.tsx"
           },
           "cssFilePath": "plasmic/jam_production_🚀/PlasmicParametresCandidat.module.css",
           "scheme": "blackbox",
@@ -2062,19 +2049,6 @@
           "path": "/accueil-employeur"
         },
         {
-          "id": "9MKR6AAbT8y6",
-          "name": "Card",
-          "type": "managed",
-          "projectId": "f7DE9y7qp46fyCw5nuY8f9",
-          "renderModuleFilePath": "plasmic/jam_production_🚀/PlasmicCard.tsx",
-          "importSpec": {
-            "modulePath": "Card.tsx"
-          },
-          "cssFilePath": "plasmic/jam_production_🚀/PlasmicCard.module.css",
-          "scheme": "blackbox",
-          "componentType": "component"
-        },
-        {
           "id": "dXUSfSVXe9xC",
           "name": "MenuHamburger",
           "type": "managed",
@@ -2127,6 +2101,58 @@
           "scheme": "blackbox",
           "componentType": "component",
           "plumeType": "button"
+        },
+        {
+          "id": "gAnwjyfMiBe9",
+          "name": "MobileNavbarBottomCompany",
+          "type": "managed",
+          "projectId": "f7DE9y7qp46fyCw5nuY8f9",
+          "renderModuleFilePath": "plasmic/jam_production_🚀/PlasmicMobileNavbarBottomCompany.tsx",
+          "importSpec": {
+            "modulePath": "MobileNavbarBottomCompany.tsx"
+          },
+          "cssFilePath": "plasmic/jam_production_🚀/PlasmicMobileNavbarBottomCompany.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
+        },
+        {
+          "id": "9MKR6AAbT8y6",
+          "name": "JobCard",
+          "type": "managed",
+          "projectId": "f7DE9y7qp46fyCw5nuY8f9",
+          "renderModuleFilePath": "plasmic/jam_production_🚀/PlasmicJobCard.tsx",
+          "importSpec": {
+            "modulePath": "JobCard.tsx"
+          },
+          "cssFilePath": "plasmic/jam_production_🚀/PlasmicJobCard.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
+        },
+        {
+          "id": "m4jmCbHtDuQ4",
+          "name": "MobileNavbarBottomAdmin",
+          "type": "managed",
+          "projectId": "f7DE9y7qp46fyCw5nuY8f9",
+          "renderModuleFilePath": "plasmic/jam_production_🚀/PlasmicMobileNavbarBottomAdmin.tsx",
+          "importSpec": {
+            "modulePath": "MobileNavbarBottomAdmin.tsx"
+          },
+          "cssFilePath": "plasmic/jam_production_🚀/PlasmicMobileNavbarBottomAdmin.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
+        },
+        {
+          "id": "-xst-G3CRLYp",
+          "name": "AlertCard",
+          "type": "managed",
+          "projectId": "f7DE9y7qp46fyCw5nuY8f9",
+          "renderModuleFilePath": "plasmic/jam_production_🚀/PlasmicAlertCard.tsx",
+          "importSpec": {
+            "modulePath": "AlertCard.tsx"
+          },
+          "cssFilePath": "plasmic/jam_production_🚀/PlasmicAlertCard.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
         }
       ],
       "icons": [
@@ -4446,6 +4472,16 @@
           "id": "_-DELV5rcG6u",
           "name": "mike-kenneally-tNALoIZhqVM-unsplash (1).jpg",
           "filePath": "../public/plasmic/jam_production_🚀/images/mikeKenneallyTNaLoIZhqVmUnsplash1Jpg.jpg"
+        },
+        {
+          "id": "g8GYgS_DRu2m",
+          "name": "image 18",
+          "filePath": "../public/plasmic/jam_production_🚀/images/image18.svg"
+        },
+        {
+          "id": "-N7oXnzCtt7u",
+          "name": "image 19",
+          "filePath": "../public/plasmic/jam_production_🚀/images/image19.svg"
         }
       ],
       "indirect": false,

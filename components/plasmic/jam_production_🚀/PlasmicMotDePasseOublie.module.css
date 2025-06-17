@@ -40,8 +40,9 @@
 @media (min-width: 0px) and (max-width: 768px) {
   .passwordForgotten {
     width: 100%;
-    grid-column-start: 1 !important;
-    grid-column-end: -1 !important;
+    justify-content: center;
+    align-items: center;
+    min-width: 0;
   }
 }
 .imageWrapper {

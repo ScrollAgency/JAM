@@ -72,6 +72,7 @@ import Button from "../../Button"; // plasmic-import: 9ixtKbGKv7x-/component
 import { DataGridUser } from "../../others/DataGridUser/DataGridUser"; // plasmic-import: HXtz_l-PfcN1/codeComponent
 import Modal from "../../Modal"; // plasmic-import: fsC3QwUZz9uz/component
 import DeleteAccount from "../../DeleteAccount"; // plasmic-import: KdtWnTG_vDHe/component
+import MobileNavbarBottomAdmin from "../../MobileNavbarBottomAdmin"; // plasmic-import: m4jmCbHtDuQ4/component
 import { Fetcher } from "@plasmicapp/react-web/lib/data-sources";
 
 import { useScreenVariants as useScreenVariantshm8Nko4B5BDd } from "./PlasmicGlobalVariant__Screen"; // plasmic-import: HM8Nko4B5BDd/globalVariant
@@ -109,6 +110,7 @@ export type PlasmicUserAdmin__OverridesType = {
   svg?: Flex__<"svg">;
   e2?: Flex__<"div">;
   deleteAccount?: Flex__<typeof DeleteAccount>;
+  mobileNavbarBottomAdmin?: Flex__<typeof MobileNavbarBottomAdmin>;
 };
 
 export interface DefaultUserAdminProps {}
@@ -341,7 +343,7 @@ function PlasmicUserAdmin__RenderFunc(props: {
                       sty.h1
                     )}
                   >
-                    {"Gestion des users t"}
+                    {"Gestion des users"}
                   </h1>
                 }
                 <React.Fragment>{""}</React.Fragment>
@@ -1140,6 +1142,14 @@ function PlasmicUserAdmin__RenderFunc(props: {
               trigger={null}
             />
           </Stack__>
+          <MobileNavbarBottomAdmin
+            data-plasmic-name={"mobileNavbarBottomAdmin"}
+            data-plasmic-override={overrides.mobileNavbarBottomAdmin}
+            className={classNames(
+              "__wab_instance",
+              sty.mobileNavbarBottomAdmin
+            )}
+          />
         </div>
       </div>
     </React.Fragment>
@@ -1156,7 +1166,8 @@ const PlasmicDescendants = {
     "supprUser",
     "svg",
     "e2",
-    "deleteAccount"
+    "deleteAccount",
+    "mobileNavbarBottomAdmin"
   ],
   sidebar3: ["sidebar3"],
   main: ["main", "sideEffect", "h1", "supprUser", "svg", "e2", "deleteAccount"],
@@ -1165,7 +1176,8 @@ const PlasmicDescendants = {
   supprUser: ["supprUser", "svg", "e2", "deleteAccount"],
   svg: ["svg"],
   e2: ["e2"],
-  deleteAccount: ["deleteAccount"]
+  deleteAccount: ["deleteAccount"],
+  mobileNavbarBottomAdmin: ["mobileNavbarBottomAdmin"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -1180,6 +1192,7 @@ type NodeDefaultElementType = {
   svg: "svg";
   e2: "div";
   deleteAccount: typeof DeleteAccount;
+  mobileNavbarBottomAdmin: typeof MobileNavbarBottomAdmin;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -1250,6 +1263,7 @@ export const PlasmicUserAdmin = Object.assign(
     svg: makeNodeComponent("svg"),
     e2: makeNodeComponent("e2"),
     deleteAccount: makeNodeComponent("deleteAccount"),
+    mobileNavbarBottomAdmin: makeNodeComponent("mobileNavbarBottomAdmin"),
 
     // Metadata about props expected for PlasmicUserAdmin
     internalVariantProps: PlasmicUserAdmin__VariantProps,

@@ -362,6 +362,7 @@ function PlasmicMotDePasseOublie__RenderFunc(props: {
               <ForgotPassword
                 data-plasmic-name={"forgotPassword"}
                 data-plasmic-override={overrides.forgotPassword}
+                cancelButtonIconPosition={"left"}
                 cancelButtonStyle={"tertiary"}
                 cancelButtonText={"Annuler"}
                 className={classNames("__wab_instance", sty.forgotPassword)}
@@ -418,6 +419,7 @@ function PlasmicMotDePasseOublie__RenderFunc(props: {
                   }
                 }}
                 placeholderEmail={"Entrez votre email"}
+                submitButtonIconPosition={"left"}
                 submitButtonStyle={"primary"}
                 submitButtonText={"Réinitialiser"}
                 title={"Mot de passe oublié ?"}

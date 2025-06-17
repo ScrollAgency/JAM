@@ -98,6 +98,7 @@ export type PlasmicInscriptionCandidat__OverridesType = {
   formWrapper?: Flex__<"div">;
   signupLoading?: Flex__<"div">;
   signUp3?: Flex__<typeof SignUp>;
+  img?: Flex__<typeof PlasmicImg__>;
   signupSuccess?: Flex__<"div">;
   freeBox?: Flex__<"div">;
 };
@@ -411,6 +412,8 @@ function PlasmicInscriptionCandidat__RenderFunc(props: {
                     "lastName"
                   ])}
                   lastNameLabel={"Nom*"}
+                  loginLinkLabel={"CONNEXION"}
+                  loginPrefixText={"D\u00e9j\u00e0 inscrit(e) ?"}
                   maxAlerts={3}
                   oAuthButtonsPosition={"bottom"}
                   oAuthSeparatorText={"ou"}
@@ -561,9 +564,7 @@ function PlasmicInscriptionCandidat__RenderFunc(props: {
                   placeholderEmail={"Email"}
                   placeholderPassword={"Mot de passe"}
                   placeholderPhone={"060606060606"}
-                  privacyPolicyText={
-                    "J'accepte la politique de confidentialité"
-                  }
+                  privacyPolicyText={"politique de confidentialit\u00e9"}
                   redirectAfterSignUp={``}
                   showAlerts={true}
                   showLabels={true}
@@ -571,7 +572,29 @@ function PlasmicInscriptionCandidat__RenderFunc(props: {
                   showOAuthButtons={false}
                   showPasswordToggle={true}
                   showPhoneInput={true}
-                  submitButtonText={"S'inscrire"}
+                  submitButtonIcon={
+                    <PlasmicImg__
+                      data-plasmic-name={"img"}
+                      data-plasmic-override={overrides.img}
+                      alt={""}
+                      className={classNames(sty.img)}
+                      displayHeight={"auto"}
+                      displayMaxHeight={"none"}
+                      displayMaxWidth={"100%"}
+                      displayMinHeight={"0"}
+                      displayMinWidth={"0"}
+                      displayWidth={"auto"}
+                      loading={"lazy"}
+                      src={{
+                        src: "/plasmic/jam_production_🚀/images/image19.svg",
+                        fullWidth: 34,
+                        fullHeight: 33,
+                        aspectRatio: undefined
+                      }}
+                    />
+                  }
+                  submitButtonIconPosition={"right"}
+                  submitButtonText={"INSCRIPTION"}
                   title={"Bienvenue !"}
                   titleHeading={"h1"}
                   wrapperStyle={"card"}
@@ -655,6 +678,7 @@ const PlasmicDescendants = {
     "formWrapper",
     "signupLoading",
     "signUp3",
+    "img",
     "signupSuccess",
     "freeBox"
   ],
@@ -669,6 +693,7 @@ const PlasmicDescendants = {
     "formWrapper",
     "signupLoading",
     "signUp3",
+    "img",
     "signupSuccess",
     "freeBox"
   ],
@@ -689,11 +714,13 @@ const PlasmicDescendants = {
     "formWrapper",
     "signupLoading",
     "signUp3",
+    "img",
     "signupSuccess",
     "freeBox"
   ],
-  signupLoading: ["signupLoading", "signUp3"],
-  signUp3: ["signUp3"],
+  signupLoading: ["signupLoading", "signUp3", "img"],
+  signUp3: ["signUp3", "img"],
+  img: ["img"],
   signupSuccess: ["signupSuccess", "freeBox"],
   freeBox: ["freeBox"]
 } as const;
@@ -712,6 +739,7 @@ type NodeDefaultElementType = {
   formWrapper: "div";
   signupLoading: "div";
   signUp3: typeof SignUp;
+  img: typeof PlasmicImg__;
   signupSuccess: "div";
   freeBox: "div";
 };
@@ -786,6 +814,7 @@ export const PlasmicInscriptionCandidat = Object.assign(
     formWrapper: makeNodeComponent("formWrapper"),
     signupLoading: makeNodeComponent("signupLoading"),
     signUp3: makeNodeComponent("signUp3"),
+    img: makeNodeComponent("img"),
     signupSuccess: makeNodeComponent("signupSuccess"),
     freeBox: makeNodeComponent("freeBox"),
 

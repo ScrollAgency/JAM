@@ -66,12 +66,14 @@ import {
   usePlasmicInvalidate
 } from "@plasmicapp/react-web/lib/data-sources";
 
+import MobileNavbarTop from "../../MobileNavbarTop"; // plasmic-import: mAg8Ml3XUEhy/component
 import Sidebar2 from "../../Sidebar2"; // plasmic-import: RXqL3kdDrXwo/component
 import Button from "../../Button"; // plasmic-import: 9ixtKbGKv7x-/component
 import { DataGridV2 } from "../../others/DataGridV2/DataGridV2"; // plasmic-import: iL_5-0entnZc/codeComponent
 import Modal from "../../Modal"; // plasmic-import: fsC3QwUZz9uz/component
 import { Notation } from "../../../plasmic-library/others/Notation/Notation"; // plasmic-import: z82NxL6AqE3T/codeComponent
 import { Iframe } from "@plasmicpkgs/plasmic-basic-components";
+import MobileNavbarBottomCompany from "../../MobileNavbarBottomCompany"; // plasmic-import: gAnwjyfMiBe9/component
 import { Fetcher } from "@plasmicapp/react-web/lib/data-sources";
 
 import { useScreenVariants as useScreenVariantshm8Nko4B5BDd } from "./PlasmicGlobalVariant__Screen"; // plasmic-import: HM8Nko4B5BDd/globalVariant
@@ -108,6 +110,7 @@ export const PlasmicCandidaturesEmployeur__ArgProps = new Array<ArgPropType>();
 
 export type PlasmicCandidaturesEmployeur__OverridesType = {
   root?: Flex__<"div">;
+  mobileNavbarTop?: Flex__<typeof MobileNavbarTop>;
   sidebar2?: Flex__<typeof Sidebar2>;
   main?: Flex__<"main">;
   heading3?: Flex__<"div">;
@@ -127,6 +130,7 @@ export type PlasmicCandidaturesEmployeur__OverridesType = {
   h2?: Flex__<"h2">;
   lettreDeMotivation?: Flex__<typeof Modal>;
   cv?: Flex__<typeof Modal>;
+  mobileNavbarBottomCompany?: Flex__<typeof MobileNavbarBottomCompany>;
 };
 
 export interface DefaultCandidaturesEmployeurProps {}
@@ -373,6 +377,12 @@ function PlasmicCandidaturesEmployeur__RenderFunc(props: {
             sty.root
           )}
         >
+          <MobileNavbarTop
+            data-plasmic-name={"mobileNavbarTop"}
+            data-plasmic-override={overrides.mobileNavbarTop}
+            className={classNames("__wab_instance", sty.mobileNavbarTop)}
+          />
+
           <Sidebar2
             data-plasmic-name={"sidebar2"}
             data-plasmic-override={overrides.sidebar2}
@@ -2768,6 +2778,14 @@ function PlasmicCandidaturesEmployeur__RenderFunc(props: {
               trigger={null}
             />
           </Stack__>
+          <MobileNavbarBottomCompany
+            data-plasmic-name={"mobileNavbarBottomCompany"}
+            data-plasmic-override={overrides.mobileNavbarBottomCompany}
+            className={classNames(
+              "__wab_instance",
+              sty.mobileNavbarBottomCompany
+            )}
+          />
         </div>
       </div>
     </React.Fragment>
@@ -2777,6 +2795,7 @@ function PlasmicCandidaturesEmployeur__RenderFunc(props: {
 const PlasmicDescendants = {
   root: [
     "root",
+    "mobileNavbarTop",
     "sidebar2",
     "main",
     "heading3",
@@ -2795,8 +2814,10 @@ const PlasmicDescendants = {
     "notation",
     "h2",
     "lettreDeMotivation",
-    "cv"
+    "cv",
+    "mobileNavbarBottomCompany"
   ],
+  mobileNavbarTop: ["mobileNavbarTop"],
   sidebar2: ["sidebar2"],
   main: [
     "main",
@@ -2842,13 +2863,15 @@ const PlasmicDescendants = {
   notation: ["notation", "h2"],
   h2: ["h2"],
   lettreDeMotivation: ["lettreDeMotivation"],
-  cv: ["cv"]
+  cv: ["cv"],
+  mobileNavbarBottomCompany: ["mobileNavbarBottomCompany"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
   (typeof PlasmicDescendants)[T][number];
 type NodeDefaultElementType = {
   root: "div";
+  mobileNavbarTop: typeof MobileNavbarTop;
   sidebar2: typeof Sidebar2;
   main: "main";
   heading3: "div";
@@ -2868,6 +2891,7 @@ type NodeDefaultElementType = {
   h2: "h2";
   lettreDeMotivation: typeof Modal;
   cv: typeof Modal;
+  mobileNavbarBottomCompany: typeof MobileNavbarBottomCompany;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -2930,6 +2954,7 @@ export const PlasmicCandidaturesEmployeur = Object.assign(
   makeNodeComponent("root"),
   {
     // Helper components rendering sub-elements
+    mobileNavbarTop: makeNodeComponent("mobileNavbarTop"),
     sidebar2: makeNodeComponent("sidebar2"),
     main: makeNodeComponent("main"),
     heading3: makeNodeComponent("heading3"),
@@ -2949,6 +2974,7 @@ export const PlasmicCandidaturesEmployeur = Object.assign(
     h2: makeNodeComponent("h2"),
     lettreDeMotivation: makeNodeComponent("lettreDeMotivation"),
     cv: makeNodeComponent("cv"),
+    mobileNavbarBottomCompany: makeNodeComponent("mobileNavbarBottomCompany"),
 
     // Metadata about props expected for PlasmicCandidaturesEmployeur
     internalVariantProps: PlasmicCandidaturesEmployeur__VariantProps,

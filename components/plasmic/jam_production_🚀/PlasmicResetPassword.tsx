@@ -128,6 +128,7 @@ export type PlasmicResetPassword__OverridesType = {
   text5?: Flex__<"div">;
   jamButton?: Flex__<typeof JamButton>;
   resetPassword?: Flex__<typeof ResetPassword>;
+  img?: Flex__<typeof PlasmicImg__>;
 };
 
 export interface DefaultResetPasswordProps {}
@@ -1002,8 +1003,31 @@ function PlasmicResetPassword__RenderFunc(props: {
                 showCancelButton={true}
                 showPasswordToggle={true}
                 showSubmitButton={true}
+                submitButtonIcon={
+                  <PlasmicImg__
+                    data-plasmic-name={"img"}
+                    data-plasmic-override={overrides.img}
+                    alt={""}
+                    className={classNames(sty.img)}
+                    displayHeight={"auto"}
+                    displayMaxHeight={"none"}
+                    displayMaxWidth={"100%"}
+                    displayMinHeight={"0"}
+                    displayMinWidth={"0"}
+                    displayWidth={"auto"}
+                    loading={"lazy"}
+                    src={{
+                      src: "/plasmic/jam_production_🚀/images/image18.svg",
+                      fullWidth: 34,
+                      fullHeight: 33,
+                      aspectRatio: undefined
+                    }}
+                  />
+                }
+                submitButtonIconPosition={"right"}
                 submitButtonStyle={"primary"}
-                submitButtonText={"Réinitialiser"}
+                submitButtonText={"R\u00c9INITIALISER"}
+                submitButtonTextColor={"#000"}
                 title={"Réinitialiser le mot de passe"}
                 titleHeading={"h1"}
                 wrapperStyle={"card"}
@@ -1048,7 +1072,8 @@ const PlasmicDescendants = {
     "textInput6",
     "text5",
     "jamButton",
-    "resetPassword"
+    "resetPassword",
+    "img"
   ],
   passwordReset: [
     "passwordReset",
@@ -1080,7 +1105,8 @@ const PlasmicDescendants = {
     "textInput6",
     "text5",
     "jamButton",
-    "resetPassword"
+    "resetPassword",
+    "img"
   ],
   imageWrapper: [
     "imageWrapper",
@@ -1119,7 +1145,8 @@ const PlasmicDescendants = {
     "textInput6",
     "text5",
     "jamButton",
-    "resetPassword"
+    "resetPassword",
+    "img"
   ],
   title: ["title", "heading"],
   heading: ["heading"],
@@ -1173,7 +1200,8 @@ const PlasmicDescendants = {
   textInput6: ["textInput6"],
   text5: ["text5"],
   jamButton: ["jamButton"],
-  resetPassword: ["resetPassword"]
+  resetPassword: ["resetPassword", "img"],
+  img: ["img"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -1210,6 +1238,7 @@ type NodeDefaultElementType = {
   text5: "div";
   jamButton: typeof JamButton;
   resetPassword: typeof ResetPassword;
+  img: typeof PlasmicImg__;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -1304,6 +1333,7 @@ export const PlasmicResetPassword = Object.assign(
     text5: makeNodeComponent("text5"),
     jamButton: makeNodeComponent("jamButton"),
     resetPassword: makeNodeComponent("resetPassword"),
+    img: makeNodeComponent("img"),
 
     // Metadata about props expected for PlasmicResetPassword
     internalVariantProps: PlasmicResetPassword__VariantProps,

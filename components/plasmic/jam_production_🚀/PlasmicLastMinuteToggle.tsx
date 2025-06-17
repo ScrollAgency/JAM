@@ -217,7 +217,7 @@ function PlasmicLastMinuteToggle__RenderFunc(props: {
           <React.Fragment>
             {(() => {
               try {
-                return !$state.switch2.isSelected && !$state.isDisabled;
+                return !$state.isDisabled;
               } catch (e) {
                 if (
                   e instanceof TypeError ||
@@ -275,7 +275,7 @@ function PlasmicLastMinuteToggle__RenderFunc(props: {
             ) : null}
             {(() => {
               try {
-                return $state.isDisabled && !$state.switch2.isSelected;
+                return $state.isDisabled;
               } catch (e) {
                 if (
                   e instanceof TypeError ||

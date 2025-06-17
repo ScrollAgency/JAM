@@ -14,7 +14,7 @@
   row-gap: 0px;
   border-radius: 16px;
   padding: 0px;
-  border: 1px solid var(--token-d-0gEGbakN0M);
+  border: 1px none var(--token-d-0gEGbakN0M);
 }
 .root[data-hovered]:global(.__wab_instance) {
   display: flex;

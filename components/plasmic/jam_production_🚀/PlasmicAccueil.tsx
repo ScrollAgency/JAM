@@ -3279,39 +3279,6 @@ function PlasmicAccueil__RenderFunc(props: {
                   ) {
                     $steps["updateJobId"] = await $steps["updateJobId"];
                   }
-
-                  $steps["updateLieu"] = true
-                    ? (() => {
-                        const actionArgs = {
-                          variable: {
-                            objRoot: $state,
-                            variablePath: ["lieu"]
-                          },
-                          operation: 0
-                        };
-                        return (({
-                          variable,
-                          value,
-                          startIndex,
-                          deleteCount
-                        }) => {
-                          if (!variable) {
-                            return;
-                          }
-                          const { objRoot, variablePath } = variable;
-
-                          $stateSet(objRoot, variablePath, value);
-                          return value;
-                        })?.apply(null, [actionArgs]);
-                      })()
-                    : undefined;
-                  if (
-                    $steps["updateLieu"] != null &&
-                    typeof $steps["updateLieu"] === "object" &&
-                    typeof $steps["updateLieu"].then === "function"
-                  ) {
-                    $steps["updateLieu"] = await $steps["updateLieu"];
-                  }
                 }).apply(null, eventArgs);
               },
               showFooter: false,
@@ -6499,7 +6466,9 @@ function PlasmicAccueil__RenderFunc(props: {
                     showBottomSignupLink={true}
                     showPasswordToggle={true}
                     showSocialOAuth={false}
-                    signUpLinkText={"Pas encore de compte ? INSCRIPTION"}
+                    signUpLinkLabel={"INSCRIPTION"}
+                    signUpPrefixText={"Pas encore de compte ?"}
+                    submitButtonIconPosition={"right"}
                     submitButtonText={"Connexion"}
                     title={"Connexion"}
                     titleHeading={"h1"}
@@ -8398,36 +8367,7 @@ function PlasmicAccueil__RenderFunc(props: {
                 onClick={async event => {
                   const $steps = {};
 
-                  $steps["goToParametresDeCompte"] =
-                    $ctx.SupabaseUser.user !== null &&
-                    $ctx.SupabaseUser.user.user_metadata.role == "User"
-                      ? (() => {
-                          const actionArgs = { destination: `/parametres` };
-                          return (({ destination }) => {
-                            if (
-                              typeof destination === "string" &&
-                              destination.startsWith("#")
-                            ) {
-                              document
-                                .getElementById(destination.substr(1))
-                                .scrollIntoView({ behavior: "smooth" });
-                            } else {
-                              __nextRouter?.push(destination);
-                            }
-                          })?.apply(null, [actionArgs]);
-                        })()
-                      : undefined;
-                  if (
-                    $steps["goToParametresDeCompte"] != null &&
-                    typeof $steps["goToParametresDeCompte"] === "object" &&
-                    typeof $steps["goToParametresDeCompte"].then === "function"
-                  ) {
-                    $steps["goToParametresDeCompte"] = await $steps[
-                      "goToParametresDeCompte"
-                    ];
-                  }
-
-                  $steps["goToConnexion"] =
+                  $steps["goToLogin"] =
                     $ctx.SupabaseUser.user == null
                       ? (() => {
                           const actionArgs = { destination: `/login` };
@@ -8446,14 +8386,46 @@ function PlasmicAccueil__RenderFunc(props: {
                         })()
                       : undefined;
                   if (
-                    $steps["goToConnexion"] != null &&
-                    typeof $steps["goToConnexion"] === "object" &&
-                    typeof $steps["goToConnexion"].then === "function"
+                    $steps["goToLogin"] != null &&
+                    typeof $steps["goToLogin"] === "object" &&
+                    typeof $steps["goToLogin"].then === "function"
                   ) {
-                    $steps["goToConnexion"] = await $steps["goToConnexion"];
+                    $steps["goToLogin"] = await $steps["goToLogin"];
                   }
 
-                  $steps["goToOffreEmployeur"] =
+                  $steps["goToCandidateSettings"] =
+                    $ctx.SupabaseUser.user !== null &&
+                    $ctx.SupabaseUser.user.user_metadata.role == "User"
+                      ? (() => {
+                          const actionArgs = {
+                            destination: `/parametres-candidat`
+                          };
+                          return (({ destination }) => {
+                            if (
+                              typeof destination === "string" &&
+                              destination.startsWith("#")
+                            ) {
+                              document
+                                .getElementById(destination.substr(1))
+                                .scrollIntoView({ behavior: "smooth" });
+                            } else {
+                              __nextRouter?.push(destination);
+                            }
+                          })?.apply(null, [actionArgs]);
+                        })()
+                      : undefined;
+                  if (
+                    $steps["goToCandidateSettings"] != null &&
+                    typeof $steps["goToCandidateSettings"] === "object" &&
+                    typeof $steps["goToCandidateSettings"].then === "function"
+                  ) {
+                    $steps["goToCandidateSettings"] = await $steps[
+                      "goToCandidateSettings"
+                    ];
+                  }
+
+                  $steps["goToEmployerSettings"] =
+                    $ctx.SupabaseUser.user !== null &&
                     $ctx.SupabaseUser.user.user_metadata.role == "Company"
                       ? (() => {
                           const actionArgs = {
@@ -8474,16 +8446,17 @@ function PlasmicAccueil__RenderFunc(props: {
                         })()
                       : undefined;
                   if (
-                    $steps["goToOffreEmployeur"] != null &&
-                    typeof $steps["goToOffreEmployeur"] === "object" &&
-                    typeof $steps["goToOffreEmployeur"].then === "function"
+                    $steps["goToEmployerSettings"] != null &&
+                    typeof $steps["goToEmployerSettings"] === "object" &&
+                    typeof $steps["goToEmployerSettings"].then === "function"
                   ) {
-                    $steps["goToOffreEmployeur"] = await $steps[
-                      "goToOffreEmployeur"
+                    $steps["goToEmployerSettings"] = await $steps[
+                      "goToEmployerSettings"
                     ];
                   }
 
-                  $steps["goToOffreAdmin"] =
+                  $steps["goToAdminSettings"] =
+                    $ctx.SupabaseUser.user !== null &&
                     $ctx.SupabaseUser.user.user_metadata.role == "Admin"
                       ? (() => {
                           const actionArgs = { destination: `/offre_admin` };
@@ -8502,11 +8475,13 @@ function PlasmicAccueil__RenderFunc(props: {
                         })()
                       : undefined;
                   if (
-                    $steps["goToOffreAdmin"] != null &&
-                    typeof $steps["goToOffreAdmin"] === "object" &&
-                    typeof $steps["goToOffreAdmin"].then === "function"
+                    $steps["goToAdminSettings"] != null &&
+                    typeof $steps["goToAdminSettings"] === "object" &&
+                    typeof $steps["goToAdminSettings"].then === "function"
                   ) {
-                    $steps["goToOffreAdmin"] = await $steps["goToOffreAdmin"];
+                    $steps["goToAdminSettings"] = await $steps[
+                      "goToAdminSettings"
+                    ];
                   }
                 }}
               />

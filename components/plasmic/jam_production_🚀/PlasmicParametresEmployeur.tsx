@@ -80,7 +80,7 @@ import { UploadWrapper } from "@plasmicpkgs/antd5/skinny/registerUpload";
 import TextAreaInput from "../../TextAreaInput"; // plasmic-import: nVAUbPc6gpoz/component
 import Select from "../../Select"; // plasmic-import: ZMB-SB-xJDyQ/component
 import MenuItem from "../../MenuItem"; // plasmic-import: plmAgyhhAdMc/component
-import MobileNavbarBottom2 from "../../MobileNavbarBottom2"; // plasmic-import: gAnwjyfMiBe9/component
+import MobileNavbarBottomCompany from "../../MobileNavbarBottomCompany"; // plasmic-import: gAnwjyfMiBe9/component
 import { Fetcher } from "@plasmicapp/react-web/lib/data-sources";
 
 import { useScreenVariants as useScreenVariantshm8Nko4B5BDd } from "./PlasmicGlobalVariant__Screen"; // plasmic-import: HM8Nko4B5BDd/globalVariant
@@ -151,7 +151,7 @@ export type PlasmicParametresEmployeur__OverridesType = {
   select2?: Flex__<typeof Select>;
   textInput4?: Flex__<typeof TextInput>;
   expandTab?: Flex__<"div">;
-  mobileNavbarBottom2?: Flex__<typeof MobileNavbarBottom2>;
+  mobileNavbarBottomCompany?: Flex__<typeof MobileNavbarBottomCompany>;
 };
 
 export interface DefaultParametresEmployeurProps {}
@@ -1234,8 +1234,10 @@ function PlasmicParametresEmployeur__RenderFunc(props: {
                           showCancelButton={false}
                           showPasswordToggle={true}
                           showSubmitButton={false}
+                          submitButtonIconPosition={"left"}
                           submitButtonStyle={``}
                           submitButtonText={"Réinitialiser"}
+                          submitButtonTextColor={"#000"}
                           title={``}
                           titleHeading={"h1"}
                           wrapperStyle={"card"}
@@ -2581,10 +2583,13 @@ function PlasmicParametresEmployeur__RenderFunc(props: {
               </Stack__>
             ) : null}
           </Stack__>
-          <MobileNavbarBottom2
-            data-plasmic-name={"mobileNavbarBottom2"}
-            data-plasmic-override={overrides.mobileNavbarBottom2}
-            className={classNames("__wab_instance", sty.mobileNavbarBottom2)}
+          <MobileNavbarBottomCompany
+            data-plasmic-name={"mobileNavbarBottomCompany"}
+            data-plasmic-override={overrides.mobileNavbarBottomCompany}
+            className={classNames(
+              "__wab_instance",
+              sty.mobileNavbarBottomCompany
+            )}
           />
         </div>
       </div>
@@ -2632,7 +2637,7 @@ const PlasmicDescendants = {
     "select2",
     "textInput4",
     "expandTab",
-    "mobileNavbarBottom2"
+    "mobileNavbarBottomCompany"
   ],
   mobileNavbarTop: ["mobileNavbarTop"],
   sidebar2: ["sidebar2"],
@@ -2768,7 +2773,7 @@ const PlasmicDescendants = {
   select2: ["select2"],
   textInput4: ["textInput4"],
   expandTab: ["expandTab"],
-  mobileNavbarBottom2: ["mobileNavbarBottom2"]
+  mobileNavbarBottomCompany: ["mobileNavbarBottomCompany"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -2812,7 +2817,7 @@ type NodeDefaultElementType = {
   select2: typeof Select;
   textInput4: typeof TextInput;
   expandTab: "div";
-  mobileNavbarBottom2: typeof MobileNavbarBottom2;
+  mobileNavbarBottomCompany: typeof MobileNavbarBottomCompany;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -2912,7 +2917,7 @@ export const PlasmicParametresEmployeur = Object.assign(
     select2: makeNodeComponent("select2"),
     textInput4: makeNodeComponent("textInput4"),
     expandTab: makeNodeComponent("expandTab"),
-    mobileNavbarBottom2: makeNodeComponent("mobileNavbarBottom2"),
+    mobileNavbarBottomCompany: makeNodeComponent("mobileNavbarBottomCompany"),
 
     // Metadata about props expected for PlasmicParametresEmployeur
     internalVariantProps: PlasmicParametresEmployeur__VariantProps,

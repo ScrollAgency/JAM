@@ -69,6 +69,7 @@ import {
 import Sidebar from "../../Sidebar"; // plasmic-import: M06HuWMcBQV2/component
 import MobileNavbarTop from "../../MobileNavbarTop"; // plasmic-import: mAg8Ml3XUEhy/component
 import Button from "../../Button"; // plasmic-import: 9ixtKbGKv7x-/component
+import AlertCard from "../../AlertCard"; // plasmic-import: -xst-G3CRLYp/component
 import MobileNavbarBottom from "../../MobileNavbarBottom"; // plasmic-import: BIS-N7QZzUVV/component
 import Modal from "../../Modal"; // plasmic-import: fsC3QwUZz9uz/component
 import { JamButton } from "../../forms/JamButton/JamButton"; // plasmic-import: UiI0wt2mxfuf/codeComponent
@@ -93,11 +94,7 @@ import sty from "./PlasmicMesAlertes.module.css"; // plasmic-import: g2Wsra2qxoM
 import CircleIcon from "./icons/PlasmicIcon__Circle"; // plasmic-import: je95h6YoQ2jE/icon
 import GroupIcon from "./icons/PlasmicIcon__Group"; // plasmic-import: yIYn4o5HgDaM/icon
 import NotificationBellSvgrepoComSvgIcon from "./icons/PlasmicIcon__NotificationBellSvgrepoComSvg"; // plasmic-import: dIeWzMIIc5ij/icon
-import Vector20Icon from "./icons/PlasmicIcon__Vector20"; // plasmic-import: 3oXUWH4aUqgx/icon
-import Vector21Icon from "./icons/PlasmicIcon__Vector21"; // plasmic-import: 4EUB4wFLEPEm/icon
 import IconPhClockIcon from "./icons/PlasmicIcon__IconPhClock"; // plasmic-import: vCpr2sLhwGJi/icon
-import PhTrashIcon from "./icons/PlasmicIcon__PhTrash"; // plasmic-import: juO39VElEpcx/icon
-import PencilSimpleLineIcon from "./icons/PlasmicIcon__PencilSimpleLine"; // plasmic-import: l9xLeGEs7UWH/icon
 import IconPhBriefcaseIcon from "./icons/PlasmicIcon__IconPhBriefcase"; // plasmic-import: E-c3RGwvaig6/icon
 import IconPhCoinsLightIcon from "./icons/PlasmicIcon__IconPhCoinsLight"; // plasmic-import: _nES3m4j5H0g/icon
 import AlertCircleIcon from "./icons/PlasmicIcon__AlertCircle"; // plasmic-import: wmiG3ar5cZJO/icon
@@ -127,13 +124,11 @@ export type PlasmicMesAlertes__OverridesType = {
   textAndSupportingText2?: Flex__<"div">;
   text6?: Flex__<"div">;
   supportingText2?: Flex__<"div">;
-  jobTitle?: Flex__<"h2">;
-  ville?: Flex__<"div">;
-  tags?: Flex__<"div">;
-  deleteEdit?: Flex__<"div">;
+  alertCard?: Flex__<typeof AlertCard>;
   mobileNavbarBottom?: Flex__<typeof MobileNavbarBottom>;
   createEditAlert?: Flex__<typeof Modal>;
   button?: Flex__<typeof JamButton>;
+  img?: Flex__<typeof PlasmicImg__>;
   alerteModal?: Flex__<"div">;
   modalTitle?: Flex__<"div">;
   form?: Flex__<typeof FormWrapper>;
@@ -567,8 +562,8 @@ function PlasmicMesAlertes__RenderFunc(props: {
                   : (() => {
                       try {
                         return (
-                          $queries.getAlerts.data.length == 0 &&
-                          $queries.getAlerts.isLoading == false
+                          $queries.getAlerts.isLoading == false &&
+                          $queries.getAlerts.data.length == 0
                         );
                       } catch (e) {
                         if (
@@ -587,6 +582,9 @@ function PlasmicMesAlertes__RenderFunc(props: {
                   data-plasmic-override={overrides.noAnnonce}
                   hasGap={true}
                   className={classNames(projectcss.all, sty.noAnnonce)}
+                  onLoad={async event => {
+                    const $steps = {};
+                  }}
                 >
                   <div
                     data-plasmic-name={"featuredIcon2"}
@@ -740,7 +738,7 @@ function PlasmicMesAlertes__RenderFunc(props: {
               ) : null}
               {(() => {
                 try {
-                  return !$queries.getAlerts.isLoading;
+                  return true;
                 } catch (e) {
                   if (
                     e instanceof TypeError ||
@@ -769,617 +767,169 @@ function PlasmicMesAlertes__RenderFunc(props: {
                     const currentItem = __plasmic_item_0;
                     const currentIndex = __plasmic_idx_0;
                     return (
-                      <Stack__
-                        as={"div"}
-                        hasGap={true}
-                        className={classNames(
-                          projectcss.all,
-                          sty.freeBox__mclch
-                        )}
+                      <AlertCard
+                        data-plasmic-name={"alertCard"}
+                        data-plasmic-override={overrides.alertCard}
+                        className={classNames("__wab_instance", sty.alertCard)}
+                        currentItem={currentItem}
+                        getAlerts={$queries.getAlerts}
                         key={currentIndex}
-                      >
-                        <Stack__
-                          as={"div"}
-                          hasGap={true}
-                          className={classNames(
-                            projectcss.all,
-                            sty.freeBox__jhZr
-                          )}
-                        >
-                          <Stack__
-                            as={"div"}
-                            hasGap={true}
-                            className={classNames(
-                              projectcss.all,
-                              sty.freeBox__aqUr
-                            )}
-                          >
-                            <div
-                              className={classNames(
-                                projectcss.all,
-                                sty.freeBox___0SL6W
-                              )}
-                            >
-                              <h2
-                                data-plasmic-name={"jobTitle"}
-                                data-plasmic-override={overrides.jobTitle}
-                                className={classNames(
-                                  projectcss.all,
-                                  projectcss.h2,
-                                  projectcss.__wab_text,
-                                  sty.jobTitle
-                                )}
-                              >
-                                <React.Fragment>
-                                  {(() => {
-                                    try {
-                                      return currentItem.search_criteria
-                                        .job_title;
-                                    } catch (e) {
-                                      if (
-                                        e instanceof TypeError ||
-                                        e?.plasmicType ===
-                                          "PlasmicUndefinedDataError"
-                                      ) {
-                                        return "";
-                                      }
-                                      throw e;
-                                    }
-                                  })()}
-                                </React.Fragment>
-                              </h2>
-                              <Stack__
-                                as={"div"}
-                                data-plasmic-name={"ville"}
-                                data-plasmic-override={overrides.ville}
-                                hasGap={true}
-                                className={classNames(
-                                  projectcss.all,
-                                  sty.ville
-                                )}
-                              >
-                                <Vector20Icon
-                                  className={classNames(
-                                    projectcss.all,
-                                    sty.svg__avZck
-                                  )}
-                                  role={"img"}
-                                />
+                        onClickDelete={async event => {
+                          const $steps = {};
 
-                                <p
-                                  className={classNames(
-                                    projectcss.all,
-                                    projectcss.p,
-                                    projectcss.__wab_text,
-                                    sty.p__t7QTp
-                                  )}
-                                >
-                                  <React.Fragment>
-                                    {(() => {
-                                      try {
-                                        return currentItem.search_criteria.city;
-                                      } catch (e) {
-                                        if (
-                                          e instanceof TypeError ||
-                                          e?.plasmicType ===
-                                            "PlasmicUndefinedDataError"
-                                        ) {
-                                          return "";
-                                        }
-                                        throw e;
-                                      }
-                                    })()}
-                                  </React.Fragment>
-                                </p>
-                              </Stack__>
-                            </div>
-                            <Stack__
-                              as={"div"}
-                              data-plasmic-name={"tags"}
-                              data-plasmic-override={overrides.tags}
-                              hasGap={true}
-                              className={classNames(projectcss.all, sty.tags)}
-                            >
-                              {(_par =>
-                                !_par
-                                  ? []
-                                  : Array.isArray(_par)
-                                  ? _par
-                                  : [_par])(
-                                (() => {
-                                  try {
-                                    return currentItem.search_criteria
-                                      .contract_types;
-                                  } catch (e) {
-                                    if (
-                                      e instanceof TypeError ||
-                                      e?.plasmicType ===
-                                        "PlasmicUndefinedDataError"
-                                    ) {
-                                      return [];
-                                    }
-                                    throw e;
+                          $steps["updateCurrentAlert"] = true
+                            ? (() => {
+                                const actionArgs = {
+                                  variable: {
+                                    objRoot: $state,
+                                    variablePath: ["currentAlert"]
+                                  },
+                                  operation: 0,
+                                  value: currentItem
+                                };
+                                return (({
+                                  variable,
+                                  value,
+                                  startIndex,
+                                  deleteCount
+                                }) => {
+                                  if (!variable) {
+                                    return;
                                   }
-                                })()
-                              ).map((__plasmic_item_1, __plasmic_idx_1) => {
-                                const currentItem = __plasmic_item_1;
-                                const currentIndex = __plasmic_idx_1;
-                                return (
-                                  <Stack__
-                                    as={"div"}
-                                    hasGap={true}
-                                    className={classNames(
-                                      projectcss.all,
-                                      sty.freeBox__qVgy
-                                    )}
-                                    key={currentIndex}
-                                  >
-                                    <PlasmicImg__
-                                      alt={""}
-                                      className={classNames(sty.img__r7NoV)}
-                                      displayHeight={"14px"}
-                                      displayMaxHeight={"none"}
-                                      displayMaxWidth={"100%"}
-                                      displayMinHeight={"0"}
-                                      displayMinWidth={"0"}
-                                      displayWidth={"14px"}
-                                      loading={"lazy"}
-                                      src={{
-                                        src: "/plasmic/jam_production_🚀/images/image7.svg",
-                                        fullWidth: 20,
-                                        fullHeight: 20,
-                                        aspectRatio: 1
-                                      }}
-                                    />
+                                  const { objRoot, variablePath } = variable;
 
-                                    <p
-                                      className={classNames(
-                                        projectcss.all,
-                                        projectcss.p,
-                                        projectcss.__wab_text,
-                                        sty.p__yUB7
-                                      )}
-                                    >
-                                      <React.Fragment>
-                                        {(() => {
-                                          try {
-                                            return currentItem;
-                                          } catch (e) {
-                                            if (
-                                              e instanceof TypeError ||
-                                              e?.plasmicType ===
-                                                "PlasmicUndefinedDataError"
-                                            ) {
-                                              return "";
-                                            }
-                                            throw e;
-                                          }
-                                        })()}
-                                      </React.Fragment>
-                                    </p>
-                                  </Stack__>
-                                );
-                              })}
-                              {(_par =>
-                                !_par
-                                  ? []
-                                  : Array.isArray(_par)
-                                  ? _par
-                                  : [_par])(
-                                (() => {
-                                  try {
-                                    return currentItem.search_criteria
-                                      .min_salary;
-                                  } catch (e) {
-                                    if (
-                                      e instanceof TypeError ||
-                                      e?.plasmicType ===
-                                        "PlasmicUndefinedDataError"
-                                    ) {
-                                      return [];
-                                    }
-                                    throw e;
+                                  $stateSet(objRoot, variablePath, value);
+                                  return value;
+                                })?.apply(null, [actionArgs]);
+                              })()
+                            : undefined;
+                          if (
+                            $steps["updateCurrentAlert"] != null &&
+                            typeof $steps["updateCurrentAlert"] === "object" &&
+                            typeof $steps["updateCurrentAlert"].then ===
+                              "function"
+                          ) {
+                            $steps["updateCurrentAlert"] = await $steps[
+                              "updateCurrentAlert"
+                            ];
+                          }
+
+                          $steps["updateDeleteAlertIsOpen"] = true
+                            ? (() => {
+                                const actionArgs = {
+                                  variable: {
+                                    objRoot: $state,
+                                    variablePath: ["deleteAlert", "isOpen"]
+                                  },
+                                  operation: 0,
+                                  value: true
+                                };
+                                return (({
+                                  variable,
+                                  value,
+                                  startIndex,
+                                  deleteCount
+                                }) => {
+                                  if (!variable) {
+                                    return;
                                   }
-                                })()
-                              ).map((__plasmic_item_1, __plasmic_idx_1) => {
-                                const currentItem = __plasmic_item_1;
-                                const currentIndex = __plasmic_idx_1;
-                                return (
-                                  <Stack__
-                                    as={"div"}
-                                    hasGap={true}
-                                    className={classNames(
-                                      projectcss.all,
-                                      sty.freeBox__rTtQc
-                                    )}
-                                    key={currentIndex}
-                                  >
-                                    <Vector21Icon
-                                      className={classNames(
-                                        projectcss.all,
-                                        sty.svg__hrmaM
-                                      )}
-                                      role={"img"}
-                                    />
+                                  const { objRoot, variablePath } = variable;
 
-                                    <p
-                                      className={classNames(
-                                        projectcss.all,
-                                        projectcss.p,
-                                        projectcss.__wab_text,
-                                        sty.p__oMvra
-                                      )}
-                                    >
-                                      <React.Fragment>
-                                        {(() => {
-                                          try {
-                                            return currentItem;
-                                          } catch (e) {
-                                            if (
-                                              e instanceof TypeError ||
-                                              e?.plasmicType ===
-                                                "PlasmicUndefinedDataError"
-                                            ) {
-                                              return "";
-                                            }
-                                            throw e;
-                                          }
-                                        })()}
-                                      </React.Fragment>
-                                    </p>
-                                  </Stack__>
-                                );
-                              })}
-                              {(_par =>
-                                !_par
-                                  ? []
-                                  : Array.isArray(_par)
-                                  ? _par
-                                  : [_par])(
-                                (() => {
-                                  try {
-                                    return currentItem.search_criteria
-                                      .work_times;
-                                  } catch (e) {
-                                    if (
-                                      e instanceof TypeError ||
-                                      e?.plasmicType ===
-                                        "PlasmicUndefinedDataError"
-                                    ) {
-                                      return [];
-                                    }
-                                    throw e;
+                                  $stateSet(objRoot, variablePath, value);
+                                  return value;
+                                })?.apply(null, [actionArgs]);
+                              })()
+                            : undefined;
+                          if (
+                            $steps["updateDeleteAlertIsOpen"] != null &&
+                            typeof $steps["updateDeleteAlertIsOpen"] ===
+                              "object" &&
+                            typeof $steps["updateDeleteAlertIsOpen"].then ===
+                              "function"
+                          ) {
+                            $steps["updateDeleteAlertIsOpen"] = await $steps[
+                              "updateDeleteAlertIsOpen"
+                            ];
+                          }
+                        }}
+                        onClickEdit={async event => {
+                          const $steps = {};
+
+                          $steps["updateCurrentAlert"] = true
+                            ? (() => {
+                                const actionArgs = {
+                                  variable: {
+                                    objRoot: $state,
+                                    variablePath: ["currentAlert"]
+                                  },
+                                  operation: 0,
+                                  value: currentItem
+                                };
+                                return (({
+                                  variable,
+                                  value,
+                                  startIndex,
+                                  deleteCount
+                                }) => {
+                                  if (!variable) {
+                                    return;
                                   }
-                                })()
-                              ).map((__plasmic_item_1, __plasmic_idx_1) => {
-                                const currentItem = __plasmic_item_1;
-                                const currentIndex = __plasmic_idx_1;
-                                return (
-                                  <Stack__
-                                    as={"div"}
-                                    hasGap={true}
-                                    className={classNames(
-                                      projectcss.all,
-                                      sty.freeBox__ta0VM
-                                    )}
-                                    key={currentIndex}
-                                  >
-                                    <IconPhClockIcon
-                                      className={classNames(
-                                        projectcss.all,
-                                        sty.svg__j4AcK
-                                      )}
-                                      role={"img"}
-                                    />
+                                  const { objRoot, variablePath } = variable;
 
-                                    <p
-                                      className={classNames(
-                                        projectcss.all,
-                                        projectcss.p,
-                                        projectcss.__wab_text,
-                                        sty.p__wdb69
-                                      )}
-                                    >
-                                      <React.Fragment>
-                                        {(() => {
-                                          try {
-                                            return currentItem;
-                                          } catch (e) {
-                                            if (
-                                              e instanceof TypeError ||
-                                              e?.plasmicType ===
-                                                "PlasmicUndefinedDataError"
-                                            ) {
-                                              return "";
-                                            }
-                                            throw e;
-                                          }
-                                        })()}
-                                      </React.Fragment>
-                                    </p>
-                                  </Stack__>
-                                );
-                              })}
-                            </Stack__>
-                          </Stack__>
-                          <Button
-                            className={classNames(
-                              "__wab_instance",
-                              sty.button___8NnKb
-                            )}
-                            color={"white"}
-                            end={
-                              <GroupIcon
-                                className={classNames(
-                                  projectcss.all,
-                                  sty.svg__fhRz0
-                                )}
-                                role={"img"}
-                              />
-                            }
-                            iconEnd={true}
-                            label={
-                              <div
-                                className={classNames(
-                                  projectcss.all,
-                                  projectcss.__wab_text,
-                                  sty.text__v05Ta
-                                )}
-                              >
-                                {"Voir les offres"}
-                              </div>
-                            }
-                            onClick={async event => {
-                              const $steps = {};
+                                  $stateSet(objRoot, variablePath, value);
+                                  return value;
+                                })?.apply(null, [actionArgs]);
+                              })()
+                            : undefined;
+                          if (
+                            $steps["updateCurrentAlert"] != null &&
+                            typeof $steps["updateCurrentAlert"] === "object" &&
+                            typeof $steps["updateCurrentAlert"].then ===
+                              "function"
+                          ) {
+                            $steps["updateCurrentAlert"] = await $steps[
+                              "updateCurrentAlert"
+                            ];
+                          }
 
-                              $steps["goToPage"] = true
-                                ? (() => {
-                                    const actionArgs = {
-                                      destination: (() => {
-                                        try {
-                                          return (
-                                            "/?name=" +
-                                            currentItem.search_criteria
-                                              .job_title +
-                                            "&city=" +
-                                            currentItem.search_criteria.city +
-                                            "&work_times=" +
-                                            currentItem.search_criteria
-                                              .work_times +
-                                            "&contract_types=" +
-                                            currentItem.search_criteria
-                                              .contract_types +
-                                            "&min_salary=" +
-                                            currentItem.search_criteria
-                                              .min_salary
-                                          );
-                                        } catch (e) {
-                                          if (
-                                            e instanceof TypeError ||
-                                            e?.plasmicType ===
-                                              "PlasmicUndefinedDataError"
-                                          ) {
-                                            return undefined;
-                                          }
-                                          throw e;
-                                        }
-                                      })()
-                                    };
-                                    return (({ destination }) => {
-                                      if (
-                                        typeof destination === "string" &&
-                                        destination.startsWith("#")
-                                      ) {
-                                        document
-                                          .getElementById(destination.substr(1))
-                                          .scrollIntoView({
-                                            behavior: "smooth"
-                                          });
-                                      } else {
-                                        __nextRouter?.push(destination);
-                                      }
-                                    })?.apply(null, [actionArgs]);
-                                  })()
-                                : undefined;
-                              if (
-                                $steps["goToPage"] != null &&
-                                typeof $steps["goToPage"] === "object" &&
-                                typeof $steps["goToPage"].then === "function"
-                              ) {
-                                $steps["goToPage"] = await $steps["goToPage"];
-                              }
-                            }}
-                            type={"bordered"}
-                          />
-                        </Stack__>
-                        <Stack__
-                          as={"div"}
-                          data-plasmic-name={"deleteEdit"}
-                          data-plasmic-override={overrides.deleteEdit}
-                          hasGap={true}
-                          className={classNames(projectcss.all, sty.deleteEdit)}
-                        >
-                          <PhTrashIcon
-                            className={classNames(
-                              projectcss.all,
-                              sty.svg__iVl8M
-                            )}
-                            onClick={async event => {
-                              const $steps = {};
+                          $steps["updateCreateEditAlertIsOpen"] = true
+                            ? (() => {
+                                const actionArgs = {
+                                  variable: {
+                                    objRoot: $state,
+                                    variablePath: ["createEditAlert", "isOpen"]
+                                  },
+                                  operation: 0,
+                                  value: true
+                                };
+                                return (({
+                                  variable,
+                                  value,
+                                  startIndex,
+                                  deleteCount
+                                }) => {
+                                  if (!variable) {
+                                    return;
+                                  }
+                                  const { objRoot, variablePath } = variable;
 
-                              $steps["updateDeleteAlertIsOpen"] = true
-                                ? (() => {
-                                    const actionArgs = {
-                                      variable: {
-                                        objRoot: $state,
-                                        variablePath: ["deleteAlert", "isOpen"]
-                                      },
-                                      operation: 0,
-                                      value: true
-                                    };
-                                    return (({
-                                      variable,
-                                      value,
-                                      startIndex,
-                                      deleteCount
-                                    }) => {
-                                      if (!variable) {
-                                        return;
-                                      }
-                                      const { objRoot, variablePath } =
-                                        variable;
-
-                                      $stateSet(objRoot, variablePath, value);
-                                      return value;
-                                    })?.apply(null, [actionArgs]);
-                                  })()
-                                : undefined;
-                              if (
-                                $steps["updateDeleteAlertIsOpen"] != null &&
-                                typeof $steps["updateDeleteAlertIsOpen"] ===
-                                  "object" &&
-                                typeof $steps["updateDeleteAlertIsOpen"]
-                                  .then === "function"
-                              ) {
-                                $steps["updateDeleteAlertIsOpen"] =
-                                  await $steps["updateDeleteAlertIsOpen"];
-                              }
-
-                              $steps["updateCurrentAlert"] = true
-                                ? (() => {
-                                    const actionArgs = {
-                                      variable: {
-                                        objRoot: $state,
-                                        variablePath: ["currentAlert"]
-                                      },
-                                      operation: 0,
-                                      value: currentItem
-                                    };
-                                    return (({
-                                      variable,
-                                      value,
-                                      startIndex,
-                                      deleteCount
-                                    }) => {
-                                      if (!variable) {
-                                        return;
-                                      }
-                                      const { objRoot, variablePath } =
-                                        variable;
-
-                                      $stateSet(objRoot, variablePath, value);
-                                      return value;
-                                    })?.apply(null, [actionArgs]);
-                                  })()
-                                : undefined;
-                              if (
-                                $steps["updateCurrentAlert"] != null &&
-                                typeof $steps["updateCurrentAlert"] ===
-                                  "object" &&
-                                typeof $steps["updateCurrentAlert"].then ===
-                                  "function"
-                              ) {
-                                $steps["updateCurrentAlert"] = await $steps[
-                                  "updateCurrentAlert"
-                                ];
-                              }
-                            }}
-                            role={"img"}
-                          />
-
-                          <PencilSimpleLineIcon
-                            className={classNames(
-                              projectcss.all,
-                              sty.svg___1Nx5J
-                            )}
-                            onClick={async event => {
-                              const $steps = {};
-
-                              $steps["updateModalIsOpen"] = true
-                                ? (() => {
-                                    const actionArgs = {
-                                      variable: {
-                                        objRoot: $state,
-                                        variablePath: [
-                                          "createEditAlert",
-                                          "isOpen"
-                                        ]
-                                      },
-                                      operation: 0,
-                                      value: true
-                                    };
-                                    return (({
-                                      variable,
-                                      value,
-                                      startIndex,
-                                      deleteCount
-                                    }) => {
-                                      if (!variable) {
-                                        return;
-                                      }
-                                      const { objRoot, variablePath } =
-                                        variable;
-
-                                      $stateSet(objRoot, variablePath, value);
-                                      return value;
-                                    })?.apply(null, [actionArgs]);
-                                  })()
-                                : undefined;
-                              if (
-                                $steps["updateModalIsOpen"] != null &&
-                                typeof $steps["updateModalIsOpen"] ===
-                                  "object" &&
-                                typeof $steps["updateModalIsOpen"].then ===
-                                  "function"
-                              ) {
-                                $steps["updateModalIsOpen"] = await $steps[
-                                  "updateModalIsOpen"
-                                ];
-                              }
-
-                              $steps["updateModalIsOpen2"] = true
-                                ? (() => {
-                                    const actionArgs = {
-                                      variable: {
-                                        objRoot: $state,
-                                        variablePath: ["currentAlert"]
-                                      },
-                                      operation: 0,
-                                      value: currentItem
-                                    };
-                                    return (({
-                                      variable,
-                                      value,
-                                      startIndex,
-                                      deleteCount
-                                    }) => {
-                                      if (!variable) {
-                                        return;
-                                      }
-                                      const { objRoot, variablePath } =
-                                        variable;
-
-                                      $stateSet(objRoot, variablePath, value);
-                                      return value;
-                                    })?.apply(null, [actionArgs]);
-                                  })()
-                                : undefined;
-                              if (
-                                $steps["updateModalIsOpen2"] != null &&
-                                typeof $steps["updateModalIsOpen2"] ===
-                                  "object" &&
-                                typeof $steps["updateModalIsOpen2"].then ===
-                                  "function"
-                              ) {
-                                $steps["updateModalIsOpen2"] = await $steps[
-                                  "updateModalIsOpen2"
-                                ];
-                              }
-                            }}
-                            role={"img"}
-                          />
-                        </Stack__>
-                      </Stack__>
+                                  $stateSet(objRoot, variablePath, value);
+                                  return value;
+                                })?.apply(null, [actionArgs]);
+                              })()
+                            : undefined;
+                          if (
+                            $steps["updateCreateEditAlertIsOpen"] != null &&
+                            typeof $steps["updateCreateEditAlertIsOpen"] ===
+                              "object" &&
+                            typeof $steps["updateCreateEditAlertIsOpen"]
+                              .then === "function"
+                          ) {
+                            $steps["updateCreateEditAlertIsOpen"] =
+                              await $steps["updateCreateEditAlertIsOpen"];
+                          }
+                        }}
+                      />
                     );
                   })
                 : null}
@@ -2313,8 +1863,10 @@ function PlasmicMesAlertes__RenderFunc(props: {
                       })()
                 ) ? (
                   <PlasmicImg__
+                    data-plasmic-name={"img"}
+                    data-plasmic-override={overrides.img}
                     alt={""}
-                    className={classNames(sty.img__eB7An)}
+                    className={classNames(sty.img)}
                     displayHeight={"17px"}
                     displayMaxHeight={"none"}
                     displayMaxWidth={"100%"}
@@ -2692,13 +2244,11 @@ const PlasmicDescendants = {
     "textAndSupportingText2",
     "text6",
     "supportingText2",
-    "jobTitle",
-    "ville",
-    "tags",
-    "deleteEdit",
+    "alertCard",
     "mobileNavbarBottom",
     "createEditAlert",
     "button",
+    "img",
     "alerteModal",
     "modalTitle",
     "form",
@@ -2732,10 +2282,7 @@ const PlasmicDescendants = {
     "textAndSupportingText2",
     "text6",
     "supportingText2",
-    "jobTitle",
-    "ville",
-    "tags",
-    "deleteEdit"
+    "alertCard"
   ],
   h1: ["h1"],
   alerts: [
@@ -2746,10 +2293,7 @@ const PlasmicDescendants = {
     "textAndSupportingText2",
     "text6",
     "supportingText2",
-    "jobTitle",
-    "ville",
-    "tags",
-    "deleteEdit"
+    "alertCard"
   ],
   loading: ["loading"],
   noAnnonce: [
@@ -2767,14 +2311,12 @@ const PlasmicDescendants = {
   ],
   text6: ["text6"],
   supportingText2: ["supportingText2"],
-  jobTitle: ["jobTitle"],
-  ville: ["ville"],
-  tags: ["tags"],
-  deleteEdit: ["deleteEdit"],
+  alertCard: ["alertCard"],
   mobileNavbarBottom: ["mobileNavbarBottom"],
   createEditAlert: [
     "createEditAlert",
     "button",
+    "img",
     "alerteModal",
     "modalTitle",
     "form",
@@ -2787,6 +2329,7 @@ const PlasmicDescendants = {
     "textInput4"
   ],
   button: ["button"],
+  img: ["img"],
   alerteModal: [
     "alerteModal",
     "modalTitle",
@@ -2871,13 +2414,11 @@ type NodeDefaultElementType = {
   textAndSupportingText2: "div";
   text6: "div";
   supportingText2: "div";
-  jobTitle: "h2";
-  ville: "div";
-  tags: "div";
-  deleteEdit: "div";
+  alertCard: typeof AlertCard;
   mobileNavbarBottom: typeof MobileNavbarBottom;
   createEditAlert: typeof Modal;
   button: typeof JamButton;
+  img: typeof PlasmicImg__;
   alerteModal: "div";
   modalTitle: "div";
   form: typeof FormWrapper;
@@ -2971,13 +2512,11 @@ export const PlasmicMesAlertes = Object.assign(
     textAndSupportingText2: makeNodeComponent("textAndSupportingText2"),
     text6: makeNodeComponent("text6"),
     supportingText2: makeNodeComponent("supportingText2"),
-    jobTitle: makeNodeComponent("jobTitle"),
-    ville: makeNodeComponent("ville"),
-    tags: makeNodeComponent("tags"),
-    deleteEdit: makeNodeComponent("deleteEdit"),
+    alertCard: makeNodeComponent("alertCard"),
     mobileNavbarBottom: makeNodeComponent("mobileNavbarBottom"),
     createEditAlert: makeNodeComponent("createEditAlert"),
     button: makeNodeComponent("button"),
+    img: makeNodeComponent("img"),
     alerteModal: makeNodeComponent("alerteModal"),
     modalTitle: makeNodeComponent("modalTitle"),
     form: makeNodeComponent("form"),

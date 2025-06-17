@@ -21,6 +21,13 @@
 }
 .mobileNavbarTop:global(.__wab_instance) {
   max-width: 100%;
+  left: 0;
+  top: 0;
+  z-index: 1;
+  position: fixed;
+  width: 100%;
+  right: 0;
+  min-width: 0;
   display: none;
 }
 @media (min-width: 0px) and (max-width: 768px) {
@@ -66,10 +73,8 @@
 @media (min-width: 0px) and (max-width: 768px) {
   .main {
     height: 100%;
-    padding-right: 20px;
-    padding-left: 20px;
-    padding-top: 38px;
     min-height: 0;
+    padding: 95px 20px 96px;
   }
 }
 @media (min-width: 0px) and (max-width: 768px) {
@@ -310,6 +315,12 @@
     padding: 0px;
   }
 }
+@media (min-width: 0px) and (max-width: 768px) {
+  .results > :global(.__wab_flex-container) {
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
+}
 .resultsDetails {
   width: auto;
   height: auto;
@@ -482,6 +493,8 @@
   .cards {
     display: flex;
     flex-direction: column;
+    width: 100%;
+    min-width: 0;
   }
 }
 @media (min-width: 0px) and (max-width: 768px) {
@@ -489,6 +502,7 @@
     justify-content: flex-start;
     align-content: center;
     flex-direction: column;
+    min-width: 0;
     margin-left: calc(0px - 0px);
     width: calc(100% + 0px);
     margin-top: calc(0px - 16px);
@@ -529,7 +543,7 @@
   position: relative;
   align-self: stretch;
   flex-direction: row;
-  min-height: 150px;
+  min-height: 170px;
   flex-shrink: 0;
   padding: 20px 24px;
 }
@@ -1483,7 +1497,7 @@
   justify-content: flex-start;
   align-items: center;
   min-width: 0;
-  padding: 8px;
+  padding: 0px 0px 20px;
 }
 .iframe__fpPf6:global(.__wab_instance) {
   width: 500px;
@@ -1541,12 +1555,20 @@
   width: 100%;
   min-width: 0;
 }
-.mobileNavbarBottom2:global(.__wab_instance) {
+.mobileNavbarBottomCompany:global(.__wab_instance) {
   max-width: 100%;
+  left: 0;
+  top: auto;
+  z-index: 1;
+  position: fixed;
+  width: 100%;
+  right: 0;
+  bottom: 0;
+  min-width: 0;
   display: none;
 }
 @media (min-width: 0px) and (max-width: 768px) {
-  .mobileNavbarBottom2:global(.__wab_instance) {
+  .mobileNavbarBottomCompany:global(.__wab_instance) {
     display: flex;
   }
 }

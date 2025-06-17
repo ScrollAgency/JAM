@@ -97,6 +97,7 @@ export type PlasmicConnexion__OverridesType = {
   frame6?: Flex__<"div">;
   formWrapper?: Flex__<"div">;
   loginForm?: Flex__<typeof Login>;
+  img?: Flex__<typeof PlasmicImg__>;
   pageLoader?: Flex__<typeof PageLoader>;
 };
 
@@ -500,8 +501,31 @@ function PlasmicConnexion__RenderFunc(props: {
                 showBottomSignupLink={true}
                 showPasswordToggle={true}
                 showSocialOAuth={false}
-                signUpLinkText={"Pas encore de compte ? INSCRIPTION"}
-                submitButtonText={"Connexion"}
+                signUpLinkLabel={"INSCRIPTION"}
+                signUpPrefixText={"Pas encore de compte ?"}
+                submitButtonIcon={
+                  <PlasmicImg__
+                    data-plasmic-name={"img"}
+                    data-plasmic-override={overrides.img}
+                    alt={""}
+                    className={classNames(sty.img)}
+                    displayHeight={"auto"}
+                    displayMaxHeight={"none"}
+                    displayMaxWidth={"100%"}
+                    displayMinHeight={"0"}
+                    displayMinWidth={"0"}
+                    displayWidth={"auto"}
+                    loading={"lazy"}
+                    src={{
+                      src: "/plasmic/jam_production_🚀/images/image18.svg",
+                      fullWidth: 34,
+                      fullHeight: 33,
+                      aspectRatio: undefined
+                    }}
+                  />
+                }
+                submitButtonIconPosition={"right"}
+                submitButtonText={"CONNEXION"}
                 title={"Connexion"}
                 titleHeading={"h1"}
                 wrapperStyle={"card"}
@@ -593,6 +617,7 @@ const PlasmicDescendants = {
     "frame6",
     "formWrapper",
     "loginForm",
+    "img",
     "pageLoader"
   ],
   signIn: [
@@ -605,7 +630,8 @@ const PlasmicDescendants = {
     "frame5",
     "frame6",
     "formWrapper",
-    "loginForm"
+    "loginForm",
+    "img"
   ],
   imageWrapper2: [
     "imageWrapper2",
@@ -629,8 +655,9 @@ const PlasmicDescendants = {
   frame4: ["frame4"],
   frame5: ["frame5"],
   frame6: ["frame6"],
-  formWrapper: ["formWrapper", "loginForm"],
-  loginForm: ["loginForm"],
+  formWrapper: ["formWrapper", "loginForm", "img"],
+  loginForm: ["loginForm", "img"],
+  img: ["img"],
   pageLoader: ["pageLoader"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
@@ -648,6 +675,7 @@ type NodeDefaultElementType = {
   frame6: "div";
   formWrapper: "div";
   loginForm: typeof Login;
+  img: typeof PlasmicImg__;
   pageLoader: typeof PageLoader;
 };
 
@@ -721,6 +749,7 @@ export const PlasmicConnexion = Object.assign(
     frame6: makeNodeComponent("frame6"),
     formWrapper: makeNodeComponent("formWrapper"),
     loginForm: makeNodeComponent("loginForm"),
+    img: makeNodeComponent("img"),
     pageLoader: makeNodeComponent("pageLoader"),
 
     // Metadata about props expected for PlasmicConnexion

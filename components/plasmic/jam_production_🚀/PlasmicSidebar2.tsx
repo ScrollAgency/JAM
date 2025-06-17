@@ -713,7 +713,23 @@ function PlasmicSidebar2__RenderFunc(props: {
                 className={classNames(
                   projectcss.all,
                   projectcss.__wab_text,
-                  sty.text__ngIM
+                  sty.text__ngIM,
+                  (() => {
+                    try {
+                      return $queries.sidebarUserMonthlyRecharge.data.response
+                        .solde.totalClassic == 0
+                        ? "grey-600"
+                        : "green-500";
+                    } catch (e) {
+                      if (
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
+                      ) {
+                        return undefined;
+                      }
+                      throw e;
+                    }
+                  })()
                 )}
               >
                 <React.Fragment>
@@ -741,7 +757,7 @@ function PlasmicSidebar2__RenderFunc(props: {
             </div>
             <Separator
               className={
-                "" + " " + classNames("__wab_instance", sty.separateur__xUkgR)
+                "" + " " + classNames("__wab_instance", sty.separateur__pqhI)
               }
               decorative={true}
               orientation={"horizontal"}
@@ -768,7 +784,23 @@ function PlasmicSidebar2__RenderFunc(props: {
                 className={classNames(
                   projectcss.all,
                   projectcss.__wab_text,
-                  sty.text__z3Gq
+                  sty.text__z3Gq,
+                  (() => {
+                    try {
+                      return $queries.sidebarUserMonthlyRecharge.data.response
+                        .solde.totalLastMinute == 0
+                        ? "grey-600"
+                        : "green-500";
+                    } catch (e) {
+                      if (
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
+                      ) {
+                        return undefined;
+                      }
+                      throw e;
+                    }
+                  })()
                 )}
               >
                 <React.Fragment>
@@ -823,7 +855,23 @@ function PlasmicSidebar2__RenderFunc(props: {
                 className={classNames(
                   projectcss.all,
                   projectcss.__wab_text,
-                  sty.text__yal
+                  sty.text__yal,
+                  (() => {
+                    try {
+                      return $queries.sidebarUserMonthlyRecharge.data.response
+                        .solde.totalBoost == 0
+                        ? "grey-600"
+                        : "green-500";
+                    } catch (e) {
+                      if (
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
+                      ) {
+                        return undefined;
+                      }
+                      throw e;
+                    }
+                  })()
                 )}
               >
                 <React.Fragment>

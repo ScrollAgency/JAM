@@ -57,7 +57,7 @@
     flex-direction: column;
     min-width: 0;
     min-height: 0;
-    padding: 80px 20px 78px;
+    padding: 44px 20px 78px;
   }
 }
 @media (min-width: 0px) and (max-width: 768px) {
@@ -297,7 +297,7 @@
     transform: none;
     width: 100%;
     min-width: 0;
-    padding: 0px 40px;
+    padding: 32px;
   }
 }
 @media (min-width: 0px) and (max-width: 768px) {
@@ -390,6 +390,35 @@
   > img {
   margin-left: 19px;
 }
+@media (min-width: 0px) and (max-width: 768px) {
+  .subscription {
+    display: flex;
+    flex-direction: column;
+    padding: 0px;
+  }
+}
+@media (min-width: 0px) and (max-width: 768px) {
+  .subscription > :global(.__wab_flex-container) {
+    flex-direction: column;
+    margin-left: calc(0px - 0px);
+    width: calc(100% + 0px);
+    margin-top: calc(0px - 19px);
+    height: calc(100% + 19px);
+  }
+}
+@media (min-width: 0px) and (max-width: 768px) {
+  .subscription > :global(.__wab_flex-container) > *,
+  .subscription > :global(.__wab_flex-container) > :global(.__wab_slot) > *,
+  .subscription > :global(.__wab_flex-container) > picture > img,
+  .subscription
+    > :global(.__wab_flex-container)
+    > :global(.__wab_slot)
+    > picture
+    > img {
+    margin-left: 0px;
+    margin-top: 19px;
+  }
+}
 .items {
   display: flex;
   flex-direction: row;
@@ -442,6 +471,34 @@
   > picture
   > img {
   margin-left: 40px;
+}
+@media (min-width: 0px) and (max-width: 768px) {
+  .actions {
+    display: flex;
+    flex-direction: column;
+  }
+}
+@media (min-width: 0px) and (max-width: 768px) {
+  .actions > :global(.__wab_flex-container) {
+    flex-direction: column;
+    margin-left: calc(0px - 0px);
+    width: calc(100% + 0px);
+    margin-top: calc(0px - 10px);
+    height: calc(100% + 10px);
+  }
+}
+@media (min-width: 0px) and (max-width: 768px) {
+  .actions > :global(.__wab_flex-container) > *,
+  .actions > :global(.__wab_flex-container) > :global(.__wab_slot) > *,
+  .actions > :global(.__wab_flex-container) > picture > img,
+  .actions
+    > :global(.__wab_flex-container)
+    > :global(.__wab_slot)
+    > picture
+    > img {
+    margin-left: 0px;
+    margin-top: 10px;
+  }
 }
 .cancelSubscription:global(.__wab_instance) {
   max-width: 100%;
@@ -529,6 +586,12 @@
 }
 .button__b144E:global(.__wab_instance):global(.__wab_instance) {
   max-width: 100%;
+}
+@media (min-width: 0px) and (max-width: 768px) {
+  .button__b144E:global(.__wab_instance):global(.__wab_instance) {
+    width: 100%;
+    min-width: 0;
+  }
 }
 .svg__k5J9S {
   position: relative;
@@ -658,6 +721,11 @@
   > picture
   > img {
   margin-top: 54px;
+}
+@media (min-width: 0px) and (max-width: 768px) {
+  .subscriptionDetailsHistory {
+    padding: 32px;
+  }
 }
 .details {
   display: flex;
@@ -1339,6 +1407,11 @@
   > picture
   > img {
   margin-top: 16px;
+}
+@media (min-width: 0px) and (max-width: 768px) {
+  .recharges {
+    padding: 32px;
+  }
 }
 .text__pOlN {
   position: relative;

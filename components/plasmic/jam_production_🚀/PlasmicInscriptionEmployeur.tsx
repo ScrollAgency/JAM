@@ -413,6 +413,8 @@ function PlasmicInscriptionEmployeur__RenderFunc(props: {
                       "lastName"
                     ])}
                     lastNameLabel={"Nom*"}
+                    loginLinkLabel={"CONNEXION"}
+                    loginPrefixText={"D\u00e9j\u00e0 inscrit(e) ?"}
                     maxAlerts={3}
                     oAuthButtonsPosition={"bottom"}
                     oAuthSeparatorText={"ou"}
@@ -561,9 +563,7 @@ function PlasmicInscriptionEmployeur__RenderFunc(props: {
                     placeholderEmail={"Email"}
                     placeholderPassword={"Mot de passe"}
                     placeholderPhone={"060606060606"}
-                    privacyPolicyText={
-                      "J'accepte la politique de confidentialité"
-                    }
+                    privacyPolicyText={"politique de confidentialit\u00e9"}
                     redirectAfterSignUp={``}
                     showAlerts={true}
                     showLabels={true}
@@ -571,6 +571,7 @@ function PlasmicInscriptionEmployeur__RenderFunc(props: {
                     showOAuthButtons={false}
                     showPasswordToggle={true}
                     showPhoneInput={true}
+                    submitButtonIconPosition={"right"}
                     submitButtonText={"S'inscrire"}
                     title={"Bienvenue !"}
                     titleHeading={"h1"}

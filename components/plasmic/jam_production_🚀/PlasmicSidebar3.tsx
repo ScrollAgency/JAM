@@ -424,7 +424,9 @@ function PlasmicSidebar3__RenderFunc(props: {
 
                 $steps["goToParametresDeCompte"] = true
                   ? (() => {
-                      const actionArgs = { destination: `/parametres` };
+                      const actionArgs = {
+                        destination: `/parametres-candidat`
+                      };
                       return (({ destination }) => {
                         if (
                           typeof destination === "string" &&
@@ -502,7 +504,9 @@ function PlasmicSidebar3__RenderFunc(props: {
 
                 $steps["goToParametresDeCompte"] = true
                   ? (() => {
-                      const actionArgs = { destination: `/parametres` };
+                      const actionArgs = {
+                        destination: `/parametres-candidat`
+                      };
                       return (({ destination }) => {
                         if (
                           typeof destination === "string" &&

@@ -271,32 +271,32 @@
 }
 .text__ek9E1 {
   position: relative;
-  width: 100%;
-  height: auto;
-  max-width: 100%;
-  color: var(--token-uqUcyTUgvV0c);
-  font-family: "DM Sans", sans-serif;
-  margin-bottom: 0px;
-  min-width: 0;
-}
-.text__ngIM {
-  position: relative;
   width: auto;
   height: auto;
   max-width: 100%;
   color: var(--token-uqUcyTUgvV0c);
   font-family: "DM Sans", sans-serif;
   margin-bottom: 0px;
+  font-weight: 400;
 }
-.separateur__xUkgR:global(.__wab_instance) {
+.text__ngIM {
+  position: relative;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  color: #ffffff;
+  font-family: "DM Sans", sans-serif;
+  margin-bottom: 0px;
+}
+.separateur__pqhI:global(.__wab_instance) {
   max-width: 100%;
   object-fit: cover;
   color: var(--token-X0hEa-utMcvr);
   height: 1px;
   margin-top: 8px;
   margin-bottom: 12px;
+  background: var(--token-X0hEa-utMcvr);
   flex-shrink: 0;
-  border: 1px solid var(--token-X0hEa-utMcvr);
 }
 .freeBox___8HqIp {
   display: flex;
@@ -311,13 +311,12 @@
 }
 .text__ptU3M {
   position: relative;
-  width: 100%;
+  width: auto;
   height: auto;
   max-width: 100%;
   color: var(--token-uqUcyTUgvV0c);
   font-family: "DM Sans", sans-serif;
   margin-bottom: 0px;
-  min-width: 0;
 }
 .text__z3Gq {
   position: relative;
@@ -332,10 +331,11 @@
   max-width: 100%;
   object-fit: cover;
   color: var(--token-X0hEa-utMcvr);
-  height: auto;
+  height: 1px;
   margin-top: 8px;
   margin-bottom: 12px;
-  border: 1px solid var(--token-X0hEa-utMcvr);
+  background: var(--token-X0hEa-utMcvr);
+  flex-shrink: 0;
 }
 .freeBox__qc7WD {
   display: flex;
@@ -350,13 +350,12 @@
 }
 .text__qVzSn {
   position: relative;
-  width: 100%;
+  width: auto;
   height: auto;
   max-width: 100%;
   color: var(--token-uqUcyTUgvV0c);
   font-family: "DM Sans", sans-serif;
   margin-bottom: 0px;
-  min-width: 0;
 }
 .text__yal {
   position: relative;
@@ -372,10 +371,11 @@
   max-width: 100%;
   object-fit: cover;
   color: var(--token-X0hEa-utMcvr);
-  height: auto;
+  height: 1px;
   margin-top: 8px;
   margin-bottom: 12px;
-  border: 1px solid var(--token-X0hEa-utMcvr);
+  background: var(--token-X0hEa-utMcvr);
+  flex-shrink: 0;
 }
 .svg___42UmA {
   object-fit: cover;

@@ -3520,8 +3520,10 @@ function PlasmicParametresCandidat__RenderFunc(props: {
                             showCancelButton={false}
                             showPasswordToggle={true}
                             showSubmitButton={false}
+                            submitButtonIconPosition={"left"}
                             submitButtonStyle={"primary"}
                             submitButtonText={"Réinitialiser"}
+                            submitButtonTextColor={"#000"}
                             title={``}
                             titleHeading={"h1"}
                             wrapperStyle={"card"}
