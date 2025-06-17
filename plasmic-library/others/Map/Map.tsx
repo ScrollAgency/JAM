@@ -34,6 +34,7 @@ interface MapboxProps {
    markers?: MarkerData[];
    className?: string;
    onPopupClick?: () => void;
+   showLogoInPopup?: boolean;
 }
 
 const Mapbox: React.FC<MapboxProps> = ({
@@ -44,6 +45,7 @@ const Mapbox: React.FC<MapboxProps> = ({
    markers = [],
    className = '',
    onPopupClick,
+   showLogoInPopup = true,
 }) => {
    const mapContainerRef = useRef<HTMLDivElement>(null);
    const mapRef = useRef<mapboxgl.Map | null>(null);
@@ -151,7 +153,7 @@ const Mapbox: React.FC<MapboxProps> = ({
             <span class="state-job-title">LAST MINUTE</span>
           </div>
         ` : ''}
-        <img class="company_logo" src="${logo_file}" alt="${title}" />
+        ${showLogoInPopup && logo_file ? `<img class="company_logo" src="${logo_file}" alt="${title}" />` : ''}
         <h3>${title || 'Titre non défini'}</h3>
         <div class="location">
           <img src="//idwomihieftgogbgivic.supabase.co/storage/v1/object/public/img/ph_map-pin.svg" class="w-4 h-4" />
@@ -220,7 +222,7 @@ const Mapbox: React.FC<MapboxProps> = ({
             }
             
             .custom-marker.base {
-               background-image: url('https://idwomihieftgogbgivic.supabase.co/storage/v1/object/public/img/Marker/cartes-et-drapeaux.webp');
+               background-image: url('https://idwomihieftgogbgivic.supabase.co/storage/v1/object/public/img/Marker/State=PinNew,%20ShowSalary=False.svg');
             }
             
             .custom-marker.liked {
@@ -342,20 +344,11 @@ const Mapbox: React.FC<MapboxProps> = ({
                z-index: -1;
             }
 
-            
-
-
-
-
-
             .mapboxgl-popup-close-button {
                display: none; 
             }
 
 
-
-
-            
             .location {
                display: flex;
                align-items: center;
@@ -404,9 +397,6 @@ const Mapbox: React.FC<MapboxProps> = ({
                font-weight: bold;
             }
             
-
-
-
             .company_logo {
                width: 100px!important;
                border-radius: 8px;

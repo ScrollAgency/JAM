@@ -20,6 +20,11 @@ const MapBoxMeta = {
             type: "eventHandler",
             argTypes: [{ name: "id", type: "string" }],
         },
+        showLogoInPopup: {
+            type: "boolean",
+            defaultValue: true,
+            description: "Affiche ou non le logo de l'entreprise dans la popup",
+        },
     },
     importPath: "./components/others/MapBox/MapBox",
 }
