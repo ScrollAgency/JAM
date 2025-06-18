@@ -3519,7 +3519,26 @@ function PlasmicParametresCandidat__RenderFunc(props: {
                             showAlerts={true}
                             showCancelButton={false}
                             showPasswordToggle={true}
-                            showSubmitButton={false}
+                            showSubmitButton={true}
+                            submitButtonIcon={
+                              <PlasmicImg__
+                                alt={""}
+                                className={classNames(sty.img___29Ueq)}
+                                displayHeight={"auto"}
+                                displayMaxHeight={"none"}
+                                displayMaxWidth={"100%"}
+                                displayMinHeight={"0"}
+                                displayMinWidth={"0"}
+                                displayWidth={"auto"}
+                                loading={"lazy"}
+                                src={{
+                                  src: "/plasmic/jam_production_🚀/images/image21.svg",
+                                  fullWidth: 34,
+                                  fullHeight: 33,
+                                  aspectRatio: undefined
+                                }}
+                              />
+                            }
                             submitButtonIconPosition={"left"}
                             submitButtonStyle={"primary"}
                             submitButtonText={"Réinitialiser"}

@@ -1621,6 +1621,13 @@
   max-width: 100%;
   object-fit: cover;
 }
+.img___29Ueq {
+  object-fit: cover;
+  max-width: 100%;
+}
+.img___29Ueq > picture > img {
+  object-fit: cover;
+}
 .button__z6Bk1:global(.__wab_instance):global(.__wab_instance) {
   position: relative;
   left: auto;
