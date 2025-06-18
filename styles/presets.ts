@@ -79,7 +79,7 @@ export const presets = {
       fontWeight: "bold",
       fontSize: "48px",
       lineHeight: "120%",
-      color: "black",
+      color: "#000000",
     },
     heading2: {
       fontFamily: "Improvise, sans-serif",

@@ -142,7 +142,7 @@ function SignUp_(
 
     buttonStyle = "primary",
     buttonAbordStyle = "tertiary",
-    submitButtonText = "S'inscrire",
+    submitButtonText = "INSCRIPTION",
     submitButtonIcon,
     submitButtonIconPosition = "right",
 
