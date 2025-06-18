@@ -401,23 +401,7 @@ function PlasmicResetPassword__RenderFunc(props: {
 
                   $steps["invokeGlobalAction"] = true
                     ? (() => {
-                        const actionArgs = {
-                          args: [
-                            (() => {
-                              try {
-                                return $state.resetPassword.confirmPassword;
-                              } catch (e) {
-                                if (
-                                  e instanceof TypeError ||
-                                  e?.plasmicType === "PlasmicUndefinedDataError"
-                                ) {
-                                  return undefined;
-                                }
-                                throw e;
-                              }
-                            })()
-                          ]
-                        };
+                        const actionArgs = { args: [] };
                         return $globalActions[
                           "SupabaseUserGlobalContext.updateUserPassword"
                         ]?.apply(null, [...actionArgs.args]);
