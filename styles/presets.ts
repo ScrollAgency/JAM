@@ -316,10 +316,10 @@ export const presets = {
   },
 
   formLabel: {
-    fontFamily: "Manrope, sans-serif",
-    fontSize: "16px",
-    fontWeight: "bold",
-    color: getTokenValue("grey-900"),
+    fontFamily: "DM Sans,sans-serif",
+    fontSize: "18px",
+    fontWeight: "500",
+    color: getTokenValue("black"),
     lineHeight: "24px",
     textAlign: "left",
     verticalAlign: "top",
