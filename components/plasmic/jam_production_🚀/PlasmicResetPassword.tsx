@@ -936,7 +936,7 @@ function PlasmicResetPassword__RenderFunc(props: {
                           args: [
                             (() => {
                               try {
-                                return $state.resetPassword.password;
+                                return $state.resetPassword.confirmPassword;
                               } catch (e) {
                                 if (
                                   e instanceof TypeError ||
@@ -962,31 +962,6 @@ function PlasmicResetPassword__RenderFunc(props: {
                     $steps["invokeGlobalAction"] = await $steps[
                       "invokeGlobalAction"
                     ];
-                  }
-
-                  $steps["goToConnexion"] = true
-                    ? (() => {
-                        const actionArgs = { destination: `/login` };
-                        return (({ destination }) => {
-                          if (
-                            typeof destination === "string" &&
-                            destination.startsWith("#")
-                          ) {
-                            document
-                              .getElementById(destination.substr(1))
-                              .scrollIntoView({ behavior: "smooth" });
-                          } else {
-                            __nextRouter?.push(destination);
-                          }
-                        })?.apply(null, [actionArgs]);
-                      })()
-                    : undefined;
-                  if (
-                    $steps["goToConnexion"] != null &&
-                    typeof $steps["goToConnexion"] === "object" &&
-                    typeof $steps["goToConnexion"].then === "function"
-                  ) {
-                    $steps["goToConnexion"] = await $steps["goToConnexion"];
                   }
                 }}
                 password={generateStateValueProp($state, [
