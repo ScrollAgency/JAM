@@ -1725,32 +1725,35 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                   onClick={async event => {
                     const $steps = {};
 
-                    $steps["updateCurrentJobObject"] = true
-                      ? (() => {
-                          const actionArgs = {
-                            variable: {
-                              objRoot: $state,
-                              variablePath: ["currentJobObject"]
-                            },
-                            operation: 0,
-                            value: {}
-                          };
-                          return (({
-                            variable,
-                            value,
-                            startIndex,
-                            deleteCount
-                          }) => {
-                            if (!variable) {
-                              return;
-                            }
-                            const { objRoot, variablePath } = variable;
+                    $steps["updateCurrentJobObject"] =
+                      Number(
+                        $queries.offreStripeUserInfos.data[0].recharge_classic
+                      ) > 0
+                        ? (() => {
+                            const actionArgs = {
+                              variable: {
+                                objRoot: $state,
+                                variablePath: ["currentJobObject"]
+                              },
+                              operation: 0,
+                              value: {}
+                            };
+                            return (({
+                              variable,
+                              value,
+                              startIndex,
+                              deleteCount
+                            }) => {
+                              if (!variable) {
+                                return;
+                              }
+                              const { objRoot, variablePath } = variable;
 
-                            $stateSet(objRoot, variablePath, value);
-                            return value;
-                          })?.apply(null, [actionArgs]);
-                        })()
-                      : undefined;
+                              $stateSet(objRoot, variablePath, value);
+                              return value;
+                            })?.apply(null, [actionArgs]);
+                          })()
+                        : undefined;
                     if (
                       $steps["updateCurrentJobObject"] != null &&
                       typeof $steps["updateCurrentJobObject"] === "object" &&
@@ -1762,32 +1765,35 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                       ];
                     }
 
-                    $steps["updateCreateOffreIsOpen"] = true
-                      ? (() => {
-                          const actionArgs = {
-                            variable: {
-                              objRoot: $state,
-                              variablePath: ["createJob", "isOpen"]
-                            },
-                            operation: 0,
-                            value: true
-                          };
-                          return (({
-                            variable,
-                            value,
-                            startIndex,
-                            deleteCount
-                          }) => {
-                            if (!variable) {
-                              return;
-                            }
-                            const { objRoot, variablePath } = variable;
+                    $steps["updateCreateOffreIsOpen"] =
+                      Number(
+                        $queries.offreStripeUserInfos.data[0].recharge_classic
+                      ) > 0
+                        ? (() => {
+                            const actionArgs = {
+                              variable: {
+                                objRoot: $state,
+                                variablePath: ["createJob", "isOpen"]
+                              },
+                              operation: 0,
+                              value: true
+                            };
+                            return (({
+                              variable,
+                              value,
+                              startIndex,
+                              deleteCount
+                            }) => {
+                              if (!variable) {
+                                return;
+                              }
+                              const { objRoot, variablePath } = variable;
 
-                            $stateSet(objRoot, variablePath, value);
-                            return value;
-                          })?.apply(null, [actionArgs]);
-                        })()
-                      : undefined;
+                              $stateSet(objRoot, variablePath, value);
+                              return value;
+                            })?.apply(null, [actionArgs]);
+                          })()
+                        : undefined;
                     if (
                       $steps["updateCreateOffreIsOpen"] != null &&
                       typeof $steps["updateCreateOffreIsOpen"] === "object" &&
@@ -1796,6 +1802,47 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                     ) {
                       $steps["updateCreateOffreIsOpen"] = await $steps[
                         "updateCreateOffreIsOpen"
+                      ];
+                    }
+
+                    $steps["openInsufficientChargeModal"] =
+                      Number(
+                        $queries.offreStripeUserInfos.data[0].recharge_classic
+                      ) == 0
+                        ? (() => {
+                            const actionArgs = {
+                              variable: {
+                                objRoot: $state,
+                                variablePath: ["insufficientCharges", "isOpen"]
+                              },
+                              operation: 0,
+                              value: true
+                            };
+                            return (({
+                              variable,
+                              value,
+                              startIndex,
+                              deleteCount
+                            }) => {
+                              if (!variable) {
+                                return;
+                              }
+                              const { objRoot, variablePath } = variable;
+
+                              $stateSet(objRoot, variablePath, value);
+                              return value;
+                            })?.apply(null, [actionArgs]);
+                          })()
+                        : undefined;
+                    if (
+                      $steps["openInsufficientChargeModal"] != null &&
+                      typeof $steps["openInsufficientChargeModal"] ===
+                        "object" &&
+                      typeof $steps["openInsufficientChargeModal"].then ===
+                        "function"
+                    ) {
+                      $steps["openInsufficientChargeModal"] = await $steps[
+                        "openInsufficientChargeModal"
                       ];
                     }
                   }}

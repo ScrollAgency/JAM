@@ -6088,41 +6088,6 @@
 .rechercheJob .dislike:hover {
   color: var(--token-z7lbSBcm72mI);
 }
-.jobCard___9Gniz:global(.__wab_instance) {
-  max-width: 100%;
-  object-fit: cover;
-  box-shadow: none;
-  flex-grow: 0;
-  flex-shrink: 0;
-  width: 100%;
-  border-top-width: 0px;
-  border-right-width: 0px;
-  border-bottom-width: 1px;
-  border-left-width: 0px;
-  border-bottom-style: solid;
-  font-size: 15px;
-  height: 100%;
-  overflow-x: auto;
-  overflow-y: auto;
-  cursor: pointer;
-  transform: none;
-  font-weight: 500;
-  font-family: "DM Sans", sans-serif;
-  min-width: 0;
-  min-height: 0;
-  display: none;
-  border-radius: 0px;
-  padding: 10px;
-}
-@media (min-width: 0px) and (max-width: 768px) {
-  .jobCard___9Gniz:global(.__wab_instance) {
-    align-items: center;
-    justify-content: flex-start;
-    max-width: none;
-    width: 100%;
-    min-width: 0;
-  }
-}
 .jobCard20:global(.__wab_instance) {
   max-width: 100%;
 }
@@ -6609,7 +6574,7 @@
 .rechercheJob .dislike2:hover {
   color: var(--token-z7lbSBcm72mI);
 }
-.jobCard__cwhV0:global(.__wab_instance) {
+.jobCard:global(.__wab_instance) {
   max-width: 100%;
   object-fit: cover;
   box-shadow: none;
@@ -6636,7 +6601,7 @@
   padding: 10px;
 }
 @media (min-width: 0px) and (max-width: 768px) {
-  .jobCard__cwhV0:global(.__wab_instance) {
+  .jobCard:global(.__wab_instance) {
     align-items: center;
     justify-content: flex-start;
     max-width: none;

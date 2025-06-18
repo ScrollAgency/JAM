@@ -515,12 +515,20 @@ function PlasmicRechercheCandidat__RenderFunc(props: {
                               const city = $state.filterForm.value.city?.trim();
                               const keyWords =
                                 $state.filterForm.value.keyWords?.trim();
-                              if (city && !$state.cityTab.includes(city)) {
+                              if (
+                                city &&
+                                !$state.cityTab.some(
+                                  c => c.toLowerCase() === city.toLowerCase()
+                                )
+                              ) {
                                 $state.cityTab.push(city);
                               }
                               if (
                                 keyWords &&
-                                !$state.keyWordsTab.includes(keyWords)
+                                !$state.keyWordsTab.some(
+                                  k =>
+                                    k.toLowerCase() === keyWords.toLowerCase()
+                                )
                               ) {
                                 return $state.keyWordsTab.push(keyWords);
                               }

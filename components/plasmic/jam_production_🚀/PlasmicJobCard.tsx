@@ -619,11 +619,36 @@ function PlasmicJobCard__RenderFunc(props: {
                   }
                 }}
               >
-                <Vector25Icon
-                  className={classNames(projectcss.all, sty.svg__apJYv)}
-                  role={"img"}
-                />
-
+                {(() => {
+                  try {
+                    return (() => {
+                      if (
+                        $props.stripe.data[0].product_id ==
+                          "prod_S81L3WBaA1HwM0" &&
+                        $props.stripe.data[0].recharge_boost > 0
+                      ) {
+                        return false;
+                      } else if ($props.stripe.data[0].recharge_boost == 0) {
+                        return true;
+                      } else {
+                        return false;
+                      }
+                    })();
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return true;
+                    }
+                    throw e;
+                  }
+                })() ? (
+                  <Vector25Icon
+                    className={classNames(projectcss.all, sty.svg__apJYv)}
+                    role={"img"}
+                  />
+                ) : null}
                 {(() => {
                   try {
                     return $state.isBoosted;
@@ -644,7 +669,19 @@ function PlasmicJobCard__RenderFunc(props: {
                 ) : null}
                 {(() => {
                   try {
-                    return !$state.isBoosted;
+                    return (() => {
+                      if (
+                        $props.stripe.data[0].product_id ==
+                          "prod_S81L3WBaA1HwM0" &&
+                        $props.stripe.data[0].recharge_boost > 0
+                      ) {
+                        return true;
+                      } else if ($props.stripe.data[0].recharge_boost == 0) {
+                        return false;
+                      } else {
+                        return true;
+                      }
+                    })();
                   } catch (e) {
                     if (
                       e instanceof TypeError ||

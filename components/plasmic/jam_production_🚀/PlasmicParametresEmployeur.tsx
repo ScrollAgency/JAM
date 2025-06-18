@@ -1155,7 +1155,7 @@ function PlasmicParametresEmployeur__RenderFunc(props: {
                             "confirmPassword"
                           ])}
                           confirmPasswordLabel={
-                            "R\u00e9p\u00e9tez le nouveau mot de passe"
+                            "R\u00e9p\u00e9tez le nouveau mot de passe*"
                           }
                           confirmPasswordPlaceholder={
                             "Confirmez votre mot de passe"
@@ -1222,7 +1222,7 @@ function PlasmicParametresEmployeur__RenderFunc(props: {
                             "resetPassword",
                             "password"
                           ])}
-                          passwordLabel={"Modifier mot de passe"}
+                          passwordLabel={"Modifier mot de passe*"}
                           passwordPlaceholder={
                             "Entrez votre nouveau mot de passe"
                           }

@@ -486,10 +486,8 @@
   padding: 32px 0px;
 }
 .button__keiMx:global(.__wab_instance):global(.__wab_instance) {
-  max-width: 80%;
-  width: 100%;
+  width: auto;
   height: 100%;
-  min-width: 0;
   min-height: 0;
 }
 .svg__feXws {

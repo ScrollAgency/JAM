@@ -98,6 +98,7 @@ export type PlasmicInscriptionEmployeur__OverridesType = {
   formWrapper2?: Flex__<"div">;
   signupLoading2?: Flex__<"div">;
   signUp4?: Flex__<typeof SignUp>;
+  img?: Flex__<typeof PlasmicImg__>;
   signupSuccess2?: Flex__<"div">;
 };
 
@@ -571,8 +572,29 @@ function PlasmicInscriptionEmployeur__RenderFunc(props: {
                     showOAuthButtons={false}
                     showPasswordToggle={true}
                     showPhoneInput={true}
+                    submitButtonIcon={
+                      <PlasmicImg__
+                        data-plasmic-name={"img"}
+                        data-plasmic-override={overrides.img}
+                        alt={""}
+                        className={classNames(sty.img)}
+                        displayHeight={"auto"}
+                        displayMaxHeight={"none"}
+                        displayMaxWidth={"100%"}
+                        displayMinHeight={"0"}
+                        displayMinWidth={"0"}
+                        displayWidth={"auto"}
+                        loading={"lazy"}
+                        src={{
+                          src: "/plasmic/jam_production_🚀/images/image20.svg",
+                          fullWidth: 34,
+                          fullHeight: 33,
+                          aspectRatio: undefined
+                        }}
+                      />
+                    }
                     submitButtonIconPosition={"right"}
-                    submitButtonText={"S'inscrire"}
+                    submitButtonText={"INSCRIPTION"}
                     title={"Bienvenue !"}
                     titleHeading={"h1"}
                     wrapperStyle={"card"}
@@ -660,6 +682,7 @@ const PlasmicDescendants = {
     "formWrapper2",
     "signupLoading2",
     "signUp4",
+    "img",
     "signupSuccess2"
   ],
   signUp2: [
@@ -673,6 +696,7 @@ const PlasmicDescendants = {
     "formWrapper2",
     "signupLoading2",
     "signUp4",
+    "img",
     "signupSuccess2"
   ],
   imageWrapper2: [
@@ -688,9 +712,16 @@ const PlasmicDescendants = {
   frame4: ["frame4"],
   frame5: ["frame5"],
   frame6: ["frame6"],
-  formWrapper2: ["formWrapper2", "signupLoading2", "signUp4", "signupSuccess2"],
-  signupLoading2: ["signupLoading2", "signUp4"],
-  signUp4: ["signUp4"],
+  formWrapper2: [
+    "formWrapper2",
+    "signupLoading2",
+    "signUp4",
+    "img",
+    "signupSuccess2"
+  ],
+  signupLoading2: ["signupLoading2", "signUp4", "img"],
+  signUp4: ["signUp4", "img"],
+  img: ["img"],
   signupSuccess2: ["signupSuccess2"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
@@ -708,6 +739,7 @@ type NodeDefaultElementType = {
   formWrapper2: "div";
   signupLoading2: "div";
   signUp4: typeof SignUp;
+  img: typeof PlasmicImg__;
   signupSuccess2: "div";
 };
 
@@ -781,6 +813,7 @@ export const PlasmicInscriptionEmployeur = Object.assign(
     formWrapper2: makeNodeComponent("formWrapper2"),
     signupLoading2: makeNodeComponent("signupLoading2"),
     signUp4: makeNodeComponent("signUp4"),
+    img: makeNodeComponent("img"),
     signupSuccess2: makeNodeComponent("signupSuccess2"),
 
     // Metadata about props expected for PlasmicInscriptionEmployeur

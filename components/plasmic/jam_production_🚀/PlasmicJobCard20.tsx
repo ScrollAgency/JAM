@@ -111,6 +111,7 @@ export type PlasmicJobCard20__ArgsType = {
   isApplied?: boolean;
   onIsAppliedChange?: (val: string) => void;
   onClick?: (event: any) => void;
+  showCompanyLogo?: boolean;
 };
 type ArgPropType = keyof PlasmicJobCard20__ArgsType;
 export const PlasmicJobCard20__ArgProps = new Array<ArgPropType>(
@@ -140,7 +141,8 @@ export const PlasmicJobCard20__ArgProps = new Array<ArgPropType>(
   "onIsNewChange",
   "isApplied",
   "onIsAppliedChange",
-  "onClick"
+  "onClick",
+  "showCompanyLogo"
 );
 
 export type PlasmicJobCard20__OverridesType = {
@@ -190,6 +192,7 @@ export interface DefaultJobCard20Props {
   isApplied?: boolean;
   onIsAppliedChange?: (val: string) => void;
   onClick?: (event: any) => void;
+  showCompanyLogo?: boolean;
   className?: string;
 }
 
@@ -213,7 +216,9 @@ function PlasmicJobCard20__RenderFunc(props: {
   const args = React.useMemo(
     () =>
       Object.assign(
-        {},
+        {
+          showCompanyLogo: true
+        },
         Object.fromEntries(
           Object.entries(props.args).filter(([_, v]) => v !== undefined)
         )
@@ -484,26 +489,40 @@ function PlasmicJobCard20__RenderFunc(props: {
           hasGap={true}
           className={classNames(projectcss.all, sty.frame3)}
         >
-          <div
-            data-plasmic-name={"freeBox"}
-            data-plasmic-override={overrides.freeBox}
-            className={classNames(projectcss.all, sty.freeBox)}
-          >
-            <PlasmicImg__
-              alt={""}
-              className={classNames(sty.img__gTbPg)}
-              displayHeight={"auto"}
-              displayMaxHeight={"55px"}
-              displayMaxWidth={"100%"}
-              displayMinHeight={"0"}
-              displayMinWidth={"0"}
-              displayWidth={"auto"}
-              height={``}
-              loading={"lazy"}
-              src={$state.companyLogo}
-              width={``}
-            />
-          </div>
+          {(() => {
+            try {
+              return $props.showCompanyLogo;
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return true;
+              }
+              throw e;
+            }
+          })() ? (
+            <div
+              data-plasmic-name={"freeBox"}
+              data-plasmic-override={overrides.freeBox}
+              className={classNames(projectcss.all, sty.freeBox)}
+            >
+              <PlasmicImg__
+                alt={""}
+                className={classNames(sty.img__gTbPg)}
+                displayHeight={"auto"}
+                displayMaxHeight={"55px"}
+                displayMaxWidth={"100%"}
+                displayMinHeight={"0"}
+                displayMinWidth={"0"}
+                displayWidth={"auto"}
+                height={``}
+                loading={"lazy"}
+                src={$state.companyLogo}
+                width={``}
+              />
+            </div>
+          ) : null}
           <Stack__
             as={"div"}
             data-plasmic-name={"frame4"}

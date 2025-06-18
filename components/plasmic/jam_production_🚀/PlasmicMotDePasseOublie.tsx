@@ -104,6 +104,7 @@ export type PlasmicMotDePasseOublie__OverridesType = {
   frame3?: Flex__<"div">;
   freeBox?: Flex__<"div">;
   forgotPassword?: Flex__<typeof ForgotPassword>;
+  img?: Flex__<typeof PlasmicImg__>;
 };
 
 export interface DefaultMotDePasseOublieProps {}
@@ -419,9 +420,30 @@ function PlasmicMotDePasseOublie__RenderFunc(props: {
                   }
                 }}
                 placeholderEmail={"Entrez votre email"}
-                submitButtonIconPosition={"left"}
+                submitButtonIcon={
+                  <PlasmicImg__
+                    data-plasmic-name={"img"}
+                    data-plasmic-override={overrides.img}
+                    alt={""}
+                    className={classNames(sty.img)}
+                    displayHeight={"auto"}
+                    displayMaxHeight={"none"}
+                    displayMaxWidth={"100%"}
+                    displayMinHeight={"0"}
+                    displayMinWidth={"0"}
+                    displayWidth={"auto"}
+                    loading={"lazy"}
+                    src={{
+                      src: "/plasmic/jam_production_🚀/images/image21.svg",
+                      fullWidth: 34,
+                      fullHeight: 33,
+                      aspectRatio: undefined
+                    }}
+                  />
+                }
+                submitButtonIconPosition={"right"}
                 submitButtonStyle={"primary"}
-                submitButtonText={"Réinitialiser"}
+                submitButtonText={"R\u00c9INITIALISER"}
                 title={"Mot de passe oublié ?"}
                 titleHeading={"h1"}
                 wrapperStyle={"card"}
@@ -446,7 +468,8 @@ const PlasmicDescendants = {
     "frame2",
     "frame3",
     "freeBox",
-    "forgotPassword"
+    "forgotPassword",
+    "img"
   ],
   passwordForgotten: [
     "passwordForgotten",
@@ -458,7 +481,8 @@ const PlasmicDescendants = {
     "frame2",
     "frame3",
     "freeBox",
-    "forgotPassword"
+    "forgotPassword",
+    "img"
   ],
   imageWrapper: [
     "imageWrapper",
@@ -475,8 +499,9 @@ const PlasmicDescendants = {
   frame: ["frame"],
   frame2: ["frame2"],
   frame3: ["frame3"],
-  freeBox: ["freeBox", "forgotPassword"],
-  forgotPassword: ["forgotPassword"]
+  freeBox: ["freeBox", "forgotPassword", "img"],
+  forgotPassword: ["forgotPassword", "img"],
+  img: ["img"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -493,6 +518,7 @@ type NodeDefaultElementType = {
   frame3: "div";
   freeBox: "div";
   forgotPassword: typeof ForgotPassword;
+  img: typeof PlasmicImg__;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -565,6 +591,7 @@ export const PlasmicMotDePasseOublie = Object.assign(
     frame3: makeNodeComponent("frame3"),
     freeBox: makeNodeComponent("freeBox"),
     forgotPassword: makeNodeComponent("forgotPassword"),
+    img: makeNodeComponent("img"),
 
     // Metadata about props expected for PlasmicMotDePasseOublie
     internalVariantProps: PlasmicMotDePasseOublie__VariantProps,

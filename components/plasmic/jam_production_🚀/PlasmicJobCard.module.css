@@ -217,8 +217,8 @@
   color: #c8c8c8;
   width: 14px;
   height: 19px;
+  display: block;
   flex-shrink: 0;
-  display: none;
 }
 .svg__rnBn {
   object-fit: cover;

@@ -23,6 +23,7 @@
   .connexion {
     justify-items: center;
     align-content: center;
+    overflow: auto;
   }
 }
 @media (min-width: 0px) and (max-width: 768px) {

@@ -21,7 +21,7 @@
 .mobileNavbarTop:global(.__wab_instance) {
   left: 0;
   top: 0;
-  z-index: 1;
+  z-index: 10;
   position: fixed;
   width: 100%;
   right: 0;
@@ -318,9 +318,10 @@
     left: auto;
     top: auto;
     position: relative;
-    height: auto;
+    height: 100%;
     width: 100%;
     min-width: 0;
+    min-height: 0;
     display: flex;
     padding: 32px;
   }
@@ -330,6 +331,7 @@
     align-items: center;
     justify-content: center;
     min-width: 0;
+    min-height: 0;
   }
 }
 .featuredIcon2 {
@@ -444,7 +446,7 @@
   max-width: 100%;
   left: 0;
   top: auto;
-  z-index: 1;
+  z-index: 10;
   position: fixed;
   right: 0;
   bottom: 0;
@@ -510,6 +512,17 @@
   > picture
   > img {
   margin-top: 16px;
+}
+@media (min-width: 0px) and (max-width: 768px) {
+  .freeBox__rXpJf {
+    width: 100%;
+    min-width: 0;
+  }
+}
+@media (min-width: 0px) and (max-width: 768px) {
+  .freeBox__rXpJf > :global(.__wab_flex-container) {
+    min-width: 0;
+  }
 }
 .jobDetail {
   height: auto;
@@ -680,6 +693,40 @@
   > picture
   > img {
   margin-left: 10px;
+}
+@media (min-width: 0px) and (max-width: 768px) {
+  .frame46 {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    min-width: 0;
+    min-height: 0;
+  }
+}
+@media (min-width: 0px) and (max-width: 768px) {
+  .frame46 > :global(.__wab_flex-container) {
+    flex-direction: column;
+    min-width: 0;
+    min-height: 0;
+    margin-left: calc(0px - 0px);
+    width: calc(100% + 0px);
+    margin-top: calc(0px - 10px);
+    height: calc(100% + 10px);
+  }
+}
+@media (min-width: 0px) and (max-width: 768px) {
+  .frame46 > :global(.__wab_flex-container) > *,
+  .frame46 > :global(.__wab_flex-container) > :global(.__wab_slot) > *,
+  .frame46 > :global(.__wab_flex-container) > picture > img,
+  .frame46
+    > :global(.__wab_flex-container)
+    > :global(.__wab_slot)
+    > picture
+    > img {
+    margin-left: 0px;
+    margin-top: 10px;
+  }
 }
 .frame47 {
   width: auto;
@@ -891,6 +938,12 @@
 }
 .button___2QlzG:global(.__wab_instance):global(.__wab_instance) {
   max-width: 100%;
+}
+@media (min-width: 0px) and (max-width: 768px) {
+  .button___2QlzG:global(.__wab_instance):global(.__wab_instance) {
+    width: 100%;
+    min-width: 0;
+  }
 }
 .svg__iHvra {
   position: relative;
@@ -1490,6 +1543,12 @@
   height: auto;
   overflow: visible;
   padding: 20px;
+}
+@media (min-width: 0px) and (max-width: 768px) {
+  .freeBox__r2706 {
+    width: 100%;
+    min-width: 0;
+  }
 }
 .header2 {
   background: none;
@@ -2861,6 +2920,34 @@
   > picture
   > img {
   margin-left: 32px;
+}
+@media (min-width: 0px) and (max-width: 768px) {
+  .freeBox__zt1XJ {
+    display: flex;
+    flex-direction: column;
+  }
+}
+@media (min-width: 0px) and (max-width: 768px) {
+  .freeBox__zt1XJ > :global(.__wab_flex-container) {
+    flex-direction: column;
+    margin-left: calc(0px - 0px);
+    width: calc(100% + 0px);
+    margin-top: calc(0px - 32px);
+    height: calc(100% + 32px);
+  }
+}
+@media (min-width: 0px) and (max-width: 768px) {
+  .freeBox__zt1XJ > :global(.__wab_flex-container) > *,
+  .freeBox__zt1XJ > :global(.__wab_flex-container) > :global(.__wab_slot) > *,
+  .freeBox__zt1XJ > :global(.__wab_flex-container) > picture > img,
+  .freeBox__zt1XJ
+    > :global(.__wab_flex-container)
+    > :global(.__wab_slot)
+    > picture
+    > img {
+    margin-left: 0px;
+    margin-top: 32px;
+  }
 }
 .frame14 {
   display: flex;
