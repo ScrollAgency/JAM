@@ -65,11 +65,6 @@ import {
   usePlasmicInvalidate
 } from "@plasmicapp/react-web/lib/data-sources";
 
-import { FormWrapper } from "@plasmicpkgs/antd5/skinny/Form";
-import { formHelpers as FormWrapper_Helpers } from "@plasmicpkgs/antd5/skinny/Form";
-import { FormItemWrapper } from "@plasmicpkgs/antd5/skinny/FormItem";
-import { TextInput } from "../../forms/TextInput/TextInput"; // plasmic-import: vyWUomJMQins/codeComponent
-import { JamButton } from "../../forms/JamButton/JamButton"; // plasmic-import: UiI0wt2mxfuf/codeComponent
 import { ResetPassword } from "../../auth/ResetPassword"; // plasmic-import: Ju3qM8OwHoNT/codeComponent
 import { Fetcher } from "@plasmicapp/react-web/lib/data-sources";
 
@@ -109,24 +104,6 @@ export type PlasmicResetPassword__OverridesType = {
   formWrapper?: Flex__<"div">;
   title?: Flex__<"div">;
   heading?: Flex__<"div">;
-  form2?: Flex__<typeof FormWrapper>;
-  inputWrapper?: Flex__<"div">;
-  textInput7?: Flex__<typeof TextInput>;
-  progressBar?: Flex__<"div">;
-  signedByBaseProgressBarSteppedMediumLabelNone?: Flex__<"div">;
-  progress?: Flex__<"div">;
-  inProgress?: Flex__<"div">;
-  base?: Flex__<"div">;
-  base2?: Flex__<"div">;
-  base3?: Flex__<"div">;
-  base4?: Flex__<"div">;
-  base5?: Flex__<"div">;
-  base6?: Flex__<"div">;
-  text?: Flex__<"div">;
-  inputWrapper2?: Flex__<"div">;
-  textInput6?: Flex__<typeof TextInput>;
-  text5?: Flex__<"div">;
-  jamButton?: Flex__<typeof JamButton>;
   resetPassword?: Flex__<typeof ResetPassword>;
   img?: Flex__<typeof PlasmicImg__>;
 };
@@ -179,24 +156,6 @@ function PlasmicResetPassword__RenderFunc(props: {
   >({});
   const stateSpecs: Parameters<typeof useDollarState>[0] = React.useMemo(
     () => [
-      {
-        path: "form2.value",
-        type: "private",
-        variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
-
-        refName: "form2",
-        onMutate: generateOnMutateForSpec("value", FormWrapper_Helpers)
-      },
-      {
-        path: "form2.isSubmitting",
-        type: "private",
-        variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => false,
-
-        refName: "form2",
-        onMutate: generateOnMutateForSpec("isSubmitting", FormWrapper_Helpers)
-      },
       {
         path: "mdp1",
         type: "private",
@@ -278,11 +237,11 @@ function PlasmicResetPassword__RenderFunc(props: {
     newPassword: usePlasmicDataOp(() => {
       return {
         sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
-        opId: "ffd3590c-ad8a-407d-af5b-5f686175e4a9",
+        opId: "d3c80f5b-0c6e-4291-a103-4cc1969fc562",
         userArgs: {
           query: [$state.mdp1, $state.variable]
         },
-        cacheKey: `plasmic.$.ffd3590c-ad8a-407d-af5b-5f686175e4a9.$.`,
+        cacheKey: `plasmic.$.d3c80f5b-0c6e-4291-a103-4cc1969fc562.$.`,
         invalidatedKeys: null,
         roleId: null
       };
@@ -475,430 +434,6 @@ function PlasmicResetPassword__RenderFunc(props: {
                   {"R\u00e9initialiser le mot de passe"}
                 </div>
               </div>
-              {(() => {
-                const child$Props = {
-                  className: classNames("__wab_instance", sty.form2),
-                  extendedOnValuesChange: async (...eventArgs: any) => {
-                    generateStateOnChangePropForCodeComponents(
-                      $state,
-                      "value",
-                      ["form2", "value"],
-                      FormWrapper_Helpers
-                    ).apply(null, eventArgs);
-
-                    (async (changedValues, allValues) => {
-                      const $steps = {};
-
-                      $steps["invokeGlobalAction"] = true
-                        ? (() => {
-                            const actionArgs = {
-                              args: [
-                                (() => {
-                                  try {
-                                    return undefined;
-                                  } catch (e) {
-                                    if (
-                                      e instanceof TypeError ||
-                                      e?.plasmicType ===
-                                        "PlasmicUndefinedDataError"
-                                    ) {
-                                      return undefined;
-                                    }
-                                    throw e;
-                                  }
-                                })()
-                              ]
-                            };
-                            return $globalActions[
-                              "SupabaseUserGlobalContext.updateUserPassword"
-                            ]?.apply(null, [...actionArgs.args]);
-                          })()
-                        : undefined;
-                      if (
-                        $steps["invokeGlobalAction"] != null &&
-                        typeof $steps["invokeGlobalAction"] === "object" &&
-                        typeof $steps["invokeGlobalAction"].then === "function"
-                      ) {
-                        $steps["invokeGlobalAction"] = await $steps[
-                          "invokeGlobalAction"
-                        ];
-                      }
-                    }).apply(null, eventArgs);
-                  },
-                  formItems: [
-                    { label: "Name", name: "name", inputType: "Text" },
-                    {
-                      label: "Message",
-                      name: "message",
-                      inputType: "Text Area"
-                    }
-                  ],
-                  labelCol: { span: 8, horizontalOnly: true },
-                  layout: "vertical",
-                  mode: "advanced",
-                  onFinish: async values => {
-                    const $steps = {};
-
-                    $steps["invokeGlobalAction"] = true
-                      ? (() => {
-                          const actionArgs = {
-                            args: [
-                              (() => {
-                                try {
-                                  return $state.mdp2;
-                                } catch (e) {
-                                  if (
-                                    e instanceof TypeError ||
-                                    e?.plasmicType ===
-                                      "PlasmicUndefinedDataError"
-                                  ) {
-                                    return undefined;
-                                  }
-                                  throw e;
-                                }
-                              })()
-                            ]
-                          };
-                          return $globalActions[
-                            "SupabaseUserGlobalContext.updateUserPassword"
-                          ]?.apply(null, [...actionArgs.args]);
-                        })()
-                      : undefined;
-                    if (
-                      $steps["invokeGlobalAction"] != null &&
-                      typeof $steps["invokeGlobalAction"] === "object" &&
-                      typeof $steps["invokeGlobalAction"].then === "function"
-                    ) {
-                      $steps["invokeGlobalAction"] = await $steps[
-                        "invokeGlobalAction"
-                      ];
-                    }
-                  },
-                  onIsSubmittingChange: async (...eventArgs: any) => {
-                    generateStateOnChangePropForCodeComponents(
-                      $state,
-                      "isSubmitting",
-                      ["form2", "isSubmitting"],
-                      FormWrapper_Helpers
-                    ).apply(null, eventArgs);
-                  },
-                  ref: ref => {
-                    $refs["form2"] = ref;
-                  },
-                  submitSlot: null,
-                  wrapperCol: { span: 16, horizontalOnly: true }
-                };
-                initializeCodeComponentStates(
-                  $state,
-                  [
-                    {
-                      name: "value",
-                      plasmicStateName: "form2.value"
-                    },
-                    {
-                      name: "isSubmitting",
-                      plasmicStateName: "form2.isSubmitting"
-                    }
-                  ],
-                  [],
-                  FormWrapper_Helpers ?? {},
-                  child$Props
-                );
-
-                return (
-                  <FormWrapper
-                    data-plasmic-name={"form2"}
-                    data-plasmic-override={overrides.form2}
-                    {...child$Props}
-                  >
-                    <FormItemWrapper
-                      className={classNames(
-                        "__wab_instance",
-                        sty.formField__xwr3E
-                      )}
-                      label={null}
-                      name={"mdp1"}
-                      noLabel={true}
-                      rules={[
-                        {
-                          ruleType: "advanced",
-                          message: (() => {
-                            try {
-                              return "Une erreur est survenue lors du changement de votre adresse e-mail. Veuillez réessayer plus tard ou contacter le support.";
-                            } catch (e) {
-                              if (
-                                e instanceof TypeError ||
-                                e?.plasmicType === "PlasmicUndefinedDataError"
-                              ) {
-                                return undefined;
-                              }
-                              throw e;
-                            }
-                          })(),
-                          custom: (rule, value) => {
-                            return (
-                              $state.mdp1 === $state.mdp2 &&
-                              $state.mdp1 !== "" &&
-                              $state.mdp2 !== ""
-                            );
-                          }
-                        },
-
-                        {
-                          ruleType: "required",
-                          message:
-                            '"Une erreur est survenue lors du changement de votre adresse e-mail. Veuillez r\u00e9essayer plus tard ou contacter le support."'
-                        }
-                      ]}
-                    >
-                      <Stack__
-                        as={"div"}
-                        data-plasmic-name={"inputWrapper"}
-                        data-plasmic-override={overrides.inputWrapper}
-                        hasGap={true}
-                        className={classNames(projectcss.all, sty.inputWrapper)}
-                      >
-                        <TextInput
-                          data-plasmic-name={"textInput7"}
-                          data-plasmic-override={overrides.textInput7}
-                          className={classNames(
-                            "__wab_instance",
-                            sty.textInput7
-                          )}
-                          isMulti={false}
-                          label={"Nouveau mot de passe*"}
-                          placeholder={"*********"}
-                          showIcon={false}
-                          showLabel={true}
-                          state={"default"}
-                          text={""}
-                          type={"password"}
-                        />
-                      </Stack__>
-                    </FormItemWrapper>
-                    <Stack__
-                      as={"div"}
-                      data-plasmic-name={"progressBar"}
-                      data-plasmic-override={overrides.progressBar}
-                      hasGap={true}
-                      className={classNames(projectcss.all, sty.progressBar)}
-                    >
-                      {false ? (
-                        <div
-                          data-plasmic-name={
-                            "signedByBaseProgressBarSteppedMediumLabelNone"
-                          }
-                          data-plasmic-override={
-                            overrides.signedByBaseProgressBarSteppedMediumLabelNone
-                          }
-                          className={classNames(
-                            projectcss.all,
-                            sty.signedByBaseProgressBarSteppedMediumLabelNone
-                          )}
-                        />
-                      ) : null}
-                      {false ? (
-                        <div
-                          data-plasmic-name={"progress"}
-                          data-plasmic-override={overrides.progress}
-                          className={classNames(projectcss.all, sty.progress)}
-                        />
-                      ) : null}
-                      {false ? (
-                        <div
-                          data-plasmic-name={"inProgress"}
-                          data-plasmic-override={overrides.inProgress}
-                          className={classNames(projectcss.all, sty.inProgress)}
-                        />
-                      ) : null}
-                      <div
-                        data-plasmic-name={"base"}
-                        data-plasmic-override={overrides.base}
-                        className={classNames(projectcss.all, sty.base)}
-                      />
-
-                      <div
-                        data-plasmic-name={"base2"}
-                        data-plasmic-override={overrides.base2}
-                        className={classNames(projectcss.all, sty.base2)}
-                      />
-
-                      <div
-                        data-plasmic-name={"base3"}
-                        data-plasmic-override={overrides.base3}
-                        className={classNames(projectcss.all, sty.base3)}
-                      />
-
-                      <div
-                        data-plasmic-name={"base4"}
-                        data-plasmic-override={overrides.base4}
-                        className={classNames(projectcss.all, sty.base4)}
-                      />
-
-                      {false ? (
-                        <div
-                          data-plasmic-name={"base5"}
-                          data-plasmic-override={overrides.base5}
-                          className={classNames(projectcss.all, sty.base5)}
-                        />
-                      ) : null}
-                      {false ? (
-                        <div
-                          data-plasmic-name={"base6"}
-                          data-plasmic-override={overrides.base6}
-                          className={classNames(projectcss.all, sty.base6)}
-                        />
-                      ) : null}
-                    </Stack__>
-                    <div
-                      data-plasmic-name={"text"}
-                      data-plasmic-override={overrides.text}
-                      className={classNames(
-                        projectcss.all,
-                        projectcss.__wab_text,
-                        sty.text
-                      )}
-                    >
-                      {
-                        "Utilisez 8 caract\u00e8res ou plus en m\u00e9langeant lettres, chiffres et symboles."
-                      }
-                    </div>
-                    <FormItemWrapper
-                      className={classNames(
-                        "__wab_instance",
-                        sty.formField__o0Nd
-                      )}
-                      label={null}
-                      name={"mdp2"}
-                      noLabel={true}
-                    >
-                      <Stack__
-                        as={"div"}
-                        data-plasmic-name={"inputWrapper2"}
-                        data-plasmic-override={overrides.inputWrapper2}
-                        hasGap={true}
-                        className={classNames(
-                          projectcss.all,
-                          sty.inputWrapper2
-                        )}
-                      >
-                        <TextInput
-                          data-plasmic-name={"textInput6"}
-                          data-plasmic-override={overrides.textInput6}
-                          className={classNames(
-                            "__wab_instance",
-                            sty.textInput6
-                          )}
-                          isMulti={false}
-                          label={"Confirmez le mot de passe*"}
-                          placeholder={"*********"}
-                          showIcon={false}
-                          showLabel={true}
-                          state={"default"}
-                          text={""}
-                          type={"password"}
-                        />
-
-                        <div
-                          data-plasmic-name={"text5"}
-                          data-plasmic-override={overrides.text5}
-                          className={classNames(
-                            projectcss.all,
-                            projectcss.__wab_text,
-                            sty.text5
-                          )}
-                        >
-                          {""}
-                        </div>
-                      </Stack__>
-                    </FormItemWrapper>
-                    <FormItemWrapper
-                      className={classNames(
-                        "__wab_instance",
-                        sty.formField__pbCs
-                      )}
-                      label={null}
-                      name={"message"}
-                      noLabel={true}
-                    >
-                      <JamButton
-                        data-plasmic-name={"jamButton"}
-                        data-plasmic-override={overrides.jamButton}
-                        className={classNames("__wab_instance", sty.jamButton)}
-                        icon={"end"}
-                        iconImage={
-                          "/plasmic/jam_production_🚀/images/image11.svg"
-                        }
-                        label={"ENREGISTRER"}
-                        onClick={async () => {
-                          const $steps = {};
-
-                          $steps["runCode"] = true
-                            ? (() => {
-                                const actionArgs = {
-                                  customFunction: async () => {
-                                    return ($state.form2.isSubmitting = true);
-                                  }
-                                };
-                                return (({ customFunction }) => {
-                                  return customFunction();
-                                })?.apply(null, [actionArgs]);
-                              })()
-                            : undefined;
-                          if (
-                            $steps["runCode"] != null &&
-                            typeof $steps["runCode"] === "object" &&
-                            typeof $steps["runCode"].then === "function"
-                          ) {
-                            $steps["runCode"] = await $steps["runCode"];
-                          }
-                        }}
-                      />
-                    </FormItemWrapper>
-                    <div
-                      className={classNames(
-                        projectcss.all,
-                        projectcss.__wab_text,
-                        sty.text__rxNho
-                      )}
-                      onClick={async event => {
-                        const $steps = {};
-
-                        $steps["runCode"] = true
-                          ? (() => {
-                              const actionArgs = {
-                                customFunction: async () => {
-                                  return (window.location = "/login");
-                                }
-                              };
-                              return (({ customFunction }) => {
-                                return customFunction();
-                              })?.apply(null, [actionArgs]);
-                            })()
-                          : undefined;
-                        if (
-                          $steps["runCode"] != null &&
-                          typeof $steps["runCode"] === "object" &&
-                          typeof $steps["runCode"].then === "function"
-                        ) {
-                          $steps["runCode"] = await $steps["runCode"];
-                        }
-                      }}
-                    >
-                      <React.Fragment>
-                        <span
-                          className={
-                            "plasmic_default__all plasmic_default__span"
-                          }
-                          style={{ fontWeight: 700 }}
-                        >
-                          {"Retour"}
-                        </span>
-                      </React.Fragment>
-                    </div>
-                  </FormWrapper>
-                );
-              })()}
               <ResetPassword
                 data-plasmic-name={"resetPassword"}
                 data-plasmic-override={overrides.resetPassword}
@@ -1029,24 +564,6 @@ const PlasmicDescendants = {
     "formWrapper",
     "title",
     "heading",
-    "form2",
-    "inputWrapper",
-    "textInput7",
-    "progressBar",
-    "signedByBaseProgressBarSteppedMediumLabelNone",
-    "progress",
-    "inProgress",
-    "base",
-    "base2",
-    "base3",
-    "base4",
-    "base5",
-    "base6",
-    "text",
-    "inputWrapper2",
-    "textInput6",
-    "text5",
-    "jamButton",
     "resetPassword",
     "img"
   ],
@@ -1062,24 +579,6 @@ const PlasmicDescendants = {
     "formWrapper",
     "title",
     "heading",
-    "form2",
-    "inputWrapper",
-    "textInput7",
-    "progressBar",
-    "signedByBaseProgressBarSteppedMediumLabelNone",
-    "progress",
-    "inProgress",
-    "base",
-    "base2",
-    "base3",
-    "base4",
-    "base5",
-    "base6",
-    "text",
-    "inputWrapper2",
-    "textInput6",
-    "text5",
-    "jamButton",
     "resetPassword",
     "img"
   ],
@@ -1098,83 +597,9 @@ const PlasmicDescendants = {
   frame: ["frame"],
   frame2: ["frame2"],
   frame3: ["frame3"],
-  formWrapper: [
-    "formWrapper",
-    "title",
-    "heading",
-    "form2",
-    "inputWrapper",
-    "textInput7",
-    "progressBar",
-    "signedByBaseProgressBarSteppedMediumLabelNone",
-    "progress",
-    "inProgress",
-    "base",
-    "base2",
-    "base3",
-    "base4",
-    "base5",
-    "base6",
-    "text",
-    "inputWrapper2",
-    "textInput6",
-    "text5",
-    "jamButton",
-    "resetPassword",
-    "img"
-  ],
+  formWrapper: ["formWrapper", "title", "heading", "resetPassword", "img"],
   title: ["title", "heading"],
   heading: ["heading"],
-  form2: [
-    "form2",
-    "inputWrapper",
-    "textInput7",
-    "progressBar",
-    "signedByBaseProgressBarSteppedMediumLabelNone",
-    "progress",
-    "inProgress",
-    "base",
-    "base2",
-    "base3",
-    "base4",
-    "base5",
-    "base6",
-    "text",
-    "inputWrapper2",
-    "textInput6",
-    "text5",
-    "jamButton"
-  ],
-  inputWrapper: ["inputWrapper", "textInput7"],
-  textInput7: ["textInput7"],
-  progressBar: [
-    "progressBar",
-    "signedByBaseProgressBarSteppedMediumLabelNone",
-    "progress",
-    "inProgress",
-    "base",
-    "base2",
-    "base3",
-    "base4",
-    "base5",
-    "base6"
-  ],
-  signedByBaseProgressBarSteppedMediumLabelNone: [
-    "signedByBaseProgressBarSteppedMediumLabelNone"
-  ],
-  progress: ["progress"],
-  inProgress: ["inProgress"],
-  base: ["base"],
-  base2: ["base2"],
-  base3: ["base3"],
-  base4: ["base4"],
-  base5: ["base5"],
-  base6: ["base6"],
-  text: ["text"],
-  inputWrapper2: ["inputWrapper2", "textInput6", "text5"],
-  textInput6: ["textInput6"],
-  text5: ["text5"],
-  jamButton: ["jamButton"],
   resetPassword: ["resetPassword", "img"],
   img: ["img"]
 } as const;
@@ -1194,24 +619,6 @@ type NodeDefaultElementType = {
   formWrapper: "div";
   title: "div";
   heading: "div";
-  form2: typeof FormWrapper;
-  inputWrapper: "div";
-  textInput7: typeof TextInput;
-  progressBar: "div";
-  signedByBaseProgressBarSteppedMediumLabelNone: "div";
-  progress: "div";
-  inProgress: "div";
-  base: "div";
-  base2: "div";
-  base3: "div";
-  base4: "div";
-  base5: "div";
-  base6: "div";
-  text: "div";
-  inputWrapper2: "div";
-  textInput6: typeof TextInput;
-  text5: "div";
-  jamButton: typeof JamButton;
   resetPassword: typeof ResetPassword;
   img: typeof PlasmicImg__;
 };
@@ -1287,26 +694,6 @@ export const PlasmicResetPassword = Object.assign(
     formWrapper: makeNodeComponent("formWrapper"),
     title: makeNodeComponent("title"),
     heading: makeNodeComponent("heading"),
-    form2: makeNodeComponent("form2"),
-    inputWrapper: makeNodeComponent("inputWrapper"),
-    textInput7: makeNodeComponent("textInput7"),
-    progressBar: makeNodeComponent("progressBar"),
-    signedByBaseProgressBarSteppedMediumLabelNone: makeNodeComponent(
-      "signedByBaseProgressBarSteppedMediumLabelNone"
-    ),
-    progress: makeNodeComponent("progress"),
-    inProgress: makeNodeComponent("inProgress"),
-    base: makeNodeComponent("base"),
-    base2: makeNodeComponent("base2"),
-    base3: makeNodeComponent("base3"),
-    base4: makeNodeComponent("base4"),
-    base5: makeNodeComponent("base5"),
-    base6: makeNodeComponent("base6"),
-    text: makeNodeComponent("text"),
-    inputWrapper2: makeNodeComponent("inputWrapper2"),
-    textInput6: makeNodeComponent("textInput6"),
-    text5: makeNodeComponent("text5"),
-    jamButton: makeNodeComponent("jamButton"),
     resetPassword: makeNodeComponent("resetPassword"),
     img: makeNodeComponent("img"),
 
