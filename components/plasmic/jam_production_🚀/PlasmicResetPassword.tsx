@@ -239,7 +239,7 @@ function PlasmicResetPassword__RenderFunc(props: {
         sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
         opId: "d3c80f5b-0c6e-4291-a103-4cc1969fc562",
         userArgs: {
-          query: [$state.mdp1, $state.variable]
+          query: [$state.resetPassword.confirmPassword, $state.variable]
         },
         cacheKey: `plasmic.$.d3c80f5b-0c6e-4291-a103-4cc1969fc562.$.`,
         invalidatedKeys: null,

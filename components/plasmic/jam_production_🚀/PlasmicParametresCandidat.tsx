@@ -3362,32 +3362,6 @@ function PlasmicParametresCandidat__RenderFunc(props: {
                               "invokeGlobalAction"
                             ];
                           }
-
-                          $steps["invokeGlobalAction2"] =
-                            $state.resetPassword.password ===
-                            $state.resetPassword.confirmPassword
-                              ? (() => {
-                                  const actionArgs = {
-                                    args: [
-                                      "success",
-                                      "Mot de passe r\u00e9initialis\u00e9 avec succ\u00e8s"
-                                    ]
-                                  };
-                                  return $globalActions[
-                                    "plasmic-antd5-config-provider.showNotification"
-                                  ]?.apply(null, [...actionArgs.args]);
-                                })()
-                              : undefined;
-                          if (
-                            $steps["invokeGlobalAction2"] != null &&
-                            typeof $steps["invokeGlobalAction2"] === "object" &&
-                            typeof $steps["invokeGlobalAction2"].then ===
-                              "function"
-                          ) {
-                            $steps["invokeGlobalAction2"] = await $steps[
-                              "invokeGlobalAction2"
-                            ];
-                          }
                         },
                         onIsSubmittingChange: async (...eventArgs: any) => {
                           generateStateOnChangePropForCodeComponents(
