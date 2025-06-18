@@ -70,31 +70,31 @@ export const presets = {
       borderRadius: "24px",
       boxSizing: "border-box",
     }
-    
+
   },
 
   // typography
-    heading1: {
-      fontFamily: "Manrope, sans-serif",
-      fontWeight: "bold",
-      fontSize: "48px",
-      lineHeight: "120%",
-      color: "#000000",
-    },
-    heading2: {
-      fontFamily: "Improvise, sans-serif",
-      fontWeight: "bold",
-      fontSize: "40px",
-      lineHeight: "130%",
-      color: getTokenValue("primary"),
-    },
-    heading3: {
-      fontFamily: "Improvise, sans-serif",
-      fontWeight: "normal",
-      fontSize: "32px",
-      lineHeight: "140%",
-      color: getTokenValue("primary"),
-    },
+  heading1: {
+    fontFamily: "Manrope, sans-serif",
+    fontWeight: "bold",
+    fontSize: "48px",
+    lineHeight: "120%",
+    color: "#000000",
+  },
+  heading2: {
+    fontFamily: "Improvise, sans-serif",
+    fontWeight: "bold",
+    fontSize: "40px",
+    lineHeight: "130%",
+    color: getTokenValue("primary"),
+  },
+  heading3: {
+    fontFamily: "Improvise, sans-serif",
+    fontWeight: "normal",
+    fontSize: "32px",
+    lineHeight: "140%",
+    color: getTokenValue("primary"),
+  },
 
   passwordInputWrapper: {
     position: "relative",
@@ -228,7 +228,7 @@ export const presets = {
   },
   nameInputGroup: {
     display: "flex",
-    flexDirection: "row", 
+    flexDirection: "row",
     justifyContent: "space-between",
     gap: "16px",
     width: "100%",
@@ -290,7 +290,7 @@ export const presets = {
       boxShadow: getTokenValue("shadow-focus"),
     },
   },
-  
+
   textareaStyle: {
     padding: "12px",
     width: "100%",
@@ -308,7 +308,7 @@ export const presets = {
       boxShadow: getTokenValue("shadow-focus"),
     },
   },
-  
+
 
   // Forms
   form: {
@@ -346,6 +346,7 @@ export const presets = {
       fontWeight: "bold",
       cursor: "pointer",
       alignSelf: "flex-start",
+      fontSize: "16px",
     },
     linkRight: {
       color: getTokenValue("information-text"),
@@ -454,7 +455,7 @@ export const presets = {
   },
 
   checkboxLabel: {
-    fontSize: "14px",
+    fontSize: "16px",
     color: getTokenValue("black"),
   },
 
@@ -538,5 +539,60 @@ export const presets = {
   arrowIcon: {
     fontSize: "18px",
     marginLeft: "4px",
+  },
+
+  checkboxStyle: {
+    display: 'flex' as const,
+    alignItems: 'center' as const,
+    gap: '12px',
+    fontFamily: 'system-ui, -apple-system, sans-serif',
+    fontSize: '16px',
+    lineHeight: '1.5',
+    cursor: 'pointer' as const,
+    userSelect: 'none' as const
+  },
+
+  customCheckboxStyle: {
+    position: 'relative' as const,
+    width: '20px',
+    height: '20px',
+    border: '2px solid #002400',
+    borderRadius: '6px',
+    backgroundColor: 'white',
+    display: 'flex' as const,
+    alignItems: 'center' as const,
+    justifyContent: 'center' as const,
+    flexShrink: 0,
+    transition: 'all 0.2s ease',
+    cursorPointer: 'pointer' as const
+  },
+
+  checkmarkStyleBase: {
+    color: '#002400',
+    fontSize: '16px',
+    fontWeight: 'bold' as const,
+    transition: 'opacity 0.2s ease'
+  },
+
+  labelTextStyle: {
+    color: '#333',
+    fontSize: '16px'
+  },
+
+  privacyLinkStyle: {
+    color: '#002400',
+    fontWeight: '600' as const,
+    textDecoration: 'none' as const,
+    cursor: 'pointer' as const
+  },
+
+  hiddenInputStyle: {
+    position: 'relative' as const,
+    opacity: 0,
+    cursor: 'pointer' as const,
+    height: 0,
+    width: 0
   }
+
+
 };

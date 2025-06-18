@@ -193,6 +193,12 @@ function SignUp_(
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [alerts, setAlerts] = useState<AlertMessage[]>([]);
+  const [isChecked, setIsChecked] = useState(false);
+
+  const checkmarkStyle = {
+    ...presets.checkmarkStyleBase,
+    opacity: isChecked ? 1 : 0
+  };
 
   // Messages d'erreur par défaut
   const defaultErrorMessages = {
@@ -620,11 +626,45 @@ function SignUp_(
           </div>
         </div>
 
-        <div style={presets.checkboxGroup as React.CSSProperties}>
+        {/* <div style={presets.checkboxGroup as React.CSSProperties}>
           <input type="checkbox" id="termsCheckbox" required />
-          <label htmlFor="termsCheckbox" style={{ display: "flex", alignItems: "center"}}>
+          <label htmlFor="termsCheckbox" style={{ display: "flex", alignItems: "center" }}>
             <span style={presets.checkboxLabel as React.CSSProperties}>{acceptText}</span>
             <span style={presets.links.linkLeft as React.CSSProperties}>{privacyPolicyText}</span>
+          </label>
+        </div> */}
+
+        {/* Nouvel checkbox */}
+        <div style={presets.checkboxGroup as React.CSSProperties}>
+          <label htmlFor="termsCheckbox" style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+            <div style={{ position: 'relative' }}>
+              <input
+                type="checkbox"
+                id="termsCheckbox"
+                required
+                style={{
+                  ...presets.hiddenInputStyle,
+                  position: 'absolute',
+                  top: 0,
+                  left: 0,
+                  width: '24px',
+                  height: '24px'
+                }}
+                checked={isChecked}
+                onChange={(e) => setIsChecked(e.target.checked)}
+              />
+              <div style={presets.customCheckboxStyle}>
+                <span style={checkmarkStyle}>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="12" height="9" viewBox="0 0 12 9" fill="none">
+                    <path d="M10.6673 1.5L4.25065 7.91667L1.33398 5" stroke="#002400" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </span>
+              </div>
+            </div>
+            <div>
+              <span style={presets.checkboxLabel as React.CSSProperties}>{acceptText}</span>
+              <span style={presets.links.linkLeft as React.CSSProperties}>{privacyPolicyText}</span>
+            </div>
           </label>
         </div>
 
