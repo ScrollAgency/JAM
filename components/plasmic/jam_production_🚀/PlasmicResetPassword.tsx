@@ -59,14 +59,7 @@ import {
   useGlobalActions
 } from "@plasmicapp/react-web/lib/host";
 
-import {
-  executePlasmicDataOp,
-  usePlasmicDataOp,
-  usePlasmicInvalidate
-} from "@plasmicapp/react-web/lib/data-sources";
-
 import { ResetPassword } from "../../auth/ResetPassword"; // plasmic-import: Ju3qM8OwHoNT/codeComponent
-import { Fetcher } from "@plasmicapp/react-web/lib/data-sources";
 
 import { useScreenVariants as useScreenVariantshm8Nko4B5BDd } from "./PlasmicGlobalVariant__Screen"; // plasmic-import: HM8Nko4B5BDd/globalVariant
 
@@ -151,23 +144,8 @@ function PlasmicResetPassword__RenderFunc(props: {
 
   const $globalActions = useGlobalActions?.();
 
-  let [$queries, setDollarQueries] = React.useState<
-    Record<string, ReturnType<typeof usePlasmicDataOp>>
-  >({});
   const stateSpecs: Parameters<typeof useDollarState>[0] = React.useMemo(
     () => [
-      {
-        path: "mdp1",
-        type: "private",
-        variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => ""
-      },
-      {
-        path: "mdp2",
-        type: "private",
-        variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => ""
-      },
       {
         path: "variable",
         type: "private",
@@ -205,53 +183,9 @@ function PlasmicResetPassword__RenderFunc(props: {
   const $state = useDollarState(stateSpecs, {
     $props,
     $ctx,
-    $queries: $queries,
+    $queries: {},
     $refs
   });
-
-  const new$Queries: Record<string, ReturnType<typeof usePlasmicDataOp>> = {
-    query: usePlasmicDataOp(() => {
-      return {
-        sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
-        opId: "50501e4e-ae31-4347-b6ef-95306713a2c1",
-        userArgs: {
-          filters: [$ctx.params.recovery_token]
-        },
-        cacheKey: `plasmic.$.${(() => {
-          try {
-            return "getOne";
-          } catch (e) {
-            if (
-              e instanceof TypeError ||
-              e?.plasmicType === "PlasmicUndefinedDataError"
-            ) {
-              return "";
-            }
-            throw e;
-          }
-        })()}.$.50501e4e-ae31-4347-b6ef-95306713a2c1.$.`,
-        invalidatedKeys: null,
-        roleId: null
-      };
-    }),
-    newPassword: usePlasmicDataOp(() => {
-      return {
-        sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
-        opId: "d3c80f5b-0c6e-4291-a103-4cc1969fc562",
-        userArgs: {
-          query: [$state.resetPassword.confirmPassword, $state.variable]
-        },
-        cacheKey: `plasmic.$.d3c80f5b-0c6e-4291-a103-4cc1969fc562.$.`,
-        invalidatedKeys: null,
-        roleId: null
-      };
-    })
-  };
-  if (Object.keys(new$Queries).some(k => new$Queries[k] !== $queries[k])) {
-    setDollarQueries(new$Queries);
-
-    $queries = new$Queries;
-  }
 
   const globalVariants = ensureGlobalVariants({
     screen: useScreenVariantshm8Nko4B5BDd()
