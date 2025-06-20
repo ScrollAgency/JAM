@@ -148,9 +148,9 @@ const Mapbox: React.FC<MapboxProps> = ({
 
          if (
             salary &&
-            ['base', 'last_minute', 'liked'].includes(markerState)
+            ['base', 'last_minute', 'new', 'liked'].includes(markerState)
          ) {
-            
+
             // Nettoyer le salaire pour l'affichage
             const cleanSalary = String(salary).replace(/€\s*\/\s*mois/i, "").trim();
 

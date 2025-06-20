@@ -33,7 +33,7 @@ const ResetPasswordMeta = {
       options: ["simple", "advance"],
       description: "Style des champs de saisie",
     },
-    
+
     // Password
     passwordLabel: {
       type: "string",
