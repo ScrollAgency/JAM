@@ -75,7 +75,7 @@ import TextInput from "../../TextInput"; // plasmic-import: pZ7Ql6sUFRw9/compone
 import { PhoneSelector } from "../../forms/PhoneSelector/PhoneSelector"; // plasmic-import: sOyePdANTQ6t/codeComponent
 import Button from "../../Button"; // plasmic-import: 9ixtKbGKv7x-/component
 import DeleteAccount2 from "../../DeleteAccount2"; // plasmic-import: Aiz3LwUBdbOf/component
-import { ResetPassword } from "../../auth/ResetPassword"; // plasmic-import: Ju3qM8OwHoNT/codeComponent
+import { ResetPassword } from "../../../plasmic-library/authentication/ResetPassword"; // plasmic-import: Ju3qM8OwHoNT/codeComponent
 import { UploadWrapper } from "@plasmicpkgs/antd5/skinny/registerUpload";
 import TextAreaInput from "../../TextAreaInput"; // plasmic-import: nVAUbPc6gpoz/component
 import Select from "../../Select"; // plasmic-import: ZMB-SB-xJDyQ/component
@@ -357,6 +357,12 @@ function PlasmicParametresEmployeur__RenderFunc(props: {
         type: "private",
         variableType: "text",
         initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+      },
+      {
+        path: "sidebar2.disableLinks",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $ctx }) => false
       }
     ],
     [$props, $ctx, $refs]
@@ -480,6 +486,24 @@ function PlasmicParametresEmployeur__RenderFunc(props: {
             data-plasmic-name={"sidebar2"}
             data-plasmic-override={overrides.sidebar2}
             className={classNames("__wab_instance", sty.sidebar2)}
+            disableLinks={generateStateValueProp($state, [
+              "sidebar2",
+              "disableLinks"
+            ])}
+            onDisableLinksChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, [
+                "sidebar2",
+                "disableLinks"
+              ]).apply(null, eventArgs);
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
           />
 
           <Stack__
@@ -1226,18 +1250,14 @@ function PlasmicParametresEmployeur__RenderFunc(props: {
                           passwordPlaceholder={
                             "Entrez votre nouveau mot de passe"
                           }
-                          passwordStrength={true}
                           resetSuccessMessage={
                             "Votre mot de passe a été réinitialisé avec succès!"
                           }
                           showAlerts={true}
-                          showCancelButton={false}
+                          showPasswordStrength={true}
                           showPasswordToggle={true}
-                          showSubmitButton={false}
-                          submitButtonIconPosition={"left"}
                           submitButtonStyle={``}
                           submitButtonText={"Réinitialiser"}
-                          submitButtonTextColor={"#000"}
                           title={``}
                           titleHeading={"h1"}
                           wrapperStyle={"card"}

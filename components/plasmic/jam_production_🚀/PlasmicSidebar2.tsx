@@ -93,9 +93,15 @@ export type PlasmicSidebar2__VariantsArgs = {};
 type VariantPropType = keyof PlasmicSidebar2__VariantsArgs;
 export const PlasmicSidebar2__VariantProps = new Array<VariantPropType>();
 
-export type PlasmicSidebar2__ArgsType = {};
+export type PlasmicSidebar2__ArgsType = {
+  disableLinks?: boolean;
+  onDisableLinksChange?: (val: string) => void;
+};
 type ArgPropType = keyof PlasmicSidebar2__ArgsType;
-export const PlasmicSidebar2__ArgProps = new Array<ArgPropType>();
+export const PlasmicSidebar2__ArgProps = new Array<ArgPropType>(
+  "disableLinks",
+  "onDisableLinksChange"
+);
 
 export type PlasmicSidebar2__OverridesType = {
   sidebarMenu?: Flex__<"nav">;
@@ -107,6 +113,8 @@ export type PlasmicSidebar2__OverridesType = {
 };
 
 export interface DefaultSidebar2Props {
+  disableLinks?: boolean;
+  onDisableLinksChange?: (val: string) => void;
   className?: string;
 }
 
@@ -174,6 +182,14 @@ function PlasmicSidebar2__RenderFunc(props: {
               throw e;
             }
           })()
+      },
+      {
+        path: "disableLinks",
+        type: "writable",
+        variableType: "boolean",
+
+        valueProp: "disableLinks",
+        onChangeProp: "onDisableLinksChange"
       }
     ],
     [$props, $ctx, $refs]
@@ -307,6 +323,19 @@ function PlasmicSidebar2__RenderFunc(props: {
         >
           <SideBarButton
             className={classNames("__wab_instance", sty.sideBarButton__qTcNb)}
+            disabled={(() => {
+              try {
+                return $state.disableLinks;
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return undefined;
+                }
+                throw e;
+              }
+            })()}
             iconStart={true}
             label={
               <div
@@ -376,6 +405,19 @@ function PlasmicSidebar2__RenderFunc(props: {
 
           <SideBarButton
             className={classNames("__wab_instance", sty.sideBarButton___0Uclj)}
+            disabled={(() => {
+              try {
+                return $state.disableLinks;
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return undefined;
+                }
+                throw e;
+              }
+            })()}
             iconStart={true}
             label={
               <div
@@ -440,6 +482,19 @@ function PlasmicSidebar2__RenderFunc(props: {
 
           <SideBarButton
             className={classNames("__wab_instance", sty.sideBarButton__ndpsZ)}
+            disabled={(() => {
+              try {
+                return $state.disableLinks;
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return undefined;
+                }
+                throw e;
+              }
+            })()}
             iconStart={true}
             label={
               <div

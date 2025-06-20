@@ -1206,6 +1206,7 @@ function PlasmicMesAlertes__RenderFunc(props: {
                     ref: ref => {
                       $refs["form"] = ref;
                     },
+                    requiredMark: false,
                     submitSlot: null,
                     wrapperCol: { span: 16, horizontalOnly: true }
                   };
@@ -1240,7 +1241,17 @@ function PlasmicMesAlertes__RenderFunc(props: {
                         initialValue={
                           $state.currentAlert.search_criteria?.job_title ?? ""
                         }
-                        label={"Intitul\u00e9 du poste"}
+                        label={
+                          <div
+                            className={classNames(
+                              projectcss.all,
+                              projectcss.__wab_text,
+                              sty.text__u7Hy
+                            )}
+                          >
+                            {"Intitul\u00e9 du poste*"}
+                          </div>
+                        }
                         name={"job_title"}
                         rules={[{ ruleType: "required" }]}
                       >
@@ -1293,7 +1304,17 @@ function PlasmicMesAlertes__RenderFunc(props: {
                         initialValue={
                           $state.currentAlert.search_criteria?.city ?? ""
                         }
-                        label={"Ville"}
+                        label={
+                          <div
+                            className={classNames(
+                              projectcss.all,
+                              projectcss.__wab_text,
+                              sty.text__v5JeE
+                            )}
+                          >
+                            {"Ville*"}
+                          </div>
+                        }
                         name={"city"}
                         rules={[{ ruleType: "required" }]}
                       >
@@ -1359,7 +1380,17 @@ function PlasmicMesAlertes__RenderFunc(props: {
                             throw e;
                           }
                         })()}
-                        label={"Temps de travail"}
+                        label={
+                          <div
+                            className={classNames(
+                              projectcss.all,
+                              projectcss.__wab_text,
+                              sty.text__w73D
+                            )}
+                          >
+                            {"Temps de travail"}
+                          </div>
+                        }
                         name={"work_times"}
                         preserve={true}
                         validateTrigger={[]}
@@ -1484,7 +1515,17 @@ function PlasmicMesAlertes__RenderFunc(props: {
                             throw e;
                           }
                         })()}
-                        label={"Type de contrat"}
+                        label={
+                          <div
+                            className={classNames(
+                              projectcss.all,
+                              projectcss.__wab_text,
+                              sty.text__iIeLw
+                            )}
+                          >
+                            {"Type de contrat"}
+                          </div>
+                        }
                         name={"contract_types"}
                       >
                         <AntdSelect
@@ -1582,7 +1623,17 @@ function PlasmicMesAlertes__RenderFunc(props: {
                             throw e;
                           }
                         })()}
-                        label={"Salaire minimum"}
+                        label={
+                          <div
+                            className={classNames(
+                              projectcss.all,
+                              projectcss.__wab_text,
+                              sty.text___0YqxE
+                            )}
+                          >
+                            {"Salaire minimum"}
+                          </div>
+                        }
                         name={"min_salary"}
                       >
                         <AntdSelect

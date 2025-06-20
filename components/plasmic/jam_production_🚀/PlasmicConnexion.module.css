@@ -65,7 +65,8 @@
   flex-direction: column;
   width: 50%;
   flex-shrink: 1;
-  padding: 433px 229px;
+  height: 1015px;
+  padding: 526px 229px 433px;
 }
 .imageWrapper2 > :global(.__wab_flex-container) {
   flex-direction: column;

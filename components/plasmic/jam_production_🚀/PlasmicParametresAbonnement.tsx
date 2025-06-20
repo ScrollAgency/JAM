@@ -308,6 +308,12 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
               throw e;
             }
           })()
+      },
+      {
+        path: "sidebar2.disableLinks",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $ctx }) => false
       }
     ],
     [$props, $ctx, $refs]
@@ -801,6 +807,24 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
             data-plasmic-name={"sidebar2"}
             data-plasmic-override={overrides.sidebar2}
             className={classNames("__wab_instance", sty.sidebar2)}
+            disableLinks={generateStateValueProp($state, [
+              "sidebar2",
+              "disableLinks"
+            ])}
+            onDisableLinksChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, [
+                "sidebar2",
+                "disableLinks"
+              ]).apply(null, eventArgs);
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
           />
 
           <Stack__

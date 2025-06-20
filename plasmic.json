@@ -720,8 +720,7 @@
           "componentImportPath": "@plasmicpkgs/react-aria/skinny/registerDialog"
         }
       ],
-      "customFunctions": [],
-      "jsBundleThemes": []
+      "customFunctions": []
     },
     {
       "projectId": "ohDidvG9XsCeFumugENU3J",
@@ -2163,6 +2162,19 @@
             "modulePath": "AlertCard.tsx"
           },
           "cssFilePath": "plasmic/jam_production_🚀/PlasmicAlertCard.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
+        },
+        {
+          "id": "bmRjHjAcjHYi",
+          "name": "CvUploaded",
+          "type": "managed",
+          "projectId": "f7DE9y7qp46fyCw5nuY8f9",
+          "renderModuleFilePath": "plasmic/jam_production_🚀/PlasmicCvUploaded.tsx",
+          "importSpec": {
+            "modulePath": "CvUploaded.tsx"
+          },
+          "cssFilePath": "plasmic/jam_production_🚀/PlasmicCvUploaded.module.css",
           "scheme": "blackbox",
           "componentType": "component"
         }
@@ -4712,7 +4724,7 @@
           "id": "Ju3qM8OwHoNT",
           "name": "ResetPassword",
           "displayName": "ResetPassword",
-          "componentImportPath": "./components/auth/ResetPassword"
+          "componentImportPath": "./plasmic-library/authentication/ResetPassword"
         },
         {
           "id": "l54x2CZo0bN2",

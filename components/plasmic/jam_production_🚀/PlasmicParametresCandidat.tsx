@@ -80,7 +80,7 @@ import MenuItem from "../../MenuItem"; // plasmic-import: plmAgyhhAdMc/component
 import { AntdSelect } from "@plasmicpkgs/antd5/skinny/registerSelect";
 import TextAreaInput from "../../TextAreaInput"; // plasmic-import: nVAUbPc6gpoz/component
 import Button from "../../Button"; // plasmic-import: 9ixtKbGKv7x-/component
-import { ResetPassword } from "../../auth/ResetPassword"; // plasmic-import: Ju3qM8OwHoNT/codeComponent
+import { ResetPassword } from "../../../plasmic-library/authentication/ResetPassword"; // plasmic-import: Ju3qM8OwHoNT/codeComponent
 import DeleteAccount2 from "../../DeleteAccount2"; // plasmic-import: Aiz3LwUBdbOf/component
 import Modal from "../../Modal"; // plasmic-import: fsC3QwUZz9uz/component
 import DeleteAccount from "../../DeleteAccount"; // plasmic-import: KdtWnTG_vDHe/component
@@ -1953,11 +1953,13 @@ function PlasmicParametresCandidat__RenderFunc(props: {
                         }
                         name={"transport_mode"}
                         noLabel={false}
+                        preserve={false}
                       >
                         <AntdSelect
                           data-plasmic-name={"select5"}
                           data-plasmic-override={overrides.select5}
                           allowClear={true}
+                          autoFocus={false}
                           bordered={false}
                           className={classNames("__wab_instance", sty.select5)}
                           defaultStylesClassName={classNames(
@@ -1969,7 +1971,8 @@ function PlasmicParametresCandidat__RenderFunc(props: {
                             plasmic_library_tailwind_3_4_number_tokens_css.plasmic_tokens,
                             plasmic_plasmic_rich_components_css.plasmic_tokens
                           )}
-                          dropdownMatchSelectWidth={true}
+                          disabled={true}
+                          dropdownMatchSelectWidth={false}
                           mode={"multiple"}
                           onChange={async (...eventArgs: any) => {
                             generateStateOnChangeProp($state, [
@@ -2016,7 +2019,7 @@ function PlasmicParametresCandidat__RenderFunc(props: {
                             </Stack__>
                           }
                           popupScopeClassName={sty["select5__popup"]}
-                          showSearch={false}
+                          showSearch={true}
                           size={"large"}
                           suffixIcon={
                             <ChevronDown2Icon
@@ -2027,6 +2030,7 @@ function PlasmicParametresCandidat__RenderFunc(props: {
                               role={"img"}
                             />
                           }
+                          useChildren={false}
                           value={generateStateValueProp($state, [
                             "select5",
                             "value"
@@ -3486,37 +3490,14 @@ function PlasmicParametresCandidat__RenderFunc(props: {
                             passwordPlaceholder={
                               "Entrez votre nouveau mot de passe"
                             }
-                            passwordStrength={true}
                             resetSuccessMessage={
                               "Votre mot de passe a été réinitialisé avec succès!"
                             }
                             showAlerts={true}
-                            showCancelButton={false}
+                            showPasswordStrength={true}
                             showPasswordToggle={true}
-                            showSubmitButton={true}
-                            submitButtonIcon={
-                              <PlasmicImg__
-                                alt={""}
-                                className={classNames(sty.img___29Ueq)}
-                                displayHeight={"auto"}
-                                displayMaxHeight={"none"}
-                                displayMaxWidth={"100%"}
-                                displayMinHeight={"0"}
-                                displayMinWidth={"0"}
-                                displayWidth={"auto"}
-                                loading={"lazy"}
-                                src={{
-                                  src: "/plasmic/jam_production_🚀/images/image21.svg",
-                                  fullWidth: 34,
-                                  fullHeight: 33,
-                                  aspectRatio: undefined
-                                }}
-                              />
-                            }
-                            submitButtonIconPosition={"left"}
                             submitButtonStyle={"primary"}
                             submitButtonText={"Réinitialiser"}
-                            submitButtonTextColor={"#000"}
                             title={``}
                             titleHeading={"h1"}
                             wrapperStyle={"card"}

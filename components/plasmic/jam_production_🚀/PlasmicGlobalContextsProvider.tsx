@@ -16,15 +16,12 @@ export interface GlobalContextsProviderProps {
   antdConfigProviderProps?: Partial<
     Omit<React.ComponentProps<typeof AntdConfigProvider>, "children">
   >;
-
   supabaseUserGlobalContextProps?: Partial<
     Omit<React.ComponentProps<typeof SupabaseUserGlobalContext>, "children">
   >;
-
   commerceProviderComponentProps?: Partial<
     Omit<React.ComponentProps<typeof CommerceProviderComponent>, "children">
   >;
-
   embedCssProps?: Partial<
     Omit<React.ComponentProps<typeof EmbedCss>, "children">
   >;
@@ -163,7 +160,7 @@ export default function GlobalContextsProvider(
             css={
               embedCssProps && "css" in embedCssProps
                 ? embedCssProps.css!
-                : "/* CSS snippet */\r\n\r\n.stretch {\r\n  width: 100%;\r\n}\r\n\r\n.last-minute {\r\n  background: linear-gradient(180deg, #F6165B, #F36320); /* Rose \u2192 Orange (haut \u2192 bas) */\r\n  -webkit-background-clip: text;\r\n  -webkit-text-fill-color: transparent;\r\n\r\n  background-clip: text;\r\n  color: transparent;\r\n}\r\n\r\n.zero-charge {\r\n  color: #C8C8C8;\r\n}\r\n\r\ncharge {\r\n  color: #666666;\r\n}\r\n\r\n.grey-600 {\r\n  color: #666666;\r\n}\r\n\r\n.green-500 {\r\n  color: #BBFE68;\r\n}"
+                : "/* CSS snippet */\r\n\r\n.stretch {\r\n  width: 100%;\r\n}\r\n\r\n.last-minute {\r\n  background: linear-gradient(180deg, #F6165B, #F36320); /* Rose \u2192 Orange (haut \u2192 bas) */\r\n  -webkit-background-clip: text;\r\n  -webkit-text-fill-color: transparent;\r\n\r\n  background-clip: text;\r\n  color: transparent;\r\n}\r\n\r\n.zero-charge {\r\n  color: #C8C8C8;\r\n}\r\n\r\ncharge {\r\n  color: #666666;\r\n}\r\n\r\n.grey-600 {\r\n  color: #666666;\r\n}\r\n\r\n.green-500 {\r\n  color: #BBFE68;\r\n}\r\n"
             }
           >
             {children}
