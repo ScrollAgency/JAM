@@ -11,7 +11,7 @@ export default function Document() {
 						__html: `
 							window.WeglotSettings = {
 								api_key: 'wg_7a994a95d8a52ee847d1d76f13c919c67',
-								languages: ['fr', 'en', 'es'],
+								languages: ['fr', 'en'],
 								originalLanguage: 'fr'
 							};
 						`,
