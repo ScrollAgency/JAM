@@ -5,16 +5,19 @@ export default function Document() {
 	return (
 		<Html lang="fr">
 			<Head>
-				{/* Script LocalizeJS avec la nouvelle clé et limitation aux langues français et anglais */}
-				<script src="https://global.localizecdn.com/localize.js"></script>
+				{/* Script Weglot - français comme langue principale, anglais comme langue secondaire */}
+				<script
+					type="text/javascript"
+					src="https://cdn.weglot.com/weglot.min.js"
+				></script>
 				<script
 					dangerouslySetInnerHTML={{
 						__html: `
-							(function(a){if(!a.Localize){a.Localize={};for(var e=["translate","untranslate","phrase","initialize","translatePage","setLanguage","getLanguage","getSourceLanguage","detectLanguage","getAvailableLanguages","setWidgetLanguages","hideLanguagesInWidget","untranslatePage","bootstrap","prefetch","on","off","hideWidget","showWidget"],t=0;t<e.length;t++)a.Localize[e[t]]=function(){}}})(window);
-							Localize.initialize({
-								key: 'lr6dZKfR5aBxR',
-								rememberLanguage: true,
-								languages: ['fr', 'en']
+							Weglot.initialize({
+								api_key: 'wg_7a994a95d8a52ee847d1d76f13c919c67',
+								originalLanguage: 'fr',
+								destinationLanguages: ['en'],
+								autoSwitch: false
 							});
 						`,
 					}}
