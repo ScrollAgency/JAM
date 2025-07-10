@@ -70,14 +70,14 @@ import Sidebar from "../../Sidebar"; // plasmic-import: M06HuWMcBQV2/component
 import MobileNavbarTop from "../../MobileNavbarTop"; // plasmic-import: mAg8Ml3XUEhy/component
 import Button from "../../Button"; // plasmic-import: 9ixtKbGKv7x-/component
 import AlertCard from "../../AlertCard"; // plasmic-import: -xst-G3CRLYp/component
-import MobileNavbarBottom from "../../MobileNavbarBottom"; // plasmic-import: BIS-N7QZzUVV/component
-import Modal from "../../Modal"; // plasmic-import: fsC3QwUZz9uz/component
-import { JamButton } from "../../forms/JamButton/JamButton"; // plasmic-import: UiI0wt2mxfuf/codeComponent
 import { FormWrapper } from "@plasmicpkgs/antd5/skinny/Form";
 import { formHelpers as FormWrapper_Helpers } from "@plasmicpkgs/antd5/skinny/Form";
 import { FormItemWrapper } from "@plasmicpkgs/antd5/skinny/FormItem";
 import TextInput from "../../TextInput"; // plasmic-import: pZ7Ql6sUFRw9/component
 import { AntdSelect } from "@plasmicpkgs/antd5/skinny/registerSelect";
+import MobileNavbarBottom from "../../MobileNavbarBottom"; // plasmic-import: BIS-N7QZzUVV/component
+import Modal from "../../Modal"; // plasmic-import: fsC3QwUZz9uz/component
+import { JamButton } from "../../forms/JamButton/JamButton"; // plasmic-import: UiI0wt2mxfuf/codeComponent
 import DeleteAccount from "../../DeleteAccount"; // plasmic-import: KdtWnTG_vDHe/component
 import { Fetcher } from "@plasmicapp/react-web/lib/data-sources";
 
@@ -92,11 +92,15 @@ import projectcss from "./plasmic.module.css"; // plasmic-import: f7DE9y7qp46fyC
 import sty from "./PlasmicMesAlertes.module.css"; // plasmic-import: g2Wsra2qxoMV/css
 
 import CircleIcon from "./icons/PlasmicIcon__Circle"; // plasmic-import: je95h6YoQ2jE/icon
-import GroupIcon from "./icons/PlasmicIcon__Group"; // plasmic-import: yIYn4o5HgDaM/icon
+import PlusCircle2Icon from "./icons/PlasmicIcon__PlusCircle2"; // plasmic-import: Bk_iFwJOhfaS/icon
 import NotificationBellSvgrepoComSvgIcon from "./icons/PlasmicIcon__NotificationBellSvgrepoComSvg"; // plasmic-import: dIeWzMIIc5ij/icon
+import PlusCircle1425SvgrepoComSvgIcon from "./icons/PlasmicIcon__PlusCircle1425SvgrepoComSvg"; // plasmic-import: Lk_5fNk17U9z/icon
+import Vector26Icon from "./icons/PlasmicIcon__Vector26"; // plasmic-import: ihH1MekTuW7o/icon
 import IconPhClockIcon from "./icons/PlasmicIcon__IconPhClock"; // plasmic-import: vCpr2sLhwGJi/icon
 import IconPhBriefcaseIcon from "./icons/PlasmicIcon__IconPhBriefcase"; // plasmic-import: E-c3RGwvaig6/icon
 import IconPhCoinsLightIcon from "./icons/PlasmicIcon__IconPhCoinsLight"; // plasmic-import: _nES3m4j5H0g/icon
+import GroupIcon from "./icons/PlasmicIcon__Group"; // plasmic-import: yIYn4o5HgDaM/icon
+import Vector27Icon from "./icons/PlasmicIcon__Vector27"; // plasmic-import: 2HIkNr38V1z9/icon
 import AlertCircleIcon from "./icons/PlasmicIcon__AlertCircle"; // plasmic-import: wmiG3ar5cZJO/icon
 import PictogramIcon from "./icons/PlasmicIcon__Pictogram"; // plasmic-import: KlZQiGxQTluF/icon
 
@@ -125,12 +129,9 @@ export type PlasmicMesAlertes__OverridesType = {
   text6?: Flex__<"div">;
   supportingText2?: Flex__<"div">;
   alertCard?: Flex__<typeof AlertCard>;
-  mobileNavbarBottom?: Flex__<typeof MobileNavbarBottom>;
-  createEditAlert?: Flex__<typeof Modal>;
-  button?: Flex__<typeof JamButton>;
-  img?: Flex__<typeof PlasmicImg__>;
-  alerteModal?: Flex__<"div">;
-  modalTitle?: Flex__<"div">;
+  alertModal?: Flex__<"div">;
+  body?: Flex__<"div">;
+  modalTitle?: Flex__<"h1">;
   form?: Flex__<typeof FormWrapper>;
   textInput?: Flex__<typeof TextInput>;
   textInput2?: Flex__<typeof TextInput>;
@@ -139,6 +140,10 @@ export type PlasmicMesAlertes__OverridesType = {
   select2?: Flex__<typeof AntdSelect>;
   textInput3?: Flex__<typeof TextInput>;
   textInput4?: Flex__<typeof TextInput>;
+  mobileNavbarBottom?: Flex__<typeof MobileNavbarBottom>;
+  createEditAlert?: Flex__<typeof Modal>;
+  button?: Flex__<typeof JamButton>;
+  img?: Flex__<typeof PlasmicImg__>;
   deleteAlert?: Flex__<typeof Modal>;
   modal3?: Flex__<"div">;
   content?: Flex__<"div">;
@@ -248,12 +253,6 @@ function PlasmicMesAlertes__RenderFunc(props: {
         initFunc: ({ $props, $state, $queries, $ctx }) => ({})
       },
       {
-        path: "jobName",
-        type: "private",
-        variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => ""
-      },
-      {
         path: "select.value",
         type: "private",
         variableType: "text",
@@ -282,6 +281,12 @@ function PlasmicMesAlertes__RenderFunc(props: {
         type: "private",
         variableType: "text",
         initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+      },
+      {
+        path: "isModalOpen",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $ctx }) => false
       }
     ],
     [$props, $ctx, $refs]
@@ -343,7 +348,20 @@ function PlasmicMesAlertes__RenderFunc(props: {
 
   return (
     <React.Fragment>
-      <Head></Head>
+      <Head>
+        <meta name="twitter:card" content="summary" />
+        <title key="title">{PlasmicMesAlertes.pageMetadata.title}</title>
+        <meta
+          key="og:title"
+          property="og:title"
+          content={PlasmicMesAlertes.pageMetadata.title}
+        />
+        <meta
+          key="twitter:title"
+          name="twitter:title"
+          content={PlasmicMesAlertes.pageMetadata.title}
+        />
+      </Head>
 
       <style>{`
         body {
@@ -417,7 +435,7 @@ function PlasmicMesAlertes__RenderFunc(props: {
                 <Button
                   className={classNames("__wab_instance", sty.button__a9Gtr)}
                   end={
-                    <GroupIcon
+                    <PlusCircle2Icon
                       className={classNames(projectcss.all, sty.svg__kh3Ee)}
                       role={"img"}
                     />
@@ -473,12 +491,12 @@ function PlasmicMesAlertes__RenderFunc(props: {
                       ];
                     }
 
-                    $steps["updateModalIsOpen"] = true
+                    $steps["openModal"] = true
                       ? (() => {
                           const actionArgs = {
                             variable: {
                               objRoot: $state,
-                              variablePath: ["createEditAlert", "isOpen"]
+                              variablePath: ["isModalOpen"]
                             },
                             operation: 0,
                             value: true
@@ -500,13 +518,11 @@ function PlasmicMesAlertes__RenderFunc(props: {
                         })()
                       : undefined;
                     if (
-                      $steps["updateModalIsOpen"] != null &&
-                      typeof $steps["updateModalIsOpen"] === "object" &&
-                      typeof $steps["updateModalIsOpen"].then === "function"
+                      $steps["openModal"] != null &&
+                      typeof $steps["openModal"] === "object" &&
+                      typeof $steps["openModal"].then === "function"
                     ) {
-                      $steps["updateModalIsOpen"] = await $steps[
-                        "updateModalIsOpen"
-                      ];
+                      $steps["openModal"] = await $steps["openModal"];
                     }
                   }}
                 />
@@ -641,7 +657,7 @@ function PlasmicMesAlertes__RenderFunc(props: {
                         sty.button__seaXf
                       )}
                       end={
-                        <GroupIcon
+                        <PlusCircle1425SvgrepoComSvgIcon
                           className={classNames(projectcss.all, sty.svg__crfqi)}
                           role={"img"}
                         />
@@ -698,12 +714,12 @@ function PlasmicMesAlertes__RenderFunc(props: {
                           ];
                         }
 
-                        $steps["goToAccueil"] = true
+                        $steps["openModal"] = true
                           ? (() => {
                               const actionArgs = {
                                 variable: {
                                   objRoot: $state,
-                                  variablePath: ["createEditAlert", "isOpen"]
+                                  variablePath: ["isModalOpen"]
                                 },
                                 operation: 0,
                                 value: true
@@ -725,11 +741,11 @@ function PlasmicMesAlertes__RenderFunc(props: {
                             })()
                           : undefined;
                         if (
-                          $steps["goToAccueil"] != null &&
-                          typeof $steps["goToAccueil"] === "object" &&
-                          typeof $steps["goToAccueil"].then === "function"
+                          $steps["openModal"] != null &&
+                          typeof $steps["openModal"] === "object" &&
+                          typeof $steps["openModal"].then === "function"
                         ) {
-                          $steps["goToAccueil"] = await $steps["goToAccueil"];
+                          $steps["openModal"] = await $steps["openModal"];
                         }
                       }}
                     />
@@ -814,7 +830,7 @@ function PlasmicMesAlertes__RenderFunc(props: {
                             ];
                           }
 
-                          $steps["updateDeleteAlertIsOpen"] = true
+                          $steps["openDeleteModal"] = true
                             ? (() => {
                                 const actionArgs = {
                                   variable: {
@@ -841,14 +857,12 @@ function PlasmicMesAlertes__RenderFunc(props: {
                               })()
                             : undefined;
                           if (
-                            $steps["updateDeleteAlertIsOpen"] != null &&
-                            typeof $steps["updateDeleteAlertIsOpen"] ===
-                              "object" &&
-                            typeof $steps["updateDeleteAlertIsOpen"].then ===
-                              "function"
+                            $steps["openDeleteModal"] != null &&
+                            typeof $steps["openDeleteModal"] === "object" &&
+                            typeof $steps["openDeleteModal"].then === "function"
                           ) {
-                            $steps["updateDeleteAlertIsOpen"] = await $steps[
-                              "updateDeleteAlertIsOpen"
+                            $steps["openDeleteModal"] = await $steps[
+                              "openDeleteModal"
                             ];
                           }
                         }}
@@ -892,12 +906,12 @@ function PlasmicMesAlertes__RenderFunc(props: {
                             ];
                           }
 
-                          $steps["updateCreateEditAlertIsOpen"] = true
+                          $steps["updateIsModalOpen"] = true
                             ? (() => {
                                 const actionArgs = {
                                   variable: {
                                     objRoot: $state,
-                                    variablePath: ["createEditAlert", "isOpen"]
+                                    variablePath: ["isModalOpen"]
                                   },
                                   operation: 0,
                                   value: true
@@ -919,14 +933,14 @@ function PlasmicMesAlertes__RenderFunc(props: {
                               })()
                             : undefined;
                           if (
-                            $steps["updateCreateEditAlertIsOpen"] != null &&
-                            typeof $steps["updateCreateEditAlertIsOpen"] ===
-                              "object" &&
-                            typeof $steps["updateCreateEditAlertIsOpen"]
-                              .then === "function"
+                            $steps["updateIsModalOpen"] != null &&
+                            typeof $steps["updateIsModalOpen"] === "object" &&
+                            typeof $steps["updateIsModalOpen"].then ===
+                              "function"
                           ) {
-                            $steps["updateCreateEditAlertIsOpen"] =
-                              await $steps["updateCreateEditAlertIsOpen"];
+                            $steps["updateIsModalOpen"] = await $steps[
+                              "updateIsModalOpen"
+                            ];
                           }
                         }}
                       />
@@ -935,30 +949,81 @@ function PlasmicMesAlertes__RenderFunc(props: {
                 : null}
             </Stack__>
           </Stack__>
-          <MobileNavbarBottom
-            data-plasmic-name={"mobileNavbarBottom"}
-            data-plasmic-override={overrides.mobileNavbarBottom}
-            className={classNames("__wab_instance", sty.mobileNavbarBottom)}
-          />
-
-          <Modal
-            data-plasmic-name={"createEditAlert"}
-            data-plasmic-override={overrides.createEditAlert}
-            className={classNames("__wab_instance", sty.createEditAlert)}
-            closeOnBackdropClick={false}
-            content={
+          {(() => {
+            try {
+              return $state.isModalOpen;
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return true;
+              }
+              throw e;
+            }
+          })() ? (
+            <div
+              data-plasmic-name={"alertModal"}
+              data-plasmic-override={overrides.alertModal}
+              className={classNames(projectcss.all, sty.alertModal)}
+            >
               <Stack__
                 as={"div"}
-                data-plasmic-name={"alerteModal"}
-                data-plasmic-override={overrides.alerteModal}
+                data-plasmic-name={"body"}
+                data-plasmic-override={overrides.body}
                 hasGap={true}
-                className={classNames(projectcss.all, sty.alerteModal)}
+                className={classNames(projectcss.all, sty.body)}
               >
-                <div
+                <Vector26Icon
+                  className={classNames(projectcss.all, sty.svg__uFcek)}
+                  onClick={async event => {
+                    const $steps = {};
+
+                    $steps["updateIsModalOpen"] = true
+                      ? (() => {
+                          const actionArgs = {
+                            variable: {
+                              objRoot: $state,
+                              variablePath: ["isModalOpen"]
+                            },
+                            operation: 0,
+                            value: false
+                          };
+                          return (({
+                            variable,
+                            value,
+                            startIndex,
+                            deleteCount
+                          }) => {
+                            if (!variable) {
+                              return;
+                            }
+                            const { objRoot, variablePath } = variable;
+
+                            $stateSet(objRoot, variablePath, value);
+                            return value;
+                          })?.apply(null, [actionArgs]);
+                        })()
+                      : undefined;
+                    if (
+                      $steps["updateIsModalOpen"] != null &&
+                      typeof $steps["updateIsModalOpen"] === "object" &&
+                      typeof $steps["updateIsModalOpen"].then === "function"
+                    ) {
+                      $steps["updateIsModalOpen"] = await $steps[
+                        "updateIsModalOpen"
+                      ];
+                    }
+                  }}
+                  role={"img"}
+                />
+
+                <h1
                   data-plasmic-name={"modalTitle"}
                   data-plasmic-override={overrides.modalTitle}
                   className={classNames(
                     projectcss.all,
+                    projectcss.h1,
                     projectcss.__wab_text,
                     sty.modalTitle
                   )}
@@ -980,7 +1045,7 @@ function PlasmicMesAlertes__RenderFunc(props: {
                       }
                     })()}
                   </React.Fragment>
-                </div>
+                </h1>
                 {(() => {
                   const child$Props = {
                     className: classNames("__wab_instance", sty.form),
@@ -1064,7 +1129,7 @@ function PlasmicMesAlertes__RenderFunc(props: {
                         ];
                       }
 
-                      $steps["updateCriteriaById"] =
+                      $steps["updateCriteria"] =
                         $state.currentAlert.id !== undefined
                           ? (() => {
                               const actionArgs = {
@@ -1109,21 +1174,21 @@ function PlasmicMesAlertes__RenderFunc(props: {
                             })()
                           : undefined;
                       if (
-                        $steps["updateCriteriaById"] != null &&
-                        typeof $steps["updateCriteriaById"] === "object" &&
-                        typeof $steps["updateCriteriaById"].then === "function"
+                        $steps["updateCriteria"] != null &&
+                        typeof $steps["updateCriteria"] === "object" &&
+                        typeof $steps["updateCriteria"].then === "function"
                       ) {
-                        $steps["updateCriteriaById"] = await $steps[
-                          "updateCriteriaById"
+                        $steps["updateCriteria"] = await $steps[
+                          "updateCriteria"
                         ];
                       }
 
-                      $steps["updateModalIsOpen"] = true
+                      $steps["closeModal"] = true
                         ? (() => {
                             const actionArgs = {
                               variable: {
                                 objRoot: $state,
-                                variablePath: ["createEditAlert", "isOpen"]
+                                variablePath: ["isModalOpen"]
                               },
                               operation: 0,
                               value: false
@@ -1145,16 +1210,14 @@ function PlasmicMesAlertes__RenderFunc(props: {
                           })()
                         : undefined;
                       if (
-                        $steps["updateModalIsOpen"] != null &&
-                        typeof $steps["updateModalIsOpen"] === "object" &&
-                        typeof $steps["updateModalIsOpen"].then === "function"
+                        $steps["closeModal"] != null &&
+                        typeof $steps["closeModal"] === "object" &&
+                        typeof $steps["closeModal"].then === "function"
                       ) {
-                        $steps["updateModalIsOpen"] = await $steps[
-                          "updateModalIsOpen"
-                        ];
+                        $steps["closeModal"] = await $steps["closeModal"];
                       }
 
-                      $steps["updateModalIsOpen2"] = true
+                      $steps["showNotification"] = true
                         ? (() => {
                             const actionArgs = {
                               args: [
@@ -1186,12 +1249,12 @@ function PlasmicMesAlertes__RenderFunc(props: {
                           })()
                         : undefined;
                       if (
-                        $steps["updateModalIsOpen2"] != null &&
-                        typeof $steps["updateModalIsOpen2"] === "object" &&
-                        typeof $steps["updateModalIsOpen2"].then === "function"
+                        $steps["showNotification"] != null &&
+                        typeof $steps["showNotification"] === "object" &&
+                        typeof $steps["showNotification"].then === "function"
                       ) {
-                        $steps["updateModalIsOpen2"] = await $steps[
-                          "updateModalIsOpen2"
+                        $steps["showNotification"] = await $steps[
+                          "showNotification"
                         ];
                       }
                     },
@@ -1483,7 +1546,7 @@ function PlasmicMesAlertes__RenderFunc(props: {
                                   sty.text___6Pv1Z
                                 )}
                               >
-                                {"Select..."}
+                                {"Temps de travail"}
                               </div>
                             </Stack__>
                           }
@@ -1591,7 +1654,7 @@ function PlasmicMesAlertes__RenderFunc(props: {
                                   sty.text__yMl9V
                                 )}
                               >
-                                {"Select..."}
+                                {"Type de contrat"}
                               </div>
                             </Stack__>
                           }
@@ -1699,7 +1762,7 @@ function PlasmicMesAlertes__RenderFunc(props: {
                                   sty.text__v4Vt7
                                 )}
                               >
-                                {"Select..."}
+                                {"Salaire minimum"}
                               </div>
                             </Stack__>
                           }
@@ -1753,6 +1816,9 @@ function PlasmicMesAlertes__RenderFunc(props: {
                             </React.Fragment>
                           </div>
                         }
+                        onClick={async event => {
+                          const $steps = {};
+                        }}
                         submitsForm={true}
                       />
 
@@ -1881,8 +1947,99 @@ function PlasmicMesAlertes__RenderFunc(props: {
                     </FormWrapper>
                   );
                 })()}
+                {(() => {
+                  try {
+                    return $state.currentAlert.id ? true : false;
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return true;
+                    }
+                    throw e;
+                  }
+                })() ? (
+                  <Stack__
+                    as={"button"}
+                    hasGap={true}
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.button,
+                      sty.button__eH0Kd
+                    )}
+                    onClick={async event => {
+                      const $steps = {};
+
+                      $steps["updateDeleteAlertIsOpen"] = true
+                        ? (() => {
+                            const actionArgs = {
+                              variable: {
+                                objRoot: $state,
+                                variablePath: ["deleteAlert", "isOpen"]
+                              },
+                              operation: 0,
+                              value: true
+                            };
+                            return (({
+                              variable,
+                              value,
+                              startIndex,
+                              deleteCount
+                            }) => {
+                              if (!variable) {
+                                return;
+                              }
+                              const { objRoot, variablePath } = variable;
+
+                              $stateSet(objRoot, variablePath, value);
+                              return value;
+                            })?.apply(null, [actionArgs]);
+                          })()
+                        : undefined;
+                      if (
+                        $steps["updateDeleteAlertIsOpen"] != null &&
+                        typeof $steps["updateDeleteAlertIsOpen"] === "object" &&
+                        typeof $steps["updateDeleteAlertIsOpen"].then ===
+                          "function"
+                      ) {
+                        $steps["updateDeleteAlertIsOpen"] = await $steps[
+                          "updateDeleteAlertIsOpen"
+                        ];
+                      }
+                    }}
+                  >
+                    <Vector27Icon
+                      className={classNames(projectcss.all, sty.svg___8NxJi)}
+                      role={"img"}
+                    />
+
+                    <div
+                      className={classNames(
+                        projectcss.all,
+                        projectcss.__wab_text,
+                        sty.text__j7Fsz
+                      )}
+                    >
+                      {"Supprimer l'alerte"}
+                    </div>
+                  </Stack__>
+                ) : null}
               </Stack__>
-            }
+            </div>
+          ) : null}
+          <MobileNavbarBottom
+            data-plasmic-name={"mobileNavbarBottom"}
+            data-plasmic-override={overrides.mobileNavbarBottom}
+            className={classNames("__wab_instance", sty.mobileNavbarBottom)}
+          />
+
+          <Modal
+            data-plasmic-name={"createEditAlert"}
+            data-plasmic-override={overrides.createEditAlert}
+            className={classNames("__wab_instance", sty.createEditAlert)}
+            closeOnBackdropClick={false}
+            content={null}
             footer={null}
             heading={
               <React.Fragment>
@@ -2296,11 +2453,8 @@ const PlasmicDescendants = {
     "text6",
     "supportingText2",
     "alertCard",
-    "mobileNavbarBottom",
-    "createEditAlert",
-    "button",
-    "img",
-    "alerteModal",
+    "alertModal",
+    "body",
     "modalTitle",
     "form",
     "textInput",
@@ -2310,6 +2464,10 @@ const PlasmicDescendants = {
     "select2",
     "textInput3",
     "textInput4",
+    "mobileNavbarBottom",
+    "createEditAlert",
+    "button",
+    "img",
     "deleteAlert",
     "modal3",
     "content",
@@ -2363,12 +2521,9 @@ const PlasmicDescendants = {
   text6: ["text6"],
   supportingText2: ["supportingText2"],
   alertCard: ["alertCard"],
-  mobileNavbarBottom: ["mobileNavbarBottom"],
-  createEditAlert: [
-    "createEditAlert",
-    "button",
-    "img",
-    "alerteModal",
+  alertModal: [
+    "alertModal",
+    "body",
     "modalTitle",
     "form",
     "textInput",
@@ -2379,10 +2534,8 @@ const PlasmicDescendants = {
     "textInput3",
     "textInput4"
   ],
-  button: ["button"],
-  img: ["img"],
-  alerteModal: [
-    "alerteModal",
+  body: [
+    "body",
     "modalTitle",
     "form",
     "textInput",
@@ -2411,6 +2564,10 @@ const PlasmicDescendants = {
   select2: ["select2"],
   textInput3: ["textInput3"],
   textInput4: ["textInput4"],
+  mobileNavbarBottom: ["mobileNavbarBottom"],
+  createEditAlert: ["createEditAlert", "button", "img"],
+  button: ["button"],
+  img: ["img"],
   deleteAlert: [
     "deleteAlert",
     "modal3",
@@ -2466,12 +2623,9 @@ type NodeDefaultElementType = {
   text6: "div";
   supportingText2: "div";
   alertCard: typeof AlertCard;
-  mobileNavbarBottom: typeof MobileNavbarBottom;
-  createEditAlert: typeof Modal;
-  button: typeof JamButton;
-  img: typeof PlasmicImg__;
-  alerteModal: "div";
-  modalTitle: "div";
+  alertModal: "div";
+  body: "div";
+  modalTitle: "h1";
   form: typeof FormWrapper;
   textInput: typeof TextInput;
   textInput2: typeof TextInput;
@@ -2480,6 +2634,10 @@ type NodeDefaultElementType = {
   select2: typeof AntdSelect;
   textInput3: typeof TextInput;
   textInput4: typeof TextInput;
+  mobileNavbarBottom: typeof MobileNavbarBottom;
+  createEditAlert: typeof Modal;
+  button: typeof JamButton;
+  img: typeof PlasmicImg__;
   deleteAlert: typeof Modal;
   modal3: "div";
   content: "div";
@@ -2564,11 +2722,8 @@ export const PlasmicMesAlertes = Object.assign(
     text6: makeNodeComponent("text6"),
     supportingText2: makeNodeComponent("supportingText2"),
     alertCard: makeNodeComponent("alertCard"),
-    mobileNavbarBottom: makeNodeComponent("mobileNavbarBottom"),
-    createEditAlert: makeNodeComponent("createEditAlert"),
-    button: makeNodeComponent("button"),
-    img: makeNodeComponent("img"),
-    alerteModal: makeNodeComponent("alerteModal"),
+    alertModal: makeNodeComponent("alertModal"),
+    body: makeNodeComponent("body"),
     modalTitle: makeNodeComponent("modalTitle"),
     form: makeNodeComponent("form"),
     textInput: makeNodeComponent("textInput"),
@@ -2578,6 +2733,10 @@ export const PlasmicMesAlertes = Object.assign(
     select2: makeNodeComponent("select2"),
     textInput3: makeNodeComponent("textInput3"),
     textInput4: makeNodeComponent("textInput4"),
+    mobileNavbarBottom: makeNodeComponent("mobileNavbarBottom"),
+    createEditAlert: makeNodeComponent("createEditAlert"),
+    button: makeNodeComponent("button"),
+    img: makeNodeComponent("img"),
     deleteAlert: makeNodeComponent("deleteAlert"),
     modal3: makeNodeComponent("modal3"),
     content: makeNodeComponent("content"),
@@ -2595,7 +2754,7 @@ export const PlasmicMesAlertes = Object.assign(
 
     // Page metadata
     pageMetadata: {
-      title: "",
+      title: "Mes alertes",
       description: "",
       ogImageSrc: "",
       canonical: ""

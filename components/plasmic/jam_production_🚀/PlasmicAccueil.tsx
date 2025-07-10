@@ -288,7 +288,6 @@ export type PlasmicAccueil__OverridesType = {
   frame3?: Flex__<"div">;
   frame4?: Flex__<"div">;
   frame5?: Flex__<"div">;
-  link?: Flex__<"a"> & Partial<LinkProps>;
   main?: Flex__<"main">;
   bgImage?: Flex__<typeof PlasmicImg__>;
   section1?: Flex__<"section">;
@@ -374,8 +373,6 @@ export type PlasmicAccueil__OverridesType = {
   frame11?: Flex__<"div">;
   frame12?: Flex__<"div">;
   socials?: Flex__<"div">;
-  socialIcon?: Flex__<"div">;
-  socialIcon2?: Flex__<"div">;
   footerLinksContainer?: Flex__<"div">;
   footerLinks2?: Flex__<"div">;
   container2?: Flex__<"div">;
@@ -545,7 +542,7 @@ function PlasmicAccueil__RenderFunc(props: {
                 e instanceof TypeError ||
                 e?.plasmicType === "PlasmicUndefinedDataError"
               ) {
-                return undefined;
+                return false;
               }
               throw e;
             }
@@ -3311,7 +3308,7 @@ function PlasmicAccueil__RenderFunc(props: {
                           e instanceof TypeError ||
                           e?.plasmicType === "PlasmicUndefinedDataError"
                         ) {
-                          return undefined;
+                          return false;
                         }
                         throw e;
                       }
@@ -8314,13 +8311,11 @@ function PlasmicAccueil__RenderFunc(props: {
               className={classNames(projectcss.all, sty.freeBox__cWnZj)}
             >
               <PlasmicLink__
-                data-plasmic-name={"link"}
-                data-plasmic-override={overrides.link}
                 className={classNames(
                   projectcss.all,
                   projectcss.a,
                   projectcss.__wab_text,
-                  sty.link
+                  sty.link__o84K0
                 )}
                 component={Link}
                 href={`/accueil-employeur`}
@@ -8561,7 +8556,8 @@ function PlasmicAccueil__RenderFunc(props: {
                       projectcss.all,
                       projectcss.h1,
                       projectcss.__wab_text,
-                      sty.trouvezUnJobNaJamaisEteAussiSimple
+                      sty.trouvezUnJobNaJamaisEteAussiSimple,
+                      "isDynamicForTranslate"
                     )}
                   >
                     <React.Fragment>
@@ -14601,50 +14597,99 @@ function PlasmicAccueil__RenderFunc(props: {
                   hasGap={true}
                   className={classNames(projectcss.all, sty.socials)}
                 >
-                  <PlasmicImg__
-                    alt={""}
-                    className={classNames(sty.img__rnHIi)}
-                    displayHeight={"24px"}
-                    displayMaxHeight={"none"}
-                    displayMaxWidth={"100%"}
-                    displayMinHeight={"0"}
-                    displayMinWidth={"0"}
-                    displayWidth={"24px"}
-                    loading={"lazy"}
-                    src={{
-                      src: "/plasmic/jam_production_🚀/images/socialIcon6.svg",
-                      fullWidth: 24,
-                      fullHeight: 24,
-                      aspectRatio: 1
-                    }}
-                  />
-
-                  <SocialIcon2Icon
-                    className={classNames(projectcss.all, sty.svg___6EQxT)}
-                    role={"img"}
-                  />
-
-                  <div
-                    data-plasmic-name={"socialIcon"}
-                    data-plasmic-override={overrides.socialIcon}
-                    className={classNames(projectcss.all, sty.socialIcon)}
+                  <PlasmicLink__
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.a,
+                      sty.link__czDen
+                    )}
+                    component={Link}
+                    platform={"nextjs"}
+                  >
+                    <PlasmicImg__
+                      alt={""}
+                      className={classNames(sty.img__rnHIi)}
+                      displayHeight={"24px"}
+                      displayMaxHeight={"none"}
+                      displayMaxWidth={"100%"}
+                      displayMinHeight={"0"}
+                      displayMinWidth={"0"}
+                      displayWidth={"24px"}
+                      loading={"lazy"}
+                      src={{
+                        src: "/plasmic/jam_production_🚀/images/socialIcon6.svg",
+                        fullWidth: 24,
+                        fullHeight: 24,
+                        aspectRatio: 1
+                      }}
+                    />
+                  </PlasmicLink__>
+                  <PlasmicLink__
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.a,
+                      sty.link__l2EVk
+                    )}
+                    component={Link}
+                    platform={"nextjs"}
+                  >
+                    <SocialIcon2Icon
+                      className={classNames(projectcss.all, sty.svg___6EQxT)}
+                      role={"img"}
+                    />
+                  </PlasmicLink__>
+                  <PlasmicLink__
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.a,
+                      sty.link__o79Tu
+                    )}
+                    component={Link}
+                    href={(() => {
+                      try {
+                        return "https://www.instagram.com/jobaroundme_official/?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw%3D%3D#";
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return undefined;
+                        }
+                        throw e;
+                      }
+                    })()}
+                    platform={"nextjs"}
+                    target={"_blank"}
                   >
                     <Group3Icon
                       className={classNames(projectcss.all, sty.svg__b9KbC)}
                       role={"img"}
                     />
-                  </div>
-                  <div
-                    data-plasmic-name={"socialIcon2"}
-                    data-plasmic-override={overrides.socialIcon2}
-                    className={classNames(projectcss.all, sty.socialIcon2)}
+                  </PlasmicLink__>
+                  <PlasmicLink__
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.a,
+                      sty.link___5V0Os
+                    )}
+                    component={Link}
+                    platform={"nextjs"}
                   >
                     <Group4Icon
                       className={classNames(projectcss.all, sty.svg___5ObBx)}
                       role={"img"}
                     />
-                  </div>
+                  </PlasmicLink__>
                 </Stack__>
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__yxQEl
+                  )}
+                >
+                  {"contact@job-around-me.com"}
+                </div>
               </Stack__>
               <Stack__
                 as={"div"}
@@ -14892,7 +14937,6 @@ const PlasmicDescendants = {
     "frame3",
     "frame4",
     "frame5",
-    "link",
     "main",
     "bgImage",
     "section1",
@@ -14978,8 +15022,6 @@ const PlasmicDescendants = {
     "frame11",
     "frame12",
     "socials",
-    "socialIcon",
-    "socialIcon2",
     "footerLinksContainer",
     "footerLinks2",
     "container2",
@@ -15640,13 +15682,12 @@ const PlasmicDescendants = {
   text5: ["text5"],
   textLinkBase: ["textLinkBase", "text6"],
   text6: ["text6"],
-  header: ["header", "jamLogo", "frame2", "frame3", "frame4", "frame5", "link"],
+  header: ["header", "jamLogo", "frame2", "frame3", "frame4", "frame5"],
   jamLogo: ["jamLogo", "frame2", "frame3", "frame4", "frame5"],
   frame2: ["frame2", "frame3", "frame4", "frame5"],
   frame3: ["frame3"],
   frame4: ["frame4"],
   frame5: ["frame5"],
-  link: ["link"],
   main: [
     "main",
     "bgImage",
@@ -16092,8 +16133,6 @@ const PlasmicDescendants = {
     "frame11",
     "frame12",
     "socials",
-    "socialIcon",
-    "socialIcon2",
     "footerLinksContainer",
     "footerLinks2",
     "container2",
@@ -16110,8 +16149,6 @@ const PlasmicDescendants = {
     "frame11",
     "frame12",
     "socials",
-    "socialIcon",
-    "socialIcon2",
     "footerLinksContainer",
     "footerLinks2"
   ],
@@ -16122,18 +16159,14 @@ const PlasmicDescendants = {
     "frame9",
     "frame11",
     "frame12",
-    "socials",
-    "socialIcon",
-    "socialIcon2"
+    "socials"
   ],
   frame6: ["frame6", "frame7", "frame9", "frame11", "frame12"],
   frame7: ["frame7", "frame9", "frame11", "frame12"],
   frame9: ["frame9"],
   frame11: ["frame11"],
   frame12: ["frame12"],
-  socials: ["socials", "socialIcon", "socialIcon2"],
-  socialIcon: ["socialIcon"],
-  socialIcon2: ["socialIcon2"],
+  socials: ["socials"],
   footerLinksContainer: ["footerLinksContainer", "footerLinks2"],
   footerLinks2: ["footerLinks2"],
   container2: ["container2", "divider", "content2", "footerText"],
@@ -16286,7 +16319,6 @@ type NodeDefaultElementType = {
   frame3: "div";
   frame4: "div";
   frame5: "div";
-  link: "a";
   main: "main";
   bgImage: typeof PlasmicImg__;
   section1: "section";
@@ -16372,8 +16404,6 @@ type NodeDefaultElementType = {
   frame11: "div";
   frame12: "div";
   socials: "div";
-  socialIcon: "div";
-  socialIcon2: "div";
   footerLinksContainer: "div";
   footerLinks2: "div";
   container2: "div";
@@ -16582,7 +16612,6 @@ export const PlasmicAccueil = Object.assign(
     frame3: makeNodeComponent("frame3"),
     frame4: makeNodeComponent("frame4"),
     frame5: makeNodeComponent("frame5"),
-    link: makeNodeComponent("link"),
     main: makeNodeComponent("main"),
     bgImage: makeNodeComponent("bgImage"),
     section1: makeNodeComponent("section1"),
@@ -16672,8 +16701,6 @@ export const PlasmicAccueil = Object.assign(
     frame11: makeNodeComponent("frame11"),
     frame12: makeNodeComponent("frame12"),
     socials: makeNodeComponent("socials"),
-    socialIcon: makeNodeComponent("socialIcon"),
-    socialIcon2: makeNodeComponent("socialIcon2"),
     footerLinksContainer: makeNodeComponent("footerLinksContainer"),
     footerLinks2: makeNodeComponent("footerLinks2"),
     container2: makeNodeComponent("container2"),

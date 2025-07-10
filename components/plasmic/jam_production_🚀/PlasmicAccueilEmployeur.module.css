@@ -4577,15 +4577,19 @@
 }
 .button3:global(.__wab_instance):global(.__wab_instance) {
   position: relative;
+  flex-shrink: 0;
 }
 .svg__cJiJy {
   position: relative;
   color: var(--token-OIYWLyLPYWym);
   height: 1em;
 }
-.text__nI5U {
+.text__iHiBz {
   white-space: pre;
   color: var(--token-nuB3vbLUeNHj);
+  font-family: "DM Sans", sans-serif;
+  font-weight: 700;
+  font-size: 16px;
 }
 .svg__ct4Jb {
   position: relative;

@@ -70,12 +70,12 @@ import projectcss from "./plasmic.module.css"; // plasmic-import: f7DE9y7qp46fyC
 import sty from "./PlasmicAlertCard.module.css"; // plasmic-import: -xst-G3CRLYp/css
 
 import Vector20Icon from "./icons/PlasmicIcon__Vector20"; // plasmic-import: 3oXUWH4aUqgx/icon
+import PhTrashIcon from "./icons/PlasmicIcon__PhTrash"; // plasmic-import: juO39VElEpcx/icon
+import PencilSimpleLineIcon from "./icons/PlasmicIcon__PencilSimpleLine"; // plasmic-import: l9xLeGEs7UWH/icon
 import Vector21Icon from "./icons/PlasmicIcon__Vector21"; // plasmic-import: 4EUB4wFLEPEm/icon
 import IconPhClockIcon from "./icons/PlasmicIcon__IconPhClock"; // plasmic-import: vCpr2sLhwGJi/icon
 import CircleIcon from "./icons/PlasmicIcon__Circle"; // plasmic-import: je95h6YoQ2jE/icon
 import GroupIcon from "./icons/PlasmicIcon__Group"; // plasmic-import: yIYn4o5HgDaM/icon
-import PhTrashIcon from "./icons/PlasmicIcon__PhTrash"; // plasmic-import: juO39VElEpcx/icon
-import PencilSimpleLineIcon from "./icons/PlasmicIcon__PencilSimpleLine"; // plasmic-import: l9xLeGEs7UWH/icon
 
 createPlasmicElementProxy;
 
@@ -102,11 +102,11 @@ export type PlasmicAlertCard__OverridesType = {
   root?: Flex__<"div">;
   jobTitle?: Flex__<"h2">;
   ville?: Flex__<"div">;
+  deleteEdit?: Flex__<"div">;
   tags?: Flex__<"div">;
   img?: Flex__<typeof PlasmicImg__>;
   button?: Flex__<typeof Button>;
   text?: Flex__<"div">;
-  deleteEdit?: Flex__<"div">;
 };
 
 export interface DefaultAlertCardProps {
@@ -179,14 +179,10 @@ function PlasmicAlertCard__RenderFunc(props: {
       <Stack__
         as={"div"}
         hasGap={true}
-        className={classNames(projectcss.all, sty.freeBox__fpJSu)}
+        className={classNames(projectcss.all, sty.freeBox__fzEIh)}
       >
-        <Stack__
-          as={"div"}
-          hasGap={true}
-          className={classNames(projectcss.all, sty.freeBox__j0F2U)}
-        >
-          <div className={classNames(projectcss.all, sty.freeBox___83SLy)}>
+        <div className={classNames(projectcss.all, sty.freeBox___83SLy)}>
+          <div className={classNames(projectcss.all, sty.freeBox__msr2K)}>
             <h2
               data-plasmic-name={"jobTitle"}
               data-plasmic-override={overrides.jobTitle}
@@ -253,296 +249,296 @@ function PlasmicAlertCard__RenderFunc(props: {
           </div>
           <Stack__
             as={"div"}
-            data-plasmic-name={"tags"}
-            data-plasmic-override={overrides.tags}
+            data-plasmic-name={"deleteEdit"}
+            data-plasmic-override={overrides.deleteEdit}
             hasGap={true}
-            className={classNames(projectcss.all, sty.tags)}
+            className={classNames(projectcss.all, sty.deleteEdit)}
           >
-            {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
-              (() => {
-                try {
-                  return $props.currentItem.search_criteria.contract_types;
-                } catch (e) {
-                  if (
-                    e instanceof TypeError ||
-                    e?.plasmicType === "PlasmicUndefinedDataError"
-                  ) {
-                    return [];
-                  }
-                  throw e;
-                }
-              })()
-            ).map((__plasmic_item_0, __plasmic_idx_0) => {
-              const currentItem = __plasmic_item_0;
-              const currentIndex = __plasmic_idx_0;
-              return (
-                <Stack__
-                  as={"div"}
-                  hasGap={true}
-                  className={classNames(projectcss.all, sty.freeBox__ywP6)}
-                  key={currentIndex}
-                >
-                  <PlasmicImg__
-                    data-plasmic-name={"img"}
-                    data-plasmic-override={overrides.img}
-                    alt={""}
-                    className={classNames(sty.img)}
-                    displayHeight={"14px"}
-                    displayMaxHeight={"none"}
-                    displayMaxWidth={"100%"}
-                    displayMinHeight={"0"}
-                    displayMinWidth={"0"}
-                    displayWidth={"14px"}
-                    loading={"lazy"}
-                    src={{
-                      src: "/plasmic/jam_production_🚀/images/image7.svg",
-                      fullWidth: 20,
-                      fullHeight: 20,
-                      aspectRatio: 1
-                    }}
-                  />
-
-                  <p
-                    className={classNames(
-                      projectcss.all,
-                      projectcss.p,
-                      projectcss.__wab_text,
-                      sty.p__skJcg
-                    )}
-                  >
-                    <React.Fragment>
-                      {(() => {
-                        try {
-                          return currentItem;
-                        } catch (e) {
-                          if (
-                            e instanceof TypeError ||
-                            e?.plasmicType === "PlasmicUndefinedDataError"
-                          ) {
-                            return "";
-                          }
-                          throw e;
-                        }
-                      })()}
-                    </React.Fragment>
-                  </p>
-                </Stack__>
-              );
-            })}
-            {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
-              (() => {
-                try {
-                  return $props.currentItem.search_criteria.min_salary;
-                } catch (e) {
-                  if (
-                    e instanceof TypeError ||
-                    e?.plasmicType === "PlasmicUndefinedDataError"
-                  ) {
-                    return [];
-                  }
-                  throw e;
-                }
-              })()
-            ).map((__plasmic_item_0, __plasmic_idx_0) => {
-              const currentItem = __plasmic_item_0;
-              const currentIndex = __plasmic_idx_0;
-              return (
-                <Stack__
-                  as={"div"}
-                  hasGap={true}
-                  className={classNames(projectcss.all, sty.freeBox__wZofj)}
-                  key={currentIndex}
-                >
-                  <Vector21Icon
-                    className={classNames(projectcss.all, sty.svg___2W09M)}
-                    role={"img"}
-                  />
-
-                  <p
-                    className={classNames(
-                      projectcss.all,
-                      projectcss.p,
-                      projectcss.__wab_text,
-                      sty.p___5QocY
-                    )}
-                  >
-                    <React.Fragment>
-                      {(() => {
-                        try {
-                          return currentItem;
-                        } catch (e) {
-                          if (
-                            e instanceof TypeError ||
-                            e?.plasmicType === "PlasmicUndefinedDataError"
-                          ) {
-                            return "";
-                          }
-                          throw e;
-                        }
-                      })()}
-                    </React.Fragment>
-                  </p>
-                </Stack__>
-              );
-            })}
-            {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
-              (() => {
-                try {
-                  return $props.currentItem.search_criteria.work_times;
-                } catch (e) {
-                  if (
-                    e instanceof TypeError ||
-                    e?.plasmicType === "PlasmicUndefinedDataError"
-                  ) {
-                    return [];
-                  }
-                  throw e;
-                }
-              })()
-            ).map((__plasmic_item_0, __plasmic_idx_0) => {
-              const currentItem = __plasmic_item_0;
-              const currentIndex = __plasmic_idx_0;
-              return (
-                <Stack__
-                  as={"div"}
-                  hasGap={true}
-                  className={classNames(projectcss.all, sty.freeBox__kvPir)}
-                  key={currentIndex}
-                >
-                  <IconPhClockIcon
-                    className={classNames(projectcss.all, sty.svg__woS9I)}
-                    role={"img"}
-                  />
-
-                  <p
-                    className={classNames(
-                      projectcss.all,
-                      projectcss.p,
-                      projectcss.__wab_text,
-                      sty.p__lLhrp
-                    )}
-                  >
-                    <React.Fragment>
-                      {(() => {
-                        try {
-                          return currentItem;
-                        } catch (e) {
-                          if (
-                            e instanceof TypeError ||
-                            e?.plasmicType === "PlasmicUndefinedDataError"
-                          ) {
-                            return "";
-                          }
-                          throw e;
-                        }
-                      })()}
-                    </React.Fragment>
-                  </p>
-                </Stack__>
-              );
-            })}
-          </Stack__>
-        </Stack__>
-        <Button
-          data-plasmic-name={"button"}
-          data-plasmic-override={overrides.button}
-          className={classNames("__wab_instance", sty.button)}
-          color={"white"}
-          end={
-            <GroupIcon
-              className={classNames(projectcss.all, sty.svg__smNm6)}
+            <PhTrashIcon
+              className={classNames(projectcss.all, sty.svg__l0Zs3)}
+              onClick={args.onClickDelete}
               role={"img"}
             />
-          }
-          iconEnd={true}
-          label={
-            <div
-              data-plasmic-name={"text"}
-              data-plasmic-override={overrides.text}
-              className={classNames(
-                projectcss.all,
-                projectcss.__wab_text,
-                sty.text
-              )}
-            >
-              {"Voir les offres"}
-            </div>
-          }
-          onClick={async event => {
-            const $steps = {};
 
-            $steps["goToPage"] = true
-              ? (() => {
-                  const actionArgs = {
-                    destination: (() => {
+            <PencilSimpleLineIcon
+              className={classNames(projectcss.all, sty.svg___6Uf4S)}
+              onClick={args.onClickEdit}
+              role={"img"}
+            />
+          </Stack__>
+        </div>
+        <Stack__
+          as={"div"}
+          data-plasmic-name={"tags"}
+          data-plasmic-override={overrides.tags}
+          hasGap={true}
+          className={classNames(projectcss.all, sty.tags)}
+        >
+          {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
+            (() => {
+              try {
+                return $props.currentItem.search_criteria.contract_types;
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return [];
+                }
+                throw e;
+              }
+            })()
+          ).map((__plasmic_item_0, __plasmic_idx_0) => {
+            const currentItem = __plasmic_item_0;
+            const currentIndex = __plasmic_idx_0;
+            return (
+              <Stack__
+                as={"div"}
+                hasGap={true}
+                className={classNames(projectcss.all, sty.freeBox__ywP6)}
+                key={currentIndex}
+              >
+                <PlasmicImg__
+                  data-plasmic-name={"img"}
+                  data-plasmic-override={overrides.img}
+                  alt={""}
+                  className={classNames(sty.img)}
+                  displayHeight={"14px"}
+                  displayMaxHeight={"none"}
+                  displayMaxWidth={"100%"}
+                  displayMinHeight={"0"}
+                  displayMinWidth={"0"}
+                  displayWidth={"14px"}
+                  loading={"lazy"}
+                  src={{
+                    src: "/plasmic/jam_production_🚀/images/image7.svg",
+                    fullWidth: 20,
+                    fullHeight: 20,
+                    aspectRatio: 1
+                  }}
+                />
+
+                <p
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.p,
+                    projectcss.__wab_text,
+                    sty.p__skJcg
+                  )}
+                >
+                  <React.Fragment>
+                    {(() => {
                       try {
-                        return (
-                          "/?name=" +
-                          $props.currentItem.search_criteria.job_title +
-                          "&city=" +
-                          $props.currentItem.search_criteria.city +
-                          "&work_times=" +
-                          $props.currentItem.search_criteria.work_times +
-                          "&contract_types=" +
-                          $props.currentItem.search_criteria.contract_types +
-                          "&min_salary=" +
-                          $props.currentItem.search_criteria.min_salary
-                        );
+                        return currentItem;
                       } catch (e) {
                         if (
                           e instanceof TypeError ||
                           e?.plasmicType === "PlasmicUndefinedDataError"
                         ) {
-                          return undefined;
+                          return "";
                         }
                         throw e;
                       }
-                    })()
-                  };
-                  return (({ destination }) => {
-                    if (
-                      typeof destination === "string" &&
-                      destination.startsWith("#")
-                    ) {
-                      document
-                        .getElementById(destination.substr(1))
-                        .scrollIntoView({ behavior: "smooth" });
-                    } else {
-                      __nextRouter?.push(destination);
-                    }
-                  })?.apply(null, [actionArgs]);
-                })()
-              : undefined;
-            if (
-              $steps["goToPage"] != null &&
-              typeof $steps["goToPage"] === "object" &&
-              typeof $steps["goToPage"].then === "function"
-            ) {
-              $steps["goToPage"] = await $steps["goToPage"];
-            }
-          }}
-          type={"bordered"}
-        />
-      </Stack__>
-      <Stack__
-        as={"div"}
-        data-plasmic-name={"deleteEdit"}
-        data-plasmic-override={overrides.deleteEdit}
-        hasGap={true}
-        className={classNames(projectcss.all, sty.deleteEdit)}
-      >
-        <PhTrashIcon
-          className={classNames(projectcss.all, sty.svg__l0Zs3)}
-          onClick={args.onClickDelete}
-          role={"img"}
-        />
+                    })()}
+                  </React.Fragment>
+                </p>
+              </Stack__>
+            );
+          })}
+          {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
+            (() => {
+              try {
+                return $props.currentItem.search_criteria.min_salary;
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return [];
+                }
+                throw e;
+              }
+            })()
+          ).map((__plasmic_item_0, __plasmic_idx_0) => {
+            const currentItem = __plasmic_item_0;
+            const currentIndex = __plasmic_idx_0;
+            return (
+              <Stack__
+                as={"div"}
+                hasGap={true}
+                className={classNames(projectcss.all, sty.freeBox__wZofj)}
+                key={currentIndex}
+              >
+                <Vector21Icon
+                  className={classNames(projectcss.all, sty.svg___2W09M)}
+                  role={"img"}
+                />
 
-        <PencilSimpleLineIcon
-          className={classNames(projectcss.all, sty.svg___6Uf4S)}
-          onClick={args.onClickEdit}
-          role={"img"}
-        />
+                <p
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.p,
+                    projectcss.__wab_text,
+                    sty.p___5QocY
+                  )}
+                >
+                  <React.Fragment>
+                    {(() => {
+                      try {
+                        return currentItem;
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return "";
+                        }
+                        throw e;
+                      }
+                    })()}
+                  </React.Fragment>
+                </p>
+              </Stack__>
+            );
+          })}
+          {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
+            (() => {
+              try {
+                return $props.currentItem.search_criteria.work_times;
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return [];
+                }
+                throw e;
+              }
+            })()
+          ).map((__plasmic_item_0, __plasmic_idx_0) => {
+            const currentItem = __plasmic_item_0;
+            const currentIndex = __plasmic_idx_0;
+            return (
+              <Stack__
+                as={"div"}
+                hasGap={true}
+                className={classNames(projectcss.all, sty.freeBox__kvPir)}
+                key={currentIndex}
+              >
+                <IconPhClockIcon
+                  className={classNames(projectcss.all, sty.svg__woS9I)}
+                  role={"img"}
+                />
+
+                <p
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.p,
+                    projectcss.__wab_text,
+                    sty.p__lLhrp
+                  )}
+                >
+                  <React.Fragment>
+                    {(() => {
+                      try {
+                        return currentItem;
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return "";
+                        }
+                        throw e;
+                      }
+                    })()}
+                  </React.Fragment>
+                </p>
+              </Stack__>
+            );
+          })}
+        </Stack__>
       </Stack__>
+      <Button
+        data-plasmic-name={"button"}
+        data-plasmic-override={overrides.button}
+        className={classNames("__wab_instance", sty.button)}
+        color={"white"}
+        end={
+          <GroupIcon
+            className={classNames(projectcss.all, sty.svg__smNm6)}
+            role={"img"}
+          />
+        }
+        iconEnd={true}
+        label={
+          <div
+            data-plasmic-name={"text"}
+            data-plasmic-override={overrides.text}
+            className={classNames(
+              projectcss.all,
+              projectcss.__wab_text,
+              sty.text
+            )}
+          >
+            {"Voir les offres"}
+          </div>
+        }
+        onClick={async event => {
+          const $steps = {};
+
+          $steps["goToPage"] = true
+            ? (() => {
+                const actionArgs = {
+                  destination: (() => {
+                    try {
+                      return (
+                        "/?name=" +
+                        $props.currentItem.search_criteria.job_title +
+                        "&city=" +
+                        $props.currentItem.search_criteria.city +
+                        "&work_times=" +
+                        $props.currentItem.search_criteria.work_times +
+                        "&contract_types=" +
+                        $props.currentItem.search_criteria.contract_types +
+                        "&min_salary=" +
+                        $props.currentItem.search_criteria.min_salary
+                      );
+                    } catch (e) {
+                      if (
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
+                      ) {
+                        return undefined;
+                      }
+                      throw e;
+                    }
+                  })()
+                };
+                return (({ destination }) => {
+                  if (
+                    typeof destination === "string" &&
+                    destination.startsWith("#")
+                  ) {
+                    document
+                      .getElementById(destination.substr(1))
+                      .scrollIntoView({ behavior: "smooth" });
+                  } else {
+                    __nextRouter?.push(destination);
+                  }
+                })?.apply(null, [actionArgs]);
+              })()
+            : undefined;
+          if (
+            $steps["goToPage"] != null &&
+            typeof $steps["goToPage"] === "object" &&
+            typeof $steps["goToPage"].then === "function"
+          ) {
+            $steps["goToPage"] = await $steps["goToPage"];
+          }
+        }}
+        type={"bordered"}
+      />
     </Stack__>
   ) as React.ReactElement | null;
 }
@@ -552,19 +548,19 @@ const PlasmicDescendants = {
     "root",
     "jobTitle",
     "ville",
+    "deleteEdit",
     "tags",
     "img",
     "button",
-    "text",
-    "deleteEdit"
+    "text"
   ],
   jobTitle: ["jobTitle"],
   ville: ["ville"],
+  deleteEdit: ["deleteEdit"],
   tags: ["tags", "img"],
   img: ["img"],
   button: ["button", "text"],
-  text: ["text"],
-  deleteEdit: ["deleteEdit"]
+  text: ["text"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -573,11 +569,11 @@ type NodeDefaultElementType = {
   root: "div";
   jobTitle: "h2";
   ville: "div";
+  deleteEdit: "div";
   tags: "div";
   img: typeof PlasmicImg__;
   button: typeof Button;
   text: "div";
-  deleteEdit: "div";
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -642,11 +638,11 @@ export const PlasmicAlertCard = Object.assign(
     // Helper components rendering sub-elements
     jobTitle: makeNodeComponent("jobTitle"),
     ville: makeNodeComponent("ville"),
+    deleteEdit: makeNodeComponent("deleteEdit"),
     tags: makeNodeComponent("tags"),
     img: makeNodeComponent("img"),
     button: makeNodeComponent("button"),
     text: makeNodeComponent("text"),
-    deleteEdit: makeNodeComponent("deleteEdit"),
 
     // Metadata about props expected for PlasmicAlertCard
     internalVariantProps: PlasmicAlertCard__VariantProps,

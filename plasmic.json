@@ -2177,6 +2177,20 @@
           "cssFilePath": "plasmic/jam_production_🚀/PlasmicCvUploaded.module.css",
           "scheme": "blackbox",
           "componentType": "component"
+        },
+        {
+          "id": "75qzqXUsFtGd",
+          "name": "MentionsLegales",
+          "type": "managed",
+          "projectId": "f7DE9y7qp46fyCw5nuY8f9",
+          "renderModuleFilePath": "plasmic/jam_production_🚀/PlasmicMentionsLegales.tsx",
+          "importSpec": {
+            "modulePath": "../pages/mentions-legales.tsx"
+          },
+          "cssFilePath": "plasmic/jam_production_🚀/PlasmicMentionsLegales.module.css",
+          "scheme": "blackbox",
+          "componentType": "page",
+          "path": "/mentions-legales"
         }
       ],
       "icons": [
@@ -3329,6 +3343,16 @@
           "id": "un50fnKIt1qA",
           "name": "DeleteSvgrepoComSvgIcon",
           "moduleFilePath": "plasmic/jam_production_🚀/icons/PlasmicIcon__DeleteSvgrepoComSvg.tsx"
+        },
+        {
+          "id": "ihH1MekTuW7o",
+          "name": "Vector26Icon",
+          "moduleFilePath": "plasmic/jam_production_🚀/icons/PlasmicIcon__Vector26.tsx"
+        },
+        {
+          "id": "2HIkNr38V1z9",
+          "name": "Vector27Icon",
+          "moduleFilePath": "plasmic/jam_production_🚀/icons/PlasmicIcon__Vector27.tsx"
         }
       ],
       "images": [
@@ -4516,6 +4540,11 @@
           "id": "cEnzFfQz58Yi",
           "name": "image 21",
           "filePath": "../public/plasmic/jam_production_🚀/images/image21.svg"
+        },
+        {
+          "id": "ETbpnIz9nrx0",
+          "name": "Toggle 2",
+          "filePath": "../public/plasmic/jam_production_🚀/images/toggle2.svg"
         }
       ],
       "indirect": false,
@@ -4969,6 +4998,6 @@
   "nextjsConfig": {
     "pagesDir": "../pages"
   },
-  "cliVersion": "0.1.338",
-  "$schema": "https://unpkg.com/@plasmicapp/cli@0.1.338/dist/plasmic.schema.json"
+  "cliVersion": "0.1.340",
+  "$schema": "https://unpkg.com/@plasmicapp/cli@0.1.340/dist/plasmic.schema.json"
 }

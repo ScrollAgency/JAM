@@ -66,7 +66,6 @@
   width: 50%;
   flex-shrink: 1;
   height: 1015px;
-  padding: 526px 229px 433px;
 }
 .imageWrapper2 > :global(.__wab_flex-container) {
   flex-direction: column;
@@ -100,6 +99,8 @@
   transition-property: all;
   transition-duration: 1s;
   cursor: pointer;
+  overflow-x: hidden;
+  overflow-y: hidden;
   -webkit-transition-property: all;
   -webkit-transition-duration: 1s;
 }

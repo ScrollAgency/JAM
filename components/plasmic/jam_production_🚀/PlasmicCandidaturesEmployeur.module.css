@@ -941,6 +941,7 @@
   max-width: 100%;
   width: 100%;
   min-width: 0;
+  flex-shrink: 0;
 }
 .svg__qj7Cl {
   position: relative;
@@ -1005,6 +1006,7 @@
 }
 .button__cjLQ:global(.__wab_instance):global(.__wab_instance) {
   max-width: 100%;
+  flex-shrink: 0;
 }
 .svg__dPuUq {
   position: relative;
@@ -1067,6 +1069,7 @@
 }
 .button___64UG:global(.__wab_instance):global(.__wab_instance) {
   max-width: 100%;
+  flex-shrink: 0;
 }
 .svg__aqGLb {
   position: relative;

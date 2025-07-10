@@ -1,14 +1,14 @@
 .root:global(.__wab_instance) {
-  color: var(--token-uqUcyTUgvV0c);
-  display: flex;
   position: relative;
   font-family: "DM Sans", sans-serif;
   font-size: 14px;
   font-weight: 400;
   text-transform: uppercase;
+  display: flex;
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
+  color: var(--token-zXiyHeK-ysvi);
   border-radius: 0px;
   padding: 0px;
 }

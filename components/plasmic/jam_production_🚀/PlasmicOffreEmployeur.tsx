@@ -2303,6 +2303,58 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                                 return;
                               }
                             },
+                            onClickBoost: async event => {
+                              const $steps = {};
+
+                              $steps["updateInsufficientChargesIsOpen"] =
+                                Number(
+                                  $queries.offreStripeUserInfos.data[0]
+                                    .recharge_boost
+                                ) == 0
+                                  ? (() => {
+                                      const actionArgs = {
+                                        variable: {
+                                          objRoot: $state,
+                                          variablePath: [
+                                            "insufficientCharges",
+                                            "isOpen"
+                                          ]
+                                        },
+                                        operation: 0,
+                                        value: true
+                                      };
+                                      return (({
+                                        variable,
+                                        value,
+                                        startIndex,
+                                        deleteCount
+                                      }) => {
+                                        if (!variable) {
+                                          return;
+                                        }
+                                        const { objRoot, variablePath } =
+                                          variable;
+
+                                        $stateSet(objRoot, variablePath, value);
+                                        return value;
+                                      })?.apply(null, [actionArgs]);
+                                    })()
+                                  : undefined;
+                              if (
+                                $steps["updateInsufficientChargesIsOpen"] !=
+                                  null &&
+                                typeof $steps[
+                                  "updateInsufficientChargesIsOpen"
+                                ] === "object" &&
+                                typeof $steps["updateInsufficientChargesIsOpen"]
+                                  .then === "function"
+                              ) {
+                                $steps["updateInsufficientChargesIsOpen"] =
+                                  await $steps[
+                                    "updateInsufficientChargesIsOpen"
+                                  ];
+                              }
+                            },
                             onContractTypeChange: async (...eventArgs: any) => {
                               generateStateOnChangeProp($state, [
                                 "jobCard",
@@ -3052,6 +3104,24 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                   </Stack__>
                   <Button
                     className={classNames("__wab_instance", sty.button__cIye4)}
+                    disabled={(() => {
+                      try {
+                        return (
+                          $queries.getUser.isLoading ||
+                          !$queries.getUser.data[0].onboarding ||
+                          !$queries.offreStripeUserInfos.data[0]
+                            .recharge_classic > 0
+                        );
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return undefined;
+                        }
+                        throw e;
+                      }
+                    })()}
                     end={
                       <PlusCircle1425SvgrepoComSvgIcon
                         className={classNames(projectcss.all, sty.svg___57Pl)}
@@ -4973,7 +5043,17 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                             />
                           }
                           iconEnd={true}
-                          label={"cr\u00e9er l'offre"}
+                          label={
+                            <div
+                              className={classNames(
+                                projectcss.all,
+                                projectcss.__wab_text,
+                                sty.text__wzEnp
+                              )}
+                            >
+                              {"cr\u00e9er l'offre"}
+                            </div>
+                          }
                           onClick={async event => {
                             const $steps = {};
 
@@ -7974,7 +8054,17 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
               </Stack__>
             }
             footer={null}
-            heading={null}
+            heading={
+              <div
+                className={classNames(
+                  projectcss.all,
+                  projectcss.__wab_text,
+                  sty.text__heFrj
+                )}
+              >
+                {"Enter some text"}
+              </div>
+            }
             isOpen={generateStateValueProp($state, ["deleteJob", "isOpen"])}
             noTrigger={true}
             onOpenChange={async (...eventArgs: any) => {

@@ -7,9 +7,8 @@
   font-weight: 700;
   background: var(--token-ctGtle1XR2Yc);
   text-transform: uppercase;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
+  letter-spacing: 6%;
+  height: 48px;
   border-radius: 16px;
   padding: 12px 24px;
 }
@@ -382,6 +381,9 @@
 .text__zr0ME {
   white-space: pre;
   color: var(--token-nuB3vbLUeNHj);
+  font-family: "DM Sans", sans-serif;
+  font-weight: 700;
+  font-size: 16px;
 }
 .freeBox__mnnn5 {
   flex-direction: column;

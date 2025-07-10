@@ -82,9 +82,9 @@ import sty from "./PlasmicJobCard.module.css"; // plasmic-import: 9MKR6AAbT8y6/c
 import Dot3Icon from "./icons/PlasmicIcon__Dot3"; // plasmic-import: ccAgTXPIrKUq/icon
 import Vector25Icon from "./icons/PlasmicIcon__Vector25"; // plasmic-import: _eubZzKq0NkT/icon
 import ZapIcon from "./icons/PlasmicIcon__Zap"; // plasmic-import: c9TD4NnDdoCa/icon
-import IconPhMapPinIcon from "./icons/PlasmicIcon__IconPhMapPin"; // plasmic-import: CAcfAl_W7CL5/icon
 import PhTrashIcon from "./icons/PlasmicIcon__PhTrash"; // plasmic-import: juO39VElEpcx/icon
 import PhPencilSimpleIcon from "./icons/PlasmicIcon__PhPencilSimple"; // plasmic-import: 7xHLZEkolpKE/icon
+import IconPhMapPinIcon from "./icons/PlasmicIcon__IconPhMapPin"; // plasmic-import: CAcfAl_W7CL5/icon
 import PhBriefcaseIcon from "./icons/PlasmicIcon__PhBriefcase"; // plasmic-import: EdRddldiV5u0/icon
 import PhFileText2Icon from "./icons/PlasmicIcon__PhFileText2"; // plasmic-import: dbjbAgK_hzNM/icon
 import PhClockCountdown2Icon from "./icons/PlasmicIcon__PhClockCountdown2"; // plasmic-import: jfi-_eNi6Hdj/icon
@@ -138,6 +138,8 @@ export type PlasmicJobCard__ArgsType = {
   _delete?: (event: any) => void;
   postalCode?: string;
   onPostalCodeChange?: (val: string) => void;
+  onClick?: (isSelected: boolean) => void;
+  onClickBoost?: (event: any) => void;
 };
 type ArgPropType = keyof PlasmicJobCard__ArgsType;
 export const PlasmicJobCard__ArgProps = new Array<ArgPropType>(
@@ -176,7 +178,9 @@ export const PlasmicJobCard__ArgProps = new Array<ArgPropType>(
   "edit",
   "_delete",
   "postalCode",
-  "onPostalCodeChange"
+  "onPostalCodeChange",
+  "onClick",
+  "onClickBoost"
 );
 
 export type PlasmicJobCard__OverridesType = {
@@ -234,6 +238,8 @@ export interface DefaultJobCardProps {
   _delete?: (event: any) => void;
   postalCode?: string;
   onPostalCodeChange?: (val: string) => void;
+  onClick?: (isSelected: boolean) => void;
+  onClickBoost?: (event: any) => void;
   className?: string;
 }
 
@@ -468,7 +474,11 @@ function PlasmicJobCard__RenderFunc(props: {
         hasGap={true}
         className={classNames(projectcss.all, sty.freeBox__kD3Dt)}
       >
-        <div className={classNames(projectcss.all, sty.freeBox__lvPyQ)}>
+        <Stack__
+          as={"div"}
+          hasGap={true}
+          className={classNames(projectcss.all, sty.freeBox__lvPyQ)}
+        >
           <Stack__
             as={"div"}
             hasGap={true}
@@ -583,23 +593,324 @@ function PlasmicJobCard__RenderFunc(props: {
             <Stack__
               as={"div"}
               hasGap={true}
-              className={classNames(projectcss.all, sty.freeBox___1T0Xi)}
+              className={classNames(projectcss.all, sty.freeBox__pARq8)}
             >
-              <div
-                className={classNames(projectcss.all, sty.freeBox__mEwuY)}
-                onClick={async event => {
-                  const $steps = {};
+              <Stack__
+                as={"div"}
+                hasGap={true}
+                className={classNames(projectcss.all, sty.freeBox___1T0Xi)}
+              >
+                <div
+                  className={classNames(projectcss.all, sty.freeBox__mEwuY)}
+                  onClick={args.onClickBoost}
+                >
+                  {(() => {
+                    try {
+                      return (() => {
+                        if (
+                          $props.stripe.data[0].product_id ==
+                            "prod_S81L3WBaA1HwM0" &&
+                          $props.stripe.data[0].recharge_boost > 0
+                        ) {
+                          return false;
+                        } else if ($props.stripe.data[0].recharge_boost == 0) {
+                          return true;
+                        } else {
+                          return false;
+                        }
+                      })();
+                    } catch (e) {
+                      if (
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
+                      ) {
+                        return true;
+                      }
+                      throw e;
+                    }
+                  })() ? (
+                    <Vector25Icon
+                      className={classNames(projectcss.all, sty.svg__apJYv)}
+                      role={"img"}
+                    />
+                  ) : null}
+                  {(() => {
+                    try {
+                      return $state.isBoosted;
+                    } catch (e) {
+                      if (
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
+                      ) {
+                        return true;
+                      }
+                      throw e;
+                    }
+                  })() ? (
+                    <Vector25Icon
+                      className={classNames(projectcss.all, sty.svg__rnBn)}
+                      role={"img"}
+                    />
+                  ) : null}
+                  {(() => {
+                    try {
+                      return (() => {
+                        if (
+                          $props.stripe.data[0].product_id ==
+                            "prod_S81L3WBaA1HwM0" &&
+                          $props.stripe.data[0].recharge_boost > 0 &&
+                          $state.isBoosted == false
+                        ) {
+                          return true;
+                        } else if ($props.stripe.data[0].recharge_boost == 0) {
+                          return false;
+                        }
+                      })();
+                    } catch (e) {
+                      if (
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
+                      ) {
+                        return true;
+                      }
+                      throw e;
+                    }
+                  })() ? (
+                    <ZapIcon
+                      className={classNames(projectcss.all, sty.svg__myH5)}
+                      role={"img"}
+                    />
+                  ) : null}
+                  <div
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.__wab_text,
+                      sty.text___2Fmj2
+                    )}
+                    style={(() => {
+                      try {
+                        return {
+                          color: $state.isBoosted
+                            ? "#002400"
+                            : Number($props.stripe.data[0].recharge_boost) == 0
+                            ? "#C8C8C8"
+                            : "#666666"
+                        };
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return undefined;
+                        }
+                        throw e;
+                      }
+                    })()}
+                  >
+                    {"BOOST"}
+                  </div>
+                  {(() => {
+                    try {
+                      return !$state.isBoosted;
+                    } catch (e) {
+                      if (
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
+                      ) {
+                        return true;
+                      }
+                      throw e;
+                    }
+                  })() ? (
+                    <Switch
+                      data-plasmic-name={"switch3"}
+                      data-plasmic-override={overrides.switch3}
+                      className={classNames("__wab_instance", sty.switch3)}
+                      disabled={(() => {
+                        try {
+                          return (() => {
+                            if (
+                              $props.stripe.data[0].product_id ==
+                                "prod_S81L3WBaA1HwM0" &&
+                              $props.stripe.data[0].recharge_boost > 0
+                            ) {
+                              return false;
+                            } else if (
+                              $props.stripe.data[0].recharge_boost == 0
+                            ) {
+                              return true;
+                            } else {
+                              return false;
+                            }
+                          })();
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return false;
+                          }
+                          throw e;
+                        }
+                      })()}
+                      isSelected={generateStateValueProp($state, [
+                        "switch3",
+                        "isSelected"
+                      ])}
+                      onChange={async (...eventArgs: any) => {
+                        generateStateOnChangeProp($state, [
+                          "switch3",
+                          "isSelected"
+                        ]).apply(null, eventArgs);
 
-                  $steps["invokeGlobalAction"] =
-                    Number(
-                      $queries.offreStripeUserInfos.data[0].recharge_boost
-                    ) == 0
+                        if (
+                          eventArgs.length > 1 &&
+                          eventArgs[1] &&
+                          eventArgs[1]._plasmic_state_init_
+                        ) {
+                          return;
+                        }
+
+                        (async val => {
+                          const $steps = {};
+
+                          $steps["postgresUpdateMany"] = true
+                            ? (() => {
+                                const actionArgs = {
+                                  dataOp: {
+                                    sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
+                                    opId: "d5ac40b0-0d4d-4dc6-9737-2d220b297a64",
+                                    userArgs: {
+                                      conditions: [$ctx.SupabaseUser.user.id],
+                                      variables: [
+                                        Math.max(
+                                          0,
+                                          $state.switch3.isSelected
+                                            ? Number(
+                                                $props.stripe.data[0]
+                                                  .recharge_boost - 1
+                                              )
+                                            : Number(
+                                                $props.stripe.data[0]
+                                                  .recharge_boost
+                                              )
+                                        )
+                                      ]
+                                    },
+                                    cacheKey: null,
+                                    invalidatedKeys: ["plasmic_refresh_all"],
+                                    roleId: null
+                                  }
+                                };
+                                return (async ({ dataOp, continueOnError }) => {
+                                  try {
+                                    const response = await executePlasmicDataOp(
+                                      dataOp,
+                                      {
+                                        userAuthToken:
+                                          dataSourcesCtx?.userAuthToken,
+                                        user: dataSourcesCtx?.user
+                                      }
+                                    );
+                                    await plasmicInvalidate(
+                                      dataOp.invalidatedKeys
+                                    );
+                                    return response;
+                                  } catch (e) {
+                                    if (!continueOnError) {
+                                      throw e;
+                                    }
+                                    return e;
+                                  }
+                                })?.apply(null, [actionArgs]);
+                              })()
+                            : undefined;
+                          if (
+                            $steps["postgresUpdateMany"] != null &&
+                            typeof $steps["postgresUpdateMany"] === "object" &&
+                            typeof $steps["postgresUpdateMany"].then ===
+                              "function"
+                          ) {
+                            $steps["postgresUpdateMany"] = await $steps[
+                              "postgresUpdateMany"
+                            ];
+                          }
+
+                          $steps["postgresUpdateById"] = true
+                            ? (() => {
+                                const actionArgs = {
+                                  dataOp: {
+                                    sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
+                                    opId: "cee5cfc5-4de5-43af-9616-bc311b5bafc8",
+                                    userArgs: {
+                                      keys: [$state.jobId],
+                                      variables: [$state.switch3.isSelected]
+                                    },
+                                    cacheKey: null,
+                                    invalidatedKeys: ["plasmic_refresh_all"],
+                                    roleId: null
+                                  }
+                                };
+                                return (async ({ dataOp, continueOnError }) => {
+                                  try {
+                                    const response = await executePlasmicDataOp(
+                                      dataOp,
+                                      {
+                                        userAuthToken:
+                                          dataSourcesCtx?.userAuthToken,
+                                        user: dataSourcesCtx?.user
+                                      }
+                                    );
+                                    await plasmicInvalidate(
+                                      dataOp.invalidatedKeys
+                                    );
+                                    return response;
+                                  } catch (e) {
+                                    if (!continueOnError) {
+                                      throw e;
+                                    }
+                                    return e;
+                                  }
+                                })?.apply(null, [actionArgs]);
+                              })()
+                            : undefined;
+                          if (
+                            $steps["postgresUpdateById"] != null &&
+                            typeof $steps["postgresUpdateById"] === "object" &&
+                            typeof $steps["postgresUpdateById"].then ===
+                              "function"
+                          ) {
+                            $steps["postgresUpdateById"] = await $steps[
+                              "postgresUpdateById"
+                            ];
+                          }
+                        }).apply(null, eventArgs);
+                      }}
+                      onClick={args.onClick}
+                      showLabel={false}
+                    />
+                  ) : null}
+                </div>
+                <PlasmicImg__
+                  alt={""}
+                  className={classNames(sty.img__bJghl)}
+                  displayHeight={"16px"}
+                  displayMaxHeight={"none"}
+                  displayMaxWidth={"100%"}
+                  displayMinHeight={"0"}
+                  displayMinWidth={"0"}
+                  displayWidth={"16px"}
+                  loading={"lazy"}
+                  onClick={async event => {
+                    const $steps = {};
+
+                    $steps["invokeGlobalAction"] = true
                       ? (() => {
                           const actionArgs = {
                             args: [
-                              "warning",
-                              "Plus de cr\u00e9dits boost disponibles",
-                              "Vous avez d\u00e9j\u00e0 utilis\u00e9 vos 2 boosts ce mois-ci. Vous pouvez acheter des cr\u00e9dits suppl\u00e9mentaires ou attendre le mois prochain.",
+                              "info",
+                              "Cr\u00e9dits Boost",
+                              "Utilisez un cr\u00e9dit Boost pour mettre en avant votre annonce dans les r\u00e9sultats de recherche.",
                               10
                             ]
                           };
@@ -608,431 +919,104 @@ function PlasmicJobCard__RenderFunc(props: {
                           ]?.apply(null, [...actionArgs.args]);
                         })()
                       : undefined;
-                  if (
-                    $steps["invokeGlobalAction"] != null &&
-                    typeof $steps["invokeGlobalAction"] === "object" &&
-                    typeof $steps["invokeGlobalAction"].then === "function"
-                  ) {
-                    $steps["invokeGlobalAction"] = await $steps[
-                      "invokeGlobalAction"
-                    ];
-                  }
-                }}
-              >
-                {(() => {
-                  try {
-                    return (() => {
-                      if (
-                        $props.stripe.data[0].product_id ==
-                          "prod_S81L3WBaA1HwM0" &&
-                        $props.stripe.data[0].recharge_boost > 0
-                      ) {
-                        return false;
-                      } else if ($props.stripe.data[0].recharge_boost == 0) {
-                        return true;
-                      } else {
-                        return false;
-                      }
-                    })();
-                  } catch (e) {
                     if (
-                      e instanceof TypeError ||
-                      e?.plasmicType === "PlasmicUndefinedDataError"
+                      $steps["invokeGlobalAction"] != null &&
+                      typeof $steps["invokeGlobalAction"] === "object" &&
+                      typeof $steps["invokeGlobalAction"].then === "function"
                     ) {
-                      return true;
+                      $steps["invokeGlobalAction"] = await $steps[
+                        "invokeGlobalAction"
+                      ];
                     }
-                    throw e;
-                  }
-                })() ? (
-                  <Vector25Icon
-                    className={classNames(projectcss.all, sty.svg__apJYv)}
-                    role={"img"}
-                  />
-                ) : null}
-                {(() => {
-                  try {
-                    return $state.isBoosted;
-                  } catch (e) {
-                    if (
-                      e instanceof TypeError ||
-                      e?.plasmicType === "PlasmicUndefinedDataError"
-                    ) {
-                      return true;
-                    }
-                    throw e;
-                  }
-                })() ? (
-                  <Vector25Icon
-                    className={classNames(projectcss.all, sty.svg__rnBn)}
-                    role={"img"}
-                  />
-                ) : null}
-                {(() => {
-                  try {
-                    return (() => {
-                      if (
-                        $props.stripe.data[0].product_id ==
-                          "prod_S81L3WBaA1HwM0" &&
-                        $props.stripe.data[0].recharge_boost > 0
-                      ) {
-                        return true;
-                      } else if ($props.stripe.data[0].recharge_boost == 0) {
-                        return false;
-                      } else {
-                        return true;
-                      }
-                    })();
-                  } catch (e) {
-                    if (
-                      e instanceof TypeError ||
-                      e?.plasmicType === "PlasmicUndefinedDataError"
-                    ) {
-                      return true;
-                    }
-                    throw e;
-                  }
-                })() ? (
-                  <ZapIcon
-                    className={classNames(projectcss.all, sty.svg__myH5)}
-                    role={"img"}
-                  />
-                ) : null}
-                <div
-                  className={classNames(
-                    projectcss.all,
-                    projectcss.__wab_text,
-                    sty.text___2Fmj2
-                  )}
-                  style={(() => {
-                    try {
-                      return {
-                        color: $state.isBoosted
-                          ? "#002400"
-                          : Number($props.stripe.data[0].recharge_boost) == 0
-                          ? "#C8C8C8"
-                          : "#666666"
-                      };
-                    } catch (e) {
-                      if (
-                        e instanceof TypeError ||
-                        e?.plasmicType === "PlasmicUndefinedDataError"
-                      ) {
-                        return undefined;
-                      }
-                      throw e;
-                    }
-                  })()}
-                >
-                  {"BOOST"}
-                </div>
-                {(() => {
-                  try {
-                    return !$state.isBoosted;
-                  } catch (e) {
-                    if (
-                      e instanceof TypeError ||
-                      e?.plasmicType === "PlasmicUndefinedDataError"
-                    ) {
-                      return true;
-                    }
-                    throw e;
-                  }
-                })() ? (
-                  <Switch
-                    data-plasmic-name={"switch3"}
-                    data-plasmic-override={overrides.switch3}
-                    className={classNames("__wab_instance", sty.switch3)}
-                    disabled={(() => {
-                      try {
-                        return (() => {
-                          if (
-                            $props.stripe.data[0].product_id ==
-                              "prod_S81L3WBaA1HwM0" &&
-                            $props.stripe.data[0].recharge_boost > 0
-                          ) {
-                            return false;
-                          } else if (
-                            $props.stripe.data[0].recharge_boost == 0
-                          ) {
-                            return true;
-                          } else {
-                            return false;
-                          }
-                        })();
-                      } catch (e) {
-                        if (
-                          e instanceof TypeError ||
-                          e?.plasmicType === "PlasmicUndefinedDataError"
-                        ) {
-                          return false;
-                        }
-                        throw e;
-                      }
-                    })()}
-                    isSelected={generateStateValueProp($state, [
-                      "switch3",
-                      "isSelected"
-                    ])}
-                    onChange={async (...eventArgs: any) => {
-                      generateStateOnChangeProp($state, [
-                        "switch3",
-                        "isSelected"
-                      ]).apply(null, eventArgs);
+                  }}
+                  src={{
+                    src: "/plasmic/jam_production_🚀/images/icons8InfoSvg.svg",
+                    fullWidth: 50,
+                    fullHeight: 50,
+                    aspectRatio: 1
+                  }}
+                />
+              </Stack__>
+              <div className={classNames(projectcss.all, sty.freeBox__hRwTf)}>
+                <PhTrashIcon
+                  className={classNames(projectcss.all, sty.svg__nDFv4)}
+                  onClick={args._delete}
+                  role={"img"}
+                />
 
-                      if (
-                        eventArgs.length > 1 &&
-                        eventArgs[1] &&
-                        eventArgs[1]._plasmic_state_init_
-                      ) {
-                        return;
-                      }
-
-                      (async val => {
-                        const $steps = {};
-
-                        $steps["postgresUpdateMany"] = true
-                          ? (() => {
-                              const actionArgs = {
-                                dataOp: {
-                                  sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
-                                  opId: "d5ac40b0-0d4d-4dc6-9737-2d220b297a64",
-                                  userArgs: {
-                                    conditions: [$ctx.SupabaseUser.user.id],
-                                    variables: [
-                                      Math.max(
-                                        0,
-                                        $state.switch3.isSelected
-                                          ? Number(
-                                              $props.stripe.data[0]
-                                                .recharge_boost - 1
-                                            )
-                                          : Number(
-                                              $props.stripe.data[0]
-                                                .recharge_boost
-                                            )
-                                      )
-                                    ]
-                                  },
-                                  cacheKey: null,
-                                  invalidatedKeys: ["plasmic_refresh_all"],
-                                  roleId: null
-                                }
-                              };
-                              return (async ({ dataOp, continueOnError }) => {
-                                try {
-                                  const response = await executePlasmicDataOp(
-                                    dataOp,
-                                    {
-                                      userAuthToken:
-                                        dataSourcesCtx?.userAuthToken,
-                                      user: dataSourcesCtx?.user
-                                    }
-                                  );
-                                  await plasmicInvalidate(
-                                    dataOp.invalidatedKeys
-                                  );
-                                  return response;
-                                } catch (e) {
-                                  if (!continueOnError) {
-                                    throw e;
-                                  }
-                                  return e;
-                                }
-                              })?.apply(null, [actionArgs]);
-                            })()
-                          : undefined;
-                        if (
-                          $steps["postgresUpdateMany"] != null &&
-                          typeof $steps["postgresUpdateMany"] === "object" &&
-                          typeof $steps["postgresUpdateMany"].then ===
-                            "function"
-                        ) {
-                          $steps["postgresUpdateMany"] = await $steps[
-                            "postgresUpdateMany"
-                          ];
-                        }
-
-                        $steps["postgresUpdateById"] = true
-                          ? (() => {
-                              const actionArgs = {
-                                dataOp: {
-                                  sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
-                                  opId: "cee5cfc5-4de5-43af-9616-bc311b5bafc8",
-                                  userArgs: {
-                                    keys: [$state.jobId],
-                                    variables: [$state.switch3.isSelected]
-                                  },
-                                  cacheKey: null,
-                                  invalidatedKeys: ["plasmic_refresh_all"],
-                                  roleId: null
-                                }
-                              };
-                              return (async ({ dataOp, continueOnError }) => {
-                                try {
-                                  const response = await executePlasmicDataOp(
-                                    dataOp,
-                                    {
-                                      userAuthToken:
-                                        dataSourcesCtx?.userAuthToken,
-                                      user: dataSourcesCtx?.user
-                                    }
-                                  );
-                                  await plasmicInvalidate(
-                                    dataOp.invalidatedKeys
-                                  );
-                                  return response;
-                                } catch (e) {
-                                  if (!continueOnError) {
-                                    throw e;
-                                  }
-                                  return e;
-                                }
-                              })?.apply(null, [actionArgs]);
-                            })()
-                          : undefined;
-                        if (
-                          $steps["postgresUpdateById"] != null &&
-                          typeof $steps["postgresUpdateById"] === "object" &&
-                          typeof $steps["postgresUpdateById"].then ===
-                            "function"
-                        ) {
-                          $steps["postgresUpdateById"] = await $steps[
-                            "postgresUpdateById"
-                          ];
-                        }
-                      }).apply(null, eventArgs);
-                    }}
-                    showLabel={false}
-                  />
-                ) : null}
+                <PhPencilSimpleIcon
+                  className={classNames(projectcss.all, sty.svg__botyp)}
+                  onClick={args.edit}
+                  role={"img"}
+                />
               </div>
-              <PlasmicImg__
-                alt={""}
-                className={classNames(sty.img__bJghl)}
-                displayHeight={"16px"}
-                displayMaxHeight={"none"}
-                displayMaxWidth={"100%"}
-                displayMinHeight={"0"}
-                displayMinWidth={"0"}
-                displayWidth={"16px"}
-                loading={"lazy"}
-                onClick={async event => {
-                  const $steps = {};
-
-                  $steps["invokeGlobalAction"] = true
-                    ? (() => {
-                        const actionArgs = {
-                          args: [
-                            "info",
-                            "Cr\u00e9dits Boost",
-                            "Utilisez un cr\u00e9dit Boost pour mettre en avant votre annonce dans les r\u00e9sultats de recherche.",
-                            10
-                          ]
-                        };
-                        return $globalActions[
-                          "plasmic-antd5-config-provider.showNotification"
-                        ]?.apply(null, [...actionArgs.args]);
-                      })()
-                    : undefined;
-                  if (
-                    $steps["invokeGlobalAction"] != null &&
-                    typeof $steps["invokeGlobalAction"] === "object" &&
-                    typeof $steps["invokeGlobalAction"].then === "function"
-                  ) {
-                    $steps["invokeGlobalAction"] = await $steps[
-                      "invokeGlobalAction"
-                    ];
-                  }
-                }}
-                src={{
-                  src: "/plasmic/jam_production_🚀/images/icons8InfoSvg.svg",
-                  fullWidth: 50,
-                  fullHeight: 50,
-                  aspectRatio: 1
-                }}
-              />
             </Stack__>
           </Stack__>
-          <div className={classNames(projectcss.all, sty.freeBox__et87X)}>
-            <Stack__
-              as={"div"}
-              hasGap={true}
-              className={classNames(projectcss.all, sty.freeBox___58Ggo)}
+          <Stack__
+            as={"div"}
+            hasGap={true}
+            className={classNames(projectcss.all, sty.freeBox___58Ggo)}
+          >
+            <IconPhMapPinIcon
+              className={classNames(projectcss.all, sty.svg__ttEu)}
+              role={"img"}
+            />
+
+            <div
+              className={classNames(
+                projectcss.all,
+                projectcss.__wab_text,
+                sty.text__arfIx
+              )}
             >
-              <IconPhMapPinIcon
-                className={classNames(projectcss.all, sty.svg__ttEu)}
-                role={"img"}
-              />
-
-              <div
-                className={classNames(
-                  projectcss.all,
-                  projectcss.__wab_text,
-                  sty.text__arfIx
-                )}
-              >
-                <React.Fragment>
-                  {(() => {
-                    try {
-                      return (
-                        $state.location +
-                        " (" +
-                        $state.postalCode.slice(0, 2) +
-                        ")"
-                      );
-                    } catch (e) {
-                      if (
-                        e instanceof TypeError ||
-                        e?.plasmicType === "PlasmicUndefinedDataError"
-                      ) {
-                        return "";
-                      }
-                      throw e;
+              <React.Fragment>
+                {(() => {
+                  try {
+                    return (
+                      $state.location +
+                      " (" +
+                      $state.postalCode.slice(0, 2) +
+                      ")"
+                    );
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return "";
                     }
-                  })()}
-                </React.Fragment>
-              </div>
-              <div
-                className={classNames(
-                  projectcss.all,
-                  projectcss.__wab_text,
-                  sty.text__mHFjS
-                )}
-              >
-                <React.Fragment>
-                  {(() => {
-                    try {
-                      return `Publié le ${new Date(
-                        $state.publishDate
-                      ).toLocaleDateString("fr-FR")}`;
-                    } catch (e) {
-                      if (
-                        e instanceof TypeError ||
-                        e?.plasmicType === "PlasmicUndefinedDataError"
-                      ) {
-                        return "";
-                      }
-                      throw e;
-                    }
-                  })()}
-                </React.Fragment>
-              </div>
-            </Stack__>
-            <div className={classNames(projectcss.all, sty.freeBox__t8PE6)}>
-              <PhTrashIcon
-                className={classNames(projectcss.all, sty.svg__uxhW6)}
-                onClick={args._delete}
-                role={"img"}
-              />
-
-              <PhPencilSimpleIcon
-                className={classNames(projectcss.all, sty.svg__z5N86)}
-                onClick={args.edit}
-                role={"img"}
-              />
+                    throw e;
+                  }
+                })()}
+              </React.Fragment>
             </div>
-          </div>
-        </div>
+            <div
+              className={classNames(
+                projectcss.all,
+                projectcss.__wab_text,
+                sty.text__mHFjS
+              )}
+            >
+              <React.Fragment>
+                {(() => {
+                  try {
+                    return `Publié le ${new Date(
+                      $state.publishDate
+                    ).toLocaleDateString("fr-FR")}`;
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return "";
+                    }
+                    throw e;
+                  }
+                })()}
+              </React.Fragment>
+            </div>
+          </Stack__>
+        </Stack__>
         <Stack__
           as={"div"}
           data-plasmic-name={"frame1437254218"}
