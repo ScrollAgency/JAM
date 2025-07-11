@@ -265,11 +265,11 @@ const Mapbox: React.FC<MapboxProps> = ({
 
 					// Éviter d'ajouter plusieurs fois le même listener au clic
 					const handleClick = () => {
-						if (id) {
+						/*if (id) {
 							const url = new URL(window.location.href);
 							url.searchParams.set("job_id", id);
 							window.history.pushState({}, "", url.toString());
-						}
+						}*/
 						if (onPopupClick) {
 							onPopupClick(data); // data = l'objet du pin/job sélectionné
 						}
