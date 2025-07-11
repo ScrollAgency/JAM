@@ -1960,7 +1960,7 @@ function PlasmicParametresCandidat__RenderFunc(props: {
                             plasmic_library_tailwind_3_4_number_tokens_css.plasmic_tokens,
                             plasmic_plasmic_rich_components_css.plasmic_tokens
                           )}
-                          disabled={true}
+                          disabled={false}
                           dropdownMatchSelectWidth={false}
                           mode={"multiple"}
                           onChange={async (...eventArgs: any) => {
@@ -2982,9 +2982,7 @@ function PlasmicParametresCandidat__RenderFunc(props: {
                                             upsert: [true]
                                           },
                                           cacheKey: null,
-                                          invalidatedKeys: [
-                                            "plasmic_refresh_all"
-                                          ],
+                                          invalidatedKeys: [],
                                           roleId: null
                                         }
                                       };

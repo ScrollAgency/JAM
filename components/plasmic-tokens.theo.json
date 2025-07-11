@@ -3621,6 +3621,26 @@
       }
     },
     {
+      "name": "Unnamed Style Token 7",
+      "type": "color",
+      "value": "#ffffff",
+      "category": "color",
+      "meta": {
+        "projectId": "f7DE9y7qp46fyCw5nuY8f9",
+        "id": "ZyOgaQtifCc_"
+      }
+    },
+    {
+      "name": "Unnamed Style Token 8",
+      "type": "color",
+      "value": "#FCA5D3",
+      "category": "color",
+      "meta": {
+        "projectId": "f7DE9y7qp46fyCw5nuY8f9",
+        "id": "c6cbk3snPTmk"
+      }
+    },
+    {
       "name": "Warning Background",
       "type": "color",
       "value": "#fdf9eb",

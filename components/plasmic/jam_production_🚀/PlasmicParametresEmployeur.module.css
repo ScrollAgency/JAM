@@ -112,7 +112,6 @@
   .heading {
     left: auto;
     top: auto;
-    padding-top: 20px;
   }
 }
 .freeBox__nnSgO {
@@ -151,6 +150,8 @@
 @media (min-width: 0px) and (max-width: 768px) {
   .freeBox__nnSgO > :global(.__wab_flex-container) {
     flex-direction: column-reverse;
+    align-items: center;
+    justify-content: flex-end;
     margin-left: calc(0px - 0px);
     width: calc(100% + 0px);
   }
@@ -363,6 +364,8 @@
 @media (min-width: 0px) and (max-width: 768px) {
   .button__exwFy:global(.__wab_instance):global(.__wab_instance) {
     height: 100%;
+    width: auto;
+    max-width: none;
     min-height: 0;
   }
 }
@@ -455,53 +458,9 @@
     padding: 8px;
   }
 }
-.form:global(.__wab_instance) {
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  width: 100%;
-  height: auto;
-  max-width: 100%;
-  justify-content: flex-start;
-  align-items: center;
-  object-fit: cover;
-  min-width: 0;
-  padding: 8px;
-}
 .resetPassword:global(.__wab_instance) {
   max-width: 100%;
   object-fit: cover;
-}
-.freeBox__l43Zx {
-  display: flex;
-  flex-direction: row;
-  position: relative;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: auto;
-  max-width: 100%;
-  margin-top: -80px;
-  min-width: 0;
-  padding: 32px 0px;
-}
-.button__keiMx:global(.__wab_instance):global(.__wab_instance) {
-  width: auto;
-  height: 100%;
-  min-height: 0;
-}
-.svg__feXws {
-  position: relative;
-  color: var(--token-OIYWLyLPYWym);
-  height: 1em;
-}
-.text__tzsRi {
-  color: var(--token-ceD1eQOG2geq);
-}
-.svg__sOZ {
-  position: relative;
-  color: var(--token-OIYWLyLPYWym);
-  height: 1em;
 }
 .informationsPersonnelles {
   width: 50%;
@@ -919,6 +878,12 @@
   height: 100%;
   min-width: 0;
   min-height: 0;
+}
+@media (min-width: 0px) and (max-width: 768px) {
+  .button__oo2UE:global(.__wab_instance):global(.__wab_instance) {
+    width: auto;
+    max-width: none;
+  }
 }
 .svg__bSoH0 {
   position: relative;

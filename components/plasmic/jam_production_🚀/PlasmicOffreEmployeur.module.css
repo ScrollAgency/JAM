@@ -66,9 +66,10 @@
     flex-direction: column;
     margin-bottom: 0px;
     margin-top: 0px;
+    flex-shrink: 0;
     min-width: 0;
     min-height: 0;
-    padding: 90px 20px 65px;
+    padding: 90px 20px 121px;
   }
 }
 @media (min-width: 0px) and (max-width: 768px) {
@@ -3397,6 +3398,7 @@
 @media (min-width: 0px) and (max-width: 768px) {
   .button__vaZpe:global(.__wab_instance):global(.__wab_instance) {
     width: 100%;
+    align-self: auto;
     min-width: 0;
     flex-shrink: 0;
   }
@@ -3405,6 +3407,11 @@
   position: relative;
   color: var(--token-OIYWLyLPYWym);
   height: 1em;
+}
+@media (min-width: 0px) and (max-width: 768px) {
+  .text__sGxNe {
+    align-self: center;
+  }
 }
 .svg___2Resh {
   position: relative;

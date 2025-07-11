@@ -1,6 +1,9 @@
 .root:global(.__wab_instance) {
   color: #171717;
-  display: block;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
   position: relative;
   font-family: "DM Sans", sans-serif;
   font-size: 16px;
@@ -9,6 +12,7 @@
   text-transform: uppercase;
   letter-spacing: 6%;
   height: 48px;
+  row-gap: 0px;
   border-radius: 16px;
   padding: 12px 24px;
 }

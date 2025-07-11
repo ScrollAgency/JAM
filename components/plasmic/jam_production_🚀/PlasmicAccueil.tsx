@@ -10402,14 +10402,14 @@ function PlasmicAccueil__RenderFunc(props: {
                         throw e;
                       }
                     })()}
-                    onPopupClick={async id => {
+                    onPopupClick={async markerData => {
                       const $steps = {};
 
                       $steps["runCode"] = true
                         ? (() => {
                             const actionArgs = {
                               customFunction: async () => {
-                                return location.reload();
+                                return ($state.jobObject = markerData);
                               }
                             };
                             return (({ customFunction }) => {
@@ -10425,45 +10425,8 @@ function PlasmicAccueil__RenderFunc(props: {
                         $steps["runCode"] = await $steps["runCode"];
                       }
 
-                      $steps["updateJobObject"] =
-                        $queries.query.data[0].length > 0
-                          ? (() => {
-                              const actionArgs = {
-                                variable: {
-                                  objRoot: $state,
-                                  variablePath: ["jobObject"]
-                                },
-                                operation: 0,
-                                value: $queries.query.data[0]
-                              };
-                              return (({
-                                variable,
-                                value,
-                                startIndex,
-                                deleteCount
-                              }) => {
-                                if (!variable) {
-                                  return;
-                                }
-                                const { objRoot, variablePath } = variable;
-
-                                $stateSet(objRoot, variablePath, value);
-                                return value;
-                              })?.apply(null, [actionArgs]);
-                            })()
-                          : undefined;
-                      if (
-                        $steps["updateJobObject"] != null &&
-                        typeof $steps["updateJobObject"] === "object" &&
-                        typeof $steps["updateJobObject"].then === "function"
-                      ) {
-                        $steps["updateJobObject"] = await $steps[
-                          "updateJobObject"
-                        ];
-                      }
-
                       $steps["updateJobDetailsIsOpen"] =
-                        $queries.query.data.length > 0
+                        markerData && Object.keys(markerData).length > 0
                           ? (() => {
                               const actionArgs = {
                                 variable: {
@@ -14727,13 +14690,17 @@ function PlasmicAccueil__RenderFunc(props: {
                     const currentItem = __plasmic_item_0;
                     const currentIndex = __plasmic_idx_0;
                     return (
-                      <div
+                      <PlasmicLink__
                         className={classNames(
                           projectcss.all,
+                          projectcss.a,
                           projectcss.__wab_text,
-                          sty.text___2Q1XJ
+                          sty.link___2Q1XJ
                         )}
+                        component={Link}
+                        href={`/mentions-legales`}
                         key={currentIndex}
+                        platform={"nextjs"}
                       >
                         <React.Fragment>
                           {(() => {
@@ -14750,7 +14717,7 @@ function PlasmicAccueil__RenderFunc(props: {
                             }
                           })()}
                         </React.Fragment>
-                      </div>
+                      </PlasmicLink__>
                     );
                   })}
                 </Stack__>

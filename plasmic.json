@@ -720,7 +720,8 @@
           "componentImportPath": "@plasmicpkgs/react-aria/skinny/registerDialog"
         }
       ],
-      "customFunctions": []
+      "customFunctions": [],
+      "jsBundleThemes": []
     },
     {
       "projectId": "ohDidvG9XsCeFumugENU3J",
@@ -2191,6 +2192,19 @@
           "scheme": "blackbox",
           "componentType": "page",
           "path": "/mentions-legales"
+        },
+        {
+          "id": "i_6_bWmNYijl",
+          "name": "LikeJobCard",
+          "type": "managed",
+          "projectId": "f7DE9y7qp46fyCw5nuY8f9",
+          "renderModuleFilePath": "plasmic/jam_production_🚀/PlasmicLikeJobCard.tsx",
+          "importSpec": {
+            "modulePath": "LikeJobCard.tsx"
+          },
+          "cssFilePath": "plasmic/jam_production_🚀/PlasmicLikeJobCard.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
         }
       ],
       "icons": [
@@ -4545,6 +4559,11 @@
           "id": "ETbpnIz9nrx0",
           "name": "Toggle 2",
           "filePath": "../public/plasmic/jam_production_🚀/images/toggle2.svg"
+        },
+        {
+          "id": "TOiQH9wFrcGR",
+          "name": "paris.jpg",
+          "filePath": "../public/plasmic/jam_production_🚀/images/parisJpg.jpg"
         }
       ],
       "indirect": false,

@@ -80,11 +80,11 @@ import projectcss from "./plasmic.module.css"; // plasmic-import: f7DE9y7qp46fyC
 import sty from "./PlasmicJobCard.module.css"; // plasmic-import: 9MKR6AAbT8y6/css
 
 import Dot3Icon from "./icons/PlasmicIcon__Dot3"; // plasmic-import: ccAgTXPIrKUq/icon
+import IconPhMapPinIcon from "./icons/PlasmicIcon__IconPhMapPin"; // plasmic-import: CAcfAl_W7CL5/icon
 import Vector25Icon from "./icons/PlasmicIcon__Vector25"; // plasmic-import: _eubZzKq0NkT/icon
 import ZapIcon from "./icons/PlasmicIcon__Zap"; // plasmic-import: c9TD4NnDdoCa/icon
 import PhTrashIcon from "./icons/PlasmicIcon__PhTrash"; // plasmic-import: juO39VElEpcx/icon
 import PhPencilSimpleIcon from "./icons/PlasmicIcon__PhPencilSimple"; // plasmic-import: 7xHLZEkolpKE/icon
-import IconPhMapPinIcon from "./icons/PlasmicIcon__IconPhMapPin"; // plasmic-import: CAcfAl_W7CL5/icon
 import PhBriefcaseIcon from "./icons/PlasmicIcon__PhBriefcase"; // plasmic-import: EdRddldiV5u0/icon
 import PhFileText2Icon from "./icons/PlasmicIcon__PhFileText2"; // plasmic-import: dbjbAgK_hzNM/icon
 import PhClockCountdown2Icon from "./icons/PlasmicIcon__PhClockCountdown2"; // plasmic-import: jfi-_eNi6Hdj/icon
@@ -474,92 +474,51 @@ function PlasmicJobCard__RenderFunc(props: {
         hasGap={true}
         className={classNames(projectcss.all, sty.freeBox__kD3Dt)}
       >
-        <Stack__
-          as={"div"}
-          hasGap={true}
-          className={classNames(projectcss.all, sty.freeBox__lvPyQ)}
-        >
+        <div className={classNames(projectcss.all, sty.freeBox__lvPyQ)}>
           <Stack__
             as={"div"}
             hasGap={true}
             className={classNames(projectcss.all, sty.freeBox__q1Yn)}
           >
-            <Stack__
-              as={"div"}
-              hasGap={true}
-              className={classNames(projectcss.all, sty.freeBox__weg0R)}
-            >
-              <div
-                className={classNames(
-                  projectcss.all,
-                  projectcss.__wab_text,
-                  sty.text__div3I
-                )}
-              >
-                <React.Fragment>
-                  {(() => {
-                    try {
-                      return $state.title;
-                    } catch (e) {
-                      if (
-                        e instanceof TypeError ||
-                        e?.plasmicType === "PlasmicUndefinedDataError"
-                      ) {
-                        return "";
-                      }
-                      throw e;
-                    }
-                  })()}
-                </React.Fragment>
-              </div>
+            <div className={classNames(projectcss.all, sty.freeBox__q2DmR)}>
               <Stack__
                 as={"div"}
                 hasGap={true}
-                className={classNames(projectcss.all, sty.freeBox__fiDw)}
-                style={(() => {
-                  try {
-                    return {
-                      backgroundColor: $state.isPosted ? "#F1FBF3" : "#53535326"
-                    };
-                  } catch (e) {
-                    if (
-                      e instanceof TypeError ||
-                      e?.plasmicType === "PlasmicUndefinedDataError"
-                    ) {
-                      return undefined;
-                    }
-                    throw e;
-                  }
-                })()}
+                className={classNames(projectcss.all, sty.freeBox__weg0R)}
               >
-                {(() => {
-                  try {
-                    return $state.isPosted;
-                  } catch (e) {
-                    if (
-                      e instanceof TypeError ||
-                      e?.plasmicType === "PlasmicUndefinedDataError"
-                    ) {
-                      return true;
-                    }
-                    throw e;
-                  }
-                })() ? (
-                  <Dot3Icon
-                    className={classNames(projectcss.all, sty.svg__wZv9B)}
-                    role={"img"}
-                  />
-                ) : null}
                 <div
                   className={classNames(
                     projectcss.all,
                     projectcss.__wab_text,
-                    sty.text___3JZep
+                    sty.text__div3I
                   )}
+                >
+                  <React.Fragment>
+                    {(() => {
+                      try {
+                        return $state.title;
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return "";
+                        }
+                        throw e;
+                      }
+                    })()}
+                  </React.Fragment>
+                </div>
+                <Stack__
+                  as={"div"}
+                  hasGap={true}
+                  className={classNames(projectcss.all, sty.freeBox__fiDw)}
                   style={(() => {
                     try {
                       return {
-                        Color: $state.isPosted ? "#387C39" : "#4D4D4D"
+                        backgroundColor: $state.isPosted
+                          ? "#F1FBF3"
+                          : "#53535326"
                       };
                     } catch (e) {
                       if (
@@ -572,10 +531,115 @@ function PlasmicJobCard__RenderFunc(props: {
                     }
                   })()}
                 >
+                  {(() => {
+                    try {
+                      return $state.isPosted;
+                    } catch (e) {
+                      if (
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
+                      ) {
+                        return true;
+                      }
+                      throw e;
+                    }
+                  })() ? (
+                    <Dot3Icon
+                      className={classNames(projectcss.all, sty.svg__wZv9B)}
+                      role={"img"}
+                    />
+                  ) : null}
+                  <div
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.__wab_text,
+                      sty.text___3JZep
+                    )}
+                    style={(() => {
+                      try {
+                        return {
+                          Color: $state.isPosted ? "#387C39" : "#4D4D4D"
+                        };
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return undefined;
+                        }
+                        throw e;
+                      }
+                    })()}
+                  >
+                    <React.Fragment>
+                      {(() => {
+                        try {
+                          return $state.isPosted ? "En ligne" : "Brouillon";
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return "";
+                          }
+                          throw e;
+                        }
+                      })()}
+                    </React.Fragment>
+                  </div>
+                </Stack__>
+              </Stack__>
+              <Stack__
+                as={"div"}
+                hasGap={true}
+                className={classNames(projectcss.all, sty.freeBox___58Ggo)}
+              >
+                <IconPhMapPinIcon
+                  className={classNames(projectcss.all, sty.svg__ttEu)}
+                  role={"img"}
+                />
+
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__arfIx
+                  )}
+                >
                   <React.Fragment>
                     {(() => {
                       try {
-                        return $state.isPosted ? "En ligne" : "Brouillon";
+                        return (
+                          $state.location +
+                          " (" +
+                          $state.postalCode.slice(0, 2) +
+                          ")"
+                        );
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return "";
+                        }
+                        throw e;
+                      }
+                    })()}
+                  </React.Fragment>
+                </div>
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__mHFjS
+                  )}
+                >
+                  <React.Fragment>
+                    {(() => {
+                      try {
+                        return `Publié le ${new Date(
+                          $state.publishDate
+                        ).toLocaleDateString("fr-FR")}`;
                       } catch (e) {
                         if (
                           e instanceof TypeError ||
@@ -589,7 +653,7 @@ function PlasmicJobCard__RenderFunc(props: {
                   </React.Fragment>
                 </div>
               </Stack__>
-            </Stack__>
+            </div>
             <Stack__
               as={"div"}
               hasGap={true}
@@ -952,71 +1016,7 @@ function PlasmicJobCard__RenderFunc(props: {
               </div>
             </Stack__>
           </Stack__>
-          <Stack__
-            as={"div"}
-            hasGap={true}
-            className={classNames(projectcss.all, sty.freeBox___58Ggo)}
-          >
-            <IconPhMapPinIcon
-              className={classNames(projectcss.all, sty.svg__ttEu)}
-              role={"img"}
-            />
-
-            <div
-              className={classNames(
-                projectcss.all,
-                projectcss.__wab_text,
-                sty.text__arfIx
-              )}
-            >
-              <React.Fragment>
-                {(() => {
-                  try {
-                    return (
-                      $state.location +
-                      " (" +
-                      $state.postalCode.slice(0, 2) +
-                      ")"
-                    );
-                  } catch (e) {
-                    if (
-                      e instanceof TypeError ||
-                      e?.plasmicType === "PlasmicUndefinedDataError"
-                    ) {
-                      return "";
-                    }
-                    throw e;
-                  }
-                })()}
-              </React.Fragment>
-            </div>
-            <div
-              className={classNames(
-                projectcss.all,
-                projectcss.__wab_text,
-                sty.text__mHFjS
-              )}
-            >
-              <React.Fragment>
-                {(() => {
-                  try {
-                    return `Publié le ${new Date(
-                      $state.publishDate
-                    ).toLocaleDateString("fr-FR")}`;
-                  } catch (e) {
-                    if (
-                      e instanceof TypeError ||
-                      e?.plasmicType === "PlasmicUndefinedDataError"
-                    ) {
-                      return "";
-                    }
-                    throw e;
-                  }
-                })()}
-              </React.Fragment>
-            </div>
-          </Stack__>
-        </Stack__>
+        </div>
         <Stack__
           as={"div"}
           data-plasmic-name={"frame1437254218"}

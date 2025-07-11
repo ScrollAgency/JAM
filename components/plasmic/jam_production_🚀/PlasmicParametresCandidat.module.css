@@ -905,6 +905,11 @@
   width: 100%;
   min-width: 0;
 }
+@media (min-width: 0px) and (max-width: 768px) {
+  .button___2IaMi:global(.__wab_instance):global(.__wab_instance) {
+    width: auto;
+  }
+}
 .svg__qutSp {
   position: relative;
   color: var(--token-OIYWLyLPYWym);

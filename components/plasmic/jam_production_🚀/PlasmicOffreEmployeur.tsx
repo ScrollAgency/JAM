@@ -1926,6 +1926,10 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                     $steps["updateCreateOffreIsOpen"] =
                       Number(
                         $queries.offreStripeUserInfos.data[0].recharge_classic
+                      ) > 0 ||
+                      Number(
+                        $queries.offreStripeUserInfos.data[0]
+                          .recharge_lastminute
                       ) > 0
                         ? (() => {
                             const actionArgs = {
@@ -1966,6 +1970,10 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                     $steps["openInsufficientChargeModal"] =
                       Number(
                         $queries.offreStripeUserInfos.data[0].recharge_classic
+                      ) == 0 &&
+                      Number(
+                        $queries.offreStripeUserInfos.data[0]
+                          .recharge_lastminute
                       ) == 0
                         ? (() => {
                             const actionArgs = {
@@ -8475,7 +8483,17 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                         />
                       }
                       iconEnd={true}
-                      label={"modifier"}
+                      label={
+                        <div
+                          className={classNames(
+                            projectcss.all,
+                            projectcss.__wab_text,
+                            sty.text__sGxNe
+                          )}
+                        >
+                          {"modifier"}
+                        </div>
+                      }
                       onClick={async event => {
                         const $steps = {};
 

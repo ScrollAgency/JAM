@@ -157,6 +157,12 @@
 .button__a9Gtr:global(.__wab_instance):global(.__wab_instance) {
   max-width: 100%;
 }
+@media (min-width: 0px) and (max-width: 768px) {
+  .button__a9Gtr:global(.__wab_instance):global(.__wab_instance) {
+    width: 48px;
+    flex-shrink: 0;
+  }
+}
 .svg__c7Ytd {
   position: relative;
   color: var(--token-OIYWLyLPYWym);
@@ -398,6 +404,11 @@
 .button__seaXf:global(.__wab_instance):global(.__wab_instance) {
   max-width: 100%;
   flex-shrink: 0;
+}
+@media (min-width: 0px) and (max-width: 768px) {
+  .button__seaXf:global(.__wab_instance):global(.__wab_instance) {
+    flex-shrink: 0;
+  }
 }
 .svg__pgVnj {
   position: relative;

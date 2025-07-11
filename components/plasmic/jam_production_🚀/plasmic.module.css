@@ -271,6 +271,10 @@
   --plasmic-token-unnamed-style-token-5: var(--token-tUlf7BrDP8BN);
   --token-KV-FTA-eJL3L: #ffffff;
   --plasmic-token-unnamed-style-token-6: var(--token-KV-FTA-eJL3L);
+  --token-ZyOgaQtifCc_: #ffffff;
+  --plasmic-token-unnamed-style-token-7: var(--token-ZyOgaQtifCc_);
+  --token-c6cbk3snPTmk: #fca5d3;
+  --plasmic-token-unnamed-style-token-8: var(--token-c6cbk3snPTmk);
 }
 
 @media (min-width: 0px) and (max-width: 768px) {
@@ -480,6 +484,8 @@
   --plasmic-mixin-unnamed-style-preset_white-space: var(
     --mixin-F-6yej_gOfQC_white-space
   );
+  --mixin-Q83fI2tR0VZ2_white-space: pre-wrap;
+  --plasmic-mixin-tag-style_white-space: var(--mixin-Q83fI2tR0VZ2_white-space);
 }
 
 :where(.all) {

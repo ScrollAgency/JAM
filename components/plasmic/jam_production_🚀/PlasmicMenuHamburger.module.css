@@ -119,7 +119,7 @@
 @media (min-width: 0px) and (max-width: 768px) {
   .button:global(.__wab_instance):global(.__wab_instance) {
     flex-shrink: 0;
-    display: block;
+    display: flex;
   }
 }
 .svg__gNaAo {

@@ -128,7 +128,6 @@ export type PlasmicParametresEmployeur__OverridesType = {
   textInput7?: Flex__<typeof TextInput>;
   deleteAccount2?: Flex__<typeof DeleteAccount2>;
   card3?: Flex__<"div">;
-  form?: Flex__<typeof FormWrapper>;
   resetPassword?: Flex__<typeof ResetPassword>;
   informationsPersonnelles?: Flex__<"div">;
   frame1437254343?: Flex__<"div">;
@@ -202,24 +201,6 @@ function PlasmicParametresEmployeur__RenderFunc(props: {
   >({});
   const stateSpecs: Parameters<typeof useDollarState>[0] = React.useMemo(
     () => [
-      {
-        path: "form.value",
-        type: "private",
-        variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
-
-        refName: "form",
-        onMutate: generateOnMutateForSpec("value", FormWrapper_Helpers)
-      },
-      {
-        path: "form.isSubmitting",
-        type: "private",
-        variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => false,
-
-        refName: "form",
-        onMutate: generateOnMutateForSpec("isSubmitting", FormWrapper_Helpers)
-      },
       {
         path: "resetPassword.password",
         type: "private",
@@ -984,7 +965,13 @@ function PlasmicParametresEmployeur__RenderFunc(props: {
                                 sty.text__e06G
                               )}
                             >
-                              {"enregistrer les modifications"}
+                              {hasVariant(
+                                globalVariants,
+                                "screen",
+                                "mobileOnly"
+                              )
+                                ? "enregistrer"
+                                : "enregistrer les modifications"}
                             </div>
                           }
                           submitsForm={true}
@@ -1039,270 +1026,96 @@ function PlasmicParametresEmployeur__RenderFunc(props: {
                   hasGap={true}
                   className={classNames(projectcss.all, sty.card3)}
                 >
-                  {(() => {
-                    const child$Props = {
-                      className: classNames("__wab_instance", sty.form),
-                      extendedOnValuesChange: async (...eventArgs: any) => {
-                        generateStateOnChangePropForCodeComponents(
-                          $state,
-                          "value",
-                          ["form", "value"],
-                          FormWrapper_Helpers
-                        ).apply(null, eventArgs);
-                      },
-                      formItems: [
-                        { label: "Name", name: "name", inputType: "Text" },
-                        {
-                          label: "Message",
-                          name: "message",
-                          inputType: "Text Area"
-                        }
-                      ],
-                      labelCol: { span: 8, horizontalOnly: true },
-                      layout: "vertical",
-                      mode: "advanced",
-                      onFinish: async values => {
-                        const $steps = {};
+                  <ResetPassword
+                    data-plasmic-name={"resetPassword"}
+                    data-plasmic-override={overrides.resetPassword}
+                    alertPosition={"top"}
+                    cancelButtonStyle={"tertiary"}
+                    cancelButtonText={"Annuler"}
+                    className={classNames("__wab_instance", sty.resetPassword)}
+                    confirmPassword={generateStateValueProp($state, [
+                      "resetPassword",
+                      "confirmPassword"
+                    ])}
+                    confirmPasswordLabel={
+                      "R\u00e9p\u00e9tez le nouveau mot de passe*"
+                    }
+                    confirmPasswordPlaceholder={"Confirmez votre mot de passe"}
+                    eyeIconColor={"#666"}
+                    inputStyle={"simple"}
+                    maxAlerts={3}
+                    onConfirmPasswordChange={async (...eventArgs: any) => {
+                      generateStateOnChangeProp($state, [
+                        "resetPassword",
+                        "confirmPassword"
+                      ]).apply(null, eventArgs);
+                    }}
+                    onPasswordChange={async (...eventArgs: any) => {
+                      generateStateOnChangeProp($state, [
+                        "resetPassword",
+                        "password"
+                      ]).apply(null, eventArgs);
+                    }}
+                    onSubmit={async event => {
+                      const $steps = {};
 
-                        $steps["invokeGlobalAction"] = true
-                          ? (() => {
-                              const actionArgs = {
-                                args: [
-                                  (() => {
-                                    try {
-                                      return $state.resetPassword
-                                        .confirmPassword;
-                                    } catch (e) {
-                                      if (
-                                        e instanceof TypeError ||
-                                        e?.plasmicType ===
-                                          "PlasmicUndefinedDataError"
-                                      ) {
-                                        return undefined;
-                                      }
-                                      throw e;
+                      $steps["postgresUpdateById"] = true
+                        ? (() => {
+                            const actionArgs = {
+                              args: [
+                                (() => {
+                                  try {
+                                    return $state.resetPassword.confirmPassword;
+                                  } catch (e) {
+                                    if (
+                                      e instanceof TypeError ||
+                                      e?.plasmicType ===
+                                        "PlasmicUndefinedDataError"
+                                    ) {
+                                      return undefined;
                                     }
-                                  })()
-                                ]
-                              };
-                              return $globalActions[
-                                "SupabaseUserGlobalContext.updateUserPassword"
-                              ]?.apply(null, [...actionArgs.args]);
-                            })()
-                          : undefined;
-                        if (
-                          $steps["invokeGlobalAction"] != null &&
-                          typeof $steps["invokeGlobalAction"] === "object" &&
-                          typeof $steps["invokeGlobalAction"].then ===
-                            "function"
-                        ) {
-                          $steps["invokeGlobalAction"] = await $steps[
-                            "invokeGlobalAction"
-                          ];
-                        }
-
-                        $steps["invokeGlobalAction2"] =
-                          $state.resetPassword.password ===
-                          $state.resetPassword.confirmPassword
-                            ? (() => {
-                                const actionArgs = {
-                                  args: [
-                                    "success",
-                                    "Mot de passe r\u00e9initialis\u00e9 avec succ\u00e8s"
-                                  ]
-                                };
-                                return $globalActions[
-                                  "plasmic-antd5-config-provider.showNotification"
-                                ]?.apply(null, [...actionArgs.args]);
-                              })()
-                            : undefined;
-                        if (
-                          $steps["invokeGlobalAction2"] != null &&
-                          typeof $steps["invokeGlobalAction2"] === "object" &&
-                          typeof $steps["invokeGlobalAction2"].then ===
-                            "function"
-                        ) {
-                          $steps["invokeGlobalAction2"] = await $steps[
-                            "invokeGlobalAction2"
-                          ];
-                        }
-                      },
-                      onIsSubmittingChange: async (...eventArgs: any) => {
-                        generateStateOnChangePropForCodeComponents(
-                          $state,
-                          "isSubmitting",
-                          ["form", "isSubmitting"],
-                          FormWrapper_Helpers
-                        ).apply(null, eventArgs);
-                      },
-                      ref: ref => {
-                        $refs["form"] = ref;
-                      },
-                      submitSlot: null,
-                      wrapperCol: { span: 16, horizontalOnly: true }
-                    };
-                    initializeCodeComponentStates(
-                      $state,
-                      [
-                        {
-                          name: "value",
-                          plasmicStateName: "form.value"
-                        },
-                        {
-                          name: "isSubmitting",
-                          plasmicStateName: "form.isSubmitting"
-                        }
-                      ],
-                      [],
-                      FormWrapper_Helpers ?? {},
-                      child$Props
-                    );
-
-                    return (
-                      <FormWrapper
-                        data-plasmic-name={"form"}
-                        data-plasmic-override={overrides.form}
-                        {...child$Props}
-                      >
-                        <ResetPassword
-                          data-plasmic-name={"resetPassword"}
-                          data-plasmic-override={overrides.resetPassword}
-                          alertPosition={"top"}
-                          cancelButtonStyle={"tertiary"}
-                          cancelButtonText={"Annuler"}
-                          className={classNames(
-                            "__wab_instance",
-                            sty.resetPassword
-                          )}
-                          confirmPassword={generateStateValueProp($state, [
-                            "resetPassword",
-                            "confirmPassword"
-                          ])}
-                          confirmPasswordLabel={
-                            "R\u00e9p\u00e9tez le nouveau mot de passe*"
-                          }
-                          confirmPasswordPlaceholder={
-                            "Confirmez votre mot de passe"
-                          }
-                          eyeIconColor={"#666"}
-                          inputStyle={"simple"}
-                          maxAlerts={3}
-                          onConfirmPasswordChange={async (
-                            ...eventArgs: any
-                          ) => {
-                            generateStateOnChangeProp($state, [
-                              "resetPassword",
-                              "confirmPassword"
-                            ]).apply(null, eventArgs);
-                          }}
-                          onPasswordChange={async (...eventArgs: any) => {
-                            generateStateOnChangeProp($state, [
-                              "resetPassword",
-                              "password"
-                            ]).apply(null, eventArgs);
-                          }}
-                          onSubmit={async event => {
-                            const $steps = {};
-
-                            $steps["postgresUpdateById"] = true
-                              ? (() => {
-                                  const actionArgs = {
-                                    args: [
-                                      (() => {
-                                        try {
-                                          return $state.resetPassword
-                                            .confirmPassword;
-                                        } catch (e) {
-                                          if (
-                                            e instanceof TypeError ||
-                                            e?.plasmicType ===
-                                              "PlasmicUndefinedDataError"
-                                          ) {
-                                            return undefined;
-                                          }
-                                          throw e;
-                                        }
-                                      })()
-                                    ]
-                                  };
-                                  return $globalActions[
-                                    "SupabaseUserGlobalContext.updateUserPassword"
-                                  ]?.apply(null, [...actionArgs.args]);
+                                    throw e;
+                                  }
                                 })()
-                              : undefined;
-                            if (
-                              $steps["postgresUpdateById"] != null &&
-                              typeof $steps["postgresUpdateById"] ===
-                                "object" &&
-                              typeof $steps["postgresUpdateById"].then ===
-                                "function"
-                            ) {
-                              $steps["postgresUpdateById"] = await $steps[
-                                "postgresUpdateById"
-                              ];
-                            }
-                          }}
-                          password={generateStateValueProp($state, [
-                            "resetPassword",
-                            "password"
-                          ])}
-                          passwordLabel={"Modifier mot de passe*"}
-                          passwordPlaceholder={
-                            "Entrez votre nouveau mot de passe"
-                          }
-                          resetSuccessMessage={
-                            "Votre mot de passe a été réinitialisé avec succès!"
-                          }
-                          showAlerts={true}
-                          showPasswordStrength={true}
-                          showPasswordToggle={true}
-                          submitButtonStyle={``}
-                          submitButtonText={"Réinitialiser"}
-                          title={``}
-                          titleHeading={"h1"}
-                          wrapperStyle={"card"}
-                        />
-
-                        <div
-                          className={classNames(
-                            projectcss.all,
-                            sty.freeBox__l43Zx
-                          )}
-                        >
-                          <Button
-                            className={classNames(
-                              "__wab_instance",
-                              sty.button__keiMx
-                            )}
-                            color={"white"}
-                            end={
-                              <GroupIcon
-                                className={classNames(
-                                  projectcss.all,
-                                  sty.svg__sOZ
-                                )}
-                                role={"img"}
-                              />
-                            }
-                            iconEnd={true}
-                            label={
-                              <div
-                                className={classNames(
-                                  projectcss.all,
-                                  projectcss.__wab_text,
-                                  sty.text__tzsRi
-                                )}
-                              >
-                                {"enregistrer les modifications"}
-                              </div>
-                            }
-                            submitsForm={true}
-                            type={"bordered"}
-                          />
-                        </div>
-                      </FormWrapper>
-                    );
-                  })()}
+                              ]
+                            };
+                            return $globalActions[
+                              "SupabaseUserGlobalContext.updateUserPassword"
+                            ]?.apply(null, [...actionArgs.args]);
+                          })()
+                        : undefined;
+                      if (
+                        $steps["postgresUpdateById"] != null &&
+                        typeof $steps["postgresUpdateById"] === "object" &&
+                        typeof $steps["postgresUpdateById"].then === "function"
+                      ) {
+                        $steps["postgresUpdateById"] = await $steps[
+                          "postgresUpdateById"
+                        ];
+                      }
+                    }}
+                    password={generateStateValueProp($state, [
+                      "resetPassword",
+                      "password"
+                    ])}
+                    passwordLabel={"Modifier mot de passe*"}
+                    passwordPlaceholder={"Entrez votre nouveau mot de passe"}
+                    resetSuccessMessage={
+                      "Votre mot de passe a été réinitialisé avec succès!"
+                    }
+                    showAlerts={true}
+                    showPasswordStrength={true}
+                    showPasswordToggle={true}
+                    submitButtonStyle={
+                      hasVariant(globalVariants, "screen", "mobileOnly")
+                        ? "primary"
+                        : ``
+                    }
+                    submitButtonText={"Réinitialiser"}
+                    title={``}
+                    titleHeading={"h1"}
+                    wrapperStyle={"card"}
+                  />
                 </Stack__>
               </div>
               <div
@@ -2544,7 +2357,9 @@ function PlasmicParametresEmployeur__RenderFunc(props: {
                               sty.text__mjsDj
                             )}
                           >
-                            {"enregistrer les modifications"}
+                            {hasVariant(globalVariants, "screen", "mobileOnly")
+                              ? "enregistrer"
+                              : "enregistrer les modifications"}
                           </div>
                         }
                         submitsForm={true}
@@ -2634,7 +2449,6 @@ const PlasmicDescendants = {
     "textInput7",
     "deleteAccount2",
     "card3",
-    "form",
     "resetPassword",
     "informationsPersonnelles",
     "frame1437254343",
@@ -2674,7 +2488,6 @@ const PlasmicDescendants = {
     "textInput7",
     "deleteAccount2",
     "card3",
-    "form",
     "resetPassword",
     "informationsPersonnelles",
     "frame1437254343",
@@ -2727,8 +2540,7 @@ const PlasmicDescendants = {
   phoneSelector: ["phoneSelector"],
   textInput7: ["textInput7"],
   deleteAccount2: ["deleteAccount2"],
-  card3: ["card3", "form", "resetPassword"],
-  form: ["form", "resetPassword"],
+  card3: ["card3", "resetPassword"],
   resetPassword: ["resetPassword"],
   informationsPersonnelles: [
     "informationsPersonnelles",
@@ -2814,7 +2626,6 @@ type NodeDefaultElementType = {
   textInput7: typeof TextInput;
   deleteAccount2: typeof DeleteAccount2;
   card3: "div";
-  form: typeof FormWrapper;
   resetPassword: typeof ResetPassword;
   informationsPersonnelles: "div";
   frame1437254343: "div";
@@ -2914,7 +2725,6 @@ export const PlasmicParametresEmployeur = Object.assign(
     textInput7: makeNodeComponent("textInput7"),
     deleteAccount2: makeNodeComponent("deleteAccount2"),
     card3: makeNodeComponent("card3"),
-    form: makeNodeComponent("form"),
     resetPassword: makeNodeComponent("resetPassword"),
     informationsPersonnelles: makeNodeComponent("informationsPersonnelles"),
     frame1437254343: makeNodeComponent("frame1437254343"),

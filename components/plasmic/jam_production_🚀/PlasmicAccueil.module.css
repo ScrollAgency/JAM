@@ -5593,7 +5593,7 @@
 @media (min-width: 0px) and (max-width: 768px) {
   .button8:global(.__wab_instance):global(.__wab_instance) {
     flex-shrink: 0;
-    display: block;
+    display: flex;
   }
 }
 .svg__sgWoa {
@@ -7453,7 +7453,6 @@
   margin-left: 16px;
 }
 .link__czDen {
-  display: flex;
   flex-direction: row;
   position: relative;
   align-items: stretch;
@@ -7462,6 +7461,7 @@
   height: auto;
   max-width: 100%;
   min-width: 0;
+  display: none;
   padding: 8px;
 }
 .img__rnHIi {
@@ -7477,7 +7477,6 @@
   object-fit: cover;
 }
 .link__l2EVk {
-  display: flex;
   flex-direction: row;
   position: relative;
   align-items: stretch;
@@ -7486,6 +7485,7 @@
   height: auto;
   max-width: 100%;
   min-width: 0;
+  display: none;
   padding: 8px;
 }
 .svg___6EQxT {
@@ -7522,7 +7522,6 @@
   flex-shrink: 0;
 }
 .link___5V0Os {
-  display: flex;
   flex-direction: row;
   position: relative;
   align-items: stretch;
@@ -7533,6 +7532,7 @@
   top: auto;
   left: auto;
   min-width: 0;
+  display: none;
   padding: 8px;
 }
 .svg___5ObBx {
@@ -7635,7 +7635,7 @@
   > img {
   margin-top: 12px;
 }
-.text___2Q1XJ {
+.link___2Q1XJ {
   position: relative;
   width: 100%;
   height: auto;

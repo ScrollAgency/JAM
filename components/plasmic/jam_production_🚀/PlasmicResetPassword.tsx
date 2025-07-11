@@ -376,7 +376,7 @@ function PlasmicResetPassword__RenderFunc(props: {
                   (async event => {
                     const $steps = {};
 
-                    $steps["updateResetPasswordConfirmPassword"] = true
+                    $steps["updateResetPasswordConfirmPassword"] = false
                       ? (() => {
                           const actionArgs = {
                             variable: {
@@ -423,7 +423,7 @@ function PlasmicResetPassword__RenderFunc(props: {
                   (async event => {
                     const $steps = {};
 
-                    $steps["updateResetPasswordPassword"] = true
+                    $steps["updateResetPasswordPassword"] = false
                       ? (() => {
                           const actionArgs = {
                             variable: {

@@ -218,7 +218,7 @@
 }
 @media (min-width: 0px) and (max-width: 768px) {
   .freeBox__tceqD > :global(.__wab_flex-container) {
-    justify-content: flex-start;
+    justify-content: center;
     align-content: flex-start;
     flex-direction: row;
     align-items: flex-start;
@@ -242,24 +242,15 @@
     margin-top: 0px;
   }
 }
-.jobCard:global(.__wab_instance) {
-  object-fit: cover;
-  height: 100%;
-  display: block;
-  width: 400px;
-  position: relative;
-  left: auto;
-  top: auto;
-  cursor: pointer;
-  min-width: 361px;
-  min-height: 330px;
-  padding: 16px;
-  border: 2px solid #ff6990;
+.likeJobCard:global(.__wab_instance) {
+  max-width: 100%;
+  width: 360px;
+  height: 270px;
+  flex-shrink: 0;
 }
 @media (min-width: 0px) and (max-width: 768px) {
-  .jobCard:global(.__wab_instance) {
-    width: 100%;
-    min-width: 0;
+  .likeJobCard:global(.__wab_instance) {
+    height: auto;
   }
 }
 .svg__t661R {
@@ -268,16 +259,37 @@
   width: 30px;
   height: 30px;
   position: absolute;
-  left: 352px;
+  left: 311px;
   top: 22px;
   cursor: pointer;
   color: #ff6990;
+  z-index: 5;
   flex-shrink: 0;
 }
 @media (min-width: 0px) and (max-width: 768px) {
   .svg__t661R {
-    left: 269px;
-    top: 29px;
+    left: auto;
+    top: 25px;
+    right: 50px;
+  }
+}
+.jobCard:global(.__wab_instance) {
+  object-fit: cover;
+  height: auto;
+  position: relative;
+  left: auto;
+  top: auto;
+  cursor: pointer;
+  max-width: 400px;
+  max-height: 400px;
+  display: none;
+  padding: 16px;
+  border: 2px solid #ff6990;
+}
+@media (min-width: 0px) and (max-width: 768px) {
+  .jobCard:global(.__wab_instance) {
+    width: 100%;
+    min-width: 0;
   }
 }
 .noAnnonce {
