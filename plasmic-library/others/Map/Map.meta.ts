@@ -26,6 +26,6 @@ const MapBoxMeta = {
 			description: "Affiche ou non le logo de l'entreprise dans la popup",
 		},
 	},
-	importPath: "./components/others/MapBox/MapBox",
+	importPath: "./plasmic-library/others/Map/Map",
 };
 export default MapBoxMeta;
