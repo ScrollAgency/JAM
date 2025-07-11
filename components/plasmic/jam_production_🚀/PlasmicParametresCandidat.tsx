@@ -636,6 +636,12 @@ function PlasmicParametresCandidat__RenderFunc(props: {
         type: "private",
         variableType: "text",
         initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+      },
+      {
+        path: "errorMsg",
+        type: "private",
+        variableType: "array",
+        initFunc: ({ $props, $state, $queries, $ctx }) => []
       }
     ],
     [$props, $ctx, $refs]
@@ -2624,52 +2630,53 @@ function PlasmicParametresCandidat__RenderFunc(props: {
                                 ];
                               }
 
-                              $steps["postgresUpdateById"] = true
-                                ? (() => {
-                                    const actionArgs = {
-                                      dataOp: {
-                                        sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
-                                        opId: "1d316c45-4c3c-4fdb-88bb-e87b178387e4",
-                                        userArgs: {
-                                          keys: [$ctx.SupabaseUser.user.id],
-                                          variables: [
-                                            $steps.supabaseUploadFile?.path.split(
-                                              "/"
-                                            )[1],
-                                            (() => {})()
-                                          ]
-                                        },
-                                        cacheKey: null,
-                                        invalidatedKeys: [
-                                          "plasmic_refresh_all"
-                                        ],
-                                        roleId: null
-                                      }
-                                    };
-                                    return (async ({
-                                      dataOp,
-                                      continueOnError
-                                    }) => {
-                                      try {
-                                        const response =
-                                          await executePlasmicDataOp(dataOp, {
-                                            userAuthToken:
-                                              dataSourcesCtx?.userAuthToken,
-                                            user: dataSourcesCtx?.user
-                                          });
-                                        await plasmicInvalidate(
-                                          dataOp.invalidatedKeys
-                                        );
-                                        return response;
-                                      } catch (e) {
-                                        if (!continueOnError) {
-                                          throw e;
+                              $steps["postgresUpdateById"] =
+                                $state.upload.files[0].type == "application/pdf"
+                                  ? (() => {
+                                      const actionArgs = {
+                                        dataOp: {
+                                          sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
+                                          opId: "1d316c45-4c3c-4fdb-88bb-e87b178387e4",
+                                          userArgs: {
+                                            keys: [$ctx.SupabaseUser.user.id],
+                                            variables: [
+                                              $steps.supabaseUploadFile?.path.split(
+                                                "/"
+                                              )[1],
+                                              (() => {})()
+                                            ]
+                                          },
+                                          cacheKey: null,
+                                          invalidatedKeys: [
+                                            "9c25c922-f186-4ed9-850f-6ded6b307e4e"
+                                          ],
+                                          roleId: null
                                         }
-                                        return e;
-                                      }
-                                    })?.apply(null, [actionArgs]);
-                                  })()
-                                : undefined;
+                                      };
+                                      return (async ({
+                                        dataOp,
+                                        continueOnError
+                                      }) => {
+                                        try {
+                                          const response =
+                                            await executePlasmicDataOp(dataOp, {
+                                              userAuthToken:
+                                                dataSourcesCtx?.userAuthToken,
+                                              user: dataSourcesCtx?.user
+                                            });
+                                          await plasmicInvalidate(
+                                            dataOp.invalidatedKeys
+                                          );
+                                          return response;
+                                        } catch (e) {
+                                          if (!continueOnError) {
+                                            throw e;
+                                          }
+                                          return e;
+                                        }
+                                      })?.apply(null, [actionArgs]);
+                                    })()
+                                  : undefined;
                               if (
                                 $steps["postgresUpdateById"] != null &&
                                 typeof $steps["postgresUpdateById"] ===
@@ -2772,7 +2779,9 @@ function PlasmicParametresCandidat__RenderFunc(props: {
                                         variables: [null]
                                       },
                                       cacheKey: null,
-                                      invalidatedKeys: ["plasmic_refresh_all"],
+                                      invalidatedKeys: [
+                                        "9c25c922-f186-4ed9-850f-6ded6b307e4e"
+                                      ],
                                       roleId: null
                                     }
                                   };
@@ -2932,7 +2941,7 @@ function PlasmicParametresCandidat__RenderFunc(props: {
                             (async files => {
                               const $steps = {};
 
-                              $steps["invokeGlobalAction"] = !(
+                              $steps["errorMsg"] = !(
                                 $state.upload3.files[0].type ===
                                 "application/pdf"
                               )
@@ -2949,15 +2958,11 @@ function PlasmicParametresCandidat__RenderFunc(props: {
                                   })()
                                 : undefined;
                               if (
-                                $steps["invokeGlobalAction"] != null &&
-                                typeof $steps["invokeGlobalAction"] ===
-                                  "object" &&
-                                typeof $steps["invokeGlobalAction"].then ===
-                                  "function"
+                                $steps["errorMsg"] != null &&
+                                typeof $steps["errorMsg"] === "object" &&
+                                typeof $steps["errorMsg"].then === "function"
                               ) {
-                                $steps["invokeGlobalAction"] = await $steps[
-                                  "invokeGlobalAction"
-                                ];
+                                $steps["errorMsg"] = await $steps["errorMsg"];
                               }
 
                               $steps["supabaseUploadFile"] =
@@ -3022,52 +3027,54 @@ function PlasmicParametresCandidat__RenderFunc(props: {
                                 ];
                               }
 
-                              $steps["postgresUpdateById"] = true
-                                ? (() => {
-                                    const actionArgs = {
-                                      dataOp: {
-                                        sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
-                                        opId: "1d316c45-4c3c-4fdb-88bb-e87b178387e4",
-                                        userArgs: {
-                                          keys: [$ctx.SupabaseUser.user.id],
-                                          variables: [
-                                            (() => {})(),
-                                            $steps.supabaseUploadFile?.path.split(
-                                              "/"
-                                            )[1]
-                                          ]
-                                        },
-                                        cacheKey: null,
-                                        invalidatedKeys: [
-                                          "plasmic_refresh_all"
-                                        ],
-                                        roleId: null
-                                      }
-                                    };
-                                    return (async ({
-                                      dataOp,
-                                      continueOnError
-                                    }) => {
-                                      try {
-                                        const response =
-                                          await executePlasmicDataOp(dataOp, {
-                                            userAuthToken:
-                                              dataSourcesCtx?.userAuthToken,
-                                            user: dataSourcesCtx?.user
-                                          });
-                                        await plasmicInvalidate(
-                                          dataOp.invalidatedKeys
-                                        );
-                                        return response;
-                                      } catch (e) {
-                                        if (!continueOnError) {
-                                          throw e;
+                              $steps["postgresUpdateById"] =
+                                $state.upload3.files[0].type ==
+                                "application/pdf"
+                                  ? (() => {
+                                      const actionArgs = {
+                                        dataOp: {
+                                          sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
+                                          opId: "1d316c45-4c3c-4fdb-88bb-e87b178387e4",
+                                          userArgs: {
+                                            keys: [$ctx.SupabaseUser.user.id],
+                                            variables: [
+                                              (() => {})(),
+                                              $steps.supabaseUploadFile?.path.split(
+                                                "/"
+                                              )[1]
+                                            ]
+                                          },
+                                          cacheKey: null,
+                                          invalidatedKeys: [
+                                            "9c25c922-f186-4ed9-850f-6ded6b307e4e"
+                                          ],
+                                          roleId: null
                                         }
-                                        return e;
-                                      }
-                                    })?.apply(null, [actionArgs]);
-                                  })()
-                                : undefined;
+                                      };
+                                      return (async ({
+                                        dataOp,
+                                        continueOnError
+                                      }) => {
+                                        try {
+                                          const response =
+                                            await executePlasmicDataOp(dataOp, {
+                                              userAuthToken:
+                                                dataSourcesCtx?.userAuthToken,
+                                              user: dataSourcesCtx?.user
+                                            });
+                                          await plasmicInvalidate(
+                                            dataOp.invalidatedKeys
+                                          );
+                                          return response;
+                                        } catch (e) {
+                                          if (!continueOnError) {
+                                            throw e;
+                                          }
+                                          return e;
+                                        }
+                                      })?.apply(null, [actionArgs]);
+                                    })()
+                                  : undefined;
                               if (
                                 $steps["postgresUpdateById"] != null &&
                                 typeof $steps["postgresUpdateById"] ===
@@ -3173,7 +3180,9 @@ function PlasmicParametresCandidat__RenderFunc(props: {
                                         variables: [null]
                                       },
                                       cacheKey: null,
-                                      invalidatedKeys: ["plasmic_refresh_all"],
+                                      invalidatedKeys: [
+                                        "9c25c922-f186-4ed9-850f-6ded6b307e4e"
+                                      ],
                                       roleId: null
                                     }
                                   };

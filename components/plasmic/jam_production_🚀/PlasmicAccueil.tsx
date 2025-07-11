@@ -10409,7 +10409,10 @@ function PlasmicAccueil__RenderFunc(props: {
                         ? (() => {
                             const actionArgs = {
                               customFunction: async () => {
-                                return ($state.jobObject = markerData);
+                                return (() => {
+                                  $state.jobObject = markerData;
+                                  return console.log(markerData);
+                                })();
                               }
                             };
                             return (({ customFunction }) => {
