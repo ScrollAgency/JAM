@@ -2539,85 +2539,144 @@ function PlasmicParametresCandidat__RenderFunc(props: {
                             (async files => {
                               const $steps = {};
 
-                              $steps["invokeGlobalAction"] = !(
-                                $state.upload.files[0].type ===
-                                "application/pdf"
-                              )
+                              $steps["clearMsg"] = true
                                 ? (() => {
                                     const actionArgs = {
-                                      args: [
-                                        "error",
-                                        "Seuls les fichiers PDF sont accept\u00e9s."
-                                      ]
+                                      variable: {
+                                        objRoot: $state,
+                                        variablePath: ["errorMsg"]
+                                      },
+                                      operation: 0,
+                                      value: []
                                     };
-                                    return $globalActions[
-                                      "plasmic-antd5-config-provider.showNotification"
-                                    ]?.apply(null, [...actionArgs.args]);
+                                    return (({
+                                      variable,
+                                      value,
+                                      startIndex,
+                                      deleteCount
+                                    }) => {
+                                      if (!variable) {
+                                        return;
+                                      }
+                                      const { objRoot, variablePath } =
+                                        variable;
+
+                                      $stateSet(objRoot, variablePath, value);
+                                      return value;
+                                    })?.apply(null, [actionArgs]);
                                   })()
                                 : undefined;
                               if (
-                                $steps["invokeGlobalAction"] != null &&
-                                typeof $steps["invokeGlobalAction"] ===
-                                  "object" &&
-                                typeof $steps["invokeGlobalAction"].then ===
-                                  "function"
+                                $steps["clearMsg"] != null &&
+                                typeof $steps["clearMsg"] === "object" &&
+                                typeof $steps["clearMsg"].then === "function"
                               ) {
-                                $steps["invokeGlobalAction"] = await $steps[
-                                  "invokeGlobalAction"
-                                ];
+                                $steps["clearMsg"] = await $steps["clearMsg"];
                               }
 
-                              $steps["supabaseUploadFile"] =
-                                $state.upload.files[0].type == "application/pdf"
-                                  ? (() => {
-                                      const actionArgs = {
-                                        dataOp: {
-                                          sourceId: "rtEg85U6Vbyi94cRAe93i7",
-                                          opId: "2c27e5ea-862c-480e-bff8-3da6871e0b04",
-                                          userArgs: {
-                                            path: [
-                                              $ctx.SupabaseUser.user.id,
-                                              $state.upload.files[0].name
-                                            ],
-                                            content: [
-                                              $state.upload.files[0].contents
-                                            ],
-                                            contentType: [
-                                              $state.upload.files[0].type
-                                            ],
-                                            upsert: [true]
-                                          },
-                                          cacheKey: null,
-                                          invalidatedKeys: [
-                                            "plasmic_refresh_all"
+                              $steps["supabaseUploadFile"] = (() => {
+                                const files = $state.upload.files[0];
+
+                                if (
+                                  !Array.isArray(files) ||
+                                  files.length === 0
+                                ) {
+                                  return false;
+                                }
+
+                                const file = files[0];
+                                const maxSize = 2 * 1024 * 1024;
+
+                                const allowedTypes = [
+                                  "application/pdf",
+                                  "application/msword",
+                                  "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+                                  "image/jpeg",
+                                  "image/png"
+                                ];
+
+                                const allowedExtensions = [
+                                  ".pdf",
+                                  ".doc",
+                                  ".docx",
+                                  ".jpg",
+                                  ".jpeg",
+                                  ".png"
+                                ];
+
+                                const fileTypeOk = allowedTypes.includes(
+                                  file.type
+                                );
+                                const fileName = file.name?.toLowerCase() || "";
+                                const fileExtensionOk = allowedExtensions.some(
+                                  ext => fileName.endsWith(ext)
+                                );
+
+                                if (file.size > maxSize) {
+                                  $state.errorMsg.push(
+                                    "Le CV ne doit pas dépasser 2 Mo."
+                                  );
+                                  return false;
+                                }
+
+                                if (!fileTypeOk && !fileExtensionOk) {
+                                  $state.errorMsg.push(
+                                    "Le format du CV n'est pas accepté."
+                                  );
+                                  return false;
+                                }
+
+                                return true;
+                              })()
+                                ? (() => {
+                                    const actionArgs = {
+                                      dataOp: {
+                                        sourceId: "rtEg85U6Vbyi94cRAe93i7",
+                                        opId: "2c27e5ea-862c-480e-bff8-3da6871e0b04",
+                                        userArgs: {
+                                          path: [
+                                            $ctx.SupabaseUser.user.id,
+                                            $state.upload.files[0].name
                                           ],
-                                          roleId: null
+                                          content: [
+                                            $state.upload.files[0].contents
+                                          ],
+                                          contentType: [
+                                            $state.upload.files[0].type
+                                          ],
+                                          upsert: [true]
+                                        },
+                                        cacheKey: null,
+                                        invalidatedKeys: [
+                                          "plasmic_refresh_all"
+                                        ],
+                                        roleId: null
+                                      }
+                                    };
+                                    return (async ({
+                                      dataOp,
+                                      continueOnError
+                                    }) => {
+                                      try {
+                                        const response =
+                                          await executePlasmicDataOp(dataOp, {
+                                            userAuthToken:
+                                              dataSourcesCtx?.userAuthToken,
+                                            user: dataSourcesCtx?.user
+                                          });
+                                        await plasmicInvalidate(
+                                          dataOp.invalidatedKeys
+                                        );
+                                        return response;
+                                      } catch (e) {
+                                        if (!continueOnError) {
+                                          throw e;
                                         }
-                                      };
-                                      return (async ({
-                                        dataOp,
-                                        continueOnError
-                                      }) => {
-                                        try {
-                                          const response =
-                                            await executePlasmicDataOp(dataOp, {
-                                              userAuthToken:
-                                                dataSourcesCtx?.userAuthToken,
-                                              user: dataSourcesCtx?.user
-                                            });
-                                          await plasmicInvalidate(
-                                            dataOp.invalidatedKeys
-                                          );
-                                          return response;
-                                        } catch (e) {
-                                          if (!continueOnError) {
-                                            throw e;
-                                          }
-                                          return e;
-                                        }
-                                      })?.apply(null, [actionArgs]);
-                                    })()
-                                  : undefined;
+                                        return e;
+                                      }
+                                    })?.apply(null, [actionArgs]);
+                                  })()
+                                : undefined;
                               if (
                                 $steps["supabaseUploadFile"] != null &&
                                 typeof $steps["supabaseUploadFile"] ===
@@ -2630,8 +2689,49 @@ function PlasmicParametresCandidat__RenderFunc(props: {
                                 ];
                               }
 
+                              $steps["invokeGlobalAction"] =
+                                $state.errorMsg && $state.errorMsg.length > 0
+                                  ? (() => {
+                                      const actionArgs = {
+                                        args: [
+                                          "error",
+                                          (() => {
+                                            try {
+                                              return $state.errorMsg
+                                                .map(msg => msg)
+                                                .join("\n");
+                                            } catch (e) {
+                                              if (
+                                                e instanceof TypeError ||
+                                                e?.plasmicType ===
+                                                  "PlasmicUndefinedDataError"
+                                              ) {
+                                                return undefined;
+                                              }
+                                              throw e;
+                                            }
+                                          })()
+                                        ]
+                                      };
+                                      return $globalActions[
+                                        "plasmic-antd5-config-provider.showNotification"
+                                      ]?.apply(null, [...actionArgs.args]);
+                                    })()
+                                  : undefined;
+                              if (
+                                $steps["invokeGlobalAction"] != null &&
+                                typeof $steps["invokeGlobalAction"] ===
+                                  "object" &&
+                                typeof $steps["invokeGlobalAction"].then ===
+                                  "function"
+                              ) {
+                                $steps["invokeGlobalAction"] = await $steps[
+                                  "invokeGlobalAction"
+                                ];
+                              }
+
                               $steps["postgresUpdateById"] =
-                                $state.upload.files[0].type == "application/pdf"
+                                $state.errorMsg.length == 0
                                   ? (() => {
                                       const actionArgs = {
                                         dataOp: {
