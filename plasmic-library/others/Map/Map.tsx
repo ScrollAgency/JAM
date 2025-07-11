@@ -403,6 +403,7 @@ const Mapbox: React.FC<MapboxProps> = ({
                gap: 8px;
                z-index: 9999;
                overflow: hidden;
+               cursor: pointer;
             }
 
             .mapboxgl-popup-content.last-minute-border::before {
