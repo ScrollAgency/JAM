@@ -2205,6 +2205,19 @@
           "cssFilePath": "plasmic/jam_production_🚀/PlasmicLikeJobCard.module.css",
           "scheme": "blackbox",
           "componentType": "component"
+        },
+        {
+          "id": "H7nb8l13ZEyx",
+          "name": "LoadingComponent",
+          "type": "managed",
+          "projectId": "f7DE9y7qp46fyCw5nuY8f9",
+          "renderModuleFilePath": "plasmic/jam_production_🚀/PlasmicLoadingComponent.tsx",
+          "importSpec": {
+            "modulePath": "LoadingComponent.tsx"
+          },
+          "cssFilePath": "plasmic/jam_production_🚀/PlasmicLoadingComponent.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
         }
       ],
       "icons": [
@@ -3367,6 +3380,11 @@
           "id": "2HIkNr38V1z9",
           "name": "Vector27Icon",
           "moduleFilePath": "plasmic/jam_production_🚀/icons/PlasmicIcon__Vector27.tsx"
+        },
+        {
+          "id": "pSQ8_3_KJpQd",
+          "name": "Loader4FillSvgrepoComSvgIcon",
+          "moduleFilePath": "plasmic/jam_production_🚀/icons/PlasmicIcon__Loader4FillSvgrepoComSvg.tsx"
         }
       ],
       "images": [
@@ -4754,7 +4772,7 @@
           "id": "LQF6pcE1iukm",
           "name": "MapBox",
           "displayName": "MapBox",
-          "componentImportPath": "./components/others/MapBox/MapBox"
+          "componentImportPath": "./plasmic-library/others/Map/Map"
         },
         {
           "id": "V_qMufM6RJEq",

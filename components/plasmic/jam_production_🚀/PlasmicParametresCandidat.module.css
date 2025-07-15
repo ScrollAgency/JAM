@@ -1043,7 +1043,7 @@
   align-items: stretch;
   justify-content: flex-start;
   width: 100%;
-  background: var(--token-Ct2qLf9b3GVG);
+  background: none;
   height: 136px;
   min-width: 0;
   flex-shrink: 0;
@@ -1067,6 +1067,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background: var(--token-Ct2qLf9b3GVG);
   min-width: 0;
   min-height: 0;
   border-radius: 16px;
@@ -1165,6 +1166,33 @@
   max-width: 100%;
   padding-right: 0px;
   color: var(--token-aTF8aD7JPbTj);
+  min-width: 0;
+}
+.freeBox__ptXCo {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  justify-content: flex-start;
+  align-items: center;
+  min-width: 0;
+  padding: 8px;
+}
+.text__a87C8 {
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  color: var(--token-IQAnn5MeydGo);
+  min-width: 0;
+}
+.text__qo27D {
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  color: var(--token-IQAnn5MeydGo);
   min-width: 0;
 }
 .cvUpload {
@@ -1327,12 +1355,10 @@
   align-items: stretch;
   justify-content: flex-start;
   width: 100%;
-  background: var(--token-Ct2qLf9b3GVG);
+  background: none;
   height: 136px;
   min-width: 0;
   flex-shrink: 0;
-  border-radius: 16px;
-  border: 1px solid var(--token-d-0gEGbakN0M);
 }
 @media (min-width: 0px) and (max-width: 768px) {
   .lmNoUpload {
@@ -1350,8 +1376,11 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background: var(--token-Ct2qLf9b3GVG);
   min-width: 0;
   min-height: 0;
+  border-radius: 16px;
+  border: 1px solid var(--token-d-0gEGbakN0M);
 }
 .freeBox__ywp0V {
   display: flex;
@@ -1441,6 +1470,36 @@
   max-width: 100%;
   padding-right: 0px;
   color: var(--token-aTF8aD7JPbTj);
+  min-width: 0;
+}
+.freeBox__eJdi2 {
+  display: flex;
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  flex-direction: column;
+  min-width: 0;
+  padding: 8px;
+}
+.text__bV4H {
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  color: var(--token-IQAnn5MeydGo);
+  position: relative;
+  left: auto;
+  top: auto;
+  min-width: 0;
+}
+.text__qobQf {
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  color: var(--token-IQAnn5MeydGo);
+  left: auto;
+  top: auto;
   min-width: 0;
 }
 .lmUpload {
