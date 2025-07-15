@@ -255,7 +255,7 @@ function ResetPassword_(
       ref={ref}
       style={presets.wrappers[wrapperStyle] as React.CSSProperties}
     >
-      <Title style={headingStyle as React.CSSProperties}>{title}</Title>
+      <Title style={headingStyle}>{title}</Title>
 
       {showAlerts && <AlertManager
         alerts={alerts}
@@ -266,7 +266,7 @@ function ResetPassword_(
 
       <form
         onSubmit={handleSubmit}
-        style={presets.form as React.CSSProperties}
+        style={{ display: "flex", flexDirection: "column", rowGap: presets.form.rowGap }}
       >
         <div style={{ rowGap: presets.inputField.rowGap }}>
           <label style={presets.formLabel as React.CSSProperties} htmlFor="passwordInput">{passwordLabel}</label>
