@@ -13,3 +13,8 @@
   padding-left: 0 !important;
   padding-right: 0 !important;
 }
+.wg-default, .wg-default .country-selector {
+  right: auto !important;
+  right: unset !important;
+  left: 20px !important;
+}
