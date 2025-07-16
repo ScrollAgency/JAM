@@ -15374,13 +15374,14 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
               ) : null}
               {(() => {
                 try {
-                  return (
-                    //$ctx.query.onboarding === "success"
-                    typeof window !== "undefined" &&
-                    new window.URL(window.location.href).searchParams.get(
-                      "onboarding"
-                    ) === "success"
-                  );
+                  return (() => {
+                    if (typeof window !== "undefined") {
+                      const onboarding = new window.URL(
+                        window.location.href
+                      ).searchParams.get("onboarding");
+                      return console.log("Paramètre onboarding =", onboarding);
+                    }
+                  })();
                 } catch (e) {
                   if (
                     e instanceof TypeError ||
