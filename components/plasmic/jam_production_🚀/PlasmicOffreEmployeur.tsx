@@ -11452,7 +11452,10 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
               ) : null}
               {(() => {
                 try {
-                  return $state.onboardingStep === 0;
+                  return (
+                    $state.onboardingStep === 0 &&
+                    $ctx.query.onboarding !== "success"
+                  );
                 } catch (e) {
                   if (
                     e instanceof TypeError ||
