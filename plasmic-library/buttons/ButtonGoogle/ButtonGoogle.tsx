@@ -13,6 +13,7 @@ interface ButtonProps extends HTMLButtonProps {
     destructive?: boolean;
     hierarchy?: "primary" | "secondary";
     size?: "small" | "large";
+    redirectTo?: string;
     state?: "default" | "hover" | "focused" | "disabled";
     iconImage?: string;
     className?: string;
@@ -37,6 +38,7 @@ const AuthButton = forwardRef<ButtonActions, ButtonProps>(
             iconImage,
             className,
             authProvider = "google",
+            redirectTo = `${window.location.origin}/home`,
         },
         ref
     ) => {
@@ -52,25 +54,26 @@ const AuthButton = forwardRef<ButtonActions, ButtonProps>(
             if (authProvider === "google") {
                 event.preventDefault();
                 try {
-                    const { data, error } = await supabase.auth.signInWithOAuth({
-                        provider: "google",
-                        options: {
-                            redirectTo: `${window.location.origin}/home`,
-                        },
-                    });
+                const { data, error } = await supabase.auth.signInWithOAuth({
+                    provider: "google",
+                    options: {
+                    redirectTo,
+                    },
+                });
 
-                    if (error) {
-                        console.error("Login error:", error.message);
-                    } else {
-                        console.log("Login successful:", data);
-                    }
+                if (error) {
+                    console.error("Login error:", error.message);
+                } else {
+                    console.log("Login successful:", data);
+                }
                 } catch (err) {
-                    console.error("Unexpected error:", err);
+                console.error("Unexpected error:", err);
                 }
             } else if (onClick) {
                 onClick(event);
             }
         };
+
 
         const variants = cva(
             "flex items-center justify-center gap-3 rounded transition-all outline-none group",
