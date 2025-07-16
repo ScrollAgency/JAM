@@ -11486,8 +11486,9 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
               {(() => {
                 try {
                   return (
-                    $state.onboardingStep === 0 &&
-                    $ctx.query.onboarding !== "success"
+                    ($state.onboardingStep === 0 &&
+                      $ctx.query.onboarding !== "success") ||
+                    !$state.onboardingStep === 2
                   );
                 } catch (e) {
                   if (
@@ -13328,30 +13329,16 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                             sty.freeBox___3S3V3
                           )}
                         >
-                          {(() => {
-                            try {
-                              return !$state.onboardingStep === 3;
-                            } catch (e) {
-                              if (
-                                e instanceof TypeError ||
-                                e?.plasmicType === "PlasmicUndefinedDataError"
-                              ) {
-                                return true;
-                              }
-                              throw e;
-                            }
-                          })() ? (
-                            <h1
-                              className={classNames(
-                                projectcss.all,
-                                projectcss.h1,
-                                projectcss.__wab_text,
-                                sty.h1__knVuH
-                              )}
-                            >
-                              {"Votre profil entreprise"}
-                            </h1>
-                          ) : null}
+                          <h1
+                            className={classNames(
+                              projectcss.all,
+                              projectcss.h1,
+                              projectcss.__wab_text,
+                              sty.h1__knVuH
+                            )}
+                          >
+                            {"Votre profil entreprise"}
+                          </h1>
                           <UploadWrapper
                             data-plasmic-name={"upload7"}
                             data-plasmic-override={overrides.upload7}
@@ -15352,7 +15339,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                                   variablePath: ["onboardingStep"]
                                 },
                                 operation: 0,
-                                value: 3
+                                value: 2
                               };
                               return (({
                                 variable,
@@ -15388,7 +15375,10 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
               ) : null}
               {(() => {
                 try {
-                  return $ctx.query.onboarding === "success";
+                  return (
+                    $ctx.query.onboarding === "success" ||
+                    $state.onboardingStep === 2
+                  );
                 } catch (e) {
                   if (
                     e instanceof TypeError ||
