@@ -1792,6 +1792,39 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
             sty.espaceEmployeur,
             ``
           )}
+          onLoad={async event => {
+            const $steps = {};
+
+            $steps["updateCompanyInfosIsOpen"] = true
+              ? (() => {
+                  const actionArgs = {
+                    variable: {
+                      objRoot: $state,
+                      variablePath: ["companyInfos", "isOpen"]
+                    },
+                    operation: 0
+                  };
+                  return (({ variable, value, startIndex, deleteCount }) => {
+                    if (!variable) {
+                      return;
+                    }
+                    const { objRoot, variablePath } = variable;
+
+                    $stateSet(objRoot, variablePath, value);
+                    return value;
+                  })?.apply(null, [actionArgs]);
+                })()
+              : undefined;
+            if (
+              $steps["updateCompanyInfosIsOpen"] != null &&
+              typeof $steps["updateCompanyInfosIsOpen"] === "object" &&
+              typeof $steps["updateCompanyInfosIsOpen"].then === "function"
+            ) {
+              $steps["updateCompanyInfosIsOpen"] = await $steps[
+                "updateCompanyInfosIsOpen"
+              ];
+            }
+          }}
           style={undefined}
         >
           <MobileNavbarTop
@@ -13295,16 +13328,30 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                             sty.freeBox___3S3V3
                           )}
                         >
-                          <h1
-                            className={classNames(
-                              projectcss.all,
-                              projectcss.h1,
-                              projectcss.__wab_text,
-                              sty.h1__knVuH
-                            )}
-                          >
-                            {"Votre profil entreprise"}
-                          </h1>
+                          {(() => {
+                            try {
+                              return !$state.onboardingStep === 3;
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return true;
+                              }
+                              throw e;
+                            }
+                          })() ? (
+                            <h1
+                              className={classNames(
+                                projectcss.all,
+                                projectcss.h1,
+                                projectcss.__wab_text,
+                                sty.h1__knVuH
+                              )}
+                            >
+                              {"Votre profil entreprise"}
+                            </h1>
+                          ) : null}
                           <UploadWrapper
                             data-plasmic-name={"upload7"}
                             data-plasmic-override={overrides.upload7}
@@ -15295,6 +15342,43 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                           typeof $steps["goToPage"].then === "function"
                         ) {
                           $steps["goToPage"] = await $steps["goToPage"];
+                        }
+
+                        $steps["updateOnboardingStep"] = true
+                          ? (() => {
+                              const actionArgs = {
+                                variable: {
+                                  objRoot: $state,
+                                  variablePath: ["onboardingStep"]
+                                },
+                                operation: 0,
+                                value: 3
+                              };
+                              return (({
+                                variable,
+                                value,
+                                startIndex,
+                                deleteCount
+                              }) => {
+                                if (!variable) {
+                                  return;
+                                }
+                                const { objRoot, variablePath } = variable;
+
+                                $stateSet(objRoot, variablePath, value);
+                                return value;
+                              })?.apply(null, [actionArgs]);
+                            })()
+                          : undefined;
+                        if (
+                          $steps["updateOnboardingStep"] != null &&
+                          typeof $steps["updateOnboardingStep"] === "object" &&
+                          typeof $steps["updateOnboardingStep"].then ===
+                            "function"
+                        ) {
+                          $steps["updateOnboardingStep"] = await $steps[
+                            "updateOnboardingStep"
+                          ];
                         }
                       }}
                       submitsForm={true}
