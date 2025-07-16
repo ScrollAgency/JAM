@@ -2,7 +2,7 @@ import * as React from "react";
 import type { HTMLElementRefOf } from "@plasmicapp/react-web";
 import { useState } from "react";
 import { presets } from "@/styles/presets";
-import Link from "next/link";  
+import Link from "next/link";
 
 export interface ForgotPasswordProps {
   wrapperStyle?: "simple" | "card" | "custom";
@@ -14,6 +14,11 @@ export interface ForgotPasswordProps {
   // Titre
   titleHeading?: "h1" | "h2" | "h3";
   title?: string;
+
+  // Icone du bouton de soumission
+  submitButtonIcon?: React.ReactNode;
+  submitButtonIconPosition?: "left" | "right"; // Default: right
+
 
   // Champ email
   emailLabel?: string;
@@ -29,12 +34,17 @@ export interface ForgotPasswordProps {
 }
 
 function ForgotPassword_(
-  { 
+  {
     wrapperStyle = "card",
     buttonSubmitStyle = "primary",
     buttonAbordStyle = "tertiary",
     inputStyle = "simple",
     onSubmit,
+
+    // Icone du bouton de soumission
+    submitButtonIcon,
+    submitButtonIconPosition = "right",
+
 
     titleHeading = "h1",
     title = "Mot de passe oublié ?",
@@ -53,7 +63,7 @@ function ForgotPassword_(
 
   // Utiliser une fonction pour rendre le titre au lieu de créer une variable qui référence la chaîne de caractères
   const renderTitle = () => {
-    switch(titleHeading) {
+    switch (titleHeading) {
       case 'h1':
         return <h1 style={presets.heading1 as React.CSSProperties}>{title}</h1>;
       case 'h2':
@@ -69,7 +79,7 @@ function ForgotPassword_(
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setEmail(value);
-    
+
     // Solution pour éviter l'erreur DataCloneError:
     // Au lieu de passer l'événement original, créer un objet simplifié
     if (onEmailChange) {
@@ -85,10 +95,10 @@ function ForgotPassword_(
           name: e.target.name,
           id: e.target.id
         },
-        preventDefault: () => {},
-        stopPropagation: () => {}
+        preventDefault: () => { },
+        stopPropagation: () => { }
       } as React.ChangeEvent<HTMLInputElement>;
-      
+
       onEmailChange(simpleEvent);
     }
   };
@@ -100,9 +110,10 @@ function ForgotPassword_(
     >
       {renderTitle()}
 
-      <p style={presets.formMessage as React.CSSProperties}>
+      <p style={{ ...(presets.formMessage as React.CSSProperties), color: "#000" }}>
         {descriptionText}
       </p>
+
 
       <form
         onSubmit={(event) => { event.preventDefault(); onSubmit?.(event); }}
@@ -114,15 +125,27 @@ function ForgotPassword_(
             type="email"
             id="email"
             placeholder={placeholderEmail}
-            style={presets.inputs[inputStyle] as React.CSSProperties} 
+            style={presets.inputs[inputStyle] as React.CSSProperties}
             value={emailState}
             onChange={handleEmailChange}
           />
         </div>
-
-        <button type="submit" style={presets.buttons[buttonSubmitStyle] as React.CSSProperties}>
+        <button
+          type="submit"
+          style={{
+            ...(presets.buttons[buttonSubmitStyle] as React.CSSProperties),
+            color: "#000",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            gap: "12px", // espace entre texte et icône
+          }}
+        >
+          {submitButtonIconPosition === "left" && submitButtonIcon}
           {submitButtonText}
+          {submitButtonIconPosition !== "left" && submitButtonIcon}
         </button>
+
       </form>
 
       <Link href="/login">

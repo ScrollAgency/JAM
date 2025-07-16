@@ -31,6 +31,12 @@ const NotationMeta = {
       argTypes: [
         { name: "value", type: "number" }
       ]
+    },
+    enableHover: {
+      type: "boolean",
+      displayName: "Activer le hover",
+      description: "Active ou désactive l'effet hover sur les étoiles.",
+      defaultValue: true
     }
   },
 };

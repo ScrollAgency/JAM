@@ -39,10 +39,15 @@ export interface SignUpProps {
   showOAuthButtons?: boolean;
   showAlerts?: boolean;
 
+  loginPrefixText?: string;  // Texte régulier (ex: "Pas encore de compte ?")
+  loginLinkLabel?: string;
+
   // Styles du bouton Submit
   buttonStyle?: "primary" | "secondary" | "tertiary";
   buttonAbordStyle?: "primary" | "secondary" | "tertiary";
   submitButtonText?: string;
+  submitButtonIcon?: React.ReactNode;
+  submitButtonIconPosition?: "left" | "right"; // default: right
 
   // Boutons OAuth
   googleButtonText?: string;
@@ -93,12 +98,13 @@ export interface SignUpProps {
   passwordInfoText?: string;
   privacyPolicyText?: string;
   redirectAfterSignUp?: string;
+  acceptText?: string; // Texte pour l'acceptation des conditions
 
   padding?: string; // Controls inner padding of the component
 }
 
 function SignUp_(
-  props: SignUpProps, 
+  props: SignUpProps,
   ref: React.ForwardedRef<HTMLDivElement>
 ) {
   const {
@@ -131,9 +137,14 @@ function SignUp_(
     showOAuthButtons = true,
     showAlerts = true,
 
+    loginPrefixText = "Pas encore de compte ?",
+    loginLinkLabel = "INSCRIPTION",
+
     buttonStyle = "primary",
     buttonAbordStyle = "tertiary",
-    submitButtonText = "S'inscrire",
+    submitButtonText = "INSCRIPTION",
+    submitButtonIcon,
+    submitButtonIconPosition = "right",
 
     googleButtonText = "GOOGLE",
     appleButtonText = "APPLE",
@@ -145,7 +156,11 @@ function SignUp_(
     customErrorMessages,
 
     passwordInfoText = "Utilisez 8 caractères ou plus en mélangeant lettres, chiffres et symboles.",
-    privacyPolicyText = "J'accepte la politique de confidentialité",
+    acceptText = "J'accepte la ",
+    privacyPolicyText = "la politique de confidentialité",
+
+
+
     redirectAfterSignUp = "/",
 
     onSubmit,
@@ -178,6 +193,12 @@ function SignUp_(
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [alerts, setAlerts] = useState<AlertMessage[]>([]);
+  const [isChecked, setIsChecked] = useState(false);
+
+  const checkmarkStyle = {
+    ...presets.checkmarkStyleBase,
+    opacity: isChecked ? 1 : 0
+  };
 
   // Messages d'erreur par défaut
   const defaultErrorMessages = {
@@ -208,9 +229,9 @@ function SignUp_(
 
   // Gestion du changement des inputs
   const handleEmailChange = useCallback((value: string) => {
-      setEmail(value);
-      if (onEmailChange) onEmailChange(value);
-    }, [onEmailChange]);
+    setEmail(value);
+    if (onEmailChange) onEmailChange(value);
+  }, [onEmailChange]);
 
   const handleFirstNameChange = useCallback((value: string) => {
     setFirstName(value);
@@ -334,7 +355,7 @@ function SignUp_(
   // Rendu des boutons OAuth
   const renderOAuthButtons = () => {
     if (!showOAuthButtons) return null;
-    
+
     return (
       <div style={presets.oAuthButtons as React.CSSProperties}>
         <div
@@ -345,10 +366,10 @@ function SignUp_(
           onKeyDown={(e) => e.key === 'Enter' && onGoogleSignIn?.()}
         >
           <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M17.8084 9.2C17.8084 8.6 17.7584 8 17.6584 7.4H9.00839V10.9H13.9584C13.7584 12 13.1084 12.9 12.1084 13.5V15.8H15.0084C16.7084 14.2 17.8084 11.9 17.8084 9.2Z" fill="#4285F4"/>
-            <path d="M9.00843 18C11.4084 18 13.4084 17.2 15.0084 15.8L12.1084 13.5C11.3084 14 10.2584 14.3 9.00843 14.3C6.60843 14.3 4.60843 12.7 3.90843 10.6H0.908432V13C2.50843 16 5.50843 18 9.00843 18Z" fill="#34A853"/>
-            <path d="M3.90833 10.6C3.70833 10 3.60833 9.4 3.60833 8.8C3.60833 8.2 3.70833 7.6 3.90833 7L3.90833 4.6H0.908328C0.308328 5.9 -0.00167273 7.3 -0.00167273 8.8C-0.00167273 10.3 0.308328 11.7 0.908328 13L3.90833 10.6Z" fill="#FBBC05"/>
-            <path d="M9.00843 3.3C10.3084 3.3 11.4584 3.7 12.3584 4.6L14.9084 2C13.4084 0.8 11.4084 0 9.00843 0C5.50843 0 2.50843 2 0.908432 5L3.90843 7.4C4.60843 5.3 6.60843 3.3 9.00843 3.3Z" fill="#EA4335"/>
+            <path d="M17.8084 9.2C17.8084 8.6 17.7584 8 17.6584 7.4H9.00839V10.9H13.9584C13.7584 12 13.1084 12.9 12.1084 13.5V15.8H15.0084C16.7084 14.2 17.8084 11.9 17.8084 9.2Z" fill="#4285F4" />
+            <path d="M9.00843 18C11.4084 18 13.4084 17.2 15.0084 15.8L12.1084 13.5C11.3084 14 10.2584 14.3 9.00843 14.3C6.60843 14.3 4.60843 12.7 3.90843 10.6H0.908432V13C2.50843 16 5.50843 18 9.00843 18Z" fill="#34A853" />
+            <path d="M3.90833 10.6C3.70833 10 3.60833 9.4 3.60833 8.8C3.60833 8.2 3.70833 7.6 3.90833 7L3.90833 4.6H0.908328C0.308328 5.9 -0.00167273 7.3 -0.00167273 8.8C-0.00167273 10.3 0.308328 11.7 0.908328 13L3.90833 10.6Z" fill="#FBBC05" />
+            <path d="M9.00843 3.3C10.3084 3.3 11.4584 3.7 12.3584 4.6L14.9084 2C13.4084 0.8 11.4084 0 9.00843 0C5.50843 0 2.50843 2 0.908432 5L3.90843 7.4C4.60843 5.3 6.60843 3.3 9.00843 3.3Z" fill="#EA4335" />
           </svg>
           {googleButtonText}
         </div>
@@ -360,8 +381,8 @@ function SignUp_(
           onKeyDown={(e) => e.key === 'Enter' && onAppleSignIn?.()}
         >
           <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M14.3354 9.47829C14.3173 7.21055 16.1398 6.14422 16.2304 6.08828C15.0317 4.34462 13.1617 4.09605 12.4961 4.08056C10.9048 3.92143 9.3677 5.05102 8.56057 5.05102C7.73586 5.05102 6.49336 4.09605 5.16367 4.12963C3.45429 4.16321 1.87805 5.18162 1.02148 6.73602C-0.743086 9.8914 0.626914 14.6195 2.31773 17.3183C3.16086 18.6389 4.15742 20.1281 5.46367 20.0621C6.72711 19.9907 7.20429 19.1879 8.71836 19.1879C10.2152 19.1879 10.6596 20.0621 11.9838 20.0223C13.3533 19.9907 14.2037 18.6718 15.0121 17.3402C15.9815 15.8235 16.3706 14.3397 16.3887 14.2737C16.3525 14.2628 14.3571 13.4927 14.3354 11.2359C14.3173 9.34099 15.904 8.42087 15.9973 8.35384C14.8221 6.68471 13.0212 6.45943 12.4961 6.41266C10.9371 6.25352 9.59836 7.23076 8.71836 7.23076C7.8563 7.23076 6.67148 6.45943 5.29461 6.45943C5.29742 6.45943 5.29742 6.45943 5.29461 6.45943Z" fill="black"/>
-            <path d="M12.2016 2.23033C12.8977 1.37239 13.3368 0.186 13.2079 -1C12.1957 0.0486913 10.8865 0.813195 10.159 1.64423C9.51504 2.37865 8.98067 3.60254 9.12773 4.75541C10.2692 4.84572 11.4774 3.08827 12.2016 2.23033Z" fill="black"/>
+            <path d="M14.3354 9.47829C14.3173 7.21055 16.1398 6.14422 16.2304 6.08828C15.0317 4.34462 13.1617 4.09605 12.4961 4.08056C10.9048 3.92143 9.3677 5.05102 8.56057 5.05102C7.73586 5.05102 6.49336 4.09605 5.16367 4.12963C3.45429 4.16321 1.87805 5.18162 1.02148 6.73602C-0.743086 9.8914 0.626914 14.6195 2.31773 17.3183C3.16086 18.6389 4.15742 20.1281 5.46367 20.0621C6.72711 19.9907 7.20429 19.1879 8.71836 19.1879C10.2152 19.1879 10.6596 20.0621 11.9838 20.0223C13.3533 19.9907 14.2037 18.6718 15.0121 17.3402C15.9815 15.8235 16.3706 14.3397 16.3887 14.2737C16.3525 14.2628 14.3571 13.4927 14.3354 11.2359C14.3173 9.34099 15.904 8.42087 15.9973 8.35384C14.8221 6.68471 13.0212 6.45943 12.4961 6.41266C10.9371 6.25352 9.59836 7.23076 8.71836 7.23076C7.8563 7.23076 6.67148 6.45943 5.29461 6.45943C5.29742 6.45943 5.29742 6.45943 5.29461 6.45943Z" fill="black" />
+            <path d="M12.2016 2.23033C12.8977 1.37239 13.3368 0.186 13.2079 -1C12.1957 0.0486913 10.8865 0.813195 10.159 1.64423C9.51504 2.37865 8.98067 3.60254 9.12773 4.75541C10.2692 4.84572 11.4774 3.08827 12.2016 2.23033Z" fill="black" />
           </svg>
           {appleButtonText}
         </div>
@@ -378,29 +399,29 @@ function SignUp_(
   // Fonction de soumission du formulaire
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    
+
     // Réinitialiser les alertes existantes
     setAlerts([]);
-    
+
     // Validation email
     if (!validateEmail(email)) {
       addAlert('error', errorMessages.invalidEmail);
       return;
     }
-    
+
     // Validation des mots de passe
     if (password !== confirmPassword) {
       setPasswordsMatch(false);
       addAlert('error', errorMessages.passwordMismatch);
       return;
     }
-    
+
     // Vérification de la force du mot de passe
     if (passwordStrength < 2) {
       addAlert('error', errorMessages.weakPassword);
       return;
     }
-    
+
     // Validation du téléphone seulement si requis
     if (showPhoneInput && (!phone || phone.length < 8)) {
       setPhoneError(true);
@@ -416,7 +437,7 @@ function SignUp_(
       lastName,
       phone: showPhoneInput ? `${countryCode}${phone}` : undefined
     };
-    
+
     // Si on a une fonction onSubmit dans les props, on l'appelle
     if (onSubmit) {
       try {
@@ -438,7 +459,7 @@ function SignUp_(
     gap: "16px",
     width: "100%",
     marginBottom: "16px",
-    
+
     "@media (max-width: 768px)": {
       flexDirection: "column"
     }
@@ -459,9 +480,9 @@ function SignUp_(
     >
       <Title style={presets.heading1 as React.CSSProperties}>{title}</Title>
 
-      {showAlerts && <AlertManager 
-        alerts={alerts} 
-        position={alertPosition} 
+      {showAlerts && <AlertManager
+        alerts={alerts}
+        position={alertPosition}
         onClose={removeAlert}
         maxAlerts={maxAlerts}
       />}
@@ -566,7 +587,7 @@ function SignUp_(
               style={presets.inputs[inputStyle]}
             />
             {showPasswordToggle && (
-              <button 
+              <button
                 type="button"
                 onClick={togglePasswordVisibility}
                 style={presets.togglePasswordVisibility as React.CSSProperties}
@@ -577,7 +598,7 @@ function SignUp_(
             )}
           </div>
           <div style={presets.strengthBars as React.CSSProperties}>{renderStrengthBars()}</div>
-          <small style={presets.passwordHint as React.CSSProperties}>{passwordInfoText}</small>
+          <small style={{ ...(presets.passwordHint as React.CSSProperties) }}>{passwordInfoText}</small>
         </div>
 
         <div style={presets.inputField as React.CSSProperties}>
@@ -593,7 +614,7 @@ function SignUp_(
               style={presets.inputs[inputStyle]}
             />
             {showPasswordToggle && (
-              <button 
+              <button
                 type="button"
                 onClick={toggleConfirmPasswordVisibility}
                 style={presets.togglePasswordVisibility as React.CSSProperties}
@@ -605,32 +626,76 @@ function SignUp_(
           </div>
         </div>
 
-        <div style={presets.checkboxGroup as React.CSSProperties}>
+        {/* <div style={presets.checkboxGroup as React.CSSProperties}>
           <input type="checkbox" id="termsCheckbox" required />
-          <label htmlFor="termsCheckbox" style={presets.checkboxLabel as React.CSSProperties}>
-            {privacyPolicyText}
+          <label htmlFor="termsCheckbox" style={{ display: "flex", alignItems: "center" }}>
+            <span style={presets.checkboxLabel as React.CSSProperties}>{acceptText}</span>
+            <span style={presets.links.linkLeft as React.CSSProperties}>{privacyPolicyText}</span>
+          </label>
+        </div> */}
+
+        {/* Nouvel checkbox */}
+        <div style={presets.checkboxGroup as React.CSSProperties}>
+          <label htmlFor="termsCheckbox" style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+            <div style={{ position: 'relative' }}>
+              <input
+                type="checkbox"
+                id="termsCheckbox"
+                required
+                style={{
+                  ...presets.hiddenInputStyle,
+                  position: 'absolute',
+                  top: 0,
+                  left: 0,
+                  width: '24px',
+                  height: '24px'
+                }}
+                checked={isChecked}
+                onChange={(e) => setIsChecked(e.target.checked)}
+              />
+              <div style={presets.customCheckboxStyle}>
+                <span style={checkmarkStyle}>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="12" height="9" viewBox="0 0 12 9" fill="none">
+                    <path d="M10.6673 1.5L4.25065 7.91667L1.33398 5" stroke="#002400" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </span>
+              </div>
+            </div>
+            <div>
+              <span style={presets.checkboxLabel as React.CSSProperties}>{acceptText}</span>
+              <span style={presets.links.linkLeft as React.CSSProperties}>{privacyPolicyText}</span>
+            </div>
           </label>
         </div>
 
+
+
         <button
           type="submit"
-          style={presets.buttons[buttonStyle] as React.CSSProperties}
+          style={{
+            ...presets.buttons[buttonStyle] as React.CSSProperties,
+            color: "#000",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            gap: "12px", // <-- espace entre texte et icône
+          }}
         >
-          {submitButtonText} <ArrowIcon />
+          {submitButtonIconPosition === "left" && submitButtonIcon}
+          {submitButtonText}
+          {submitButtonIconPosition !== "left" && submitButtonIcon}
         </button>
       </form>
 
       {oAuthButtonsPosition === 'bottom' && showOAuthButtons && renderOAuthButtons()}
 
       {showLoginLink && (
-        <div style={{...presets.loginLinkContainer as React.CSSProperties, marginTop: "8px"}}>
-          <Link href="/login" passHref legacyBehavior>
-            <a style={{
-              ...presets.loginLink as React.CSSProperties,
-              color: getTokenValue("information-text")
-            }}>
-              Déjà inscrit(e) ? CONNEXION
-            </a>
+        <div style={{ textAlign: 'center', marginTop: '16px' }}>
+          <span style={{ fontSize: "16px", fontWeight: 400, color: "#000" }}>
+            {loginPrefixText}{" "}
+          </span>
+          <Link href="/login" style={presets.links.linkLeft}>
+            {loginLinkLabel}
           </Link>
         </div>
       )}

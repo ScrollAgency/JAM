@@ -96,6 +96,7 @@ interface DataGridV2Props {
       color?: string;
     }
   };
+  showActionsColumn?: boolean;
 }
 
 const DEFAULT_LABELS: { [key: string]: string } = {
@@ -150,7 +151,8 @@ export const DataGridV2: React.FC<DataGridV2Props> = ({
   onReject,
   onViewCV,
   onViewLM,
-  statusConfig
+  statusConfig,
+  showActionsColumn = true
 }) => {
   const [mounted, setMounted] = useState(false);
   const [sort, setSort] = useState<{ field: string; direction: 'asc' | 'desc' | null }>({ field: '', direction: null });
@@ -168,16 +170,33 @@ export const DataGridV2: React.FC<DataGridV2Props> = ({
   const allColumns = useMemo(() => {
     if (tasks.length === 0) return [];
     const cols = Object.keys(tasks[0]);
+    let result: string[];
     if (columnOrder) {
-      return [...columnOrder.filter(col => cols.includes(col)), 'actions'];
+      result = columnOrder.filter(col => cols.includes(col));
+    } else {
+      result = [...cols];
     }
-    return [...cols, 'actions'];
-  }, [tasks, columnOrder]);
+    if (showActionsColumn) {
+      result = [...result, 'actions'];
+    }
+    return result;
+  }, [tasks, columnOrder, showActionsColumn]);
 
   const columns = useMemo(() => {
-    if (!visibleColumns) return allColumns;
-    return [...visibleColumns, 'actions'];
-  }, [allColumns, visibleColumns]);
+    let baseCols: string[];
+    if (!visibleColumns) {
+      baseCols = allColumns;
+    } else {
+      baseCols = [...visibleColumns];
+    }
+    if (showActionsColumn && !baseCols.includes('actions')) {
+      baseCols = [...baseCols, 'actions'];
+    }
+    if (!showActionsColumn) {
+      baseCols = baseCols.filter(col => col !== 'actions');
+    }
+    return baseCols;
+  }, [allColumns, visibleColumns, showActionsColumn]);
 
   const filteredTasks = useMemo(() => {
     return tasks.filter(task => {
@@ -270,6 +289,9 @@ export const DataGridV2: React.FC<DataGridV2Props> = ({
 
   const renderCell = (column: string, value: string | null | undefined, task: Task) => {
     if (column === 'actions') {
+      if (task.status === 'refuse' || task.status === 'refusé' || task.status === 'Refuser') {
+        return null;
+      }
       return (
         <div className={styles.actions}>
           <button
@@ -524,6 +546,30 @@ export const DataGridV2: React.FC<DataGridV2Props> = ({
                 >
                   <span className={styles.headerContent}>
                     {column === 'actions' ? 'Actions' : (columnHeaders[column]?.label || columnLabels[column] || column)}
+                    {column !== 'actions' && (
+                      <span style={{ display: 'flex', flexDirection: 'column', marginLeft: 0 }}>
+                        <svg
+                          width="12"
+                          height="12"
+                          viewBox="0 0 12 12"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                          style={{ color: sort.field === column && sort.direction === 'asc' ? '#002402' : '#BDBDBD', marginBottom: '-2px' }}
+                        >
+                          <path d="M6 3L9 6H3L6 3Z" fill="currentColor" />
+                        </svg>
+                        <svg
+                          width="12"
+                          height="12"
+                          viewBox="0 0 12 12"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                          style={{ color: sort.field === column && sort.direction === 'desc' ? '#002402' : '#BDBDBD', marginTop: '-2px' }}
+                        >
+                          <path d="M6 9L3 6H9L6 9Z" fill="currentColor" />
+                        </svg>
+                      </span>
+                    )}
                     {columnHeaders[column]?.icon}
                     {columnHeaders[column]?.tooltip && (
                       <span className={styles.tooltip}>{columnHeaders[column]?.tooltip}</span>
@@ -578,8 +624,15 @@ export const DataGridV2: React.FC<DataGridV2Props> = ({
               onClick={() => currentPage > 1 && onPageChange?.(currentPage - 1)}
               disabled={currentPage === 1}
             >
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ marginRight: '4px' }}>
-                <path d="M10 12L6 8L10 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+               <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                style={{ marginRight: '8px', display: 'inline', verticalAlign: 'middle' }}
+              >
+                <path d="M15 6L9 12L15 18" stroke="#002402" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
               PRECEDENT
             </button>
@@ -603,8 +656,15 @@ export const DataGridV2: React.FC<DataGridV2Props> = ({
               disabled={currentPage === totalPages}
             >
               SUIVANT
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ marginLeft: '4px' }}>
-                <path d="M6 12L10 8L6 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                style={{ marginLeft: '8px', display: 'inline', verticalAlign: 'middle' }}
+              >
+                <path d="M9 6L15 12L9 18" stroke="#002402" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
             </button>
           </div>

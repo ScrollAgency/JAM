@@ -5,6 +5,7 @@ const loginPage = '/login'
 
 const publicRoutes = [
     '/',
+    '/accueil-employeur',
     '/plasmic-host',
 
     '/login',
@@ -17,8 +18,6 @@ const publicRoutes = [
 
     '/first-install',
     '/plasmic-library',
-
-    '/parametres',
 ]
 
 export async function middleware(request: NextRequest) {

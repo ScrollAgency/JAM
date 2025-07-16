@@ -38,7 +38,7 @@ const SignUpMeta = {
       options: ["simple", "advance"],
       description: "Style des champs de saisie",
     },
-    
+
 
     // Propriétés pour les labels et les inputs
     emailLabel: {
@@ -61,7 +61,7 @@ const SignUpMeta = {
       type: "string",
       defaultValue: "Répétez le mot de passe",
     },
-    
+
     placeholderEmail: {
       type: "string",
       defaultValue: "Entrez votre email",
@@ -74,7 +74,7 @@ const SignUpMeta = {
       type: "string",
       defaultValue: "Confirmez votre mot de passe",
     },
-    
+
     // Contrôle de visibilité du mot de passe
     showPasswordToggle: {
       type: "boolean",
@@ -131,7 +131,19 @@ const SignUpMeta = {
       type: "string",
       defaultValue: "S'inscrire",
     },
-    
+    submitButtonIcon: {
+      type: "slot",
+      hidePlaceholder: true,
+      description: "Icône à afficher dans le bouton de connexion",
+    },
+    submitButtonIconPosition: {
+      type: "choice",
+      options: ["left", "right"],
+      defaultValue: "right",
+      description: "Position de l'icône dans le bouton de connexion",
+    },
+
+
 
     email: {
       type: "string",
@@ -265,6 +277,16 @@ const SignUpMeta = {
       defaultValue: true,
       description: "Afficher le lien vers la page de connexion",
     },
+    loginPrefixText: {
+      type: "string",
+      defaultValue: "Pas encore de compte ?",
+      description: "Texte affiché avant le lien d'inscription",
+    },
+    loginLinkLabel: {
+      type: "string",
+      defaultValue: "INSCRIPTION",
+      description: "Texte du lien d'inscription",
+    },
 
     // OAuth buttons position
     oAuthButtonsPosition: {
@@ -352,7 +374,7 @@ const SignUpMeta = {
       defaultValue: '+33'
     }
   },
-  
+
   importPath: "./plasmic-library/authentication/SignUp",
 };
 

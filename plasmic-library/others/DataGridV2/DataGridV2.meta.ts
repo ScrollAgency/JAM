@@ -153,6 +153,11 @@ const DataGridV2Meta = {
       type: "eventHandler",
       description: "Appelé lors du clic sur le bouton de prévisualisation de la lettre de motivation",
       argTypes: [{ name: "fileUrl", type: "string" }, { name: "taskId", type: "string" }]
+    },
+    showActionsColumn: {
+      type: "boolean",
+      description: "Afficher la colonne des actions (accepter/refuser)",
+      defaultValue: true
     }
   }
 } as ComponentMeta<typeof DataGridV2>;

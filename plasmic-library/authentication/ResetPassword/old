@@ -1,4 +1,4 @@
-import type * as React from "react";
+/*import type * as React from "react";
 import { forwardRef, useCallback, useEffect, useState } from "react";
 import type { HTMLElementRefOf } from "@plasmicapp/react-web";
 import Link from "next/link";
@@ -360,3 +360,5 @@ function ResetPassword_(
 
 const ResetPassword = forwardRef(ResetPassword_);
 export default ResetPassword;
+
+*/

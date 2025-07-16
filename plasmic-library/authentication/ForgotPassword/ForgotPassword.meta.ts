@@ -73,6 +73,17 @@ const ForgotPasswordMeta = {
       options: ["primary", "secondary", "tertiary"],
       description: "Style du bouton de soumission",
     },
+    submitButtonIcon: {
+      type: "slot",
+      description: "Icône à afficher dans le bouton de soumission",
+    },
+    submitButtonIconPosition: {
+      type: "choice",
+      options: ["left", "right"],
+      defaultValue: "left",
+      description: "Position de l’icône dans le bouton de soumission",
+    },
+
     cancelButtonText: {
       type: "string",
       defaultValue: "Annuler",
@@ -84,8 +95,18 @@ const ForgotPasswordMeta = {
       options: ["primary", "secondary", "tertiary"],
       description: "Style du bouton annuler",
     },
+    cancelButtonIcon: {
+      type: "slot",
+      description: "Icône à afficher dans le bouton annuler",
+    },
+    cancelButtonIconPosition: {
+      type: "choice",
+      options: ["left", "right"],
+      defaultValue: "left",
+      description: "Position de l’icône dans le bouton annuler",
+    },
 
-    // Events handlers
+    // Event handlers
     onSubmit: {
       type: "eventHandler",
       argTypes: [{ name: "event", type: "object" }],
