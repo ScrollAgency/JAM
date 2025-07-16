@@ -231,7 +231,7 @@ function PlasmicResetPassword__RenderFunc(props: {
           onLoad={async event => {
             const $steps = {};
 
-            $steps["runCode"] = false
+            $steps["runCode"] = true
               ? (() => {
                   const actionArgs = {
                     customFunction: async () => {
