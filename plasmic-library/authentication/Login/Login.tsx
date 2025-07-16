@@ -4,6 +4,8 @@ import { useCallback, useEffect, useState } from "react";
 import { presets } from "@/styles/presets";
 import Link from "next/link";
 import { EyeIcon, ViewIcon } from "@/plasmic-library/authentication/icons/icons";
+import AuthButton from "@/plasmic-library/buttons/ButtonGoogle/ButtonGoogle";
+
 
 export interface LoginProps {
   // Wrapper
@@ -203,16 +205,14 @@ function Login_(
   const renderOAuthButtons = () => {
     return (
       <div style={presets.oAuthButtons as React.CSSProperties}>
-        <button
-          type="button"
+        <AuthButton
+          label={googleButtonText}
+          icon="start"
+          iconImage="/google-logo.svg"
+          size="large"
+          hierarchy="secondary"
           onClick={handleGoogleSignIn}
-          onKeyDown={(e) => e.key === "Enter" && handleGoogleSignIn()}
-          style={presets.oAuthButton as React.CSSProperties}
-          aria-label="Se connecter avec Google"
-        >
-          <img src="/google-logo.svg" alt="Logo Google" className="w-5 h-5" />
-          <span>{googleButtonText}</span>
-        </button>
+        />
 
         <button
           type="button"

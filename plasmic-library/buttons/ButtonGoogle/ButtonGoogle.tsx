@@ -4,6 +4,7 @@ import { cn } from "@/lib/utils";
 import { cva } from "class-variance-authority";
 import Image from "next/image";
 import { supabase } from "@/lib/supabase";
+import { presets } from "@/styles/presets";
 
 type HTMLButtonProps = Pick<ButtonHTMLAttributes<HTMLButtonElement>, "onClick" | "disabled">;
 
@@ -120,6 +121,7 @@ const AuthButton = forwardRef<ButtonActions, ButtonProps>(
                 disabled={disabled}
                 className={cn(variants({ destructive, hierarchy, size, state }), className)}
                 type="button"
+                style={presets.oAuthButton as React.CSSProperties}
             >
                 {iconImage && (icon === "start" || icon === "end" || icon === "only") && (
                     <Image src={iconImage} alt="Icon" width={20} height={20} />
