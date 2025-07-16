@@ -15540,6 +15540,43 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                             ];
                           }
 
+                          $steps["updateOnboardingStep"] = true
+                            ? (() => {
+                                const actionArgs = {
+                                  variable: {
+                                    objRoot: $state,
+                                    variablePath: ["onboardingStep"]
+                                  },
+                                  operation: 1
+                                };
+                                return (({
+                                  variable,
+                                  value,
+                                  startIndex,
+                                  deleteCount
+                                }) => {
+                                  if (!variable) {
+                                    return;
+                                  }
+                                  const { objRoot, variablePath } = variable;
+
+                                  $stateSet(objRoot, variablePath, undefined);
+                                  return undefined;
+                                })?.apply(null, [actionArgs]);
+                              })()
+                            : undefined;
+                          if (
+                            $steps["updateOnboardingStep"] != null &&
+                            typeof $steps["updateOnboardingStep"] ===
+                              "object" &&
+                            typeof $steps["updateOnboardingStep"].then ===
+                              "function"
+                          ) {
+                            $steps["updateOnboardingStep"] = await $steps[
+                              "updateOnboardingStep"
+                            ];
+                          }
+
                           $steps["goToOffreEmployeur"] = true
                             ? (() => {
                                 const actionArgs = {
