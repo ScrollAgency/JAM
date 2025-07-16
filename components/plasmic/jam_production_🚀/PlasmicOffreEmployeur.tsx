@@ -15535,6 +15535,36 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                               "updateShowModal"
                             ];
                           }
+
+                          $steps["goToOffreEmployeur"] = true
+                            ? (() => {
+                                const actionArgs = {
+                                  destination: `/offre-employeur`
+                                };
+                                return (({ destination }) => {
+                                  if (
+                                    typeof destination === "string" &&
+                                    destination.startsWith("#")
+                                  ) {
+                                    document
+                                      .getElementById(destination.substr(1))
+                                      .scrollIntoView({ behavior: "smooth" });
+                                  } else {
+                                    __nextRouter?.push(destination);
+                                  }
+                                })?.apply(null, [actionArgs]);
+                              })()
+                            : undefined;
+                          if (
+                            $steps["goToOffreEmployeur"] != null &&
+                            typeof $steps["goToOffreEmployeur"] === "object" &&
+                            typeof $steps["goToOffreEmployeur"].then ===
+                              "function"
+                          ) {
+                            $steps["goToOffreEmployeur"] = await $steps[
+                              "goToOffreEmployeur"
+                            ];
+                          }
                         }}
                       />
                     </div>
