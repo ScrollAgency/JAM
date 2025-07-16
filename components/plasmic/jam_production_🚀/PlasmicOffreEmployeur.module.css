@@ -6215,10 +6215,12 @@
   align-self: center;
   font-size: 36px;
   font-weight: 600;
+  margin-top: calc(0px + 50px) !important;
 }
 @media (min-width: 0px) and (max-width: 768px) {
   .h1__knVuH {
     font-size: var(--token-JJChWPPhfZHS);
+    margin-top: calc(0px + 50px) !important;
   }
 }
 .upload7:global(.__wab_instance) {

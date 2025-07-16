@@ -15301,10 +15301,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
               ) : null}
               {(() => {
                 try {
-                  return (
-                    $ctx.query.onboarding === "success" ||
-                    $ctx.query.onboarding === "done"
-                  );
+                  return $ctx.query.onboarding === "success";
                 } catch (e) {
                   if (
                     e instanceof TypeError ||
@@ -16121,7 +16118,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                       const actionArgs = {
                         destination: (() => {
                           try {
-                            return $ctx.pagePath + "?onboarding=done";
+                            return (() => {})();
                           } catch (e) {
                             if (
                               e instanceof TypeError ||
