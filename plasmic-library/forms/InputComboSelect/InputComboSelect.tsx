@@ -9,11 +9,11 @@ export interface InputComboSelectProps {
   className?: string;
 }
 
-const InputComboSelect_ = (
+function InputComboSelect_(
   props: InputComboSelectProps,
-  ref: React.Ref<HTMLDivElement | null>
-) => {
-  const { value = 0, onChange, className } = props;
+  ref: HTMLElementRefOf<"div">
+) {
+  const { value, onChange, className } = props;
   const [open, setOpen] = React.useState(false);
 
   const wrapperRef = React.useRef<HTMLDivElement>(null);
@@ -22,9 +22,14 @@ const InputComboSelect_ = (
   const closeDropdown = () => setOpen(false);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const val = Number.parseInt(e.target.value, 10);
-    if (!Number.isNaN(val)) {
-      onChange?.(val);
+    const val = e.target.value;
+    if (val === "") {
+      onChange?.(Number.NaN);
+    } else {
+      const num = Number.parseInt(val, 10);
+      if (!Number.isNaN(num)) {
+        onChange?.(num);
+      }
     }
   };
 
@@ -34,8 +39,6 @@ const InputComboSelect_ = (
   };
 
   const options = Array.from({ length: 20 }, (_, i) => i + 1);
-
-  React.useImperativeHandle(ref, () => wrapperRef.current);
 
   React.useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -52,12 +55,12 @@ const InputComboSelect_ = (
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
-
+  
   return (
     <div ref={wrapperRef} className={`${styles.wrapper} ${className}`}>
       <input
         type="number"
-        value={value}
+        value={Number.isNaN(value) ? "" : value}
         onChange={handleInputChange}
         className={styles.input}
       />
@@ -81,7 +84,7 @@ const InputComboSelect_ = (
       )}
     </div>
   );
-};
+}
 
 const InputComboSelect = React.forwardRef(InputComboSelect_);
 export default InputComboSelect;
