@@ -494,7 +494,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
         path: "createJob.isOpen",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => false
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
       },
       {
         path: "form2.value",
@@ -761,7 +761,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
         path: "showModal",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => false
+        initFunc: ({ $props, $state, $queries, $ctx }) => true
       },
       {
         path: "hiddeModal",
@@ -5261,6 +5261,31 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                               ];
                             }
 
+                            $steps["invokeGlobalAction"] = true
+                              ? (() => {
+                                  const actionArgs = {
+                                    args: [
+                                      "success",
+                                      "Votre offre est publi\u00e9e et visible des candidats"
+                                    ]
+                                  };
+                                  return $globalActions[
+                                    "plasmic-antd5-config-provider.showNotification"
+                                  ]?.apply(null, [...actionArgs.args]);
+                                })()
+                              : undefined;
+                            if (
+                              $steps["invokeGlobalAction"] != null &&
+                              typeof $steps["invokeGlobalAction"] ===
+                                "object" &&
+                              typeof $steps["invokeGlobalAction"].then ===
+                                "function"
+                            ) {
+                              $steps["invokeGlobalAction"] = await $steps[
+                                "invokeGlobalAction"
+                              ];
+                            }
+
                             $steps["closeModal"] = true
                               ? (() => {
                                   const actionArgs = {
@@ -5295,28 +5320,37 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                               $steps["closeModal"] = await $steps["closeModal"];
                             }
 
-                            $steps["invokeGlobalAction"] = true
+                            $steps["removeUrlParam"] = true
                               ? (() => {
                                   const actionArgs = {
-                                    args: [
-                                      "success",
-                                      "Votre offre est publi\u00e9e et visible des candidats"
-                                    ]
+                                    customFunction: async () => {
+                                      return (() => {
+                                        if (typeof window !== "undefined") {
+                                          const urlSansParams =
+                                            window.location.origin +
+                                            window.location.pathname;
+                                          return window.history.replaceState(
+                                            {},
+                                            document.title,
+                                            urlSansParams
+                                          );
+                                        }
+                                      })();
+                                    }
                                   };
-                                  return $globalActions[
-                                    "plasmic-antd5-config-provider.showNotification"
-                                  ]?.apply(null, [...actionArgs.args]);
+                                  return (({ customFunction }) => {
+                                    return customFunction();
+                                  })?.apply(null, [actionArgs]);
                                 })()
                               : undefined;
                             if (
-                              $steps["invokeGlobalAction"] != null &&
-                              typeof $steps["invokeGlobalAction"] ===
-                                "object" &&
-                              typeof $steps["invokeGlobalAction"].then ===
+                              $steps["removeUrlParam"] != null &&
+                              typeof $steps["removeUrlParam"] === "object" &&
+                              typeof $steps["removeUrlParam"].then ===
                                 "function"
                             ) {
-                              $steps["invokeGlobalAction"] = await $steps[
-                                "invokeGlobalAction"
+                              $steps["removeUrlParam"] = await $steps[
+                                "removeUrlParam"
                               ];
                             }
                           }}
@@ -8168,35 +8202,6 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                 typeof $steps["updateShowModal"].then === "function"
               ) {
                 $steps["updateShowModal"] = await $steps["updateShowModal"];
-              }
-
-              $steps["updateHiddeModal"] = true
-                ? (() => {
-                    const actionArgs = {
-                      variable: {
-                        objRoot: $state,
-                        variablePath: ["hiddeModal"]
-                      },
-                      operation: 0,
-                      value: false
-                    };
-                    return (({ variable, value, startIndex, deleteCount }) => {
-                      if (!variable) {
-                        return;
-                      }
-                      const { objRoot, variablePath } = variable;
-
-                      $stateSet(objRoot, variablePath, value);
-                      return value;
-                    })?.apply(null, [actionArgs]);
-                  })()
-                : undefined;
-              if (
-                $steps["updateHiddeModal"] != null &&
-                typeof $steps["updateHiddeModal"] === "object" &&
-                typeof $steps["updateHiddeModal"].then === "function"
-              ) {
-                $steps["updateHiddeModal"] = await $steps["updateHiddeModal"];
               }
             }}
             shouldRun={(() => {
@@ -11233,42 +11238,6 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                   className={classNames(projectcss.all, sty.close)}
                   onClick={async event => {
                     const $steps = {};
-
-                    $steps["updateHiddeModal"] = true
-                      ? (() => {
-                          const actionArgs = {
-                            variable: {
-                              objRoot: $state,
-                              variablePath: ["hiddeModal"]
-                            },
-                            operation: 0,
-                            value: true
-                          };
-                          return (({
-                            variable,
-                            value,
-                            startIndex,
-                            deleteCount
-                          }) => {
-                            if (!variable) {
-                              return;
-                            }
-                            const { objRoot, variablePath } = variable;
-
-                            $stateSet(objRoot, variablePath, value);
-                            return value;
-                          })?.apply(null, [actionArgs]);
-                        })()
-                      : undefined;
-                    if (
-                      $steps["updateHiddeModal"] != null &&
-                      typeof $steps["updateHiddeModal"] === "object" &&
-                      typeof $steps["updateHiddeModal"].then === "function"
-                    ) {
-                      $steps["updateHiddeModal"] = await $steps[
-                        "updateHiddeModal"
-                      ];
-                    }
 
                     $steps["updateShowModal"] = true
                       ? (() => {
@@ -15479,42 +15448,6 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                         ) {
                           $steps["updateShowModal"] = await $steps[
                             "updateShowModal"
-                          ];
-                        }
-
-                        $steps["updateHiddeModal"] = true
-                          ? (() => {
-                              const actionArgs = {
-                                variable: {
-                                  objRoot: $state,
-                                  variablePath: ["hiddeModal"]
-                                },
-                                operation: 0,
-                                value: true
-                              };
-                              return (({
-                                variable,
-                                value,
-                                startIndex,
-                                deleteCount
-                              }) => {
-                                if (!variable) {
-                                  return;
-                                }
-                                const { objRoot, variablePath } = variable;
-
-                                $stateSet(objRoot, variablePath, value);
-                                return value;
-                              })?.apply(null, [actionArgs]);
-                            })()
-                          : undefined;
-                        if (
-                          $steps["updateHiddeModal"] != null &&
-                          typeof $steps["updateHiddeModal"] === "object" &&
-                          typeof $steps["updateHiddeModal"].then === "function"
-                        ) {
-                          $steps["updateHiddeModal"] = await $steps[
-                            "updateHiddeModal"
                           ];
                         }
 
