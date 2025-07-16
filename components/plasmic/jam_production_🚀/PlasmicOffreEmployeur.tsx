@@ -14952,9 +14952,13 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                 {(() => {
                   try {
                     return (
-                      $ctx.query.onboarding !== "success" &&
-                      $ctx.query.onboarding !== "done" &&
-                      $state.onboardingStep === 1
+                      //$ctx.query.onboarding !== "success" && $ctx.query.onboarding !== "done" && $state.onboardingStep === 1
+
+                      //$state.onboardingStep === 1
+
+                      typeof window !== "undefined" &&
+                      $state.onboardingStep === 1 &&
+                      window.location.search === ""
                     );
                   } catch (e) {
                     if (
