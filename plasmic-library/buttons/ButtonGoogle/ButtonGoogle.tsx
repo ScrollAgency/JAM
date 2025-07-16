@@ -39,7 +39,7 @@ const AuthButton = forwardRef<ButtonActions, ButtonProps>(
             iconImage,
             className,
             authProvider = "google",
-            redirectTo = `${window.location.origin}/home`,
+            redirectTo = `${window.location.origin}/api/supabase/callback`,
         },
         ref
     ) => {
