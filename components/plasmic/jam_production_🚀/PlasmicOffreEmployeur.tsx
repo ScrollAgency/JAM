@@ -11229,7 +11229,11 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
           ) : null}
           {(() => {
             try {
-              return $state.showModal;
+              return (
+                typeof window !== "undefined" &&
+                $state.showModal === false &&
+                window.location.search === ""
+              );
             } catch (e) {
               if (
                 e instanceof TypeError ||
