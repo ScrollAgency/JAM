@@ -95,6 +95,8 @@ export type PlasmicResetPassword__OverridesType = {
   frame2?: Flex__<"div">;
   frame3?: Flex__<"div">;
   formWrapper?: Flex__<"div">;
+  resetPassword2?: Flex__<typeof ResetPassword>;
+  freeBox?: Flex__<"div">;
   resetPassword?: Flex__<typeof ResetPassword>;
 };
 
@@ -144,25 +146,6 @@ function PlasmicResetPassword__RenderFunc(props: {
   const stateSpecs: Parameters<typeof useDollarState>[0] = React.useMemo(
     () => [
       {
-        path: "variable",
-        type: "private",
-        variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) =>
-          (() => {
-            try {
-              return $ctx.pagePath.split("/").pop().replace(/\[|\]/g, "");
-            } catch (e) {
-              if (
-                e instanceof TypeError ||
-                e?.plasmicType === "PlasmicUndefinedDataError"
-              ) {
-                return undefined;
-              }
-              throw e;
-            }
-          })()
-      },
-      {
         path: "resetPassword.password",
         type: "private",
         variableType: "text",
@@ -170,6 +153,18 @@ function PlasmicResetPassword__RenderFunc(props: {
       },
       {
         path: "resetPassword.confirmPassword",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $ctx }) => ""
+      },
+      {
+        path: "resetPassword2.password",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $ctx }) => ""
+      },
+      {
+        path: "resetPassword2.confirmPassword",
         type: "private",
         variableType: "text",
         initFunc: ({ $props, $state, $queries, $ctx }) => ""
@@ -228,33 +223,6 @@ function PlasmicResetPassword__RenderFunc(props: {
             plasmic_plasmic_rich_components_css.plasmic_tokens,
             sty.root
           )}
-          onLoad={async event => {
-            const $steps = {};
-
-            $steps["runCode"] = true
-              ? (() => {
-                  const actionArgs = {
-                    customFunction: async () => {
-                      return (() => {
-                        if ($state.variable === "") {
-                          return (window.location = "/login");
-                        }
-                      })();
-                    }
-                  };
-                  return (({ customFunction }) => {
-                    return customFunction();
-                  })?.apply(null, [actionArgs]);
-                })()
-              : undefined;
-            if (
-              $steps["runCode"] != null &&
-              typeof $steps["runCode"] === "object" &&
-              typeof $steps["runCode"].then === "function"
-            ) {
-              $steps["runCode"] = await $steps["runCode"];
-            }
-          }}
         >
           <div
             data-plasmic-name={"passwordReset"}
@@ -349,14 +317,14 @@ function PlasmicResetPassword__RenderFunc(props: {
               className={classNames(projectcss.all, sty.formWrapper)}
             >
               <ResetPassword
-                data-plasmic-name={"resetPassword"}
-                data-plasmic-override={overrides.resetPassword}
+                data-plasmic-name={"resetPassword2"}
+                data-plasmic-override={overrides.resetPassword2}
                 alertPosition={"top"}
                 cancelButtonStyle={"tertiary"}
                 cancelButtonText={"Annuler"}
-                className={classNames("__wab_instance", sty.resetPassword)}
+                className={classNames("__wab_instance", sty.resetPassword2)}
                 confirmPassword={generateStateValueProp($state, [
-                  "resetPassword",
+                  "resetPassword2",
                   "confirmPassword"
                 ])}
                 confirmPasswordLabel={"Répétez le mot de passe*"}
@@ -364,103 +332,17 @@ function PlasmicResetPassword__RenderFunc(props: {
                 eyeIconColor={"#666"}
                 inputStyle={"simple"}
                 maxAlerts={3}
-                onAlertClose={async id => {
-                  const $steps = {};
-                }}
                 onConfirmPasswordChange={async (...eventArgs: any) => {
                   generateStateOnChangeProp($state, [
-                    "resetPassword",
+                    "resetPassword2",
                     "confirmPassword"
                   ]).apply(null, eventArgs);
-
-                  (async event => {
-                    const $steps = {};
-
-                    $steps["updateResetPasswordConfirmPassword"] = false
-                      ? (() => {
-                          const actionArgs = {
-                            variable: {
-                              objRoot: $state,
-                              variablePath: ["resetPassword", "confirmPassword"]
-                            },
-                            operation: 0,
-                            value: $state.resetPassword.confirmPassword
-                          };
-                          return (({
-                            variable,
-                            value,
-                            startIndex,
-                            deleteCount
-                          }) => {
-                            if (!variable) {
-                              return;
-                            }
-                            const { objRoot, variablePath } = variable;
-
-                            $stateSet(objRoot, variablePath, value);
-                            return value;
-                          })?.apply(null, [actionArgs]);
-                        })()
-                      : undefined;
-                    if (
-                      $steps["updateResetPasswordConfirmPassword"] != null &&
-                      typeof $steps["updateResetPasswordConfirmPassword"] ===
-                        "object" &&
-                      typeof $steps["updateResetPasswordConfirmPassword"]
-                        .then === "function"
-                    ) {
-                      $steps["updateResetPasswordConfirmPassword"] =
-                        await $steps["updateResetPasswordConfirmPassword"];
-                    }
-                  }).apply(null, eventArgs);
                 }}
                 onPasswordChange={async (...eventArgs: any) => {
                   generateStateOnChangeProp($state, [
-                    "resetPassword",
+                    "resetPassword2",
                     "password"
                   ]).apply(null, eventArgs);
-
-                  (async event => {
-                    const $steps = {};
-
-                    $steps["updateResetPasswordPassword"] = false
-                      ? (() => {
-                          const actionArgs = {
-                            variable: {
-                              objRoot: $state,
-                              variablePath: ["resetPassword", "password"]
-                            },
-                            operation: 0,
-                            value: $state.resetPassword.password
-                          };
-                          return (({
-                            variable,
-                            value,
-                            startIndex,
-                            deleteCount
-                          }) => {
-                            if (!variable) {
-                              return;
-                            }
-                            const { objRoot, variablePath } = variable;
-
-                            $stateSet(objRoot, variablePath, value);
-                            return value;
-                          })?.apply(null, [actionArgs]);
-                        })()
-                      : undefined;
-                    if (
-                      $steps["updateResetPasswordPassword"] != null &&
-                      typeof $steps["updateResetPasswordPassword"] ===
-                        "object" &&
-                      typeof $steps["updateResetPasswordPassword"].then ===
-                        "function"
-                    ) {
-                      $steps["updateResetPasswordPassword"] = await $steps[
-                        "updateResetPasswordPassword"
-                      ];
-                    }
-                  }).apply(null, eventArgs);
                 }}
                 onSubmit={async event => {
                   const $steps = {};
@@ -471,7 +353,7 @@ function PlasmicResetPassword__RenderFunc(props: {
                           args: [
                             (() => {
                               try {
-                                return $state.resetPassword.password;
+                                return $state.resetPassword2.confirmPassword;
                               } catch (e) {
                                 if (
                                   e instanceof TypeError ||
@@ -498,34 +380,9 @@ function PlasmicResetPassword__RenderFunc(props: {
                       "invokeGlobalAction"
                     ];
                   }
-
-                  $steps["goToConnexion"] = false
-                    ? (() => {
-                        const actionArgs = { destination: `/login` };
-                        return (({ destination }) => {
-                          if (
-                            typeof destination === "string" &&
-                            destination.startsWith("#")
-                          ) {
-                            document
-                              .getElementById(destination.substr(1))
-                              .scrollIntoView({ behavior: "smooth" });
-                          } else {
-                            __nextRouter?.push(destination);
-                          }
-                        })?.apply(null, [actionArgs]);
-                      })()
-                    : undefined;
-                  if (
-                    $steps["goToConnexion"] != null &&
-                    typeof $steps["goToConnexion"] === "object" &&
-                    typeof $steps["goToConnexion"].then === "function"
-                  ) {
-                    $steps["goToConnexion"] = await $steps["goToConnexion"];
-                  }
                 }}
                 password={generateStateValueProp($state, [
-                  "resetPassword",
+                  "resetPassword2",
                   "password"
                 ])}
                 passwordLabel={"Nouveau mot de passe*"}
@@ -537,11 +394,216 @@ function PlasmicResetPassword__RenderFunc(props: {
                 showPasswordStrength={true}
                 showPasswordToggle={true}
                 submitButtonStyle={"primary"}
-                submitButtonText={"R\u00c9INITIALISER"}
+                submitButtonText={"Réinitialiser"}
                 title={"Réinitialiser le mot de passe"}
                 titleHeading={"h1"}
                 wrapperStyle={"card"}
               />
+
+              <div
+                data-plasmic-name={"freeBox"}
+                data-plasmic-override={overrides.freeBox}
+                className={classNames(projectcss.all, sty.freeBox)}
+              >
+                <ResetPassword
+                  data-plasmic-name={"resetPassword"}
+                  data-plasmic-override={overrides.resetPassword}
+                  alertPosition={"top"}
+                  cancelButtonStyle={"tertiary"}
+                  cancelButtonText={"Annuler"}
+                  className={classNames("__wab_instance", sty.resetPassword)}
+                  confirmPassword={generateStateValueProp($state, [
+                    "resetPassword",
+                    "confirmPassword"
+                  ])}
+                  confirmPasswordLabel={"Répétez le mot de passe*"}
+                  confirmPasswordPlaceholder={"Confirmez votre mot de passe"}
+                  eyeIconColor={"#666"}
+                  inputStyle={"simple"}
+                  maxAlerts={3}
+                  onAlertClose={async id => {
+                    const $steps = {};
+                  }}
+                  onConfirmPasswordChange={async (...eventArgs: any) => {
+                    generateStateOnChangeProp($state, [
+                      "resetPassword",
+                      "confirmPassword"
+                    ]).apply(null, eventArgs);
+
+                    (async event => {
+                      const $steps = {};
+
+                      $steps["updateResetPasswordConfirmPassword"] = false
+                        ? (() => {
+                            const actionArgs = {
+                              variable: {
+                                objRoot: $state,
+                                variablePath: [
+                                  "resetPassword",
+                                  "confirmPassword"
+                                ]
+                              },
+                              operation: 0,
+                              value: $state.resetPassword.confirmPassword
+                            };
+                            return (({
+                              variable,
+                              value,
+                              startIndex,
+                              deleteCount
+                            }) => {
+                              if (!variable) {
+                                return;
+                              }
+                              const { objRoot, variablePath } = variable;
+
+                              $stateSet(objRoot, variablePath, value);
+                              return value;
+                            })?.apply(null, [actionArgs]);
+                          })()
+                        : undefined;
+                      if (
+                        $steps["updateResetPasswordConfirmPassword"] != null &&
+                        typeof $steps["updateResetPasswordConfirmPassword"] ===
+                          "object" &&
+                        typeof $steps["updateResetPasswordConfirmPassword"]
+                          .then === "function"
+                      ) {
+                        $steps["updateResetPasswordConfirmPassword"] =
+                          await $steps["updateResetPasswordConfirmPassword"];
+                      }
+                    }).apply(null, eventArgs);
+                  }}
+                  onPasswordChange={async (...eventArgs: any) => {
+                    generateStateOnChangeProp($state, [
+                      "resetPassword",
+                      "password"
+                    ]).apply(null, eventArgs);
+
+                    (async event => {
+                      const $steps = {};
+
+                      $steps["updateResetPasswordPassword"] = false
+                        ? (() => {
+                            const actionArgs = {
+                              variable: {
+                                objRoot: $state,
+                                variablePath: ["resetPassword", "password"]
+                              },
+                              operation: 0,
+                              value: $state.resetPassword.password
+                            };
+                            return (({
+                              variable,
+                              value,
+                              startIndex,
+                              deleteCount
+                            }) => {
+                              if (!variable) {
+                                return;
+                              }
+                              const { objRoot, variablePath } = variable;
+
+                              $stateSet(objRoot, variablePath, value);
+                              return value;
+                            })?.apply(null, [actionArgs]);
+                          })()
+                        : undefined;
+                      if (
+                        $steps["updateResetPasswordPassword"] != null &&
+                        typeof $steps["updateResetPasswordPassword"] ===
+                          "object" &&
+                        typeof $steps["updateResetPasswordPassword"].then ===
+                          "function"
+                      ) {
+                        $steps["updateResetPasswordPassword"] = await $steps[
+                          "updateResetPasswordPassword"
+                        ];
+                      }
+                    }).apply(null, eventArgs);
+                  }}
+                  onSubmit={async event => {
+                    const $steps = {};
+
+                    $steps["invokeGlobalAction"] = true
+                      ? (() => {
+                          const actionArgs = {
+                            args: [
+                              (() => {
+                                try {
+                                  return $state.resetPassword.confirmPassword;
+                                } catch (e) {
+                                  if (
+                                    e instanceof TypeError ||
+                                    e?.plasmicType ===
+                                      "PlasmicUndefinedDataError"
+                                  ) {
+                                    return undefined;
+                                  }
+                                  throw e;
+                                }
+                              })()
+                            ]
+                          };
+                          return $globalActions[
+                            "SupabaseUserGlobalContext.updateUserPassword"
+                          ]?.apply(null, [...actionArgs.args]);
+                        })()
+                      : undefined;
+                    if (
+                      $steps["invokeGlobalAction"] != null &&
+                      typeof $steps["invokeGlobalAction"] === "object" &&
+                      typeof $steps["invokeGlobalAction"].then === "function"
+                    ) {
+                      $steps["invokeGlobalAction"] = await $steps[
+                        "invokeGlobalAction"
+                      ];
+                    }
+
+                    $steps["goToConnexion"] = false
+                      ? (() => {
+                          const actionArgs = { destination: `/login` };
+                          return (({ destination }) => {
+                            if (
+                              typeof destination === "string" &&
+                              destination.startsWith("#")
+                            ) {
+                              document
+                                .getElementById(destination.substr(1))
+                                .scrollIntoView({ behavior: "smooth" });
+                            } else {
+                              __nextRouter?.push(destination);
+                            }
+                          })?.apply(null, [actionArgs]);
+                        })()
+                      : undefined;
+                    if (
+                      $steps["goToConnexion"] != null &&
+                      typeof $steps["goToConnexion"] === "object" &&
+                      typeof $steps["goToConnexion"].then === "function"
+                    ) {
+                      $steps["goToConnexion"] = await $steps["goToConnexion"];
+                    }
+                  }}
+                  password={generateStateValueProp($state, [
+                    "resetPassword",
+                    "password"
+                  ])}
+                  passwordLabel={"Nouveau mot de passe*"}
+                  passwordPlaceholder={"Entrez votre nouveau mot de passe"}
+                  resetSuccessMessage={
+                    "Votre mot de passe a été réinitialisé avec succès!"
+                  }
+                  showAlerts={true}
+                  showPasswordStrength={true}
+                  showPasswordToggle={true}
+                  submitButtonStyle={"primary"}
+                  submitButtonText={"R\u00c9INITIALISER"}
+                  title={"R\u00e9initialiser le mot de passe"}
+                  titleHeading={"h1"}
+                  wrapperStyle={"card"}
+                />
+              </div>
             </Stack__>
           </div>
         </div>
@@ -562,6 +624,8 @@ const PlasmicDescendants = {
     "frame2",
     "frame3",
     "formWrapper",
+    "resetPassword2",
+    "freeBox",
     "resetPassword"
   ],
   passwordReset: [
@@ -574,6 +638,8 @@ const PlasmicDescendants = {
     "frame2",
     "frame3",
     "formWrapper",
+    "resetPassword2",
+    "freeBox",
     "resetPassword"
   ],
   imageWrapper: [
@@ -591,7 +657,9 @@ const PlasmicDescendants = {
   frame: ["frame"],
   frame2: ["frame2"],
   frame3: ["frame3"],
-  formWrapper: ["formWrapper", "resetPassword"],
+  formWrapper: ["formWrapper", "resetPassword2", "freeBox", "resetPassword"],
+  resetPassword2: ["resetPassword2"],
+  freeBox: ["freeBox", "resetPassword"],
   resetPassword: ["resetPassword"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
@@ -608,6 +676,8 @@ type NodeDefaultElementType = {
   frame2: "div";
   frame3: "div";
   formWrapper: "div";
+  resetPassword2: typeof ResetPassword;
+  freeBox: "div";
   resetPassword: typeof ResetPassword;
 };
 
@@ -680,6 +750,8 @@ export const PlasmicResetPassword = Object.assign(
     frame2: makeNodeComponent("frame2"),
     frame3: makeNodeComponent("frame3"),
     formWrapper: makeNodeComponent("formWrapper"),
+    resetPassword2: makeNodeComponent("resetPassword2"),
+    freeBox: makeNodeComponent("freeBox"),
     resetPassword: makeNodeComponent("resetPassword"),
 
     // Metadata about props expected for PlasmicResetPassword
