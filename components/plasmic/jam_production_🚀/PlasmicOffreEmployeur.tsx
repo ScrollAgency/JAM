@@ -15517,6 +15517,43 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                             "updateHiddeModal"
                           ];
                         }
+
+                        $steps["updateCreateJobIsOpen"] = true
+                          ? (() => {
+                              const actionArgs = {
+                                variable: {
+                                  objRoot: $state,
+                                  variablePath: ["createJob", "isOpen"]
+                                },
+                                operation: 0,
+                                value: true
+                              };
+                              return (({
+                                variable,
+                                value,
+                                startIndex,
+                                deleteCount
+                              }) => {
+                                if (!variable) {
+                                  return;
+                                }
+                                const { objRoot, variablePath } = variable;
+
+                                $stateSet(objRoot, variablePath, value);
+                                return value;
+                              })?.apply(null, [actionArgs]);
+                            })()
+                          : undefined;
+                        if (
+                          $steps["updateCreateJobIsOpen"] != null &&
+                          typeof $steps["updateCreateJobIsOpen"] === "object" &&
+                          typeof $steps["updateCreateJobIsOpen"].then ===
+                            "function"
+                        ) {
+                          $steps["updateCreateJobIsOpen"] = await $steps[
+                            "updateCreateJobIsOpen"
+                          ];
+                        }
                       }}
                     />
                   </div>
