@@ -11486,9 +11486,8 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
               {(() => {
                 try {
                   return (
-                    ($state.onboardingStep === 0 &&
-                      $ctx.query.onboarding !== "success") ||
-                    !$state.onboardingStep === 2
+                    $state.onboardingStep === 0 &&
+                    $ctx.query.onboarding !== "success"
                   );
                 } catch (e) {
                   if (
@@ -15339,7 +15338,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                                   variablePath: ["onboardingStep"]
                                 },
                                 operation: 0,
-                                value: 2
+                                value: 3
                               };
                               return (({
                                 variable,
@@ -15376,8 +15375,11 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
               {(() => {
                 try {
                   return (
-                    $ctx.query.onboarding === "success" ||
-                    $state.onboardingStep === 2
+                    //$ctx.query.onboarding === "success"
+                    typeof window !== "undefined" &&
+                    new window.URL(window.location.href).searchParams.get(
+                      "onboarding"
+                    ) === "success"
                   );
                 } catch (e) {
                   if (
