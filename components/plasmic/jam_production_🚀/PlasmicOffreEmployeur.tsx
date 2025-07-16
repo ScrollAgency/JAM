@@ -11486,8 +11486,10 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
               {(() => {
                 try {
                   return (
+                    typeof window !== "undefined" &&
                     $state.onboardingStep === 0 &&
-                    $ctx.query.onboarding !== "success"
+                    window.location.search.includes("onboarding=success") ===
+                      false
                   );
                 } catch (e) {
                   if (
@@ -15375,12 +15377,12 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
               {(() => {
                 try {
                   return (() => {
-                    if (typeof window !== "undefined") {
-                      const onboarding = new window.URL(
-                        window.location.href
-                      ).searchParams.get("onboarding");
-                      return console.log("Paramètre onboarding =", onboarding);
-                    }
+                    return (
+                      typeof window !== "undefined" &&
+                      new window.URL(window.location.href).searchParams.get(
+                        "onboarding"
+                      ) === "success"
+                    );
                   })();
                 } catch (e) {
                   if (
