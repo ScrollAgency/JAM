@@ -76,6 +76,7 @@ import { StripeSubscriptionButton } from "../../forms/StripeSubscriptionButton/S
 import { InputComboSelect } from "../../forms/InputComboSelect/InputComboSelect"; // plasmic-import: KwvhXarw-EVS/codeComponent
 import TextInput from "../../TextInput"; // plasmic-import: pZ7Ql6sUFRw9/component
 import { StripeCheckoutButton } from "../../forms/StripeCheckoutButton/StripeCheckoutButton"; // plasmic-import: HaGLE8b9jujz/codeComponent
+import { SmartLoader } from "../../others/SmartLoader/SmartLoader"; // plasmic-import: YAp2GWWLB3S2/codeComponent
 import { Fetcher } from "@plasmicapp/react-web/lib/data-sources";
 
 import { useScreenVariants as useScreenVariantshm8Nko4B5BDd } from "./PlasmicGlobalVariant__Screen"; // plasmic-import: HM8Nko4B5BDd/globalVariant
@@ -125,13 +126,18 @@ export type PlasmicParametresAbonnement__OverridesType = {
   messageText?: Flex__<"div">;
   actionButton?: Flex__<"div">;
   card2?: Flex__<"div">;
+  successPayement?: Flex__<"div">;
   blockSubscription?: Flex__<"div">;
   subscription?: Flex__<"div">;
   items?: Flex__<"div">;
   productCard?: Flex__<typeof ProductCard>;
   actions?: Flex__<"div">;
+  cancelBtnContainer?: Flex__<"div">;
   cancelSubscription?: Flex__<typeof StripeSubscriptionButton>;
+  changeSubscriptionContainer?: Flex__<"div">;
   changeSubscription?: Flex__<typeof StripeSubscriptionButton>;
+  subscriptionBtnContainer?: Flex__<"div">;
+  buttonSubscription?: Flex__<typeof Button>;
   subscriptionDetailsHistory?: Flex__<"div">;
   details?: Flex__<"div">;
   hr?: Flex__<"div">;
@@ -163,6 +169,7 @@ export type PlasmicParametresAbonnement__OverridesType = {
   total?: Flex__<"div">;
   amount?: Flex__<"div">;
   stripeCheckoutButton?: Flex__<typeof StripeCheckoutButton>;
+  stripeCheckout?: Flex__<typeof SmartLoader>;
 };
 
 export interface DefaultParametresAbonnementProps {}
@@ -313,6 +320,42 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
         path: "sidebar2.disableLinks",
         type: "private",
         variableType: "text",
+        initFunc: ({ $props, $state, $queries, $ctx }) => false
+      },
+      {
+        path: "stripeSessionId",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $ctx }) => ""
+      },
+      {
+        path: "priceId",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $ctx }) => ""
+      },
+      {
+        path: "stripeCustomerId",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $ctx }) => ""
+      },
+      {
+        path: "stripeStatus",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $ctx }) => ""
+      },
+      {
+        path: "stripeSubscriptionId",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $ctx }) => ""
+      },
+      {
+        path: "stripeCreateAccount",
+        type: "private",
+        variableType: "boolean",
         initFunc: ({ $props, $state, $queries, $ctx }) => false
       }
     ],
@@ -1155,15 +1198,86 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
             >
               {(() => {
                 try {
-                  return (
-                    $queries.getUserStripeInfos.data[0].status !== "cancel"
-                  );
+                  return (() => {
+                    return (
+                      typeof window !== "undefined" &&
+                      new window.URL(window.location.href).searchParams.get(
+                        "payementstatus"
+                      ) === "success"
+                    );
+                  })();
                 } catch (e) {
                   if (
                     e instanceof TypeError ||
                     e?.plasmicType === "PlasmicUndefinedDataError"
                   ) {
                     return true;
+                  }
+                  throw e;
+                }
+              })() ? (
+                <div
+                  data-plasmic-name={"successPayement"}
+                  data-plasmic-override={overrides.successPayement}
+                  className={classNames(projectcss.all, sty.successPayement)}
+                >
+                  <div
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.__wab_text,
+                      sty.text__bJflm
+                    )}
+                  >
+                    {" Paiement effectu\u00e9 avec succ\u00e8s"}
+                  </div>
+                </div>
+              ) : null}
+              {(() => {
+                try {
+                  return (() => {
+                    if ($queries.getUserStripeInfos.data[0] !== undefined) {
+                      return (
+                        $queries.getUserStripeInfos.data[0].status === "cancel"
+                      );
+                    } else {
+                      return false;
+                    }
+                  })();
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return false;
+                  }
+                  throw e;
+                }
+              })() ? (
+                <div className={classNames(projectcss.all, sty.freeBox__khod)}>
+                  <div
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.__wab_text,
+                      sty.text__kinfj
+                    )}
+                  >
+                    {
+                      "Vous avez r\u00e9sili\u00e9 votre abonnement. Il se terminera \u00e0 la fin du mois"
+                    }
+                  </div>
+                </div>
+              ) : null}
+              {(() => {
+                try {
+                  return (
+                    $queries.getUserStripeInfos.data[0].status !== "completed"
+                  );
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return false;
                   }
                   throw e;
                 }
@@ -1321,441 +1435,704 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                     hasGap={true}
                     className={classNames(projectcss.all, sty.actions)}
                   >
-                    <StripeSubscriptionButton
-                      data-plasmic-name={"cancelSubscription"}
-                      data-plasmic-override={overrides.cancelSubscription}
-                      cancelButtonSlot={
-                        <Button
-                          className={classNames(
-                            "__wab_instance",
-                            sty.button__smCmG
-                          )}
-                          end={
-                            <GroupIcon
-                              className={classNames(
-                                projectcss.all,
-                                sty.svg__wWSi
-                              )}
-                              role={"img"}
-                            />
-                          }
-                          label={
-                            <div
-                              className={classNames(
-                                projectcss.all,
-                                projectcss.__wab_text,
-                                sty.text__cyeKa
-                              )}
-                            >
-                              {"annuler"}
-                            </div>
-                          }
-                          type={"bordered"}
-                        />
-                      }
-                      cancelUrl={``}
-                      className={classNames(
-                        "__wab_instance",
-                        sty.cancelSubscription
-                      )}
-                      confirmButtonSlot={
-                        <Button
-                          className={classNames(
-                            "__wab_instance",
-                            sty.button__duDbm
-                          )}
-                          color={"errorDestructive"}
-                          end={
-                            <GroupIcon
-                              className={classNames(
-                                projectcss.all,
-                                sty.svg__j89MX
-                              )}
-                              role={"img"}
-                            />
-                          }
-                          label={
-                            <div
-                              className={classNames(
-                                projectcss.all,
-                                projectcss.__wab_text,
-                                sty.text__uWnhc
-                              )}
-                            >
-                              {"R\u00e9silier"}
-                            </div>
-                          }
-                        />
-                      }
-                      confirmDescription={
-                        "Votre abonnement sera actif jusqu\u2019\u00e0 la fin du mois en cours. Sans abonnement, vous ne pourrez plus utiliser la plateforme Job Around Me."
-                      }
-                      confirmIconSlot={
-                        <div
-                          className={classNames(
-                            projectcss.all,
-                            sty.freeBox__vFnVh
-                          )}
-                        >
-                          <ReshotIconAlert7T6Wum8VleSvgIcon
-                            className={classNames(
-                              projectcss.all,
-                              sty.svg__x0Yo
-                            )}
-                            role={"img"}
-                          />
-                        </div>
-                      }
-                      confirmTitle={"Voulez-vous résilier votre abonnement ?"}
-                      customerEmail={(() => {
-                        try {
-                          return $ctx.SupabaseUser.user.email;
-                        } catch (e) {
-                          if (
-                            e instanceof TypeError ||
-                            e?.plasmicType === "PlasmicUndefinedDataError"
-                          ) {
-                            return undefined;
-                          }
-                          throw e;
-                        }
-                      })()}
-                      customerId={(() => {
-                        try {
-                          return $queries.getUserStripeInfos.data[0]
-                            .customer_id;
-                        } catch (e) {
-                          if (
-                            e instanceof TypeError ||
-                            e?.plasmicType === "PlasmicUndefinedDataError"
-                          ) {
-                            return undefined;
-                          }
-                          throw e;
-                        }
-                      })()}
-                      onSuccess={async () => {
-                        const $steps = {};
-
-                        $steps["successNotificartion"] = true
-                          ? (() => {
-                              const actionArgs = {
-                                args: [
-                                  undefined,
-                                  "Votre abonnement \u00e0 \u00e9t\u00e9 r\u00e9sili\u00e9 avec succ\u00e8s !",
-                                  undefined,
-                                  10
-                                ]
-                              };
-                              return $globalActions[
-                                "plasmic-antd5-config-provider.showNotification"
-                              ]?.apply(null, [...actionArgs.args]);
-                            })()
-                          : undefined;
+                    {(() => {
+                      try {
+                        return (
+                          $queries.getUserStripeInfos.data[0].status ===
+                          "active"
+                        );
+                      } catch (e) {
                         if (
-                          $steps["successNotificartion"] != null &&
-                          typeof $steps["successNotificartion"] === "object" &&
-                          typeof $steps["successNotificartion"].then ===
-                            "function"
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
                         ) {
-                          $steps["successNotificartion"] = await $steps[
-                            "successNotificartion"
-                          ];
+                          return true;
                         }
-                      }}
-                      priceId={``}
-                      showConfirmationModal={true}
-                      stripeAction={"cancel"}
-                      successUrl={``}
-                    >
-                      <Button
+                        throw e;
+                      }
+                    })() ? (
+                      <div
+                        data-plasmic-name={"cancelBtnContainer"}
+                        data-plasmic-override={overrides.cancelBtnContainer}
                         className={classNames(
-                          "__wab_instance",
-                          sty.button__x62Ba
+                          projectcss.all,
+                          sty.cancelBtnContainer
                         )}
-                        end={
-                          <GroupIcon
-                            className={classNames(
-                              projectcss.all,
-                              sty.svg__swFgN
-                            )}
-                            role={"img"}
-                          />
-                        }
-                        iconEnd={true}
-                        label={
-                          <div
-                            className={classNames(
-                              projectcss.all,
-                              projectcss.__wab_text,
-                              sty.text__uzXwq
-                            )}
-                          >
-                            {"R\u00e9silier mon abonnement"}
-                          </div>
-                        }
-                        type={"bordered"}
-                      />
-                    </StripeSubscriptionButton>
-                    <StripeSubscriptionButton
-                      data-plasmic-name={"changeSubscription"}
-                      data-plasmic-override={overrides.changeSubscription}
-                      cancelButtonSlot={
-                        <Button
-                          className={classNames(
-                            "__wab_instance",
-                            sty.button__mAqol
-                          )}
-                          end={
-                            <GroupIcon
+                      >
+                        <StripeSubscriptionButton
+                          data-plasmic-name={"cancelSubscription"}
+                          data-plasmic-override={overrides.cancelSubscription}
+                          cancelButtonSlot={
+                            <Button
                               className={classNames(
-                                projectcss.all,
-                                sty.svg__a8Atl
+                                "__wab_instance",
+                                sty.button__smCmG
                               )}
-                              role={"img"}
+                              end={
+                                <GroupIcon
+                                  className={classNames(
+                                    projectcss.all,
+                                    sty.svg__wWSi
+                                  )}
+                                  role={"img"}
+                                />
+                              }
+                              label={
+                                <div
+                                  className={classNames(
+                                    projectcss.all,
+                                    projectcss.__wab_text,
+                                    sty.text__cyeKa
+                                  )}
+                                >
+                                  {"annuler"}
+                                </div>
+                              }
+                              type={"bordered"}
                             />
                           }
-                          label={
+                          cancelUrl={``}
+                          className={classNames(
+                            "__wab_instance",
+                            sty.cancelSubscription
+                          )}
+                          confirmButtonSlot={
+                            <Button
+                              className={classNames(
+                                "__wab_instance",
+                                sty.button__duDbm
+                              )}
+                              color={"errorDestructive"}
+                              end={
+                                <GroupIcon
+                                  className={classNames(
+                                    projectcss.all,
+                                    sty.svg__j89MX
+                                  )}
+                                  role={"img"}
+                                />
+                              }
+                              label={
+                                <div
+                                  className={classNames(
+                                    projectcss.all,
+                                    projectcss.__wab_text,
+                                    sty.text__uWnhc
+                                  )}
+                                >
+                                  {"R\u00e9silier"}
+                                </div>
+                              }
+                            />
+                          }
+                          confirmDescription={
+                            "Votre abonnement sera actif jusqu\u2019\u00e0 la fin du mois en cours. Sans abonnement, vous ne pourrez plus utiliser la plateforme Job Around Me."
+                          }
+                          confirmIconSlot={
                             <div
                               className={classNames(
                                 projectcss.all,
-                                projectcss.__wab_text,
-                                sty.text__jqNyE
+                                sty.freeBox__vFnVh
                               )}
                             >
-                              {"annuler"}
+                              <ReshotIconAlert7T6Wum8VleSvgIcon
+                                className={classNames(
+                                  projectcss.all,
+                                  sty.svg__x0Yo
+                                )}
+                                role={"img"}
+                              />
                             </div>
                           }
-                          type={"bordered"}
-                        />
-                      }
-                      cancelUrl={``}
-                      className={classNames(
-                        "__wab_instance",
-                        sty.changeSubscription
-                      )}
-                      confirmButtonSlot={
-                        <Button
-                          className={classNames(
-                            "__wab_instance",
-                            sty.button__qlaY
-                          )}
-                          end={
-                            <GroupIcon
-                              className={classNames(
-                                projectcss.all,
-                                sty.svg__r5Cwi
-                              )}
-                              role={"img"}
-                            />
+                          confirmTitle={
+                            "Voulez-vous résilier votre abonnement ?"
                           }
-                          label={
-                            <div
-                              className={classNames(
-                                projectcss.all,
-                                projectcss.__wab_text,
-                                sty.text___4BLO
-                              )}
-                            >
-                              {"confirmer"}
-                            </div>
-                          }
-                        />
-                      }
-                      confirmDescription={(() => {
-                        try {
-                          return `Votre nouvel abonnement commencera le ${new Date(
-                            $ctx.SupabaseUser.user.created_at
-                          ).toLocaleDateString("fr-FR", {
-                            weekday: "long",
-                            year: "numeric",
-                            month: "long",
-                            day: "numeric"
-                          })}.`;
-                        } catch (e) {
-                          if (
-                            e instanceof TypeError ||
-                            e?.plasmicType === "PlasmicUndefinedDataError"
-                          ) {
-                            return undefined;
-                          }
-                          throw e;
-                        }
-                      })()}
-                      confirmIconSlot={
-                        <div
-                          className={classNames(
-                            projectcss.all,
-                            sty.freeBox__cpIb
-                          )}
-                        >
-                          <Icon17Icon
-                            className={classNames(
-                              projectcss.all,
-                              sty.svg__xeq2I
-                            )}
-                            role={"img"}
-                          />
-                        </div>
-                      }
-                      confirmTitle={"Changement d'abonnement "}
-                      customerEmail={(() => {
-                        try {
-                          return $ctx.SupabaseUser.user.email;
-                        } catch (e) {
-                          if (
-                            e instanceof TypeError ||
-                            e?.plasmicType === "PlasmicUndefinedDataError"
-                          ) {
-                            return undefined;
-                          }
-                          throw e;
-                        }
-                      })()}
-                      customerId={(() => {
-                        try {
-                          return $queries.getUserStripeInfos.data[0]
-                            .customer_id;
-                        } catch (e) {
-                          if (
-                            e instanceof TypeError ||
-                            e?.plasmicType === "PlasmicUndefinedDataError"
-                          ) {
-                            return undefined;
-                          }
-                          throw e;
-                        }
-                      })()}
-                      disabled={(() => {
-                        try {
-                          return (
-                            $queries.getUserStripeInfos.data[0].product_id ===
-                            $state.selectedProduct
-                          );
-                        } catch (e) {
-                          if (
-                            e instanceof TypeError ||
-                            e?.plasmicType === "PlasmicUndefinedDataError"
-                          ) {
-                            return undefined;
-                          }
-                          throw e;
-                        }
-                      })()}
-                      onSuccess={async () => {
-                        const $steps = {};
+                          customerEmail={(() => {
+                            try {
+                              return $ctx.SupabaseUser.user.email;
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return undefined;
+                              }
+                              throw e;
+                            }
+                          })()}
+                          customerId={(() => {
+                            try {
+                              return $queries.getUserStripeInfos.data[0]
+                                .customer_id;
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return undefined;
+                              }
+                              throw e;
+                            }
+                          })()}
+                          disabled={false}
+                          onSuccess={async () => {
+                            const $steps = {};
 
-                        $steps["successNotification"] = true
-                          ? (() => {
-                              const actionArgs = {
-                                args: [
-                                  "success",
-                                  "Votre abonnement \u00e0 \u00e9t\u00e9 modifi\u00e9 avec succ\u00e8s !",
-                                  undefined,
-                                  10
-                                ]
-                              };
-                              return $globalActions[
-                                "plasmic-antd5-config-provider.showNotification"
-                              ]?.apply(null, [...actionArgs.args]);
-                            })()
-                          : undefined;
-                        if (
-                          $steps["successNotification"] != null &&
-                          typeof $steps["successNotification"] === "object" &&
-                          typeof $steps["successNotification"].then ===
-                            "function"
-                        ) {
-                          $steps["successNotification"] = await $steps[
-                            "successNotification"
-                          ];
-                        }
-                      }}
-                      priceId={(() => {
-                        try {
-                          return $queries.stripeProductsList.data.response.data.find(
-                            item => item.id === $state.selectedProduct
-                          ).default_price.id;
-                        } catch (e) {
-                          if (
-                            e instanceof TypeError ||
-                            e?.plasmicType === "PlasmicUndefinedDataError"
-                          ) {
-                            return undefined;
-                          }
-                          throw e;
-                        }
-                      })()}
-                      showConfirmationModal={true}
-                      stripeAction={"update"}
-                      successUrl={``}
-                    >
-                      <Button
-                        className={classNames(
-                          "__wab_instance",
-                          sty.button__b144E
-                        )}
-                        disabled={false}
-                        end={
-                          <GroupIcon
+                            $steps["successNotificartion"] = true
+                              ? (() => {
+                                  const actionArgs = {
+                                    args: [
+                                      undefined,
+                                      "Votre abonnement \u00e0 \u00e9t\u00e9 r\u00e9sili\u00e9 avec succ\u00e8s !",
+                                      undefined,
+                                      10
+                                    ]
+                                  };
+                                  return $globalActions[
+                                    "plasmic-antd5-config-provider.showNotification"
+                                  ]?.apply(null, [...actionArgs.args]);
+                                })()
+                              : undefined;
+                            if (
+                              $steps["successNotificartion"] != null &&
+                              typeof $steps["successNotificartion"] ===
+                                "object" &&
+                              typeof $steps["successNotificartion"].then ===
+                                "function"
+                            ) {
+                              $steps["successNotificartion"] = await $steps[
+                                "successNotificartion"
+                              ];
+                            }
+
+                            $steps["goToParametresAbonnement"] = true
+                              ? (() => {
+                                  const actionArgs = {
+                                    destination: `/parametres-abonnement`
+                                  };
+                                  return (({ destination }) => {
+                                    if (
+                                      typeof destination === "string" &&
+                                      destination.startsWith("#")
+                                    ) {
+                                      document
+                                        .getElementById(destination.substr(1))
+                                        .scrollIntoView({ behavior: "smooth" });
+                                    } else {
+                                      __nextRouter?.push(destination);
+                                    }
+                                  })?.apply(null, [actionArgs]);
+                                })()
+                              : undefined;
+                            if (
+                              $steps["goToParametresAbonnement"] != null &&
+                              typeof $steps["goToParametresAbonnement"] ===
+                                "object" &&
+                              typeof $steps["goToParametresAbonnement"].then ===
+                                "function"
+                            ) {
+                              $steps["goToParametresAbonnement"] = await $steps[
+                                "goToParametresAbonnement"
+                              ];
+                            }
+                          }}
+                          priceId={``}
+                          showConfirmationModal={true}
+                          stripeAction={"cancel"}
+                          successUrl={"/parametres-abonnement"}
+                        >
+                          <Button
                             className={classNames(
-                              projectcss.all,
-                              sty.svg__iZqHa
+                              "__wab_instance",
+                              sty.button__x62Ba
                             )}
-                            role={"img"}
+                            end={
+                              <GroupIcon
+                                className={classNames(
+                                  projectcss.all,
+                                  sty.svg__swFgN
+                                )}
+                                role={"img"}
+                              />
+                            }
+                            iconEnd={true}
+                            label={
+                              <div
+                                className={classNames(
+                                  projectcss.all,
+                                  projectcss.__wab_text,
+                                  sty.text__uzXwq
+                                )}
+                              >
+                                {"R\u00e9silier mon abonnement"}
+                              </div>
+                            }
+                            type={"bordered"}
                           />
+                        </StripeSubscriptionButton>
+                      </div>
+                    ) : null}
+                    {(() => {
+                      try {
+                        return (
+                          $queries.getUserStripeInfos.data[0].status ===
+                          "active"
+                        );
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return true;
                         }
-                        iconEnd={true}
-                        label={
-                          <div
+                        throw e;
+                      }
+                    })() ? (
+                      <div
+                        data-plasmic-name={"changeSubscriptionContainer"}
+                        data-plasmic-override={
+                          overrides.changeSubscriptionContainer
+                        }
+                        className={classNames(
+                          projectcss.all,
+                          sty.changeSubscriptionContainer
+                        )}
+                      >
+                        <StripeSubscriptionButton
+                          data-plasmic-name={"changeSubscription"}
+                          data-plasmic-override={overrides.changeSubscription}
+                          cancelButtonSlot={
+                            <Button
+                              className={classNames(
+                                "__wab_instance",
+                                sty.button__mAqol
+                              )}
+                              end={
+                                <GroupIcon
+                                  className={classNames(
+                                    projectcss.all,
+                                    sty.svg__a8Atl
+                                  )}
+                                  role={"img"}
+                                />
+                              }
+                              label={
+                                <div
+                                  className={classNames(
+                                    projectcss.all,
+                                    projectcss.__wab_text,
+                                    sty.text__jqNyE
+                                  )}
+                                >
+                                  {"annuler"}
+                                </div>
+                              }
+                              type={"bordered"}
+                            />
+                          }
+                          cancelUrl={``}
+                          className={classNames(
+                            "__wab_instance",
+                            sty.changeSubscription
+                          )}
+                          confirmButtonSlot={
+                            <Button
+                              className={classNames(
+                                "__wab_instance",
+                                sty.button__qlaY
+                              )}
+                              end={
+                                <GroupIcon
+                                  className={classNames(
+                                    projectcss.all,
+                                    sty.svg__r5Cwi
+                                  )}
+                                  role={"img"}
+                                />
+                              }
+                              label={
+                                <div
+                                  className={classNames(
+                                    projectcss.all,
+                                    projectcss.__wab_text,
+                                    sty.text___4BLO
+                                  )}
+                                >
+                                  {"confirmer"}
+                                </div>
+                              }
+                            />
+                          }
+                          confirmDescription={(() => {
+                            try {
+                              return (() => {
+                                const today = new Date();
+                                const formattedToday = today.toLocaleDateString(
+                                  "fr-FR",
+                                  {
+                                    weekday: "long",
+                                    year: "numeric",
+                                    month: "long",
+                                    day: "numeric"
+                                  }
+                                );
+                                return `Votre nouvel abonnement commencera le ${formattedToday}`;
+                              })();
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return undefined;
+                              }
+                              throw e;
+                            }
+                          })()}
+                          confirmIconSlot={
+                            <div
+                              className={classNames(
+                                projectcss.all,
+                                sty.freeBox__cpIb
+                              )}
+                            >
+                              <Icon17Icon
+                                className={classNames(
+                                  projectcss.all,
+                                  sty.svg__xeq2I
+                                )}
+                                role={"img"}
+                              />
+                            </div>
+                          }
+                          confirmTitle={
+                            "Voulez-vous résilier votre abonnement ?"
+                          }
+                          customerEmail={(() => {
+                            try {
+                              return $ctx.SupabaseUser.user.email;
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return undefined;
+                              }
+                              throw e;
+                            }
+                          })()}
+                          customerId={(() => {
+                            try {
+                              return $queries.getUserStripeInfos.data[0]
+                                .customer_id;
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return undefined;
+                              }
+                              throw e;
+                            }
+                          })()}
+                          disabled={(() => {
+                            try {
+                              return (
+                                $queries.getUserStripeInfos.data[0]
+                                  .product_id === $state.selectedProduct &&
+                                !$queries.getUserStripeInfos.data[0].status ===
+                                  "completed"
+                              );
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return undefined;
+                              }
+                              throw e;
+                            }
+                          })()}
+                          onSuccess={async () => {
+                            const $steps = {};
+
+                            $steps["successNotification"] = true
+                              ? (() => {
+                                  const actionArgs = {
+                                    args: [
+                                      "success",
+                                      "Votre abonnement \u00e0 \u00e9t\u00e9 modifi\u00e9 avec succ\u00e8s !",
+                                      undefined,
+                                      10
+                                    ]
+                                  };
+                                  return $globalActions[
+                                    "plasmic-antd5-config-provider.showNotification"
+                                  ]?.apply(null, [...actionArgs.args]);
+                                })()
+                              : undefined;
+                            if (
+                              $steps["successNotification"] != null &&
+                              typeof $steps["successNotification"] ===
+                                "object" &&
+                              typeof $steps["successNotification"].then ===
+                                "function"
+                            ) {
+                              $steps["successNotification"] = await $steps[
+                                "successNotification"
+                              ];
+                            }
+                          }}
+                          priceId={(() => {
+                            try {
+                              return $queries.stripeProductsList.data.response.data.find(
+                                item => item.id === $state.selectedProduct
+                              ).default_price.id;
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return undefined;
+                              }
+                              throw e;
+                            }
+                          })()}
+                          showConfirmationModal={true}
+                          stripeAction={"update"}
+                          successUrl={``}
+                        >
+                          <Button
                             className={classNames(
-                              projectcss.all,
-                              projectcss.__wab_text,
-                              sty.text__hhTTt
+                              "__wab_instance",
+                              sty.button__b144E
                             )}
-                          >
-                            {"changer d'abonnement"}
-                          </div>
+                            disabled={false}
+                            end={
+                              <GroupIcon
+                                className={classNames(
+                                  projectcss.all,
+                                  sty.svg__iZqHa
+                                )}
+                                role={"img"}
+                              />
+                            }
+                            iconEnd={true}
+                            label={
+                              <div
+                                className={classNames(
+                                  projectcss.all,
+                                  projectcss.__wab_text,
+                                  sty.text__hhTTt
+                                )}
+                              >
+                                {"changer d'abonnement"}
+                              </div>
+                            }
+                          />
+                        </StripeSubscriptionButton>
+                      </div>
+                    ) : null}
+                    {(() => {
+                      try {
+                        return (
+                          $queries.getUserStripeInfos.data[0].status ===
+                            "complete" ||
+                          $queries.getUserStripeInfos.data[0].status ===
+                            "cancel"
+                        );
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return true;
                         }
-                      />
-                    </StripeSubscriptionButton>
+                        throw e;
+                      }
+                    })() ? (
+                      <div
+                        data-plasmic-name={"subscriptionBtnContainer"}
+                        data-plasmic-override={
+                          overrides.subscriptionBtnContainer
+                        }
+                        className={classNames(
+                          projectcss.all,
+                          sty.subscriptionBtnContainer
+                        )}
+                      >
+                        <Button
+                          data-plasmic-name={"buttonSubscription"}
+                          data-plasmic-override={overrides.buttonSubscription}
+                          className={classNames(
+                            "__wab_instance",
+                            sty.buttonSubscription
+                          )}
+                          end={
+                            <GroupIcon
+                              className={classNames(
+                                projectcss.all,
+                                sty.svg__yWaz
+                              )}
+                              role={"img"}
+                            />
+                          }
+                          iconEnd={true}
+                          label={
+                            <div
+                              className={classNames(
+                                projectcss.all,
+                                projectcss.__wab_text,
+                                sty.text___2Lzf9
+                              )}
+                            >
+                              {"souscrire"}
+                            </div>
+                          }
+                          onClick={async event => {
+                            const $steps = {};
+
+                            $steps["stripeCheckoutSession"] = true
+                              ? (() => {
+                                  const actionArgs = {
+                                    dataOp: {
+                                      sourceId: "iWyefF3oqfc9knnzuF1Fin",
+                                      opId: "edac38f5-7e6a-4471-abc9-1fae839a1f82",
+                                      userArgs: {
+                                        params: [
+                                          $queries.stripeProductsList.data.response.data.find(
+                                            product =>
+                                              product.id ===
+                                              $state.selectedProduct
+                                          ).default_price.id,
+                                          (() => {
+                                            const currentUrl =
+                                              window.location.href;
+                                            function extractDomain(url) {
+                                              const domainMatch = url.match(
+                                                /^https?:\/\/([^\/?#]+)(?:[\/?#]|$)/i
+                                              );
+                                              return domainMatch
+                                                ? domainMatch[1]
+                                                : null;
+                                            }
+                                            const domain =
+                                              extractDomain(currentUrl);
+                                            return (
+                                              "https://" +
+                                              domain +
+                                              "/parametres-abonnement?payementstatus=success&session_id={CHECKOUT_SESSION_ID}"
+                                            );
+                                          })(),
+                                          (() => {
+                                            const currentUrl =
+                                              window.location.href;
+                                            function extractDomain(url) {
+                                              const domainMatch = url.match(
+                                                /^https?:\/\/([^\/?#]+)(?:[\/?#]|$)/i
+                                              );
+                                              return domainMatch
+                                                ? domainMatch[1]
+                                                : null;
+                                            }
+                                            const domain =
+                                              extractDomain(currentUrl);
+                                            return (
+                                              "https://" +
+                                              domain +
+                                              "/parametres-abonnement?payementstatus=failed&stripe=cancel"
+                                            );
+                                          })(),
+                                          $ctx.SupabaseUser.user.email
+                                        ]
+                                      },
+                                      cacheKey: null,
+                                      invalidatedKeys: ["plasmic_refresh_all"],
+                                      roleId: null
+                                    }
+                                  };
+                                  return (async ({
+                                    dataOp,
+                                    continueOnError
+                                  }) => {
+                                    try {
+                                      const response =
+                                        await executePlasmicDataOp(dataOp, {
+                                          userAuthToken:
+                                            dataSourcesCtx?.userAuthToken,
+                                          user: dataSourcesCtx?.user
+                                        });
+                                      await plasmicInvalidate(
+                                        dataOp.invalidatedKeys
+                                      );
+                                      return response;
+                                    } catch (e) {
+                                      if (!continueOnError) {
+                                        throw e;
+                                      }
+                                      return e;
+                                    }
+                                  })?.apply(null, [actionArgs]);
+                                })()
+                              : undefined;
+                            if (
+                              $steps["stripeCheckoutSession"] != null &&
+                              typeof $steps["stripeCheckoutSession"] ===
+                                "object" &&
+                              typeof $steps["stripeCheckoutSession"].then ===
+                                "function"
+                            ) {
+                              $steps["stripeCheckoutSession"] = await $steps[
+                                "stripeCheckoutSession"
+                              ];
+                            }
+
+                            $steps["goToPage"] = true
+                              ? (() => {
+                                  const actionArgs = {
+                                    destination: (() => {
+                                      try {
+                                        return $steps.stripeCheckoutSession.data
+                                          .response.url;
+                                      } catch (e) {
+                                        if (
+                                          e instanceof TypeError ||
+                                          e?.plasmicType ===
+                                            "PlasmicUndefinedDataError"
+                                        ) {
+                                          return undefined;
+                                        }
+                                        throw e;
+                                      }
+                                    })()
+                                  };
+                                  return (({ destination }) => {
+                                    if (
+                                      typeof destination === "string" &&
+                                      destination.startsWith("#")
+                                    ) {
+                                      document
+                                        .getElementById(destination.substr(1))
+                                        .scrollIntoView({ behavior: "smooth" });
+                                    } else {
+                                      __nextRouter?.push(destination);
+                                    }
+                                  })?.apply(null, [actionArgs]);
+                                })()
+                              : undefined;
+                            if (
+                              $steps["goToPage"] != null &&
+                              typeof $steps["goToPage"] === "object" &&
+                              typeof $steps["goToPage"].then === "function"
+                            ) {
+                              $steps["goToPage"] = await $steps["goToPage"];
+                            }
+                          }}
+                          submitsForm={true}
+                        />
+                      </div>
+                    ) : null}
                   </Stack__>
                 </Stack__>
-              ) : null}
-              {(() => {
-                try {
-                  return (() => {
-                    if ($queries.getUserStripeInfos.data[0] !== undefined) {
-                      return (
-                        $queries.getUserStripeInfos.data[0].status === "cancel"
-                      );
-                    } else {
-                      return false;
-                    }
-                  })();
-                } catch (e) {
-                  if (
-                    e instanceof TypeError ||
-                    e?.plasmicType === "PlasmicUndefinedDataError"
-                  ) {
-                    return true;
-                  }
-                  throw e;
-                }
-              })() ? (
-                <div className={classNames(projectcss.all, sty.freeBox__khod)}>
-                  <div
-                    className={classNames(
-                      projectcss.all,
-                      projectcss.__wab_text,
-                      sty.text__kinfj
-                    )}
-                  >
-                    {
-                      "Vous avez r\u00e9sili\u00e9 votre abonnement. Il se terminera \u00e0 la fin du mois"
-                    }
-                  </div>
-                </div>
               ) : null}
               <Stack__
                 as={"div"}
@@ -3135,6 +3512,525 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                   </StripeCheckoutButton>
                 </div>
               </Stack__>
+              <SmartLoader
+                data-plasmic-name={"stripeCheckout"}
+                data-plasmic-override={overrides.stripeCheckout}
+                action1={async () => {
+                  const $steps = {};
+
+                  $steps["checkStripeUserExists"] = true
+                    ? (() => {
+                        const actionArgs = {
+                          dataOp: {
+                            sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
+                            opId: "1284f981-03a5-4aae-9f90-4a9eb18e1c6b",
+                            userArgs: {
+                              filters: [$ctx.SupabaseUser.user.id]
+                            },
+                            cacheKey: null,
+                            invalidatedKeys: null,
+                            roleId: null
+                          }
+                        };
+                        return (async ({ dataOp, continueOnError }) => {
+                          try {
+                            const response = await executePlasmicDataOp(
+                              dataOp,
+                              {
+                                userAuthToken: dataSourcesCtx?.userAuthToken,
+                                user: dataSourcesCtx?.user
+                              }
+                            );
+                            await plasmicInvalidate(dataOp.invalidatedKeys);
+                            return response;
+                          } catch (e) {
+                            if (!continueOnError) {
+                              throw e;
+                            }
+                            return e;
+                          }
+                        })?.apply(null, [actionArgs]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["checkStripeUserExists"] != null &&
+                    typeof $steps["checkStripeUserExists"] === "object" &&
+                    typeof $steps["checkStripeUserExists"].then === "function"
+                  ) {
+                    $steps["checkStripeUserExists"] = await $steps[
+                      "checkStripeUserExists"
+                    ];
+                  }
+
+                  $steps["updateStripeSessionId"] = true
+                    ? (() => {
+                        const actionArgs = {
+                          variable: {
+                            objRoot: $state,
+                            variablePath: ["stripeSessionId"]
+                          },
+                          operation: 0,
+                          value: $ctx.query.session_id
+                        };
+                        return (({
+                          variable,
+                          value,
+                          startIndex,
+                          deleteCount
+                        }) => {
+                          if (!variable) {
+                            return;
+                          }
+                          const { objRoot, variablePath } = variable;
+
+                          $stateSet(objRoot, variablePath, value);
+                          return value;
+                        })?.apply(null, [actionArgs]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["updateStripeSessionId"] != null &&
+                    typeof $steps["updateStripeSessionId"] === "object" &&
+                    typeof $steps["updateStripeSessionId"].then === "function"
+                  ) {
+                    $steps["updateStripeSessionId"] = await $steps[
+                      "updateStripeSessionId"
+                    ];
+                  }
+
+                  $steps["getStripeSessionInfos"] = true
+                    ? (() => {
+                        const actionArgs = {
+                          dataOp: {
+                            sourceId: "iWyefF3oqfc9knnzuF1Fin",
+                            opId: "ff777f02-09eb-450c-8314-de92f4c472c4",
+                            userArgs: {
+                              path: [
+                                "v1/checkout/sessions/" + $state.stripeSessionId
+                              ]
+                            },
+                            cacheKey: null,
+                            invalidatedKeys: null,
+                            roleId: null
+                          }
+                        };
+                        return (async ({ dataOp, continueOnError }) => {
+                          try {
+                            const response = await executePlasmicDataOp(
+                              dataOp,
+                              {
+                                userAuthToken: dataSourcesCtx?.userAuthToken,
+                                user: dataSourcesCtx?.user
+                              }
+                            );
+                            await plasmicInvalidate(dataOp.invalidatedKeys);
+                            return response;
+                          } catch (e) {
+                            if (!continueOnError) {
+                              throw e;
+                            }
+                            return e;
+                          }
+                        })?.apply(null, [actionArgs]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["getStripeSessionInfos"] != null &&
+                    typeof $steps["getStripeSessionInfos"] === "object" &&
+                    typeof $steps["getStripeSessionInfos"].then === "function"
+                  ) {
+                    $steps["getStripeSessionInfos"] = await $steps[
+                      "getStripeSessionInfos"
+                    ];
+                  }
+
+                  $steps["httpGet"] = true
+                    ? (() => {
+                        const actionArgs = {
+                          dataOp: {
+                            sourceId: "iWyefF3oqfc9knnzuF1Fin",
+                            opId: "e871ec15-d0b3-433b-aa4c-7a6d8ceb2468",
+                            userArgs: {
+                              path: [
+                                "v1/invoices/" +
+                                  $steps.getStripeSessionInfos.data.response
+                                    .invoice +
+                                  "/lines"
+                              ]
+                            },
+                            cacheKey: null,
+                            invalidatedKeys: null,
+                            roleId: null
+                          }
+                        };
+                        return (async ({ dataOp, continueOnError }) => {
+                          try {
+                            const response = await executePlasmicDataOp(
+                              dataOp,
+                              {
+                                userAuthToken: dataSourcesCtx?.userAuthToken,
+                                user: dataSourcesCtx?.user
+                              }
+                            );
+                            await plasmicInvalidate(dataOp.invalidatedKeys);
+                            return response;
+                          } catch (e) {
+                            if (!continueOnError) {
+                              throw e;
+                            }
+                            return e;
+                          }
+                        })?.apply(null, [actionArgs]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["httpGet"] != null &&
+                    typeof $steps["httpGet"] === "object" &&
+                    typeof $steps["httpGet"].then === "function"
+                  ) {
+                    $steps["httpGet"] = await $steps["httpGet"];
+                  }
+
+                  $steps["updateProductId"] = true
+                    ? (() => {
+                        const actionArgs = {
+                          variable: {
+                            objRoot: $state,
+                            variablePath: ["productId"]
+                          },
+                          operation: 0,
+                          value:
+                            $steps.httpGet.data.response.data[0].pricing
+                              .price_details.product
+                        };
+                        return (({
+                          variable,
+                          value,
+                          startIndex,
+                          deleteCount
+                        }) => {
+                          if (!variable) {
+                            return;
+                          }
+                          const { objRoot, variablePath } = variable;
+
+                          $stateSet(objRoot, variablePath, value);
+                          return value;
+                        })?.apply(null, [actionArgs]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["updateProductId"] != null &&
+                    typeof $steps["updateProductId"] === "object" &&
+                    typeof $steps["updateProductId"].then === "function"
+                  ) {
+                    $steps["updateProductId"] = await $steps["updateProductId"];
+                  }
+
+                  $steps["updatePriceId"] = true
+                    ? (() => {
+                        const actionArgs = {
+                          variable: {
+                            objRoot: $state,
+                            variablePath: ["priceId"]
+                          },
+                          operation: 0,
+                          value: $queries.productPrice.data.response.data.find(
+                            product => product.product === $state.productId
+                          ).id
+                        };
+                        return (({
+                          variable,
+                          value,
+                          startIndex,
+                          deleteCount
+                        }) => {
+                          if (!variable) {
+                            return;
+                          }
+                          const { objRoot, variablePath } = variable;
+
+                          $stateSet(objRoot, variablePath, value);
+                          return value;
+                        })?.apply(null, [actionArgs]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["updatePriceId"] != null &&
+                    typeof $steps["updatePriceId"] === "object" &&
+                    typeof $steps["updatePriceId"].then === "function"
+                  ) {
+                    $steps["updatePriceId"] = await $steps["updatePriceId"];
+                  }
+
+                  $steps["updateCustomerId"] = true
+                    ? (() => {
+                        const actionArgs = {
+                          variable: {
+                            objRoot: $state,
+                            variablePath: ["stripeCustomerId"]
+                          },
+                          operation: 0,
+                          value:
+                            $steps.getStripeSessionInfos.data.response.customer
+                        };
+                        return (({
+                          variable,
+                          value,
+                          startIndex,
+                          deleteCount
+                        }) => {
+                          if (!variable) {
+                            return;
+                          }
+                          const { objRoot, variablePath } = variable;
+
+                          $stateSet(objRoot, variablePath, value);
+                          return value;
+                        })?.apply(null, [actionArgs]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["updateCustomerId"] != null &&
+                    typeof $steps["updateCustomerId"] === "object" &&
+                    typeof $steps["updateCustomerId"].then === "function"
+                  ) {
+                    $steps["updateCustomerId"] = await $steps[
+                      "updateCustomerId"
+                    ];
+                  }
+
+                  $steps["updateStripeStatus"] = true
+                    ? (() => {
+                        const actionArgs = {
+                          variable: {
+                            objRoot: $state,
+                            variablePath: ["stripeStatus"]
+                          },
+                          operation: 0,
+                          value:
+                            $steps.getStripeSessionInfos.data.response.status
+                        };
+                        return (({
+                          variable,
+                          value,
+                          startIndex,
+                          deleteCount
+                        }) => {
+                          if (!variable) {
+                            return;
+                          }
+                          const { objRoot, variablePath } = variable;
+
+                          $stateSet(objRoot, variablePath, value);
+                          return value;
+                        })?.apply(null, [actionArgs]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["updateStripeStatus"] != null &&
+                    typeof $steps["updateStripeStatus"] === "object" &&
+                    typeof $steps["updateStripeStatus"].then === "function"
+                  ) {
+                    $steps["updateStripeStatus"] = await $steps[
+                      "updateStripeStatus"
+                    ];
+                  }
+
+                  $steps["updateStripeSubscriptionId"] = true
+                    ? (() => {
+                        const actionArgs = {
+                          variable: {
+                            objRoot: $state,
+                            variablePath: ["stripeSubscriptionId"]
+                          },
+                          operation: 0,
+                          value:
+                            $steps.getStripeSessionInfos.data.response
+                              .subscription
+                        };
+                        return (({
+                          variable,
+                          value,
+                          startIndex,
+                          deleteCount
+                        }) => {
+                          if (!variable) {
+                            return;
+                          }
+                          const { objRoot, variablePath } = variable;
+
+                          $stateSet(objRoot, variablePath, value);
+                          return value;
+                        })?.apply(null, [actionArgs]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["updateStripeSubscriptionId"] != null &&
+                    typeof $steps["updateStripeSubscriptionId"] === "object" &&
+                    typeof $steps["updateStripeSubscriptionId"].then ===
+                      "function"
+                  ) {
+                    $steps["updateStripeSubscriptionId"] = await $steps[
+                      "updateStripeSubscriptionId"
+                    ];
+                  }
+
+                  $steps["updateProductId2"] = true
+                    ? (() => {
+                        const actionArgs = {
+                          variable: {
+                            objRoot: $state,
+                            variablePath: ["stripeCreateAccount"]
+                          },
+                          operation: 0,
+                          value: true
+                        };
+                        return (({
+                          variable,
+                          value,
+                          startIndex,
+                          deleteCount
+                        }) => {
+                          if (!variable) {
+                            return;
+                          }
+                          const { objRoot, variablePath } = variable;
+
+                          $stateSet(objRoot, variablePath, value);
+                          return value;
+                        })?.apply(null, [actionArgs]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["updateProductId2"] != null &&
+                    typeof $steps["updateProductId2"] === "object" &&
+                    typeof $steps["updateProductId2"].then === "function"
+                  ) {
+                    $steps["updateProductId2"] = await $steps[
+                      "updateProductId2"
+                    ];
+                  }
+                }}
+                action2={async () => {
+                  const $steps = {};
+
+                  $steps["createUserStripeInfos"] =
+                    $state.stripeCreateAccount === true
+                      ? (() => {
+                          const actionArgs = {
+                            dataOp: {
+                              sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
+                              opId: "d7fb3850-b12a-44bb-a144-9d03c889225f",
+                              userArgs: {
+                                variables: [
+                                  $state.stripeCustomerId,
+                                  $state.priceId,
+                                  $state.productId,
+                                  $state.stripeSessionId,
+                                  $state.stripeStatus,
+                                  $state.stripeSubscriptionId,
+                                  $ctx.SupabaseUser.user.id
+                                ],
+                                conditions: [$ctx.SupabaseUser.user.id]
+                              },
+                              cacheKey: null,
+                              invalidatedKeys: ["plasmic_refresh_all"],
+                              roleId: null
+                            }
+                          };
+                          return (async ({ dataOp, continueOnError }) => {
+                            try {
+                              const response = await executePlasmicDataOp(
+                                dataOp,
+                                {
+                                  userAuthToken: dataSourcesCtx?.userAuthToken,
+                                  user: dataSourcesCtx?.user
+                                }
+                              );
+                              await plasmicInvalidate(dataOp.invalidatedKeys);
+                              return response;
+                            } catch (e) {
+                              if (!continueOnError) {
+                                throw e;
+                              }
+                              return e;
+                            }
+                          })?.apply(null, [actionArgs]);
+                        })()
+                      : undefined;
+                  if (
+                    $steps["createUserStripeInfos"] != null &&
+                    typeof $steps["createUserStripeInfos"] === "object" &&
+                    typeof $steps["createUserStripeInfos"].then === "function"
+                  ) {
+                    $steps["createUserStripeInfos"] = await $steps[
+                      "createUserStripeInfos"
+                    ];
+                  }
+
+                  $steps["updateStripeCreateAccount"] = true
+                    ? (() => {
+                        const actionArgs = {
+                          variable: {
+                            objRoot: $state,
+                            variablePath: ["stripeCreateAccount"]
+                          },
+                          operation: 0,
+                          value: false
+                        };
+                        return (({
+                          variable,
+                          value,
+                          startIndex,
+                          deleteCount
+                        }) => {
+                          if (!variable) {
+                            return;
+                          }
+                          const { objRoot, variablePath } = variable;
+
+                          $stateSet(objRoot, variablePath, value);
+                          return value;
+                        })?.apply(null, [actionArgs]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["updateStripeCreateAccount"] != null &&
+                    typeof $steps["updateStripeCreateAccount"] === "object" &&
+                    typeof $steps["updateStripeCreateAccount"].then ===
+                      "function"
+                  ) {
+                    $steps["updateStripeCreateAccount"] = await $steps[
+                      "updateStripeCreateAccount"
+                    ];
+                  }
+                }}
+                className={classNames("__wab_instance", sty.stripeCheckout)}
+                condition1={true}
+                condition4={false}
+                condition5={false}
+                shouldRun={(() => {
+                  try {
+                    return (() => {
+                      return (
+                        typeof window !== "undefined" &&
+                        new window.URL(window.location.href).searchParams.get(
+                          "payementstatus"
+                        ) === "success"
+                      );
+                    })();
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return true;
+                    }
+                    throw e;
+                  }
+                })()}
+              />
             </Stack__>
           </Stack__>
         </div>
@@ -3158,13 +4054,18 @@ const PlasmicDescendants = {
     "messageText",
     "actionButton",
     "card2",
+    "successPayement",
     "blockSubscription",
     "subscription",
     "items",
     "productCard",
     "actions",
+    "cancelBtnContainer",
     "cancelSubscription",
+    "changeSubscriptionContainer",
     "changeSubscription",
+    "subscriptionBtnContainer",
+    "buttonSubscription",
     "subscriptionDetailsHistory",
     "details",
     "hr",
@@ -3195,7 +4096,8 @@ const PlasmicDescendants = {
     "totalAmount",
     "total",
     "amount",
-    "stripeCheckoutButton"
+    "stripeCheckoutButton",
+    "stripeCheckout"
   ],
   actionCreditSuccess: ["actionCreditSuccess"],
   actionCreditSuccessDepreciated: ["actionCreditSuccessDepreciated"],
@@ -3210,13 +4112,18 @@ const PlasmicDescendants = {
     "messageText",
     "actionButton",
     "card2",
+    "successPayement",
     "blockSubscription",
     "subscription",
     "items",
     "productCard",
     "actions",
+    "cancelBtnContainer",
     "cancelSubscription",
+    "changeSubscriptionContainer",
     "changeSubscription",
+    "subscriptionBtnContainer",
+    "buttonSubscription",
     "subscriptionDetailsHistory",
     "details",
     "hr",
@@ -3247,7 +4154,8 @@ const PlasmicDescendants = {
     "totalAmount",
     "total",
     "amount",
-    "stripeCheckoutButton"
+    "stripeCheckoutButton",
+    "stripeCheckout"
   ],
   heading: ["heading"],
   modalCreditsAlerts: [
@@ -3265,13 +4173,18 @@ const PlasmicDescendants = {
   actionButton: ["actionButton"],
   card2: [
     "card2",
+    "successPayement",
     "blockSubscription",
     "subscription",
     "items",
     "productCard",
     "actions",
+    "cancelBtnContainer",
     "cancelSubscription",
+    "changeSubscriptionContainer",
     "changeSubscription",
+    "subscriptionBtnContainer",
+    "buttonSubscription",
     "subscriptionDetailsHistory",
     "details",
     "hr",
@@ -3302,23 +4215,44 @@ const PlasmicDescendants = {
     "totalAmount",
     "total",
     "amount",
-    "stripeCheckoutButton"
+    "stripeCheckoutButton",
+    "stripeCheckout"
   ],
+  successPayement: ["successPayement"],
   blockSubscription: [
     "blockSubscription",
     "subscription",
     "items",
     "productCard",
     "actions",
+    "cancelBtnContainer",
     "cancelSubscription",
-    "changeSubscription"
+    "changeSubscriptionContainer",
+    "changeSubscription",
+    "subscriptionBtnContainer",
+    "buttonSubscription"
   ],
   subscription: ["subscription", "items", "productCard"],
   items: ["items", "productCard"],
   productCard: ["productCard"],
-  actions: ["actions", "cancelSubscription", "changeSubscription"],
+  actions: [
+    "actions",
+    "cancelBtnContainer",
+    "cancelSubscription",
+    "changeSubscriptionContainer",
+    "changeSubscription",
+    "subscriptionBtnContainer",
+    "buttonSubscription"
+  ],
+  cancelBtnContainer: ["cancelBtnContainer", "cancelSubscription"],
   cancelSubscription: ["cancelSubscription"],
+  changeSubscriptionContainer: [
+    "changeSubscriptionContainer",
+    "changeSubscription"
+  ],
   changeSubscription: ["changeSubscription"],
+  subscriptionBtnContainer: ["subscriptionBtnContainer", "buttonSubscription"],
+  buttonSubscription: ["buttonSubscription"],
   subscriptionDetailsHistory: [
     "subscriptionDetailsHistory",
     "details",
@@ -3424,7 +4358,8 @@ const PlasmicDescendants = {
   totalAmount: ["totalAmount", "total", "amount"],
   total: ["total"],
   amount: ["amount"],
-  stripeCheckoutButton: ["stripeCheckoutButton"]
+  stripeCheckoutButton: ["stripeCheckoutButton"],
+  stripeCheckout: ["stripeCheckout"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -3443,13 +4378,18 @@ type NodeDefaultElementType = {
   messageText: "div";
   actionButton: "div";
   card2: "div";
+  successPayement: "div";
   blockSubscription: "div";
   subscription: "div";
   items: "div";
   productCard: typeof ProductCard;
   actions: "div";
+  cancelBtnContainer: "div";
   cancelSubscription: typeof StripeSubscriptionButton;
+  changeSubscriptionContainer: "div";
   changeSubscription: typeof StripeSubscriptionButton;
+  subscriptionBtnContainer: "div";
+  buttonSubscription: typeof Button;
   subscriptionDetailsHistory: "div";
   details: "div";
   hr: "div";
@@ -3481,6 +4421,7 @@ type NodeDefaultElementType = {
   total: "div";
   amount: "div";
   stripeCheckoutButton: typeof StripeCheckoutButton;
+  stripeCheckout: typeof SmartLoader;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -3557,13 +4498,20 @@ export const PlasmicParametresAbonnement = Object.assign(
     messageText: makeNodeComponent("messageText"),
     actionButton: makeNodeComponent("actionButton"),
     card2: makeNodeComponent("card2"),
+    successPayement: makeNodeComponent("successPayement"),
     blockSubscription: makeNodeComponent("blockSubscription"),
     subscription: makeNodeComponent("subscription"),
     items: makeNodeComponent("items"),
     productCard: makeNodeComponent("productCard"),
     actions: makeNodeComponent("actions"),
+    cancelBtnContainer: makeNodeComponent("cancelBtnContainer"),
     cancelSubscription: makeNodeComponent("cancelSubscription"),
+    changeSubscriptionContainer: makeNodeComponent(
+      "changeSubscriptionContainer"
+    ),
     changeSubscription: makeNodeComponent("changeSubscription"),
+    subscriptionBtnContainer: makeNodeComponent("subscriptionBtnContainer"),
+    buttonSubscription: makeNodeComponent("buttonSubscription"),
     subscriptionDetailsHistory: makeNodeComponent("subscriptionDetailsHistory"),
     details: makeNodeComponent("details"),
     hr: makeNodeComponent("hr"),
@@ -3595,6 +4543,7 @@ export const PlasmicParametresAbonnement = Object.assign(
     total: makeNodeComponent("total"),
     amount: makeNodeComponent("amount"),
     stripeCheckoutButton: makeNodeComponent("stripeCheckoutButton"),
+    stripeCheckout: makeNodeComponent("stripeCheckout"),
 
     // Metadata about props expected for PlasmicParametresAbonnement
     internalVariantProps: PlasmicParametresAbonnement__VariantProps,

@@ -325,6 +325,50 @@
     margin-top: 32px;
   }
 }
+.successPayement {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  background: var(--token-aTHxjKoUeWnv);
+  min-width: 0;
+  border-radius: 24px;
+  padding: 24px;
+}
+.text__bJflm {
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  color: var(--token-ceD1eQOG2geq);
+  min-width: 0;
+}
+.freeBox__khod {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  background: var(--token-KrBMMqlPClZi);
+  min-width: 0;
+  border-radius: 24px;
+  padding: 24px;
+}
+.text__kinfj {
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  color: var(--token-Bjjq_24AWhes);
+  min-width: 0;
+}
 .blockSubscription {
   display: flex;
   flex-direction: column;
@@ -500,6 +544,17 @@
     margin-top: 10px;
   }
 }
+.cancelBtnContainer {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  align-items: stretch;
+  justify-content: flex-start;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  padding: 8px;
+}
 .cancelSubscription:global(.__wab_instance) {
   max-width: 100%;
   object-fit: cover;
@@ -507,7 +562,7 @@
 .button__x62Ba:global(.__wab_instance):global(.__wab_instance) {
   max-width: 100%;
 }
-.svg___5NAf {
+.svg__fotTk {
   position: relative;
   color: var(--token-OIYWLyLPYWym);
   height: 1em;
@@ -547,7 +602,7 @@
   width: 100%;
   min-width: 0;
 }
-.svg___6EZst {
+.svg__nbleZ {
   position: relative;
   color: var(--token-OIYWLyLPYWym);
   height: 1em;
@@ -566,7 +621,7 @@
   width: 100%;
   min-width: 0;
 }
-.svg__ax9S {
+.svg__py3EJ {
   position: relative;
   color: var(--token-OIYWLyLPYWym);
   height: 1em;
@@ -579,6 +634,17 @@
   position: relative;
   color: var(--token-OIYWLyLPYWym);
   height: 1em;
+}
+.changeSubscriptionContainer {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  align-items: stretch;
+  justify-content: flex-start;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  padding: 8px;
 }
 .changeSubscription:global(.__wab_instance) {
   max-width: 100%;
@@ -593,7 +659,7 @@
     min-width: 0;
   }
 }
-.svg__k5J9S {
+.svg__ifxN9 {
   position: relative;
   color: var(--token-OIYWLyLPYWym);
   height: 1em;
@@ -633,7 +699,7 @@
   width: 100%;
   min-width: 0;
 }
-.svg__uCd5S {
+.svg___8Im38 {
   position: relative;
   color: var(--token-OIYWLyLPYWym);
   height: 1em;
@@ -652,7 +718,7 @@
   width: 100%;
   min-width: 0;
 }
-.svg__vQtOe {
+.svg__l90CA {
   position: relative;
   color: var(--token-OIYWLyLPYWym);
   height: 1em;
@@ -666,27 +732,47 @@
   color: var(--token-OIYWLyLPYWym);
   height: 1em;
 }
-.freeBox__khod {
+.subscriptionBtnContainer {
   display: flex;
   flex-direction: row;
   position: relative;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
+  align-items: stretch;
+  justify-content: flex-start;
+  width: auto;
   height: auto;
   max-width: 100%;
-  background: var(--token-KrBMMqlPClZi);
-  min-width: 0;
-  border-radius: 24px;
-  padding: 24px;
+  padding: 8px;
 }
-.text__kinfj {
-  position: relative;
-  width: 100%;
-  height: auto;
+.buttonSubscription:global(.__wab_instance):global(.__wab_instance) {
   max-width: 100%;
-  color: var(--token-Bjjq_24AWhes);
+  width: 100%;
+  transform: translateX(0px) translateY(0px) translateZ(0px);
   min-width: 0;
+}
+.svg__jhHXu {
+  position: relative;
+  color: var(--token-OIYWLyLPYWym);
+  height: 1em;
+}
+.text___2Lzf9 {
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  font-style: normal;
+  color: var(--token-nuB3vbLUeNHj);
+  text-align: left;
+  text-transform: none;
+  line-height: 1.5;
+  letter-spacing: normal;
+  white-space: pre-wrap;
+  user-select: text;
+  text-decoration-line: none !important;
+  text-overflow: clip !important;
+}
+.svg__yWaz {
+  position: relative;
+  color: var(--token-OIYWLyLPYWym);
+  height: 1em;
 }
 .subscriptionDetailsHistory {
   display: flex;
@@ -1846,4 +1932,13 @@
   position: relative;
   color: var(--token-OIYWLyLPYWym);
   height: 1em;
+}
+.stripeCheckout:global(.__wab_instance) {
+  max-width: 100%;
+  object-fit: cover;
+  position: relative;
+  left: auto;
+  top: auto;
+  bottom: auto;
+  right: auto;
 }
