@@ -77,6 +77,8 @@ export async function middleware(request: NextRequest) {
         url.pathname = loginPage
         return NextResponse.redirect(url)
     }
+
+    return supabaseResponse
   }
   
   function isOldCookie(cookieValue: string): boolean {
@@ -97,3 +99,4 @@ export async function middleware(request: NextRequest) {
       '/((?!api|_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)',
     ],
   }
+
