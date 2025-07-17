@@ -245,7 +245,7 @@
 .likeJobCard:global(.__wab_instance) {
   max-width: 100%;
   width: 360px;
-  height: 270px;
+  height: 256px;
   flex-shrink: 0;
 }
 @media (min-width: 0px) and (max-width: 768px) {
