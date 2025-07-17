@@ -1,17 +1,18 @@
+// pages/api/supabase/callback.ts
 import { createPagesServerClient } from '@supabase/auth-helpers-nextjs'
 import type { NextApiRequest, NextApiResponse } from 'next'
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const supabase = createPagesServerClient({ req, res })
 
-  const { data: { session }, error } = await supabase.auth.getSession()
+  const { error } = await supabase.auth.exchangeCodeForSession(req.url!)
 
-  if (!session || error) {
-    console.error("Erreur session :", error)
-    return res.status(401).json({ error: "Non authentifié" })
+  if (error) {
+    console.error("Erreur d'échange de code:", error.message)
+    return res.status(401).json({ error: 'Échec de la connexion Google' })
   }
 
-  // ✅ Cookie est maintenant présent côté serveur
-  res.writeHead(302, { Location: '/' })
-  res.end()
+  console.log("✅ Connexion Google réussie, cookie créé")
+
+  return res.redirect('/') // Redirige où tu veux
 }
