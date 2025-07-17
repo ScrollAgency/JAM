@@ -51,7 +51,7 @@ export async function middleware(request: NextRequest) {
                 ...options,
               }
   
-              request.cookies.set(name, value)
+              //request.cookies.set(name, value)
               supabaseResponse.cookies.set(name, value, cookieOptions)
             }
           }
