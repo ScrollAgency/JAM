@@ -2145,7 +2145,10 @@ function PlasmicParametresCandidat__RenderFunc(props: {
                             $queries.getMe.data?.[0]?.skill || [];
                           return $queries.getSoftSkill.data
                             .filter(skill => selectedSkills.includes(skill.id))
-                            .map(skill => skill.id);
+                            .map(skill => ({
+                              value: skill.id,
+                              label: skill.skill
+                            }));
                         })()}
                         label={
                           <div
