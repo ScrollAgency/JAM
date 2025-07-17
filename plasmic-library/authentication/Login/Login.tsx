@@ -211,7 +211,6 @@ function Login_(
           iconImage="/google-logo.svg"
           size="large"
           hierarchy="secondary"
-          redirectTo="${window.location.origin}"
           onClick={handleGoogleSignIn}
         />
 
