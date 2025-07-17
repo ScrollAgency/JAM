@@ -2139,6 +2139,7 @@ function PlasmicParametresCandidat__RenderFunc(props: {
                           "__wab_instance",
                           sty.formField__cpEfl
                         )}
+                        hidden={false}
                         initialValue={(() => {
                           const selectedSkills =
                             $queries.getMe.data?.[0]?.skill || [];
@@ -2174,7 +2175,7 @@ function PlasmicParametresCandidat__RenderFunc(props: {
                             plasmic_library_tailwind_3_4_number_tokens_css.plasmic_tokens,
                             plasmic_plasmic_rich_components_css.plasmic_tokens
                           )}
-                          dropdownMatchSelectWidth={true}
+                          dropdownMatchSelectWidth={false}
                           mode={"multiple"}
                           onChange={async (...eventArgs: any) => {
                             generateStateOnChangeProp($state, [
