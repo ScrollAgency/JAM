@@ -18,7 +18,7 @@ const publicRoutes = [
 
     '/first-install',
     '/plasmic-library',
-    '/auth/callback'
+    '/pages/api/supabase/callback'
 ]
 
 export async function middleware(request: NextRequest) {

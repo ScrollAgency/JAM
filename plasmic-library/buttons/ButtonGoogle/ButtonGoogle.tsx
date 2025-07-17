@@ -39,7 +39,7 @@ const AuthButton = forwardRef<ButtonActions, ButtonProps>(
             iconImage,
             className,
             authProvider = "google",
-            redirectTo = "https://jam-staging.agence-scroll.com/auth/callback",
+            redirectTo = "https://jam-staging.agence-scroll.com/api/supabase/callback",
         },
         ref
     ) => {
