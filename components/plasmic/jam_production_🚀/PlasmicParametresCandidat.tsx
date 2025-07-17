@@ -1296,7 +1296,9 @@ function PlasmicParametresCandidat__RenderFunc(props: {
                                     $state.formulaire.value.level,
                                     $state.formulaire.value.linkedin_url,
                                     $state.formulaire.value.short_presentation,
-                                    $state.formulaire.value.skills,
+                                    JSON.stringify(
+                                      $state.formulaire.value.skill
+                                    ),
                                     JSON.stringify(
                                       $state.formulaire.value.transport_mode
                                     ),
@@ -1929,15 +1931,13 @@ function PlasmicParametresCandidat__RenderFunc(props: {
                             return (() => {
                               const selectedTransportModes =
                                 $queries.getMe.data?.[0]?.transport_mode || [];
-                              return $queries.getTransportModes.data
-                                .map(mode => ({
-                                  value: mode.id,
-                                  label: mode.mode,
-                                  selected: selectedTransportModes.includes(
-                                    mode.id
+                              const selectedIds =
+                                $queries.getTransportModes.data
+                                  .filter(mode =>
+                                    selectedTransportModes.includes(mode.id)
                                   )
-                                }))
-                                .filter(mode => mode.selected);
+                                  .map(mode => mode.id);
+                              return selectedIds;
                             })();
                           } catch (e) {
                             if (
@@ -1969,7 +1969,7 @@ function PlasmicParametresCandidat__RenderFunc(props: {
                           data-plasmic-override={
                             overrides.modeOfTransportSelect
                           }
-                          allowClear={false}
+                          allowClear={true}
                           autoFocus={false}
                           bordered={false}
                           className={classNames(
@@ -2139,6 +2139,13 @@ function PlasmicParametresCandidat__RenderFunc(props: {
                           "__wab_instance",
                           sty.formField__cpEfl
                         )}
+                        initialValue={(() => {
+                          const selectedSkills =
+                            $queries.getMe.data?.[0]?.skill || [];
+                          return $queries.getSoftSkill.data
+                            .filter(skill => selectedSkills.includes(skill.id))
+                            .map(skill => skill.id);
+                        })()}
                         label={
                           <div
                             className={classNames(
@@ -2178,7 +2185,7 @@ function PlasmicParametresCandidat__RenderFunc(props: {
                           options={(() => {
                             try {
                               return $queries.getSoftSkill.data.map(skill => ({
-                                value: skill.skill,
+                                value: skill.id,
                                 label: skill.skill
                               }));
                             } catch (e) {
