@@ -28,7 +28,7 @@ const ButtonGoogleMeta = {
 
       redirectTo: {
         type: "string",
-        defaultValue: "",
+        defaultValue: "https://jam-staging.agence-scroll.com/api/supabase/callback",
         description: "URL vers laquelle rediriger après login Google",
       },
       
