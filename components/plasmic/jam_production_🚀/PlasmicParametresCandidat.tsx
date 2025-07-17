@@ -2681,9 +2681,9 @@ function PlasmicParametresCandidat__RenderFunc(props: {
                                             $ctx.SupabaseUser.user.id,
                                             (() => {
                                               const file =
-                                                $state.upload.files[0].name;
+                                                $state.upload.files[0];
                                               if (file) {
-                                                const formattedName = file
+                                                const formattedName = file.name
                                                   .trim()
                                                   .toLowerCase()
                                                   .replace(
