@@ -28,6 +28,16 @@ export async function middleware(request: NextRequest) {
     const supabaseResponse = NextResponse.next({
       request,
     })
+
+    // --- Test cookie ---
+    supabaseResponse.cookies.set("middleware-test", "ok", {
+      path: "/",
+      httpOnly: false, // Important : visible dans le navigateur
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "lax",
+      maxAge: 60 * 5, // 5 minutes
+    })
+
     
     const supabase = createServerClient(
       process.env.NEXT_PUBLIC_SUPABASE_URL || "",
@@ -77,6 +87,9 @@ export async function middleware(request: NextRequest) {
         url.pathname = loginPage
         return NextResponse.redirect(url)
     }
+
+    console.log("📥 Cookies reçus :", request.cookies.getAll())
+    console.log("📤 Cookies envoyés :", supabaseResponse.headers.get("set-cookie"))
 
     return supabaseResponse
   }
