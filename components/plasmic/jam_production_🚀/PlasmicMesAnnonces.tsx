@@ -145,7 +145,7 @@ export type PlasmicMesAnnonces__OverridesType = {
   text6?: Flex__<"div">;
   supportingText2?: Flex__<"div">;
   mobileNavbarBottom?: Flex__<typeof MobileNavbarBottom>;
-  modal?: Flex__<typeof Modal>;
+  modalDetailsJob?: Flex__<typeof Modal>;
   jobDetail?: Flex__<"div">;
   jobName?: Flex__<"div">;
   jobLocation?: Flex__<"div">;
@@ -288,7 +288,7 @@ function PlasmicMesAnnonces__RenderFunc(props: {
   const stateSpecs: Parameters<typeof useDollarState>[0] = React.useMemo(
     () => [
       {
-        path: "modal.isOpen",
+        path: "modalDetailsJob.isOpen",
         type: "private",
         variableType: "boolean",
         initFunc: ({ $props, $state, $queries, $ctx }) => undefined
@@ -1077,6 +1077,90 @@ function PlasmicMesAnnonces__RenderFunc(props: {
                               return;
                             }
                           },
+                          onClick: async event => {
+                            const $steps = {};
+
+                            $steps["updateModalIsOpen"] = true
+                              ? (() => {
+                                  const actionArgs = {
+                                    variable: {
+                                      objRoot: $state,
+                                      variablePath: [
+                                        "modalDetailsJob",
+                                        "isOpen"
+                                      ]
+                                    },
+                                    operation: 4
+                                  };
+                                  return (({
+                                    variable,
+                                    value,
+                                    startIndex,
+                                    deleteCount
+                                  }) => {
+                                    if (!variable) {
+                                      return;
+                                    }
+                                    const { objRoot, variablePath } = variable;
+
+                                    const oldValue = $stateGet(
+                                      objRoot,
+                                      variablePath
+                                    );
+                                    $stateSet(objRoot, variablePath, !oldValue);
+                                    return !oldValue;
+                                  })?.apply(null, [actionArgs]);
+                                })()
+                              : undefined;
+                            if (
+                              $steps["updateModalIsOpen"] != null &&
+                              typeof $steps["updateModalIsOpen"] === "object" &&
+                              typeof $steps["updateModalIsOpen"].then ===
+                                "function"
+                            ) {
+                              $steps["updateModalIsOpen"] = await $steps[
+                                "updateModalIsOpen"
+                              ];
+                            }
+
+                            $steps["updateCurrentJobObject"] = true
+                              ? (() => {
+                                  const actionArgs = {
+                                    variable: {
+                                      objRoot: $state,
+                                      variablePath: ["currentJobObject"]
+                                    },
+                                    operation: 0,
+                                    value: currentItem
+                                  };
+                                  return (({
+                                    variable,
+                                    value,
+                                    startIndex,
+                                    deleteCount
+                                  }) => {
+                                    if (!variable) {
+                                      return;
+                                    }
+                                    const { objRoot, variablePath } = variable;
+
+                                    $stateSet(objRoot, variablePath, value);
+                                    return value;
+                                  })?.apply(null, [actionArgs]);
+                                })()
+                              : undefined;
+                            if (
+                              $steps["updateCurrentJobObject"] != null &&
+                              typeof $steps["updateCurrentJobObject"] ===
+                                "object" &&
+                              typeof $steps["updateCurrentJobObject"].then ===
+                                "function"
+                            ) {
+                              $steps["updateCurrentJobObject"] = await $steps[
+                                "updateCurrentJobObject"
+                              ];
+                            }
+                          },
                           onCompanyLogoChange: async (...eventArgs: any) => {
                             generateStateOnChangeProp($state, [
                               "likeJobCard",
@@ -1700,7 +1784,7 @@ function PlasmicMesAnnonces__RenderFunc(props: {
                                 const actionArgs = {
                                   variable: {
                                     objRoot: $state,
-                                    variablePath: ["modal", "isOpen"]
+                                    variablePath: ["modalDetailsJob", "isOpen"]
                                   },
                                   operation: 0,
                                   value: true
@@ -1909,9 +1993,9 @@ function PlasmicMesAnnonces__RenderFunc(props: {
           />
 
           <Modal
-            data-plasmic-name={"modal"}
-            data-plasmic-override={overrides.modal}
-            className={classNames("__wab_instance", sty.modal)}
+            data-plasmic-name={"modalDetailsJob"}
+            data-plasmic-override={overrides.modalDetailsJob}
+            className={classNames("__wab_instance", sty.modalDetailsJob)}
             content={
               <Stack__
                 as={"div"}
@@ -2743,7 +2827,7 @@ function PlasmicMesAnnonces__RenderFunc(props: {
                           const actionArgs = {
                             variable: {
                               objRoot: $state,
-                              variablePath: ["modal", "isOpen"]
+                              variablePath: ["modalDetailsJob", "isOpen"]
                             },
                             operation: 0,
                             value: false
@@ -2783,13 +2867,16 @@ function PlasmicMesAnnonces__RenderFunc(props: {
                 />
               ) : null
             }
-            isOpen={generateStateValueProp($state, ["modal", "isOpen"])}
+            isOpen={generateStateValueProp($state, [
+              "modalDetailsJob",
+              "isOpen"
+            ])}
             noTrigger={true}
             onOpenChange={async (...eventArgs: any) => {
-              generateStateOnChangeProp($state, ["modal", "isOpen"]).apply(
-                null,
-                eventArgs
-              );
+              generateStateOnChangeProp($state, [
+                "modalDetailsJob",
+                "isOpen"
+              ]).apply(null, eventArgs);
 
               if (
                 eventArgs.length > 1 &&
@@ -3706,7 +3793,7 @@ function PlasmicMesAnnonces__RenderFunc(props: {
                             const actionArgs = {
                               variable: {
                                 objRoot: $state,
-                                variablePath: ["modal", "isOpen"]
+                                variablePath: ["modalDetailsJob", "isOpen"]
                               },
                               operation: 0,
                               value: false
@@ -5729,7 +5816,7 @@ const PlasmicDescendants = {
     "text6",
     "supportingText2",
     "mobileNavbarBottom",
-    "modal",
+    "modalDetailsJob",
     "jobDetail",
     "jobName",
     "jobLocation",
@@ -5858,8 +5945,8 @@ const PlasmicDescendants = {
   text6: ["text6"],
   supportingText2: ["supportingText2"],
   mobileNavbarBottom: ["mobileNavbarBottom"],
-  modal: [
-    "modal",
+  modalDetailsJob: [
+    "modalDetailsJob",
     "jobDetail",
     "jobName",
     "jobLocation",
@@ -6218,7 +6305,7 @@ type NodeDefaultElementType = {
   text6: "div";
   supportingText2: "div";
   mobileNavbarBottom: typeof MobileNavbarBottom;
-  modal: typeof Modal;
+  modalDetailsJob: typeof Modal;
   jobDetail: "div";
   jobName: "div";
   jobLocation: "div";
@@ -6386,7 +6473,7 @@ export const PlasmicMesAnnonces = Object.assign(
     text6: makeNodeComponent("text6"),
     supportingText2: makeNodeComponent("supportingText2"),
     mobileNavbarBottom: makeNodeComponent("mobileNavbarBottom"),
-    modal: makeNodeComponent("modal"),
+    modalDetailsJob: makeNodeComponent("modalDetailsJob"),
     jobDetail: makeNodeComponent("jobDetail"),
     jobName: makeNodeComponent("jobName"),
     jobLocation: makeNodeComponent("jobLocation"),

@@ -472,11 +472,11 @@
     display: flex;
   }
 }
-.modal:global(.__wab_instance):global(.__wab_instance) {
+.modalDetailsJob:global(.__wab_instance):global(.__wab_instance) {
   max-width: 100%;
 }
 @media (min-width: 0px) and (max-width: 768px) {
-  .modal:global(.__wab_instance):global(.__wab_instance) {
+  .modalDetailsJob:global(.__wab_instance):global(.__wab_instance) {
     display: none;
   }
 }

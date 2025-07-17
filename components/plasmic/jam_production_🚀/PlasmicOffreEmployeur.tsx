@@ -5041,15 +5041,26 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                             $steps["closeModal"] = true
                               ? (() => {
                                   const actionArgs = {
-                                    customFunction: async () => {
-                                      return (() => {
-                                        $state.createJob.isOpen = false;
-                                        return ($state.showModal = false);
-                                      })();
-                                    }
+                                    variable: {
+                                      objRoot: $state,
+                                      variablePath: ["createJob", "isOpen"]
+                                    },
+                                    operation: 0,
+                                    value: false
                                   };
-                                  return (({ customFunction }) => {
-                                    return customFunction();
+                                  return (({
+                                    variable,
+                                    value,
+                                    startIndex,
+                                    deleteCount
+                                  }) => {
+                                    if (!variable) {
+                                      return;
+                                    }
+                                    const { objRoot, variablePath } = variable;
+
+                                    $stateSet(objRoot, variablePath, value);
+                                    return value;
                                   })?.apply(null, [actionArgs]);
                                 })()
                               : undefined;
@@ -5059,37 +5070,6 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                               typeof $steps["closeModal"].then === "function"
                             ) {
                               $steps["closeModal"] = await $steps["closeModal"];
-                            }
-
-                            $steps["runCode"] = true
-                              ? (() => {
-                                  const actionArgs = {
-                                    customFunction: async () => {
-                                      return (() => {
-                                        if (typeof window !== "undefined") {
-                                          const urlSansParams =
-                                            window.location.origin +
-                                            window.location.pathname;
-                                          return window.history.replaceState(
-                                            {},
-                                            document.title,
-                                            urlSansParams
-                                          );
-                                        }
-                                      })();
-                                    }
-                                  };
-                                  return (({ customFunction }) => {
-                                    return customFunction();
-                                  })?.apply(null, [actionArgs]);
-                                })()
-                              : undefined;
-                            if (
-                              $steps["runCode"] != null &&
-                              typeof $steps["runCode"] === "object" &&
-                              typeof $steps["runCode"].then === "function"
-                            ) {
-                              $steps["runCode"] = await $steps["runCode"];
                             }
                           }}
                           submitsForm={true}
@@ -11229,17 +11209,13 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
           ) : null}
           {(() => {
             try {
-              return (
-                typeof window !== "undefined" &&
-                $state.showModal === false &&
-                window.location.search === ""
-              );
+              return !$queries.getUser.data[0].onboarding;
             } catch (e) {
               if (
                 e instanceof TypeError ||
                 e?.plasmicType === "PlasmicUndefinedDataError"
               ) {
-                return true;
+                return false;
               }
               throw e;
             }
@@ -11497,7 +11473,8 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                     return (
                       typeof window !== "undefined" &&
                       $state.onboardingStep === 0 &&
-                      window.location.search === ""
+                      window.location.search.includes("onboarding=success") ===
+                        false
                     );
                   } catch (e) {
                     if (
@@ -14956,20 +14933,16 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                 {(() => {
                   try {
                     return (
-                      //$ctx.query.onboarding !== "success" && $ctx.query.onboarding !== "done" && $state.onboardingStep === 1
-
-                      //$state.onboardingStep === 1
-
-                      typeof window !== "undefined" &&
-                      $state.onboardingStep === 1 &&
-                      window.location.search === ""
+                      $ctx.query.onboarding !== "success" &&
+                      $ctx.query.onboarding !== "done" &&
+                      $state.onboardingStep === 1
                     );
                   } catch (e) {
                     if (
                       e instanceof TypeError ||
                       e?.plasmicType === "PlasmicUndefinedDataError"
                     ) {
-                      return true;
+                      return false;
                     }
                     throw e;
                   }
@@ -15445,7 +15418,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                       e instanceof TypeError ||
                       e?.plasmicType === "PlasmicUndefinedDataError"
                     ) {
-                      return true;
+                      return false;
                     }
                     throw e;
                   }
@@ -15544,40 +15517,51 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                             ];
                           }
 
-                          $steps["updateOnboardingStep"] = true
+                          $steps["postgresUpdateById"] = true
                             ? (() => {
                                 const actionArgs = {
-                                  variable: {
-                                    objRoot: $state,
-                                    variablePath: ["onboardingStep"]
-                                  },
-                                  operation: 1
-                                };
-                                return (({
-                                  variable,
-                                  value,
-                                  startIndex,
-                                  deleteCount
-                                }) => {
-                                  if (!variable) {
-                                    return;
+                                  dataOp: {
+                                    sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
+                                    opId: "0a947b58-037a-44de-8578-da5e90048dcc",
+                                    userArgs: {
+                                      keys: [$ctx.SupabaseUser.user.id]
+                                    },
+                                    cacheKey: null,
+                                    invalidatedKeys: ["plasmic_refresh_all"],
+                                    roleId: null
                                   }
-                                  const { objRoot, variablePath } = variable;
-
-                                  $stateSet(objRoot, variablePath, undefined);
-                                  return undefined;
+                                };
+                                return (async ({ dataOp, continueOnError }) => {
+                                  try {
+                                    const response = await executePlasmicDataOp(
+                                      dataOp,
+                                      {
+                                        userAuthToken:
+                                          dataSourcesCtx?.userAuthToken,
+                                        user: dataSourcesCtx?.user
+                                      }
+                                    );
+                                    await plasmicInvalidate(
+                                      dataOp.invalidatedKeys
+                                    );
+                                    return response;
+                                  } catch (e) {
+                                    if (!continueOnError) {
+                                      throw e;
+                                    }
+                                    return e;
+                                  }
                                 })?.apply(null, [actionArgs]);
                               })()
                             : undefined;
                           if (
-                            $steps["updateOnboardingStep"] != null &&
-                            typeof $steps["updateOnboardingStep"] ===
-                              "object" &&
-                            typeof $steps["updateOnboardingStep"].then ===
+                            $steps["postgresUpdateById"] != null &&
+                            typeof $steps["postgresUpdateById"] === "object" &&
+                            typeof $steps["postgresUpdateById"].then ===
                               "function"
                           ) {
-                            $steps["updateOnboardingStep"] = await $steps[
-                              "updateOnboardingStep"
+                            $steps["postgresUpdateById"] = await $steps[
+                              "postgresUpdateById"
                             ];
                           }
 

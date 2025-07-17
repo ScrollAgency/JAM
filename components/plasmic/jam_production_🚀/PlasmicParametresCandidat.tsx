@@ -152,7 +152,7 @@ export type PlasmicParametresCandidat__OverridesType = {
   codePostal?: Flex__<typeof TextInput>;
   ville?: Flex__<typeof TextInput>;
   select4?: Flex__<typeof Select>;
-  select5?: Flex__<typeof AntdSelect>;
+  modeOfTransportSelect?: Flex__<typeof AntdSelect>;
   textAreaInput?: Flex__<typeof TextAreaInput>;
   select3?: Flex__<typeof AntdSelect>;
   select8?: Flex__<typeof AntdSelect>;
@@ -632,7 +632,7 @@ function PlasmicParametresCandidat__RenderFunc(props: {
         ]
       },
       {
-        path: "select5.value",
+        path: "modeOfTransportSelect.value",
         type: "private",
         variableType: "text",
         initFunc: ({ $props, $state, $queries, $ctx }) => undefined
@@ -1297,7 +1297,9 @@ function PlasmicParametresCandidat__RenderFunc(props: {
                                     $state.formulaire.value.linkedin_url,
                                     $state.formulaire.value.short_presentation,
                                     $state.formulaire.value.skills,
-                                    $state.formulaire.value.transport_mode,
+                                    JSON.stringify(
+                                      $state.formulaire.value.transport_mode
+                                    ),
                                     $state.formulaire.value.phone_number,
                                     $state.formulaire.value.postal_code
                                   ]
@@ -1924,7 +1926,19 @@ function PlasmicParametresCandidat__RenderFunc(props: {
                         )}
                         initialValue={(() => {
                           try {
-                            return undefined;
+                            return (() => {
+                              const selectedTransportModes =
+                                $queries.getMe.data?.[0]?.transport_mode || [];
+                              return $queries.getTransportModes.data
+                                .map(mode => ({
+                                  value: mode.id,
+                                  label: mode.mode,
+                                  selected: selectedTransportModes.includes(
+                                    mode.id
+                                  )
+                                }))
+                                .filter(mode => mode.selected);
+                            })();
                           } catch (e) {
                             if (
                               e instanceof TypeError ||
@@ -1951,12 +1965,17 @@ function PlasmicParametresCandidat__RenderFunc(props: {
                         preserve={false}
                       >
                         <AntdSelect
-                          data-plasmic-name={"select5"}
-                          data-plasmic-override={overrides.select5}
-                          allowClear={true}
+                          data-plasmic-name={"modeOfTransportSelect"}
+                          data-plasmic-override={
+                            overrides.modeOfTransportSelect
+                          }
+                          allowClear={false}
                           autoFocus={false}
                           bordered={false}
-                          className={classNames("__wab_instance", sty.select5)}
+                          className={classNames(
+                            "__wab_instance",
+                            sty.modeOfTransportSelect
+                          )}
                           defaultStylesClassName={classNames(
                             projectcss.root_reset,
                             projectcss.plasmic_default_styles,
@@ -1971,18 +1990,26 @@ function PlasmicParametresCandidat__RenderFunc(props: {
                           mode={"multiple"}
                           onChange={async (...eventArgs: any) => {
                             generateStateOnChangeProp($state, [
-                              "select5",
+                              "modeOfTransportSelect",
                               "value"
                             ]).apply(null, eventArgs);
                           }}
                           options={(() => {
                             try {
-                              return $queries.getTransportModes.data.map(
-                                mode => ({
-                                  value: mode.id,
-                                  label: mode.mode
-                                })
-                              );
+                              return (() => {
+                                const selectedTransportModes =
+                                  $queries.getMe.data?.[0]?.transport_mode ||
+                                  [];
+                                return $queries.getTransportModes.data.map(
+                                  mode => ({
+                                    value: mode.id,
+                                    label: mode.mode,
+                                    selected: selectedTransportModes.includes(
+                                      mode.id
+                                    )
+                                  })
+                                );
+                              })();
                             } catch (e) {
                               if (
                                 e instanceof TypeError ||
@@ -2013,8 +2040,10 @@ function PlasmicParametresCandidat__RenderFunc(props: {
                               </div>
                             </Stack__>
                           }
-                          popupScopeClassName={sty["select5__popup"]}
-                          showSearch={true}
+                          popupScopeClassName={
+                            sty["modeOfTransportSelect__popup"]
+                          }
+                          showSearch={false}
                           size={"large"}
                           suffixIcon={
                             <ChevronDown2Icon
@@ -2027,7 +2056,7 @@ function PlasmicParametresCandidat__RenderFunc(props: {
                           }
                           useChildren={false}
                           value={generateStateValueProp($state, [
-                            "select5",
+                            "modeOfTransportSelect",
                             "value"
                           ])}
                         />
@@ -4276,7 +4305,7 @@ const PlasmicDescendants = {
     "codePostal",
     "ville",
     "select4",
-    "select5",
+    "modeOfTransportSelect",
     "textAreaInput",
     "select3",
     "select8",
@@ -4340,7 +4369,7 @@ const PlasmicDescendants = {
     "codePostal",
     "ville",
     "select4",
-    "select5",
+    "modeOfTransportSelect",
     "textAreaInput",
     "select3",
     "select8",
@@ -4400,7 +4429,7 @@ const PlasmicDescendants = {
     "codePostal",
     "ville",
     "select4",
-    "select5",
+    "modeOfTransportSelect",
     "textAreaInput",
     "select3",
     "select8",
@@ -4454,7 +4483,7 @@ const PlasmicDescendants = {
     "codePostal",
     "ville",
     "select4",
-    "select5",
+    "modeOfTransportSelect",
     "textAreaInput",
     "select3",
     "select8",
@@ -4498,7 +4527,7 @@ const PlasmicDescendants = {
     "codePostal",
     "ville",
     "select4",
-    "select5",
+    "modeOfTransportSelect",
     "textAreaInput",
     "select3",
     "select8",
@@ -4517,7 +4546,7 @@ const PlasmicDescendants = {
   codePostal: ["codePostal"],
   ville: ["ville"],
   select4: ["select4"],
-  select5: ["select5"],
+  modeOfTransportSelect: ["modeOfTransportSelect"],
   textAreaInput: ["textAreaInput"],
   select3: ["select3"],
   select8: ["select8"],
@@ -4644,7 +4673,7 @@ type NodeDefaultElementType = {
   codePostal: typeof TextInput;
   ville: typeof TextInput;
   select4: typeof Select;
-  select5: typeof AntdSelect;
+  modeOfTransportSelect: typeof AntdSelect;
   textAreaInput: typeof TextAreaInput;
   select3: typeof AntdSelect;
   select8: typeof AntdSelect;
@@ -4768,7 +4797,7 @@ export const PlasmicParametresCandidat = Object.assign(
     codePostal: makeNodeComponent("codePostal"),
     ville: makeNodeComponent("ville"),
     select4: makeNodeComponent("select4"),
-    select5: makeNodeComponent("select5"),
+    modeOfTransportSelect: makeNodeComponent("modeOfTransportSelect"),
     textAreaInput: makeNodeComponent("textAreaInput"),
     select3: makeNodeComponent("select3"),
     select8: makeNodeComponent("select8"),

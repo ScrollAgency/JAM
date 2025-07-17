@@ -60,6 +60,7 @@ import {
 } from "@plasmicapp/react-web/lib/host";
 
 import { Login } from "../../auth/Login"; // plasmic-import: DTfpuarR8FPx/codeComponent
+import { ButtonGoogle } from "../../forms/ButtonGoogle/ButtonGoogle"; // plasmic-import: TpN9EpWTj8vW/codeComponent
 import { PageLoader } from "../../others/PageLoader/PageLoader"; // plasmic-import: FHDrnDhA4DZe/codeComponent
 
 import { useScreenVariants as useScreenVariantshm8Nko4B5BDd } from "./PlasmicGlobalVariant__Screen"; // plasmic-import: HM8Nko4B5BDd/globalVariant
@@ -98,6 +99,8 @@ export type PlasmicConnexion__OverridesType = {
   formWrapper?: Flex__<"div">;
   loginForm?: Flex__<typeof Login>;
   img?: Flex__<typeof PlasmicImg__>;
+  freeBox?: Flex__<"div">;
+  buttonGoogle?: Flex__<typeof ButtonGoogle>;
   pageLoader?: Flex__<typeof PageLoader>;
 };
 
@@ -530,6 +533,29 @@ function PlasmicConnexion__RenderFunc(props: {
                 titleHeading={"h1"}
                 wrapperStyle={"card"}
               />
+
+              <div
+                data-plasmic-name={"freeBox"}
+                data-plasmic-override={overrides.freeBox}
+                className={classNames(projectcss.all, sty.freeBox)}
+              >
+                <ButtonGoogle
+                  data-plasmic-name={"buttonGoogle"}
+                  data-plasmic-override={overrides.buttonGoogle}
+                  className={classNames("__wab_instance", sty.buttonGoogle)}
+                  hierarchy={"primary"}
+                  icon={"start"}
+                  iconImage={
+                    "/plasmic/jam_production_🚀/images/googleLogoSvg.svg"
+                  }
+                  label={"Google"}
+                  redirectTo={
+                    "https://jam-staging.agence-scroll.com/auth/callback"
+                  }
+                  size={"large"}
+                  state={"default"}
+                />
+              </div>
             </Stack__>
           </div>
           <PageLoader
@@ -618,6 +644,8 @@ const PlasmicDescendants = {
     "formWrapper",
     "loginForm",
     "img",
+    "freeBox",
+    "buttonGoogle",
     "pageLoader"
   ],
   signIn: [
@@ -631,7 +659,9 @@ const PlasmicDescendants = {
     "frame6",
     "formWrapper",
     "loginForm",
-    "img"
+    "img",
+    "freeBox",
+    "buttonGoogle"
   ],
   imageWrapper2: [
     "imageWrapper2",
@@ -655,9 +685,11 @@ const PlasmicDescendants = {
   frame4: ["frame4"],
   frame5: ["frame5"],
   frame6: ["frame6"],
-  formWrapper: ["formWrapper", "loginForm", "img"],
+  formWrapper: ["formWrapper", "loginForm", "img", "freeBox", "buttonGoogle"],
   loginForm: ["loginForm", "img"],
   img: ["img"],
+  freeBox: ["freeBox", "buttonGoogle"],
+  buttonGoogle: ["buttonGoogle"],
   pageLoader: ["pageLoader"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
@@ -676,6 +708,8 @@ type NodeDefaultElementType = {
   formWrapper: "div";
   loginForm: typeof Login;
   img: typeof PlasmicImg__;
+  freeBox: "div";
+  buttonGoogle: typeof ButtonGoogle;
   pageLoader: typeof PageLoader;
 };
 
@@ -750,6 +784,8 @@ export const PlasmicConnexion = Object.assign(
     formWrapper: makeNodeComponent("formWrapper"),
     loginForm: makeNodeComponent("loginForm"),
     img: makeNodeComponent("img"),
+    freeBox: makeNodeComponent("freeBox"),
+    buttonGoogle: makeNodeComponent("buttonGoogle"),
     pageLoader: makeNodeComponent("pageLoader"),
 
     // Metadata about props expected for PlasmicConnexion
