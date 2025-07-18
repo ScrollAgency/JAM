@@ -19,13 +19,21 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   const origin = `${protocol}://${host}`;
 
   if (code) {
-    const { error } = await supabase.auth.exchangeCodeForSession(code);
+  try {
+    const { error } = await supabase.auth.exchangeCodeForSession(code)
 
     if (!error) {
-      res.redirect(307, `${origin}${next}`);
-      return;
+      return res.redirect(307, `${origin}${next}`)
     }
+
+    console.error('Supabase exchange error:', error)
+    return res.redirect(307, `${origin}/auth/auth-code-error`)
+  } catch (err) {
+    console.error('Unexpected error during Supabase exchange:', err)
+    return res.redirect(307, `${origin}/auth/auth-code-error`)
   }
+}
+
 
   // Erreur ou pas de code
   res.redirect(307, `${origin}/auth/auth-code-error`);
