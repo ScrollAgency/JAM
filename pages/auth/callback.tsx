@@ -9,25 +9,18 @@ export default function CallbackPage() {
     const completeLogin = async () => {
       const { data: { session }, error } = await supabase.auth.getSession();
 
-      if (error) {
+      if (error || !session) {
         console.error("Erreur récupération session:", error);
         router.replace("/login");
         return;
       }
 
-      if (session) {
-        await supabase.auth.setSession({
-          access_token: session.access_token,
-          refresh_token: session.refresh_token,
-        });
-        router.replace("/");
-      } else {
-        router.replace("/login");
-      }
+      // Session OK, redirection directe
+      router.replace("/");
     };
 
     completeLogin();
-  }, []);
+  }, [router]);
 
   return <p>Connexion en cours...</p>;
 }

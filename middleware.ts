@@ -35,7 +35,7 @@ export async function middleware(request: NextRequest) {
         setAll(cookiesToSet) {
           for (const { name, value, options } of cookiesToSet) {
             //if (name === 'session_id' && isOldCookie(value)) {
-            if (name === 'session_id') {
+            if ((name === 'session_id' || name.includes('auth-token')) && isOldCookie(value)) {
               response.cookies.set(name, '', { maxAge: 0, path: '/' });
               continue;
             }
@@ -89,6 +89,9 @@ export async function middleware(request: NextRequest) {
 
 function isOldCookie(cookieValue: string): boolean {
   try {
+    // Ignore if it's clearly not a JWT (ex: array)
+    if (cookieValue.startsWith('["')) return false;
+
     const parts = cookieValue.split('.');
     if (parts.length !== 3) return true;
 
