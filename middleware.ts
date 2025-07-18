@@ -56,6 +56,27 @@ export async function middleware(request: NextRequest) {
     }
   );
 
+  const authCookieName = Object.keys(Object.fromEntries(request.cookies)).find(name =>
+  name.startsWith('sb-') && name.endsWith('-auth-token')
+);
+
+  const authCookie = authCookieName ? request.cookies.get(authCookieName) : null;
+
+  if (authCookie?.value && !isOldCookie(authCookie.value)) {
+    response.cookies.set("persisted-auth", "true", {
+      path: "/",
+      httpOnly: false,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "lax",
+      maxAge: 60 * 60,
+    });
+  } else {
+    response.cookies.set("persisted-auth", "", {
+      path: "/",
+      maxAge: 0,
+    });
+  }
+
   // Déclenche la création éventuelle des cookies
   const { data: { user } } = await supabase.auth.getUser();
 
