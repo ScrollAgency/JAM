@@ -1,10 +1,9 @@
 import { createServerClient } from '@supabase/ssr'
-import cookie from 'cookie'
+import { parse, serialize } from 'cookie'
 import type { NextApiResponse } from 'next'
 
-// Ajoute `res` en paramètre
 export function createSupabaseServerClient(cookieHeader: string | undefined, res: NextApiResponse) {
-  const parsedCookies = cookie.parse(cookieHeader || '')
+  const parsedCookies = parse(cookieHeader || '')
 
   return createServerClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -20,11 +19,9 @@ export function createSupabaseServerClient(cookieHeader: string | undefined, res
             }))
         },
         setAll(cookiesToSet) {
-          // Important : pour chaque cookie, ajoute un header Set-Cookie
           cookiesToSet.forEach(({ name, value, options }) => {
-            // Attention à ajouter les headers sans écraser les précédents
-            const serializedCookie = cookie.serialize(name, value, { ...options })
-            const currentHeader = res.getHeader('Set-Cookie') as string | string[] | undefined;
+            const serializedCookie = serialize(name, value, { ...options })
+            const currentHeader = res.getHeader('Set-Cookie') as string | string[] | undefined
 
             if (!currentHeader) {
               res.setHeader('Set-Cookie', serializedCookie)
