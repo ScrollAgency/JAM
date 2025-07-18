@@ -6,18 +6,20 @@ export default function CallbackPage() {
   const router = useRouter();
 
   useEffect(() => {
-    const checkSession = async () => {
-      const { data: { session } } = await supabase.auth.getSession();
+  const checkSession = async () => {
+    const {
+      data: { session },
+    } = await supabase.auth.getSession();
 
-      if (session) {
-        router.replace("/"); // ou "/dashboard"
-      } else {
-        router.replace("/login");
-      }
-    };
+    if (session) {
+      setTimeout(() => router.replace("/"), 300);
+    } else {
+      router.replace("/login");
+    }
+  };
 
-    checkSession();
-  }, [router]);
+  checkSession();
+}, [router]);
 
   return <p>Connexion en cours...</p>;
 }
