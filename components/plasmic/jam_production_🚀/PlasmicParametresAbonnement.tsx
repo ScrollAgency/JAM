@@ -326,7 +326,8 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
         path: "stripeSessionId",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => ""
+        initFunc: ({ $props, $state, $queries, $ctx }) =>
+          "cs_test_a1NzDeJe6hr5ZbykrRDBg50F7PUzwsrV3Ntemp3zHbF86JkWJfofh6CkAZ"
       },
       {
         path: "priceId",
@@ -3698,7 +3699,8 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                             cacheKey: null,
                             invalidatedKeys: null,
                             roleId: null
-                          }
+                          },
+                          continueOnError: true
                         };
                         return (async ({ dataOp, continueOnError }) => {
                           try {
@@ -4044,6 +4046,32 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                 }}
                 className={classNames("__wab_instance", sty.stripeCheckout)}
                 condition1={true}
+                condition2={(() => {
+                  try {
+                    return $state.stripeCreateAccount === false;
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return undefined;
+                    }
+                    throw e;
+                  }
+                })()}
+                condition3={(() => {
+                  try {
+                    return $state.stripeCreateAccount === true;
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return undefined;
+                    }
+                    throw e;
+                  }
+                })()}
                 condition4={false}
                 condition5={false}
                 shouldRun={(() => {
