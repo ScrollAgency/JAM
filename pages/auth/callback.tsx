@@ -1,29 +1,35 @@
-import { NextResponse } from 'next/server'
-import { createClient } from '@/lib/supabaseCookies'
+// pages/auth/callback.ts
+import { NextApiRequest, NextApiResponse } from 'next';
+import { supabaseServer } from '@/lib/supabaseServer';
 
-export async function GET(request: Request) {
-  const { searchParams, origin } = new URL(request.url)
-  const code = searchParams.get('code')
-  let next = searchParams.get('next') ?? '/'
-  if (!next.startsWith('/')) next = '/'
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse
+) {
+  const { query, headers } = req;
+  const code = query.code as string;
+
+  let next = (query.next as string) ?? '/';
+  if (!next.startsWith('/')) {
+    next = '/';
+  }
 
   if (code) {
-    const supabase = createClient()
-    const { error } = await supabase.auth.exchangeCodeForSession(code)
+    const { error } = await supabaseServer.auth.exchangeCodeForSession(code);
+
     if (!error) {
-      const forwardedHost = request.headers.get('x-forwarded-host')
-      const isLocalEnv = process.env.NODE_ENV === 'development'
+      const forwardedHost = headers['x-forwarded-host'];
+      const isLocalEnv = process.env.NODE_ENV === 'development';
 
       if (isLocalEnv) {
-        return NextResponse.redirect(`${origin}${next}`)
+        return res.redirect(307, `${headers.origin}${next}`);
       } else if (forwardedHost) {
-        return NextResponse.redirect(`https://${forwardedHost}${next}`)
+        return res.redirect(307, `https://${forwardedHost}${next}`);
       } else {
-        return NextResponse.redirect(`${origin}${next}`)
+        return res.redirect(307, `${headers.origin}${next}`);
       }
     }
   }
 
-  // En cas d'erreur, rediriger vers une page d'erreur custom
-  return NextResponse.redirect(`${origin}/auth/auth-code-error`)
+  return res.redirect(307, `${headers.origin}/auth/auth-code-error`);
 }

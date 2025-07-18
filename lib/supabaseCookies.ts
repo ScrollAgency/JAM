@@ -8,7 +8,7 @@ export function createClient() {
     {
       cookies: {
         getAll: () => cookies().getAll(),
-        setAll: () => {} // ← Ne rien faire côté lecture-only (callback)
+        setAll: () => {}
       }
     }
   )
