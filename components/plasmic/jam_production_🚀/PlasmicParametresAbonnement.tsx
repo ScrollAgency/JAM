@@ -3518,6 +3518,28 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                 action1={async () => {
                   const $steps = {};
 
+                  $steps["updateProductId2"] = true
+                    ? (() => {
+                        const actionArgs = {
+                          customFunction: async () => {
+                            return console.log("après paiement test");
+                          }
+                        };
+                        return (({ customFunction }) => {
+                          return customFunction();
+                        })?.apply(null, [actionArgs]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["updateProductId2"] != null &&
+                    typeof $steps["updateProductId2"] === "object" &&
+                    typeof $steps["updateProductId2"].then === "function"
+                  ) {
+                    $steps["updateProductId2"] = await $steps[
+                      "updateProductId2"
+                    ];
+                  }
+
                   $steps["checkStripeUserExists"] = true
                     ? (() => {
                         const actionArgs = {
