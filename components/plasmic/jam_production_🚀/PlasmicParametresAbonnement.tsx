@@ -3599,19 +3599,10 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                           },
                           operation: 0,
                           value: (() => {
-                            if (
-                              typeof window !== "undefined" &&
-                              new window.URL(
-                                window.location.href
-                              ).searchParams.get("payementstatus") === "success"
-                            ) {
-                              const sessionId =
-                                new window.URL(
-                                  window.location.href
-                                ).searchParams.get("payementstatus") ===
-                                "success";
-                              return sessionId;
-                            }
+                            const sessionId = new window.URL(
+                              window.location.href
+                            ).searchParams.get("session_id");
+                            return sessionId;
                           })()
                         };
                         return (({
