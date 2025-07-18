@@ -10,17 +10,21 @@ export default function CallbackPage() {
       const { data: { session }, error } = await supabase.auth.getSession();
 
       if (error || !session) {
-        console.error("Erreur récupération session:", error);
+        console.error("Erreur session:", error);
         router.replace("/login");
         return;
       }
 
-      // Session OK, redirection directe
+      // Créer un cookie miroir temporaire
+      document.cookie = `persisted-auth=true; path=/; max-age=3600; SameSite=Lax; ${
+        process.env.NODE_ENV === "production" ? "Secure;" : ""
+      }`;
+
       router.replace("/");
     };
 
     completeLogin();
-  }, [router]);
+  }, []);
 
   return <p>Connexion en cours...</p>;
 }

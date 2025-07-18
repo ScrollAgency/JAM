@@ -88,11 +88,12 @@ export async function middleware(request: NextRequest) {
     return route === request.nextUrl.pathname;
   });
 
-  if (!isPublicRoute && !user) {
-    const url = request.nextUrl.clone();
-    url.pathname = loginPage;
-    return NextResponse.redirect(url);
-  }
+const hasPersistedAuth = request.cookies.get("persisted-auth")?.value === "true";
+if (!isPublicRoute && !user && !hasPersistedAuth) {
+  const url = request.nextUrl.clone();
+  url.pathname = loginPage;
+  return NextResponse.redirect(url);
+}
 
   // Cookie de test
   response.cookies.set("middleware-test", "ok", {
