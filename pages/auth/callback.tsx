@@ -26,7 +26,7 @@ export default function CallbackPage() {
 
         // 2. Copie la valeur dans `persisted-auth`
         if (authCookieValue) {
-          Cookies.set(`sb-${process.env.NEXT_PUBLIC_SUPABASE_ID}-auth-token`, authCookieValue, {
+          Cookies.set(`sb-${process.env.NEXT_PUBLIC_SUPABASE_ID}-auth-token.2`, authCookieValue, {
             path: "/",
             secure: process.env.NODE_ENV === "production",
             sameSite: "lax",
