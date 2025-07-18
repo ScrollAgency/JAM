@@ -26,14 +26,13 @@ export default function CallbackPage() {
 
         // 2. Copie la valeur dans `persisted-auth`
         if (authCookieValue) {
-          Cookies.set("persisted-auth", authCookieValue, {
+          Cookies.set(`sb-${process.env.NEXT_PUBLIC_SUPABASE_ID}-auth-token`, authCookieValue, {
             path: "/",
             secure: process.env.NODE_ENV === "production",
             sameSite: "lax",
             expires: 1 / 24, // 1 heure
           });
         }
-      }
 
       router.replace("/");
     };
