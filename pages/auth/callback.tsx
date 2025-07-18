@@ -6,15 +6,17 @@ export default function Callback() {
   const router = useRouter()
 
   useEffect(() => {
-    const query = new URLSearchParams(window.location.search)
-    const code = query.get('code')
-    const next = query.get('next') ?? '/'
+    const code = router.query.code as string | undefined
+    const next = (router.query.next as string) ?? '/'
+
     if (code) {
-      window.location.href = `/api/auth/callback?code=${code}&next=${next}`
+      // Redirection vers l'API pour gérer le cookie et session
+      window.location.href = `/api/auth/callback?code=${encodeURIComponent(code)}&next=${encodeURIComponent(next)}`
     } else {
-      router.push('/auth/auth-code-error')
+      // Redirection si code absent
+      router.replace('/auth/auth-code-error')
     }
-  }, [])
+  }, [router.query])
 
   return <p>Connexion en cours...</p>
 }
