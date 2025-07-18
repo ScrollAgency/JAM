@@ -34,47 +34,31 @@ export async function middleware(request: NextRequest) {
         },
         setAll(cookiesToSet) {
           for (const { name, value, options } of cookiesToSet) {
-            console.log("🔁 setAll cookie", name, value?.substring(0,30), options);
+            // Ignore les cookies vides pour ne pas écraser un cookie valide par un vide
+            if (!value || value === '') continue;
 
-            // Définir un maxAge par défaut (1h)
-            let maxAge = 60 * 60;
-
-            // Si options.maxAge existe et est un nombre > 0, on l'utilise
-            if (options?.maxAge !== undefined && typeof options.maxAge === 'number' && options.maxAge > 0) {
-              maxAge = options.maxAge;
-            }
-
-            // Construire les options en évitant maxAge <= 0 qui supprimerait le cookie
-            const cookieOptions = {
+            response.cookies.set(name, value, {
               path: '/',
               httpOnly: true,
-              secure: true,
-              sameSite: 'Lax',
-              maxAge,
+              secure: process.env.NODE_ENV === 'production',
+              sameSite: 'lax',
+              maxAge: 60 * 60,
               ...options,
-            };
-
-            // Si options.maxAge est défini mais <= 0, on le retire explicitement
-            if (options?.maxAge !== undefined && options.maxAge <= 0) {
-              delete cookieOptions.maxAge;
-            }
-
-            response.cookies.set(name, value, cookieOptions);
+            });
           }
-
+          // Tu peux conserver ce cookie refresh si tu veux (ou le gérer aussi selon ta logique)
           response.cookies.set(`sb-${process.env.NEXT_PUBLIC_SUPABASE_ID}-refresh-token`, 'stub-refresh-token', {
             path: '/',
             httpOnly: true,
             secure: process.env.NODE_ENV === 'production',
             sameSite: 'lax',
-            maxAge: 60 * 60 * 24 * 30, // 30 jours
+            maxAge: 60 * 60 * 24 * 30,
           });
         }
-      },
+      }
     }
   );
 
-  // Auth Supabase
   const { data: { user } } = await supabase.auth.getUser();
 
   const isPublicRoute = publicRoutes.some(route => {
@@ -91,7 +75,7 @@ export async function middleware(request: NextRequest) {
     return NextResponse.redirect(url);
   }
 
-  // Cookie de test pour debug
+  // Cookie de test pour debug, pas httpOnly
   response.cookies.set("middleware-test", "ok", {
     path: "/",
     httpOnly: false,
@@ -100,37 +84,7 @@ export async function middleware(request: NextRequest) {
     maxAge: 60 * 5,
   });
 
-  console.log("📥 Cookies reçus :", request.cookies.getAll());
-  console.log("📤 Cookies envoyés :", response.headers.get("set-cookie"));
-
   return response;
-}
-
-// 🔍 Expire si JWT est invalide ou token Google expiré
-function isOldCookie(cookieValue: string): boolean {
-  try {
-    if (cookieValue.startsWith('["')) {
-      const [access_token] = JSON.parse(cookieValue);
-      return isJwtExpired(access_token);
-    }
-    return isJwtExpired(cookieValue);
-  } catch (e) {
-    console.error("Erreur dans isOldCookie:", e);
-    return true;
-  }
-}
-
-function isJwtExpired(token: string): boolean {
-  try {
-    const parts = token.split('.');
-    if (parts.length !== 3) return true;
-
-    const payload = JSON.parse(atob(parts[1]));
-    const now = Math.floor(Date.now() / 1000);
-    return payload.exp < now;
-  } catch {
-    return true;
-  }
 }
 
 export const config = {
