@@ -1,4 +1,4 @@
-// pages/api/auth/callback.ts
+// pages/api/supabase/callback.ts
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { createSupabaseServerClient } from '@/lib/supabaseCookies'
 
