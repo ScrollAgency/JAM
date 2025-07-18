@@ -4,112 +4,101 @@ import { NextResponse, type NextRequest } from 'next/server'
 const loginPage = '/login'
 
 const publicRoutes = [
-    '/',
-    '/accueil-employeur',
-    '/plasmic-host',
-
-    '/login',
-    '/register-candidat',
-    '/register-company',
-    '/register',
-    '/forgot-password',
-    '/reset-password',
-    '/reset-password/[recovery_token]',
-
-    '/first-install',
-    '/plasmic-library',
-    '/pages/api/supabase/callback',
-    '/api/supabase/callback',
-    '/auth/callback'
+  '/',
+  '/accueil-employeur',
+  '/plasmic-host',
+  '/login',
+  '/register-candidat',
+  '/register-company',
+  '/register',
+  '/forgot-password',
+  '/reset-password',
+  '/reset-password/[recovery_token]',
+  '/first-install',
+  '/plasmic-library',
+  '/pages/api/supabase/callback',
+  '/api/supabase/callback',
+  '/auth/callback'
 ]
 
 export async function middleware(request: NextRequest) {
+  const response = NextResponse.next(); // 👈 On va se servir de celui-là
 
-    const supabaseResponse = NextResponse.next({
-      request,
-    })
-
-    // --- Test cookie ---
-    supabaseResponse.cookies.set("middleware-test", "ok", {
-      path: "/",
-      httpOnly: false, // Important : visible dans le navigateur
-      secure: process.env.NODE_ENV === "production",
-      sameSite: "lax",
-      maxAge: 60 * 5, // 5 minutes
-    })
-
-    
-    const supabase = createServerClient(
-      process.env.NEXT_PUBLIC_SUPABASE_URL || "",
-      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || "",
-      {
-        cookies: {
-          getAll() {
-            return request.cookies.getAll()
-          },
-          setAll(cookiesToSet) {
-            for (const { name, value, options } of cookiesToSet) {
-              if (name === 'session_id' && isOldCookie(value)) {
-                supabaseResponse.cookies.set(name, '', { maxAge: 0, path: '/' });
-                continue;
-              }            
-  
-              const cookieOptions = {
-                path: '/',
-                httpOnly: true,
-                secure: true,
-                sameSite: 'Lax',
-                maxAge: 60 * 60,
-                ...options,
-              }
-  
-              //request.cookies.set(name, value)
-              supabaseResponse.cookies.set(name, value, cookieOptions)
-            }
-          }
+  const supabase = createServerClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL || "",
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || "",
+    {
+      cookies: {
+        getAll() {
+          return request.cookies.getAll();
         },
+        setAll(cookiesToSet) {
+          for (const { name, value, options } of cookiesToSet) {
+            if (name === 'session_id' && isOldCookie(value)) {
+              response.cookies.set(name, '', { maxAge: 0, path: '/' });
+              continue;
+            }
+
+            const cookieOptions = {
+              path: '/',
+              httpOnly: true,
+              secure: true,
+              sameSite: 'Lax',
+              maxAge: 60 * 60,
+              ...options,
+            };
+
+            response.cookies.set(name, value, cookieOptions);
+          }
+        }
       }
-    )
-    const {
-      data: { user },
-    } = await supabase.auth.getUser()
-      
-    const isPublicRoute = publicRoutes.some(route => {
-      if (route.includes('[recovery_token]')) {
-          const regex = new RegExp(`^${route.replace('[recovery_token]', '(.*)')}$`)
-          return regex.test(request.nextUrl.pathname)
-      }
-      return route === request.nextUrl.pathname
-    })
-  
-    if (!isPublicRoute && !user) {
-        const url = request.nextUrl.clone()
-        url.pathname = loginPage
-        return NextResponse.redirect(url)
     }
+  );
 
-    console.log("📥 Cookies reçus :", request.cookies.getAll())
-    console.log("📤 Cookies envoyés :", supabaseResponse.headers.get("set-cookie"))
+  // Déclenche la création éventuelle des cookies
+  const { data: { user } } = await supabase.auth.getUser();
 
-    return supabaseResponse
-  }
-  
-  function isOldCookie(cookieValue: string): boolean {
-    try {
-      const parts = cookieValue.split('.');
-      if (parts.length !== 3) return true;
-  
-      const payload = JSON.parse(Buffer.from(parts[1], 'base64').toString('utf-8'));
-      const now = Math.floor(Date.now() / 1000);
-      return payload.exp < now;
-    } catch (e) {
-      return true;
+  const isPublicRoute = publicRoutes.some(route => {
+    if (route.includes('[recovery_token]')) {
+      const regex = new RegExp(`^${route.replace('[recovery_token]', '(.*)')}$`);
+      return regex.test(request.nextUrl.pathname);
     }
-  }
-    
-  export const config = {
-    matcher: [
-      '/((?!api|_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)',
-    ],
+    return route === request.nextUrl.pathname;
+  });
+
+  if (!isPublicRoute && !user) {
+    const url = request.nextUrl.clone();
+    url.pathname = loginPage;
+    return NextResponse.redirect(url);
   }
 
+  // Cookie de test
+  response.cookies.set("middleware-test", "ok", {
+    path: "/",
+    httpOnly: false,
+    secure: process.env.NODE_ENV === "production",
+    sameSite: "lax",
+    maxAge: 60 * 5,
+  });
+
+  return response; // ✅ On renvoie bien celui qui contient les cookies
+}
+
+function isOldCookie(cookieValue: string): boolean {
+  try {
+    const parts = cookieValue.split('.');
+    if (parts.length !== 3) return true;
+
+    const payload = JSON.parse(Buffer.from(parts[1], 'base64').toString('utf-8'));
+    const now = Math.floor(Date.now() / 1000);
+    return payload.exp < now;
+  } catch (e) {
+    return true;
+  }
+}
+
+export const config = {
+  matcher: [
+    '/((?!api|_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)',
+  ],
+}
