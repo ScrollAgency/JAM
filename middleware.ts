@@ -15,6 +15,7 @@ const publicRoutes = [
   '/reset-password/[recovery_token]',
 
   '/auth/callback',
+  '/api/supabase/callback',
 
   '/first-install',
   '/plasmic-library',
