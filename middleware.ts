@@ -34,10 +34,11 @@ export async function middleware(request: NextRequest) {
         },
         setAll(cookiesToSet) {
           for (const { name, value, options } of cookiesToSet) {
-            if (name === 'session_id' && isOldCookie(value)) {
-              response.cookies.set(name, '', { maxAge: 0, path: '/' });
-              continue;
-            }
+
+            // if (name === 'session_id' && isOldCookie(value)) {
+            //   response.cookies.set(name, '', { maxAge: 0, path: '/' });
+            //   continue;
+            // }
 
             response.cookies.set(name, value, {
               path: '/',
