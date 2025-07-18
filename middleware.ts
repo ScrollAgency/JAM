@@ -32,28 +32,44 @@ export async function middleware(request: NextRequest) {
         getAll() {
           return request.cookies.getAll();
         },
-setAll(cookiesToSet) {
-  for (const { name, value, options } of cookiesToSet) {
-    console.log("🔁 setAll cookie", name, value?.substring(0,30), options);
-    response.cookies.set(name, value, {
-      path: '/',
-      httpOnly: true,
-      secure: true,
-      sameSite: 'Lax',
-      maxAge: 60 * 60,
-      ...options,
-    });
-    
-  }
-  response.cookies.set(`sb-${process.env.NEXT_PUBLIC_SUPABASE_ID}-refresh-token`, 'stub-refresh-token', {
-    path: '/',
-    httpOnly: true,
-    secure: process.env.NODE_ENV === 'production',
-    sameSite: 'lax',
-    maxAge: 60 * 60 * 24 * 30, // 30 jours
-  });
+        setAll(cookiesToSet) {
+          for (const { name, value, options } of cookiesToSet) {
+            console.log("🔁 setAll cookie", name, value?.substring(0,30), options);
 
-}
+            // Définir un maxAge par défaut (1h)
+            let maxAge = 60 * 60;
+
+            // Si options.maxAge existe et est un nombre > 0, on l'utilise
+            if (options?.maxAge !== undefined && typeof options.maxAge === 'number' && options.maxAge > 0) {
+              maxAge = options.maxAge;
+            }
+
+            // Construire les options en évitant maxAge <= 0 qui supprimerait le cookie
+            const cookieOptions = {
+              path: '/',
+              httpOnly: true,
+              secure: true,
+              sameSite: 'Lax',
+              maxAge,
+              ...options,
+            };
+
+            // Si options.maxAge est défini mais <= 0, on le retire explicitement
+            if (options?.maxAge !== undefined && options.maxAge <= 0) {
+              delete cookieOptions.maxAge;
+            }
+
+            response.cookies.set(name, value, cookieOptions);
+          }
+
+          response.cookies.set(`sb-${process.env.NEXT_PUBLIC_SUPABASE_ID}-refresh-token`, 'stub-refresh-token', {
+            path: '/',
+            httpOnly: true,
+            secure: process.env.NODE_ENV === 'production',
+            sameSite: 'lax',
+            maxAge: 60 * 60 * 24 * 30, // 30 jours
+          });
+        }
       },
     }
   );
@@ -93,12 +109,10 @@ setAll(cookiesToSet) {
 // 🔍 Expire si JWT est invalide ou token Google expiré
 function isOldCookie(cookieValue: string): boolean {
   try {
-    // Format tableau → OAuth Google, etc.
     if (cookieValue.startsWith('["')) {
       const [access_token] = JSON.parse(cookieValue);
       return isJwtExpired(access_token);
     }
-    // Format JWT simple
     return isJwtExpired(cookieValue);
   } catch (e) {
     console.error("Erreur dans isOldCookie:", e);
