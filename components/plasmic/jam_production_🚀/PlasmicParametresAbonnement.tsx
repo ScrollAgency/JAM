@@ -283,7 +283,8 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
         path: "sessionId",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => ``
+        initFunc: ({ $props, $state, $queries, $ctx }) =>
+          "cs_test_a1lkY7yxpkjhwszfI7SV8uwnHN5t7PwS0y31WnTg9t35Trw8cJcuzIF1rQ"
       },
       {
         path: "clientReferenceId",
@@ -3522,7 +3523,12 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                     ? (() => {
                         const actionArgs = {
                           customFunction: async () => {
-                            return console.log("après paiement test");
+                            return (() => {
+                              const sessionId = new URLSearchParams(
+                                window.location.search
+                              ).get("session_id");
+                              return console.log(sessionId);
+                            })();
                           }
                         };
                         return (({ customFunction }) => {
