@@ -67,8 +67,9 @@ export async function middleware(request: NextRequest) {
     return route === request.nextUrl.pathname;
   });
 
-const hasPersistedAuth = request.cookies.get("persisted-auth")?.value === "true";
-if (!isPublicRoute && !user && !hasPersistedAuth) {
+const persisted = request.cookies.get("persisted-auth")?.value;
+
+if (!isPublicRoute && !user && (!persisted || isOldCookie(persisted))) {
   const url = request.nextUrl.clone();
   url.pathname = loginPage;
   return NextResponse.redirect(url);
@@ -90,19 +91,33 @@ if (!isPublicRoute && !user && !hasPersistedAuth) {
 
 function isOldCookie(cookieValue: string): boolean {
   try {
-    // Ignore if it's clearly not a JWT (ex: array)
-    if (cookieValue.startsWith('["')) return false;
+    // Si c'est un tableau JSON (auth via OAuth comme Google)
+    if (cookieValue.startsWith('["')) {
+      const [access_token] = JSON.parse(cookieValue);
+      return isJwtExpired(access_token);
+    }
 
-    const parts = cookieValue.split('.');
+    // Sinon, cookieValue est un JWT classique
+    return isJwtExpired(cookieValue);
+  } catch (e) {
+    console.error("Erreur dans isOldCookie:", e);
+    return true; // On considère le cookie comme invalide en cas d'erreur
+  }
+}
+
+function isJwtExpired(token: string): boolean {
+  try {
+    const parts = token.split('.');
     if (parts.length !== 3) return true;
 
-    const payload = JSON.parse(Buffer.from(parts[1], 'base64').toString('utf-8'));
+    const payload = JSON.parse(atob(parts[1]));
     const now = Math.floor(Date.now() / 1000);
     return payload.exp < now;
-  } catch (e) {
+  } catch {
     return true;
   }
 }
+
 
 export const config = {
   matcher: [
