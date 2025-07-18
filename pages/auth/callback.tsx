@@ -11,7 +11,7 @@ export default function Callback() {
 
     if (code) {
       // Redirection vers l'API pour gérer le cookie et session
-      window.location.href = `/api/auth/callback?code=${encodeURIComponent(code)}&next=${encodeURIComponent(next)}`
+      window.location.href = `/api/supabase/callback?code=${encodeURIComponent(code)}&next=${encodeURIComponent(next)}`
     } else {
       // Redirection si code absent
       router.replace('/auth/auth-code-error')
