@@ -6,12 +6,16 @@ const loginPage = '/login'
 const publicRoutes = [
   '/',
   '/plasmic-host',
+
   '/login',
   '/signup',
   '/forgot-password',
   '/reset-password',
   '/user-invite',
   '/reset-password/[recovery_token]',
+
+  '/auth/callback',
+
   '/first-install',
   '/plasmic-library',
   '/libellule',
