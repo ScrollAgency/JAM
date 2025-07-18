@@ -16,7 +16,6 @@ export default function CallbackPage() {
         return;
       }
 
-      // 1. Récupère le cookie Supabase (clé dynamique)
       const authCookieName = Object.keys(Cookies.get()).find(
         name => name.startsWith("sb-") && name.endsWith("-auth-token")
       );
@@ -24,9 +23,8 @@ export default function CallbackPage() {
       if (authCookieName) {
         const authCookieValue = Cookies.get(authCookieName);
 
-        // 2. Copie la valeur dans `persisted-auth`
         if (authCookieValue) {
-          Cookies.set(`sb-${process.env.NEXT_PUBLIC_SUPABASE_ID}-auth-token.2`, authCookieValue, {
+          Cookies.set(`sb-${process.env.NEXT_PUBLIC_SUPABASE_ID}-auth-token`, authCookieValue, {
             path: "/",
             secure: process.env.NODE_ENV === "production",
             sameSite: "lax",
