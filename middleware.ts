@@ -32,24 +32,28 @@ export async function middleware(request: NextRequest) {
         getAll() {
           return request.cookies.getAll();
         },
-        setAll(cookiesToSet) {
-          for (const { name, value, options } of cookiesToSet) {
+setAll(cookiesToSet) {
+  for (const { name, value, options } of cookiesToSet) {
+    console.log("🔁 setAll cookie", name, value?.substring(0,30), options);
+    response.cookies.set(name, value, {
+      path: '/',
+      httpOnly: true,
+      secure: true,
+      sameSite: 'Lax',
+      maxAge: 60 * 60,
+      ...options,
+    });
+    
+  }
+  response.cookies.set(`sb-${process.env.NEXT_PUBLIC_SUPABASE_ID}-refresh-token`, 'stub-refresh-token', {
+    path: '/',
+    httpOnly: true,
+    secure: process.env.NODE_ENV === 'production',
+    sameSite: 'lax',
+    maxAge: 60 * 60 * 24 * 30, // 30 jours
+  });
 
-            // if (name === 'session_id' && isOldCookie(value)) {
-            //   response.cookies.set(name, '', { maxAge: 0, path: '/' });
-            //   continue;
-            // }
-
-            response.cookies.set(name, value, {
-              path: '/',
-              httpOnly: true,
-              secure: true,
-              sameSite: 'Lax',
-              maxAge: 60 * 60,
-              ...options,
-            });
-          }
-        },
+}
       },
     }
   );
