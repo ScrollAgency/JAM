@@ -3598,7 +3598,12 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                             variablePath: ["stripeSessionId"]
                           },
                           operation: 0,
-                          value: $ctx.query.session_id
+                          value: (() => {
+                            const sessionId = new URLSearchParams(
+                              window.location.search
+                            ).get("session_id");
+                            return sessionId;
+                          })()
                         };
                         return (({
                           variable,
