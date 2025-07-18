@@ -33,6 +33,7 @@ export default function CallbackPage() {
             expires: 1 / 24, // 1 heure
           });
         }
+      }
 
       router.replace("/");
     };
