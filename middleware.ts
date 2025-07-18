@@ -35,7 +35,7 @@ export async function middleware(request: NextRequest) {
         setAll(cookiesToSet) {
           for (const { name, value, options } of cookiesToSet) {
             //if (name === 'session_id' && isOldCookie(value)) {
-            if ((name === 'session_id' || name.includes('auth-token')) && isOldCookie(value)) {
+            if (name === 'session_id' && isOldCookie(value)) {
               response.cookies.set(name, '', { maxAge: 0, path: '/' });
               continue;
             }
