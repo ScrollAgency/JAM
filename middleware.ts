@@ -1,7 +1,7 @@
-import { createServerClient } from '@supabase/ssr'
-import { NextResponse, type NextRequest } from 'next/server'
+import { createServerClient } from '@supabase/ssr';
+import { NextResponse, type NextRequest } from 'next/server';
 
-const loginPage = '/login'
+const loginPage = '/login';
 
 const publicRoutes = [
   '/',
@@ -18,11 +18,11 @@ const publicRoutes = [
   '/plasmic-library',
   '/pages/api/supabase/callback',
   '/api/supabase/callback',
-  '/auth/callback'
-]
+  '/auth/callback',
+];
 
 export async function middleware(request: NextRequest) {
-  const response = NextResponse.next(); // 👈 On va se servir de celui-là
+  const response = NextResponse.next();
 
   const supabase = createServerClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL || "",
@@ -34,29 +34,30 @@ export async function middleware(request: NextRequest) {
         },
         setAll(cookiesToSet) {
           for (const { name, value, options } of cookiesToSet) {
-            //if (name === 'session_id' && isOldCookie(value)) {
-            if (name === 'session_id' && isOldCookie(value)) {
+            // Supprime les cookies session ou auth expirés
+            if (
+              (name === 'session_id' || name.includes('auth-token')) &&
+              isOldCookie(value)
+            ) {
               response.cookies.set(name, '', { maxAge: 0, path: '/' });
               continue;
             }
 
-            const cookieOptions = {
+            response.cookies.set(name, value, {
               path: '/',
               httpOnly: true,
               secure: true,
               sameSite: 'Lax',
               maxAge: 60 * 60,
               ...options,
-            };
-
-            response.cookies.set(name, value, cookieOptions);
+            });
           }
-        }
-      }
+        },
+      },
     }
   );
 
-  // Déclenche la création éventuelle des cookies
+  // Auth Supabase
   const { data: { user } } = await supabase.auth.getUser();
 
   const isPublicRoute = publicRoutes.some(route => {
@@ -67,15 +68,13 @@ export async function middleware(request: NextRequest) {
     return route === request.nextUrl.pathname;
   });
 
-const persisted = request.cookies.get("persisted-auth")?.value;
+  if (!isPublicRoute && !user) {
+    const url = request.nextUrl.clone();
+    url.pathname = loginPage;
+    return NextResponse.redirect(url);
+  }
 
-if (!isPublicRoute && !user && (!persisted || isOldCookie(persisted))) {
-  const url = request.nextUrl.clone();
-  url.pathname = loginPage;
-  return NextResponse.redirect(url);
-}
-
-  // Cookie de test
+  // Cookie de test pour debug
   response.cookies.set("middleware-test", "ok", {
     path: "/",
     httpOnly: false,
@@ -84,24 +83,25 @@ if (!isPublicRoute && !user && (!persisted || isOldCookie(persisted))) {
     maxAge: 60 * 5,
   });
 
-   console.log("📥 Cookies reçus :", request.cookies.getAll())
-    console.log("📤 Cookies envoyés :", response.headers.get("set-cookie"))
+  console.log("📥 Cookies reçus :", request.cookies.getAll());
+  console.log("📤 Cookies envoyés :", response.headers.get("set-cookie"));
+
   return response;
 }
 
+// 🔍 Expire si JWT est invalide ou token Google expiré
 function isOldCookie(cookieValue: string): boolean {
   try {
-    // Si c'est un tableau JSON (auth via OAuth comme Google)
+    // Format tableau → OAuth Google, etc.
     if (cookieValue.startsWith('["')) {
       const [access_token] = JSON.parse(cookieValue);
       return isJwtExpired(access_token);
     }
-
-    // Sinon, cookieValue est un JWT classique
+    // Format JWT simple
     return isJwtExpired(cookieValue);
   } catch (e) {
     console.error("Erreur dans isOldCookie:", e);
-    return true; // On considère le cookie comme invalide en cas d'erreur
+    return true;
   }
 }
 
@@ -118,9 +118,8 @@ function isJwtExpired(token: string): boolean {
   }
 }
 
-
 export const config = {
   matcher: [
     '/((?!api|_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)',
   ],
-}
+};
