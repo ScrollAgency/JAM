@@ -24,11 +24,11 @@ export default function CallbackPage() {
         const authCookieValue = Cookies.get(authCookieName);
 
         if (authCookieValue) {
-          Cookies.set(`sb-${process.env.NEXT_PUBLIC_SUPABASE_ID}-auth-token`, authCookieValue, {
-            path: "/",
-            secure: process.env.NODE_ENV === "production",
-            sameSite: "lax",
-            expires: 1 / 24, // 1 heure
+          // 🔁 Envoyer le cookie au backend pour qu'il le définisse en HttpOnly
+          await fetch("/api/supabase/callback", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ token: authCookieValue }),
           });
         }
       }
