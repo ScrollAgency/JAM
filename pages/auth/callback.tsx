@@ -1,43 +1,29 @@
-import { useEffect } from "react";
-import { useRouter } from "next/router";
-import { supabase } from "@/lib/supabase";
-import Cookies from "js-cookie";
+import { NextResponse } from 'next/server'
+import { createClient } from '@/lib/supabaseCookies'
 
-export default function CallbackPage() {
-  const router = useRouter();
+export async function GET(request: Request) {
+  const { searchParams, origin } = new URL(request.url)
+  const code = searchParams.get('code')
+  let next = searchParams.get('next') ?? '/'
+  if (!next.startsWith('/')) next = '/'
 
-  useEffect(() => {
-    const completeLogin = async () => {
-      const { data: { session }, error } = await supabase.auth.getSession();
+  if (code) {
+    const supabase = createClient()
+    const { error } = await supabase.auth.exchangeCodeForSession(code)
+    if (!error) {
+      const forwardedHost = request.headers.get('x-forwarded-host')
+      const isLocalEnv = process.env.NODE_ENV === 'development'
 
-      if (error || !session) {
-        console.error("Erreur récupération session:", error);
-        router.replace("/login");
-        return;
+      if (isLocalEnv) {
+        return NextResponse.redirect(`${origin}${next}`)
+      } else if (forwardedHost) {
+        return NextResponse.redirect(`https://${forwardedHost}${next}`)
+      } else {
+        return NextResponse.redirect(`${origin}${next}`)
       }
+    }
+  }
 
-      const authCookieName = Object.keys(Cookies.get()).find(
-        name => name.startsWith("sb-") && name.endsWith("-auth-token")
-      );
-
-      if (authCookieName) {
-        const authCookieValue = Cookies.get(authCookieName);
-
-        if (authCookieValue) {
-          // 🔁 Envoyer le cookie au backend pour qu'il le définisse en HttpOnly
-          await fetch("/api/supabase/callback", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ token: authCookieValue }),
-          });
-        }
-      }
-
-      router.replace("/");
-    };
-
-    completeLogin();
-  }, []);
-
-  return <p>Connexion en cours...</p>;
+  // En cas d'erreur, rediriger vers une page d'erreur custom
+  return NextResponse.redirect(`${origin}/auth/auth-code-error`)
 }
