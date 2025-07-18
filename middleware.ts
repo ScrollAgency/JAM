@@ -81,7 +81,9 @@ export async function middleware(request: NextRequest) {
     maxAge: 60 * 5,
   });
 
-  return response; // ✅ On renvoie bien celui qui contient les cookies
+   console.log("📥 Cookies reçus :", request.cookies.getAll())
+    console.log("📤 Cookies envoyés :", response.headers.get("set-cookie"))
+  return response;
 }
 
 function isOldCookie(cookieValue: string): boolean {
