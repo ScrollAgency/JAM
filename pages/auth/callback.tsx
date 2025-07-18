@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useRouter } from "next/router";
 import { supabase } from "@/lib/supabase";
+import Cookies from "js-cookie";
 
 export default function CallbackPage() {
   const router = useRouter();
@@ -10,15 +11,29 @@ export default function CallbackPage() {
       const { data: { session }, error } = await supabase.auth.getSession();
 
       if (error || !session) {
-        console.error("Erreur session:", error);
+        console.error("Erreur récupération session:", error);
         router.replace("/login");
         return;
       }
 
-      // Créer un cookie miroir temporaire
-      document.cookie = `persisted-auth=true; path=/; max-age=3600; SameSite=Lax; ${
-        process.env.NODE_ENV === "production" ? "Secure;" : ""
-      }`;
+      // 1. Récupère le cookie Supabase (clé dynamique)
+      const authCookieName = Object.keys(Cookies.get()).find(
+        name => name.startsWith("sb-") && name.endsWith("-auth-token")
+      );
+
+      if (authCookieName) {
+        const authCookieValue = Cookies.get(authCookieName);
+
+        // 2. Copie la valeur dans `persisted-auth`
+        if (authCookieValue) {
+          Cookies.set("persisted-auth", authCookieValue, {
+            path: "/",
+            secure: process.env.NODE_ENV === "production",
+            sameSite: "lax",
+            expires: 1 / 24, // 1 heure
+          });
+        }
+      }
 
       router.replace("/");
     };
