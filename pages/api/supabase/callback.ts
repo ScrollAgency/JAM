@@ -3,25 +3,30 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 import { createSupabaseServerClient } from '@/lib/supabaseCookies'
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  const supabase = createSupabaseServerClient(req.headers.cookie, res)
+  console.log('API callback hit');
+  console.log('query:', req.query);
 
-  const code = req.query.code as string
-  let next = (req.query.next as string) ?? '/'
+  const supabase = createSupabaseServerClient(req.headers.cookie, res);
 
-  if (!next.startsWith('/')) next = '/'
+  const code = req.query.code as string;
+  let next = (req.query.next as string) ?? '/';
+
+  if (!next.startsWith('/')) next = '/';
 
   const protocol =
-    req.headers['x-forwarded-proto']?.toString() || (process.env.NODE_ENV === 'development' ? 'http' : 'https')
-  const host = req.headers.host || 'localhost:3000'
-  const origin = `${protocol}://${host}`
+    req.headers['x-forwarded-proto']?.toString() || (process.env.NODE_ENV === 'development' ? 'http' : 'https');
+  const host = req.headers.host || 'localhost:3000';
+  const origin = `${protocol}://${host}`;
 
   if (code) {
-    const { error } = await supabase.auth.exchangeCodeForSession(code)
+    const { error } = await supabase.auth.exchangeCodeForSession(code);
 
     if (!error) {
-      return res.redirect(307, `${origin}${next}`)
+      res.redirect(307, `${origin}${next}`);
+      return;
     }
   }
 
-  return res.redirect(307, `${origin}/auth/auth-code-error`)
+  // Erreur ou pas de code
+  res.redirect(307, `${origin}/auth/auth-code-error`);
 }
