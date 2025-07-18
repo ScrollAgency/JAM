@@ -34,11 +34,7 @@ export async function middleware(request: NextRequest) {
         },
         setAll(cookiesToSet) {
           for (const { name, value, options } of cookiesToSet) {
-            // Supprime les cookies session ou auth expirés
-            if (
-              (name === 'session_id' || name.includes('auth-token')) &&
-              isOldCookie(value)
-            ) {
+            if (name === 'session_id' && isOldCookie(value)) {
               response.cookies.set(name, '', { maxAge: 0, path: '/' });
               continue;
             }
