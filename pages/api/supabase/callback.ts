@@ -1,63 +1,65 @@
-// pages/api/supabase/callback.ts
-import type { NextApiRequest, NextApiResponse } from 'next'
-import createClient from '@/utils/supabase/api'
+// app/api/supabase/callback/route.ts
+import { createServerClient } from '@supabase/ssr'
+import { cookies } from 'next/headers'
+import { NextResponse } from 'next/server'
+import { parse } from 'cookie'
+import type { NextRequest } from 'next/server'
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  const supabase = createClient(req, res)
-  const code = req.query.code as string
-  let next = (req.query.next as string) ?? '/'
+export async function GET(request: NextRequest) {
+  const cookieStore = cookies()
 
-  if (!next.startsWith('/')) next = '/'
-
-  // Forcer https pour éviter les problèmes de reverse proxy
-  const protocol = 'https'
-  const host = req.headers.host || 'localhost:3000'
-  const origin = `${protocol}://${host}`
-
-  console.log('➡️ Auth code reçu:', code)
-
-  if (!code) {
-    console.error('❌ Code manquant dans la requête')
-    return res.redirect(307, '/auth/auth-code-error')
-  }
-
-  try {
-    // Échange le code contre une session
-    const { data, error } = await supabase.auth.exchangeCodeForSession(code)
-
-if (!error) {
-  // Transférer les cookies correctement dans la réponse (si nécessaires)
-  const { access_token, refresh_token } = data.session ?? {}
-
-  if (access_token && refresh_token) {
-    const cookieOptions = {
-      path: '/',
-      httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
-      sameSite: 'Lax',
+  const supabase = createServerClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+    {
+      cookies: {
+        getAll() {
+          return cookieStore.getAll()
+        },
+        setAll() {
+          // rien ici car on utilise `response.cookies.set` plus bas
+        },
+      },
     }
+  )
 
-    res.setHeader('Set-Cookie', [
-      `sb-access-token=${access_token}; Path=/; HttpOnly; SameSite=Lax${process.env.NODE_ENV === 'production' ? '; Secure' : ''}`,
-      `sb-refresh-token=${refresh_token}; Path=/; HttpOnly; SameSite=Lax${process.env.NODE_ENV === 'production' ? '; Secure' : ''}`,
-    ])
+  const url = new URL(request.url)
+  const code = url.searchParams.get('code')
+  const next = url.searchParams.get('next') || '/'
+
+  // Extraire le code_verifier
+  const cookieHeader = request.headers.get('cookie') || ''
+  const parsedCookies = parse(cookieHeader)
+  const codeVerifier = parsedCookies['sb-idwomihieftgogbgivic-auth-token-code-verifier']?.replace(/^"|"$/g, '')
+
+  if (!code || !codeVerifier) {
+    return NextResponse.redirect('/auth/auth-code-error')
   }
 
-  return res.redirect(307, `${origin}${next}`)
-}
+  console.log('🎯 code_verifier:', codeVerifier)
 
-    if (error) {
-      console.error('❌ Supabase exchange error:', error)
-      return res.redirect(307, '/auth/auth-code-error')
-    }
+  // Échange du code contre session
+  const { data, error } = await supabase.auth.exchangeCodeForSession(code)
 
-    console.log(`✅ Authentification réussie. Redirection vers: ${next}`)
-
-    // Redirection relative (plus sûre)
-    res.writeHead(307, { Location: next })
-    return res.end()
-  } catch (err) {
-    console.error('❌ Erreur inattendue:', err)
-    return res.redirect(307, '/auth/auth-code-error')
+  if (error || !data?.session) {
+    console.error('❌ Erreur échange code:', error)
+    return NextResponse.redirect('/auth/auth-code-error')
   }
+
+  const { access_token, refresh_token } = data.session
+
+  const authTokenValue = encodeURIComponent(JSON.stringify({ access_token, refresh_token }))
+
+  const response = NextResponse.redirect(new URL(next, request.url))
+
+  response.cookies.set('sb-idwomihieftgogbgivic-auth-token', authTokenValue, {
+    path: '/',
+    httpOnly: true,
+    secure: process.env.NODE_ENV === 'production',
+    sameSite: 'lax',
+    maxAge: 60 * 60 * 24 * 7, // 7 jours
+  })
+
+  console.log('✅ Authentification réussie. Redirection vers:', next)
+  return response
 }
