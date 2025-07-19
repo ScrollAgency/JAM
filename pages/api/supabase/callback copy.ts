@@ -1,10 +1,13 @@
 // pages/api/supabase/callback.ts
 import type { NextApiRequest, NextApiResponse } from 'next'
-import createClient from '@/utils/supabase/api'
+import { createSupabaseServerClient } from '@/lib/supabaseCookies'
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+  console.log('API callback hit');
+  console.log('query:', req.query);
 
-  const supabase = createClient(req, res)
+  const supabase = createSupabaseServerClient(req.headers.cookie, res);
+
   const code = req.query.code as string;
   let next = (req.query.next as string) ?? '/';
 
@@ -30,6 +33,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     return res.redirect(307, `${origin}/auth/auth-code-error`)
   }
 }
+
 
   // Erreur ou pas de code
   res.redirect(307, `${origin}/auth/auth-code-error`);
