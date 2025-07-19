@@ -99,8 +99,16 @@ export async function middleware(request: NextRequest) {
 
 function isOldCookie(cookieValue: string): boolean {
   try {
+    // Nettoyage du préfixe base64: ou base64-
+    if (cookieValue.startsWith('base64:')) {
+      cookieValue = cookieValue.slice('base64:'.length)
+    } else if (cookieValue.startsWith('base64-')) {
+      cookieValue = cookieValue.slice('base64-'.length)
+    }
+
     const parts = cookieValue.split('.')
     if (parts.length !== 3) return true
+
     const payload = JSON.parse(Buffer.from(parts[1], 'base64').toString('utf-8'))
     const now = Math.floor(Date.now() / 1000)
     return payload.exp < now
@@ -108,6 +116,7 @@ function isOldCookie(cookieValue: string): boolean {
     return true
   }
 }
+
 
 export const config = {
   matcher: [
