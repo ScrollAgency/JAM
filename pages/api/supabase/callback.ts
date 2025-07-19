@@ -23,6 +23,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   }
 
   try {
+    console.log('▶️ Exchange code with codeVerifier:', { code, codeVerifier })
+
     const { data, error } = await supabase.auth.exchangeCodeForSession(code)
 
     
@@ -37,7 +39,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     if (access_token && refresh_token) {
       const encodeToken = (token: string) => `base64:${Buffer.from(token).toString('base64')}`
-      const cookieOptions = `Path=/; SameSite=Lax; Max-Age=604800${process.env.NODE_ENV === 'production' ? '; Secure' : ''}`
+      const cookieOptions = `Path=/; HttpOnly; SameSite=Lax; Max-Age=604800${process.env.NODE_ENV === 'production' ? '; Secure' : ''}`
 
       console.log('➡️ Set cookie sb-auth-token:', encodeToken(access_token))
 
@@ -53,9 +55,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       console.error('❌ Tokens manquants après échange Supabase')
     }
 
-    return res.redirect(307, `${origin}${next}`)
+    return res.redirect(307, next)
   } catch (err) {
-    console.error('❌ Erreur inattendue dans /callback.ts:', err)
+    console.error('❌ Erreur inattendue dans /callback.ts:', err instanceof Error ? err.message : err)
+
     return res.redirect(307, '/auth/auth-code-error')
   }
 }
