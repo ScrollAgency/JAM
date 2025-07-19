@@ -39,13 +39,14 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       const authTokenValue = encodeURIComponent(JSON.stringify({ access_token, refresh_token }))
 
       // Prépare options cookie
-      const cookieOptions = `Path=/; HttpOnly; SameSite=Lax${process.env.NODE_ENV === 'production' ? '; Secure' : ''}`
+      const cookieOptions = `Path=/; HttpOnly; SameSite=Lax; Max-Age=604800${process.env.NODE_ENV === 'production' ? '; Secure' : ''}`
+
 
       // Set cookies standards
       res.setHeader('Set-Cookie', [
         `sb-access-token=${access_token}; ${cookieOptions}`,
         `sb-refresh-token=${refresh_token}; ${cookieOptions}`,
-        `sb-idwomihieftgogbgivic-auth-token=${authTokenValue}; ${cookieOptions}`
+        `sb-idwomihieftgogbgivic-auth-token=${encodeURIComponent(JSON.stringify({ access_token, refresh_token }))}; ${cookieOptions}`
       ])
     }
 
