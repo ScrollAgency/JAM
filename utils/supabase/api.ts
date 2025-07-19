@@ -9,13 +9,12 @@ export default function createClient(req: NextApiRequest, res: NextApiResponse) 
     {
       cookies: {
         getAll() {
-          const cookieHeader = req.headers.cookie ?? ''
-          const parsed = parse(cookieHeader)
-          // Filter out undefined, and force value to string ('' if absent)
-          return Object.entries(parsed).map(([name, value]) => ({
-            name,
-            value: value ?? '',  // <-- ici on garantit une string
-          }))
+            const cookieHeader = req.headers.cookie ?? ''
+            const parsed = parse(cookieHeader)
+            return Object.entries(parsed).map(([name, value]) => ({
+                name,
+                value: (value ?? '').replace(/^"|"$/g, ''),
+            }))
         },
         setAll(cookiesToSet) {
           res.setHeader(
