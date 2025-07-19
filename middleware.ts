@@ -16,6 +16,7 @@ const publicRoutes = [
 
   '/auth/callback',
   '/api/supabase/callback',
+  '/supabase/callback',
 
   '/first-install',
   '/plasmic-library',
