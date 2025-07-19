@@ -15,6 +15,7 @@ const publicRoutes = [
   '/reset-password/[recovery_token]',
 
   '/auth/callback',
+  '/auth/auth-code-error',
   '/api/supabase/callback',
   '/supabase/callback',
 

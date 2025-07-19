@@ -10,6 +10,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
   if (!next.startsWith('/')) next = '/'
 
+  const protocol = 'https'
+  const host = req.headers.host || 'localhost:3000'
+  const origin = `${protocol}://${host}`
+
+  // Récupérer le code_verifier dans les cookies (à adapter selon où tu le stockes)
   const cookies = parse(req.headers.cookie || '')
   const codeVerifier = cookies['sb-idwomihieftgogbgivic-auth-token-code-verifier']?.replace(/^"|"$/g, '')
 
@@ -19,14 +24,33 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   }
 
   try {
-    const { error } = await supabase.auth.exchangeCodeForSession(code)
+    // Echange avec codeVerifier (obligatoire pour PKCE)
+    const { data, error } = await supabase.auth.exchangeCodeForSession(code)
 
-    if (error) {
+    if (error || !data?.session) {
       console.error('❌ Supabase exchange error:', error)
       return res.redirect(307, '/auth/auth-code-error')
     }
 
-    return res.redirect(307, next)
+    const { access_token, refresh_token } = data.session
+
+    if (access_token && refresh_token) {
+      // Crée le cookie final encodé JSON
+      const authTokenValue = encodeURIComponent(JSON.stringify({ access_token, refresh_token }))
+
+      // Prépare options cookie
+      const cookieOptions = `Path=/; HttpOnly; SameSite=Lax; Max-Age=604800${process.env.NODE_ENV === 'production' ? '; Secure' : ''}`
+
+
+      // Set cookies standards
+      res.setHeader('Set-Cookie', [
+        `sb-access-token=${access_token}; ${cookieOptions}`,
+        `sb-refresh-token=${refresh_token}; ${cookieOptions}`,
+        `sb-idwomihieftgogbgivic-auth-token=${encodeURIComponent(JSON.stringify({ access_token, refresh_token }))}; ${cookieOptions}`
+      ])
+    }
+
+    return res.redirect(307, `${origin}${next}`)
   } catch (err) {
     console.error('❌ Erreur inattendue:', err)
     return res.redirect(307, '/auth/auth-code-error')
