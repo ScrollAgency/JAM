@@ -14,17 +14,15 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   const host = req.headers.host || 'localhost:3000'
   const origin = `${protocol}://${host}`
 
-  // Récupérer le code_verifier dans les cookies (à adapter selon où tu le stockes)
   const cookies = parse(req.headers.cookie || '')
   const codeVerifier = cookies['sb-idwomihieftgogbgivic-auth-token-code-verifier']?.replace(/^"|"$/g, '')
 
   if (!code || !codeVerifier) {
-    console.error('❌ Code ou code_verifier manquant')
+    console.error('❌ Code ou code_verifier manquant', { code, codeVerifier })
     return res.redirect(307, '/auth/auth-code-error')
   }
 
   try {
-    // Echange avec codeVerifier (obligatoire pour PKCE)
     const { data, error } = await supabase.auth.exchangeCodeForSession(code)
 
     if (error || !data?.session) {
@@ -35,23 +33,24 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     const { access_token, refresh_token } = data.session
 
     if (access_token && refresh_token) {
-      const authTokenValue = encodeURIComponent(JSON.stringify({ access_token, refresh_token }))
-
+      const encodeToken = (token: string) => `base64:${Buffer.from(token).toString('base64')}`
       const cookieOptions = `Path=/; HttpOnly; SameSite=Lax; Max-Age=604800${process.env.NODE_ENV === 'production' ? '; Secure' : ''}`
 
       res.setHeader('Set-Cookie', [
-        `sb-access-token=${access_token}; ${cookieOptions}`,
-        `sb-refresh-token=${refresh_token}; ${cookieOptions}`,
-        // ici sans HttpOnly si besoin d'accès JS
-        `sb-idwomihieftgogbgivic-auth-token=${authTokenValue}; Path=/; SameSite=Lax; Max-Age=604800${process.env.NODE_ENV === 'production' ? '; Secure' : ''}`
+        `sb-access-token=${encodeToken(access_token)}; ${cookieOptions}`,
+        `sb-refresh-token=${encodeToken(refresh_token)}; ${cookieOptions}`,
+        // Si besoin côté client :
+        `sb-idwomihieftgogbgivic-auth-token=${encodeToken(access_token)}; Path=/; SameSite=Lax; Max-Age=604800${process.env.NODE_ENV === 'production' ? '; Secure' : ''}`
       ])
+
+      res.setHeader('Cache-Control', 'no-store')
     } else {
-      console.error('Tokens manquants, impossible de set cookies')
+      console.error('❌ Tokens manquants après échange Supabase')
     }
 
     return res.redirect(307, `${origin}${next}`)
   } catch (err) {
-    console.error('❌ Erreur inattendue:', err)
+    console.error('❌ Erreur inattendue dans /callback.ts:', err)
     return res.redirect(307, '/auth/auth-code-error')
   }
 }

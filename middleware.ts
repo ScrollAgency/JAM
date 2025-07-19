@@ -60,8 +60,8 @@ export async function middleware(request: NextRequest) {
 
             supabaseResponse.cookies.set(name, value, cookieOptions)
           }
-        },
-      },
+        }
+      }
     }
   )
 
@@ -69,7 +69,7 @@ export async function middleware(request: NextRequest) {
     data: { user },
   } = await supabase.auth.getUser()
 
-  // ✅ Recopie des cookies custom non modifiés (comme sb-idwomih...-auth-token)
+  // ✅ Ne PAS réécraser les cookies déjà présents → seulement compléter avec les customs
   for (const cookie of request.cookies.getAll()) {
     if (!supabaseResponse.cookies.get(cookie.name)) {
       supabaseResponse.cookies.set(cookie.name, cookie.value, {
@@ -101,11 +101,10 @@ function isOldCookie(cookieValue: string): boolean {
   try {
     const parts = cookieValue.split('.')
     if (parts.length !== 3) return true
-
     const payload = JSON.parse(Buffer.from(parts[1], 'base64').toString('utf-8'))
     const now = Math.floor(Date.now() / 1000)
     return payload.exp < now
-  } catch (e) {
+  } catch {
     return true
   }
 }
