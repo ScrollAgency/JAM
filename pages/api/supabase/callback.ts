@@ -23,7 +23,28 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
   try {
     // Échange le code contre une session
-    const { error } = await supabase.auth.exchangeCodeForSession(code)
+    const { data, error } = await supabase.auth.exchangeCodeForSession(code)
+
+if (!error) {
+  // Transférer les cookies correctement dans la réponse (si nécessaires)
+  const { access_token, refresh_token } = data.session ?? {}
+
+  if (access_token && refresh_token) {
+    const cookieOptions = {
+      path: '/',
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'Lax',
+    }
+
+    res.setHeader('Set-Cookie', [
+      `sb-access-token=${access_token}; Path=/; HttpOnly; SameSite=Lax${process.env.NODE_ENV === 'production' ? '; Secure' : ''}`,
+      `sb-refresh-token=${refresh_token}; Path=/; HttpOnly; SameSite=Lax${process.env.NODE_ENV === 'production' ? '; Secure' : ''}`,
+    ])
+  }
+
+  return res.redirect(307, `${origin}${next}`)
+}
 
     if (error) {
       console.error('❌ Supabase exchange error:', error)
