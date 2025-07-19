@@ -35,19 +35,18 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     const { access_token, refresh_token } = data.session
 
     if (access_token && refresh_token) {
-      // Crée le cookie final encodé JSON
       const authTokenValue = encodeURIComponent(JSON.stringify({ access_token, refresh_token }))
 
-      // Prépare options cookie
       const cookieOptions = `Path=/; HttpOnly; SameSite=Lax; Max-Age=604800${process.env.NODE_ENV === 'production' ? '; Secure' : ''}`
 
-
-      // Set cookies standards
       res.setHeader('Set-Cookie', [
         `sb-access-token=${access_token}; ${cookieOptions}`,
         `sb-refresh-token=${refresh_token}; ${cookieOptions}`,
-        `sb-idwomihieftgogbgivic-auth-token=${encodeURIComponent(JSON.stringify({ access_token, refresh_token }))}; ${cookieOptions}`
+        // ici sans HttpOnly si besoin d'accès JS
+        `sb-idwomihieftgogbgivic-auth-token=${authTokenValue}; Path=/; SameSite=Lax; Max-Age=604800${process.env.NODE_ENV === 'production' ? '; Secure' : ''}`
       ])
+    } else {
+      console.error('Tokens manquants, impossible de set cookies')
     }
 
     return res.redirect(307, `${origin}${next}`)

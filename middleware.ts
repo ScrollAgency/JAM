@@ -32,12 +32,11 @@ const publicRoutes = [
 ]
 
 export async function middleware(request: NextRequest) {
-
   const supabaseResponse = NextResponse.next({ request })
 
   const supabase = createServerClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL || "",
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || "",
+    process.env.NEXT_PUBLIC_SUPABASE_URL || '',
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || '',
     {
       cookies: {
         getAll() {
@@ -59,17 +58,27 @@ export async function middleware(request: NextRequest) {
               ...options,
             }
 
-            // Ne modifie pas request.cookies (en lecture seule)
             supabaseResponse.cookies.set(name, value, cookieOptions)
           }
-        }
-      }
+        },
+      },
     }
   )
 
   const {
     data: { user },
   } = await supabase.auth.getUser()
+
+  // ✅ Recopie des cookies custom non modifiés (comme sb-idwomih...-auth-token)
+  for (const cookie of request.cookies.getAll()) {
+    if (!supabaseResponse.cookies.get(cookie.name)) {
+      supabaseResponse.cookies.set(cookie.name, cookie.value, {
+        path: '/',
+        sameSite: 'lax',
+        secure: process.env.NODE_ENV === 'production',
+      })
+    }
+  }
 
   const isPublicRoute = publicRoutes.some(route => {
     if (route.includes('[recovery_token]')) {
