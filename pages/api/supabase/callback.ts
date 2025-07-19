@@ -17,6 +17,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
   if (code) {
   try {
+    console.log('cookies:', req.headers.cookie)
     const { error } = await supabase.auth.exchangeCodeForSession(code)
 
     if (!error) {
