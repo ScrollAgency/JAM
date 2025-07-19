@@ -1,65 +1,57 @@
-// app/api/supabase/callback/route.ts
-import { createServerClient } from '@supabase/ssr'
-import { cookies } from 'next/headers'
-import { NextResponse } from 'next/server'
+// pages/api/supabase/callback.ts
+import type { NextApiRequest, NextApiResponse } from 'next'
+import createClient from '@/utils/supabase/api'
 import { parse } from 'cookie'
-import type { NextRequest } from 'next/server'
 
-export async function GET(request: NextRequest) {
-  const cookieStore = cookies()
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+  const supabase = createClient(req, res)
+  const code = req.query.code as string
+  let next = (req.query.next as string) ?? '/'
 
-  const supabase = createServerClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
-    {
-      cookies: {
-        getAll() {
-          return cookieStore.getAll()
-        },
-        setAll() {
-          // rien ici car on utilise `response.cookies.set` plus bas
-        },
-      },
-    }
-  )
+  if (!next.startsWith('/')) next = '/'
 
-  const url = new URL(request.url)
-  const code = url.searchParams.get('code')
-  const next = url.searchParams.get('next') || '/'
+  const protocol = 'https'
+  const host = req.headers.host || 'localhost:3000'
+  const origin = `${protocol}://${host}`
 
-  // Extraire le code_verifier
-  const cookieHeader = request.headers.get('cookie') || ''
-  const parsedCookies = parse(cookieHeader)
-  const codeVerifier = parsedCookies['sb-idwomihieftgogbgivic-auth-token-code-verifier']?.replace(/^"|"$/g, '')
+  // Récupérer le code_verifier dans les cookies (à adapter selon où tu le stockes)
+  const cookies = parse(req.headers.cookie || '')
+  const codeVerifier = cookies['sb-idwomihieftgogbgivic-auth-token-code-verifier']?.replace(/^"|"$/g, '')
 
   if (!code || !codeVerifier) {
-    return NextResponse.redirect('/auth/auth-code-error')
+    console.error('❌ Code ou code_verifier manquant')
+    return res.redirect(307, '/auth/auth-code-error')
   }
 
-  console.log('🎯 code_verifier:', codeVerifier)
+  try {
+    // Echange avec codeVerifier (obligatoire pour PKCE)
+    const { data, error } = await supabase.auth.exchangeCodeForSession(code)
 
-  // Échange du code contre session
-  const { data, error } = await supabase.auth.exchangeCodeForSession(code)
+    if (error || !data?.session) {
+      console.error('❌ Supabase exchange error:', error)
+      return res.redirect(307, '/auth/auth-code-error')
+    }
 
-  if (error || !data?.session) {
-    console.error('❌ Erreur échange code:', error)
-    return NextResponse.redirect('/auth/auth-code-error')
+    const { access_token, refresh_token } = data.session
+
+    if (access_token && refresh_token) {
+      // Crée le cookie final encodé JSON
+      const authTokenValue = encodeURIComponent(JSON.stringify({ access_token, refresh_token }))
+
+      // Prépare options cookie
+      const cookieOptions = `Path=/; HttpOnly; SameSite=Lax${process.env.NODE_ENV === 'production' ? '; Secure' : ''}`
+
+      // Set cookies standards
+      res.setHeader('Set-Cookie', [
+        `sb-access-token=${access_token}; ${cookieOptions}`,
+        `sb-refresh-token=${refresh_token}; ${cookieOptions}`,
+        `sb-idwomihieftgogbgivic-auth-token=${authTokenValue}; ${cookieOptions}`
+      ])
+    }
+
+    return res.redirect(307, `${origin}${next}`)
+  } catch (err) {
+    console.error('❌ Erreur inattendue:', err)
+    return res.redirect(307, '/auth/auth-code-error')
   }
-
-  const { access_token, refresh_token } = data.session
-
-  const authTokenValue = encodeURIComponent(JSON.stringify({ access_token, refresh_token }))
-
-  const response = NextResponse.redirect(new URL(next, request.url))
-
-  response.cookies.set('sb-idwomihieftgogbgivic-auth-token', authTokenValue, {
-    path: '/',
-    httpOnly: true,
-    secure: process.env.NODE_ENV === 'production',
-    sameSite: 'lax',
-    maxAge: 60 * 60 * 24 * 7, // 7 jours
-  })
-
-  console.log('✅ Authentification réussie. Redirection vers:', next)
-  return response
 }
