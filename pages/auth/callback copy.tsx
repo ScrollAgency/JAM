@@ -1,22 +1,27 @@
 // pages/auth/callback.tsx
-import { useEffect } from 'react'
-import { useRouter } from 'next/router'
+import { GetServerSideProps } from 'next'
 
-export default function Callback() {
-  const router = useRouter()
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const code = context.query.code
+  const next = context.query.next ?? '/'
 
-  useEffect(() => {
-    const code = router.query.code as string | undefined
-    const next = (router.query.next as string) ?? '/'
-
-    if (code) {
-      // Redirection vers l'API pour gérer le cookie et session
-      window.location.href = `/api/supabase/callback?code=${encodeURIComponent(code)}&next=${encodeURIComponent(next)}`
-    } else {
-      // Redirection si code absent
-      router.replace('/auth/auth-code-error')
+  if (typeof code === 'string') {
+    return {
+      redirect: {
+        destination: `/api/supabase/callback?code=${code}&next=${encodeURIComponent(next as string)}`,
+        permanent: false,
+      },
     }
-  }, [router.query])
+  }
 
+  return {
+    redirect: {
+      destination: '/auth/auth-code-error',
+      permanent: false,
+    },
+  }
+}
+
+export default function CallbackPage() {
   return <p>Connexion en cours...</p>
 }

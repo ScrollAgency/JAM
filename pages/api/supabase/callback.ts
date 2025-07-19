@@ -10,7 +10,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
   if (!next.startsWith('/')) next = '/'
 
-  // Vérifie le code_verifier (PKCE)
   const cookies = parse(req.headers.cookie || '')
   const codeVerifier = cookies['sb-idwomihieftgogbgivic-auth-token-code-verifier']?.replace(/^"|"$/g, '')
 
@@ -20,7 +19,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   }
 
   try {
-    // Fait l’échange du code OAuth avec Supabase (déclenche la pose de cookies)
     const { error } = await supabase.auth.exchangeCodeForSession(code)
 
     if (error) {
@@ -28,8 +26,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       return res.redirect(307, '/auth/auth-code-error')
     }
 
-    // ✅ Redirige vers une page temporaire qui effectuera la redirection finale en frontend
-    return res.redirect(307, `/auth/finishing-login?next=${encodeURIComponent(next)}`)
+    return res.redirect(307, next)
   } catch (err) {
     console.error('❌ Erreur inattendue:', err)
     return res.redirect(307, '/auth/auth-code-error')
