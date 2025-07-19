@@ -36,6 +36,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       const encodeToken = (token: string) => `base64:${Buffer.from(token).toString('base64')}`
       const cookieOptions = `Path=/; HttpOnly; SameSite=Lax; Max-Age=604800${process.env.NODE_ENV === 'production' ? '; Secure' : ''}`
 
+      console.log('➡️ Set cookie sb-auth-token:', encodeToken)
       res.setHeader('Set-Cookie', [
         `sb-access-token=${encodeToken(access_token)}; ${cookieOptions}`,
         `sb-refresh-token=${encodeToken(refresh_token)}; ${cookieOptions}`,
