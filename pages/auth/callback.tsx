@@ -1,22 +1,33 @@
-// pages/auth/callback.tsx
-import { useEffect } from 'react'
-import { useRouter } from 'next/router'
+import type { NextApiRequest, NextApiResponse } from 'next'
+import createClient from '@/utils/supabase/api'
 
-export default function Callback() {
-  const router = useRouter()
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+  const supabase = createClient(req, res)
+  const code = req.query.code as string
+  let next = (req.query.next as string) ?? '/'
 
-  useEffect(() => {
-    const code = router.query.code as string | undefined
-    const next = (router.query.next as string) ?? '/'
+  if (!next.startsWith('/')) next = '/'
 
-    if (code) {
-      // Redirection vers l'API pour gérer le cookie et session
-      window.location.href = `/api/supabase/callback?code=${encodeURIComponent(code)}&next=${encodeURIComponent(next)}`
-    } else {
-      // Redirection si code absent
-      router.replace('/auth/auth-code-error')
+  const protocol = req.headers['x-forwarded-proto']?.toString() || (process.env.NODE_ENV === 'development' ? 'http' : 'https')
+  const host = req.headers.host || 'localhost:3000'
+  const origin = `${protocol}://${host}`
+
+  if (code) {
+    try {
+      console.log('➡️ Auth code reçu:', code)
+      const { error } = await supabase.auth.exchangeCodeForSession(code)
+
+      if (!error) {
+        return res.redirect(307, `${origin}${next}`)
+      }
+
+      console.error('❌ Supabase exchange error:', error)
+      return res.redirect(307, `${origin}/auth/auth-code-error`)
+    } catch (err) {
+      console.error('❌ Unexpected error during Supabase exchange:', err)
+      return res.redirect(307, `${origin}/auth/auth-code-error`)
     }
-  }, [router.query])
+  }
 
-  return <p>Connexion en cours...</p>
+  res.redirect(307, `${origin}/auth/auth-code-error`)
 }
