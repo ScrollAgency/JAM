@@ -10,11 +10,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
   if (!next.startsWith('/')) next = '/'
 
-  const protocol = 'https'
-  const host = req.headers.host || 'localhost:3000'
-  const origin = `${protocol}://${host}`
-
-  // Récupérer le code_verifier dans les cookies (à adapter selon où tu le stockes)
+  // Vérifie le code_verifier (PKCE)
   const cookies = parse(req.headers.cookie || '')
   const codeVerifier = cookies['sb-idwomihieftgogbgivic-auth-token-code-verifier']?.replace(/^"|"$/g, '')
 
@@ -24,33 +20,16 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   }
 
   try {
-    // Echange avec codeVerifier (obligatoire pour PKCE)
-    const { data, error } = await supabase.auth.exchangeCodeForSession(code)
+    // Fait l’échange du code OAuth avec Supabase (déclenche la pose de cookies)
+    const { error } = await supabase.auth.exchangeCodeForSession(code)
 
-    if (error || !data?.session) {
+    if (error) {
       console.error('❌ Supabase exchange error:', error)
       return res.redirect(307, '/auth/auth-code-error')
     }
 
-    const { access_token, refresh_token } = data.session
-
-    if (access_token && refresh_token) {
-      // Crée le cookie final encodé JSON
-      const authTokenValue = encodeURIComponent(JSON.stringify({ access_token, refresh_token }))
-
-      // Prépare options cookie
-      const cookieOptions = `Path=/; HttpOnly; SameSite=Lax; Max-Age=604800${process.env.NODE_ENV === 'production' ? '; Secure' : ''}`
-
-
-      // Set cookies standards
-      res.setHeader('Set-Cookie', [
-        `sb-access-token=${access_token}; ${cookieOptions}`,
-        `sb-refresh-token=${refresh_token}; ${cookieOptions}`,
-        `sb-idwomihieftgogbgivic-auth-token=${encodeURIComponent(JSON.stringify({ access_token, refresh_token }))}; ${cookieOptions}`
-      ])
-    }
-
-    return res.redirect(307, `${origin}${next}`)
+    // ✅ Redirige vers une page temporaire qui effectuera la redirection finale en frontend
+    return res.redirect(307, `/auth/finishing-login?next=${encodeURIComponent(next)}`)
   } catch (err) {
     console.error('❌ Erreur inattendue:', err)
     return res.redirect(307, '/auth/auth-code-error')
