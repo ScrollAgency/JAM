@@ -1,5 +1,6 @@
 import { createServerClient, serializeCookieHeader } from '@supabase/ssr'
 import { type NextApiRequest, type NextApiResponse } from 'next'
+import { parse } from 'cookie'
 
 export default function createClient(req: NextApiRequest, res: NextApiResponse) {
   const supabase = createServerClient(
@@ -8,7 +9,12 @@ export default function createClient(req: NextApiRequest, res: NextApiResponse) 
     {
       cookies: {
         getAll() {
-          return Object.keys(req.cookies).map((name) => ({ name, value: req.cookies[name] || '' }))
+          const cookieHeader = req.headers.cookie ?? ''
+          const parsed = parse(cookieHeader)
+          return Object.entries(parsed).map(([name, value]) => ({
+            name,
+            value: value as string, // ✅ force le type
+          }))
         },
         setAll(cookiesToSet) {
           res.setHeader(
