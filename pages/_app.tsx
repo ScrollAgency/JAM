@@ -11,8 +11,8 @@ function MyApp({ Component, pageProps }: AppProps) {
 	return (
 		<>
 			<Component {...pageProps} />
-      <CrispChat/>
-      <WeglotScript/>
+			<CrispChat/>
+			<WeglotScript/>
 		</>
 	);
 }

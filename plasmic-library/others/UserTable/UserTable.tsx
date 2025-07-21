@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { supabase } from "@/lib/supabase";
+// import { supabase } from "../../../lib/supabase";
 import { motion } from 'framer-motion';
 
 interface JobApplication {
@@ -17,7 +17,7 @@ interface UserTableProps {
 }
 
 const getImageUrl = (bucket: string, path: string) => {
-    return supabase.storage.from(bucket).getPublicUrl(path).data.publicUrl;
+    // return supabase.storage.from(bucket).getPublicUrl(path).data.publicUrl;
 };
 
 const formatDate = (dateString: string) => {

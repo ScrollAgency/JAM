@@ -14,10 +14,8 @@ const publicRoutes = [
   '/user-invite',
   '/reset-password/[recovery_token]',
 
-  '/auth/callback',
+  '/auth/oauth-callback',
   '/auth/auth-code-error',
-  '/api/supabase/callback',
-  '/supabase/callback',
 
   '/first-install',
   '/plasmic-library',
@@ -68,17 +66,6 @@ export async function middleware(request: NextRequest) {
   const {
     data: { user },
   } = await supabase.auth.getUser()
-
-  // ✅ Ne PAS réécraser les cookies déjà présents → seulement compléter avec les customs
-  for (const cookie of request.cookies.getAll()) {
-    if (!supabaseResponse.cookies.get(cookie.name)) {
-      supabaseResponse.cookies.set(cookie.name, cookie.value, {
-        path: '/',
-        sameSite: 'lax',
-        secure: process.env.NODE_ENV === 'production',
-      })
-    }
-  }
 
   const isPublicRoute = publicRoutes.some(route => {
     if (route.includes('[recovery_token]')) {

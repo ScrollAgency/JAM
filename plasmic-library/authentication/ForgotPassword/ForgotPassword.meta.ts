@@ -1,14 +1,16 @@
 const ForgotPasswordMeta = {
   name: "ForgotPassword",
-  section: "🔑 Authentication",
-  displayName: "Forgot Password",
+  section: "1.🔑 Authentication",
+  displayName: "Forgot Pwd",
   description: "Un formulaire pour réinitialiser le mot de passe",
-  thumbnailUrl: "https://plasmic-api.agence-scroll.com/forgot-password.png",
+  importPath: "./plasmic-library/authentication/ForgotPassword",
+  thumbnailUrl: `${process.env.NEXT_PUBLIC_PROJECT_URL}/library/ForgotPassword.png`,
+  
   props: {
 
     // Wrapper style
     wrapperStyle: {
-      type: "string",
+      type: "choice",
       defaultValue: "card",
       options: ["simple", "card", "custom"],
       description: "Style du conteneur du formulaire",
@@ -21,7 +23,7 @@ const ForgotPasswordMeta = {
       description: "Texte du titre",
     },
     titleHeading: {
-      type: "string",
+      type: "choice",
       defaultValue: "h1",
       options: ["h1", "h2", "h3"],
       description: "Niveau du titre",
@@ -34,7 +36,7 @@ const ForgotPasswordMeta = {
       description: "Texte affiché sous le titre",
     },
 
-    // Input style
+    // Input
     inputStyle: {
       type: "choice",
       defaultValue: "simple",
@@ -68,45 +70,24 @@ const ForgotPasswordMeta = {
       description: "Texte du bouton de soumission",
     },
     submitButtonStyle: {
-      type: "string",
+      type: "choice",
       defaultValue: "primary",
       options: ["primary", "secondary", "tertiary"],
       description: "Style du bouton de soumission",
     },
-    submitButtonIcon: {
-      type: "slot",
-      description: "Icône à afficher dans le bouton de soumission",
-    },
-    submitButtonIconPosition: {
-      type: "choice",
-      options: ["left", "right"],
-      defaultValue: "left",
-      description: "Position de l’icône dans le bouton de soumission",
-    },
-
     cancelButtonText: {
       type: "string",
       defaultValue: "Annuler",
       description: "Texte du bouton annuler",
     },
-    cancelButtonStyle: {
-      type: "string",
+    buttonCancelStyle: {
+      type: "choice",
       defaultValue: "tertiary",
       options: ["primary", "secondary", "tertiary"],
       description: "Style du bouton annuler",
     },
-    cancelButtonIcon: {
-      type: "slot",
-      description: "Icône à afficher dans le bouton annuler",
-    },
-    cancelButtonIconPosition: {
-      type: "choice",
-      options: ["left", "right"],
-      defaultValue: "left",
-      description: "Position de l’icône dans le bouton annuler",
-    },
 
-    // Event handlers
+    // Events handlers
     onSubmit: {
       type: "eventHandler",
       argTypes: [{ name: "event", type: "object" }],
@@ -128,8 +109,6 @@ const ForgotPasswordMeta = {
       onChangeProp: "onEmailChange",
     },
   },
-
-  importPath: "./plasmic-library/authentication/ForgotPassword",
 };
 
 export default ForgotPasswordMeta;

@@ -1,13 +1,14 @@
 const PhoneSelectorMeta = {
-    name: "PhoneSelector",
-    section: "🔖 Jam",
-    displayName: "Phone selector",
-    description: "Phone selector from Jam project",
-    thumbnailUrl: "https://static1.plasmic.app/insertables/select.svg",
-    props: {
-      className: "string",
-    },
-    importPath: "./components/forms/PhoneSelector/PhoneSelector",
+  name: "PhoneSelector",
+  section: "2.🏷️ Forms",
+  displayName: "Phone selector",
+  description: "Phone selector from Jam project",
+  importPath: "./plasmic-library/forms/PhoneSelector",
+  thumbnailUrl: `${process.env.NEXT_PUBLIC_PROJECT_URL}/library/PhoneSelector.png`,
+
+  props: {
+    className: "string",
+  },
 };
 
 export default PhoneSelectorMeta;

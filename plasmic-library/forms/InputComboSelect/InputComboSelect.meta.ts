@@ -1,13 +1,15 @@
 const InputComboSelectMeta = {
   name: "InputComboSelect",
-  section: "🔖 Jam",
-  displayName: "Input + Combo Select",
+  section: "2.🏷️ Forms",
+  displayName: "Input-Select",
   description: "Champ combiné pour saisie ou sélection d'un nombre de 1 à 20",
-  thumbnailUrl: "https://static1.plasmic.app/insertables/modal.svg",
+  importPath: "./plasmic-library/forms/InputComboSelect",
+  thumbnailUrl: `${process.env.NEXT_PUBLIC_PROJECT_URL}/library/InputComboSelect.png`,
+
   props: {
     value: {
       type: "number",
-      defaultValue: 0,
+      defaultValue: "",
     },
     onChange: {
       type: "eventHandler",
@@ -24,8 +26,6 @@ const InputComboSelectMeta = {
       onChangeProp: "onChange",
     },
   },
-
-  importPath: "./components/forms/InputComboSelect/InputComboSelect",
 };
 
 export default InputComboSelectMeta;

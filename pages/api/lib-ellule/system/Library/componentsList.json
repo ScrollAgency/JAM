@@ -1,0 +1,308 @@
+{
+  "AccountParameters": {
+    "localVersion": "1.0.0",
+    "remoteVersion": "1.0.0",
+    "status": "uptodate",
+    "category": "authentication"
+  },
+  "ButtonGoogle": {
+    "localVersion": "0.0.1",
+    "remoteVersion": "0.0.1",
+    "status": "uptodate",
+    "category": "authentication"
+  },
+  "ForgotPassword": {
+    "localVersion": "1.0.0",
+    "remoteVersion": "1.0.0",
+    "status": "uptodate",
+    "category": "authentication"
+  },
+  "Login": {
+    "localVersion": "1.0.0",
+    "remoteVersion": "1.0.0",
+    "status": "uptodate",
+    "category": "authentication"
+  },
+  "ProfileBadge": {
+    "localVersion": "1.0.0",
+    "remoteVersion": "1.0.0",
+    "status": "uptodate",
+    "category": "authentication"
+  },
+  "ResetPassword": {
+    "localVersion": "1.0.0",
+    "remoteVersion": "1.0.0",
+    "status": "uptodate",
+    "category": "authentication"
+  },
+  "SignUp": {
+    "localVersion": "1.1.0",
+    "remoteVersion": "1.1.0",
+    "status": "uptodate",
+    "category": "authentication"
+  },
+  "SupabaseCrud": {
+    "localVersion": "0.0.1",
+    "remoteVersion": "0.0.1",
+    "status": "uptodate",
+    "category": "authentication"
+  },
+  "UserInvite": {
+    "localVersion": "0.0.1",
+    "remoteVersion": "0.0.1",
+    "status": "uptodate",
+    "category": "authentication"
+  },
+  "ActionButton": {
+    "localVersion": "0.0.1",
+    "remoteVersion": "0.0.1",
+    "status": "uptodate",
+    "category": "forms"
+  },
+  "CheckBox": {
+    "localVersion": "0.0.1",
+    "remoteVersion": "0.0.1",
+    "status": "uptodate",
+    "category": "forms"
+  },
+  "DropDown": {
+    "localVersion": "0.0.1",
+    "remoteVersion": "0.0.1",
+    "status": "uptodate",
+    "category": "forms"
+  },
+  "InputComboSelect": {
+    "localVersion": "1.0.0",
+    "remoteVersion": "1.0.0",
+    "status": "uptodate",
+    "category": "forms"
+  },
+  "PhoneSelector": {
+    "localVersion": "0.0.1",
+    "remoteVersion": "0.0.1",
+    "status": "uptodate",
+    "category": "forms"
+  },
+  "ButtonWalk": {
+    "localVersion": "0.0.1",
+    "remoteVersion": "0.0.1",
+    "status": "uptodate",
+    "category": "geolocalisation"
+  },
+  "JobCard": {
+    "localVersion": "0.0.1",
+    "remoteVersion": "0.0.1",
+    "status": "uptodate",
+    "category": "geolocalisation"
+  },
+  "JobOffersCard": {
+    "localVersion": "0.0.1",
+    "remoteVersion": "0.0.1",
+    "status": "uptodate",
+    "category": "geolocalisation"
+  },
+  "LeafletDistanceChip": {
+    "localVersion": "0.0.0",
+    "remoteVersion": "0.0.0",
+    "status": "uptodate",
+    "category": "geolocalisation"
+  },
+  "LeafletMap": {
+    "localVersion": "0.0.0",
+    "remoteVersion": "0.0.0",
+    "status": "uptodate",
+    "category": "geolocalisation"
+  },
+  "MapBox": {
+    "localVersion": "0.0.1",
+    "remoteVersion": "0.0.1",
+    "status": "uptodate",
+    "category": "geolocalisation"
+  },
+  "BarChartMultiple": {
+    "localVersion": "0.0.1",
+    "remoteVersion": "0.0.1",
+    "status": "uptodate",
+    "category": "graphs"
+  },
+  "GraphJs": {
+    "localVersion": "0.0.1",
+    "remoteVersion": "0.0.1",
+    "status": "uptodate",
+    "category": "graphs"
+  },
+  "RadialChart": {
+    "localVersion": "0.0.1",
+    "remoteVersion": "0.0.1",
+    "status": "uptodate",
+    "category": "graphs"
+  },
+  "PageLoader": {
+    "localVersion": "0.0.1",
+    "remoteVersion": "0.0.1",
+    "status": "uptodate",
+    "category": "interactions"
+  },
+  "QrCode": {
+    "localVersion": "0.0.0",
+    "remoteVersion": "0.0.0",
+    "status": "uptodate",
+    "category": "interactions"
+  },
+  "SmartLoader": {
+    "localVersion": "0.0.1",
+    "remoteVersion": "0.0.1",
+    "status": "uptodate",
+    "category": "interactions"
+  },
+  "WebPush": {
+    "localVersion": "0.0.0",
+    "remoteVersion": "0.0.0",
+    "status": "uptodate",
+    "category": "interactions"
+  },
+  "CardSimple": {
+    "localVersion": "0.0.1",
+    "remoteVersion": "0.0.1",
+    "status": "uptodate",
+    "category": "others"
+  },
+  "JamTextInput": {
+    "localVersion": "0.0.1",
+    "remoteVersion": "0.0.1",
+    "status": "uptodate",
+    "category": "others"
+  },
+  "OperationCard": {
+    "localVersion": "0.0.1",
+    "remoteVersion": "0.0.1",
+    "status": "uptodate",
+    "category": "others"
+  },
+  "PasswordCheckIndicator": {
+    "localVersion": "0.0.1",
+    "remoteVersion": "0.0.1",
+    "status": "uptodate",
+    "category": "others"
+  },
+  "ProgressBar": {
+    "localVersion": "0.0.1",
+    "remoteVersion": "0.0.1",
+    "status": "uptodate",
+    "category": "others"
+  },
+  "SitexButton": {
+    "localVersion": "0.0.1",
+    "remoteVersion": "0.0.1",
+    "status": "uptodate",
+    "category": "others"
+  },
+  "SitexTextInput": {
+    "localVersion": "0.0.1",
+    "remoteVersion": "0.0.1",
+    "status": "uptodate",
+    "category": "others"
+  },
+  "TextInput": {
+    "localVersion": "0.0.1",
+    "remoteVersion": "0.0.1",
+    "status": "uptodate",
+    "category": "others"
+  },
+  "TextLink": {
+    "localVersion": "0.0.1",
+    "remoteVersion": "0.0.1",
+    "status": "uptodate",
+    "category": "others"
+  },
+  "Toggle": {
+    "localVersion": "0.0.1",
+    "remoteVersion": "0.0.1",
+    "status": "uptodate",
+    "category": "others"
+  },
+  "UserTable": {
+    "localVersion": "0.0.1",
+    "remoteVersion": "0.0.1",
+    "status": "uptodate",
+    "category": "others"
+  },
+  "StripeCheckoutButton": {
+    "localVersion": "0.0.1",
+    "remoteVersion": "0.0.1",
+    "status": "uptodate",
+    "category": "shopping"
+  },
+  "StripeSubscriptionButton": {
+    "localVersion": "0.0.1",
+    "remoteVersion": "0.0.1",
+    "status": "uptodate",
+    "category": "shopping"
+  },
+  "Accordion": {
+    "localVersion": "0.0.0",
+    "remoteVersion": "0.0.0",
+    "status": "uptodate",
+    "category": "ui"
+  },
+  "AlertManager": {
+    "localVersion": "0.0.1",
+    "remoteVersion": "0.0.1",
+    "status": "uptodate",
+    "category": "ui"
+  },
+  "CalendarHeroui": {
+    "localVersion": "1.0.0",
+    "remoteVersion": "1.0.0",
+    "status": "uptodate",
+    "category": "ui"
+  },
+  "CalendarShadCn": {
+    "localVersion": "1.0.0",
+    "remoteVersion": "1.0.0",
+    "status": "uptodate",
+    "category": "ui"
+  },
+  "DataGrid": {
+    "localVersion": "0.0.1",
+    "remoteVersion": "0.0.1",
+    "status": "uptodate",
+    "category": "ui"
+  },
+  "FileUploader": {
+    "localVersion": "0.0.1",
+    "remoteVersion": "0.0.1",
+    "status": "uptodate",
+    "category": "ui"
+  },
+  "HeroCard": {
+    "localVersion": "0.0.1",
+    "remoteVersion": "0.0.1",
+    "status": "uptodate",
+    "category": "ui"
+  },
+  "HoursCalculator": {
+    "localVersion": "0.0.0",
+    "remoteVersion": "0.0.0",
+    "status": "uptodate",
+    "category": "ui"
+  },
+  "JamBadge": {
+    "localVersion": "0.0.1",
+    "remoteVersion": "0.0.1",
+    "status": "uptodate",
+    "category": "ui"
+  },
+  "Kanban": {
+    "localVersion": "0.0.1",
+    "remoteVersion": "0.0.1",
+    "status": "uptodate",
+    "category": "ui"
+  },
+  "Toast": {
+    "localVersion": "0.0.1",
+    "remoteVersion": "0.0.1",
+    "status": "uptodate",
+    "category": "ui"
+  }
+}

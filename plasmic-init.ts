@@ -1,11 +1,14 @@
-import * as PlasmicLibrary from "./plasmic-library/components"
 import { initPlasmicLoader } from "@plasmicapp/loader-nextjs";
-import { tokens } from "./styles/tokens-jam";
-
 import { 
-  SupabaseProvider, SupabaseProviderMeta, SupabaseUserGlobalContext, SupabaseUserGlobalContextMeta,
-  SupabaseUppyUploader, SupabaseUppyUploaderMeta, SupabaseStorageGetSignedUrl, SupabaseStorageGetSignedUrlMeta,
+  SupabaseProvider, SupabaseProviderMeta, 
+  SupabaseUserGlobalContext, SupabaseUserGlobalContextMeta,
+  SupabaseUppyUploader, SupabaseUppyUploaderMeta, 
+  SupabaseStorageGetSignedUrl, SupabaseStorageGetSignedUrlMeta,
 } from "plasmic-supabase"
+
+import * as PlasmicLibrary from "./plasmic-library/components"
+
+import { tokens } from "./styles/tokens-jam";
 
 // Loader plasmic
 export const PLASMIC = initPlasmicLoader({
@@ -17,9 +20,6 @@ export const PLASMIC = initPlasmicLoader({
   ],
   preview: true,
 });
-
-// Design tokens
-for (const token of tokens) { PLASMIC.registerToken(token); }
 
 // Plasmic-library
 function registerComponents(library: Record<string, any>) {
@@ -35,6 +35,9 @@ function registerComponents(library: Record<string, any>) {
   }
 }
 registerComponents(PlasmicLibrary);
+
+// Design tokens
+for (const token of tokens) { PLASMIC.registerToken(token); }
 
 // Supabase
 PLASMIC.registerGlobalContext(SupabaseUserGlobalContext, SupabaseUserGlobalContextMeta)

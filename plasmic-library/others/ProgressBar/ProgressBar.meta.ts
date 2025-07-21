@@ -1,9 +1,11 @@
 const ProgressBarMeta = {
   name: "ProgressBar",
-  section: "📍 Test",
+  section: "8.⚡ Others",
   displayName: "Progress bar",
-  description: "Description de cette belle carte",
+  description: "Progress bar",
+  importPath: "./plasmic-library/ui/ProgressBar",
   thumbnailUrl: "https://static1.plasmic.app/insertables/slider.svg",
+
   props: {
     label: {
       type: "string",
@@ -32,7 +34,6 @@ const ProgressBarMeta = {
       description: "Taille de la barre de progression.",
     },
   },
-  importPath: "./components/others/ProgressBar/ProgressBar",
 };
 
 export default ProgressBarMeta;

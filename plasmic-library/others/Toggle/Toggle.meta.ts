@@ -1,9 +1,11 @@
 const ToggleMeta = {
   name: "Toggle",
-  section: "📍 Test",
+  section: "8.⚡ Others",
   displayName: "Toggle",
-  description: "Description de cette belle carte",
+  description: "Toggle",
+  importPath: "./plasmic-library/ui/Toggle",
   thumbnailUrl: "https://static1.plasmic.app/insertables/switch.svg",
+
   props: {
     disabled: {
       type: "boolean",
@@ -32,7 +34,6 @@ const ToggleMeta = {
       ],
     },
   },
-  importPath: "./components/others/Toggle/Toggle",
 };
 
 export default ToggleMeta;

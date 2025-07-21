@@ -1,9 +1,11 @@
 const TextLinkMeta = {
   name: "TextLink",
-  section: "🔖 Jam",
+  section: "8.⚡ Others",
   displayName: "Text Link",
   description: "Text for links from JAM",
+  importPath: "./plasmic-library/ui/TextLink",
   thumbnailUrl: "https://static1.plasmic.app/insertables/text.svg",
+
   props: {
     redirect: {
       type: "string",
@@ -27,7 +29,6 @@ const TextLinkMeta = {
     iconImage: "imageUrl",
     disabled: "boolean",
   },
-  importPath: "./components/others/TextLink/TextLink",
 };
 
 export default TextLinkMeta;

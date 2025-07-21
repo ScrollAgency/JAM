@@ -1,4 +1,3 @@
-// pages/auth/auth-code-error.tsx
 export default function AuthCodeErrorPage() {
   return (
     <div style={{ padding: '2rem', textAlign: 'center' }}>

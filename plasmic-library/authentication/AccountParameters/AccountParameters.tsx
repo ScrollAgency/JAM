@@ -2,95 +2,169 @@ import type * as React from "react";
 import { forwardRef, useState, useEffect, useCallback } from "react";
 import Link from "next/link";
 import { presets } from "@/styles/presets";
-import AlertManager, { type AlertType, type AlertMessage } from "../../alerts/AlertManager/AlertManager";
+import AlertManager, { type AlertType, type AlertMessage } from "../../ui/AlertManager/AlertManager";
+import { EyeIcon, ViewIcon } from "@/plasmic-library/icons/icons";
 
 export interface AccountParametersProps {
+  // Wrapper
+  wrapperStyle?: "simple" | "card" | "custom";
+
+  // Title
+  titleHeading?: "h1" | "h2" | "h3";
+  title?: string;
+
+  // Input
   inputStyle?: "simple" | "advance";
 
+  // Informations
   firstName: string;
   lastName: string;
   email: string;
   role: string;
   
+  // Password
+  password?: string;
   passwordLabel?: string;
-    repeatPasswordLabel?: string;
-    buttonSubmitStyle?: "primary" | "secondary" | "tertiary";
-    submitButtonText?: string;
-    showPasswordToggle?: boolean;
-    eyeIconColor?: string;
-    showAlerts?: boolean;
-    alertPosition?: 'top' | 'bottom' | 'inline';
-    maxAlerts?: number;
-    customErrorMessages?: {
-      weakPassword?: string;
-      passwordMismatch?: string;
-      resetTokenInvalid?: string;
-      resetTokenExpired?: string;
-      networkError?: string;
-    };
-    resetSuccessMessage?: string;
-    onSubmit?: (event: React.FormEvent<HTMLFormElement>) => void;
-    onAlertClose?: (id: string) => void;
+  passwordPlaceholder?: string;
+  confirmPasswordLabel?: string;
+  confirmPassword?: string;
+  confirmPasswordPlaceholder?: string;
+  passwordInfoText?: string;
+  eyeIconColor?: string;
+
+  // Alert
+  alertPosition?: 'top' | 'bottom' | 'inline';
+  maxAlerts?: number;
+  customErrorMessages?: {
+    weakPassword?: string;
+    passwordMismatch?: string;
+    resetTokenInvalid?: string;
+    resetTokenExpired?: string;
+    networkError?: string;
+  };
+  resetSuccessMessage?: string;
+
+  // Buttons
+  submitButtonStyle?: "primary" | "secondary" | "tertiary";
+  submitButtonText?: string;
+
+  // show / hide
+  showTitle?: boolean;
+  showPasswordToggle?: boolean;
+  showAlerts?: boolean;
+  showPasswordStrength?: boolean;
+
+  // Events handlers
+  onPasswordChange?: (value: string) => void;
+  onConfirmPasswordChange?: (value: string) => void;
+  onSubmit?: (event: React.FormEvent<HTMLFormElement>) => void;
+  onAlertClose?: (id: string) => void;
 }
 
 const AccountParameters = forwardRef<HTMLDivElement, AccountParametersProps>(
   ({ 
+    // Wrapper
+    wrapperStyle = "card",
+
+    // Title
+    titleHeading = "h1",
+    title = "Réinitialiser le mot de passe",
+
+    // Input
     inputStyle = "simple",
+
+    // Informations
     firstName,
     lastName,
     email,
     role,
 
+    // Password
     passwordLabel= "Nouveau mot de passe*",
-    repeatPasswordLabel= "Répétez le mot de passe*",
-    submitButtonText = "Enregistrer le nouveau mot de passe",
-    buttonSubmitStyle = "secondary",
-    showPasswordToggle = true,
+    passwordPlaceholder = "••••••••",
+    confirmPasswordLabel= "Répétez le mot de passe*",
+    confirmPasswordPlaceholder = "••••••••",
+    passwordInfoText = "Utilisez 8 caractères ou plus en mélangeant lettres, chiffres et symboles.",
     eyeIconColor = "#666",
-    showAlerts = true,
+
+    // Alert
     alertPosition = 'top',
     maxAlerts = 3,
     customErrorMessages,
     resetSuccessMessage = "Votre mot de passe a été réinitialisé avec succès!",
+
+    // Buttons
+    submitButtonText = "Enregistrer le nouveau mot de passe",
+    submitButtonStyle = "secondary",
+
+    // show / hide
+    showTitle = false,
+    showPasswordToggle = true,
+    showAlerts = true,
+    showPasswordStrength = true,
+
+    // Events handlers
+    onPasswordChange,
+    onConfirmPasswordChange,
     onAlertClose,
     onSubmit,
   }, ref) => {
+    type HeadingKeys = "heading1" | "heading2" | "heading3";
+  
+    const headingKey = `heading${titleHeading.slice(1)}` as HeadingKeys;
+    const headingStyle = presets[headingKey] || presets.heading1;
+    const Title = titleHeading as keyof JSX.IntrinsicElements;
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
     const [passwordStrength, setPasswordStrength] = useState(0);
+    const [passwordsMatch, setPasswordsMatch] = useState(password === confirmPassword);
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
     const [alerts, setAlerts] = useState<AlertMessage[]>([]);
 
 const defaultErrorMessages = {
-    weakPassword: "Le mot de passe est trop faible. Utilisez au moins 8 caractères avec des lettres, chiffres et symboles.",
-    passwordMismatch: "Les mots de passe ne correspondent pas",
-    resetTokenInvalid: "Le lien de réinitialisation n'est pas valide",
-    resetTokenExpired: "Le lien de réinitialisation a expiré",
-    networkError: "Une erreur réseau s'est produite. Veuillez réessayer."
-  };
+  weakPassword: "Le mot de passe est trop faible. Utilisez au moins 8 caractères avec des lettres, chiffres et symboles.",
+  passwordMismatch: "Les mots de passe ne correspondent pas",
+  resetTokenInvalid: "Le lien de réinitialisation n'est pas valide",
+  resetTokenExpired: "Le lien de réinitialisation a expiré",
+  networkError: "Une erreur réseau s'est produite. Veuillez réessayer."
+};
 
-  const errorMessages = { ...defaultErrorMessages, ...customErrorMessages };
+const errorMessages = { ...defaultErrorMessages, ...customErrorMessages };
 
-  const addAlert = (type: AlertType, message: string) => {
-    const id = Date.now().toString();
-    setAlerts(prevAlerts => [...prevAlerts, { id, type, message }]);
-    return id;
-  };
+const addAlert = (type: AlertType, message: string) => {
+  const id = Date.now().toString();
+  setAlerts(prevAlerts => [...prevAlerts, { id, type, message }]);
+  return id;
+};
 
-  const removeAlert = (id: string) => {
-    setAlerts(prevAlerts => prevAlerts.filter(alert => alert.id !== id));
-    if (onAlertClose) onAlertClose(id);
-  };
+const removeAlert = (id: string) => {
+  setAlerts(prevAlerts => prevAlerts.filter(alert => alert.id !== id));
+  if (onAlertClose) onAlertClose(id);
+};
 
-  const handlePasswordChange = useCallback((value: string) => {
+  const checkPasswordStrength = useCallback((password: string) => {
+    const criteria = [/[a-z]/, /[A-Z]/, /\d/, /[^A-Za-z0-9]/];
+    const hasMinLength = password.length >= 8;
+    const criteriaCount = criteria.filter(regex => regex.test(password)).length;
+    const strength = hasMinLength ? criteriaCount : Math.min(criteriaCount, 2);
+    setPasswordStrength(strength);
+  }, []);
+
+  const handlePasswordChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
     setPassword(value);
     checkPasswordStrength(value);
-  }, []);
+    setPasswordsMatch(value === confirmPassword);
+    if (onPasswordChange) onPasswordChange(value);
+  }, [confirmPassword, onPasswordChange, checkPasswordStrength]);
 
-  const handleConfirmPasswordChange = useCallback((value: string) => {
+  const handleConfirmPasswordChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
     setConfirmPassword(value);
-  }, []);
+    setPasswordsMatch(password === value);
+    if (onConfirmPasswordChange) onConfirmPasswordChange(value);
+  }, [password, onConfirmPasswordChange]);
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
@@ -98,14 +172,6 @@ const defaultErrorMessages = {
 
   const toggleConfirmPasswordVisibility = () => {
     setShowConfirmPassword(!showConfirmPassword);
-  };
-
-  const checkPasswordStrength = (password: string) => {
-    const criteria = [/[a-z]/, /[A-Z]/, /\d/, /[^A-Za-z0-9]/];
-    const hasMinLength = password.length >= 8;
-    const criteriaCount = criteria.filter(regex => regex.test(password)).length;
-    const strength = hasMinLength ? criteriaCount : Math.min(criteriaCount, 2);
-    setPasswordStrength(strength);
   };
 
   const getStrengthColor = (strength: number) => {
@@ -134,22 +200,41 @@ const defaultErrorMessages = {
     return bars;
   };
 
-  const EyeIcon = () => (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <title>Icône d'œil</title> {/* Accessibilité */}
-      <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
-      <circle cx="12" cy="12" r="3" />
-      <line x1="1" y1="1" x2="23" y2="23" />
-    </svg>
-  );
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setAlerts([]);
 
-  const ViewIcon = () => (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <title>Icône de vue</title> {/* Accessibilité */}
-      <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
-      <circle cx="12" cy="12" r="3" />
-    </svg>
-  );
+    const errors: string[] = [];
+
+    if (passwordStrength < 3) {
+      errors.push(errorMessages.weakPassword);
+    }
+
+    if (password !== confirmPassword) {
+      setPasswordsMatch(false);
+      errors.push(errorMessages.passwordMismatch);
+    } else {
+      setPasswordsMatch(true);
+    }
+
+    if (errors.length > 0) {
+      for (const error of errors) {
+        addAlert('error', error);
+      }
+      return;
+    }
+
+    if (onSubmit) {
+      (async () => {
+        try {
+          await onSubmit(event);
+          addAlert("success", resetSuccessMessage);
+        } catch (error) {
+          addAlert("error", error instanceof Error ? error.message || errorMessages.networkError : errorMessages.networkError);
+        }
+      })();
+    }
+  };
 
   useEffect(() => {
     return () => {
@@ -157,42 +242,13 @@ const defaultErrorMessages = {
     };
   }, []);
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    setAlerts([]);
-    let isValid = true;
-    let hasShownError = false;
-
-    if (passwordStrength < 3) {
-      isValid = false;
-      addAlert('error', errorMessages.weakPassword);
-      hasShownError = true;
-    }
-
-    if (password !== confirmPassword) {
-      isValid = false;
-      if (!hasShownError) {
-        addAlert('error', errorMessages.passwordMismatch);
-      }
-    }
-
-    if (isValid && onSubmit) {
-      try {
-        onSubmit(event);
-        addAlert('success', resetSuccessMessage);
-      } catch (error) {
-        if (error instanceof Error) {
-          addAlert('error', error.message || errorMessages.networkError);
-        } else {
-          addAlert('error', errorMessages.networkError);
-        }
-      }
-    }
-  };
-
     return (
       <div style={presets.wrappers.accountCard as React.CSSProperties} ref={ref}>
         
+      {showTitle && (
+        <Title style={headingStyle}>{title}</Title>
+      )}
+
         {/* Informations utilisateur */}
         <div style={{ columnGap: 110}}>
           <div style={{ display: 'flex', flexDirection: 'row' }}>
@@ -240,7 +296,7 @@ const defaultErrorMessages = {
               type={showPassword ? "text" : "password"}
               id="passwordInput"
               value={password}
-              onChange={(e) => handlePasswordChange(e.target.value)}
+              onChange={handlePasswordChange}
               required
               style={presets.inputs[inputStyle]}
             />
@@ -255,18 +311,24 @@ const defaultErrorMessages = {
               </button>
             )}
           </div>
-          <p style={presets.checkPassword as React.CSSProperties}>Utilisez 8 caractères ou plus en mélangeant lettres, chiffres et symboles.</p>
-          <div style={presets.strengthBars}>{renderStrengthBars()}</div>
+          
+          {showPasswordStrength && (
+            <>
+              <div style={presets.strengthBars}>{renderStrengthBars()}</div>
+              <small style={presets.passwordHint as React.CSSProperties}>{passwordInfoText}</small>
+            </>
+          )}
+
         </div>
 
         <div style={{ rowGap: presets.inputField.rowGap }}>
-          <label style={presets.formLabel as React.CSSProperties} htmlFor="confirmPassword">{repeatPasswordLabel}</label>
+          <label style={presets.formLabel as React.CSSProperties} htmlFor="confirmPassword">{confirmPasswordLabel}</label>
           <div style={presets.passwordInputWrapper as React.CSSProperties}>
             <input
               type={showConfirmPassword ? "text" : "password"}
               id="confirmPasswordInput"
               value={confirmPassword}
-              onChange={(e) => handleConfirmPasswordChange(e.target.value)}
+              onChange={handleConfirmPasswordChange}
               required
               style={presets.inputs[inputStyle]}
             />
@@ -285,7 +347,7 @@ const defaultErrorMessages = {
 
         <button
           type="submit"
-          style={presets.buttons[buttonSubmitStyle] as React.CSSProperties}
+          style={presets.buttons[submitButtonStyle] as React.CSSProperties}
         >
           {submitButtonText}
         </button>

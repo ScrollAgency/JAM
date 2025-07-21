@@ -1,10 +1,10 @@
 const AlertManagerMeta = {
   name: "AlertManager",
-  section: "8.🧩 UI",
+  section: "7.🧩 UI",
   displayName: "Alert Manager",
   description: "Gestionnaire d'alertes pour les formulaires d'authentification et autres composants",
   importPath: "./plasmic-library/ui/AlertManager",
-  thumbnailUrl: "https://plasmic-api.agence-scroll.com/alert-manager.png",
+  thumbnailUrl: `${process.env.NEXT_PUBLIC_PROJECT_URL}/library/AlertManager.png`,
 
   props: {
     alerts: {

@@ -1,12 +1,34 @@
 const AccountParametersMeta = {
   name: "AccountParameters",
-  section: "🔑 Authentication",
-  displayName: "Account Parameters",
+  section: "1.🔑 Authentication",
+  displayName: "Account",
   description: "Affiche les informations de l'utilisateur et permet de réinitialiser le mot de passe.",
-  thumbnailUrl: "https://plasmic-api.agence-scroll.com/forgot-password.png",
+  importPath: "./plasmic-library/authentification/AccountParameters",
+  thumbnailUrl: `${process.env.NEXT_PUBLIC_PROJECT_URL}/library/AccountParameters.png`,
   
   props: {
-    // Informations utilisateur
+
+    // Wrapper style
+    wrapperStyle: {
+      type: "choice",
+      defaultValue: "card",
+      options: ["simple", "card", "custom"],
+      description: "Style du conteneur du formulaire",
+    },
+
+    // Title
+    titleHeading: {
+      type: "choice",
+      defaultValue: "h2",
+      options: ["h1", "h2", "h3"],
+      description: "Niveau du titre de la section réinitialisation",
+    },
+    title: {
+      type: "string",
+      defaultValue: "Réinitialiser le mot de passe",
+    },
+
+    // Informations
     firstName: {
       type: "string",
       defaultValue: "",
@@ -28,17 +50,7 @@ const AccountParametersMeta = {
       description: "Rôle de l'utilisateur (ex: Admin, User)",
     },
 
-    // Réinitialisation du mot de passe
-    titleHeading: {
-      type: "choice",
-      defaultValue: "h2",
-      options: ["h1", "h2", "h3"],
-      description: "Niveau du titre de la section réinitialisation",
-    },
-    title: {
-      type: "string",
-      defaultValue: "Réinitialiser le mot de passe",
-    },
+    // Password
     passwordLabel: {
       type: "string",
       defaultValue: "Nouveau mot de passe*",
@@ -53,31 +65,19 @@ const AccountParametersMeta = {
       type: "string",
       defaultValue: "Entrez votre nouveau mot de passe",
     },
-    repeatPasswordLabel: {
+    confirmPasswordLabel: {
       type: "string",
       defaultValue: "Répétez le mot de passe*",
     },
-    repeatPassword: {
+    confirmPassword: {
       type: "string",
       defaultValue: "",
-      valueProp: "repeatPassword",
-      onChangeProp: "onRepeatPasswordChange",
+      valueProp: "confirmPassword",
+      onChangeProp: "onConfirmPasswordChange",
     },
-    repeatPasswordPlaceholder: {
+    confirmPasswordPlaceholder: {
       type: "string",
       defaultValue: "Confirmez votre mot de passe",
-    },
-
-    // Barres de progression pour le mot de passe
-    passwordStrength: {
-      type: "boolean",
-      defaultValue: true,
-    },
-
-    showPasswordToggle: {
-      type: "boolean",
-      defaultValue: true,
-      description: "Affiche un bouton pour montrer/masquer le mot de passe",
     },
     eyeIconColor: {
       type: "string",
@@ -85,12 +85,7 @@ const AccountParametersMeta = {
       description: "Couleur de l'icône d'œil",
     },
 
-    // Gestion des alertes
-    showAlerts: {
-      type: "boolean",
-      defaultValue: true,
-      description: "Affiche des alertes pour les erreurs et succès",
-    },
+    // Alerts
     alertPosition: {
       type: "choice",
       options: ["top", "bottom", "inline"],
@@ -125,6 +120,26 @@ const AccountParametersMeta = {
       description: "Style du bouton de soumission",
     },
 
+    // Show / hide
+    showTitle: {
+      type: "boolean",
+      defaultValue: false,
+    },
+    showPasswordStrength: {
+      type: "boolean",
+      defaultValue: true,
+    },
+    showPasswordToggle: {
+      type: "boolean",
+      defaultValue: true,
+      description: "Affiche un bouton pour montrer/masquer le mot de passe",
+    },
+    showAlerts: {
+      type: "boolean",
+      defaultValue: true,
+      description: "Affiche des alertes pour les erreurs et succès",
+    },
+
     // Gestion des événements
     onSubmit: {
       type: "eventHandler",
@@ -136,7 +151,7 @@ const AccountParametersMeta = {
       argTypes: [{ name: "event", type: "object" }],
       description: "Appelée lors de la modification du mot de passe",
     },
-    onRepeatPasswordChange: {
+    onConfirmPasswordChange: {
       type: "eventHandler",
       argTypes: [{ name: "event", type: "object" }],
       description: "Appelée lors de la modification du champ de confirmation du mot de passe",
@@ -156,15 +171,13 @@ const AccountParametersMeta = {
       valueProp: "password",
       onChangeProp: "onPasswordChange",
     },
-    repeatPassword: {
+    confirmPassword: {
       type: "writable",
       variableType: "text",
-      valueProp: "repeatPassword",
-      onChangeProp: "onRepeatPasswordChange",
+      valueProp: "confirmPassword",
+      onChangeProp: "onConfirmPasswordChange",
     },
   },
-
-  importPath: "./components/auth/AccountParameters",
 };
 
 export default AccountParametersMeta;

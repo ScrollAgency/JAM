@@ -3,10 +3,8 @@ import { forwardRef, useCallback, useEffect, useState } from "react";
 import type { HTMLElementRefOf } from "@plasmicapp/react-web";
 import Link from "next/link";
 import { presets } from "@/styles/presets";
-import AlertManager, { type AlertType, type AlertMessage } from "@/plasmic-library/alerts/AlertManager/AlertManager";
+import AlertManager, { type AlertType, type AlertMessage } from "@/plasmic-library/ui/AlertManager/AlertManager";
 import { EyeIcon, ViewIcon } from "@/plasmic-library/icons/icons";
-
-import styles from './ResetPassword.module.css';
 
 export interface ResetPasswordProps {
   // Wrapper
@@ -255,7 +253,6 @@ function ResetPassword_(
   return (
     <div
       ref={ref}
-      className={styles[`wrapper-${wrapperStyle}`]}
       style={presets.wrappers[wrapperStyle] as React.CSSProperties}
     >
       <Title style={headingStyle}>{title}</Title>
@@ -352,7 +349,6 @@ function ResetPassword_(
       <Link href="/login">
         <button
           type="button"
-          className={styles[`button-${cancelButtonStyle}`]}
           style={presets.buttons[cancelButtonStyle] as React.CSSProperties}
         >
           {cancelButtonText}

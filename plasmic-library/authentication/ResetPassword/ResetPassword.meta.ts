@@ -1,10 +1,10 @@
 const ResetPasswordMeta = {
   name: "ResetPassword",
   section: "1.🔑 Authentication",
-  displayName: "Reset Password",
+  displayName: "Reset Pwd",
   description: "Un formulaire pour réinitialiser le mot de passe avec indicateur de force du mot de passe à couleurs dynamiques, visibilité du mot de passe et système d'alertes intégré",
   importPath: "./plasmic-library/authentication/ResetPassword",
-  thumbnailUrl: "https://plasmic-api.agence-scroll.com/reset-password.png",
+  thumbnailUrl: `${process.env.NEXT_PUBLIC_PROJECT_URL}/library/ResetPassword.png`,
   
   props: {
 

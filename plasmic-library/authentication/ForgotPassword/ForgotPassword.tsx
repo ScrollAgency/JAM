@@ -1,157 +1,127 @@
 import * as React from "react";
 import type { HTMLElementRefOf } from "@plasmicapp/react-web";
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { presets } from "@/styles/presets";
-import Link from "next/link";
+import Link from "next/link";  
 
 export interface ForgotPasswordProps {
+  // Wrapper
   wrapperStyle?: "simple" | "card" | "custom";
-  buttonSubmitStyle?: "primary" | "secondary" | "tertiary";
-  buttonAbordStyle?: "primary" | "secondary" | "tertiary";
-  inputStyle?: "simple" | "advance";
-  onSubmit?: (event: React.FormEvent<HTMLFormElement>) => void;
-
+  
   // Titre
   titleHeading?: "h1" | "h2" | "h3";
   title?: string;
 
-  // Icone du bouton de soumission
-  submitButtonIcon?: React.ReactNode;
-  submitButtonIconPosition?: "left" | "right"; // Default: right
-
-
-  // Champ email
-  emailLabel?: string;
-  placeholderEmail?: string;
-  onEmailChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
-
-  // Bouton de soumission
-  submitButtonText?: string;
-  cancelButtonText?: string;
-
   // Texte explicatif
   descriptionText?: string;
+
+  // Input
+  inputStyle?: "simple" | "advance";
+
+  // Email
+  email?: string;
+  emailLabel?: string;
+  placeholderEmail?: string;
+  
+
+  // Boutons
+  buttonSubmitStyle?: "primary" | "secondary" | "tertiary";
+  submitButtonText?: string;
+  buttonCancelStyle?: "primary" | "secondary" | "tertiary";
+  cancelButtonText?: string;
+
+  // Events handlers
+  onEmailChange?: (value: string) => void;
+  onSubmit?: (event: React.FormEvent<HTMLFormElement>) => void;
 }
 
 function ForgotPassword_(
-  {
+  props: ForgotPasswordProps,
+  ref: HTMLElementRefOf<"div">
+){
+  const {
+    // Wrapper
     wrapperStyle = "card",
-    buttonSubmitStyle = "primary",
-    buttonAbordStyle = "tertiary",
-    inputStyle = "simple",
-    onSubmit,
-
-    // Icone du bouton de soumission
-    submitButtonIcon,
-    submitButtonIconPosition = "right",
-
-
+    
+    // Titre
     titleHeading = "h1",
     title = "Mot de passe oublié ?",
 
+    // Texte explicatif
+    descriptionText = "Pas de panique, nous allons vous envoyer un e-mail pour vous aider à réinitialiser votre mot de passe.",
+
+    // Input
+    inputStyle = "simple",
+
+    // Email
     emailLabel = "Email",
     placeholderEmail = "Entrez votre email",
-    onEmailChange,
 
+    // Boutons
+    buttonSubmitStyle = "primary",
     submitButtonText = "Réinitialiser",
+    buttonCancelStyle = "tertiary",
     cancelButtonText = "Annuler",
-    descriptionText = "Pas de panique, nous allons vous envoyer un e-mail pour vous aider à réinitialiser votre mot de passe.", // Valeur par défaut
-  }: ForgotPasswordProps,
-  ref: HTMLElementRefOf<"div">
-) {
-  const [emailState, setEmail] = useState("");
 
-  // Utiliser une fonction pour rendre le titre au lieu de créer une variable qui référence la chaîne de caractères
-  const renderTitle = () => {
-    switch (titleHeading) {
-      case 'h1':
-        return <h1 style={presets.heading1 as React.CSSProperties}>{title}</h1>;
-      case 'h2':
-        return <h2 style={presets.heading2 as React.CSSProperties}>{title}</h2>;
-      case 'h3':
-        return <h3 style={presets.heading3 as React.CSSProperties}>{title}</h3>;
-      default:
-        return <h1 style={presets.heading1 as React.CSSProperties}>{title}</h1>;
-    }
-  };
+    // Events handlers
+    onEmailChange,
+    onSubmit,
+  } = props;
 
-  // Modifié pour éviter le problème de DataCloneError
-  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    setEmail(value);
+  type HeadingKeys = "heading1" | "heading2" | "heading3";
+  
+  const headingKey = `heading${titleHeading.slice(1)}` as HeadingKeys;
+  const headingStyle = presets[headingKey] || presets.heading1;
 
-    // Solution pour éviter l'erreur DataCloneError:
-    // Au lieu de passer l'événement original, créer un objet simplifié
-    if (onEmailChange) {
-      // Créer un objet simplifié qui imite l'événement de changement
-      const simpleEvent = {
-        target: {
-          value: value,
-          name: e.target.name,
-          id: e.target.id
-        },
-        currentTarget: {
-          value: value,
-          name: e.target.name,
-          id: e.target.id
-        },
-        preventDefault: () => { },
-        stopPropagation: () => { }
-      } as React.ChangeEvent<HTMLInputElement>;
+  const Title = titleHeading;
+  const [email, setEmail] = useState(props.email || "");
 
-      onEmailChange(simpleEvent);
-    }
-  };
+  const handleEmailChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    setEmail(e.target.value);
+    if (onEmailChange) onEmailChange(e.target.value);
+  }, [onEmailChange]);
+
+
+  useEffect(() => {
+    setEmail(props.email || "");
+  }, [props.email]);
 
   return (
     <div
       ref={ref}
       style={presets.wrappers[wrapperStyle] as React.CSSProperties}
     >
-      {renderTitle()}
+      <Title style={headingStyle}>{title}</Title>
 
-      <p style={{ ...(presets.formMessage as React.CSSProperties), color: "#000" }}>
+      <p style={presets.formMessage as React.CSSProperties}>
         {descriptionText}
       </p>
 
-
       <form
         onSubmit={(event) => { event.preventDefault(); onSubmit?.(event); }}
-        style={{ display: "flex", flexDirection: "column", rowGap: presets.form.rowGap }}
+        style={presets.form as React.CSSProperties}
       >
-        <div style={{ ...presets.inputField } as React.CSSProperties}>
+        <div style={{ rowGap: presets.inputField.rowGap }}>
           <label style={presets.formLabel as React.CSSProperties} htmlFor="email">{emailLabel}</label>
           <input
             type="email"
             id="email"
             placeholder={placeholderEmail}
-            style={presets.inputs[inputStyle] as React.CSSProperties}
-            value={emailState}
+            style={presets.inputs[inputStyle]} 
+            value={email}
             onChange={handleEmailChange}
           />
         </div>
-        <button
-          type="submit"
-          style={{
-            ...(presets.buttons[buttonSubmitStyle] as React.CSSProperties),
-            color: "#000",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            gap: "12px", // espace entre texte et icône
-          }}
-        >
-          {submitButtonIconPosition === "left" && submitButtonIcon}
-          {submitButtonText}
-          {submitButtonIconPosition !== "left" && submitButtonIcon}
-        </button>
 
+        <button type="submit" style={presets.buttons[buttonSubmitStyle] as React.CSSProperties}>
+          {submitButtonText}
+        </button>
       </form>
 
       <Link href="/login">
         <button
           type="button"
-          style={presets.buttons[buttonAbordStyle] as React.CSSProperties}
+          style={presets.buttons[buttonCancelStyle] as React.CSSProperties}
         >
           {cancelButtonText}
         </button>
