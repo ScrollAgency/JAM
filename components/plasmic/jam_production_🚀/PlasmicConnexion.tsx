@@ -59,8 +59,7 @@ import {
   useGlobalActions
 } from "@plasmicapp/react-web/lib/host";
 
-import { Login } from "../../auth/Login"; // plasmic-import: DTfpuarR8FPx/codeComponent
-import { ButtonGoogle } from "../../forms/ButtonGoogle/ButtonGoogle"; // plasmic-import: TpN9EpWTj8vW/codeComponent
+import { Login } from "../../../plasmic-library/authentication/Login"; // plasmic-import: DTfpuarR8FPx/codeComponent
 import { PageLoader } from "../../others/PageLoader/PageLoader"; // plasmic-import: FHDrnDhA4DZe/codeComponent
 
 import { useScreenVariants as useScreenVariantshm8Nko4B5BDd } from "./PlasmicGlobalVariant__Screen"; // plasmic-import: HM8Nko4B5BDd/globalVariant
@@ -98,9 +97,6 @@ export type PlasmicConnexion__OverridesType = {
   frame6?: Flex__<"div">;
   formWrapper?: Flex__<"div">;
   loginForm?: Flex__<typeof Login>;
-  img?: Flex__<typeof PlasmicImg__>;
-  freeBox?: Flex__<"div">;
-  buttonGoogle?: Flex__<typeof ButtonGoogle>;
   pageLoader?: Flex__<typeof PageLoader>;
 };
 
@@ -493,7 +489,6 @@ function PlasmicConnexion__RenderFunc(props: {
                     ];
                   }
                 }}
-                padding={"40px 8px"}
                 password={generateStateValueProp($state, [
                   "loginForm",
                   "password"
@@ -501,61 +496,20 @@ function PlasmicConnexion__RenderFunc(props: {
                 passwordLabel={"Mot de passe"}
                 placeholderEmail={"Entrez votre email"}
                 placeholderPassword={"Entrez votre mot de passe"}
-                showBottomSignupLink={true}
-                showPasswordToggle={true}
-                showSocialOAuth={false}
-                signUpLinkLabel={"INSCRIPTION"}
-                signUpPrefixText={"Pas encore de compte ?"}
-                submitButtonIcon={
-                  <PlasmicImg__
-                    data-plasmic-name={"img"}
-                    data-plasmic-override={overrides.img}
-                    alt={""}
-                    className={classNames(sty.img)}
-                    displayHeight={"auto"}
-                    displayMaxHeight={"none"}
-                    displayMaxWidth={"100%"}
-                    displayMinHeight={"0"}
-                    displayMinWidth={"0"}
-                    displayWidth={"auto"}
-                    loading={"lazy"}
-                    src={{
-                      src: "/plasmic/jam_production_🚀/images/image18.svg",
-                      fullWidth: 34,
-                      fullHeight: 33,
-                      aspectRatio: undefined
-                    }}
-                  />
+                redirectTo={
+                  "https://jam-staging.agence-scroll.com/auth/oauth-callback"
                 }
-                submitButtonIconPosition={"right"}
+                showAppleButton={false}
+                showBottomSignupLink={true}
+                showCreateAccount={false}
+                showGoogleButton={true}
+                showPasswordToggle={true}
+                signUpLinkText={"Pas encore de compte ? INSCRIPTION"}
                 submitButtonText={"CONNEXION"}
                 title={"Connexion"}
                 titleHeading={"h1"}
                 wrapperStyle={"card"}
               />
-
-              <div
-                data-plasmic-name={"freeBox"}
-                data-plasmic-override={overrides.freeBox}
-                className={classNames(projectcss.all, sty.freeBox)}
-              >
-                <ButtonGoogle
-                  data-plasmic-name={"buttonGoogle"}
-                  data-plasmic-override={overrides.buttonGoogle}
-                  className={classNames("__wab_instance", sty.buttonGoogle)}
-                  hierarchy={"primary"}
-                  icon={"start"}
-                  iconImage={
-                    "/plasmic/jam_production_🚀/images/googleLogoSvg.svg"
-                  }
-                  label={"Google"}
-                  redirectTo={
-                    "https://jam-staging.agence-scroll.com/auth/callback"
-                  }
-                  size={"large"}
-                  state={"default"}
-                />
-              </div>
             </Stack__>
           </div>
           <PageLoader
@@ -643,9 +597,6 @@ const PlasmicDescendants = {
     "frame6",
     "formWrapper",
     "loginForm",
-    "img",
-    "freeBox",
-    "buttonGoogle",
     "pageLoader"
   ],
   signIn: [
@@ -658,10 +609,7 @@ const PlasmicDescendants = {
     "frame5",
     "frame6",
     "formWrapper",
-    "loginForm",
-    "img",
-    "freeBox",
-    "buttonGoogle"
+    "loginForm"
   ],
   imageWrapper2: [
     "imageWrapper2",
@@ -685,11 +633,8 @@ const PlasmicDescendants = {
   frame4: ["frame4"],
   frame5: ["frame5"],
   frame6: ["frame6"],
-  formWrapper: ["formWrapper", "loginForm", "img", "freeBox", "buttonGoogle"],
-  loginForm: ["loginForm", "img"],
-  img: ["img"],
-  freeBox: ["freeBox", "buttonGoogle"],
-  buttonGoogle: ["buttonGoogle"],
+  formWrapper: ["formWrapper", "loginForm"],
+  loginForm: ["loginForm"],
   pageLoader: ["pageLoader"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
@@ -707,9 +652,6 @@ type NodeDefaultElementType = {
   frame6: "div";
   formWrapper: "div";
   loginForm: typeof Login;
-  img: typeof PlasmicImg__;
-  freeBox: "div";
-  buttonGoogle: typeof ButtonGoogle;
   pageLoader: typeof PageLoader;
 };
 
@@ -783,9 +725,6 @@ export const PlasmicConnexion = Object.assign(
     frame6: makeNodeComponent("frame6"),
     formWrapper: makeNodeComponent("formWrapper"),
     loginForm: makeNodeComponent("loginForm"),
-    img: makeNodeComponent("img"),
-    freeBox: makeNodeComponent("freeBox"),
-    buttonGoogle: makeNodeComponent("buttonGoogle"),
     pageLoader: makeNodeComponent("pageLoader"),
 
     // Metadata about props expected for PlasmicConnexion

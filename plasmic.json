@@ -4770,7 +4770,7 @@
           "id": "DTfpuarR8FPx",
           "name": "Login",
           "displayName": "Login",
-          "componentImportPath": "./components/auth/Login"
+          "componentImportPath": "./plasmic-library/authentication/Login"
         },
         {
           "id": "LQF6pcE1iukm",

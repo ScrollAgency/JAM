@@ -82,7 +82,7 @@ import { AntdSelect } from "@plasmicpkgs/antd5/skinny/registerSelect";
 import { AntdTextArea } from "@plasmicpkgs/antd5/skinny/registerInput";
 import { inputHelpers as AntdTextArea_Helpers } from "@plasmicpkgs/antd5/skinny/registerInput";
 import { FileUploader } from "../../others/FileUploader/FileUploader"; // plasmic-import: RpVDoPZzyXH3/codeComponent
-import { Login } from "../../auth/Login"; // plasmic-import: DTfpuarR8FPx/codeComponent
+import { Login } from "../../../plasmic-library/authentication/Login"; // plasmic-import: DTfpuarR8FPx/codeComponent
 import { AntdInput } from "@plasmicpkgs/antd5/skinny/registerInput";
 import { inputHelpers as AntdInput_Helpers } from "@plasmicpkgs/antd5/skinny/registerInput";
 import ClearBtn from "../../ClearBtn"; // plasmic-import: w2sS9PPQXQ_k/component
@@ -6376,7 +6376,6 @@ function PlasmicAccueil__RenderFunc(props: {
                         ];
                       }
                     }}
-                    padding={"48px"}
                     password={generateStateValueProp($state, [
                       "loginForm2",
                       "password"
@@ -6384,12 +6383,13 @@ function PlasmicAccueil__RenderFunc(props: {
                     passwordLabel={"Mot de passe"}
                     placeholderEmail={"Entrez votre email"}
                     placeholderPassword={"Entrez votre mot de passe"}
+                    redirectTo={"/auth/oauth-callback"}
+                    showAppleButton={false}
                     showBottomSignupLink={true}
+                    showCreateAccount={false}
+                    showGoogleButton={false}
                     showPasswordToggle={true}
-                    showSocialOAuth={false}
-                    signUpLinkLabel={"INSCRIPTION"}
-                    signUpPrefixText={"Pas encore de compte ?"}
-                    submitButtonIconPosition={"right"}
+                    signUpLinkText={"Pas encore de compte ? INSCRIPTION"}
                     submitButtonText={"Connexion"}
                     title={"Connexion"}
                     titleHeading={"h1"}

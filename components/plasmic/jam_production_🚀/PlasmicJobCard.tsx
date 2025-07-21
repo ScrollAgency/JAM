@@ -432,6 +432,12 @@ function PlasmicJobCard__RenderFunc(props: {
 
         valueProp: "postalCode",
         onChangeProp: "onPostalCodeChange"
+      },
+      {
+        path: "variable",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $ctx }) => ""
       }
     ],
     [$props, $ctx, $refs]
@@ -1333,6 +1339,35 @@ function PlasmicJobCard__RenderFunc(props: {
           onClick={async event => {
             const $steps = {};
 
+            $steps["runCode"] = true
+              ? (() => {
+                  const actionArgs = {
+                    customFunction: async () => {
+                      return (() => {
+                        if (
+                          $state.isPosted === false &&
+                          $props.stripe.data[0].recharge_classic < 0
+                        ) {
+                          return console.log(
+                            "Votre crédit est insuffisant pour effectuer cette opération."
+                          );
+                        }
+                      })();
+                    }
+                  };
+                  return (({ customFunction }) => {
+                    return customFunction();
+                  })?.apply(null, [actionArgs]);
+                })()
+              : undefined;
+            if (
+              $steps["runCode"] != null &&
+              typeof $steps["runCode"] === "object" &&
+              typeof $steps["runCode"].then === "function"
+            ) {
+              $steps["runCode"] = await $steps["runCode"];
+            }
+
             $steps["getCurrentApplication"] =
               $state.isPosted === true
                 ? (() => {
@@ -1376,9 +1411,8 @@ function PlasmicJobCard__RenderFunc(props: {
             }
 
             $steps["publishJob"] =
-              ($state.isPosted === false &&
-                $props.stripe.data[0].recharge_classic > 0) ||
-              $props.stripe.data[0].recharge_lastminute > 0
+              $state.isPosted === false &&
+              $props.stripe.data[0].recharge_classic > 0
                 ? (() => {
                     const actionArgs = {
                       dataOp: {
@@ -1418,7 +1452,8 @@ function PlasmicJobCard__RenderFunc(props: {
             }
 
             $steps["updateStripe"] =
-              $state.isPosted === false
+              $state.isPosted === false &&
+              $props.stripe.data[0].recharge_classic > 0
                 ? (() => {
                     const actionArgs = {
                       dataOp: {
@@ -1468,28 +1503,6 @@ function PlasmicJobCard__RenderFunc(props: {
               typeof $steps["updateStripe"].then === "function"
             ) {
               $steps["updateStripe"] = await $steps["updateStripe"];
-            }
-
-            $steps["runCode"] = true
-              ? (() => {
-                  const actionArgs = {
-                    customFunction: async () => {
-                      return (() => {
-                        return console.log($props.stripe);
-                      })();
-                    }
-                  };
-                  return (({ customFunction }) => {
-                    return customFunction();
-                  })?.apply(null, [actionArgs]);
-                })()
-              : undefined;
-            if (
-              $steps["runCode"] != null &&
-              typeof $steps["runCode"] === "object" &&
-              typeof $steps["runCode"].then === "function"
-            ) {
-              $steps["runCode"] = await $steps["runCode"];
             }
           }}
         />
