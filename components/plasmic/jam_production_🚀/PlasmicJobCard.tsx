@@ -59,13 +59,6 @@ import {
   useGlobalActions
 } from "@plasmicapp/react-web/lib/host";
 
-import { usePlasmicDataSourceContext } from "@plasmicapp/data-sources-context";
-import {
-  executePlasmicDataOp,
-  usePlasmicDataOp,
-  usePlasmicInvalidate
-} from "@plasmicapp/react-web/lib/data-sources";
-
 import Switch from "../../Switch"; // plasmic-import: 5AuMkYqOTdqa/component
 import Button from "../../Button"; // plasmic-import: 9ixtKbGKv7x-/component
 
@@ -102,6 +95,7 @@ type VariantPropType = keyof PlasmicJobCard__VariantsArgs;
 export const PlasmicJobCard__VariantProps = new Array<VariantPropType>();
 
 export type PlasmicJobCard__ArgsType = {
+  onSwitch3IsSelectedChange?: (val: boolean) => void;
   title?: string;
   onTitleChange?: (val: string) => void;
   status?: string;
@@ -138,11 +132,15 @@ export type PlasmicJobCard__ArgsType = {
   _delete?: (event: any) => void;
   postalCode?: string;
   onPostalCodeChange?: (val: string) => void;
-  onClick?: (isSelected: boolean) => void;
+  onclickToPostAd?: (isSelected: boolean) => void;
   onClickBoost?: (event: any) => void;
+  onClick?: () => void;
+  onclickToShowJobApplications?: () => void;
+  onJobToBoost?: () => void;
 };
 type ArgPropType = keyof PlasmicJobCard__ArgsType;
 export const PlasmicJobCard__ArgProps = new Array<ArgPropType>(
+  "onSwitch3IsSelectedChange",
   "title",
   "onTitleChange",
   "status",
@@ -179,8 +177,11 @@ export const PlasmicJobCard__ArgProps = new Array<ArgPropType>(
   "_delete",
   "postalCode",
   "onPostalCodeChange",
+  "onclickToPostAd",
+  "onClickBoost",
   "onClick",
-  "onClickBoost"
+  "onclickToShowJobApplications",
+  "onJobToBoost"
 );
 
 export type PlasmicJobCard__OverridesType = {
@@ -199,9 +200,13 @@ export type PlasmicJobCard__OverridesType = {
   text5?: Flex__<"div">;
   badgeBase6?: Flex__<"div">;
   text6?: Flex__<"div">;
+  button?: Flex__<typeof Button>;
+  postAdBtn?: Flex__<typeof Button>;
+  showApplicationsBtn?: Flex__<typeof Button>;
 };
 
 export interface DefaultJobCardProps {
+  onSwitch3IsSelectedChange?: (val: boolean) => void;
   title?: string;
   onTitleChange?: (val: string) => void;
   status?: string;
@@ -238,8 +243,11 @@ export interface DefaultJobCardProps {
   _delete?: (event: any) => void;
   postalCode?: string;
   onPostalCodeChange?: (val: string) => void;
-  onClick?: (isSelected: boolean) => void;
+  onclickToPostAd?: (isSelected: boolean) => void;
   onClickBoost?: (event: any) => void;
+  onClick?: () => void;
+  onclickToShowJobApplications?: () => void;
+  onJobToBoost?: () => void;
   className?: string;
 }
 
@@ -288,12 +296,12 @@ function PlasmicJobCard__RenderFunc(props: {
     () => [
       {
         path: "switch3.isSelected",
-        type: "private",
+        type: "readonly",
         variableType: "boolean",
         initFunc: ({ $props, $state, $queries, $ctx }) =>
           (() => {
             try {
-              return $state.isBoosted;
+              return $props.isBoosted;
             } catch (e) {
               if (
                 e instanceof TypeError ||
@@ -303,7 +311,9 @@ function PlasmicJobCard__RenderFunc(props: {
               }
               throw e;
             }
-          })()
+          })(),
+
+        onChangeProp: "onSwitch3IsSelectedChange"
       },
       {
         path: "title",
@@ -448,8 +458,6 @@ function PlasmicJobCard__RenderFunc(props: {
     $queries: {},
     $refs
   });
-  const dataSourcesCtx = usePlasmicDataSourceContext();
-  const plasmicInvalidate = usePlasmicInvalidate();
 
   const globalVariants = ensureGlobalVariants({
     screen: useScreenVariantshm8Nko4B5BDd()
@@ -683,7 +691,7 @@ function PlasmicJobCard__RenderFunc(props: {
                           $props.stripe.data[0].recharge_boost > 0
                         ) {
                           return false;
-                        } else if ($props.stripe.data[0].recharge_boost == 0) {
+                        } else if ($props.stripe.data[0].recharge_boost === 0) {
                           return true;
                         } else {
                           return false;
@@ -706,13 +714,13 @@ function PlasmicJobCard__RenderFunc(props: {
                   ) : null}
                   {(() => {
                     try {
-                      return $state.isBoosted;
+                      return $props.isBoosted;
                     } catch (e) {
                       if (
                         e instanceof TypeError ||
                         e?.plasmicType === "PlasmicUndefinedDataError"
                       ) {
-                        return true;
+                        return false;
                       }
                       throw e;
                     }
@@ -781,7 +789,7 @@ function PlasmicJobCard__RenderFunc(props: {
                   </div>
                   {(() => {
                     try {
-                      return !$state.isBoosted;
+                      return !$props.isBoosted;
                     } catch (e) {
                       if (
                         e instanceof TypeError ||
@@ -798,21 +806,10 @@ function PlasmicJobCard__RenderFunc(props: {
                       className={classNames("__wab_instance", sty.switch3)}
                       disabled={(() => {
                         try {
-                          return (() => {
-                            if (
-                              $props.stripe.data[0].product_id ==
-                                "prod_S81L3WBaA1HwM0" &&
-                              $props.stripe.data[0].recharge_boost > 0
-                            ) {
-                              return false;
-                            } else if (
-                              $props.stripe.data[0].recharge_boost == 0
-                            ) {
-                              return true;
-                            } else {
-                              return false;
-                            }
-                          })();
+                          return $props.stripe.data[$props.index]
+                            .recharge_boost > 0
+                            ? true
+                            : false;
                         } catch (e) {
                           if (
                             e instanceof TypeError ||
@@ -844,119 +841,27 @@ function PlasmicJobCard__RenderFunc(props: {
                         (async val => {
                           const $steps = {};
 
-                          $steps["postgresUpdateMany"] = true
+                          $steps["runOnJobToBoost"] = true
                             ? (() => {
                                 const actionArgs = {
-                                  dataOp: {
-                                    sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
-                                    opId: "d5ac40b0-0d4d-4dc6-9737-2d220b297a64",
-                                    userArgs: {
-                                      conditions: [$ctx.SupabaseUser.user.id],
-                                      variables: [
-                                        Math.max(
-                                          0,
-                                          $state.switch3.isSelected
-                                            ? Number(
-                                                $props.stripe.data[0]
-                                                  .recharge_boost - 1
-                                              )
-                                            : Number(
-                                                $props.stripe.data[0]
-                                                  .recharge_boost
-                                              )
-                                        )
-                                      ]
-                                    },
-                                    cacheKey: null,
-                                    invalidatedKeys: ["plasmic_refresh_all"],
-                                    roleId: null
-                                  }
+                                  eventRef: $props["onJobToBoost"]
                                 };
-                                return (async ({ dataOp, continueOnError }) => {
-                                  try {
-                                    const response = await executePlasmicDataOp(
-                                      dataOp,
-                                      {
-                                        userAuthToken:
-                                          dataSourcesCtx?.userAuthToken,
-                                        user: dataSourcesCtx?.user
-                                      }
-                                    );
-                                    await plasmicInvalidate(
-                                      dataOp.invalidatedKeys
-                                    );
-                                    return response;
-                                  } catch (e) {
-                                    if (!continueOnError) {
-                                      throw e;
-                                    }
-                                    return e;
-                                  }
+                                return (({ eventRef, args }) => {
+                                  return eventRef?.(...(args ?? []));
                                 })?.apply(null, [actionArgs]);
                               })()
                             : undefined;
                           if (
-                            $steps["postgresUpdateMany"] != null &&
-                            typeof $steps["postgresUpdateMany"] === "object" &&
-                            typeof $steps["postgresUpdateMany"].then ===
-                              "function"
+                            $steps["runOnJobToBoost"] != null &&
+                            typeof $steps["runOnJobToBoost"] === "object" &&
+                            typeof $steps["runOnJobToBoost"].then === "function"
                           ) {
-                            $steps["postgresUpdateMany"] = await $steps[
-                              "postgresUpdateMany"
-                            ];
-                          }
-
-                          $steps["postgresUpdateById"] = true
-                            ? (() => {
-                                const actionArgs = {
-                                  dataOp: {
-                                    sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
-                                    opId: "cee5cfc5-4de5-43af-9616-bc311b5bafc8",
-                                    userArgs: {
-                                      keys: [$state.jobId],
-                                      variables: [$state.switch3.isSelected]
-                                    },
-                                    cacheKey: null,
-                                    invalidatedKeys: ["plasmic_refresh_all"],
-                                    roleId: null
-                                  }
-                                };
-                                return (async ({ dataOp, continueOnError }) => {
-                                  try {
-                                    const response = await executePlasmicDataOp(
-                                      dataOp,
-                                      {
-                                        userAuthToken:
-                                          dataSourcesCtx?.userAuthToken,
-                                        user: dataSourcesCtx?.user
-                                      }
-                                    );
-                                    await plasmicInvalidate(
-                                      dataOp.invalidatedKeys
-                                    );
-                                    return response;
-                                  } catch (e) {
-                                    if (!continueOnError) {
-                                      throw e;
-                                    }
-                                    return e;
-                                  }
-                                })?.apply(null, [actionArgs]);
-                              })()
-                            : undefined;
-                          if (
-                            $steps["postgresUpdateById"] != null &&
-                            typeof $steps["postgresUpdateById"] === "object" &&
-                            typeof $steps["postgresUpdateById"].then ===
-                              "function"
-                          ) {
-                            $steps["postgresUpdateById"] = await $steps[
-                              "postgresUpdateById"
+                            $steps["runOnJobToBoost"] = await $steps[
+                              "runOnJobToBoost"
                             ];
                           }
                         }).apply(null, eventArgs);
                       }}
-                      onClick={args.onClick}
                       showLabel={false}
                     />
                   ) : null}
@@ -1279,7 +1184,9 @@ function PlasmicJobCard__RenderFunc(props: {
         className={classNames(projectcss.all, sty.freeBox__lDrQm)}
       >
         <Button
-          className={classNames("__wab_instance", sty.button__fDrYi)}
+          data-plasmic-name={"button"}
+          data-plasmic-override={overrides.button}
+          className={classNames("__wab_instance", sty.button)}
           color={"white"}
           label={
             <div
@@ -1296,216 +1203,147 @@ function PlasmicJobCard__RenderFunc(props: {
           type={"bordered"}
         />
 
-        <Button
-          className={classNames("__wab_instance", sty.button__kY8R2)}
-          end={
-            <Group7Icon
-              className={classNames(projectcss.all, sty.svg__vUcrt)}
-              role={"img"}
-            />
+        {(() => {
+          try {
+            return !$state.isPosted;
+          } catch (e) {
+            if (
+              e instanceof TypeError ||
+              e?.plasmicType === "PlasmicUndefinedDataError"
+            ) {
+              return true;
+            }
+            throw e;
           }
-          iconEnd={true}
-          label={
-            <div
-              className={classNames(
-                projectcss.all,
-                projectcss.__wab_text,
-                sty.text__wXpm
-              )}
-            >
-              <React.Fragment>
-                {(() => {
-                  try {
-                    return $state.isPosted
-                      ? $state.numJobApplications === 1
-                        ? "Voir la candidature"
-                        : $state.numJobApplications > 1
-                        ? `Voir les ${$state.numJobApplications} candidatures`
-                        : "Voir les candidatures"
-                      : "Poster l'annonce";
-                  } catch (e) {
-                    if (
-                      e instanceof TypeError ||
-                      e?.plasmicType === "PlasmicUndefinedDataError"
-                    ) {
-                      return "voir les candidatures";
-                    }
-                    throw e;
-                  }
-                })()}
-              </React.Fragment>
-            </div>
-          }
-          onClick={async event => {
-            const $steps = {};
+        })() ? (
+          <Button
+            data-plasmic-name={"postAdBtn"}
+            data-plasmic-override={overrides.postAdBtn}
+            className={classNames("__wab_instance", sty.postAdBtn)}
+            end={
+              <Group7Icon
+                className={classNames(projectcss.all, sty.svg__vUcrt)}
+                role={"img"}
+              />
+            }
+            iconEnd={true}
+            label={
+              <div
+                className={classNames(
+                  projectcss.all,
+                  projectcss.__wab_text,
+                  sty.text__wXpm
+                )}
+              >
+                {"Poster l'annonce"}
+              </div>
+            }
+            onClick={async event => {
+              const $steps = {};
 
-            $steps["runCode"] = true
-              ? (() => {
-                  const actionArgs = {
-                    customFunction: async () => {
+              $steps["runOnclickToPostAd"] = true
+                ? (() => {
+                    const actionArgs = { eventRef: $props["onclickToPostAd"] };
+                    return (({ eventRef, args }) => {
+                      return eventRef?.(...(args ?? []));
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["runOnclickToPostAd"] != null &&
+                typeof $steps["runOnclickToPostAd"] === "object" &&
+                typeof $steps["runOnclickToPostAd"].then === "function"
+              ) {
+                $steps["runOnclickToPostAd"] = await $steps[
+                  "runOnclickToPostAd"
+                ];
+              }
+            }}
+          />
+        ) : null}
+        {(() => {
+          try {
+            return $state.isPosted;
+          } catch (e) {
+            if (
+              e instanceof TypeError ||
+              e?.plasmicType === "PlasmicUndefinedDataError"
+            ) {
+              return false;
+            }
+            throw e;
+          }
+        })() ? (
+          <Button
+            data-plasmic-name={"showApplicationsBtn"}
+            data-plasmic-override={overrides.showApplicationsBtn}
+            className={classNames("__wab_instance", sty.showApplicationsBtn)}
+            end={
+              <Group7Icon
+                className={classNames(projectcss.all, sty.svg___12MjC)}
+                role={"img"}
+              />
+            }
+            iconEnd={true}
+            label={
+              <div
+                className={classNames(
+                  projectcss.all,
+                  projectcss.__wab_text,
+                  sty.text___7IuA2
+                )}
+              >
+                <React.Fragment>
+                  {(() => {
+                    try {
                       return (() => {
-                        if (
-                          $state.isPosted === false &&
-                          $props.stripe.data[0].recharge_classic < 0
-                        ) {
-                          return console.log(
-                            "Votre crédit est insuffisant pour effectuer cette opération."
-                          );
-                        }
+                        return $state.isPosted
+                          ? $state.numJobApplications === 1
+                            ? "Voir la candidature"
+                            : $state.numJobApplications > 1
+                            ? `Voir les ${$state.numJobApplications} candidatures`
+                            : "Voir les candidatures"
+                          : "";
                       })();
-                    }
-                  };
-                  return (({ customFunction }) => {
-                    return customFunction();
-                  })?.apply(null, [actionArgs]);
-                })()
-              : undefined;
-            if (
-              $steps["runCode"] != null &&
-              typeof $steps["runCode"] === "object" &&
-              typeof $steps["runCode"].then === "function"
-            ) {
-              $steps["runCode"] = await $steps["runCode"];
-            }
-
-            $steps["getCurrentApplication"] =
-              $state.isPosted === true
-                ? (() => {
-                    const actionArgs = {
-                      destination: `/candidatures-employeur/${(() => {
-                        try {
-                          return $state.jobId;
-                        } catch (e) {
-                          if (
-                            e instanceof TypeError ||
-                            e?.plasmicType === "PlasmicUndefinedDataError"
-                          ) {
-                            return undefined;
-                          }
-                          throw e;
-                        }
-                      })()}`
-                    };
-                    return (({ destination }) => {
+                    } catch (e) {
                       if (
-                        typeof destination === "string" &&
-                        destination.startsWith("#")
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
                       ) {
-                        document
-                          .getElementById(destination.substr(1))
-                          .scrollIntoView({ behavior: "smooth" });
-                      } else {
-                        __nextRouter?.push(destination);
+                        return "voir les candidatures";
                       }
-                    })?.apply(null, [actionArgs]);
-                  })()
-                : undefined;
-            if (
-              $steps["getCurrentApplication"] != null &&
-              typeof $steps["getCurrentApplication"] === "object" &&
-              typeof $steps["getCurrentApplication"].then === "function"
-            ) {
-              $steps["getCurrentApplication"] = await $steps[
-                "getCurrentApplication"
-              ];
+                      throw e;
+                    }
+                  })()}
+                </React.Fragment>
+              </div>
             }
+            onClick={async event => {
+              const $steps = {};
 
-            $steps["publishJob"] =
-              $state.isPosted === false &&
-              $props.stripe.data[0].recharge_classic > 0
+              $steps["runOnclickToShowJobApplications"] = true
                 ? (() => {
                     const actionArgs = {
-                      dataOp: {
-                        sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
-                        opId: "cd59497f-5588-42bc-90c4-780c28c9a5c5",
-                        userArgs: {
-                          keys: [$state.jobId]
-                        },
-                        cacheKey: null,
-                        invalidatedKeys: ["plasmic_refresh_all"],
-                        roleId: null
-                      }
+                      eventRef: $props["onclickToShowJobApplications"]
                     };
-                    return (async ({ dataOp, continueOnError }) => {
-                      try {
-                        const response = await executePlasmicDataOp(dataOp, {
-                          userAuthToken: dataSourcesCtx?.userAuthToken,
-                          user: dataSourcesCtx?.user
-                        });
-                        await plasmicInvalidate(dataOp.invalidatedKeys);
-                        return response;
-                      } catch (e) {
-                        if (!continueOnError) {
-                          throw e;
-                        }
-                        return e;
-                      }
+                    return (({ eventRef, args }) => {
+                      return eventRef?.(...(args ?? []));
                     })?.apply(null, [actionArgs]);
                   })()
                 : undefined;
-            if (
-              $steps["publishJob"] != null &&
-              typeof $steps["publishJob"] === "object" &&
-              typeof $steps["publishJob"].then === "function"
-            ) {
-              $steps["publishJob"] = await $steps["publishJob"];
-            }
-
-            $steps["updateStripe"] =
-              $state.isPosted === false &&
-              $props.stripe.data[0].recharge_classic > 0
-                ? (() => {
-                    const actionArgs = {
-                      dataOp: {
-                        sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
-                        opId: "a73ddeb0-a427-49e7-a77a-47ee6c992568",
-                        userArgs: {
-                          conditions: [$ctx.SupabaseUser.user.id],
-                          variables: [
-                            !$state.switch3.IsSelected
-                              ? Number($props.stripe.data[0].recharge_classic) -
-                                1
-                              : Number($props.stripe.data[0].recharge_classic),
-                            $state.switch3.isSelected
-                              ? Number(
-                                  $props.stripe.data[0].recharge_lastminute
-                                ) - 1
-                              : Number(
-                                  $props.stripe.data[0].recharge_lastminute
-                                )
-                          ]
-                        },
-                        cacheKey: null,
-                        invalidatedKeys: ["plasmic_refresh_all"],
-                        roleId: null
-                      }
-                    };
-                    return (async ({ dataOp, continueOnError }) => {
-                      try {
-                        const response = await executePlasmicDataOp(dataOp, {
-                          userAuthToken: dataSourcesCtx?.userAuthToken,
-                          user: dataSourcesCtx?.user
-                        });
-                        await plasmicInvalidate(dataOp.invalidatedKeys);
-                        return response;
-                      } catch (e) {
-                        if (!continueOnError) {
-                          throw e;
-                        }
-                        return e;
-                      }
-                    })?.apply(null, [actionArgs]);
-                  })()
-                : undefined;
-            if (
-              $steps["updateStripe"] != null &&
-              typeof $steps["updateStripe"] === "object" &&
-              typeof $steps["updateStripe"].then === "function"
-            ) {
-              $steps["updateStripe"] = await $steps["updateStripe"];
-            }
-          }}
-        />
+              if (
+                $steps["runOnclickToShowJobApplications"] != null &&
+                typeof $steps["runOnclickToShowJobApplications"] === "object" &&
+                typeof $steps["runOnclickToShowJobApplications"].then ===
+                  "function"
+              ) {
+                $steps["runOnclickToShowJobApplications"] = await $steps[
+                  "runOnclickToShowJobApplications"
+                ];
+              }
+            }}
+          />
+        ) : null}
       </Stack__>
     </Stack__>
   ) as React.ReactElement | null;
@@ -1527,7 +1365,10 @@ const PlasmicDescendants = {
     "badgeBase5",
     "text5",
     "badgeBase6",
-    "text6"
+    "text6",
+    "button",
+    "postAdBtn",
+    "showApplicationsBtn"
   ],
   switch3: ["switch3"],
   frame1437254218: [
@@ -1556,7 +1397,10 @@ const PlasmicDescendants = {
   badgeBase5: ["badgeBase5", "text5"],
   text5: ["text5"],
   badgeBase6: ["badgeBase6", "text6"],
-  text6: ["text6"]
+  text6: ["text6"],
+  button: ["button"],
+  postAdBtn: ["postAdBtn"],
+  showApplicationsBtn: ["showApplicationsBtn"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -1577,6 +1421,9 @@ type NodeDefaultElementType = {
   text5: "div";
   badgeBase6: "div";
   text6: "div";
+  button: typeof Button;
+  postAdBtn: typeof Button;
+  showApplicationsBtn: typeof Button;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -1653,6 +1500,9 @@ export const PlasmicJobCard = Object.assign(
     text5: makeNodeComponent("text5"),
     badgeBase6: makeNodeComponent("badgeBase6"),
     text6: makeNodeComponent("text6"),
+    button: makeNodeComponent("button"),
+    postAdBtn: makeNodeComponent("postAdBtn"),
+    showApplicationsBtn: makeNodeComponent("showApplicationsBtn"),
 
     // Metadata about props expected for PlasmicJobCard
     internalVariantProps: PlasmicJobCard__VariantProps,

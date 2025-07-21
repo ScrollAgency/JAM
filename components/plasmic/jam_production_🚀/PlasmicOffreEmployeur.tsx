@@ -1591,6 +1591,11 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
         type: "private",
         variableType: "boolean",
         initFunc: ({ $props, $state, $queries, $ctx }) => false
+      },
+      {
+        path: "jobCard[].switch3IsSelected",
+        type: "private",
+        variableType: "boolean"
       }
     ],
     [$props, $ctx, $refs]
@@ -2351,6 +2356,9 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                                 return;
                               }
                             },
+                            onClick: async () => {
+                              const $steps = {};
+                            },
                             onClickBoost: async event => {
                               const $steps = {};
 
@@ -2478,6 +2486,214 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                                 return;
                               }
                             },
+                            onJobToBoost: async () => {
+                              const $steps = {};
+
+                              $steps["runCode"] = true
+                                ? (() => {
+                                    const actionArgs = {
+                                      customFunction: async () => {
+                                        return (() => {
+                                          const rechargeBoost = Number(
+                                            $queries.offreStripeUserInfos
+                                              .data[0].recharge_boost
+                                          );
+                                          if (rechargeBoost > 0) {
+                                            return true;
+                                          } else {
+                                            $state.insufficientCharges.isOpen =
+                                              true;
+                                            $state.jobCard[
+                                              currentItem
+                                            ].switch3IsSelected = false;
+                                            return false;
+                                          }
+                                        })();
+                                      }
+                                    };
+                                    return (({ customFunction }) => {
+                                      return customFunction();
+                                    })?.apply(null, [actionArgs]);
+                                  })()
+                                : undefined;
+                              if (
+                                $steps["runCode"] != null &&
+                                typeof $steps["runCode"] === "object" &&
+                                typeof $steps["runCode"].then === "function"
+                              ) {
+                                $steps["runCode"] = await $steps["runCode"];
+                              }
+
+                              $steps["postgresUpdateMany"] =
+                                $steps.runCode === true
+                                  ? (() => {
+                                      const actionArgs = {
+                                        dataOp: {
+                                          sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
+                                          opId: "d5ac40b0-0d4d-4dc6-9737-2d220b297a64",
+                                          userArgs: {
+                                            variables: [
+                                              (() => {
+                                                const rechargeBoost = Number(
+                                                  $queries.offreStripeUserInfos
+                                                    .data[0].recharge_boost
+                                                );
+                                                if (
+                                                  $state.jobCard[currentIndex]
+                                                    .switch3IsSelected
+                                                ) {
+                                                  if (rechargeBoost > 0) {
+                                                    const updatedRecharge =
+                                                      rechargeBoost - 1;
+                                                    return updatedRecharge;
+                                                  } else {
+                                                    return rechargeBoost;
+                                                  }
+                                                } else {
+                                                  return rechargeBoost;
+                                                }
+                                              })()
+                                            ],
+                                            conditions: [
+                                              $ctx.SupabaseUser.user.id
+                                            ]
+                                          },
+                                          cacheKey: null,
+                                          invalidatedKeys: [
+                                            "plasmic_refresh_all"
+                                          ],
+                                          roleId: null
+                                        }
+                                      };
+                                      return (async ({
+                                        dataOp,
+                                        continueOnError
+                                      }) => {
+                                        try {
+                                          const response =
+                                            await executePlasmicDataOp(dataOp, {
+                                              userAuthToken:
+                                                dataSourcesCtx?.userAuthToken,
+                                              user: dataSourcesCtx?.user
+                                            });
+                                          await plasmicInvalidate(
+                                            dataOp.invalidatedKeys
+                                          );
+                                          return response;
+                                        } catch (e) {
+                                          if (!continueOnError) {
+                                            throw e;
+                                          }
+                                          return e;
+                                        }
+                                      })?.apply(null, [actionArgs]);
+                                    })()
+                                  : undefined;
+                              if (
+                                $steps["postgresUpdateMany"] != null &&
+                                typeof $steps["postgresUpdateMany"] ===
+                                  "object" &&
+                                typeof $steps["postgresUpdateMany"].then ===
+                                  "function"
+                              ) {
+                                $steps["postgresUpdateMany"] = await $steps[
+                                  "postgresUpdateMany"
+                                ];
+                              }
+
+                              $steps["postgresUpdateById"] =
+                                $steps.runCode === true
+                                  ? (() => {
+                                      const actionArgs = {
+                                        dataOp: {
+                                          sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
+                                          opId: "cee5cfc5-4de5-43af-9616-bc311b5bafc8",
+                                          userArgs: {
+                                            keys: [currentItem.id],
+                                            variables: [
+                                              $state.jobCard[currentIndex]
+                                                .switch3IsSelected
+                                            ]
+                                          },
+                                          cacheKey: null,
+                                          invalidatedKeys: [
+                                            "plasmic_refresh_all"
+                                          ],
+                                          roleId: null
+                                        }
+                                      };
+                                      return (async ({
+                                        dataOp,
+                                        continueOnError
+                                      }) => {
+                                        try {
+                                          const response =
+                                            await executePlasmicDataOp(dataOp, {
+                                              userAuthToken:
+                                                dataSourcesCtx?.userAuthToken,
+                                              user: dataSourcesCtx?.user
+                                            });
+                                          await plasmicInvalidate(
+                                            dataOp.invalidatedKeys
+                                          );
+                                          return response;
+                                        } catch (e) {
+                                          if (!continueOnError) {
+                                            throw e;
+                                          }
+                                          return e;
+                                        }
+                                      })?.apply(null, [actionArgs]);
+                                    })()
+                                  : undefined;
+                              if (
+                                $steps["postgresUpdateById"] != null &&
+                                typeof $steps["postgresUpdateById"] ===
+                                  "object" &&
+                                typeof $steps["postgresUpdateById"].then ===
+                                  "function"
+                              ) {
+                                $steps["postgresUpdateById"] = await $steps[
+                                  "postgresUpdateById"
+                                ];
+                              }
+
+                              $steps["goToOffreEmployeur"] =
+                                $steps.runCode === true
+                                  ? (() => {
+                                      const actionArgs = {
+                                        destination: `/offre-employeur`
+                                      };
+                                      return (({ destination }) => {
+                                        if (
+                                          typeof destination === "string" &&
+                                          destination.startsWith("#")
+                                        ) {
+                                          document
+                                            .getElementById(
+                                              destination.substr(1)
+                                            )
+                                            .scrollIntoView({
+                                              behavior: "smooth"
+                                            });
+                                        } else {
+                                          __nextRouter?.push(destination);
+                                        }
+                                      })?.apply(null, [actionArgs]);
+                                    })()
+                                  : undefined;
+                              if (
+                                $steps["goToOffreEmployeur"] != null &&
+                                typeof $steps["goToOffreEmployeur"] ===
+                                  "object" &&
+                                typeof $steps["goToOffreEmployeur"].then ===
+                                  "function"
+                              ) {
+                                $steps["goToOffreEmployeur"] = await $steps[
+                                  "goToOffreEmployeur"
+                                ];
+                              }
+                            },
                             onLocationChange: async (...eventArgs: any) => {
                               generateStateOnChangeProp($state, [
                                 "jobCard",
@@ -2587,6 +2803,23 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                                 return;
                               }
                             },
+                            onSwitch3IsSelectedChange: async (
+                              ...eventArgs: any
+                            ) => {
+                              generateStateOnChangeProp($state, [
+                                "jobCard",
+                                __plasmic_idx_0,
+                                "switch3IsSelected"
+                              ]).apply(null, eventArgs);
+
+                              if (
+                                eventArgs.length > 1 &&
+                                eventArgs[1] &&
+                                eventArgs[1]._plasmic_state_init_
+                              ) {
+                                return;
+                              }
+                            },
                             onTitleChange: async (...eventArgs: any) => {
                               generateStateOnChangeProp($state, [
                                 "jobCard",
@@ -2630,6 +2863,301 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                                 eventArgs[1]._plasmic_state_init_
                               ) {
                                 return;
+                              }
+                            },
+                            onclickToPostAd: async isSelected => {
+                              const $steps = {};
+
+                              $steps["runCode"] = true
+                                ? (() => {
+                                    const actionArgs = {
+                                      customFunction: async () => {
+                                        return (() => {
+                                          const rechargeClassic = Number(
+                                            $queries.offreStripeUserInfos
+                                              .data[0].recharge_classic
+                                          );
+                                          const rechargeLastminute = Number(
+                                            $queries.offreStripeUserInfos
+                                              .data[0].recharge_lastminute
+                                          );
+                                          if (
+                                            $state.jobCard[currentIndex]
+                                              .switch3IsSelected
+                                          ) {
+                                            if (rechargeLastminute > 0) {
+                                              $state.insufficientCharges.isOpen =
+                                                false;
+                                              return true;
+                                            } else {
+                                              $state.insufficientCharges.isOpen =
+                                                true;
+                                              return false;
+                                            }
+                                          } else {
+                                            if (rechargeClassic > 0) {
+                                              $state.insufficientCharges.isOpen =
+                                                false;
+                                              return true;
+                                            } else if (rechargeLastminute > 0) {
+                                              $state.insufficientCharges.isOpen =
+                                                false;
+                                              return true;
+                                            } else {
+                                              $state.insufficientCharges.isOpen =
+                                                true;
+                                              return false;
+                                            }
+                                          }
+                                        })();
+                                      }
+                                    };
+                                    return (({ customFunction }) => {
+                                      return customFunction();
+                                    })?.apply(null, [actionArgs]);
+                                  })()
+                                : undefined;
+                              if (
+                                $steps["runCode"] != null &&
+                                typeof $steps["runCode"] === "object" &&
+                                typeof $steps["runCode"].then === "function"
+                              ) {
+                                $steps["runCode"] = await $steps["runCode"];
+                              }
+
+                              $steps["postgresUpdateById"] =
+                                $steps.runCode === true
+                                  ? (() => {
+                                      const actionArgs = {
+                                        dataOp: {
+                                          sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
+                                          opId: "cd59497f-5588-42bc-90c4-780c28c9a5c5",
+                                          userArgs: {
+                                            keys: [currentItem.id]
+                                          },
+                                          cacheKey: null,
+                                          invalidatedKeys: [
+                                            "plasmic_refresh_all"
+                                          ],
+                                          roleId: null
+                                        }
+                                      };
+                                      return (async ({
+                                        dataOp,
+                                        continueOnError
+                                      }) => {
+                                        try {
+                                          const response =
+                                            await executePlasmicDataOp(dataOp, {
+                                              userAuthToken:
+                                                dataSourcesCtx?.userAuthToken,
+                                              user: dataSourcesCtx?.user
+                                            });
+                                          await plasmicInvalidate(
+                                            dataOp.invalidatedKeys
+                                          );
+                                          return response;
+                                        } catch (e) {
+                                          if (!continueOnError) {
+                                            throw e;
+                                          }
+                                          return e;
+                                        }
+                                      })?.apply(null, [actionArgs]);
+                                    })()
+                                  : undefined;
+                              if (
+                                $steps["postgresUpdateById"] != null &&
+                                typeof $steps["postgresUpdateById"] ===
+                                  "object" &&
+                                typeof $steps["postgresUpdateById"].then ===
+                                  "function"
+                              ) {
+                                $steps["postgresUpdateById"] = await $steps[
+                                  "postgresUpdateById"
+                                ];
+                              }
+
+                              $steps["useCredit"] =
+                                $steps.runCode === true
+                                  ? (() => {
+                                      const actionArgs = {
+                                        dataOp: {
+                                          sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
+                                          opId: "a73ddeb0-a427-49e7-a77a-47ee6c992568",
+                                          userArgs: {
+                                            conditions: [
+                                              $ctx.SupabaseUser.user.id
+                                            ],
+                                            variables: [
+                                              (() => {
+                                                const recharge = Number(
+                                                  $queries.offreStripeUserInfos
+                                                    .data[0].recharge_classic
+                                                );
+                                                if (
+                                                  !$state.jobCard[currentIndex]
+                                                    .switch3IsSelected &&
+                                                  recharge > 0
+                                                ) {
+                                                  const updatedRecharge =
+                                                    recharge - 1;
+                                                  return updatedRecharge;
+                                                }
+                                                return recharge;
+                                              })(),
+                                              (() => {
+                                                const rechargeClassic = Number(
+                                                  $queries.offreStripeUserInfos
+                                                    .data[0].recharge_classic
+                                                );
+                                                const rechargeLastminute =
+                                                  Number(
+                                                    $queries
+                                                      .offreStripeUserInfos
+                                                      .data[0]
+                                                      .recharge_lastminute
+                                                  );
+                                                const switchIsSelected =
+                                                  $state.jobCard[currentIndex]
+                                                    .switch3IsSelected;
+                                                const canUseLastMinute =
+                                                  switchIsSelected ||
+                                                  (!switchIsSelected &&
+                                                    rechargeClassic <= 0 &&
+                                                    rechargeLastminute > 0);
+                                                if (
+                                                  canUseLastMinute &&
+                                                  rechargeLastminute > 0
+                                                ) {
+                                                  return rechargeLastminute - 1;
+                                                } else {
+                                                  return rechargeLastminute;
+                                                }
+                                              })()
+                                            ]
+                                          },
+                                          cacheKey: null,
+                                          invalidatedKeys: [
+                                            "plasmic_refresh_all"
+                                          ],
+                                          roleId: null
+                                        }
+                                      };
+                                      return (async ({
+                                        dataOp,
+                                        continueOnError
+                                      }) => {
+                                        try {
+                                          const response =
+                                            await executePlasmicDataOp(dataOp, {
+                                              userAuthToken:
+                                                dataSourcesCtx?.userAuthToken,
+                                              user: dataSourcesCtx?.user
+                                            });
+                                          await plasmicInvalidate(
+                                            dataOp.invalidatedKeys
+                                          );
+                                          return response;
+                                        } catch (e) {
+                                          if (!continueOnError) {
+                                            throw e;
+                                          }
+                                          return e;
+                                        }
+                                      })?.apply(null, [actionArgs]);
+                                    })()
+                                  : undefined;
+                              if (
+                                $steps["useCredit"] != null &&
+                                typeof $steps["useCredit"] === "object" &&
+                                typeof $steps["useCredit"].then === "function"
+                              ) {
+                                $steps["useCredit"] = await $steps["useCredit"];
+                              }
+
+                              $steps["goToOffreEmployeur"] =
+                                $steps.runCode === true
+                                  ? (() => {
+                                      const actionArgs = {
+                                        destination: `/offre-employeur`
+                                      };
+                                      return (({ destination }) => {
+                                        if (
+                                          typeof destination === "string" &&
+                                          destination.startsWith("#")
+                                        ) {
+                                          document
+                                            .getElementById(
+                                              destination.substr(1)
+                                            )
+                                            .scrollIntoView({
+                                              behavior: "smooth"
+                                            });
+                                        } else {
+                                          __nextRouter?.push(destination);
+                                        }
+                                      })?.apply(null, [actionArgs]);
+                                    })()
+                                  : undefined;
+                              if (
+                                $steps["goToOffreEmployeur"] != null &&
+                                typeof $steps["goToOffreEmployeur"] ===
+                                  "object" &&
+                                typeof $steps["goToOffreEmployeur"].then ===
+                                  "function"
+                              ) {
+                                $steps["goToOffreEmployeur"] = await $steps[
+                                  "goToOffreEmployeur"
+                                ];
+                              }
+                            },
+                            onclickToShowJobApplications: async () => {
+                              const $steps = {};
+
+                              $steps["goToCandidaturesEmployeur"] = true
+                                ? (() => {
+                                    const actionArgs = {
+                                      destination: `/candidatures-employeur/${(() => {
+                                        try {
+                                          return currentItem.id;
+                                        } catch (e) {
+                                          if (
+                                            e instanceof TypeError ||
+                                            e?.plasmicType ===
+                                              "PlasmicUndefinedDataError"
+                                          ) {
+                                            return undefined;
+                                          }
+                                          throw e;
+                                        }
+                                      })()}`
+                                    };
+                                    return (({ destination }) => {
+                                      if (
+                                        typeof destination === "string" &&
+                                        destination.startsWith("#")
+                                      ) {
+                                        document
+                                          .getElementById(destination.substr(1))
+                                          .scrollIntoView({
+                                            behavior: "smooth"
+                                          });
+                                      } else {
+                                        __nextRouter?.push(destination);
+                                      }
+                                    })?.apply(null, [actionArgs]);
+                                  })()
+                                : undefined;
+                              if (
+                                $steps["goToCandidaturesEmployeur"] != null &&
+                                typeof $steps["goToCandidaturesEmployeur"] ===
+                                  "object" &&
+                                typeof $steps["goToCandidaturesEmployeur"]
+                                  .then === "function"
+                              ) {
+                                $steps["goToCandidaturesEmployeur"] =
+                                  await $steps["goToCandidaturesEmployeur"];
                               }
                             },
                             postalCode: generateStateValueProp($state, [
