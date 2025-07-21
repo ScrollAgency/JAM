@@ -73,6 +73,30 @@ export const presets = {
 
   },
 
+separatorHr: {
+    flex: 1, 
+    borderBottom: "1px solid #ccc",
+  },
+separatorText: {
+    margin: "0 8px", 
+    ontSize: "14px", 
+    color: "#666",
+  },
+linkSignupBottom: {
+    display: "flex",
+    justifyContent: "center",
+    width: "100%",
+    marginTop: "24px"
+  },
+
+linkSignupBottomText: {
+    color: "#002400",
+    fontSize: "14px",
+    fontWeight: "500",
+    textDecoration: "none",
+    cursor: "pointer"
+  },
+
   // typography
   heading1: {
     fontFamily: "Manrope, sans-serif",
