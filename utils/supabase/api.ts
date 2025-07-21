@@ -8,22 +8,7 @@ export default function createClient(req: NextApiRequest, res: NextApiResponse) 
     {
       cookies: {
         getAll() {
-          const cookies =
-            req.headers.cookie
-              ?.split(';')
-              .map((c) => {
-                const [name, ...rest] = c.trim().split('=')
-                return {
-                  name,
-                  value: decodeURIComponent(rest.join('=')),
-                }
-              }) ?? []
-
-          console.log('✅ Cookies lus:', cookies)
-          const verifier = cookies.find((c) => c.name.includes('code-verifier'))
-          console.log('🎯 code_verifier:', verifier?.value || '❌ not found')
-
-          return cookies
+          return Object.keys(req.cookies).map((name) => ({ name, value: req.cookies[name] || '' }))
         },
         setAll(cookiesToSet) {
           res.setHeader(
