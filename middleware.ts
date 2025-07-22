@@ -13,6 +13,9 @@ const publicRoutes = [
   '/reset-password',
   '/user-invite',
   '/reset-password/[recovery_token]',
+  '/register',
+  '/register-candidat',
+  '/register-company',
 
   '/auth/oauth-callback',
   '/auth/auth-code-error',
