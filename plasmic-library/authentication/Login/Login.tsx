@@ -275,7 +275,7 @@ function Login_(
           <Link href="/forgot-password"><span style={presets.links.linkLeft}>{forgotPasswordText}</span></Link>
 
           {showCreateAccount && (
-            <Link href="/signup"><span style={presets.links.linkRight}>{createAccountText}</span></Link>
+            <Link href="/register"><span style={presets.links.linkRight}>{createAccountText}</span></Link>
           )}
         </div>
 
