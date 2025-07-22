@@ -2498,9 +2498,11 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                                             $queries.offreStripeUserInfos
                                               .data[0].recharge_boost
                                           );
-                                          if (rechargeBoost > 0) {
-                                            return true;
-                                          } else {
+                                          if (
+                                            $state.jobCard[currentIndex]
+                                              .switch3IsSelected &&
+                                            rechargeBoost <= 0
+                                          ) {
                                             $state.insufficientCharges.isOpen =
                                               true;
                                             $state.jobCard[
@@ -2508,6 +2510,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                                             ].switch3IsSelected = false;
                                             return false;
                                           }
+                                          return true;
                                         })();
                                       }
                                     };
@@ -2538,17 +2541,10 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                                                   $queries.offreStripeUserInfos
                                                     .data[0].recharge_boost
                                                 );
-                                                if (
-                                                  $state.jobCard[currentIndex]
-                                                    .switch3IsSelected
-                                                ) {
-                                                  if (rechargeBoost > 0) {
-                                                    const updatedRecharge =
-                                                      rechargeBoost - 1;
-                                                    return updatedRecharge;
-                                                  } else {
-                                                    return rechargeBoost;
-                                                  }
+                                                if (rechargeBoost > 0) {
+                                                  const updatedRecharge =
+                                                    rechargeBoost - 1;
+                                                  return updatedRecharge;
                                                 } else {
                                                   return rechargeBoost;
                                                 }
@@ -2607,13 +2603,9 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                                       const actionArgs = {
                                         dataOp: {
                                           sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
-                                          opId: "cee5cfc5-4de5-43af-9616-bc311b5bafc8",
+                                          opId: "7e8f8392-4287-4de7-b336-2f14d91a4bba",
                                           userArgs: {
-                                            keys: [currentItem.id],
-                                            variables: [
-                                              $state.jobCard[currentIndex]
-                                                .switch3IsSelected
-                                            ]
+                                            keys: [currentItem.id]
                                           },
                                           cacheKey: null,
                                           invalidatedKeys: [
@@ -8033,8 +8025,47 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                           onClick={async event => {
                             const $steps = {};
 
+                            $steps["runCode"] = true
+                              ? (() => {
+                                  const actionArgs = {
+                                    customFunction: async () => {
+                                      return (() => {
+                                        const rechargeBoost = Number(
+                                          $queries.offreStripeUserInfos.data[0]
+                                            .recharge_boost
+                                        );
+                                        if (
+                                          $state.jobCard[currentIndex]
+                                            .switch3IsSelected &&
+                                          rechargeBoost <= 0
+                                        ) {
+                                          $state.insufficientCharges.isOpen =
+                                            true;
+                                          $state.jobCard[
+                                            currentItem
+                                          ].switch3IsSelected = false;
+                                          return false;
+                                        }
+                                        return true;
+                                      })();
+                                    }
+                                  };
+                                  return (({ customFunction }) => {
+                                    return customFunction();
+                                  })?.apply(null, [actionArgs]);
+                                })()
+                              : undefined;
+                            if (
+                              $steps["runCode"] != null &&
+                              typeof $steps["runCode"] === "object" &&
+                              typeof $steps["runCode"].then === "function"
+                            ) {
+                              $steps["runCode"] = await $steps["runCode"];
+                            }
+
                             $steps["publishJob"] =
-                              $state.currentJobObject.posted == false
+                              $state.currentJobObject.posted == false &&
+                              $steps.runCode === true
                                 ? (() => {
                                     const actionArgs = {
                                       dataOp: {
@@ -8083,7 +8114,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                             }
 
                             $steps["updateJobInfos"] =
-                              $state.currentJobObject.posted == true
+                              $steps.runCode === true
                                 ? (() => {
                                     const actionArgs = {
                                       dataOp: {

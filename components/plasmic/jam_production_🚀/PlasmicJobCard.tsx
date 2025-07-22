@@ -795,7 +795,7 @@ function PlasmicJobCard__RenderFunc(props: {
                         e instanceof TypeError ||
                         e?.plasmicType === "PlasmicUndefinedDataError"
                       ) {
-                        return true;
+                        return false;
                       }
                       throw e;
                     }
@@ -806,8 +806,8 @@ function PlasmicJobCard__RenderFunc(props: {
                       className={classNames("__wab_instance", sty.switch3)}
                       disabled={(() => {
                         try {
-                          return $props.stripe.data[$props.index]
-                            .recharge_boost > 0
+                          return Number($props.stripe.data[0].recharge_boost) <=
+                            0
                             ? true
                             : false;
                         } catch (e) {
@@ -862,6 +862,7 @@ function PlasmicJobCard__RenderFunc(props: {
                           }
                         }).apply(null, eventArgs);
                       }}
+                      readOnly={false}
                       showLabel={false}
                     />
                   ) : null}
