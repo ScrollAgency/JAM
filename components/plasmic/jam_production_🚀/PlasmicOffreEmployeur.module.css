@@ -1710,7 +1710,7 @@
   font-size: 36px;
   padding: 0px;
 }
-.form6:global(.__wab_instance) {
+.formUpdate:global(.__wab_instance) {
   display: flex;
   flex-direction: column;
   position: relative;

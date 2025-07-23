@@ -22,6 +22,7 @@
     "@plasmicpkgs/commerce": "^0.0.216",
     "@plasmicpkgs/commerce-shopify": "^0.0.224",
     "@plasmicpkgs/plasmic-basic-components": "^0.0.244",
+    "@plasmicpkgs/plasmic-cms": "^0.0.288",
     "@plasmicpkgs/plasmic-embed-css": "^0.1.207",
     "@plasmicpkgs/plasmic-nav": "^0.0.189",
     "@plasmicpkgs/plasmic-query": "^0.0.237",

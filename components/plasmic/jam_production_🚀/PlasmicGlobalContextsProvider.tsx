@@ -10,23 +10,24 @@ import { AntdConfigProvider } from "@plasmicpkgs/antd5/skinny/registerConfigProv
 import { SupabaseUserGlobalContext } from "../../../index"; // plasmic-import: tNrCv3fe8u3Y/codeComponent
 import { CommerceProviderComponent } from "@plasmicpkgs/commerce-shopify";
 import { EmbedCss } from "@plasmicpkgs/plasmic-embed-css";
+import { CmsCredentialsProvider } from "@plasmicpkgs/plasmic-cms";
 
 export interface GlobalContextsProviderProps {
   children?: React.ReactElement;
   antdConfigProviderProps?: Partial<
     Omit<React.ComponentProps<typeof AntdConfigProvider>, "children">
   >;
-
   supabaseUserGlobalContextProps?: Partial<
     Omit<React.ComponentProps<typeof SupabaseUserGlobalContext>, "children">
   >;
-
   commerceProviderComponentProps?: Partial<
     Omit<React.ComponentProps<typeof CommerceProviderComponent>, "children">
   >;
-
   embedCssProps?: Partial<
     Omit<React.ComponentProps<typeof EmbedCss>, "children">
+  >;
+  cmsCredentialsProviderProps?: Partial<
+    Omit<React.ComponentProps<typeof CmsCredentialsProvider>, "children">
   >;
 }
 
@@ -38,7 +39,8 @@ export default function GlobalContextsProvider(
     antdConfigProviderProps,
     supabaseUserGlobalContextProps,
     commerceProviderComponentProps,
-    embedCssProps
+    embedCssProps,
+    cmsCredentialsProviderProps
   } = props;
 
   return (
@@ -166,7 +168,35 @@ export default function GlobalContextsProvider(
                 : ".no-scroll-bar {\n  -ms-overflow-style: none;  /* Internet Explorer 10+ */\n  scrollbar-width: none;\n  /* Firefox */\n}\n\n.no-scroll-bar::-webkit-scrollbar {\n  display: none;\n  /* Safari and Chrome */\n}\n\n\n\n\n/* CSS snippet */\n\n.stretch {\n  width: 100%;\n}\n\n.last-minute {\n  background: linear-gradient(180deg, #F6165B, #F36320); /* Rose \u2192 Orange (haut \u2192 bas) */\n  -webkit-background-clip: text;\n  -webkit-text-fill-color: transparent;\n\n  background-clip: text;\n  color: transparent;\n}\n\n.zero-charge {\n  color: #C8C8C8;\n}\n\ncharge {\n  color: #666666;\n}\n\n.grey-600 {\n  color: #666666;\n}\n\n.green-500 {\n  color: #BBFE68;\n}\n\n\n.spinner {\n  width: 50px;\n  height: 50px;\n  animation: spin 1s linear infinite;\n  transform-origin: center;\n}\n\n@keyframes spin {\n  100% {\n    transform: rotate(360deg);\n  }\n}"
             }
           >
-            {children}
+            <CmsCredentialsProvider
+              {...cmsCredentialsProviderProps}
+              databaseId={
+                cmsCredentialsProviderProps &&
+                "databaseId" in cmsCredentialsProviderProps
+                  ? cmsCredentialsProviderProps.databaseId!
+                  : undefined
+              }
+              databaseToken={
+                cmsCredentialsProviderProps &&
+                "databaseToken" in cmsCredentialsProviderProps
+                  ? cmsCredentialsProviderProps.databaseToken!
+                  : undefined
+              }
+              host={
+                cmsCredentialsProviderProps &&
+                "host" in cmsCredentialsProviderProps
+                  ? cmsCredentialsProviderProps.host!
+                  : "https://data.plasmic.app"
+              }
+              locale={
+                cmsCredentialsProviderProps &&
+                "locale" in cmsCredentialsProviderProps
+                  ? cmsCredentialsProviderProps.locale!
+                  : undefined
+              }
+            >
+              {children}
+            </CmsCredentialsProvider>
           </EmbedCss>
         </CommerceProviderComponent>
       </SupabaseUserGlobalContext>

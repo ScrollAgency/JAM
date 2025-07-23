@@ -1390,7 +1390,7 @@ function PlasmicAccueilEmployeur__RenderFunc(props: {
                           )}
                         >
                           {
-                            "JobAroundMe est une application con\u00e7ue pour r\u00e9volutionner la recherche d\u2019emploi et le recrutement en s\u2019appuyant sur la g\u00e9olocalisation. "
+                            "Job Around Me est une application con\u00e7ue pour r\u00e9volutionner la recherche d\u2019emploi et le recrutement en s\u2019appuyant sur la g\u00e9olocalisation. "
                           }
                         </div>
                       </Stack__>
@@ -1638,7 +1638,7 @@ function PlasmicAccueilEmployeur__RenderFunc(props: {
                       )}
                     >
                       {
-                        "JobAroundMe facilite l\u2019emploi local, rapide et flexible, connectant candidats et employeurs efficacement"
+                        "Job Around Me facilite l\u2019emploi local, rapide et flexible, connectant candidats et employeurs efficacement"
                       }
                     </div>
                   </Stack__>
@@ -2007,7 +2007,7 @@ function PlasmicAccueilEmployeur__RenderFunc(props: {
                       )}
                     >
                       {
-                        "Avec JobAroundMe, nous connectons employeurs et employ\u00e9s dans un esprit de proximit\u00e9, de rapidit\u00e9 et de flexibilit\u00e9 pour r\u00e9pondre aux d\u00e9fis modernes du march\u00e9 de l\u2019emploi."
+                        "Avec Job Around Me, nous connectons employeurs et employ\u00e9s dans un esprit de proximit\u00e9, de rapidit\u00e9 et de flexibilit\u00e9 pour r\u00e9pondre aux d\u00e9fis modernes du march\u00e9 de l\u2019emploi."
                       }
                     </div>
                   </Stack__>
@@ -2089,7 +2089,7 @@ function PlasmicAccueilEmployeur__RenderFunc(props: {
                             )}
                           >
                             {
-                              "JobAroundMe s\u2019adresse aussi bien aux jeunes \u00e9tudiants en qu\u00eate de missions ponctuelles qu\u2019aux personnes souhaitant un emploi compl\u00e9mentaire pour arrondir leurs fins de mois. \n\nPour les candidats, l\u2019application facilite l\u2019acc\u00e8s \u00e0 des opportunit\u00e9s proches de chez eux gr\u00e2ce \u00e0 une interface intuitive et des options de filtrage personnalis\u00e9es. "
+                              "Job Around Me s\u2019adresse aussi bien aux jeunes \u00e9tudiants en qu\u00eate de missions ponctuelles qu\u2019aux personnes souhaitant un emploi compl\u00e9mentaire pour arrondir leurs fins de mois. \n\nPour les candidats, l\u2019application facilite l\u2019acc\u00e8s \u00e0 des opportunit\u00e9s proches de chez eux gr\u00e2ce \u00e0 une interface intuitive et des options de filtrage personnalis\u00e9es. "
                             }
                           </div>
                         </Stack__>
@@ -4177,7 +4177,7 @@ function PlasmicAccueilEmployeur__RenderFunc(props: {
                     )}
                   >
                     {
-                      "\u00a9 2024 [Brand Name]. Tous droits r\u00e9serv\u00e9s."
+                      "\u00a9 2024 Job Around Me. Tous droits r\u00e9serv\u00e9s."
                     }
                   </div>
                 </div>

@@ -348,6 +348,7 @@ export type PlasmicAccueil__OverridesType = {
   message3?: Flex__<"div">;
   heading2?: Flex__<"h2">;
   supportingText5?: Flex__<"p">;
+  supportingText9?: Flex__<"p">;
   section?: Flex__<"article">;
   featureText4?: Flex__<"div">;
   featuredIcon4?: Flex__<"div">;
@@ -14223,6 +14224,35 @@ function PlasmicAccueil__RenderFunc(props: {
                     "Trouvez un job pr\u00e8s de chez vous, facilement et rapidement !"
                   }
                 </p>
+                <p
+                  data-plasmic-name={"supportingText9"}
+                  data-plasmic-override={overrides.supportingText9}
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.p,
+                    projectcss.__wab_text,
+                    sty.supportingText9
+                  )}
+                >
+                  <React.Fragment>
+                    <React.Fragment>
+                      {
+                        "Parce qu\u2019on est les seuls \u00e0 se sp\u00e9cialiser dans les jobs de derni\u00e8re minute sous forme de g\u00e9olocalisation, vous trouvez un job pr\u00e8s de chez vous, sans perdre de temps dans les transports.\nJob Around Me\u00a0connecte instantan\u00e9ment les employeurs en urgence avec des personnes motiv\u00e9es et disponibles tout de suite.\nDes opportunit\u00e9s express, mais aussi des jobs \u00e0 long terme.\n"
+                      }
+                    </React.Fragment>
+                    <span
+                      className={"plasmic_default__all plasmic_default__span"}
+                      style={{ color: "var(--token-XkcIRFBUIQDs)" }}
+                    >
+                      {"Ce\u00a0qui nous diff\u00e9rencie ?"}
+                    </span>
+                    <React.Fragment>
+                      {
+                        " Le bon plan de derni\u00e8re minute, l\u00e0 o\u00f9 vous \u00eates"
+                      }
+                    </React.Fragment>
+                  </React.Fragment>
+                </p>
               </Stack__>
               <Stack__
                 as={"article"}
@@ -14321,7 +14351,7 @@ function PlasmicAccueil__RenderFunc(props: {
                         sty.text2
                       )}
                     >
-                      {"Ne ratez aucune offre"}
+                      {"Ne manquez aucune offre"}
                     </div>
                     <p
                       data-plasmic-name={"supportingText7"}
@@ -14334,7 +14364,7 @@ function PlasmicAccueil__RenderFunc(props: {
                       )}
                     >
                       {
-                        "Soyez alert\u00e9 par email d\u00e8s qu\u2019une nouvelle offre d\u2019emploi correspond \u00e0 vos crit\u00e8res de recherche."
+                        "Soyez inform\u00e9 en temps r\u00e9el lorsqu'une nouvelle offre d'emploi correspond \u00e0 vos crit\u00e8res de recherche."
                       }
                     </p>
                   </Stack__>
@@ -14375,7 +14405,7 @@ function PlasmicAccueil__RenderFunc(props: {
                         sty.text3
                       )}
                     >
-                      {"Jobs Last Minute"}
+                      {"Last Minute"}
                     </div>
                     <p
                       data-plasmic-name={"supportingText8"}
@@ -14388,7 +14418,7 @@ function PlasmicAccueil__RenderFunc(props: {
                       )}
                     >
                       {
-                        "Fini l\u2019attente, gr\u00e2ce aux jobs Last Minute, vous postulez et recevez une r\u00e9ponse sous 24-48h."
+                        "Avoir l\u2018acc\u00e8s aux jobs \u00e0 pourvoir imm\u00e9diatement. Offres urgentes, besoin imm\u00e9dia"
                       }
                     </p>
                   </Stack__>
@@ -14895,6 +14925,7 @@ const PlasmicDescendants = {
     "message3",
     "heading2",
     "supportingText5",
+    "supportingText9",
     "section",
     "featureText4",
     "featuredIcon4",
@@ -15647,6 +15678,7 @@ const PlasmicDescendants = {
     "message3",
     "heading2",
     "supportingText5",
+    "supportingText9",
     "section",
     "featureText4",
     "featuredIcon4",
@@ -15932,6 +15964,7 @@ const PlasmicDescendants = {
     "message3",
     "heading2",
     "supportingText5",
+    "supportingText9",
     "section",
     "featureText4",
     "featuredIcon4",
@@ -15955,13 +15988,15 @@ const PlasmicDescendants = {
     "content8",
     "message3",
     "heading2",
-    "supportingText5"
+    "supportingText5",
+    "supportingText9"
   ],
   badgeGroup3: ["badgeGroup3", "content8", "message3"],
   content8: ["content8", "message3"],
   message3: ["message3"],
   heading2: ["heading2"],
   supportingText5: ["supportingText5"],
+  supportingText9: ["supportingText9"],
   section: [
     "section",
     "featureText4",
@@ -16277,6 +16312,7 @@ type NodeDefaultElementType = {
   message3: "div";
   heading2: "h2";
   supportingText5: "p";
+  supportingText9: "p";
   section: "article";
   featureText4: "div";
   featuredIcon4: "div";
@@ -16574,6 +16610,7 @@ export const PlasmicAccueil = Object.assign(
     message3: makeNodeComponent("message3"),
     heading2: makeNodeComponent("heading2"),
     supportingText5: makeNodeComponent("supportingText5"),
+    supportingText9: makeNodeComponent("supportingText9"),
     section: makeNodeComponent("section"),
     featureText4: makeNodeComponent("featureText4"),
     featuredIcon4: makeNodeComponent("featuredIcon4"),

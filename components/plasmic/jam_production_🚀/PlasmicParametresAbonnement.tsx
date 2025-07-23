@@ -73,9 +73,9 @@ import { JamButton } from "../../forms/JamButton/JamButton"; // plasmic-import: 
 import Button from "../../Button"; // plasmic-import: 9ixtKbGKv7x-/component
 import ProductCard from "../../ProductCard"; // plasmic-import: XNMQC2V0FBMZ/component
 import { StripeSubscriptionButton } from "../../forms/StripeSubscriptionButton/StripeSubscriptionButton"; // plasmic-import: fjarxLhWe2Gl/codeComponent
+import { StripeCheckoutButton } from "../../forms/StripeCheckoutButton/StripeCheckoutButton"; // plasmic-import: HaGLE8b9jujz/codeComponent
 import { InputComboSelect } from "../../forms/InputComboSelect/InputComboSelect"; // plasmic-import: KwvhXarw-EVS/codeComponent
 import TextInput from "../../TextInput"; // plasmic-import: pZ7Ql6sUFRw9/component
-import { StripeCheckoutButton } from "../../forms/StripeCheckoutButton/StripeCheckoutButton"; // plasmic-import: HaGLE8b9jujz/codeComponent
 import { SmartLoader } from "../../others/SmartLoader/SmartLoader"; // plasmic-import: YAp2GWWLB3S2/codeComponent
 import { Fetcher } from "@plasmicapp/react-web/lib/data-sources";
 
@@ -138,6 +138,7 @@ export type PlasmicParametresAbonnement__OverridesType = {
   changeSubscription?: Flex__<typeof StripeSubscriptionButton>;
   subscriptionBtnContainer?: Flex__<"div">;
   buttonSubscription?: Flex__<typeof Button>;
+  buttonSubscription3?: Flex__<typeof Button>;
   subscriptionDetailsHistory?: Flex__<"div">;
   details?: Flex__<"div">;
   hr?: Flex__<"div">;
@@ -168,7 +169,6 @@ export type PlasmicParametresAbonnement__OverridesType = {
   totalAmount?: Flex__<"div">;
   total?: Flex__<"div">;
   amount?: Flex__<"div">;
-  stripeCheckoutButton?: Flex__<typeof StripeCheckoutButton>;
   stripeCheckout?: Flex__<typeof SmartLoader>;
 };
 
@@ -326,8 +326,7 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
         path: "stripeSessionId",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) =>
-          "cs_test_a1NzDeJe6hr5ZbykrRDBg50F7PUzwsrV3Ntemp3zHbF86JkWJfofh6CkAZ"
+        initFunc: ({ $props, $state, $queries, $ctx }) => ``
       },
       {
         path: "priceId",
@@ -496,15 +495,144 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                 ];
               }
 
-              $steps["savePurchase"] = true
+              $steps["updateSessionId"] = true
+                ? (() => {
+                    const actionArgs = {
+                      variable: {
+                        objRoot: $state,
+                        variablePath: ["sessionId"]
+                      },
+                      operation: 0,
+                      value: $queries.getUserStripeInfos.data[0].session_id
+                    };
+                    return (({ variable, value, startIndex, deleteCount }) => {
+                      if (!variable) {
+                        return;
+                      }
+                      const { objRoot, variablePath } = variable;
+
+                      $stateSet(objRoot, variablePath, value);
+                      return value;
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["updateSessionId"] != null &&
+                typeof $steps["updateSessionId"] === "object" &&
+                typeof $steps["updateSessionId"].then === "function"
+              ) {
+                $steps["updateSessionId"] = await $steps["updateSessionId"];
+              }
+
+              $steps["httpGet"] = true
                 ? (() => {
                     const actionArgs = {
                       dataOp: {
                         sourceId: "9Q77QfSZHRES57WTLJmYrY",
-                        opId: "bd84fa6f-d237-4c9b-8057-599f8b23857a",
+                        opId: "6ebe234d-f726-4b8b-999b-01ab68cb6649",
+                        userArgs: {},
+                        cacheKey: null,
+                        invalidatedKeys: null,
+                        roleId: null
+                      }
+                    };
+                    return (async ({ dataOp, continueOnError }) => {
+                      try {
+                        const response = await executePlasmicDataOp(dataOp, {
+                          userAuthToken: dataSourcesCtx?.userAuthToken,
+                          user: dataSourcesCtx?.user
+                        });
+                        await plasmicInvalidate(dataOp.invalidatedKeys);
+                        return response;
+                      } catch (e) {
+                        if (!continueOnError) {
+                          throw e;
+                        }
+                        return e;
+                      }
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["httpGet"] != null &&
+                typeof $steps["httpGet"] === "object" &&
+                typeof $steps["httpGet"].then === "function"
+              ) {
+                $steps["httpGet"] = await $steps["httpGet"];
+              }
+
+              $steps["httpGet2"] = true
+                ? (() => {
+                    const actionArgs = {
+                      dataOp: {
+                        sourceId: "9Q77QfSZHRES57WTLJmYrY",
+                        opId: "13d12d4b-5a53-4196-a4bf-852be730ee37",
                         userArgs: {
-                          path: ["process-session"],
-                          body: [{ sessionId: $ctx.query.session_id }]
+                          params: [$state.sessionId]
+                        },
+                        cacheKey: null,
+                        invalidatedKeys: null,
+                        roleId: null
+                      }
+                    };
+                    return (async ({ dataOp, continueOnError }) => {
+                      try {
+                        const response = await executePlasmicDataOp(dataOp, {
+                          userAuthToken: dataSourcesCtx?.userAuthToken,
+                          user: dataSourcesCtx?.user
+                        });
+                        await plasmicInvalidate(dataOp.invalidatedKeys);
+                        return response;
+                      } catch (e) {
+                        if (!continueOnError) {
+                          throw e;
+                        }
+                        return e;
+                      }
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["httpGet2"] != null &&
+                typeof $steps["httpGet2"] === "object" &&
+                typeof $steps["httpGet2"].then === "function"
+              ) {
+                $steps["httpGet2"] = await $steps["httpGet2"];
+              }
+
+              $steps["httpPost"] = true
+                ? (() => {
+                    const actionArgs = {
+                      dataOp: {
+                        sourceId: "9Q77QfSZHRES57WTLJmYrY",
+                        opId: "38ce68d2-2584-4f4b-be73-1ea4b935efc9",
+                        userArgs: {
+                          body: [
+                            {
+                              sessionId: $state.sessionId,
+                              customerId:
+                                $steps.getSessionInfos.data.response.session
+                                  .client_reference_id,
+                              customerEmail:
+                                $steps.getSessionInfos.data.response.session
+                                  .customer_details.email,
+                              receiptUrl:
+                                $steps.getPaymentIntent.data.response
+                                  .receiptUrl,
+                              receiptTitle:
+                                $steps.getPaymentIntent.data.response
+                                  .receiptTitle,
+                              amount:
+                                $steps.getPaymentIntent.data.response.amount,
+                              products:
+                                $steps.getSessionInfos.data.response.session.line_items.data.map(
+                                  item => ({
+                                    product_id: item.price.product,
+                                    quantity: item.quantity
+                                  })
+                                )
+                            }
+                          ]
                         },
                         cacheKey: null,
                         invalidatedKeys: ["plasmic_refresh_all"],
@@ -529,29 +657,17 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                   })()
                 : undefined;
               if (
-                $steps["savePurchase"] != null &&
-                typeof $steps["savePurchase"] === "object" &&
-                typeof $steps["savePurchase"].then === "function"
+                $steps["httpPost"] != null &&
+                typeof $steps["httpPost"] === "object" &&
+                typeof $steps["httpPost"].then === "function"
               ) {
-                $steps["savePurchase"] = await $steps["savePurchase"];
+                $steps["httpPost"] = await $steps["httpPost"];
               }
 
-              $steps["goToPage"] = true
+              $steps["goToParametresAbonnementPaiementOk"] = true
                 ? (() => {
                     const actionArgs = {
-                      destination: (() => {
-                        try {
-                          return "/parametres-abonnement?paiement=ok";
-                        } catch (e) {
-                          if (
-                            e instanceof TypeError ||
-                            e?.plasmicType === "PlasmicUndefinedDataError"
-                          ) {
-                            return `/parametres-abonnement`;
-                          }
-                          throw e;
-                        }
-                      })()
+                      destination: "parametres-abonnement?paiement=ok"
                     };
                     return (({ destination }) => {
                       if (
@@ -568,14 +684,32 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                   })()
                 : undefined;
               if (
-                $steps["goToPage"] != null &&
-                typeof $steps["goToPage"] === "object" &&
-                typeof $steps["goToPage"].then === "function"
+                $steps["goToParametresAbonnementPaiementOk"] != null &&
+                typeof $steps["goToParametresAbonnementPaiementOk"] ===
+                  "object" &&
+                typeof $steps["goToParametresAbonnementPaiementOk"].then ===
+                  "function"
               ) {
-                $steps["goToPage"] = await $steps["goToPage"];
+                $steps["goToParametresAbonnementPaiementOk"] = await $steps[
+                  "goToParametresAbonnementPaiementOk"
+                ];
               }
             }}
-            shouldRun={false}
+            shouldRun={(() => {
+              try {
+                return (
+                  $ctx.query.credit === "success" && !$state.paiementValidated
+                );
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return false;
+                }
+                throw e;
+              }
+            })()}
           />
 
           <PageLoader
@@ -1946,7 +2080,7 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                           e instanceof TypeError ||
                           e?.plasmicType === "PlasmicUndefinedDataError"
                         ) {
-                          return true;
+                          return false;
                         }
                         throw e;
                       }
@@ -2130,6 +2264,115 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                           }}
                           submitsForm={true}
                         />
+
+                        <StripeCheckoutButton
+                          cancelUrl={(() => {
+                            try {
+                              return "/parametres-abonnement?credit=cancel";
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return undefined;
+                              }
+                              throw e;
+                            }
+                          })()}
+                          className={classNames(
+                            "__wab_instance",
+                            sty.stripeCheckoutButton__j6KL
+                          )}
+                          clientReferenceId={(() => {
+                            try {
+                              return $queries.getUserStripeInfos.data[0]
+                                .customer_id;
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return undefined;
+                              }
+                              throw e;
+                            }
+                          })()}
+                          customerEmail={(() => {
+                            try {
+                              return $ctx.SupabaseUser.user.email;
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return undefined;
+                              }
+                              throw e;
+                            }
+                          })()}
+                          items={(() => {
+                            const __composite = [
+                              { price: null, quantity: null }
+                            ];
+                            __composite["0"]["price"] =
+                              $queries.stripeProductsList.data.response.data.find(
+                                p => p.id === $state.selectedProduct
+                              )?.default_price.id;
+
+                            __composite["0"]["quantity"] = 1;
+                            return __composite;
+                          })()}
+                          successUrl={(() => {
+                            try {
+                              return (
+                                //`/parametres-abonnement?credit=success&session_id=${$queries.getUserStripeInfos.data[0].session_id}\n`
+
+                                "parametres-abonnement?credit=success&session_id={CHECKOUT_SESSION_ID}"
+                              );
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return undefined;
+                              }
+                              throw e;
+                            }
+                          })()}
+                        >
+                          <Button
+                            data-plasmic-name={"buttonSubscription3"}
+                            data-plasmic-override={
+                              overrides.buttonSubscription3
+                            }
+                            className={classNames(
+                              "__wab_instance",
+                              sty.buttonSubscription3
+                            )}
+                            end={
+                              <GroupIcon
+                                className={classNames(
+                                  projectcss.all,
+                                  sty.svg__uADdi
+                                )}
+                                role={"img"}
+                              />
+                            }
+                            iconEnd={true}
+                            label={
+                              <div
+                                className={classNames(
+                                  projectcss.all,
+                                  projectcss.__wab_text,
+                                  sty.text__msMms
+                                )}
+                              >
+                                {"souscrire"}
+                              </div>
+                            }
+                            submitsForm={false}
+                          />
+                        </StripeCheckoutButton>
                       </div>
                     ) : null}
                   </Stack__>
@@ -3398,8 +3641,6 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                 </div>
                 <div className={classNames(projectcss.all, sty.freeBox__e3Yib)}>
                   <StripeCheckoutButton
-                    data-plasmic-name={"stripeCheckoutButton"}
-                    data-plasmic-override={overrides.stripeCheckoutButton}
                     cancelUrl={(() => {
                       try {
                         return "parametres-abonnement?credit=cancel";
@@ -3415,7 +3656,7 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                     })()}
                     className={classNames(
                       "__wab_instance",
-                      sty.stripeCheckoutButton
+                      sty.stripeCheckoutButton__q4T53
                     )}
                     clientReferenceId={(() => {
                       try {
@@ -4130,6 +4371,7 @@ const PlasmicDescendants = {
     "changeSubscription",
     "subscriptionBtnContainer",
     "buttonSubscription",
+    "buttonSubscription3",
     "subscriptionDetailsHistory",
     "details",
     "hr",
@@ -4160,7 +4402,6 @@ const PlasmicDescendants = {
     "totalAmount",
     "total",
     "amount",
-    "stripeCheckoutButton",
     "stripeCheckout"
   ],
   actionCreditSuccess: ["actionCreditSuccess"],
@@ -4188,6 +4429,7 @@ const PlasmicDescendants = {
     "changeSubscription",
     "subscriptionBtnContainer",
     "buttonSubscription",
+    "buttonSubscription3",
     "subscriptionDetailsHistory",
     "details",
     "hr",
@@ -4218,7 +4460,6 @@ const PlasmicDescendants = {
     "totalAmount",
     "total",
     "amount",
-    "stripeCheckoutButton",
     "stripeCheckout"
   ],
   heading: ["heading"],
@@ -4249,6 +4490,7 @@ const PlasmicDescendants = {
     "changeSubscription",
     "subscriptionBtnContainer",
     "buttonSubscription",
+    "buttonSubscription3",
     "subscriptionDetailsHistory",
     "details",
     "hr",
@@ -4279,7 +4521,6 @@ const PlasmicDescendants = {
     "totalAmount",
     "total",
     "amount",
-    "stripeCheckoutButton",
     "stripeCheckout"
   ],
   successPayement: ["successPayement"],
@@ -4294,7 +4535,8 @@ const PlasmicDescendants = {
     "changeSubscriptionContainer",
     "changeSubscription",
     "subscriptionBtnContainer",
-    "buttonSubscription"
+    "buttonSubscription",
+    "buttonSubscription3"
   ],
   subscription: ["subscription", "items", "productCard"],
   items: ["items", "productCard"],
@@ -4306,7 +4548,8 @@ const PlasmicDescendants = {
     "changeSubscriptionContainer",
     "changeSubscription",
     "subscriptionBtnContainer",
-    "buttonSubscription"
+    "buttonSubscription",
+    "buttonSubscription3"
   ],
   cancelBtnContainer: ["cancelBtnContainer", "cancelSubscription"],
   cancelSubscription: ["cancelSubscription"],
@@ -4315,8 +4558,13 @@ const PlasmicDescendants = {
     "changeSubscription"
   ],
   changeSubscription: ["changeSubscription"],
-  subscriptionBtnContainer: ["subscriptionBtnContainer", "buttonSubscription"],
+  subscriptionBtnContainer: [
+    "subscriptionBtnContainer",
+    "buttonSubscription",
+    "buttonSubscription3"
+  ],
   buttonSubscription: ["buttonSubscription"],
+  buttonSubscription3: ["buttonSubscription3"],
   subscriptionDetailsHistory: [
     "subscriptionDetailsHistory",
     "details",
@@ -4400,8 +4648,7 @@ const PlasmicDescendants = {
     "textInput",
     "totalAmount",
     "total",
-    "amount",
-    "stripeCheckoutButton"
+    "amount"
   ],
   rechargesList: [
     "rechargesList",
@@ -4422,7 +4669,6 @@ const PlasmicDescendants = {
   totalAmount: ["totalAmount", "total", "amount"],
   total: ["total"],
   amount: ["amount"],
-  stripeCheckoutButton: ["stripeCheckoutButton"],
   stripeCheckout: ["stripeCheckout"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
@@ -4454,6 +4700,7 @@ type NodeDefaultElementType = {
   changeSubscription: typeof StripeSubscriptionButton;
   subscriptionBtnContainer: "div";
   buttonSubscription: typeof Button;
+  buttonSubscription3: typeof Button;
   subscriptionDetailsHistory: "div";
   details: "div";
   hr: "div";
@@ -4484,7 +4731,6 @@ type NodeDefaultElementType = {
   totalAmount: "div";
   total: "div";
   amount: "div";
-  stripeCheckoutButton: typeof StripeCheckoutButton;
   stripeCheckout: typeof SmartLoader;
 };
 
@@ -4576,6 +4822,7 @@ export const PlasmicParametresAbonnement = Object.assign(
     changeSubscription: makeNodeComponent("changeSubscription"),
     subscriptionBtnContainer: makeNodeComponent("subscriptionBtnContainer"),
     buttonSubscription: makeNodeComponent("buttonSubscription"),
+    buttonSubscription3: makeNodeComponent("buttonSubscription3"),
     subscriptionDetailsHistory: makeNodeComponent("subscriptionDetailsHistory"),
     details: makeNodeComponent("details"),
     hr: makeNodeComponent("hr"),
@@ -4606,7 +4853,6 @@ export const PlasmicParametresAbonnement = Object.assign(
     totalAmount: makeNodeComponent("totalAmount"),
     total: makeNodeComponent("total"),
     amount: makeNodeComponent("amount"),
-    stripeCheckoutButton: makeNodeComponent("stripeCheckoutButton"),
     stripeCheckout: makeNodeComponent("stripeCheckout"),
 
     // Metadata about props expected for PlasmicParametresAbonnement

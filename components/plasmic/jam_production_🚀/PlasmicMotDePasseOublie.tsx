@@ -418,6 +418,30 @@ function PlasmicMotDePasseOublie__RenderFunc(props: {
                       "invokeGlobalAction"
                     ];
                   }
+
+                  $steps["invokeGlobalAction2"] = true
+                    ? (() => {
+                        const actionArgs = {
+                          args: [
+                            "success",
+                            "E-mail de r\u00e9initialisation envoy\u00e9 avec succ\u00e8s",
+                            "Veuillez v\u00e9rifier votre bo\u00eete de r\u00e9ception, y compris le dossier des courriers ind\u00e9sirables ou spams."
+                          ]
+                        };
+                        return $globalActions[
+                          "plasmic-antd5-config-provider.showNotification"
+                        ]?.apply(null, [...actionArgs.args]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["invokeGlobalAction2"] != null &&
+                    typeof $steps["invokeGlobalAction2"] === "object" &&
+                    typeof $steps["invokeGlobalAction2"].then === "function"
+                  ) {
+                    $steps["invokeGlobalAction2"] = await $steps[
+                      "invokeGlobalAction2"
+                    ];
+                  }
                 }}
                 placeholderEmail={"Entrez votre email"}
                 submitButtonIcon={

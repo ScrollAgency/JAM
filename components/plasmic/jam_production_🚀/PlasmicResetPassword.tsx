@@ -372,95 +372,12 @@ function PlasmicResetPassword__RenderFunc(props: {
                     "resetPassword",
                     "confirmPassword"
                   ]).apply(null, eventArgs);
-
-                  (async event => {
-                    const $steps = {};
-
-                    $steps["updateResetPasswordConfirmPassword"] = false
-                      ? (() => {
-                          const actionArgs = {
-                            variable: {
-                              objRoot: $state,
-                              variablePath: ["resetPassword", "confirmPassword"]
-                            },
-                            operation: 0,
-                            value: $state.resetPassword.confirmPassword
-                          };
-                          return (({
-                            variable,
-                            value,
-                            startIndex,
-                            deleteCount
-                          }) => {
-                            if (!variable) {
-                              return;
-                            }
-                            const { objRoot, variablePath } = variable;
-
-                            $stateSet(objRoot, variablePath, value);
-                            return value;
-                          })?.apply(null, [actionArgs]);
-                        })()
-                      : undefined;
-                    if (
-                      $steps["updateResetPasswordConfirmPassword"] != null &&
-                      typeof $steps["updateResetPasswordConfirmPassword"] ===
-                        "object" &&
-                      typeof $steps["updateResetPasswordConfirmPassword"]
-                        .then === "function"
-                    ) {
-                      $steps["updateResetPasswordConfirmPassword"] =
-                        await $steps["updateResetPasswordConfirmPassword"];
-                    }
-                  }).apply(null, eventArgs);
                 }}
                 onPasswordChange={async (...eventArgs: any) => {
                   generateStateOnChangeProp($state, [
                     "resetPassword",
                     "password"
                   ]).apply(null, eventArgs);
-
-                  (async event => {
-                    const $steps = {};
-
-                    $steps["updateResetPasswordPassword"] = false
-                      ? (() => {
-                          const actionArgs = {
-                            variable: {
-                              objRoot: $state,
-                              variablePath: ["resetPassword", "password"]
-                            },
-                            operation: 0,
-                            value: $state.resetPassword.password
-                          };
-                          return (({
-                            variable,
-                            value,
-                            startIndex,
-                            deleteCount
-                          }) => {
-                            if (!variable) {
-                              return;
-                            }
-                            const { objRoot, variablePath } = variable;
-
-                            $stateSet(objRoot, variablePath, value);
-                            return value;
-                          })?.apply(null, [actionArgs]);
-                        })()
-                      : undefined;
-                    if (
-                      $steps["updateResetPasswordPassword"] != null &&
-                      typeof $steps["updateResetPasswordPassword"] ===
-                        "object" &&
-                      typeof $steps["updateResetPasswordPassword"].then ===
-                        "function"
-                    ) {
-                      $steps["updateResetPasswordPassword"] = await $steps[
-                        "updateResetPasswordPassword"
-                      ];
-                    }
-                  }).apply(null, eventArgs);
                 }}
                 onSubmit={async event => {
                   const $steps = {};
@@ -499,7 +416,7 @@ function PlasmicResetPassword__RenderFunc(props: {
                     ];
                   }
 
-                  $steps["goToConnexion"] = false
+                  $steps["goToConnexion"] = true
                     ? (() => {
                         const actionArgs = { destination: `/login` };
                         return (({ destination }) => {

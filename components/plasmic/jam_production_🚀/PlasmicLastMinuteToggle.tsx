@@ -85,7 +85,7 @@ export type PlasmicLastMinuteToggle__ArgsType = {
   switch2IsSelected?: boolean;
   onSwitch2IsSelectedChange?: (val: boolean) => void;
   isDisabled?: boolean;
-  onIsDisabledChange?: (val: string) => void;
+  onIsDisabledChange2?: (val: string) => void;
   onClick?: (event: any) => void;
 };
 type ArgPropType = keyof PlasmicLastMinuteToggle__ArgsType;
@@ -93,7 +93,7 @@ export const PlasmicLastMinuteToggle__ArgProps = new Array<ArgPropType>(
   "switch2IsSelected",
   "onSwitch2IsSelectedChange",
   "isDisabled",
-  "onIsDisabledChange",
+  "onIsDisabledChange2",
   "onClick"
 );
 
@@ -115,7 +115,7 @@ export interface DefaultLastMinuteToggleProps {
   switch2IsSelected?: boolean;
   onSwitch2IsSelectedChange?: (val: boolean) => void;
   isDisabled?: boolean;
-  onIsDisabledChange?: (val: string) => void;
+  onIsDisabledChange2?: (val: string) => void;
   onClick?: (event: any) => void;
   className?: string;
 }
@@ -175,7 +175,7 @@ function PlasmicLastMinuteToggle__RenderFunc(props: {
         variableType: "boolean",
 
         valueProp: "isDisabled",
-        onChangeProp: "onIsDisabledChange"
+        onChangeProp: "onIsDisabledChange2"
       }
     ],
     [$props, $ctx, $refs]
@@ -439,6 +439,7 @@ function PlasmicLastMinuteToggle__RenderFunc(props: {
             <Switch2
               data-plasmic-name={"switch2"}
               data-plasmic-override={overrides.switch2}
+              autoFocus={false}
               className={classNames("__wab_instance", sty.switch2)}
               disabled={(() => {
                 try {

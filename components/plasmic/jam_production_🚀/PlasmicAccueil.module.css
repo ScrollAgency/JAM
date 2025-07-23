@@ -6771,6 +6771,18 @@
   position: relative;
 }
 .supportingText5 {
+  font-size: 18px;
+  text-align: center;
+  font-family: "DM Sans", sans-serif;
+  font-weight: 400;
+  letter-spacing: 0em;
+  line-height: 1.5;
+  color: rgba(144, 144, 144, 1);
+  align-self: center;
+  position: relative;
+  display: none;
+}
+.supportingText9 {
   display: block;
   font-size: 18px;
   text-align: center;
@@ -6781,6 +6793,7 @@
   color: rgba(144, 144, 144, 1);
   align-self: center;
   position: relative;
+  padding-bottom: 0px;
 }
 .section {
   height: 100%;
