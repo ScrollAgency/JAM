@@ -1980,22 +1980,15 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                                 const isLastminuteValid =
                                   !isNaN(rechargeLastminute) &&
                                   rechargeLastminute > 0;
-                                if ($state.lastMinuteToggle.switch2IsSelected) {
-                                  if (isLastminuteValid) {
-                                    $state.insufficientCharges.isOpen = false;
-                                    return true;
-                                  } else {
-                                    $state.insufficientCharges.isOpen = true;
-                                    return false;
-                                  }
+                                if (isLastminuteValid) {
+                                  $state.insufficientCharges.isOpen = false;
+                                  return true;
+                                } else if (isClassicValid) {
+                                  $state.insufficientCharges.isOpen = false;
+                                  return true;
                                 } else {
-                                  if (isClassicValid) {
-                                    $state.insufficientCharges.isOpen = false;
-                                    return true;
-                                  } else {
-                                    $state.insufficientCharges.isOpen = true;
-                                    return false;
-                                  }
+                                  $state.insufficientCharges.isOpen = true;
+                                  return false;
                                 }
                               })();
                             }
@@ -7980,7 +7973,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                               e instanceof TypeError ||
                               e?.plasmicType === "PlasmicUndefinedDataError"
                             ) {
-                              return true;
+                              return false;
                             }
                             throw e;
                           }
@@ -8014,14 +8007,14 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                             onClick={async event => {
                               const $steps = {};
 
-                              $steps["postgresCreateMany"] = true
+                              $steps["updatejob"] = true
                                 ? (() => {
                                     const actionArgs = {
                                       dataOp: {
                                         sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
-                                        opId: "ef8c0ce7-72b3-44e0-b0d2-2793f75dab5b",
+                                        opId: "48aea369-0123-4982-81fa-bf39a6b7c9d0",
                                         userArgs: {
-                                          keys: [$state.jobId],
+                                          keys: [$state.currentJobObject.id],
                                           variables: [
                                             $state.formUpdate.value.address,
                                             $state.formUpdate.value
@@ -8043,9 +8036,10 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                                             $state.formUpdate.value.work_mode,
                                             $state.formUpdate.value
                                               .working_time,
-                                            (() => {})(),
                                             $state.formUpdate.value.end_date,
-                                            $state.formUpdate.value.start_date
+                                            $state.formUpdate.value.start_date,
+                                            $state.lastMinuteToggle2
+                                              .switch2IsSelected
                                           ]
                                         },
                                         cacheKey: null,
@@ -8080,15 +8074,11 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                                   })()
                                 : undefined;
                               if (
-                                $steps["postgresCreateMany"] != null &&
-                                typeof $steps["postgresCreateMany"] ===
-                                  "object" &&
-                                typeof $steps["postgresCreateMany"].then ===
-                                  "function"
+                                $steps["updatejob"] != null &&
+                                typeof $steps["updatejob"] === "object" &&
+                                typeof $steps["updatejob"].then === "function"
                               ) {
-                                $steps["postgresCreateMany"] = await $steps[
-                                  "postgresCreateMany"
-                                ];
+                                $steps["updatejob"] = await $steps["updatejob"];
                               }
 
                               $steps["updateEditOffreIsOpen"] = true
@@ -8142,9 +8132,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                                 ? (() => {
                                     const actionArgs = {
                                       customFunction: async () => {
-                                        return (() => {
-                                          return location.reload();
-                                        })();
+                                        return location.reload();
                                       }
                                     };
                                     return (({ customFunction }) => {
@@ -8215,14 +8203,23 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                                   const actionArgs = {
                                     customFunction: async () => {
                                       return (() => {
-                                        const rechargeBoost = Number(
+                                        const rechargeLastMinute = Number(
                                           $queries.offreStripeUserInfos.data[0]
-                                            .recharge_boost
+                                            .recharge_lastminute
                                         );
                                         if (
-                                          $state.jobCard[currentIndex]
-                                            .switch3IsSelected &&
-                                          rechargeBoost <= 0
+                                          $state.currentJobObject
+                                            ?.is_last_minute === true &&
+                                          rechargeLastMinute <= 0
+                                        ) {
+                                          $state.insufficientCharges.isOpen =
+                                            true;
+                                          return false;
+                                        }
+                                        if (
+                                          $state.lastMinuteToggle2
+                                            .switch2IsSelected &&
+                                          rechargeLastMinute <= 0
                                         ) {
                                           $state.insufficientCharges.isOpen =
                                             true;
@@ -8332,23 +8329,63 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                                       userArgs: {
                                         conditions: [$ctx.SupabaseUser.user.id],
                                         variables: [
-                                          $state.lastMinuteToggle2
-                                            .switch2IsSelected
-                                            ? Number(
-                                                $queries.offreStripeUserInfos
-                                                  .data[0].recharge_lastminute
-                                              ) - 1
-                                            : Number(
-                                                $queries.offreStripeUserInfos
-                                                  .data[0].recharge_lastminute
-                                              ),
-                                          !$state.lastMinuteToggle
-                                            .switch2IsSelected
-                                            ? Number(
-                                                $queries.offreStripeUserInfos
-                                                  .data[0].recharge_classic
-                                              ) - 1
-                                            : null
+                                          (() => {
+                                            const rechargeClassic = Number(
+                                              $queries.offreStripeUserInfos
+                                                .data[0].recharge_classic
+                                            );
+                                            const rechargeLastminute = Number(
+                                              $queries.offreStripeUserInfos
+                                                .data[0].recharge_lastminute
+                                            );
+                                            const switchIsSelected =
+                                              $state.lastMinuteToggle2
+                                                .switch2IsSelected;
+                                            const isLastMinuteJob =
+                                              $state.currentJobObject
+                                                .is_last_minute;
+                                            if (
+                                              isLastMinuteJob &&
+                                              rechargeLastminute > 0
+                                            ) {
+                                              return rechargeLastminute - 1;
+                                            }
+                                            const canUseLastMinute =
+                                              switchIsSelected ||
+                                              (!switchIsSelected &&
+                                                rechargeClassic <= 0 &&
+                                                rechargeLastminute > 0);
+                                            if (
+                                              canUseLastMinute &&
+                                              rechargeLastminute > 0
+                                            ) {
+                                              return rechargeLastminute - 1;
+                                            } else {
+                                              return rechargeLastminute;
+                                            }
+                                          })(),
+                                          (() => {
+                                            const recharge = Number(
+                                              $queries.offreStripeUserInfos
+                                                .data[0].recharge_classic
+                                            );
+                                            const isLastMinuteJob =
+                                              $state.lastMinuteToggle
+                                                .switch2IsSelected;
+                                            if (isLastMinuteJob) {
+                                              return recharge;
+                                            }
+                                            if (
+                                              !$state.lastMinuteToggle
+                                                .switch2IsSelected &&
+                                              recharge > 0
+                                            ) {
+                                              const updatedRecharge =
+                                                recharge - 1;
+                                              return updatedRecharge;
+                                            }
+                                            return recharge;
+                                          })()
                                         ]
                                       },
                                       cacheKey: null,
