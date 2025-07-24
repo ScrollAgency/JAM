@@ -3860,7 +3860,19 @@ function PlasmicAccueil__RenderFunc(props: {
                                   userArgs: {
                                     path: [
                                       $ctx.SupabaseUser.user.id,
-                                      $state.upload.files[0].name
+                                      (() => {
+                                        const file =
+                                          $state.upload.files[0].name;
+                                        if (file) {
+                                          const formattedName = file.name
+                                            .trim()
+                                            .toLowerCase()
+                                            .replace(/[^a-z0-9.\-_]/g, "_")
+                                            .replace(/_+/g, "_")
+                                            .replace(/^_+|_+$/g, "");
+                                          return formattedName;
+                                        }
+                                      })()
                                     ],
                                     content: [$state.upload.files[0].contents],
                                     contentType: [$state.upload.files[0].type]
@@ -3911,7 +3923,19 @@ function PlasmicAccueil__RenderFunc(props: {
                                   userArgs: {
                                     path: [
                                       $ctx.SupabaseUser.user.id,
-                                      $state.upload3.files[0].name
+                                      (() => {
+                                        const file =
+                                          $state.upload3.files[0].name;
+                                        if (file) {
+                                          const formattedName = file.name
+                                            .trim()
+                                            .toLowerCase()
+                                            .replace(/[^a-z0-9.\-_]/g, "_")
+                                            .replace(/_+/g, "_")
+                                            .replace(/^_+|_+$/g, "");
+                                          return formattedName;
+                                        }
+                                      })()
                                     ],
                                     content: [$state.upload3.files[0].contents],
                                     contentType: [$state.upload3.files[0].type]
@@ -3961,8 +3985,15 @@ function PlasmicAccueil__RenderFunc(props: {
                                 userArgs: {
                                   conditions: [$ctx.SupabaseUser.user.id],
                                   variables: [
-                                    $steps.cv?.path.split("/")[1],
-                                    $steps.lettreMotiv?.path.split("/")[1],
+                                    $steps.cv?.path.split("/")[1] != undefined
+                                      ? $steps.cv?.path.split("/")[1]
+                                      : $queries.getCurrentUserById.data[0]
+                                          .cv_file,
+                                    $steps.lettreMotiv?.path.split("/")[1] !=
+                                    undefined
+                                      ? $steps.lettreMotiv?.path.split("/")[1]
+                                      : $queries.getCurrentUserById.data[0]
+                                          .cover_letter_file,
                                     $state.form.value.address,
                                     $state.form.value.city,
                                     $state.form.value.Country,
@@ -4035,8 +4066,15 @@ function PlasmicAccueil__RenderFunc(props: {
                                   variables: [
                                     $state.form.value.address,
                                     $state.form.value.city,
-                                    $steps.lettreMotiv?.path.split("/")[1],
-                                    $steps.cv?.path.split("/")[1],
+
+                                    $steps.lettreMotiv != undefined
+                                      ? $steps.lettreMotiv?.path.split("/")[1]
+                                      : $queries.getCurrentUserById.data[0]
+                                          .cover_letter_file,
+                                    $steps.cv != undefined
+                                      ? $steps.cv?.path.split("/")[1]
+                                      : $queries.getCurrentUserById.data[0]
+                                          .cv_file,
                                     $state.form.value.level,
                                     $state.form.value.linkedin_url,
                                     $state.form.value.postal_code,

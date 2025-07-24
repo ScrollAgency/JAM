@@ -70,6 +70,7 @@ import MobileNavbarTop from "../../MobileNavbarTop"; // plasmic-import: mAg8Ml3X
 import Sidebar2 from "../../Sidebar2"; // plasmic-import: RXqL3kdDrXwo/component
 import Button from "../../Button"; // plasmic-import: 9ixtKbGKv7x-/component
 import { DataGridV2 } from "../../others/DataGridV2/DataGridV2"; // plasmic-import: iL_5-0entnZc/codeComponent
+import LoadingComponent from "../../LoadingComponent"; // plasmic-import: H7nb8l13ZEyx/component
 import Modal from "../../Modal"; // plasmic-import: fsC3QwUZz9uz/component
 import { Notation } from "../../../plasmic-library/others/Notation/Notation"; // plasmic-import: z82NxL6AqE3T/codeComponent
 import { Iframe } from "@plasmicpkgs/plasmic-basic-components";
@@ -125,6 +126,7 @@ export type PlasmicCandidaturesEmployeur__OverridesType = {
   contract2?: Flex__<"div">;
   applications?: Flex__<"div">;
   dataGridV2?: Flex__<typeof DataGridV2>;
+  loadingComponent?: Flex__<typeof LoadingComponent>;
   successsApplications?: Flex__<typeof Modal>;
   notation?: Flex__<typeof Modal>;
   h2?: Flex__<"h2">;
@@ -1479,6 +1481,29 @@ function PlasmicCandidaturesEmployeur__RenderFunc(props: {
                     "status"
                   ]}
                 />
+
+                {(() => {
+                  try {
+                    return $queries.adminGetCandidatures.isLoading;
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return true;
+                    }
+                    throw e;
+                  }
+                })() ? (
+                  <LoadingComponent
+                    data-plasmic-name={"loadingComponent"}
+                    data-plasmic-override={overrides.loadingComponent}
+                    className={classNames(
+                      "__wab_instance",
+                      sty.loadingComponent
+                    )}
+                  />
+                ) : null}
               </div>
             </div>
             <Modal
@@ -2802,14 +2827,32 @@ function PlasmicCandidaturesEmployeur__RenderFunc(props: {
               trigger={null}
             />
           </Stack__>
-          <MobileNavbarBottomCompany
-            data-plasmic-name={"mobileNavbarBottomCompany"}
-            data-plasmic-override={overrides.mobileNavbarBottomCompany}
-            className={classNames(
-              "__wab_instance",
-              sty.mobileNavbarBottomCompany
-            )}
-          />
+          {(
+            hasVariant(globalVariants, "screen", "mobileOnly")
+              ? true
+              : (() => {
+                  try {
+                    return $queries.empGetJobapplicationsByJobOffers.isLoading;
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return true;
+                    }
+                    throw e;
+                  }
+                })()
+          ) ? (
+            <MobileNavbarBottomCompany
+              data-plasmic-name={"mobileNavbarBottomCompany"}
+              data-plasmic-override={overrides.mobileNavbarBottomCompany}
+              className={classNames(
+                "__wab_instance",
+                sty.mobileNavbarBottomCompany
+              )}
+            />
+          ) : null}
         </div>
       </div>
     </React.Fragment>
@@ -2834,6 +2877,7 @@ const PlasmicDescendants = {
     "contract2",
     "applications",
     "dataGridV2",
+    "loadingComponent",
     "successsApplications",
     "notation",
     "h2",
@@ -2857,6 +2901,7 @@ const PlasmicDescendants = {
     "contract2",
     "applications",
     "dataGridV2",
+    "loadingComponent",
     "successsApplications",
     "notation",
     "h2",
@@ -2881,8 +2926,9 @@ const PlasmicDescendants = {
   workMode: ["workMode"],
   heading2: ["heading2"],
   contract2: ["contract2"],
-  applications: ["applications", "dataGridV2"],
+  applications: ["applications", "dataGridV2", "loadingComponent"],
   dataGridV2: ["dataGridV2"],
+  loadingComponent: ["loadingComponent"],
   successsApplications: ["successsApplications"],
   notation: ["notation", "h2"],
   h2: ["h2"],
@@ -2910,6 +2956,7 @@ type NodeDefaultElementType = {
   contract2: "div";
   applications: "div";
   dataGridV2: typeof DataGridV2;
+  loadingComponent: typeof LoadingComponent;
   successsApplications: typeof Modal;
   notation: typeof Modal;
   h2: "h2";
@@ -2993,6 +3040,7 @@ export const PlasmicCandidaturesEmployeur = Object.assign(
     contract2: makeNodeComponent("contract2"),
     applications: makeNodeComponent("applications"),
     dataGridV2: makeNodeComponent("dataGridV2"),
+    loadingComponent: makeNodeComponent("loadingComponent"),
     successsApplications: makeNodeComponent("successsApplications"),
     notation: makeNodeComponent("notation"),
     h2: makeNodeComponent("h2"),

@@ -2824,10 +2824,9 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                                             $queries.offreStripeUserInfos
                                               .data[0].recharge_lastminute
                                           );
-                                          if (
-                                            $state.jobCard[currentIndex]
-                                              .switch3IsSelected
-                                          ) {
+                                          const isLastMinuteJob =
+                                            currentItem.is_last_minute;
+                                          if (isLastMinuteJob) {
                                             if (rechargeLastminute > 0) {
                                               $state.insufficientCharges.isOpen =
                                                 false;
@@ -2943,14 +2942,12 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                                                     .data[0].recharge_classic
                                                 );
                                                 const isLastMinuteJob =
-                                                  $state.currentJobObject
-                                                    .is_last_minute;
+                                                  currentItem.is_last_minute;
                                                 if (isLastMinuteJob) {
                                                   return recharge;
                                                 }
                                                 if (
-                                                  !$state.jobCard[currentIndex]
-                                                    .switch3IsSelected &&
+                                                  !isLastMinuteJob &&
                                                   recharge > 0
                                                 ) {
                                                   const updatedRecharge =
@@ -2975,27 +2972,17 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                                                   $state.jobCard[currentIndex]
                                                     .switch3IsSelected;
                                                 const isLastMinuteJob =
-                                                  $state.currentJobObject
-                                                    .is_last_minute;
+                                                  currentItem.is_last_minute;
+                                                if (!isLastMinuteJob) {
+                                                  return rechargeLastminute;
+                                                }
                                                 if (
                                                   isLastMinuteJob &&
                                                   rechargeLastminute > 0
                                                 ) {
                                                   return rechargeLastminute - 1;
                                                 }
-                                                const canUseLastMinute =
-                                                  switchIsSelected ||
-                                                  (!switchIsSelected &&
-                                                    rechargeClassic <= 0 &&
-                                                    rechargeLastminute > 0);
-                                                if (
-                                                  canUseLastMinute &&
-                                                  rechargeLastminute > 0
-                                                ) {
-                                                  return rechargeLastminute - 1;
-                                                } else {
-                                                  return rechargeLastminute;
-                                                }
+                                                return rechargeLastminute;
                                               })()
                                             ]
                                           },
@@ -8363,12 +8350,13 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                                               $queries.offreStripeUserInfos
                                                 .data[0].recharge_lastminute
                                             );
-                                            const switchIsSelected =
-                                              $state.lastMinuteToggle2
-                                                .switch2IsSelected;
                                             const isLastMinuteJob =
-                                              $state.currentJobObject
-                                                .is_last_minute;
+                                              $state.lastMinuteToggle2
+                                                .switch2IsSelected === true
+                                                ? $state.lastMinuteToggle2
+                                                    .switch2IsSelected
+                                                : $state.currentJobObject
+                                                    .is_last_minute;
                                             if (
                                               isLastMinuteJob &&
                                               rechargeLastminute > 0
@@ -8376,8 +8364,8 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                                               return rechargeLastminute - 1;
                                             }
                                             const canUseLastMinute =
-                                              switchIsSelected ||
-                                              (!switchIsSelected &&
+                                              isLastMinuteJob ||
+                                              (!isLastMinuteJob &&
                                                 rechargeClassic <= 0 &&
                                                 rechargeLastminute > 0);
                                             if (
@@ -8385,9 +8373,8 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                                               rechargeLastminute > 0
                                             ) {
                                               return rechargeLastminute - 1;
-                                            } else {
-                                              return rechargeLastminute;
                                             }
+                                            return rechargeLastminute;
                                           })(),
                                           (() => {
                                             const recharge = Number(
@@ -8395,19 +8382,17 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                                                 .data[0].recharge_classic
                                             );
                                             const isLastMinuteJob =
-                                              $state.lastMinuteToggle
-                                                .switch2IsSelected;
+                                              $state.lastMinuteToggle2
+                                                .switch2IsSelected === true
+                                                ? $state.lastMinuteToggle2
+                                                    .switch2IsSelected
+                                                : $state.currentJobObject
+                                                    .is_last_minute;
                                             if (isLastMinuteJob) {
                                               return recharge;
                                             }
-                                            if (
-                                              !$state.lastMinuteToggle
-                                                .switch2IsSelected &&
-                                              recharge > 0
-                                            ) {
-                                              const updatedRecharge =
-                                                recharge - 1;
-                                              return updatedRecharge;
+                                            if (recharge > 0) {
+                                              return recharge - 1;
                                             }
                                             return recharge;
                                           })()
