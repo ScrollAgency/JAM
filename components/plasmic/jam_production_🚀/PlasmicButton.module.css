@@ -12,6 +12,7 @@
   text-transform: uppercase;
   letter-spacing: 6%;
   height: 48px;
+  cursor: pointer;
   row-gap: 0px;
   border-radius: 16px;
   padding: 12px 24px;

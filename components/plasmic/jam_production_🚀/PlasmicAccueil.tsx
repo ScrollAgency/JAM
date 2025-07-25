@@ -313,6 +313,7 @@ export type PlasmicAccueil__OverridesType = {
   clearBtn?: Flex__<typeof ClearBtn>;
   resetFormBtn?: Flex__<"button">;
   mapJobs?: Flex__<"div">;
+  mapboxContainer?: Flex__<"div">;
   postes?: Flex__<"div">;
   button4?: Flex__<"div">;
   button3?: Flex__<typeof JamButton>;
@@ -3861,8 +3862,7 @@ function PlasmicAccueil__RenderFunc(props: {
                                     path: [
                                       $ctx.SupabaseUser.user.id,
                                       (() => {
-                                        const file =
-                                          $state.upload.files[0].name;
+                                        const file = $state.upload.files[0];
                                         if (file) {
                                           const formattedName = file.name
                                             .trim()
@@ -3924,8 +3924,7 @@ function PlasmicAccueil__RenderFunc(props: {
                                     path: [
                                       $ctx.SupabaseUser.user.id,
                                       (() => {
-                                        const file =
-                                          $state.upload3.files[0].name;
+                                        const file = $state.upload3.files[0];
                                         if (file) {
                                           const formattedName = file.name
                                             .trim()
@@ -5807,6 +5806,7 @@ function PlasmicAccueil__RenderFunc(props: {
                                   "upload",
                                   "files"
                                 ])}
+                                maxCount={1}
                                 onFilesChange={async (...eventArgs: any) => {
                                   generateStateOnChangeProp($state, [
                                     "upload",
@@ -6129,6 +6129,7 @@ function PlasmicAccueil__RenderFunc(props: {
                                   "upload3",
                                   "files"
                                 ])}
+                                maxCount={1}
                                 onFilesChange={async (...eventArgs: any) => {
                                   generateStateOnChangeProp($state, [
                                     "upload3",
@@ -10303,157 +10304,166 @@ function PlasmicAccueil__RenderFunc(props: {
                   hasGap={true}
                   className={classNames(projectcss.all, sty.mapJobs)}
                 >
-                  <MapBox
-                    className={classNames("__wab_instance", sty.mapBox__rvf40)}
-                    latitude={(() => {
-                      try {
-                        return $state.gpsCoordinates.latitude;
-                      } catch (e) {
-                        if (
-                          e instanceof TypeError ||
-                          e?.plasmicType === "PlasmicUndefinedDataError"
-                        ) {
-                          return 48.8575;
+                  <div
+                    data-plasmic-name={"mapboxContainer"}
+                    data-plasmic-override={overrides.mapboxContainer}
+                    className={classNames(projectcss.all, sty.mapboxContainer)}
+                  >
+                    <MapBox
+                      className={classNames(
+                        "__wab_instance",
+                        sty.mapBox__rvf40
+                      )}
+                      latitude={(() => {
+                        try {
+                          return $state.gpsCoordinates.latitude;
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return 48.8575;
+                          }
+                          throw e;
                         }
-                        throw e;
-                      }
-                    })()}
-                    longitude={(() => {
-                      try {
-                        return $state.gpsCoordinates.longitude;
-                      } catch (e) {
-                        if (
-                          e instanceof TypeError ||
-                          e?.plasmicType === "PlasmicUndefinedDataError"
-                        ) {
-                          return 2.3514;
+                      })()}
+                      longitude={(() => {
+                        try {
+                          return $state.gpsCoordinates.longitude;
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return 2.3514;
+                          }
+                          throw e;
                         }
-                        throw e;
+                      })()}
+                      mapStyle={
+                        "mapbox://styles/scroll/cm6gi9ljw003t01s36b0jfl80"
                       }
-                    })()}
-                    mapStyle={
-                      "mapbox://styles/scroll/cm6gi9ljw003t01s36b0jfl80"
-                    }
-                    markers={(() => {
-                      try {
-                        return (() => {
-                          const jobOffers = $queries.getJobOffers.data ?? [];
-                          const applications =
-                            $queries.getApplication.data ?? [];
-                          const userLikes = $queries.getUsersLikes.data ?? [];
-                          const appliedJobIds = new Set(
-                            applications.map(app => app.job_id)
-                          );
-                          const likedJobIds = new Set(
-                            userLikes.map(like => like.job_id)
-                          );
-                          const enrichedJobOffers = jobOffers.map(offer => ({
-                            ...offer,
-                            is_applied: appliedJobIds.has(offer.id),
-                            is_liked: likedJobIds.has(offer.id)
-                          }));
-                          return enrichedJobOffers;
-                        })();
-                      } catch (e) {
-                        if (
-                          e instanceof TypeError ||
-                          e?.plasmicType === "PlasmicUndefinedDataError"
-                        ) {
-                          return [];
+                      markers={(() => {
+                        try {
+                          return (() => {
+                            const jobOffers = $queries.getJobOffers.data ?? [];
+                            const applications =
+                              $queries.getApplication.data ?? [];
+                            const userLikes = $queries.getUsersLikes.data ?? [];
+                            const appliedJobIds = new Set(
+                              applications.map(app => app.job_id)
+                            );
+                            const likedJobIds = new Set(
+                              userLikes.map(like => like.job_id)
+                            );
+                            const enrichedJobOffers = jobOffers.map(offer => ({
+                              ...offer,
+                              is_applied: appliedJobIds.has(offer.id),
+                              is_liked: likedJobIds.has(offer.id)
+                            }));
+                            return enrichedJobOffers;
+                          })();
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return [];
+                          }
+                          throw e;
                         }
-                        throw e;
-                      }
-                    })()}
-                    onPopupClick={async markerData => {
-                      const $steps = {};
+                      })()}
+                      onPopupClick={async markerData => {
+                        const $steps = {};
 
-                      $steps["runCode"] = true
-                        ? (() => {
-                            const actionArgs = {
-                              customFunction: async () => {
-                                return (() => {
-                                  $state.jobObject = markerData;
-                                  return console.log(markerData);
-                                })();
-                              }
-                            };
-                            return (({ customFunction }) => {
-                              return customFunction();
-                            })?.apply(null, [actionArgs]);
-                          })()
-                        : undefined;
-                      if (
-                        $steps["runCode"] != null &&
-                        typeof $steps["runCode"] === "object" &&
-                        typeof $steps["runCode"].then === "function"
-                      ) {
-                        $steps["runCode"] = await $steps["runCode"];
-                      }
-
-                      $steps["updateJobDetailsIsOpen"] =
-                        $state.jobObject &&
-                        Object.keys($state.jobObject).length > 0
+                        $steps["runCode"] = true
                           ? (() => {
                               const actionArgs = {
-                                variable: {
-                                  objRoot: $state,
-                                  variablePath: ["jobDetails", "isOpen"]
-                                },
-                                operation: 4,
-                                value: true
-                              };
-                              return (({
-                                variable,
-                                value,
-                                startIndex,
-                                deleteCount
-                              }) => {
-                                if (!variable) {
-                                  return;
+                                customFunction: async () => {
+                                  return (() => {
+                                    $state.jobObject = markerData;
+                                    return console.log(markerData);
+                                  })();
                                 }
-                                const { objRoot, variablePath } = variable;
-
-                                const oldValue = $stateGet(
-                                  objRoot,
-                                  variablePath
-                                );
-                                $stateSet(objRoot, variablePath, !oldValue);
-                                return !oldValue;
+                              };
+                              return (({ customFunction }) => {
+                                return customFunction();
                               })?.apply(null, [actionArgs]);
                             })()
                           : undefined;
-                      if (
-                        $steps["updateJobDetailsIsOpen"] != null &&
-                        typeof $steps["updateJobDetailsIsOpen"] === "object" &&
-                        typeof $steps["updateJobDetailsIsOpen"].then ===
-                          "function"
-                      ) {
-                        $steps["updateJobDetailsIsOpen"] = await $steps[
-                          "updateJobDetailsIsOpen"
-                        ];
-                      }
-                    }}
-                    searchAddress={(() => {
-                      try {
-                        return $state.searchLocation;
-                      } catch (e) {
                         if (
-                          e instanceof TypeError ||
-                          e?.plasmicType === "PlasmicUndefinedDataError"
+                          $steps["runCode"] != null &&
+                          typeof $steps["runCode"] === "object" &&
+                          typeof $steps["runCode"].then === "function"
                         ) {
-                          return undefined;
+                          $steps["runCode"] = await $steps["runCode"];
                         }
-                        throw e;
-                      }
-                    })()}
-                    showLogoInPopup={true}
-                    zoom={
-                      hasVariant(globalVariants, "screen", "mobileOnly")
-                        ? 12
-                        : 15
-                    }
-                  />
 
+                        $steps["updateJobDetailsIsOpen"] =
+                          $state.jobObject &&
+                          Object.keys($state.jobObject).length > 0
+                            ? (() => {
+                                const actionArgs = {
+                                  variable: {
+                                    objRoot: $state,
+                                    variablePath: ["jobDetails", "isOpen"]
+                                  },
+                                  operation: 4,
+                                  value: true
+                                };
+                                return (({
+                                  variable,
+                                  value,
+                                  startIndex,
+                                  deleteCount
+                                }) => {
+                                  if (!variable) {
+                                    return;
+                                  }
+                                  const { objRoot, variablePath } = variable;
+
+                                  const oldValue = $stateGet(
+                                    objRoot,
+                                    variablePath
+                                  );
+                                  $stateSet(objRoot, variablePath, !oldValue);
+                                  return !oldValue;
+                                })?.apply(null, [actionArgs]);
+                              })()
+                            : undefined;
+                        if (
+                          $steps["updateJobDetailsIsOpen"] != null &&
+                          typeof $steps["updateJobDetailsIsOpen"] ===
+                            "object" &&
+                          typeof $steps["updateJobDetailsIsOpen"].then ===
+                            "function"
+                        ) {
+                          $steps["updateJobDetailsIsOpen"] = await $steps[
+                            "updateJobDetailsIsOpen"
+                          ];
+                        }
+                      }}
+                      searchAddress={(() => {
+                        try {
+                          return $state.searchLocation;
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return undefined;
+                          }
+                          throw e;
+                        }
+                      })()}
+                      showLogoInPopup={true}
+                      zoom={
+                        hasVariant(globalVariants, "screen", "mobileOnly")
+                          ? 12
+                          : 15
+                      }
+                    />
+                  </div>
                   <div
                     className={classNames(projectcss.all, sty.freeBox__up3F4)}
                   >
@@ -14928,6 +14938,7 @@ const PlasmicDescendants = {
     "clearBtn",
     "resetFormBtn",
     "mapJobs",
+    "mapboxContainer",
     "postes",
     "button4",
     "button3",
@@ -15681,6 +15692,7 @@ const PlasmicDescendants = {
     "clearBtn",
     "resetFormBtn",
     "mapJobs",
+    "mapboxContainer",
     "postes",
     "button4",
     "button3",
@@ -15759,6 +15771,7 @@ const PlasmicDescendants = {
     "clearBtn",
     "resetFormBtn",
     "mapJobs",
+    "mapboxContainer",
     "postes",
     "button4",
     "button3",
@@ -15817,6 +15830,7 @@ const PlasmicDescendants = {
     "clearBtn",
     "resetFormBtn",
     "mapJobs",
+    "mapboxContainer",
     "postes",
     "button4",
     "button3",
@@ -15908,6 +15922,7 @@ const PlasmicDescendants = {
   resetFormBtn: ["resetFormBtn"],
   mapJobs: [
     "mapJobs",
+    "mapboxContainer",
     "postes",
     "button4",
     "button3",
@@ -15925,6 +15940,7 @@ const PlasmicDescendants = {
     "buttonLastMin3",
     "text8"
   ],
+  mapboxContainer: ["mapboxContainer"],
   postes: ["postes"],
   button4: ["button4", "button3", "button7", "featuredIcon7", "featuredIcon8"],
   button3: ["button3"],
@@ -16315,6 +16331,7 @@ type NodeDefaultElementType = {
   clearBtn: typeof ClearBtn;
   resetFormBtn: "button";
   mapJobs: "div";
+  mapboxContainer: "div";
   postes: "div";
   button4: "div";
   button3: typeof JamButton;
@@ -16613,6 +16630,7 @@ export const PlasmicAccueil = Object.assign(
     clearBtn: makeNodeComponent("clearBtn"),
     resetFormBtn: makeNodeComponent("resetFormBtn"),
     mapJobs: makeNodeComponent("mapJobs"),
+    mapboxContainer: makeNodeComponent("mapboxContainer"),
     postes: makeNodeComponent("postes"),
     button4: makeNodeComponent("button4"),
     button3: makeNodeComponent("button3"),

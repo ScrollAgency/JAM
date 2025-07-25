@@ -15211,7 +15211,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                                       "files"
                                     ]).apply(null, eventArgs);
                                   }}
-                                  showUploadList={false}
+                                  showUploadList={true}
                                 >
                                   <div
                                     data-plasmic-name={"content5"}

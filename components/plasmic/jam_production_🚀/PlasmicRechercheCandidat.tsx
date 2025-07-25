@@ -269,20 +269,7 @@ function PlasmicRechercheCandidat__RenderFunc(props: {
         path: "input2.value",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) =>
-          (() => {
-            try {
-              return $queries.companyLocation.data[0].location;
-            } catch (e) {
-              if (
-                e instanceof TypeError ||
-                e?.plasmicType === "PlasmicUndefinedDataError"
-              ) {
-                return undefined;
-              }
-              throw e;
-            }
-          })(),
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
 
         onMutate: generateOnMutateForSpec("value", AntdInput_Helpers)
       },
@@ -296,20 +283,7 @@ function PlasmicRechercheCandidat__RenderFunc(props: {
         path: "cityTab",
         type: "private",
         variableType: "array",
-        initFunc: ({ $props, $state, $queries, $ctx }) =>
-          (() => {
-            try {
-              return [$queries.companyLocation.data[0].location];
-            } catch (e) {
-              if (
-                e instanceof TypeError ||
-                e?.plasmicType === "PlasmicUndefinedDataError"
-              ) {
-                return [];
-              }
-              throw e;
-            }
-          })()
+        initFunc: ({ $props, $state, $queries, $ctx }) => []
       },
       {
         path: "listWords",
@@ -1966,7 +1940,7 @@ function PlasmicRechercheCandidat__RenderFunc(props: {
                                       <React.Fragment>
                                         {(() => {
                                           try {
-                                            return currentItem;
+                                            return currentItem.label;
                                           } catch (e) {
                                             if (
                                               e instanceof TypeError ||
