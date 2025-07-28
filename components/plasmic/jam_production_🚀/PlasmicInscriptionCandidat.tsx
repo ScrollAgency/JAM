@@ -59,6 +59,13 @@ import {
   useGlobalActions
 } from "@plasmicapp/react-web/lib/host";
 
+import { usePlasmicDataSourceContext } from "@plasmicapp/data-sources-context";
+import {
+  executePlasmicDataOp,
+  usePlasmicDataOp,
+  usePlasmicInvalidate
+} from "@plasmicapp/react-web/lib/data-sources";
+
 import { SignUp } from "../../../plasmic-library/authentication/SignUp"; // plasmic-import: l54x2CZo0bN2/codeComponent
 
 import { useScreenVariants as useScreenVariantshm8Nko4B5BDd } from "./PlasmicGlobalVariant__Screen"; // plasmic-import: HM8Nko4B5BDd/globalVariant
@@ -199,6 +206,8 @@ function PlasmicInscriptionCandidat__RenderFunc(props: {
     $queries: {},
     $refs
   });
+  const dataSourcesCtx = usePlasmicDataSourceContext();
+  const plasmicInvalidate = usePlasmicInvalidate();
 
   const globalVariants = ensureGlobalVariants({
     screen: useScreenVariantshm8Nko4B5BDd()
@@ -604,6 +613,56 @@ function PlasmicInscriptionCandidat__RenderFunc(props: {
                         $steps["invokeGlobalAction"] = await $steps[
                           "invokeGlobalAction"
                         ];
+                      }
+
+                      $steps["httpPost"] = true
+                        ? (() => {
+                            const actionArgs = {
+                              dataOp: {
+                                sourceId: "5T6gSzGCrEfYgV9rAkCoaD",
+                                opId: "69367db6-1311-4861-bf71-2421db8b7836",
+                                userArgs: {
+                                  body: [
+                                    {
+                                      to: `${$state.signUp3.email}`,
+                                      template: "welcomeCandidat",
+                                      subject: "Bienvenue {{name}} !",
+                                      params: { name: "Marius" }
+                                    }
+                                  ]
+                                },
+                                cacheKey: null,
+                                invalidatedKeys: ["plasmic_refresh_all"],
+                                roleId: null
+                              }
+                            };
+                            return (async ({ dataOp, continueOnError }) => {
+                              try {
+                                const response = await executePlasmicDataOp(
+                                  dataOp,
+                                  {
+                                    userAuthToken:
+                                      dataSourcesCtx?.userAuthToken,
+                                    user: dataSourcesCtx?.user
+                                  }
+                                );
+                                await plasmicInvalidate(dataOp.invalidatedKeys);
+                                return response;
+                              } catch (e) {
+                                if (!continueOnError) {
+                                  throw e;
+                                }
+                                return e;
+                              }
+                            })?.apply(null, [actionArgs]);
+                          })()
+                        : undefined;
+                      if (
+                        $steps["httpPost"] != null &&
+                        typeof $steps["httpPost"] === "object" &&
+                        typeof $steps["httpPost"].then === "function"
+                      ) {
+                        $steps["httpPost"] = await $steps["httpPost"];
                       }
                     }}
                     padding={"40px 16px"}

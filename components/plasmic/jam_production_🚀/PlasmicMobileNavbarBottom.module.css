@@ -1,19 +1,18 @@
 .mobileNavbarBottom {
   background: rgba(19, 16, 19, 1);
   filter: none;
-  width: 100%;
+  width: auto;
   height: auto;
-  display: flex;
+  display: inline-flex;
   flex-direction: row;
   flex-shrink: 0;
   position: relative;
-  min-width: 0;
+  justify-self: flex-start;
 }
 .mobileNavbarBottom > :global(.__wab_flex-container) {
   flex-direction: row;
   align-items: flex-end;
   justify-content: center;
-  min-width: 0;
 }
 @media (min-width: 0px) and (max-width: 768px) {
   .mobileNavbarBottom {

@@ -74,6 +74,8 @@ import LoadingComponent from "../../LoadingComponent"; // plasmic-import: H7nb8l
 import Modal from "../../Modal"; // plasmic-import: fsC3QwUZz9uz/component
 import { Notation } from "../../../plasmic-library/others/Notation/Notation"; // plasmic-import: z82NxL6AqE3T/codeComponent
 import { Iframe } from "@plasmicpkgs/plasmic-basic-components";
+import { JamButton } from "../../forms/JamButton/JamButton"; // plasmic-import: UiI0wt2mxfuf/codeComponent
+import Button7 from "../../Button7"; // plasmic-import: 3oYr7EcSqEVK/component
 import MobileNavbarBottomCompany from "../../MobileNavbarBottomCompany"; // plasmic-import: gAnwjyfMiBe9/component
 import { Fetcher } from "@plasmicapp/react-web/lib/data-sources";
 
@@ -96,6 +98,7 @@ import IconPhOfficeChairIcon from "./icons/PlasmicIcon__IconPhOfficeChair"; // p
 import CircleIcon from "./icons/PlasmicIcon__Circle"; // plasmic-import: je95h6YoQ2jE/icon
 import PictogramIcon from "./icons/PlasmicIcon__Pictogram"; // plasmic-import: KlZQiGxQTluF/icon
 import GroupIcon from "./icons/PlasmicIcon__Group"; // plasmic-import: yIYn4o5HgDaM/icon
+import AlertCircle2Icon from "./icons/PlasmicIcon__AlertCircle2"; // plasmic-import: q4XkvLtjrRlS/icon
 
 createPlasmicElementProxy;
 
@@ -127,11 +130,22 @@ export type PlasmicCandidaturesEmployeur__OverridesType = {
   applications?: Flex__<"div">;
   dataGridV2?: Flex__<typeof DataGridV2>;
   loadingComponent?: Flex__<typeof LoadingComponent>;
-  successsApplications?: Flex__<typeof Modal>;
   notation?: Flex__<typeof Modal>;
   h2?: Flex__<"h2">;
   lettreDeMotivation?: Flex__<typeof Modal>;
   cv?: Flex__<typeof Modal>;
+  successsApplications?: Flex__<typeof Modal>;
+  confirmRejectModal?: Flex__<typeof Modal>;
+  h3?: Flex__<"h3">;
+  modal2?: Flex__<"div">;
+  content?: Flex__<"div">;
+  featuredIcon?: Flex__<"div">;
+  textAndSupportingText?: Flex__<"div">;
+  text?: Flex__<"div">;
+  supportingText?: Flex__<"div">;
+  frame1437254298?: Flex__<"div">;
+  button3?: Flex__<typeof Button7>;
+  button4?: Flex__<typeof Button7>;
   mobileNavbarBottomCompany?: Flex__<typeof MobileNavbarBottomCompany>;
 };
 
@@ -272,6 +286,18 @@ function PlasmicCandidaturesEmployeur__RenderFunc(props: {
         type: "private",
         variableType: "text",
         initFunc: ({ $props, $state, $queries, $ctx }) => false
+      },
+      {
+        path: "confirmRejectModal.isOpen",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+      },
+      {
+        path: "dataObjByCandidateId",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $ctx }) => ({})
       }
     ],
     [$props, $ctx, $refs]
@@ -289,11 +315,11 @@ function PlasmicCandidaturesEmployeur__RenderFunc(props: {
     empGetJobapplicationsByJobOffers: usePlasmicDataOp(() => {
       return {
         sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
-        opId: "e8423daf-ebd1-4f73-8beb-6a1046378158",
+        opId: "40ceca61-c508-458b-a499-2597a94b9650",
         userArgs: {
           query: [$ctx.params.job_id]
         },
-        cacheKey: `plasmic.$.e8423daf-ebd1-4f73-8beb-6a1046378158.$.`,
+        cacheKey: `plasmic.$.40ceca61-c508-458b-a499-2597a94b9650.$.`,
         invalidatedKeys: null,
         roleId: null
       };
@@ -795,10 +821,11 @@ function PlasmicCandidaturesEmployeur__RenderFunc(props: {
                   })()}
                   emptyStateMessage={"Aucune candidatures..."}
                   isLoading={false}
+                  loadingComponent={null}
                   onAccept={async (taskId, task) => {
                     const $steps = {};
 
-                    $steps["updateCurrentJaId"] = true
+                    $steps["updateId"] = true
                       ? (() => {
                           const actionArgs = {
                             variable: {
@@ -825,13 +852,48 @@ function PlasmicCandidaturesEmployeur__RenderFunc(props: {
                         })()
                       : undefined;
                     if (
-                      $steps["updateCurrentJaId"] != null &&
-                      typeof $steps["updateCurrentJaId"] === "object" &&
-                      typeof $steps["updateCurrentJaId"].then === "function"
+                      $steps["updateId"] != null &&
+                      typeof $steps["updateId"] === "object" &&
+                      typeof $steps["updateId"].then === "function"
                     ) {
-                      $steps["updateCurrentJaId"] = await $steps[
-                        "updateCurrentJaId"
-                      ];
+                      $steps["updateId"] = await $steps["updateId"];
+                    }
+
+                    $steps["updateObj"] = true
+                      ? (() => {
+                          const actionArgs = {
+                            variable: {
+                              objRoot: $state,
+                              variablePath: ["dataObjByCandidateId"]
+                            },
+                            operation: 0,
+                            value:
+                              $queries.empGetJobapplicationsByJobOffers.data.filter(
+                                app => app.id == $state.currentJaId
+                              )
+                          };
+                          return (({
+                            variable,
+                            value,
+                            startIndex,
+                            deleteCount
+                          }) => {
+                            if (!variable) {
+                              return;
+                            }
+                            const { objRoot, variablePath } = variable;
+
+                            $stateSet(objRoot, variablePath, value);
+                            return value;
+                          })?.apply(null, [actionArgs]);
+                        })()
+                      : undefined;
+                    if (
+                      $steps["updateObj"] != null &&
+                      typeof $steps["updateObj"] === "object" &&
+                      typeof $steps["updateObj"].then === "function"
+                    ) {
+                      $steps["updateObj"] = await $steps["updateObj"];
                     }
 
                     $steps["updateCurrentCandidat"] = true
@@ -1021,7 +1083,7 @@ function PlasmicCandidaturesEmployeur__RenderFunc(props: {
                   onReject={async taskId => {
                     const $steps = {};
 
-                    $steps["updateCurrentJaId"] = true
+                    $steps["updateState"] = true
                       ? (() => {
                           const actionArgs = {
                             variable: {
@@ -1048,57 +1110,82 @@ function PlasmicCandidaturesEmployeur__RenderFunc(props: {
                         })()
                       : undefined;
                     if (
-                      $steps["updateCurrentJaId"] != null &&
-                      typeof $steps["updateCurrentJaId"] === "object" &&
-                      typeof $steps["updateCurrentJaId"].then === "function"
+                      $steps["updateState"] != null &&
+                      typeof $steps["updateState"] === "object" &&
+                      typeof $steps["updateState"].then === "function"
                     ) {
-                      $steps["updateCurrentJaId"] = await $steps[
-                        "updateCurrentJaId"
-                      ];
+                      $steps["updateState"] = await $steps["updateState"];
                     }
 
-                    $steps["postgresUpdateById"] = true
+                    $steps["updateObj"] = true
                       ? (() => {
                           const actionArgs = {
-                            dataOp: {
-                              sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
-                              opId: "fea000fb-7257-4c2a-a868-cec09ed68816",
-                              userArgs: {
-                                keys: [$state.currentJaId]
-                              },
-                              cacheKey: null,
-                              invalidatedKeys: ["plasmic_refresh_all"],
-                              roleId: null
-                            }
+                            variable: {
+                              objRoot: $state,
+                              variablePath: ["dataObjByCandidateId"]
+                            },
+                            operation: 0,
+                            value:
+                              $queries.empGetJobapplicationsByJobOffers.data.filter(
+                                app => app.id == $state.currentJaId
+                              )
                           };
-                          return (async ({ dataOp, continueOnError }) => {
-                            try {
-                              const response = await executePlasmicDataOp(
-                                dataOp,
-                                {
-                                  userAuthToken: dataSourcesCtx?.userAuthToken,
-                                  user: dataSourcesCtx?.user
-                                }
-                              );
-                              await plasmicInvalidate(dataOp.invalidatedKeys);
-                              return response;
-                            } catch (e) {
-                              if (!continueOnError) {
-                                throw e;
-                              }
-                              return e;
+                          return (({
+                            variable,
+                            value,
+                            startIndex,
+                            deleteCount
+                          }) => {
+                            if (!variable) {
+                              return;
                             }
+                            const { objRoot, variablePath } = variable;
+
+                            $stateSet(objRoot, variablePath, value);
+                            return value;
                           })?.apply(null, [actionArgs]);
                         })()
                       : undefined;
                     if (
-                      $steps["postgresUpdateById"] != null &&
-                      typeof $steps["postgresUpdateById"] === "object" &&
-                      typeof $steps["postgresUpdateById"].then === "function"
+                      $steps["updateObj"] != null &&
+                      typeof $steps["updateObj"] === "object" &&
+                      typeof $steps["updateObj"].then === "function"
                     ) {
-                      $steps["postgresUpdateById"] = await $steps[
-                        "postgresUpdateById"
-                      ];
+                      $steps["updateObj"] = await $steps["updateObj"];
+                    }
+
+                    $steps["openModal"] = true
+                      ? (() => {
+                          const actionArgs = {
+                            variable: {
+                              objRoot: $state,
+                              variablePath: ["confirmRejectModal", "isOpen"]
+                            },
+                            operation: 0,
+                            value: true
+                          };
+                          return (({
+                            variable,
+                            value,
+                            startIndex,
+                            deleteCount
+                          }) => {
+                            if (!variable) {
+                              return;
+                            }
+                            const { objRoot, variablePath } = variable;
+
+                            $stateSet(objRoot, variablePath, value);
+                            return value;
+                          })?.apply(null, [actionArgs]);
+                        })()
+                      : undefined;
+                    if (
+                      $steps["openModal"] != null &&
+                      typeof $steps["openModal"] === "object" &&
+                      typeof $steps["openModal"].then === "function"
+                    ) {
+                      $steps["openModal"] = await $steps["openModal"];
                     }
                   }}
                   onViewCV={async (fileUrl, taskId) => {
@@ -1430,7 +1517,7 @@ function PlasmicCandidaturesEmployeur__RenderFunc(props: {
                     }
                   }}
                   pageSize={
-                    hasVariant(globalVariants, "screen", "mobileOnly") ? 5 : 5
+                    hasVariant(globalVariants, "screen", "mobileOnly") ? 5 : 4
                   }
                   showActionsColumn={(() => {
                     try {
@@ -1506,349 +1593,6 @@ function PlasmicCandidaturesEmployeur__RenderFunc(props: {
                 ) : null}
               </div>
             </div>
-            <Modal
-              data-plasmic-name={"successsApplications"}
-              data-plasmic-override={overrides.successsApplications}
-              className={classNames("__wab_instance", sty.successsApplications)}
-              content={
-                <Stack__
-                  as={"div"}
-                  hasGap={true}
-                  className={classNames(projectcss.all, sty.freeBox__oHhNq)}
-                >
-                  <div
-                    className={classNames(
-                      projectcss.all,
-                      projectcss.__wab_text,
-                      sty.text__bly1P
-                    )}
-                  >
-                    {"F\u00e9licitation !"}
-                  </div>
-                  <div
-                    className={classNames(
-                      projectcss.all,
-                      projectcss.__wab_text,
-                      sty.text__wgDc9
-                    )}
-                  >
-                    <React.Fragment>
-                      {(() => {
-                        try {
-                          return (
-                            "Vous avez recruté " +
-                            $state.currentCandidat +
-                            " pour le poste de " +
-                            $queries.getJob.data[0].title
-                          );
-                        } catch (e) {
-                          if (
-                            e instanceof TypeError ||
-                            e?.plasmicType === "PlasmicUndefinedDataError"
-                          ) {
-                            return "Vous avez recrut\u00e9 pour le poste de ";
-                          }
-                          throw e;
-                        }
-                      })()}
-                    </React.Fragment>
-                  </div>
-                  <Stack__
-                    as={"div"}
-                    hasGap={true}
-                    className={classNames(projectcss.all, sty.freeBox__yEt5Q)}
-                  >
-                    <PlasmicImg__
-                      alt={""}
-                      className={classNames(sty.img___8UbGx)}
-                      displayHeight={"32px"}
-                      displayMaxHeight={"none"}
-                      displayMaxWidth={"100%"}
-                      displayMinHeight={"0"}
-                      displayMinWidth={"0"}
-                      displayWidth={"32px"}
-                      height={``}
-                      loading={"lazy"}
-                      src={$queries.getPp.signedUrl}
-                    />
-
-                    <div
-                      className={classNames(
-                        projectcss.all,
-                        projectcss.__wab_text,
-                        sty.text__km9Zk
-                      )}
-                    >
-                      <React.Fragment>{$state.currentCandidat}</React.Fragment>
-                    </div>
-                  </Stack__>
-                  <div
-                    className={classNames(
-                      projectcss.all,
-                      projectcss.__wab_text,
-                      sty.text__mxjA
-                    )}
-                  >
-                    {
-                      "En confirmant votre recrutement, \nl'offre deviendra automatiquement indisponible\n pour les autres candidats."
-                    }
-                  </div>
-                </Stack__>
-              }
-              footer={
-                <div className={classNames(projectcss.all, sty.freeBox__w4Lt1)}>
-                  <Button
-                    className={classNames("__wab_instance", sty.button__cXhF)}
-                    end={
-                      <GroupIcon
-                        className={classNames(projectcss.all, sty.svg___1LsVi)}
-                        role={"img"}
-                      />
-                    }
-                    iconEnd={true}
-                    label={
-                      <div
-                        className={classNames(
-                          projectcss.all,
-                          projectcss.__wab_text,
-                          sty.text__uacTo
-                        )}
-                      >
-                        {"confirmer"}
-                      </div>
-                    }
-                    onClick={async event => {
-                      const $steps = {};
-
-                      $steps["postgresUpdateMany"] = true
-                        ? (() => {
-                            const actionArgs = {
-                              dataOp: {
-                                sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
-                                opId: "12230860-e43c-4e60-b759-ae07b3196c1a",
-                                userArgs: {
-                                  conditions: [$ctx.params.job_id]
-                                },
-                                cacheKey: null,
-                                invalidatedKeys: ["plasmic_refresh_all"],
-                                roleId: null
-                              }
-                            };
-                            return (async ({ dataOp, continueOnError }) => {
-                              try {
-                                const response = await executePlasmicDataOp(
-                                  dataOp,
-                                  {
-                                    userAuthToken:
-                                      dataSourcesCtx?.userAuthToken,
-                                    user: dataSourcesCtx?.user
-                                  }
-                                );
-                                await plasmicInvalidate(dataOp.invalidatedKeys);
-                                return response;
-                              } catch (e) {
-                                if (!continueOnError) {
-                                  throw e;
-                                }
-                                return e;
-                              }
-                            })?.apply(null, [actionArgs]);
-                          })()
-                        : undefined;
-                      if (
-                        $steps["postgresUpdateMany"] != null &&
-                        typeof $steps["postgresUpdateMany"] === "object" &&
-                        typeof $steps["postgresUpdateMany"].then === "function"
-                      ) {
-                        $steps["postgresUpdateMany"] = await $steps[
-                          "postgresUpdateMany"
-                        ];
-                      }
-
-                      $steps["postgresUpdateById"] = true
-                        ? (() => {
-                            const actionArgs = {
-                              dataOp: {
-                                sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
-                                opId: "14f7a3bf-dd7f-45ec-83c9-7cfb463f22b3",
-                                userArgs: {
-                                  keys: [$state.currentJaId]
-                                },
-                                cacheKey: null,
-                                invalidatedKeys: ["plasmic_refresh_all"],
-                                roleId: null
-                              }
-                            };
-                            return (async ({ dataOp, continueOnError }) => {
-                              try {
-                                const response = await executePlasmicDataOp(
-                                  dataOp,
-                                  {
-                                    userAuthToken:
-                                      dataSourcesCtx?.userAuthToken,
-                                    user: dataSourcesCtx?.user
-                                  }
-                                );
-                                await plasmicInvalidate(dataOp.invalidatedKeys);
-                                return response;
-                              } catch (e) {
-                                if (!continueOnError) {
-                                  throw e;
-                                }
-                                return e;
-                              }
-                            })?.apply(null, [actionArgs]);
-                          })()
-                        : undefined;
-                      if (
-                        $steps["postgresUpdateById"] != null &&
-                        typeof $steps["postgresUpdateById"] === "object" &&
-                        typeof $steps["postgresUpdateById"].then === "function"
-                      ) {
-                        $steps["postgresUpdateById"] = await $steps[
-                          "postgresUpdateById"
-                        ];
-                      }
-
-                      $steps["updateSuccesssApplicationsIsOpen"] = true
-                        ? (() => {
-                            const actionArgs = {
-                              variable: {
-                                objRoot: $state,
-                                variablePath: ["successsApplications", "isOpen"]
-                              },
-                              operation: 0,
-                              value: false
-                            };
-                            return (({
-                              variable,
-                              value,
-                              startIndex,
-                              deleteCount
-                            }) => {
-                              if (!variable) {
-                                return;
-                              }
-                              const { objRoot, variablePath } = variable;
-
-                              $stateSet(objRoot, variablePath, value);
-                              return value;
-                            })?.apply(null, [actionArgs]);
-                          })()
-                        : undefined;
-                      if (
-                        $steps["updateSuccesssApplicationsIsOpen"] != null &&
-                        typeof $steps["updateSuccesssApplicationsIsOpen"] ===
-                          "object" &&
-                        typeof $steps["updateSuccesssApplicationsIsOpen"]
-                          .then === "function"
-                      ) {
-                        $steps["updateSuccesssApplicationsIsOpen"] =
-                          await $steps["updateSuccesssApplicationsIsOpen"];
-                      }
-                    }}
-                  />
-                </div>
-              }
-              heading={
-                (
-                  hasVariant(globalVariants, "screen", "mobileOnly")
-                    ? true
-                    : (() => {
-                        try {
-                          return true;
-                        } catch (e) {
-                          if (
-                            e instanceof TypeError ||
-                            e?.plasmicType === "PlasmicUndefinedDataError"
-                          ) {
-                            return true;
-                          }
-                          throw e;
-                        }
-                      })()
-                ) ? (
-                  <PlasmicImg__
-                    alt={""}
-                    className={classNames(sty.img__zmnFw)}
-                    displayHeight={"17px"}
-                    displayMaxHeight={"none"}
-                    displayMaxWidth={"100%"}
-                    displayMinHeight={"0"}
-                    displayMinWidth={"0"}
-                    displayWidth={"17px"}
-                    loading={"lazy"}
-                    onClick={async event => {
-                      const $steps = {};
-
-                      $steps["updateSuccesssApplicationsIsOpen"] = true
-                        ? (() => {
-                            const actionArgs = {
-                              variable: {
-                                objRoot: $state,
-                                variablePath: ["successsApplications", "isOpen"]
-                              },
-                              operation: 0,
-                              value: false
-                            };
-                            return (({
-                              variable,
-                              value,
-                              startIndex,
-                              deleteCount
-                            }) => {
-                              if (!variable) {
-                                return;
-                              }
-                              const { objRoot, variablePath } = variable;
-
-                              $stateSet(objRoot, variablePath, value);
-                              return value;
-                            })?.apply(null, [actionArgs]);
-                          })()
-                        : undefined;
-                      if (
-                        $steps["updateSuccesssApplicationsIsOpen"] != null &&
-                        typeof $steps["updateSuccesssApplicationsIsOpen"] ===
-                          "object" &&
-                        typeof $steps["updateSuccesssApplicationsIsOpen"]
-                          .then === "function"
-                      ) {
-                        $steps["updateSuccesssApplicationsIsOpen"] =
-                          await $steps["updateSuccesssApplicationsIsOpen"];
-                      }
-                    }}
-                    src={{
-                      src: "/plasmic/jam_production_🚀/images/close3.svg",
-                      fullWidth: 17,
-                      fullHeight: 17,
-                      aspectRatio: 1
-                    }}
-                  />
-                ) : null
-              }
-              isOpen={generateStateValueProp($state, [
-                "successsApplications",
-                "isOpen"
-              ])}
-              noTrigger={true}
-              onOpenChange={async (...eventArgs: any) => {
-                generateStateOnChangeProp($state, [
-                  "successsApplications",
-                  "isOpen"
-                ]).apply(null, eventArgs);
-
-                if (
-                  eventArgs.length > 1 &&
-                  eventArgs[1] &&
-                  eventArgs[1]._plasmic_state_init_
-                ) {
-                  return;
-                }
-              }}
-              trigger={null}
-            />
-
             {(() => {
               try {
                 return $ctx.query.openModal === "rating";
@@ -2301,7 +2045,7 @@ function PlasmicCandidaturesEmployeur__RenderFunc(props: {
                                     },
                                     cacheKey: null,
                                     invalidatedKeys: [
-                                      "e8423daf-ebd1-4f73-8beb-6a1046378158"
+                                      "40ceca61-c508-458b-a499-2597a94b9650"
                                     ],
                                     roleId: null
                                   }
@@ -2827,6 +2571,814 @@ function PlasmicCandidaturesEmployeur__RenderFunc(props: {
               trigger={null}
             />
           </Stack__>
+          <Modal
+            data-plasmic-name={"successsApplications"}
+            data-plasmic-override={overrides.successsApplications}
+            className={classNames("__wab_instance", sty.successsApplications)}
+            content={
+              <Stack__
+                as={"div"}
+                hasGap={true}
+                className={classNames(projectcss.all, sty.freeBox__oHhNq)}
+              >
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__bly1P
+                  )}
+                >
+                  {"F\u00e9licitation !"}
+                </div>
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__wgDc9
+                  )}
+                >
+                  <React.Fragment>
+                    {(() => {
+                      try {
+                        return (
+                          "Vous avez recruté " +
+                          $state.currentCandidat +
+                          " pour le poste de " +
+                          $queries.getJob.data[0].title
+                        );
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return "Vous avez recrut\u00e9 pour le poste de ";
+                        }
+                        throw e;
+                      }
+                    })()}
+                  </React.Fragment>
+                </div>
+                <Stack__
+                  as={"div"}
+                  hasGap={true}
+                  className={classNames(projectcss.all, sty.freeBox__yEt5Q)}
+                >
+                  <PlasmicImg__
+                    alt={""}
+                    className={classNames(sty.img___8UbGx)}
+                    displayHeight={"32px"}
+                    displayMaxHeight={"none"}
+                    displayMaxWidth={"100%"}
+                    displayMinHeight={"0"}
+                    displayMinWidth={"0"}
+                    displayWidth={"32px"}
+                    height={``}
+                    loading={"lazy"}
+                    src={$queries.getPp.signedUrl}
+                  />
+
+                  <div
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.__wab_text,
+                      sty.text__km9Zk
+                    )}
+                  >
+                    <React.Fragment>{$state.currentCandidat}</React.Fragment>
+                  </div>
+                </Stack__>
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__mxjA
+                  )}
+                >
+                  {
+                    "En confirmant votre recrutement, \nl'offre deviendra automatiquement indisponible\n pour les autres candidats."
+                  }
+                </div>
+              </Stack__>
+            }
+            footer={
+              <div className={classNames(projectcss.all, sty.freeBox__w4Lt1)}>
+                <Button
+                  className={classNames("__wab_instance", sty.button__cXhF)}
+                  end={
+                    <GroupIcon
+                      className={classNames(projectcss.all, sty.svg___1LsVi)}
+                      role={"img"}
+                    />
+                  }
+                  iconEnd={true}
+                  label={
+                    <div
+                      className={classNames(
+                        projectcss.all,
+                        projectcss.__wab_text,
+                        sty.text__uacTo
+                      )}
+                    >
+                      {"confirmer"}
+                    </div>
+                  }
+                  onClick={async event => {
+                    const $steps = {};
+
+                    $steps["updateDb"] = true
+                      ? (() => {
+                          const actionArgs = {
+                            dataOp: {
+                              sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
+                              opId: "14f7a3bf-dd7f-45ec-83c9-7cfb463f22b3",
+                              userArgs: {
+                                keys: [$state.currentJaId]
+                              },
+                              cacheKey: null,
+                              invalidatedKeys: [
+                                "40ceca61-c508-458b-a499-2597a94b9650"
+                              ],
+                              roleId: null
+                            }
+                          };
+                          return (async ({ dataOp, continueOnError }) => {
+                            try {
+                              const response = await executePlasmicDataOp(
+                                dataOp,
+                                {
+                                  userAuthToken: dataSourcesCtx?.userAuthToken,
+                                  user: dataSourcesCtx?.user
+                                }
+                              );
+                              await plasmicInvalidate(dataOp.invalidatedKeys);
+                              return response;
+                            } catch (e) {
+                              if (!continueOnError) {
+                                throw e;
+                              }
+                              return e;
+                            }
+                          })?.apply(null, [actionArgs]);
+                        })()
+                      : undefined;
+                    if (
+                      $steps["updateDb"] != null &&
+                      typeof $steps["updateDb"] === "object" &&
+                      typeof $steps["updateDb"].then === "function"
+                    ) {
+                      $steps["updateDb"] = await $steps["updateDb"];
+                    }
+
+                    $steps["closeModal"] = true
+                      ? (() => {
+                          const actionArgs = {
+                            variable: {
+                              objRoot: $state,
+                              variablePath: ["successsApplications", "isOpen"]
+                            },
+                            operation: 0,
+                            value: false
+                          };
+                          return (({
+                            variable,
+                            value,
+                            startIndex,
+                            deleteCount
+                          }) => {
+                            if (!variable) {
+                              return;
+                            }
+                            const { objRoot, variablePath } = variable;
+
+                            $stateSet(objRoot, variablePath, value);
+                            return value;
+                          })?.apply(null, [actionArgs]);
+                        })()
+                      : undefined;
+                    if (
+                      $steps["closeModal"] != null &&
+                      typeof $steps["closeModal"] === "object" &&
+                      typeof $steps["closeModal"].then === "function"
+                    ) {
+                      $steps["closeModal"] = await $steps["closeModal"];
+                    }
+
+                    $steps["httpPost"] = true
+                      ? (() => {
+                          const actionArgs = {
+                            dataOp: {
+                              sourceId: "5T6gSzGCrEfYgV9rAkCoaD",
+                              opId: "ac3aeb59-a5a8-4309-9807-433a1356e04e",
+                              userArgs: {
+                                body: [
+                                  {
+                                    to: `${$state.dataObjByCandidateId[0].email}`,
+                                    template: "candidateSelected",
+                                    subject:
+                                      "Bonne nouvelle ! Tu as été retenue 🎉",
+                                    params: {
+                                      firstName: `${$state.dataObjByCandidateId[0].nom_du_candidat}`,
+                                      jobTitle: `${$state.dataObjByCandidateId[0].titre_du_poste}`,
+                                      companyName: `${$state.dataObjByCandidateId[0].nom_entreprise}`,
+                                      offersUrl:
+                                        "https://jam-staging.agence-scroll.com/"
+                                    }
+                                  }
+                                ]
+                              },
+                              cacheKey: null,
+                              invalidatedKeys: [],
+                              roleId: null
+                            }
+                          };
+                          return (async ({ dataOp, continueOnError }) => {
+                            try {
+                              const response = await executePlasmicDataOp(
+                                dataOp,
+                                {
+                                  userAuthToken: dataSourcesCtx?.userAuthToken,
+                                  user: dataSourcesCtx?.user
+                                }
+                              );
+                              await plasmicInvalidate(dataOp.invalidatedKeys);
+                              return response;
+                            } catch (e) {
+                              if (!continueOnError) {
+                                throw e;
+                              }
+                              return e;
+                            }
+                          })?.apply(null, [actionArgs]);
+                        })()
+                      : undefined;
+                    if (
+                      $steps["httpPost"] != null &&
+                      typeof $steps["httpPost"] === "object" &&
+                      typeof $steps["httpPost"].then === "function"
+                    ) {
+                      $steps["httpPost"] = await $steps["httpPost"];
+                    }
+                  }}
+                />
+              </div>
+            }
+            heading={
+              (
+                hasVariant(globalVariants, "screen", "mobileOnly")
+                  ? true
+                  : (() => {
+                      try {
+                        return true;
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return true;
+                        }
+                        throw e;
+                      }
+                    })()
+              ) ? (
+                <PlasmicImg__
+                  alt={""}
+                  className={classNames(sty.img__zmnFw)}
+                  displayHeight={"17px"}
+                  displayMaxHeight={"none"}
+                  displayMaxWidth={"100%"}
+                  displayMinHeight={"0"}
+                  displayMinWidth={"0"}
+                  displayWidth={"17px"}
+                  loading={"lazy"}
+                  onClick={async event => {
+                    const $steps = {};
+
+                    $steps["clearId"] = true
+                      ? (() => {
+                          const actionArgs = {
+                            variable: {
+                              objRoot: $state,
+                              variablePath: ["currentJaId"]
+                            },
+                            operation: 1
+                          };
+                          return (({
+                            variable,
+                            value,
+                            startIndex,
+                            deleteCount
+                          }) => {
+                            if (!variable) {
+                              return;
+                            }
+                            const { objRoot, variablePath } = variable;
+
+                            $stateSet(objRoot, variablePath, undefined);
+                            return undefined;
+                          })?.apply(null, [actionArgs]);
+                        })()
+                      : undefined;
+                    if (
+                      $steps["clearId"] != null &&
+                      typeof $steps["clearId"] === "object" &&
+                      typeof $steps["clearId"].then === "function"
+                    ) {
+                      $steps["clearId"] = await $steps["clearId"];
+                    }
+
+                    $steps["clearObj"] = true
+                      ? (() => {
+                          const actionArgs = {
+                            variable: {
+                              objRoot: $state,
+                              variablePath: ["dataObjByCandidateId"]
+                            },
+                            operation: 0,
+                            value: {}
+                          };
+                          return (({
+                            variable,
+                            value,
+                            startIndex,
+                            deleteCount
+                          }) => {
+                            if (!variable) {
+                              return;
+                            }
+                            const { objRoot, variablePath } = variable;
+
+                            $stateSet(objRoot, variablePath, value);
+                            return value;
+                          })?.apply(null, [actionArgs]);
+                        })()
+                      : undefined;
+                    if (
+                      $steps["clearObj"] != null &&
+                      typeof $steps["clearObj"] === "object" &&
+                      typeof $steps["clearObj"].then === "function"
+                    ) {
+                      $steps["clearObj"] = await $steps["clearObj"];
+                    }
+
+                    $steps["closeModal"] = true
+                      ? (() => {
+                          const actionArgs = {
+                            variable: {
+                              objRoot: $state,
+                              variablePath: ["successsApplications", "isOpen"]
+                            },
+                            operation: 0,
+                            value: false
+                          };
+                          return (({
+                            variable,
+                            value,
+                            startIndex,
+                            deleteCount
+                          }) => {
+                            if (!variable) {
+                              return;
+                            }
+                            const { objRoot, variablePath } = variable;
+
+                            $stateSet(objRoot, variablePath, value);
+                            return value;
+                          })?.apply(null, [actionArgs]);
+                        })()
+                      : undefined;
+                    if (
+                      $steps["closeModal"] != null &&
+                      typeof $steps["closeModal"] === "object" &&
+                      typeof $steps["closeModal"].then === "function"
+                    ) {
+                      $steps["closeModal"] = await $steps["closeModal"];
+                    }
+                  }}
+                  src={{
+                    src: "/plasmic/jam_production_🚀/images/close3.svg",
+                    fullWidth: 17,
+                    fullHeight: 17,
+                    aspectRatio: 1
+                  }}
+                />
+              ) : null
+            }
+            isOpen={generateStateValueProp($state, [
+              "successsApplications",
+              "isOpen"
+            ])}
+            noTrigger={true}
+            onOpenChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, [
+                "successsApplications",
+                "isOpen"
+              ]).apply(null, eventArgs);
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+            trigger={null}
+          />
+
+          <Modal
+            data-plasmic-name={"confirmRejectModal"}
+            data-plasmic-override={overrides.confirmRejectModal}
+            className={classNames("__wab_instance", sty.confirmRejectModal)}
+            content={
+              <Stack__
+                as={"div"}
+                data-plasmic-name={"modal2"}
+                data-plasmic-override={overrides.modal2}
+                hasGap={true}
+                className={classNames(projectcss.all, sty.modal2)}
+              >
+                <Stack__
+                  as={"div"}
+                  data-plasmic-name={"content"}
+                  data-plasmic-override={overrides.content}
+                  hasGap={true}
+                  className={classNames(projectcss.all, sty.content)}
+                >
+                  <div
+                    data-plasmic-name={"featuredIcon"}
+                    data-plasmic-override={overrides.featuredIcon}
+                    className={classNames(projectcss.all, sty.featuredIcon)}
+                  >
+                    <AlertCircle2Icon
+                      className={classNames(projectcss.all, sty.svg__dmKf)}
+                      role={"img"}
+                    />
+                  </div>
+                  <Stack__
+                    as={"div"}
+                    data-plasmic-name={"textAndSupportingText"}
+                    data-plasmic-override={overrides.textAndSupportingText}
+                    hasGap={true}
+                    className={classNames(
+                      projectcss.all,
+                      sty.textAndSupportingText
+                    )}
+                  >
+                    <div
+                      data-plasmic-name={"text"}
+                      data-plasmic-override={overrides.text}
+                      className={classNames(
+                        projectcss.all,
+                        projectcss.__wab_text,
+                        sty.text
+                      )}
+                    >
+                      {
+                        "\u00cates-vous s\u00fbr(e) de vouloir refuser \ncette candidature ?"
+                      }
+                    </div>
+                    <div
+                      data-plasmic-name={"supportingText"}
+                      data-plasmic-override={overrides.supportingText}
+                      className={classNames(
+                        projectcss.all,
+                        projectcss.__wab_text,
+                        sty.supportingText
+                      )}
+                    >
+                      {
+                        "Cette action est irr\u00e9versible. \nLe ou la candidat\u00b7e en sera inform\u00e9\u00b7e par e\u2011mail."
+                      }
+                    </div>
+                  </Stack__>
+                </Stack__>
+                <Stack__
+                  as={"div"}
+                  data-plasmic-name={"frame1437254298"}
+                  data-plasmic-override={overrides.frame1437254298}
+                  hasGap={true}
+                  className={classNames(projectcss.all, sty.frame1437254298)}
+                >
+                  <Button7
+                    data-plasmic-name={"button3"}
+                    data-plasmic-override={overrides.button3}
+                    className={classNames("__wab_instance", sty.button3)}
+                    color={"white"}
+                    label={
+                      <div
+                        className={classNames(
+                          projectcss.all,
+                          projectcss.__wab_text,
+                          sty.text__mpJbu
+                        )}
+                      >
+                        {"ANNULER"}
+                      </div>
+                    }
+                    onClick={async event => {
+                      const $steps = {};
+
+                      $steps["clearId"] = true
+                        ? (() => {
+                            const actionArgs = {
+                              variable: {
+                                objRoot: $state,
+                                variablePath: ["currentJaId"]
+                              },
+                              operation: 1
+                            };
+                            return (({
+                              variable,
+                              value,
+                              startIndex,
+                              deleteCount
+                            }) => {
+                              if (!variable) {
+                                return;
+                              }
+                              const { objRoot, variablePath } = variable;
+
+                              $stateSet(objRoot, variablePath, undefined);
+                              return undefined;
+                            })?.apply(null, [actionArgs]);
+                          })()
+                        : undefined;
+                      if (
+                        $steps["clearId"] != null &&
+                        typeof $steps["clearId"] === "object" &&
+                        typeof $steps["clearId"].then === "function"
+                      ) {
+                        $steps["clearId"] = await $steps["clearId"];
+                      }
+
+                      $steps["clearObj"] = true
+                        ? (() => {
+                            const actionArgs = {
+                              variable: {
+                                objRoot: $state,
+                                variablePath: ["dataObjByCandidateId"]
+                              },
+                              operation: 0,
+                              value: {}
+                            };
+                            return (({
+                              variable,
+                              value,
+                              startIndex,
+                              deleteCount
+                            }) => {
+                              if (!variable) {
+                                return;
+                              }
+                              const { objRoot, variablePath } = variable;
+
+                              $stateSet(objRoot, variablePath, value);
+                              return value;
+                            })?.apply(null, [actionArgs]);
+                          })()
+                        : undefined;
+                      if (
+                        $steps["clearObj"] != null &&
+                        typeof $steps["clearObj"] === "object" &&
+                        typeof $steps["clearObj"].then === "function"
+                      ) {
+                        $steps["clearObj"] = await $steps["clearObj"];
+                      }
+
+                      $steps["closeModal"] = true
+                        ? (() => {
+                            const actionArgs = {
+                              variable: {
+                                objRoot: $state,
+                                variablePath: ["confirmRejectModal", "isOpen"]
+                              },
+                              operation: 0,
+                              value: false
+                            };
+                            return (({
+                              variable,
+                              value,
+                              startIndex,
+                              deleteCount
+                            }) => {
+                              if (!variable) {
+                                return;
+                              }
+                              const { objRoot, variablePath } = variable;
+
+                              $stateSet(objRoot, variablePath, value);
+                              return value;
+                            })?.apply(null, [actionArgs]);
+                          })()
+                        : undefined;
+                      if (
+                        $steps["closeModal"] != null &&
+                        typeof $steps["closeModal"] === "object" &&
+                        typeof $steps["closeModal"].then === "function"
+                      ) {
+                        $steps["closeModal"] = await $steps["closeModal"];
+                      }
+                    }}
+                    size={"extraLarge"}
+                    type={"bordered"}
+                  />
+
+                  <Button7
+                    data-plasmic-name={"button4"}
+                    data-plasmic-override={overrides.button4}
+                    className={classNames("__wab_instance", sty.button4)}
+                    color={"errorDestructive"}
+                    label={
+                      <div
+                        className={classNames(
+                          projectcss.all,
+                          projectcss.__wab_text,
+                          sty.text__vetv7
+                        )}
+                      >
+                        {"REFUSER"}
+                      </div>
+                    }
+                    onClick={async event => {
+                      const $steps = {};
+
+                      $steps["updateDb"] = true
+                        ? (() => {
+                            const actionArgs = {
+                              dataOp: {
+                                sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
+                                opId: "fea000fb-7257-4c2a-a868-cec09ed68816",
+                                userArgs: {
+                                  keys: [$state.currentJaId]
+                                },
+                                cacheKey: null,
+                                invalidatedKeys: ["plasmic_refresh_all"],
+                                roleId: null
+                              }
+                            };
+                            return (async ({ dataOp, continueOnError }) => {
+                              try {
+                                const response = await executePlasmicDataOp(
+                                  dataOp,
+                                  {
+                                    userAuthToken:
+                                      dataSourcesCtx?.userAuthToken,
+                                    user: dataSourcesCtx?.user
+                                  }
+                                );
+                                await plasmicInvalidate(dataOp.invalidatedKeys);
+                                return response;
+                              } catch (e) {
+                                if (!continueOnError) {
+                                  throw e;
+                                }
+                                return e;
+                              }
+                            })?.apply(null, [actionArgs]);
+                          })()
+                        : undefined;
+                      if (
+                        $steps["updateDb"] != null &&
+                        typeof $steps["updateDb"] === "object" &&
+                        typeof $steps["updateDb"].then === "function"
+                      ) {
+                        $steps["updateDb"] = await $steps["updateDb"];
+                      }
+
+                      $steps["sendMail"] = true
+                        ? (() => {
+                            const actionArgs = {
+                              dataOp: {
+                                sourceId: "5T6gSzGCrEfYgV9rAkCoaD",
+                                opId: "fcf17976-4f7f-44b3-8083-e1bf6bb812dd",
+                                userArgs: {
+                                  body: [
+                                    {
+                                      to: `${$state.dataObjByCandidateId[0].email}`,
+                                      template: "candidateRejection",
+                                      subject:
+                                        "Mise à jour concernant ta candidature",
+                                      params: {
+                                        firstName: `${$state.dataObjByCandidateId[0].nom_du_candidat}`,
+                                        jobTitle: `${$state.dataObjByCandidateId[0].titre_du_poste}`,
+                                        companyName: `${$state.dataObjByCandidateId[0].nom_entreprise}`,
+                                        offersUrl:
+                                          "https://jam-staging.agence-scroll.com/"
+                                      }
+                                    }
+                                  ]
+                                },
+                                cacheKey: null,
+                                invalidatedKeys: ["plasmic_refresh_all"],
+                                roleId: null
+                              }
+                            };
+                            return (async ({ dataOp, continueOnError }) => {
+                              try {
+                                const response = await executePlasmicDataOp(
+                                  dataOp,
+                                  {
+                                    userAuthToken:
+                                      dataSourcesCtx?.userAuthToken,
+                                    user: dataSourcesCtx?.user
+                                  }
+                                );
+                                await plasmicInvalidate(dataOp.invalidatedKeys);
+                                return response;
+                              } catch (e) {
+                                if (!continueOnError) {
+                                  throw e;
+                                }
+                                return e;
+                              }
+                            })?.apply(null, [actionArgs]);
+                          })()
+                        : undefined;
+                      if (
+                        $steps["sendMail"] != null &&
+                        typeof $steps["sendMail"] === "object" &&
+                        typeof $steps["sendMail"].then === "function"
+                      ) {
+                        $steps["sendMail"] = await $steps["sendMail"];
+                      }
+
+                      $steps["closeModal"] = true
+                        ? (() => {
+                            const actionArgs = {
+                              variable: {
+                                objRoot: $state,
+                                variablePath: ["confirmRejectModal", "isOpen"]
+                              },
+                              operation: 0,
+                              value: false
+                            };
+                            return (({
+                              variable,
+                              value,
+                              startIndex,
+                              deleteCount
+                            }) => {
+                              if (!variable) {
+                                return;
+                              }
+                              const { objRoot, variablePath } = variable;
+
+                              $stateSet(objRoot, variablePath, value);
+                              return value;
+                            })?.apply(null, [actionArgs]);
+                          })()
+                        : undefined;
+                      if (
+                        $steps["closeModal"] != null &&
+                        typeof $steps["closeModal"] === "object" &&
+                        typeof $steps["closeModal"].then === "function"
+                      ) {
+                        $steps["closeModal"] = await $steps["closeModal"];
+                      }
+                    }}
+                    size={"extraLarge"}
+                  />
+                </Stack__>
+              </Stack__>
+            }
+            footer={null}
+            heading={
+              <h3
+                data-plasmic-name={"h3"}
+                data-plasmic-override={overrides.h3}
+                className={classNames(
+                  projectcss.all,
+                  projectcss.h3,
+                  projectcss.__wab_text,
+                  sty.h3
+                )}
+              >
+                {"Heading"}
+              </h3>
+            }
+            isOpen={generateStateValueProp($state, [
+              "confirmRejectModal",
+              "isOpen"
+            ])}
+            noTrigger={true}
+            onOpenChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, [
+                "confirmRejectModal",
+                "isOpen"
+              ]).apply(null, eventArgs);
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+            showFooter={false}
+            showHeader={false}
+          />
+
           {(
             hasVariant(globalVariants, "screen", "mobileOnly")
               ? true
@@ -2878,11 +3430,22 @@ const PlasmicDescendants = {
     "applications",
     "dataGridV2",
     "loadingComponent",
-    "successsApplications",
     "notation",
     "h2",
     "lettreDeMotivation",
     "cv",
+    "successsApplications",
+    "confirmRejectModal",
+    "h3",
+    "modal2",
+    "content",
+    "featuredIcon",
+    "textAndSupportingText",
+    "text",
+    "supportingText",
+    "frame1437254298",
+    "button3",
+    "button4",
     "mobileNavbarBottomCompany"
   ],
   mobileNavbarTop: ["mobileNavbarTop"],
@@ -2902,7 +3465,6 @@ const PlasmicDescendants = {
     "applications",
     "dataGridV2",
     "loadingComponent",
-    "successsApplications",
     "notation",
     "h2",
     "lettreDeMotivation",
@@ -2929,11 +3491,50 @@ const PlasmicDescendants = {
   applications: ["applications", "dataGridV2", "loadingComponent"],
   dataGridV2: ["dataGridV2"],
   loadingComponent: ["loadingComponent"],
-  successsApplications: ["successsApplications"],
   notation: ["notation", "h2"],
   h2: ["h2"],
   lettreDeMotivation: ["lettreDeMotivation"],
   cv: ["cv"],
+  successsApplications: ["successsApplications"],
+  confirmRejectModal: [
+    "confirmRejectModal",
+    "h3",
+    "modal2",
+    "content",
+    "featuredIcon",
+    "textAndSupportingText",
+    "text",
+    "supportingText",
+    "frame1437254298",
+    "button3",
+    "button4"
+  ],
+  h3: ["h3"],
+  modal2: [
+    "modal2",
+    "content",
+    "featuredIcon",
+    "textAndSupportingText",
+    "text",
+    "supportingText",
+    "frame1437254298",
+    "button3",
+    "button4"
+  ],
+  content: [
+    "content",
+    "featuredIcon",
+    "textAndSupportingText",
+    "text",
+    "supportingText"
+  ],
+  featuredIcon: ["featuredIcon"],
+  textAndSupportingText: ["textAndSupportingText", "text", "supportingText"],
+  text: ["text"],
+  supportingText: ["supportingText"],
+  frame1437254298: ["frame1437254298", "button3", "button4"],
+  button3: ["button3"],
+  button4: ["button4"],
   mobileNavbarBottomCompany: ["mobileNavbarBottomCompany"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
@@ -2957,11 +3558,22 @@ type NodeDefaultElementType = {
   applications: "div";
   dataGridV2: typeof DataGridV2;
   loadingComponent: typeof LoadingComponent;
-  successsApplications: typeof Modal;
   notation: typeof Modal;
   h2: "h2";
   lettreDeMotivation: typeof Modal;
   cv: typeof Modal;
+  successsApplications: typeof Modal;
+  confirmRejectModal: typeof Modal;
+  h3: "h3";
+  modal2: "div";
+  content: "div";
+  featuredIcon: "div";
+  textAndSupportingText: "div";
+  text: "div";
+  supportingText: "div";
+  frame1437254298: "div";
+  button3: typeof Button7;
+  button4: typeof Button7;
   mobileNavbarBottomCompany: typeof MobileNavbarBottomCompany;
 };
 
@@ -3041,11 +3653,22 @@ export const PlasmicCandidaturesEmployeur = Object.assign(
     applications: makeNodeComponent("applications"),
     dataGridV2: makeNodeComponent("dataGridV2"),
     loadingComponent: makeNodeComponent("loadingComponent"),
-    successsApplications: makeNodeComponent("successsApplications"),
     notation: makeNodeComponent("notation"),
     h2: makeNodeComponent("h2"),
     lettreDeMotivation: makeNodeComponent("lettreDeMotivation"),
     cv: makeNodeComponent("cv"),
+    successsApplications: makeNodeComponent("successsApplications"),
+    confirmRejectModal: makeNodeComponent("confirmRejectModal"),
+    h3: makeNodeComponent("h3"),
+    modal2: makeNodeComponent("modal2"),
+    content: makeNodeComponent("content"),
+    featuredIcon: makeNodeComponent("featuredIcon"),
+    textAndSupportingText: makeNodeComponent("textAndSupportingText"),
+    text: makeNodeComponent("text"),
+    supportingText: makeNodeComponent("supportingText"),
+    frame1437254298: makeNodeComponent("frame1437254298"),
+    button3: makeNodeComponent("button3"),
+    button4: makeNodeComponent("button4"),
     mobileNavbarBottomCompany: makeNodeComponent("mobileNavbarBottomCompany"),
 
     // Metadata about props expected for PlasmicCandidaturesEmployeur
