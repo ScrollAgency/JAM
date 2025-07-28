@@ -1974,6 +1974,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                                   $queries.offreStripeUserInfos.data[0]
                                     ?.recharge_lastminute
                                 );
+                                const isNaN = Number.isNaN;
                                 const isClassicValid =
                                   !isNaN(rechargeClassic) &&
                                   rechargeClassic > 0;
@@ -6303,7 +6304,6 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                             "__wab_instance",
                             sty.formField___8Ir2D
                           )}
-                          initialValue={$state.currentJobObject.contract_type}
                           label={
                             <div
                               className={classNames(
@@ -6436,19 +6436,6 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                             "__wab_instance",
                             sty.formField___5CL33
                           )}
-                          initialValue={(() => {
-                            try {
-                              return $state.currentJobObject.working_time;
-                            } catch (e) {
-                              if (
-                                e instanceof TypeError ||
-                                e?.plasmicType === "PlasmicUndefinedDataError"
-                              ) {
-                                return undefined;
-                              }
-                              throw e;
-                            }
-                          })()}
                           label={
                             <div
                               className={classNames(
@@ -6590,19 +6577,6 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                             "__wab_instance",
                             sty.formField__paE0O
                           )}
-                          initialValue={(() => {
-                            try {
-                              return $state.currentJobObject.salary;
-                            } catch (e) {
-                              if (
-                                e instanceof TypeError ||
-                                e?.plasmicType === "PlasmicUndefinedDataError"
-                              ) {
-                                return undefined;
-                              }
-                              throw e;
-                            }
-                          })()}
                           label={
                             <div
                               className={classNames(
@@ -6733,19 +6707,6 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                             "__wab_instance",
                             sty.formField__uj2KD
                           )}
-                          initialValue={(() => {
-                            try {
-                              return $state.currentJobObject.sector_activity;
-                            } catch (e) {
-                              if (
-                                e instanceof TypeError ||
-                                e?.plasmicType === "PlasmicUndefinedDataError"
-                              ) {
-                                return undefined;
-                              }
-                              throw e;
-                            }
-                          })()}
                           label={
                             <div
                               className={classNames(
@@ -7050,19 +7011,6 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                             "__wab_instance",
                             sty.formField__oJncC
                           )}
-                          initialValue={(() => {
-                            try {
-                              return $state.currentJobObject.work_mode;
-                            } catch (e) {
-                              if (
-                                e instanceof TypeError ||
-                                e?.plasmicType === "PlasmicUndefinedDataError"
-                              ) {
-                                return undefined;
-                              }
-                              throw e;
-                            }
-                          })()}
                           label={
                             <div
                               className={classNames(
@@ -7193,7 +7141,6 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                             "__wab_instance",
                             sty.formField__vn2Hd
                           )}
-                          initialValue={true}
                           label={
                             <Stack__
                               as={"div"}
@@ -8473,6 +8420,44 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                             ) {
                               $steps["closeEditModal"] = await $steps[
                                 "closeEditModal"
+                              ];
+                            }
+
+                            $steps["useIntegration"] = false
+                              ? (() => {
+                                  const actionArgs = {};
+                                  return (async ({
+                                    dataOp,
+                                    continueOnError
+                                  }) => {
+                                    try {
+                                      const response =
+                                        await executePlasmicDataOp(dataOp, {
+                                          userAuthToken:
+                                            dataSourcesCtx?.userAuthToken,
+                                          user: dataSourcesCtx?.user
+                                        });
+                                      await plasmicInvalidate(
+                                        dataOp.invalidatedKeys
+                                      );
+                                      return response;
+                                    } catch (e) {
+                                      if (!continueOnError) {
+                                        throw e;
+                                      }
+                                      return e;
+                                    }
+                                  })?.apply(null, [actionArgs]);
+                                })()
+                              : undefined;
+                            if (
+                              $steps["useIntegration"] != null &&
+                              typeof $steps["useIntegration"] === "object" &&
+                              typeof $steps["useIntegration"].then ===
+                                "function"
+                            ) {
+                              $steps["useIntegration"] = await $steps[
+                                "useIntegration"
                               ];
                             }
                           }}
