@@ -18,6 +18,7 @@ const publicRoutes = [
   '/register-company',
   '/accueil-employeur',
   '/mentions-legales',
+  '/cgu',
 
   '/auth/oauth-callback',
   '/auth/auth-code-error',
