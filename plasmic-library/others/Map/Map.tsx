@@ -30,6 +30,7 @@ interface MarkerData {
 	is_applied?: boolean;
 	is_liked?: boolean;
 	postal_code?: string;
+   employer_name?: string; 
 }
 
 interface MapboxProps {
@@ -149,6 +150,7 @@ const Mapbox: React.FC<MapboxProps> = ({
 				is_last_minute,
 				is_liked,
 				postal_code,
+            employer_name,
 			} = data;
 
 			const createdDate = created_at?.slice(0, 10);
