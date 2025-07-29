@@ -4,23 +4,23 @@ import * as React from "react";
 import { PageParamsProvider as PageParamsProvider__ } from "@plasmicapp/react-web/lib/host";
 import GlobalContextsProvider from "../components/plasmic/jam_production_\uD83D\uDE80/PlasmicGlobalContextsProvider";
 
-import { PlasmicAccueil2 } from "../components/plasmic/jam_production_\uD83D\uDE80/PlasmicAccueil2";
+import { PlasmicConditionsGeneralesDutilisation } from "../components/plasmic/jam_production_\uD83D\uDE80/PlasmicConditionsGeneralesDutilisation";
 import { useRouter } from "next/router";
 
-function Accueil2() {
-  // Use PlasmicAccueil2 to render this component as it was
+function ConditionsGeneralesDutilisation() {
+  // Use PlasmicConditionsGeneralesDutilisation to render this component as it was
   // designed in Plasmic, by activating the appropriate variants,
   // attaching the appropriate event handlers, etc.  You
   // can also install whatever React hooks you need here to manage state or
   // fetch data.
   //
-  // Props you can pass into PlasmicAccueil2 are:
+  // Props you can pass into PlasmicConditionsGeneralesDutilisation are:
   // 1. Variants you want to activate,
   // 2. Contents for slots you want to fill,
   // 3. Overrides for any named node in the component to attach behavior and data,
   // 4. Props to set on the root node.
   //
-  // By default, PlasmicAccueil2 is wrapped by your project's global
+  // By default, PlasmicConditionsGeneralesDutilisation is wrapped by your project's global
   // variant context providers. These wrappers may be moved to
   // Next.js Custom App component
   // (https://nextjs.org/docs/advanced-features/custom-app).
@@ -32,10 +32,10 @@ function Accueil2() {
         params={useRouter()?.query}
         query={useRouter()?.query}
       >
-        <PlasmicAccueil2 />
+        <PlasmicConditionsGeneralesDutilisation />
       </PageParamsProvider__>
     </GlobalContextsProvider>
   );
 }
 
-export default Accueil2;
+export default ConditionsGeneralesDutilisation;

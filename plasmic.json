@@ -2180,20 +2180,6 @@
           "componentType": "component"
         },
         {
-          "id": "75qzqXUsFtGd",
-          "name": "MentionsLegales",
-          "type": "managed",
-          "projectId": "f7DE9y7qp46fyCw5nuY8f9",
-          "renderModuleFilePath": "plasmic/jam_production_🚀/PlasmicMentionsLegales.tsx",
-          "importSpec": {
-            "modulePath": "../pages/mentions-legales.tsx"
-          },
-          "cssFilePath": "plasmic/jam_production_🚀/PlasmicMentionsLegales.module.css",
-          "scheme": "blackbox",
-          "componentType": "page",
-          "path": "/mentions-legales"
-        },
-        {
           "id": "i_6_bWmNYijl",
           "name": "LikeJobCard",
           "type": "managed",
@@ -2233,18 +2219,45 @@
           "componentType": "component"
         },
         {
-          "id": "vaqeZykD__fw",
-          "name": "Accueil2",
+          "id": "X8_jvpcaExP9",
+          "name": "MentionsLegales",
           "type": "managed",
           "projectId": "f7DE9y7qp46fyCw5nuY8f9",
-          "renderModuleFilePath": "plasmic/jam_production_🚀/PlasmicAccueil2.tsx",
+          "renderModuleFilePath": "plasmic/jam_production_🚀/PlasmicMentionsLegales.tsx",
           "importSpec": {
-            "modulePath": "../pages/new-page.tsx"
+            "modulePath": "../pages/mentions-legales.tsx"
           },
-          "cssFilePath": "plasmic/jam_production_🚀/PlasmicAccueil2.module.css",
+          "cssFilePath": "plasmic/jam_production_🚀/PlasmicMentionsLegales.module.css",
           "scheme": "blackbox",
           "componentType": "page",
-          "path": "/new-page"
+          "path": "/mentions-legales"
+        },
+        {
+          "id": "p2d3YOzpDm1z",
+          "name": "ConditionsGeneralesDutilisation",
+          "type": "managed",
+          "projectId": "f7DE9y7qp46fyCw5nuY8f9",
+          "renderModuleFilePath": "plasmic/jam_production_🚀/PlasmicConditionsGeneralesDutilisation.tsx",
+          "importSpec": {
+            "modulePath": "../pages/cgu.tsx"
+          },
+          "cssFilePath": "plasmic/jam_production_🚀/PlasmicConditionsGeneralesDutilisation.module.css",
+          "scheme": "blackbox",
+          "componentType": "page",
+          "path": "/cgu"
+        },
+        {
+          "id": "ZOpOgPOAiAAY",
+          "name": "Footer",
+          "type": "managed",
+          "projectId": "f7DE9y7qp46fyCw5nuY8f9",
+          "renderModuleFilePath": "plasmic/jam_production_🚀/PlasmicFooter.tsx",
+          "importSpec": {
+            "modulePath": "Footer.tsx"
+          },
+          "cssFilePath": "plasmic/jam_production_🚀/PlasmicFooter.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
         }
       ],
       "icons": [

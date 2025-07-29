@@ -4096,6 +4096,40 @@ function PlasmicAccueilEmployeur__RenderFunc(props: {
                             projectcss.__wab_text,
                             sty.text__nTinN
                           )}
+                          onClick={async event => {
+                            const $steps = {};
+
+                            $steps["goToMentionsLegales"] = true
+                              ? (() => {
+                                  const actionArgs = {
+                                    destination: `/mentions-legales`
+                                  };
+                                  return (({ destination }) => {
+                                    if (
+                                      typeof destination === "string" &&
+                                      destination.startsWith("#")
+                                    ) {
+                                      document
+                                        .getElementById(destination.substr(1))
+                                        .scrollIntoView({ behavior: "smooth" });
+                                    } else {
+                                      __nextRouter?.push(destination);
+                                    }
+                                  })?.apply(null, [actionArgs]);
+                                })()
+                              : undefined;
+                            if (
+                              $steps["goToMentionsLegales"] != null &&
+                              typeof $steps["goToMentionsLegales"] ===
+                                "object" &&
+                              typeof $steps["goToMentionsLegales"].then ===
+                                "function"
+                            ) {
+                              $steps["goToMentionsLegales"] = await $steps[
+                                "goToMentionsLegales"
+                              ];
+                            }
+                          }}
                         >
                           <React.Fragment>
                             <span
@@ -4132,6 +4166,42 @@ function PlasmicAccueilEmployeur__RenderFunc(props: {
                             projectcss.__wab_text,
                             sty.text__itl6S
                           )}
+                          onClick={async event => {
+                            const $steps = {};
+
+                            $steps["goToConditionsGeneralesDutilisation"] = true
+                              ? (() => {
+                                  const actionArgs = { destination: `/cgu` };
+                                  return (({ destination }) => {
+                                    if (
+                                      typeof destination === "string" &&
+                                      destination.startsWith("#")
+                                    ) {
+                                      document
+                                        .getElementById(destination.substr(1))
+                                        .scrollIntoView({ behavior: "smooth" });
+                                    } else {
+                                      __nextRouter?.push(destination);
+                                    }
+                                  })?.apply(null, [actionArgs]);
+                                })()
+                              : undefined;
+                            if (
+                              $steps["goToConditionsGeneralesDutilisation"] !=
+                                null &&
+                              typeof $steps[
+                                "goToConditionsGeneralesDutilisation"
+                              ] === "object" &&
+                              typeof $steps[
+                                "goToConditionsGeneralesDutilisation"
+                              ].then === "function"
+                            ) {
+                              $steps["goToConditionsGeneralesDutilisation"] =
+                                await $steps[
+                                  "goToConditionsGeneralesDutilisation"
+                                ];
+                            }
+                          }}
                         >
                           <React.Fragment>
                             <span

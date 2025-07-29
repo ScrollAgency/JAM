@@ -88,6 +88,7 @@ import { inputHelpers as AntdInput_Helpers } from "@plasmicpkgs/antd5/skinny/reg
 import ClearBtn from "../../ClearBtn"; // plasmic-import: w2sS9PPQXQ_k/component
 import JobCard20 from "../../JobCard20"; // plasmic-import: VbqA3KvJ940Z/component
 import { MapBox } from "../../../plasmic-library/others/Map/Map"; // plasmic-import: LQF6pcE1iukm/codeComponent
+import Footer from "../../Footer"; // plasmic-import: ZOpOgPOAiAAY/component
 import { Fetcher } from "@plasmicapp/react-web/lib/data-sources";
 
 import { useScreenVariants as useScreenVariantshm8Nko4B5BDd } from "./PlasmicGlobalVariant__Screen"; // plasmic-import: HM8Nko4B5BDd/globalVariant
@@ -130,9 +131,6 @@ import PhClockCountdownFill3Icon from "./icons/PlasmicIcon__PhClockCountdownFill
 import PersonSimpleWalkIcon from "./icons/PlasmicIcon__PersonSimpleWalk"; // plasmic-import: SiceSr5Gywz4/icon
 import Mail2Icon from "./icons/PlasmicIcon__Mail2"; // plasmic-import: rZP3MS1dOHIL/icon
 import ClockCountdownIcon from "./icons/PlasmicIcon__ClockCountdown"; // plasmic-import: SFl8xy9PdAWQ/icon
-import SocialIcon2Icon from "./icons/PlasmicIcon__SocialIcon2"; // plasmic-import: 85_PHFbzbYbc/icon
-import Group3Icon from "./icons/PlasmicIcon__Group3"; // plasmic-import: uW8IxWz2drGt/icon
-import Group4Icon from "./icons/PlasmicIcon__Group4"; // plasmic-import: jg2ejGQewG0B/icon
 
 createPlasmicElementProxy;
 
@@ -287,6 +285,7 @@ export type PlasmicAccueil__OverridesType = {
   frame3?: Flex__<"div">;
   frame4?: Flex__<"div">;
   frame5?: Flex__<"div">;
+  link?: Flex__<"a"> & Partial<LinkProps>;
   main?: Flex__<"main">;
   bgImage?: Flex__<typeof PlasmicImg__>;
   section1?: Flex__<"section">;
@@ -355,21 +354,7 @@ export type PlasmicAccueil__OverridesType = {
   textAndSupportingText6?: Flex__<"div">;
   text3?: Flex__<"div">;
   supportingText8?: Flex__<"p">;
-  footer?: Flex__<"footer">;
-  container?: Flex__<"div">;
-  column?: Flex__<"div">;
-  frame6?: Flex__<"div">;
-  frame7?: Flex__<"div">;
-  frame9?: Flex__<"div">;
-  frame11?: Flex__<"div">;
-  frame12?: Flex__<"div">;
-  socials?: Flex__<"div">;
-  footerLinksContainer?: Flex__<"div">;
-  footerLinks2?: Flex__<"div">;
-  container2?: Flex__<"div">;
-  divider?: Flex__<"div">;
-  content2?: Flex__<"div">;
-  footerText?: Flex__<"div">;
+  footer?: Flex__<typeof Footer>;
 };
 
 export interface DefaultAccueilProps {}
@@ -1478,7 +1463,7 @@ function PlasmicAccueil__RenderFunc(props: {
     getJobOffers: usePlasmicDataOp(() => {
       return {
         sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
-        opId: "29945d33-f957-4a2d-b6ce-349b8e2b810e",
+        opId: "b6275ba2-c35f-44d1-b0e1-514c5df26532",
         userArgs: {
           query: [
             $state.formFilter?.value?.contract_type,
@@ -1508,7 +1493,7 @@ function PlasmicAccueil__RenderFunc(props: {
             $state.isLastMinute
           ]
         },
-        cacheKey: `plasmic.$.29945d33-f957-4a2d-b6ce-349b8e2b810e.$.`,
+        cacheKey: `plasmic.$.b6275ba2-c35f-44d1-b0e1-514c5df26532.$.`,
         invalidatedKeys: null,
         roleId: null
       };
@@ -1521,18 +1506,6 @@ function PlasmicAccueil__RenderFunc(props: {
           params: [$state.searchLocation]
         },
         cacheKey: `plasmic.$.b10fdb52-5482-4963-8f7f-5cea84a2a17e.$.`,
-        invalidatedKeys: null,
-        roleId: null
-      };
-    }),
-    query: usePlasmicDataOp(() => {
-      return {
-        sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
-        opId: "25a00478-4e30-4965-8940-e968e2ffc8ce",
-        userArgs: {
-          keys: [$ctx.query.job_id]
-        },
-        cacheKey: `plasmic.$.25a00478-4e30-4965-8940-e968e2ffc8ce.$.`,
         invalidatedKeys: null,
         roleId: null
       };
@@ -1790,7 +1763,7 @@ function PlasmicAccueil__RenderFunc(props: {
                                         invalidatedKeys: [
                                           "24ab9e7e-7e19-4ab2-82fc-82df12596da0",
                                           "8b5c082f-d99a-4dae-bab9-7c91407a4070",
-                                          "364ee000-dda0-48b7-9da1-2f18291d1797"
+                                          "a6f75235-f527-45c2-93df-15fcf84a6820"
                                         ],
                                         roleId: null
                                       }
@@ -1995,7 +1968,7 @@ function PlasmicAccueil__RenderFunc(props: {
                                         invalidatedKeys: [
                                           "24ab9e7e-7e19-4ab2-82fc-82df12596da0",
                                           "8b5c082f-d99a-4dae-bab9-7c91407a4070",
-                                          "364ee000-dda0-48b7-9da1-2f18291d1797"
+                                          "a6f75235-f527-45c2-93df-15fcf84a6820"
                                         ],
                                         roleId: null
                                       }
@@ -3821,7 +3794,7 @@ function PlasmicAccueil__RenderFunc(props: {
                         $steps["cv"] = await $steps["cv"];
                       }
 
-                      $steps["lettreMotiv"] =
+                      $steps["ldm"] =
                         $state.upload3.files.length > 0
                           ? (() => {
                               const actionArgs = {
@@ -3876,11 +3849,11 @@ function PlasmicAccueil__RenderFunc(props: {
                             })()
                           : undefined;
                       if (
-                        $steps["lettreMotiv"] != null &&
-                        typeof $steps["lettreMotiv"] === "object" &&
-                        typeof $steps["lettreMotiv"].then === "function"
+                        $steps["ldm"] != null &&
+                        typeof $steps["ldm"] === "object" &&
+                        typeof $steps["ldm"].then === "function"
                       ) {
-                        $steps["lettreMotiv"] = await $steps["lettreMotiv"];
+                        $steps["ldm"] = await $steps["ldm"];
                       }
 
                       $steps["updateUser"] = true
@@ -3896,9 +3869,8 @@ function PlasmicAccueil__RenderFunc(props: {
                                       ? $steps.cv?.path.split("/")[1]
                                       : $queries.getCurrentUserById.data[0]
                                           .cv_file,
-                                    $steps.lettreMotiv?.path.split("/")[1] !=
-                                    undefined
-                                      ? $steps.lettreMotiv?.path.split("/")[1]
+                                    $steps.ldm?.path.split("/")[1] != undefined
+                                      ? $steps.ldm?.path.split("/")[1]
                                       : $queries.getCurrentUserById.data[0]
                                           .cover_letter_file,
                                     $state.form.value.address,
@@ -3973,9 +3945,8 @@ function PlasmicAccueil__RenderFunc(props: {
                                   variables: [
                                     $state.form.value.address,
                                     $state.form.value.city,
-
-                                    $steps.lettreMotiv != undefined
-                                      ? $steps.lettreMotiv?.path.split("/")[1]
+                                    $steps.ldm != undefined
+                                      ? $steps.ldm?.path.split("/")[1]
                                       : $queries.getCurrentUserById.data[0]
                                           .cover_letter_file,
                                     $steps.cv != undefined
@@ -4117,6 +4088,77 @@ function PlasmicAccueil__RenderFunc(props: {
                         typeof $steps["closeModal"].then === "function"
                       ) {
                         $steps["closeModal"] = await $steps["closeModal"];
+                      }
+
+                      $steps["sendEmailToEmployer"] = (
+                        $queries.getApplication.data.some(
+                          application =>
+                            application.job_id == $state.jobObject.id
+                        )
+                          ? false
+                          : true
+                      )
+                        ? (() => {
+                            const actionArgs = {
+                              dataOp: {
+                                sourceId: "5T6gSzGCrEfYgV9rAkCoaD",
+                                opId: "ac3aeb59-a5a8-4309-9807-433a1356e04e",
+                                userArgs: {
+                                  body: [
+                                    {
+                                      to: `${$state.jobObject.employer_email}`,
+                                      template: "applicationReceived",
+                                      subject:
+                                        "Nouvelle candidature reçue pour votre offre 💼",
+                                      params: {
+                                        firstName:
+                                          $state.jobObject.employer_name,
+                                        jobTitle: $state.jobObject.title,
+                                        candidateName:
+                                          $queries.getCurrentUserById.data[0]
+                                            .first_name +
+                                          " " +
+                                          $queries.getCurrentUserById.data[0]
+                                            .last_name,
+                                        applicationUrl: `https://jam-staging.agence-scroll.com/candidatures-employeur/${$state.jobObject.id}`
+                                      }
+                                    }
+                                  ]
+                                },
+                                cacheKey: null,
+                                invalidatedKeys: [],
+                                roleId: null
+                              }
+                            };
+                            return (async ({ dataOp, continueOnError }) => {
+                              try {
+                                const response = await executePlasmicDataOp(
+                                  dataOp,
+                                  {
+                                    userAuthToken:
+                                      dataSourcesCtx?.userAuthToken,
+                                    user: dataSourcesCtx?.user
+                                  }
+                                );
+                                await plasmicInvalidate(dataOp.invalidatedKeys);
+                                return response;
+                              } catch (e) {
+                                if (!continueOnError) {
+                                  throw e;
+                                }
+                                return e;
+                              }
+                            })?.apply(null, [actionArgs]);
+                          })()
+                        : undefined;
+                      if (
+                        $steps["sendEmailToEmployer"] != null &&
+                        typeof $steps["sendEmailToEmployer"] === "object" &&
+                        typeof $steps["sendEmailToEmployer"].then === "function"
+                      ) {
+                        $steps["sendEmailToEmployer"] = await $steps[
+                          "sendEmailToEmployer"
+                        ];
                       }
                     },
                     onFinishFailed: async data => {
@@ -8182,11 +8224,13 @@ function PlasmicAccueil__RenderFunc(props: {
               className={classNames(projectcss.all, sty.freeBox__cWnZj)}
             >
               <PlasmicLink__
+                data-plasmic-name={"link"}
+                data-plasmic-override={overrides.link}
                 className={classNames(
                   projectcss.all,
                   projectcss.a,
                   projectcss.__wab_text,
-                  sty.link__o84K0
+                  sty.link
                 )}
                 component={Link}
                 href={`/accueil-employeur`}
@@ -11005,7 +11049,7 @@ function PlasmicAccueil__RenderFunc(props: {
                                         ? (() => {
                                             const actionArgs = {
                                               queryInvalidation: [
-                                                "364ee000-dda0-48b7-9da1-2f18291d1797",
+                                                "a6f75235-f527-45c2-93df-15fcf84a6820",
                                                 "24ab9e7e-7e19-4ab2-82fc-82df12596da0",
                                                 "8b5c082f-d99a-4dae-bab9-7c91407a4070"
                                               ]
@@ -11261,7 +11305,7 @@ function PlasmicAccueil__RenderFunc(props: {
                                               queryInvalidation: [
                                                 "24ab9e7e-7e19-4ab2-82fc-82df12596da0",
                                                 "8b5c082f-d99a-4dae-bab9-7c91407a4070",
-                                                "364ee000-dda0-48b7-9da1-2f18291d1797"
+                                                "a6f75235-f527-45c2-93df-15fcf84a6820"
                                               ]
                                             };
                                             return (async ({
@@ -12302,10 +12346,7 @@ function PlasmicAccueil__RenderFunc(props: {
                           ? (() => {
                               const actionArgs = {
                                 customFunction: async () => {
-                                  return (() => {
-                                    $state.jobObject = markerData;
-                                    return console.log(markerData);
-                                  })();
+                                  return ($state.jobObject = markerData);
                                 }
                               };
                               return (({ customFunction }) => {
@@ -12661,296 +12702,11 @@ function PlasmicAccueil__RenderFunc(props: {
               </Stack__>
             </Stack__>
           </main>
-          <Stack__
-            as={"footer"}
+          <Footer
             data-plasmic-name={"footer"}
             data-plasmic-override={overrides.footer}
-            hasGap={true}
-            className={classNames(projectcss.all, sty.footer)}
-          >
-            <Stack__
-              as={"div"}
-              data-plasmic-name={"container"}
-              data-plasmic-override={overrides.container}
-              hasGap={true}
-              className={classNames(projectcss.all, sty.container)}
-            >
-              <Stack__
-                as={"div"}
-                data-plasmic-name={"column"}
-                data-plasmic-override={overrides.column}
-                hasGap={true}
-                className={classNames(projectcss.all, sty.column)}
-              >
-                <Stack__
-                  as={"div"}
-                  data-plasmic-name={"frame6"}
-                  data-plasmic-override={overrides.frame6}
-                  hasGap={true}
-                  className={classNames(projectcss.all, sty.frame6)}
-                >
-                  <div
-                    className={classNames(projectcss.all, sty.freeBox__nVHg)}
-                  >
-                    <Vector12Icon
-                      className={classNames(projectcss.all, sty.svg__ksJoD)}
-                      role={"img"}
-                    />
-                  </div>
-                  <div
-                    data-plasmic-name={"frame7"}
-                    data-plasmic-override={overrides.frame7}
-                    className={classNames(projectcss.all, sty.frame7)}
-                  >
-                    <div
-                      data-plasmic-name={"frame9"}
-                      data-plasmic-override={overrides.frame9}
-                      className={classNames(projectcss.all, sty.frame9)}
-                    >
-                      <div
-                        className={classNames(
-                          projectcss.all,
-                          projectcss.__wab_text,
-                          sty.text___2N3Bn
-                        )}
-                      >
-                        {"JOB"}
-                      </div>
-                    </div>
-                    <div
-                      data-plasmic-name={"frame11"}
-                      data-plasmic-override={overrides.frame11}
-                      className={classNames(projectcss.all, sty.frame11)}
-                    >
-                      <div
-                        className={classNames(
-                          projectcss.all,
-                          projectcss.__wab_text,
-                          sty.text__t3Gzv
-                        )}
-                      >
-                        {"AROUND"}
-                      </div>
-                    </div>
-                    <div
-                      data-plasmic-name={"frame12"}
-                      data-plasmic-override={overrides.frame12}
-                      className={classNames(projectcss.all, sty.frame12)}
-                    >
-                      <div
-                        className={classNames(
-                          projectcss.all,
-                          projectcss.__wab_text,
-                          sty.text__k9VUn
-                        )}
-                      >
-                        {"ME"}
-                      </div>
-                    </div>
-                  </div>
-                </Stack__>
-                <Stack__
-                  as={"div"}
-                  data-plasmic-name={"socials"}
-                  data-plasmic-override={overrides.socials}
-                  hasGap={true}
-                  className={classNames(projectcss.all, sty.socials)}
-                >
-                  <PlasmicLink__
-                    className={classNames(
-                      projectcss.all,
-                      projectcss.a,
-                      sty.link__czDen
-                    )}
-                    component={Link}
-                    platform={"nextjs"}
-                  >
-                    <PlasmicImg__
-                      alt={""}
-                      className={classNames(sty.img__rnHIi)}
-                      displayHeight={"24px"}
-                      displayMaxHeight={"none"}
-                      displayMaxWidth={"100%"}
-                      displayMinHeight={"0"}
-                      displayMinWidth={"0"}
-                      displayWidth={"24px"}
-                      loading={"lazy"}
-                      src={{
-                        src: "/plasmic/jam_production_🚀/images/socialIcon6.svg",
-                        fullWidth: 24,
-                        fullHeight: 24,
-                        aspectRatio: 1
-                      }}
-                    />
-                  </PlasmicLink__>
-                  <PlasmicLink__
-                    className={classNames(
-                      projectcss.all,
-                      projectcss.a,
-                      sty.link__l2EVk
-                    )}
-                    component={Link}
-                    platform={"nextjs"}
-                  >
-                    <SocialIcon2Icon
-                      className={classNames(projectcss.all, sty.svg___6EQxT)}
-                      role={"img"}
-                    />
-                  </PlasmicLink__>
-                  <PlasmicLink__
-                    className={classNames(
-                      projectcss.all,
-                      projectcss.a,
-                      sty.link__o79Tu
-                    )}
-                    component={Link}
-                    href={(() => {
-                      try {
-                        return "https://www.instagram.com/jobaroundme_official/?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw%3D%3D#";
-                      } catch (e) {
-                        if (
-                          e instanceof TypeError ||
-                          e?.plasmicType === "PlasmicUndefinedDataError"
-                        ) {
-                          return undefined;
-                        }
-                        throw e;
-                      }
-                    })()}
-                    platform={"nextjs"}
-                    target={"_blank"}
-                  >
-                    <Group3Icon
-                      className={classNames(projectcss.all, sty.svg__b9KbC)}
-                      role={"img"}
-                    />
-                  </PlasmicLink__>
-                  <PlasmicLink__
-                    className={classNames(
-                      projectcss.all,
-                      projectcss.a,
-                      sty.link___5V0Os
-                    )}
-                    component={Link}
-                    platform={"nextjs"}
-                  >
-                    <Group4Icon
-                      className={classNames(projectcss.all, sty.svg___5ObBx)}
-                      role={"img"}
-                    />
-                  </PlasmicLink__>
-                </Stack__>
-                <div
-                  className={classNames(
-                    projectcss.all,
-                    projectcss.__wab_text,
-                    sty.text__yxQEl
-                  )}
-                >
-                  {"contact@job-around-me.com"}
-                </div>
-              </Stack__>
-              <Stack__
-                as={"div"}
-                data-plasmic-name={"footerLinksContainer"}
-                data-plasmic-override={overrides.footerLinksContainer}
-                hasGap={true}
-                className={classNames(projectcss.all, sty.footerLinksContainer)}
-              >
-                <Stack__
-                  as={"div"}
-                  data-plasmic-name={"footerLinks2"}
-                  data-plasmic-override={overrides.footerLinks2}
-                  hasGap={true}
-                  className={classNames(projectcss.all, sty.footerLinks2)}
-                >
-                  {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
-                    (() => {
-                      try {
-                        return [
-                          "Mentions légales",
-                          "Politique de confidentialité",
-                          "CGU"
-                        ];
-                      } catch (e) {
-                        if (
-                          e instanceof TypeError ||
-                          e?.plasmicType === "PlasmicUndefinedDataError"
-                        ) {
-                          return [];
-                        }
-                        throw e;
-                      }
-                    })()
-                  ).map((__plasmic_item_0, __plasmic_idx_0) => {
-                    const currentItem = __plasmic_item_0;
-                    const currentIndex = __plasmic_idx_0;
-                    return (
-                      <PlasmicLink__
-                        className={classNames(
-                          projectcss.all,
-                          projectcss.a,
-                          projectcss.__wab_text,
-                          sty.link___2Q1XJ
-                        )}
-                        component={Link}
-                        href={`/mentions-legales`}
-                        key={currentIndex}
-                        platform={"nextjs"}
-                      >
-                        <React.Fragment>
-                          {(() => {
-                            try {
-                              return currentItem;
-                            } catch (e) {
-                              if (
-                                e instanceof TypeError ||
-                                e?.plasmicType === "PlasmicUndefinedDataError"
-                              ) {
-                                return "";
-                              }
-                              throw e;
-                            }
-                          })()}
-                        </React.Fragment>
-                      </PlasmicLink__>
-                    );
-                  })}
-                </Stack__>
-              </Stack__>
-            </Stack__>
-            <Stack__
-              as={"div"}
-              data-plasmic-name={"container2"}
-              data-plasmic-override={overrides.container2}
-              hasGap={true}
-              className={classNames(projectcss.all, sty.container2)}
-            >
-              <div
-                data-plasmic-name={"divider"}
-                data-plasmic-override={overrides.divider}
-                className={classNames(projectcss.all, sty.divider)}
-              />
-
-              <div
-                data-plasmic-name={"content2"}
-                data-plasmic-override={overrides.content2}
-                className={classNames(projectcss.all, sty.content2)}
-              >
-                <div
-                  data-plasmic-name={"footerText"}
-                  data-plasmic-override={overrides.footerText}
-                  className={classNames(
-                    projectcss.all,
-                    projectcss.__wab_text,
-                    sty.footerText
-                  )}
-                >
-                  {"\u00a9 2024 Job Around Me. Site par Agence Scroll."}
-                </div>
-              </div>
-            </Stack__>
-          </Stack__>
+            className={classNames("__wab_instance", sty.footer)}
+          />
         </div>
       </div>
     </React.Fragment>
@@ -13100,6 +12856,7 @@ const PlasmicDescendants = {
     "frame3",
     "frame4",
     "frame5",
+    "link",
     "main",
     "bgImage",
     "section1",
@@ -13168,21 +12925,7 @@ const PlasmicDescendants = {
     "textAndSupportingText6",
     "text3",
     "supportingText8",
-    "footer",
-    "container",
-    "column",
-    "frame6",
-    "frame7",
-    "frame9",
-    "frame11",
-    "frame12",
-    "socials",
-    "footerLinksContainer",
-    "footerLinks2",
-    "container2",
-    "divider",
-    "content2",
-    "footerText"
+    "footer"
   ],
   jobDetails: [
     "jobDetails",
@@ -13837,12 +13580,13 @@ const PlasmicDescendants = {
   text5: ["text5"],
   textLinkBase: ["textLinkBase", "text6"],
   text6: ["text6"],
-  header: ["header", "jamLogo", "frame2", "frame3", "frame4", "frame5"],
+  header: ["header", "jamLogo", "frame2", "frame3", "frame4", "frame5", "link"],
   jamLogo: ["jamLogo", "frame2", "frame3", "frame4", "frame5"],
   frame2: ["frame2", "frame3", "frame4", "frame5"],
   frame3: ["frame3"],
   frame4: ["frame4"],
   frame5: ["frame5"],
+  link: ["link"],
   main: [
     "main",
     "bgImage",
@@ -14240,56 +13984,7 @@ const PlasmicDescendants = {
   ],
   text3: ["text3"],
   supportingText8: ["supportingText8"],
-  footer: [
-    "footer",
-    "container",
-    "column",
-    "frame6",
-    "frame7",
-    "frame9",
-    "frame11",
-    "frame12",
-    "socials",
-    "footerLinksContainer",
-    "footerLinks2",
-    "container2",
-    "divider",
-    "content2",
-    "footerText"
-  ],
-  container: [
-    "container",
-    "column",
-    "frame6",
-    "frame7",
-    "frame9",
-    "frame11",
-    "frame12",
-    "socials",
-    "footerLinksContainer",
-    "footerLinks2"
-  ],
-  column: [
-    "column",
-    "frame6",
-    "frame7",
-    "frame9",
-    "frame11",
-    "frame12",
-    "socials"
-  ],
-  frame6: ["frame6", "frame7", "frame9", "frame11", "frame12"],
-  frame7: ["frame7", "frame9", "frame11", "frame12"],
-  frame9: ["frame9"],
-  frame11: ["frame11"],
-  frame12: ["frame12"],
-  socials: ["socials"],
-  footerLinksContainer: ["footerLinksContainer", "footerLinks2"],
-  footerLinks2: ["footerLinks2"],
-  container2: ["container2", "divider", "content2", "footerText"],
-  divider: ["divider"],
-  content2: ["content2", "footerText"],
-  footerText: ["footerText"]
+  footer: ["footer"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -14436,6 +14131,7 @@ type NodeDefaultElementType = {
   frame3: "div";
   frame4: "div";
   frame5: "div";
+  link: "a";
   main: "main";
   bgImage: typeof PlasmicImg__;
   section1: "section";
@@ -14504,21 +14200,7 @@ type NodeDefaultElementType = {
   textAndSupportingText6: "div";
   text3: "div";
   supportingText8: "p";
-  footer: "footer";
-  container: "div";
-  column: "div";
-  frame6: "div";
-  frame7: "div";
-  frame9: "div";
-  frame11: "div";
-  frame12: "div";
-  socials: "div";
-  footerLinksContainer: "div";
-  footerLinks2: "div";
-  container2: "div";
-  divider: "div";
-  content2: "div";
-  footerText: "div";
+  footer: typeof Footer;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -14721,6 +14403,7 @@ export const PlasmicAccueil = Object.assign(
     frame3: makeNodeComponent("frame3"),
     frame4: makeNodeComponent("frame4"),
     frame5: makeNodeComponent("frame5"),
+    link: makeNodeComponent("link"),
     main: makeNodeComponent("main"),
     bgImage: makeNodeComponent("bgImage"),
     section1: makeNodeComponent("section1"),
@@ -14794,20 +14477,6 @@ export const PlasmicAccueil = Object.assign(
     text3: makeNodeComponent("text3"),
     supportingText8: makeNodeComponent("supportingText8"),
     footer: makeNodeComponent("footer"),
-    container: makeNodeComponent("container"),
-    column: makeNodeComponent("column"),
-    frame6: makeNodeComponent("frame6"),
-    frame7: makeNodeComponent("frame7"),
-    frame9: makeNodeComponent("frame9"),
-    frame11: makeNodeComponent("frame11"),
-    frame12: makeNodeComponent("frame12"),
-    socials: makeNodeComponent("socials"),
-    footerLinksContainer: makeNodeComponent("footerLinksContainer"),
-    footerLinks2: makeNodeComponent("footerLinks2"),
-    container2: makeNodeComponent("container2"),
-    divider: makeNodeComponent("divider"),
-    content2: makeNodeComponent("content2"),
-    footerText: makeNodeComponent("footerText"),
 
     // Metadata about props expected for PlasmicAccueil
     internalVariantProps: PlasmicAccueil__VariantProps,

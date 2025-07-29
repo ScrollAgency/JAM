@@ -738,11 +738,11 @@ function PlasmicMesAnnonces__RenderFunc(props: {
     userLikedJobs: usePlasmicDataOp(() => {
       return {
         sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
-        opId: "364ee000-dda0-48b7-9da1-2f18291d1797",
+        opId: "a6f75235-f527-45c2-93df-15fcf84a6820",
         userArgs: {
           query: [$ctx.SupabaseUser.user?.id]
         },
-        cacheKey: `plasmic.$.364ee000-dda0-48b7-9da1-2f18291d1797.$.`,
+        cacheKey: `plasmic.$.a6f75235-f527-45c2-93df-15fcf84a6820.$.`,
         invalidatedKeys: null,
         roleId: null
       };
@@ -916,7 +916,7 @@ function PlasmicMesAnnonces__RenderFunc(props: {
                   ? (() => {
                       const actionArgs = {
                         queryInvalidation: [
-                          "364ee000-dda0-48b7-9da1-2f18291d1797"
+                          "a6f75235-f527-45c2-93df-15fcf84a6820"
                         ]
                       };
                       return (async ({ queryInvalidation }) => {
@@ -1080,6 +1080,44 @@ function PlasmicMesAnnonces__RenderFunc(props: {
                           onClick: async event => {
                             const $steps = {};
 
+                            $steps["updateCurrentJobObject"] = true
+                              ? (() => {
+                                  const actionArgs = {
+                                    variable: {
+                                      objRoot: $state,
+                                      variablePath: ["currentJobObject"]
+                                    },
+                                    operation: 0,
+                                    value: currentItem
+                                  };
+                                  return (({
+                                    variable,
+                                    value,
+                                    startIndex,
+                                    deleteCount
+                                  }) => {
+                                    if (!variable) {
+                                      return;
+                                    }
+                                    const { objRoot, variablePath } = variable;
+
+                                    $stateSet(objRoot, variablePath, value);
+                                    return value;
+                                  })?.apply(null, [actionArgs]);
+                                })()
+                              : undefined;
+                            if (
+                              $steps["updateCurrentJobObject"] != null &&
+                              typeof $steps["updateCurrentJobObject"] ===
+                                "object" &&
+                              typeof $steps["updateCurrentJobObject"].then ===
+                                "function"
+                            ) {
+                              $steps["updateCurrentJobObject"] = await $steps[
+                                "updateCurrentJobObject"
+                              ];
+                            }
+
                             $steps["updateModalIsOpen"] = true
                               ? (() => {
                                   const actionArgs = {
@@ -1120,44 +1158,6 @@ function PlasmicMesAnnonces__RenderFunc(props: {
                             ) {
                               $steps["updateModalIsOpen"] = await $steps[
                                 "updateModalIsOpen"
-                              ];
-                            }
-
-                            $steps["updateCurrentJobObject"] = true
-                              ? (() => {
-                                  const actionArgs = {
-                                    variable: {
-                                      objRoot: $state,
-                                      variablePath: ["currentJobObject"]
-                                    },
-                                    operation: 0,
-                                    value: currentItem
-                                  };
-                                  return (({
-                                    variable,
-                                    value,
-                                    startIndex,
-                                    deleteCount
-                                  }) => {
-                                    if (!variable) {
-                                      return;
-                                    }
-                                    const { objRoot, variablePath } = variable;
-
-                                    $stateSet(objRoot, variablePath, value);
-                                    return value;
-                                  })?.apply(null, [actionArgs]);
-                                })()
-                              : undefined;
-                            if (
-                              $steps["updateCurrentJobObject"] != null &&
-                              typeof $steps["updateCurrentJobObject"] ===
-                                "object" &&
-                              typeof $steps["updateCurrentJobObject"].then ===
-                                "function"
-                            ) {
-                              $steps["updateCurrentJobObject"] = await $steps[
-                                "updateCurrentJobObject"
                               ];
                             }
                           },
@@ -1555,7 +1555,7 @@ function PlasmicMesAnnonces__RenderFunc(props: {
                                     },
                                     cacheKey: null,
                                     invalidatedKeys: [
-                                      "364ee000-dda0-48b7-9da1-2f18291d1797",
+                                      "a6f75235-f527-45c2-93df-15fcf84a6820",
                                       "24ab9e7e-7e19-4ab2-82fc-82df12596da0"
                                     ],
                                     roleId: null
@@ -3513,7 +3513,7 @@ function PlasmicMesAnnonces__RenderFunc(props: {
                         $steps["cv"] = await $steps["cv"];
                       }
 
-                      $steps["lettreMotiv"] =
+                      $steps["ldm"] =
                         $state.upload3.files.length > 0
                           ? (() => {
                               const actionArgs = {
@@ -3557,11 +3557,11 @@ function PlasmicMesAnnonces__RenderFunc(props: {
                             })()
                           : undefined;
                       if (
-                        $steps["lettreMotiv"] != null &&
-                        typeof $steps["lettreMotiv"] === "object" &&
-                        typeof $steps["lettreMotiv"].then === "function"
+                        $steps["ldm"] != null &&
+                        typeof $steps["ldm"] === "object" &&
+                        typeof $steps["ldm"].then === "function"
                       ) {
-                        $steps["lettreMotiv"] = await $steps["lettreMotiv"];
+                        $steps["ldm"] = await $steps["ldm"];
                       }
 
                       $steps["updateUser"] = true
@@ -3575,7 +3575,7 @@ function PlasmicMesAnnonces__RenderFunc(props: {
                                     $state.form.value.address,
                                     $state.form.value.city,
                                     $state.form.value.Country,
-                                    $steps.lettreMotiv?.path.split("/")[1],
+                                    $steps.ldm?.path.split("/")[1],
                                     $steps.cv?.path.split("/")[1],
                                     $state.form.value.first_name,
                                     $state.form.value.last_name,
@@ -3645,7 +3645,7 @@ function PlasmicMesAnnonces__RenderFunc(props: {
                                   variables: [
                                     $state.form.value.address,
                                     $state.form.value.city,
-                                    $steps.lettreMotiv?.path.split("/")[1],
+                                    $steps.ldm?.path.split("/")[1],
                                     $steps.cv?.path.split("/")[1],
                                     $queries.userLikedJobs.data[0].id,
                                     $state.form.value.level,
@@ -3788,38 +3788,38 @@ function PlasmicMesAnnonces__RenderFunc(props: {
                         $steps["closeModal2"] = await $steps["closeModal2"];
                       }
 
-                      $steps["closeModal"] = true
+                      $steps["useIntegration"] = true
                         ? (() => {
-                            const actionArgs = {
-                              variable: {
-                                objRoot: $state,
-                                variablePath: ["modalDetailsJob", "isOpen"]
-                              },
-                              operation: 0,
-                              value: false
-                            };
-                            return (({
-                              variable,
-                              value,
-                              startIndex,
-                              deleteCount
-                            }) => {
-                              if (!variable) {
-                                return;
+                            const actionArgs = {};
+                            return (async ({ dataOp, continueOnError }) => {
+                              try {
+                                const response = await executePlasmicDataOp(
+                                  dataOp,
+                                  {
+                                    userAuthToken:
+                                      dataSourcesCtx?.userAuthToken,
+                                    user: dataSourcesCtx?.user
+                                  }
+                                );
+                                await plasmicInvalidate(dataOp.invalidatedKeys);
+                                return response;
+                              } catch (e) {
+                                if (!continueOnError) {
+                                  throw e;
+                                }
+                                return e;
                               }
-                              const { objRoot, variablePath } = variable;
-
-                              $stateSet(objRoot, variablePath, value);
-                              return value;
                             })?.apply(null, [actionArgs]);
                           })()
                         : undefined;
                       if (
-                        $steps["closeModal"] != null &&
-                        typeof $steps["closeModal"] === "object" &&
-                        typeof $steps["closeModal"].then === "function"
+                        $steps["useIntegration"] != null &&
+                        typeof $steps["useIntegration"] === "object" &&
+                        typeof $steps["useIntegration"].then === "function"
                       ) {
-                        $steps["closeModal"] = await $steps["closeModal"];
+                        $steps["useIntegration"] = await $steps[
+                          "useIntegration"
+                        ];
                       }
                     },
                     onFinishFailed: async data => {
