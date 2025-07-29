@@ -8160,6 +8160,34 @@ function PlasmicAccueil__RenderFunc(props: {
               data-plasmic-override={overrides.jamLogo}
               hasGap={true}
               className={classNames(projectcss.all, sty.jamLogo)}
+              onClick={async event => {
+                const $steps = {};
+
+                $steps["goToAccueil"] = true
+                  ? (() => {
+                      const actionArgs = { destination: `/` };
+                      return (({ destination }) => {
+                        if (
+                          typeof destination === "string" &&
+                          destination.startsWith("#")
+                        ) {
+                          document
+                            .getElementById(destination.substr(1))
+                            .scrollIntoView({ behavior: "smooth" });
+                        } else {
+                          __nextRouter?.push(destination);
+                        }
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["goToAccueil"] != null &&
+                  typeof $steps["goToAccueil"] === "object" &&
+                  typeof $steps["goToAccueil"].then === "function"
+                ) {
+                  $steps["goToAccueil"] = await $steps["goToAccueil"];
+                }
+              }}
             >
               <Vector12Icon
                 className={classNames(projectcss.all, sty.svg___5Qs48)}
@@ -8273,6 +8301,199 @@ function PlasmicAccueil__RenderFunc(props: {
                         }
                       })()}
                     </React.Fragment>
+                  </div>
+                }
+                onClick={async event => {
+                  const $steps = {};
+
+                  $steps["goToLogin"] =
+                    $ctx.SupabaseUser.user == null
+                      ? (() => {
+                          const actionArgs = { destination: `/login` };
+                          return (({ destination }) => {
+                            if (
+                              typeof destination === "string" &&
+                              destination.startsWith("#")
+                            ) {
+                              document
+                                .getElementById(destination.substr(1))
+                                .scrollIntoView({ behavior: "smooth" });
+                            } else {
+                              __nextRouter?.push(destination);
+                            }
+                          })?.apply(null, [actionArgs]);
+                        })()
+                      : undefined;
+                  if (
+                    $steps["goToLogin"] != null &&
+                    typeof $steps["goToLogin"] === "object" &&
+                    typeof $steps["goToLogin"].then === "function"
+                  ) {
+                    $steps["goToLogin"] = await $steps["goToLogin"];
+                  }
+
+                  $steps["goToCandidateSettings"] =
+                    $ctx.SupabaseUser.user !== null &&
+                    $ctx.SupabaseUser.user.user_metadata.role == "User"
+                      ? (() => {
+                          const actionArgs = {
+                            destination: `/parametres-candidat`
+                          };
+                          return (({ destination }) => {
+                            if (
+                              typeof destination === "string" &&
+                              destination.startsWith("#")
+                            ) {
+                              document
+                                .getElementById(destination.substr(1))
+                                .scrollIntoView({ behavior: "smooth" });
+                            } else {
+                              __nextRouter?.push(destination);
+                            }
+                          })?.apply(null, [actionArgs]);
+                        })()
+                      : undefined;
+                  if (
+                    $steps["goToCandidateSettings"] != null &&
+                    typeof $steps["goToCandidateSettings"] === "object" &&
+                    typeof $steps["goToCandidateSettings"].then === "function"
+                  ) {
+                    $steps["goToCandidateSettings"] = await $steps[
+                      "goToCandidateSettings"
+                    ];
+                  }
+
+                  $steps["goToEmployerSettings"] =
+                    $ctx.SupabaseUser.user !== null &&
+                    $ctx.SupabaseUser.user.user_metadata.role == "Company"
+                      ? (() => {
+                          const actionArgs = {
+                            destination: `/offre-employeur`
+                          };
+                          return (({ destination }) => {
+                            if (
+                              typeof destination === "string" &&
+                              destination.startsWith("#")
+                            ) {
+                              document
+                                .getElementById(destination.substr(1))
+                                .scrollIntoView({ behavior: "smooth" });
+                            } else {
+                              __nextRouter?.push(destination);
+                            }
+                          })?.apply(null, [actionArgs]);
+                        })()
+                      : undefined;
+                  if (
+                    $steps["goToEmployerSettings"] != null &&
+                    typeof $steps["goToEmployerSettings"] === "object" &&
+                    typeof $steps["goToEmployerSettings"].then === "function"
+                  ) {
+                    $steps["goToEmployerSettings"] = await $steps[
+                      "goToEmployerSettings"
+                    ];
+                  }
+
+                  $steps["goToAdminSettings"] =
+                    $ctx.SupabaseUser.user !== null &&
+                    $ctx.SupabaseUser.user.user_metadata.role == "Admin"
+                      ? (() => {
+                          const actionArgs = { destination: `/offre_admin` };
+                          return (({ destination }) => {
+                            if (
+                              typeof destination === "string" &&
+                              destination.startsWith("#")
+                            ) {
+                              document
+                                .getElementById(destination.substr(1))
+                                .scrollIntoView({ behavior: "smooth" });
+                            } else {
+                              __nextRouter?.push(destination);
+                            }
+                          })?.apply(null, [actionArgs]);
+                        })()
+                      : undefined;
+                  if (
+                    $steps["goToAdminSettings"] != null &&
+                    typeof $steps["goToAdminSettings"] === "object" &&
+                    typeof $steps["goToAdminSettings"].then === "function"
+                  ) {
+                    $steps["goToAdminSettings"] = await $steps[
+                      "goToAdminSettings"
+                    ];
+                  }
+                }}
+              />
+
+              <Button
+                className={classNames("__wab_instance", sty.button__nl8Ey)}
+                end={
+                  <GroupIcon
+                    className={classNames(projectcss.all, sty.svg__skm8V)}
+                    role={"img"}
+                  />
+                }
+                iconEnd={true}
+                label={
+                  <div
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.__wab_text,
+                      sty.text__lyl4Z
+                    )}
+                  >
+                    {"Connexion"}
+                  </div>
+                }
+                onClick={async event => {
+                  const $steps = {};
+
+                  $steps["goToLogin"] =
+                    $ctx.SupabaseUser.user == null
+                      ? (() => {
+                          const actionArgs = { destination: `/login` };
+                          return (({ destination }) => {
+                            if (
+                              typeof destination === "string" &&
+                              destination.startsWith("#")
+                            ) {
+                              document
+                                .getElementById(destination.substr(1))
+                                .scrollIntoView({ behavior: "smooth" });
+                            } else {
+                              __nextRouter?.push(destination);
+                            }
+                          })?.apply(null, [actionArgs]);
+                        })()
+                      : undefined;
+                  if (
+                    $steps["goToLogin"] != null &&
+                    typeof $steps["goToLogin"] === "object" &&
+                    typeof $steps["goToLogin"].then === "function"
+                  ) {
+                    $steps["goToLogin"] = await $steps["goToLogin"];
+                  }
+                }}
+              />
+
+              <Button
+                className={classNames("__wab_instance", sty.button__vw0Rd)}
+                end={
+                  <GroupIcon
+                    className={classNames(projectcss.all, sty.svg__wqlja)}
+                    role={"img"}
+                  />
+                }
+                iconEnd={true}
+                label={
+                  <div
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.__wab_text,
+                      sty.text__yEAp5
+                    )}
+                  >
+                    {"Voir mon compte"}
                   </div>
                 }
                 onClick={async event => {

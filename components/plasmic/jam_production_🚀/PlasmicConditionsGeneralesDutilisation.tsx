@@ -1198,29 +1198,63 @@ function PlasmicConditionsGeneralesDutilisation__RenderFunc(props: {
                               sty.supportingText12
                             )}
                           >
-                            <React.Fragment>
+                            {hasVariant(
+                              globalVariants,
+                              "screen",
+                              "mobileOnly"
+                            ) ? (
                               <React.Fragment>
-                                {
-                                  "L\u2019utilisation de l\u2019application Job Around Me est soumise \u00e0 l\u2019acceptation de nos Conditions G\u00e9n\u00e9rales d\u2019Utilisation, accessibles depuis l\u2019application et le site web\r  Politique de confidentialit\u00e9 \u2013 Job Around Me\r\n\r\n"
-                                }
+                                <React.Fragment>
+                                  {
+                                    "L\u2019utilisation de l\u2019application Job Around Me est soumise \u00e0 l\u2019acceptation de nos Conditions G\u00e9n\u00e9rales d\u2019Utilisation, accessibles depuis l\u2019application et le site web\r  Politique de confidentialit\u00e9 \u2013 Job Around Me\r\n\r\n"
+                                  }
+                                </React.Fragment>
+                                <span
+                                  className={
+                                    "plasmic_default__all plasmic_default__span"
+                                  }
+                                  style={{
+                                    fontStyle: "italic",
+                                    color: "var(--token-KO-_a_AX48hg)"
+                                  }}
+                                >
+                                  {
+                                    "Derni\u00e8re mise \u00e0 jour : 19/06/2025"
+                                  }
+                                </span>
+                                <React.Fragment>
+                                  {
+                                    "\n\r\n\r\nChez Job Around Me, la protection de vos donn\u00e9es personnelles est une priorit\u00e9. Cette politique explique quelles donn\u00e9es nous collectons, comment nous les utilisons, et quels sont vos droits."
+                                  }
+                                </React.Fragment>
                               </React.Fragment>
-                              <span
-                                className={
-                                  "plasmic_default__all plasmic_default__span"
-                                }
-                                style={{
-                                  fontStyle: "italic",
-                                  color: "var(--token-KO-_a_AX48hg)"
-                                }}
-                              >
-                                {"Derni\u00e8re mise \u00e0 jour : 19/06/2025"}
-                              </span>
+                            ) : (
                               <React.Fragment>
-                                {
-                                  "\n\r\n\r\nChez Job Around Me, la protection de vos donn\u00e9es personnelles est une priorit\u00e9. Cette politique explique quelles donn\u00e9es nous collectons, comment nous les utilisons, et quels sont vos droits.\n"
-                                }
+                                <React.Fragment>
+                                  {
+                                    "L\u2019utilisation de l\u2019application Job Around Me est soumise \u00e0 l\u2019acceptation de nos Conditions G\u00e9n\u00e9rales d\u2019Utilisation, accessibles depuis l\u2019application et le site web\r  Politique de confidentialit\u00e9 \u2013 Job Around Me\r\n\r\n"
+                                  }
+                                </React.Fragment>
+                                <span
+                                  className={
+                                    "plasmic_default__all plasmic_default__span"
+                                  }
+                                  style={{
+                                    fontStyle: "italic",
+                                    color: "var(--token-KO-_a_AX48hg)"
+                                  }}
+                                >
+                                  {
+                                    "Derni\u00e8re mise \u00e0 jour : 19/06/2025"
+                                  }
+                                </span>
+                                <React.Fragment>
+                                  {
+                                    "\n\r\n\r\nChez Job Around Me, la protection de vos donn\u00e9es personnelles est une priorit\u00e9. Cette politique explique quelles donn\u00e9es nous collectons, comment nous les utilisons, et quels sont vos droits.\n"
+                                  }
+                                </React.Fragment>
                               </React.Fragment>
-                            </React.Fragment>
+                            )}
                           </div>
                         </Stack__>
                       </Stack__>
@@ -1272,9 +1306,9 @@ function PlasmicConditionsGeneralesDutilisation__RenderFunc(props: {
                               sty.supportingText13
                             )}
                           >
-                            {
-                              "Job Around Me est \u00e9dit\u00e9 par la soci\u00e9t\u00e9 JobAroundMe S\u00e0rl-S, dont le si\u00e8ge est situ\u00e9 \u00e0 5 rue Nelson Mandela\r\n\r\nL-4035 , immatricul\u00e9e sous le num\u00e9ro B297124.\n"
-                            }
+                            {hasVariant(globalVariants, "screen", "mobileOnly")
+                              ? "Job Around Me est \u00e9dit\u00e9 par la soci\u00e9t\u00e9 JobAroundMe S\u00e0rl-S, dont le si\u00e8ge est situ\u00e9 \u00e0 5 rue Nelson Mandela\r\n\r\nL-4035 , immatricul\u00e9e sous le num\u00e9ro B297124."
+                              : "Job Around Me est \u00e9dit\u00e9 par la soci\u00e9t\u00e9 JobAroundMe S\u00e0rl-S, dont le si\u00e8ge est situ\u00e9 \u00e0 5 rue Nelson Mandela\r\n\r\nL-4035 , immatricul\u00e9e sous le num\u00e9ro B297124.\n"}
                           </div>
                         </Stack__>
                       </Stack__>
@@ -1848,80 +1882,217 @@ function PlasmicConditionsGeneralesDutilisation__RenderFunc(props: {
                               sty.supportingText19
                             )}
                           >
-                            <React.Fragment>
+                            {hasVariant(
+                              globalVariants,
+                              "screen",
+                              "mobileOnly"
+                            ) ? (
                               <React.Fragment>
+                                <React.Fragment>
+                                  {
+                                    "Conform\u00e9ment au RGPD, vous disposez des droits suivants :\r\n\r\n\r\n"
+                                  }
+                                </React.Fragment>
                                 {
-                                  "Conform\u00e9ment au RGPD, vous disposez des droits suivants :\r\n\r\n\r\n"
+                                  <ul
+                                    className={classNames(
+                                      projectcss.all,
+                                      projectcss.ul,
+                                      sty.ul__cvLc6
+                                    )}
+                                  >
+                                    <li
+                                      className={classNames(
+                                        projectcss.all,
+                                        projectcss.li,
+                                        projectcss.__wab_text,
+                                        sty.li__xPYuq
+                                      )}
+                                    >
+                                      {hasVariant(
+                                        globalVariants,
+                                        "screen",
+                                        "mobileOnly"
+                                      )
+                                        ? " Acc\u00e8s \u00e0 vos donn\u00e9es"
+                                        : " Acc\u00e8s \u00e0 vos donn\u00e9es"}
+                                    </li>
+                                    <li
+                                      className={classNames(
+                                        projectcss.all,
+                                        projectcss.li,
+                                        projectcss.__wab_text,
+                                        sty.li__hirMn
+                                      )}
+                                    >
+                                      {hasVariant(
+                                        globalVariants,
+                                        "screen",
+                                        "mobileOnly"
+                                      )
+                                        ? "Rectification ou mise \u00e0 jour"
+                                        : "Rectification ou mise \u00e0 jour"}
+                                    </li>
+                                    <li
+                                      className={classNames(
+                                        projectcss.all,
+                                        projectcss.li,
+                                        projectcss.__wab_text,
+                                        sty.li__ykB5T
+                                      )}
+                                    >
+                                      {hasVariant(
+                                        globalVariants,
+                                        "screen",
+                                        "mobileOnly"
+                                      )
+                                        ? "Suppression (\u201cdroit \u00e0 l\u2019oubli\u201d)"
+                                        : "Suppression (\u201cdroit \u00e0 l\u2019oubli\u201d)"}
+                                    </li>
+                                    <li
+                                      className={classNames(
+                                        projectcss.all,
+                                        projectcss.li,
+                                        projectcss.__wab_text,
+                                        sty.li__ilAfr
+                                      )}
+                                    >
+                                      {hasVariant(
+                                        globalVariants,
+                                        "screen",
+                                        "mobileOnly"
+                                      )
+                                        ? "Opposition \u00e0 certains traitements"
+                                        : "Opposition \u00e0 certains traitements"}
+                                    </li>
+                                    <li
+                                      className={classNames(
+                                        projectcss.all,
+                                        projectcss.li,
+                                        projectcss.__wab_text,
+                                        sty.li__iU5U
+                                      )}
+                                    >
+                                      {hasVariant(
+                                        globalVariants,
+                                        "screen",
+                                        "mobileOnly"
+                                      )
+                                        ? "Portabilit\u00e9 de vos donn\u00e9es"
+                                        : "Portabilit\u00e9 de vos donn\u00e9es"}
+                                    </li>
+                                  </ul>
                                 }
+                                <React.Fragment>
+                                  {
+                                    "Pour exercer vos droits, \u00e9crivez \u00e0 contact@job-around-me.com"
+                                  }
+                                </React.Fragment>
                               </React.Fragment>
-                              {
-                                <ul
-                                  className={classNames(
-                                    projectcss.all,
-                                    projectcss.ul,
-                                    sty.ul__cvLc6
-                                  )}
-                                >
-                                  <li
-                                    className={classNames(
-                                      projectcss.all,
-                                      projectcss.li,
-                                      projectcss.__wab_text,
-                                      sty.li__xPYuq
-                                    )}
-                                  >
-                                    {" Acc\u00e8s \u00e0 vos donn\u00e9es"}
-                                  </li>
-                                  <li
-                                    className={classNames(
-                                      projectcss.all,
-                                      projectcss.li,
-                                      projectcss.__wab_text,
-                                      sty.li__hirMn
-                                    )}
-                                  >
-                                    {"Rectification ou mise \u00e0 jour"}
-                                  </li>
-                                  <li
-                                    className={classNames(
-                                      projectcss.all,
-                                      projectcss.li,
-                                      projectcss.__wab_text,
-                                      sty.li__ykB5T
-                                    )}
-                                  >
-                                    {
-                                      "Suppression (\u201cdroit \u00e0 l\u2019oubli\u201d)"
-                                    }
-                                  </li>
-                                  <li
-                                    className={classNames(
-                                      projectcss.all,
-                                      projectcss.li,
-                                      projectcss.__wab_text,
-                                      sty.li__ilAfr
-                                    )}
-                                  >
-                                    {"Opposition \u00e0 certains traitements"}
-                                  </li>
-                                  <li
-                                    className={classNames(
-                                      projectcss.all,
-                                      projectcss.li,
-                                      projectcss.__wab_text,
-                                      sty.li__iU5U
-                                    )}
-                                  >
-                                    {"Portabilit\u00e9 de vos donn\u00e9es"}
-                                  </li>
-                                </ul>
-                              }
+                            ) : (
                               <React.Fragment>
+                                <React.Fragment>
+                                  {
+                                    "Conform\u00e9ment au RGPD, vous disposez des droits suivants :\r\n\r\n\r\n"
+                                  }
+                                </React.Fragment>
                                 {
-                                  "Pour exercer vos droits, \u00e9crivez \u00e0 [:contact@job-around-me.com](mailto::contact@job-around-me.com)"
+                                  <ul
+                                    className={classNames(
+                                      projectcss.all,
+                                      projectcss.ul,
+                                      sty.ul__cvLc6
+                                    )}
+                                  >
+                                    <li
+                                      className={classNames(
+                                        projectcss.all,
+                                        projectcss.li,
+                                        projectcss.__wab_text,
+                                        sty.li__xPYuq
+                                      )}
+                                    >
+                                      {hasVariant(
+                                        globalVariants,
+                                        "screen",
+                                        "mobileOnly"
+                                      )
+                                        ? " Acc\u00e8s \u00e0 vos donn\u00e9es"
+                                        : " Acc\u00e8s \u00e0 vos donn\u00e9es"}
+                                    </li>
+                                    <li
+                                      className={classNames(
+                                        projectcss.all,
+                                        projectcss.li,
+                                        projectcss.__wab_text,
+                                        sty.li__hirMn
+                                      )}
+                                    >
+                                      {hasVariant(
+                                        globalVariants,
+                                        "screen",
+                                        "mobileOnly"
+                                      )
+                                        ? "Rectification ou mise \u00e0 jour"
+                                        : "Rectification ou mise \u00e0 jour"}
+                                    </li>
+                                    <li
+                                      className={classNames(
+                                        projectcss.all,
+                                        projectcss.li,
+                                        projectcss.__wab_text,
+                                        sty.li__ykB5T
+                                      )}
+                                    >
+                                      {hasVariant(
+                                        globalVariants,
+                                        "screen",
+                                        "mobileOnly"
+                                      )
+                                        ? "Suppression (\u201cdroit \u00e0 l\u2019oubli\u201d)"
+                                        : "Suppression (\u201cdroit \u00e0 l\u2019oubli\u201d)"}
+                                    </li>
+                                    <li
+                                      className={classNames(
+                                        projectcss.all,
+                                        projectcss.li,
+                                        projectcss.__wab_text,
+                                        sty.li__ilAfr
+                                      )}
+                                    >
+                                      {hasVariant(
+                                        globalVariants,
+                                        "screen",
+                                        "mobileOnly"
+                                      )
+                                        ? "Opposition \u00e0 certains traitements"
+                                        : "Opposition \u00e0 certains traitements"}
+                                    </li>
+                                    <li
+                                      className={classNames(
+                                        projectcss.all,
+                                        projectcss.li,
+                                        projectcss.__wab_text,
+                                        sty.li__iU5U
+                                      )}
+                                    >
+                                      {hasVariant(
+                                        globalVariants,
+                                        "screen",
+                                        "mobileOnly"
+                                      )
+                                        ? "Portabilit\u00e9 de vos donn\u00e9es"
+                                        : "Portabilit\u00e9 de vos donn\u00e9es"}
+                                    </li>
+                                  </ul>
                                 }
+                                <React.Fragment>
+                                  {
+                                    "Pour exercer vos droits, \u00e9crivez \u00e0 [:contact@job-around-me.com](mailto::contact@job-around-me.com)"
+                                  }
+                                </React.Fragment>
                               </React.Fragment>
-                            </React.Fragment>
+                            )}
                           </div>
                         </Stack__>
                       </Stack__>
@@ -2081,46 +2252,113 @@ function PlasmicConditionsGeneralesDutilisation__RenderFunc(props: {
                               sty.supportingText22
                             )}
                           >
-                            <React.Fragment>
+                            {hasVariant(
+                              globalVariants,
+                              "screen",
+                              "mobileOnly"
+                            ) ? (
                               <React.Fragment>
+                                <React.Fragment>
+                                  {
+                                    "Pour toute question ou r\u00e9clamation li\u00e9e \u00e0 vos donn\u00e9es :\r\n\r\n"
+                                  }
+                                </React.Fragment>
                                 {
-                                  "Pour toute question ou r\u00e9clamation li\u00e9e \u00e0 vos donn\u00e9es :\r\n\r\n"
+                                  <ul
+                                    className={classNames(
+                                      projectcss.all,
+                                      projectcss.ul,
+                                      sty.ul__aY8Dx
+                                    )}
+                                  >
+                                    <li
+                                      className={classNames(
+                                        projectcss.all,
+                                        projectcss.li,
+                                        projectcss.__wab_text,
+                                        sty.li__quncG
+                                      )}
+                                    >
+                                      {hasVariant(
+                                        globalVariants,
+                                        "screen",
+                                        "mobileOnly"
+                                      )
+                                        ? "contact@job-around-me.com"
+                                        : "\ud83d\udce7contact@job-around-me.com"}
+                                    </li>
+                                    <li
+                                      className={classNames(
+                                        projectcss.all,
+                                        projectcss.li,
+                                        projectcss.__wab_text,
+                                        sty.li__wP7Bv
+                                      )}
+                                    >
+                                      {hasVariant(
+                                        globalVariants,
+                                        "screen",
+                                        "mobileOnly"
+                                      )
+                                        ? "\r\n\r\nJob Around Me S\u00e0rl-S \u2013 5 rue nelson Mandela L-4035"
+                                        : "\r\n\r\n\ud83d\udccd JobAroundMe S\u00e0rl-S \u2013 5 rue nelson Mandela L-4035"}
+                                    </li>
+                                  </ul>
                                 }
+                                <React.Fragment>{""}</React.Fragment>
                               </React.Fragment>
-                              {
-                                <ul
-                                  className={classNames(
-                                    projectcss.all,
-                                    projectcss.ul,
-                                    sty.ul__aY8Dx
-                                  )}
-                                >
-                                  <li
+                            ) : (
+                              <React.Fragment>
+                                <React.Fragment>
+                                  {
+                                    "Pour toute question ou r\u00e9clamation li\u00e9e \u00e0 vos donn\u00e9es :\r\n\r\n"
+                                  }
+                                </React.Fragment>
+                                {
+                                  <ul
                                     className={classNames(
                                       projectcss.all,
-                                      projectcss.li,
-                                      projectcss.__wab_text,
-                                      sty.li__quncG
+                                      projectcss.ul,
+                                      sty.ul__aY8Dx
                                     )}
                                   >
-                                    {"\ud83d\udce7contact@job-around-me.com"}
-                                  </li>
-                                  <li
-                                    className={classNames(
-                                      projectcss.all,
-                                      projectcss.li,
-                                      projectcss.__wab_text,
-                                      sty.li__wP7Bv
-                                    )}
-                                  >
-                                    {
-                                      "\r\n\r\n\ud83d\udccd JobAroundMe S\u00e0rl-S \u2013 5 rue nelson Mandela L-4035"
-                                    }
-                                  </li>
-                                </ul>
-                              }
-                              <React.Fragment>{""}</React.Fragment>
-                            </React.Fragment>
+                                    <li
+                                      className={classNames(
+                                        projectcss.all,
+                                        projectcss.li,
+                                        projectcss.__wab_text,
+                                        sty.li__quncG
+                                      )}
+                                    >
+                                      {hasVariant(
+                                        globalVariants,
+                                        "screen",
+                                        "mobileOnly"
+                                      )
+                                        ? "contact@job-around-me.com"
+                                        : "\ud83d\udce7contact@job-around-me.com"}
+                                    </li>
+                                    <li
+                                      className={classNames(
+                                        projectcss.all,
+                                        projectcss.li,
+                                        projectcss.__wab_text,
+                                        sty.li__wP7Bv
+                                      )}
+                                    >
+                                      {hasVariant(
+                                        globalVariants,
+                                        "screen",
+                                        "mobileOnly"
+                                      )
+                                        ? "\r\n\r\nJob Around Me S\u00e0rl-S \u2013 5 rue nelson Mandela L-4035"
+                                        : "\r\n\r\n\ud83d\udccd JobAroundMe S\u00e0rl-S \u2013 5 rue nelson Mandela L-4035"}
+                                    </li>
+                                  </ul>
+                                }
+                                <React.Fragment>{""}</React.Fragment>
+                              </React.Fragment>
+                            )}
                           </div>
                         </Stack__>
                       </Stack__>

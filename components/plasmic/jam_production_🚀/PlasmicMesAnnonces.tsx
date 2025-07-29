@@ -3788,9 +3788,37 @@ function PlasmicMesAnnonces__RenderFunc(props: {
                         $steps["closeModal2"] = await $steps["closeModal2"];
                       }
 
-                      $steps["useIntegration"] = true
+                      $steps["sendEmailToEmployer"] = true
                         ? (() => {
-                            const actionArgs = {};
+                            const actionArgs = {
+                              dataOp: {
+                                sourceId: "5T6gSzGCrEfYgV9rAkCoaD",
+                                opId: "ac3aeb59-a5a8-4309-9807-433a1356e04e",
+                                userArgs: {
+                                  body: [
+                                    {
+                                      to: `${$state.currentJobObject.employer_email}`,
+                                      template: "applicationReceived",
+                                      subject:
+                                        "Nouvelle candidature reçue pour votre offre \uD83D\uDCBC",
+                                      params: {
+                                        firstName:
+                                          $state.currentJobObject.employer_name,
+                                        jobTitle: $state.currentJobObject.title,
+                                        candidateName:
+                                          $queries.getUser.data[0].first_name +
+                                          " " +
+                                          $queries.getUser.data[0].last_name,
+                                        applicationUrl: `https://jam-staging.agence-scroll.com/candidatures-employeur/${$state.currentJobObject.id}`
+                                      }
+                                    }
+                                  ]
+                                },
+                                cacheKey: null,
+                                invalidatedKeys: ["plasmic_refresh_all"],
+                                roleId: null
+                              }
+                            };
                             return (async ({ dataOp, continueOnError }) => {
                               try {
                                 const response = await executePlasmicDataOp(
@@ -3813,12 +3841,12 @@ function PlasmicMesAnnonces__RenderFunc(props: {
                           })()
                         : undefined;
                       if (
-                        $steps["useIntegration"] != null &&
-                        typeof $steps["useIntegration"] === "object" &&
-                        typeof $steps["useIntegration"].then === "function"
+                        $steps["sendEmailToEmployer"] != null &&
+                        typeof $steps["sendEmailToEmployer"] === "object" &&
+                        typeof $steps["sendEmailToEmployer"].then === "function"
                       ) {
-                        $steps["useIntegration"] = await $steps[
-                          "useIntegration"
+                        $steps["sendEmailToEmployer"] = await $steps[
+                          "sendEmailToEmployer"
                         ];
                       }
                     },

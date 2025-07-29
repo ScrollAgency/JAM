@@ -16237,43 +16237,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                         onClick={async event => {
                           const $steps = {};
 
-                          $steps["updateShowModal"] = true
-                            ? (() => {
-                                const actionArgs = {
-                                  variable: {
-                                    objRoot: $state,
-                                    variablePath: ["showModal"]
-                                  },
-                                  operation: 0,
-                                  value: false
-                                };
-                                return (({
-                                  variable,
-                                  value,
-                                  startIndex,
-                                  deleteCount
-                                }) => {
-                                  if (!variable) {
-                                    return;
-                                  }
-                                  const { objRoot, variablePath } = variable;
-
-                                  $stateSet(objRoot, variablePath, value);
-                                  return value;
-                                })?.apply(null, [actionArgs]);
-                              })()
-                            : undefined;
-                          if (
-                            $steps["updateShowModal"] != null &&
-                            typeof $steps["updateShowModal"] === "object" &&
-                            typeof $steps["updateShowModal"].then === "function"
-                          ) {
-                            $steps["updateShowModal"] = await $steps[
-                              "updateShowModal"
-                            ];
-                          }
-
-                          $steps["postgresUpdateById"] = true
+                          $steps["updateDb"] = true
                             ? (() => {
                                 const actionArgs = {
                                   dataOp: {
@@ -16311,43 +16275,100 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                               })()
                             : undefined;
                           if (
-                            $steps["postgresUpdateById"] != null &&
-                            typeof $steps["postgresUpdateById"] === "object" &&
-                            typeof $steps["postgresUpdateById"].then ===
-                              "function"
+                            $steps["updateDb"] != null &&
+                            typeof $steps["updateDb"] === "object" &&
+                            typeof $steps["updateDb"].then === "function"
                           ) {
-                            $steps["postgresUpdateById"] = await $steps[
-                              "postgresUpdateById"
-                            ];
+                            $steps["updateDb"] = await $steps["updateDb"];
                           }
 
-                          $steps["goToOffreEmployeur"] = true
+                          $steps["closeModal"] = true
                             ? (() => {
                                 const actionArgs = {
-                                  destination: `/offre-employeur`
+                                  variable: {
+                                    objRoot: $state,
+                                    variablePath: ["showModal"]
+                                  },
+                                  operation: 0,
+                                  value: false
                                 };
-                                return (({ destination }) => {
-                                  if (
-                                    typeof destination === "string" &&
-                                    destination.startsWith("#")
-                                  ) {
-                                    document
-                                      .getElementById(destination.substr(1))
-                                      .scrollIntoView({ behavior: "smooth" });
-                                  } else {
-                                    __nextRouter?.push(destination);
+                                return (({
+                                  variable,
+                                  value,
+                                  startIndex,
+                                  deleteCount
+                                }) => {
+                                  if (!variable) {
+                                    return;
+                                  }
+                                  const { objRoot, variablePath } = variable;
+
+                                  $stateSet(objRoot, variablePath, value);
+                                  return value;
+                                })?.apply(null, [actionArgs]);
+                              })()
+                            : undefined;
+                          if (
+                            $steps["closeModal"] != null &&
+                            typeof $steps["closeModal"] === "object" &&
+                            typeof $steps["closeModal"].then === "function"
+                          ) {
+                            $steps["closeModal"] = await $steps["closeModal"];
+                          }
+
+                          $steps["sendEmailToEmployer"] = true
+                            ? (() => {
+                                const actionArgs = {
+                                  dataOp: {
+                                    sourceId: "5T6gSzGCrEfYgV9rAkCoaD",
+                                    opId: "ac3aeb59-a5a8-4309-9807-433a1356e04e",
+                                    userArgs: {
+                                      body: [
+                                        {
+                                          to: `${$queries.getUser.data[0].email}`,
+                                          template: "employerSubscription",
+                                          subject:
+                                            "Bienvenue dans ton nouvel abonnement 🎉",
+                                          params: { name: "Marius" }
+                                        }
+                                      ]
+                                    },
+                                    cacheKey: null,
+                                    invalidatedKeys: [],
+                                    roleId: null
+                                  }
+                                };
+                                return (async ({ dataOp, continueOnError }) => {
+                                  try {
+                                    const response = await executePlasmicDataOp(
+                                      dataOp,
+                                      {
+                                        userAuthToken:
+                                          dataSourcesCtx?.userAuthToken,
+                                        user: dataSourcesCtx?.user
+                                      }
+                                    );
+                                    await plasmicInvalidate(
+                                      dataOp.invalidatedKeys
+                                    );
+                                    return response;
+                                  } catch (e) {
+                                    if (!continueOnError) {
+                                      throw e;
+                                    }
+                                    return e;
                                   }
                                 })?.apply(null, [actionArgs]);
                               })()
                             : undefined;
                           if (
-                            $steps["goToOffreEmployeur"] != null &&
-                            typeof $steps["goToOffreEmployeur"] === "object" &&
-                            typeof $steps["goToOffreEmployeur"].then ===
+                            $steps["sendEmailToEmployer"] != null &&
+                            typeof $steps["sendEmailToEmployer"] === "object" &&
+                            typeof $steps["sendEmailToEmployer"].then ===
                               "function"
                           ) {
-                            $steps["goToOffreEmployeur"] = await $steps[
-                              "goToOffreEmployeur"
+                            $steps["sendEmailToEmployer"] = await $steps[
+                              "sendEmailToEmployer"
                             ];
                           }
                         }}
