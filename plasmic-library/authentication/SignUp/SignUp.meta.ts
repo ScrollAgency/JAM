@@ -75,6 +75,12 @@ const SignUpMeta = {
       defaultValue: "Confirmez votre mot de passe",
     },
 
+    redirectTo: {
+      type: "string",
+      defaultValue: "/auth/oauth-callback",
+      description: "URL vers laquelle rediriger après le login oAuth",
+    },
+
     // Contrôle de visibilité du mot de passe
     showPasswordToggle: {
       type: "boolean",
