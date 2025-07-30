@@ -66,7 +66,6 @@ import {
   usePlasmicInvalidate
 } from "@plasmicapp/react-web/lib/data-sources";
 
-import { PageLoader } from "../../others/PageLoader/PageLoader"; // plasmic-import: FHDrnDhA4DZe/codeComponent
 import MobileNavbarTop from "../../MobileNavbarTop"; // plasmic-import: mAg8Ml3XUEhy/component
 import Sidebar from "../../Sidebar"; // plasmic-import: M06HuWMcBQV2/component
 import { UploadWrapper } from "@plasmicpkgs/antd5/skinny/registerUpload";
@@ -123,7 +122,6 @@ export const PlasmicParametresCandidat__ArgProps = new Array<ArgPropType>();
 
 export type PlasmicParametresCandidat__OverridesType = {
   parametresDeCompte?: Flex__<"div">;
-  pageLoader?: Flex__<typeof PageLoader>;
   body?: Flex__<"div">;
   mobileNavbarTop?: Flex__<typeof MobileNavbarTop>;
   sidebar?: Flex__<typeof Sidebar>;
@@ -784,37 +782,6 @@ function PlasmicParametresCandidat__RenderFunc(props: {
             sty.parametresDeCompte
           )}
         >
-          <PageLoader
-            data-plasmic-name={"pageLoader"}
-            data-plasmic-override={overrides.pageLoader}
-            className={classNames("__wab_instance", sty.pageLoader)}
-            onMount={async () => {
-              const $steps = {};
-
-              $steps["refreshData"] = true
-                ? (() => {
-                    const actionArgs = {
-                      queryInvalidation: ["plasmic_refresh_all"]
-                    };
-                    return (async ({ queryInvalidation }) => {
-                      if (!queryInvalidation) {
-                        return;
-                      }
-                      await plasmicInvalidate(queryInvalidation);
-                    })?.apply(null, [actionArgs]);
-                  })()
-                : undefined;
-              if (
-                $steps["refreshData"] != null &&
-                typeof $steps["refreshData"] === "object" &&
-                typeof $steps["refreshData"].then === "function"
-              ) {
-                $steps["refreshData"] = await $steps["refreshData"];
-              }
-            }}
-            shouldRun={true}
-          />
-
           <div
             data-plasmic-name={"body"}
             data-plasmic-override={overrides.body}
@@ -4505,7 +4472,6 @@ function PlasmicParametresCandidat__RenderFunc(props: {
 const PlasmicDescendants = {
   parametresDeCompte: [
     "parametresDeCompte",
-    "pageLoader",
     "body",
     "mobileNavbarTop",
     "sidebar",
@@ -4570,7 +4536,6 @@ const PlasmicDescendants = {
     "expandTab",
     "mobileNavbarBottom"
   ],
-  pageLoader: ["pageLoader"],
   body: [
     "body",
     "mobileNavbarTop",
@@ -4941,7 +4906,6 @@ type DescendantsType<T extends NodeNameType> =
   (typeof PlasmicDescendants)[T][number];
 type NodeDefaultElementType = {
   parametresDeCompte: "div";
-  pageLoader: typeof PageLoader;
   body: "div";
   mobileNavbarTop: typeof MobileNavbarTop;
   sidebar: typeof Sidebar;
@@ -5067,7 +5031,6 @@ export const PlasmicParametresCandidat = Object.assign(
   makeNodeComponent("parametresDeCompte"),
   {
     // Helper components rendering sub-elements
-    pageLoader: makeNodeComponent("pageLoader"),
     body: makeNodeComponent("body"),
     mobileNavbarTop: makeNodeComponent("mobileNavbarTop"),
     sidebar: makeNodeComponent("sidebar"),
