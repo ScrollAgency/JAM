@@ -66,6 +66,7 @@ import {
   usePlasmicInvalidate
 } from "@plasmicapp/react-web/lib/data-sources";
 
+import { PageLoader } from "../../others/PageLoader/PageLoader"; // plasmic-import: FHDrnDhA4DZe/codeComponent
 import MobileNavbarTop from "../../MobileNavbarTop"; // plasmic-import: mAg8Ml3XUEhy/component
 import Sidebar from "../../Sidebar"; // plasmic-import: M06HuWMcBQV2/component
 import { UploadWrapper } from "@plasmicpkgs/antd5/skinny/registerUpload";
@@ -122,6 +123,8 @@ export const PlasmicParametresCandidat__ArgProps = new Array<ArgPropType>();
 
 export type PlasmicParametresCandidat__OverridesType = {
   parametresDeCompte?: Flex__<"div">;
+  pageLoader?: Flex__<typeof PageLoader>;
+  body?: Flex__<"div">;
   mobileNavbarTop?: Flex__<typeof MobileNavbarTop>;
   sidebar?: Flex__<typeof Sidebar>;
   main?: Flex__<"main">;
@@ -642,6 +645,18 @@ function PlasmicParametresCandidat__RenderFunc(props: {
         type: "private",
         variableType: "array",
         initFunc: ({ $props, $state, $queries, $ctx }) => []
+      },
+      {
+        path: "sidebar.disableLinks",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $ctx }) => false
+      },
+      {
+        path: "sidebar.role",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $ctx }) => "candidat"
       }
     ],
     [$props, $ctx, $refs]
@@ -717,16 +732,15 @@ function PlasmicParametresCandidat__RenderFunc(props: {
     fetchUserCoordinates: usePlasmicDataOp(() => {
       return {
         sourceId: "3fRequBPthJKGmQ2njgcZi",
-        opId: "a959325a-ec89-4471-ad6c-93b5787025fc",
+        opId: "602f8e5e-0c0e-4bd4-bc42-fd4b157cf503",
         userArgs: {
           params: [
-            $state.formulaire.value.address,
-            $state.formulaire.value.postal_code,
-            $state.formulaire.value.country,
-            $state.formulaire.value.city
+            $state.formulaire.value.postal_code ?? "75000",
+            $state.formulaire.value.country ?? "France",
+            $state.formulaire.value.city ?? "Paris"
           ]
         },
-        cacheKey: `plasmic.$.a959325a-ec89-4471-ad6c-93b5787025fc.$.`,
+        cacheKey: `plasmic.$.602f8e5e-0c0e-4bd4-bc42-fd4b157cf503.$.`,
         invalidatedKeys: null,
         roleId: null
       };
@@ -770,417 +784,216 @@ function PlasmicParametresCandidat__RenderFunc(props: {
             sty.parametresDeCompte
           )}
         >
-          <MobileNavbarTop
-            data-plasmic-name={"mobileNavbarTop"}
-            data-plasmic-override={overrides.mobileNavbarTop}
-            className={classNames("__wab_instance", sty.mobileNavbarTop)}
+          <PageLoader
+            data-plasmic-name={"pageLoader"}
+            data-plasmic-override={overrides.pageLoader}
+            className={classNames("__wab_instance", sty.pageLoader)}
+            onMount={async () => {
+              const $steps = {};
+
+              $steps["refreshData"] = true
+                ? (() => {
+                    const actionArgs = {
+                      queryInvalidation: ["plasmic_refresh_all"]
+                    };
+                    return (async ({ queryInvalidation }) => {
+                      if (!queryInvalidation) {
+                        return;
+                      }
+                      await plasmicInvalidate(queryInvalidation);
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["refreshData"] != null &&
+                typeof $steps["refreshData"] === "object" &&
+                typeof $steps["refreshData"].then === "function"
+              ) {
+                $steps["refreshData"] = await $steps["refreshData"];
+              }
+            }}
+            shouldRun={true}
           />
 
-          <Sidebar
-            data-plasmic-name={"sidebar"}
-            data-plasmic-override={overrides.sidebar}
-            className={classNames("__wab_instance", sty.sidebar)}
-          />
-
-          <Stack__
-            as={"main"}
-            data-plasmic-name={"main"}
-            data-plasmic-override={overrides.main}
-            hasGap={true}
-            className={classNames(projectcss.all, sty.main)}
+          <div
+            data-plasmic-name={"body"}
+            data-plasmic-override={overrides.body}
+            className={classNames(projectcss.all, sty.body)}
           >
-            <h1
-              data-plasmic-name={"heading"}
-              data-plasmic-override={overrides.heading}
-              className={classNames(
-                projectcss.all,
-                projectcss.h1,
-                projectcss.__wab_text,
-                sty.heading
-              )}
-            >
-              {"Param\u00e8tres de compte"}
-            </h1>
+            <MobileNavbarTop
+              data-plasmic-name={"mobileNavbarTop"}
+              data-plasmic-override={overrides.mobileNavbarTop}
+              className={classNames("__wab_instance", sty.mobileNavbarTop)}
+            />
+
+            <Sidebar
+              data-plasmic-name={"sidebar"}
+              data-plasmic-override={overrides.sidebar}
+              className={classNames("__wab_instance", sty.sidebar)}
+              disableLinks={generateStateValueProp($state, [
+                "sidebar",
+                "disableLinks"
+              ])}
+              onDisableLinksChange={async (...eventArgs: any) => {
+                generateStateOnChangeProp($state, [
+                  "sidebar",
+                  "disableLinks"
+                ]).apply(null, eventArgs);
+
+                if (
+                  eventArgs.length > 1 &&
+                  eventArgs[1] &&
+                  eventArgs[1]._plasmic_state_init_
+                ) {
+                  return;
+                }
+              }}
+              onRoleChange={async (...eventArgs: any) => {
+                generateStateOnChangeProp($state, ["sidebar", "role"]).apply(
+                  null,
+                  eventArgs
+                );
+
+                if (
+                  eventArgs.length > 1 &&
+                  eventArgs[1] &&
+                  eventArgs[1]._plasmic_state_init_
+                ) {
+                  return;
+                }
+              }}
+              role={generateStateValueProp($state, ["sidebar", "role"])}
+            />
+
             <Stack__
-              as={"div"}
-              data-plasmic-name={"container"}
-              data-plasmic-override={overrides.container}
+              as={"main"}
+              data-plasmic-name={"main"}
+              data-plasmic-override={overrides.main}
               hasGap={true}
-              className={classNames(projectcss.all, sty.container)}
+              className={classNames(projectcss.all, sty.main)}
             >
-              <div
-                data-plasmic-name={"informationsPersonnelles"}
-                data-plasmic-override={overrides.informationsPersonnelles}
+              <h1
+                data-plasmic-name={"heading"}
+                data-plasmic-override={overrides.heading}
                 className={classNames(
                   projectcss.all,
-                  sty.informationsPersonnelles
+                  projectcss.h1,
+                  projectcss.__wab_text,
+                  sty.heading
                 )}
               >
-                <Stack__
-                  as={"div"}
-                  data-plasmic-name={"frame1437254343"}
-                  data-plasmic-override={overrides.frame1437254343}
-                  hasGap={true}
-                  className={classNames(projectcss.all, sty.frame1437254343)}
+                {"Param\u00e8tres de compte"}
+              </h1>
+              <Stack__
+                as={"div"}
+                data-plasmic-name={"container"}
+                data-plasmic-override={overrides.container}
+                hasGap={true}
+                className={classNames(projectcss.all, sty.container)}
+              >
+                <div
+                  data-plasmic-name={"informationsPersonnelles"}
+                  data-plasmic-override={overrides.informationsPersonnelles}
+                  className={classNames(
+                    projectcss.all,
+                    sty.informationsPersonnelles
+                  )}
                 >
-                  <UploadWrapper
-                    data-plasmic-name={"upload2"}
-                    data-plasmic-override={overrides.upload2}
-                    accept={""}
-                    className={classNames("__wab_instance", sty.upload2)}
-                    files={generateStateValueProp($state, ["upload2", "files"])}
-                    maxCount={1}
-                    onFilesChange={async (...eventArgs: any) => {
-                      generateStateOnChangeProp($state, [
-                        "upload2",
-                        "files"
-                      ]).apply(null, eventArgs);
-
-                      (async files => {
-                        const $steps = {};
-
-                        $steps["supabaseUploadFile"] = true
-                          ? (() => {
-                              const actionArgs = {
-                                dataOp: {
-                                  sourceId: "rtEg85U6Vbyi94cRAe93i7",
-                                  opId: "84c0bb0b-0e3b-43a7-ae52-d0cf288eb28f",
-                                  userArgs: {
-                                    path: [
-                                      $ctx.SupabaseUser.user.id,
-                                      $state.upload2.files[0].name
-                                    ],
-                                    content: [$state.upload2.files[0].contents],
-                                    contentType: [$state.upload2.files[0].type]
-                                  },
-                                  cacheKey: null,
-                                  invalidatedKeys: [],
-                                  roleId: null
-                                }
-                              };
-                              return (async ({ dataOp, continueOnError }) => {
-                                try {
-                                  const response = await executePlasmicDataOp(
-                                    dataOp,
-                                    {
-                                      userAuthToken:
-                                        dataSourcesCtx?.userAuthToken,
-                                      user: dataSourcesCtx?.user
-                                    }
-                                  );
-                                  await plasmicInvalidate(
-                                    dataOp.invalidatedKeys
-                                  );
-                                  return response;
-                                } catch (e) {
-                                  if (!continueOnError) {
-                                    throw e;
-                                  }
-                                  return e;
-                                }
-                              })?.apply(null, [actionArgs]);
-                            })()
-                          : undefined;
-                        if (
-                          $steps["supabaseUploadFile"] != null &&
-                          typeof $steps["supabaseUploadFile"] === "object" &&
-                          typeof $steps["supabaseUploadFile"].then ===
-                            "function"
-                        ) {
-                          $steps["supabaseUploadFile"] = await $steps[
-                            "supabaseUploadFile"
-                          ];
-                        }
-
-                        $steps["postgresUpdateById"] = true
-                          ? (() => {
-                              const actionArgs = {
-                                dataOp: {
-                                  sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
-                                  opId: "ca8056ed-4ec7-4218-bb8b-d4f4da770307",
-                                  userArgs: {
-                                    keys: [$ctx.SupabaseUser.user.id],
-                                    variables: [
-                                      $steps.supabaseUploadFile?.path.split(
-                                        "/"
-                                      )[1]
-                                    ]
-                                  },
-                                  cacheKey: null,
-                                  invalidatedKeys: ["plasmic_refresh_all"],
-                                  roleId: null
-                                }
-                              };
-                              return (async ({ dataOp, continueOnError }) => {
-                                try {
-                                  const response = await executePlasmicDataOp(
-                                    dataOp,
-                                    {
-                                      userAuthToken:
-                                        dataSourcesCtx?.userAuthToken,
-                                      user: dataSourcesCtx?.user
-                                    }
-                                  );
-                                  await plasmicInvalidate(
-                                    dataOp.invalidatedKeys
-                                  );
-                                  return response;
-                                } catch (e) {
-                                  if (!continueOnError) {
-                                    throw e;
-                                  }
-                                  return e;
-                                }
-                              })?.apply(null, [actionArgs]);
-                            })()
-                          : undefined;
-                        if (
-                          $steps["postgresUpdateById"] != null &&
-                          typeof $steps["postgresUpdateById"] === "object" &&
-                          typeof $steps["postgresUpdateById"].then ===
-                            "function"
-                        ) {
-                          $steps["postgresUpdateById"] = await $steps[
-                            "postgresUpdateById"
-                          ];
-                        }
-                      }).apply(null, eventArgs);
-                    }}
-                    showUploadList={false}
-                  >
-                    <PlasmicImg__
-                      alt={""}
-                      className={classNames(sty.img__yE9QY)}
-                      displayHeight={"132px"}
-                      displayMaxHeight={"none"}
-                      displayMaxWidth={"100%"}
-                      displayMinHeight={"0"}
-                      displayMinWidth={"0"}
-                      displayWidth={"132px"}
-                      loading={"lazy"}
-                      src={
-                        $queries.getPp.signedUrl
-                          ? $queries.getPp.signedUrl
-                          : "https://images.icon-icons.com/1769/PNG/512/4092564-about-mobile-ui-profile-ui-user-website_114033.png"
-                      }
-                    />
-
-                    <div
-                      data-plasmic-name={"editIcon"}
-                      data-plasmic-override={overrides.editIcon}
-                      className={classNames(projectcss.all, sty.editIcon)}
-                    >
-                      <div
-                        data-plasmic-name={"frame7"}
-                        data-plasmic-override={overrides.frame7}
-                        className={classNames(projectcss.all, sty.frame7)}
-                      />
-
-                      <PhPencilSimpleIcon
-                        className={classNames(projectcss.all, sty.svg___5XUxq)}
-                        role={"img"}
-                      />
-                    </div>
-                    <div
-                      data-plasmic-name={"deleteIcon"}
-                      data-plasmic-override={overrides.deleteIcon}
-                      className={classNames(projectcss.all, sty.deleteIcon)}
-                      onClick={async event => {
-                        const $steps = {};
-
-                        $steps["updateUpload2Files"] = true
-                          ? (() => {
-                              const actionArgs = {
-                                variable: {
-                                  objRoot: $state,
-                                  variablePath: ["upload2", "files"]
-                                },
-                                operation: 1
-                              };
-                              return (({
-                                variable,
-                                value,
-                                startIndex,
-                                deleteCount
-                              }) => {
-                                if (!variable) {
-                                  return;
-                                }
-                                const { objRoot, variablePath } = variable;
-
-                                $stateSet(objRoot, variablePath, undefined);
-                                return undefined;
-                              })?.apply(null, [actionArgs]);
-                            })()
-                          : undefined;
-                        if (
-                          $steps["updateUpload2Files"] != null &&
-                          typeof $steps["updateUpload2Files"] === "object" &&
-                          typeof $steps["updateUpload2Files"].then ===
-                            "function"
-                        ) {
-                          $steps["updateUpload2Files"] = await $steps[
-                            "updateUpload2Files"
-                          ];
-                        }
-
-                        $steps["runCode"] = true
-                          ? (() => {
-                              const actionArgs = {
-                                customFunction: async () => {
-                                  return event.stopPropagation();
-                                }
-                              };
-                              return (({ customFunction }) => {
-                                return customFunction();
-                              })?.apply(null, [actionArgs]);
-                            })()
-                          : undefined;
-                        if (
-                          $steps["runCode"] != null &&
-                          typeof $steps["runCode"] === "object" &&
-                          typeof $steps["runCode"].then === "function"
-                        ) {
-                          $steps["runCode"] = await $steps["runCode"];
-                        }
-
-                        $steps["postgresUpdateMany"] = true
-                          ? (() => {
-                              const actionArgs = {
-                                dataOp: {
-                                  sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
-                                  opId: "00154d6f-41ac-4e44-8d5a-da12df8e7c56",
-                                  userArgs: {
-                                    variables: [null],
-                                    conditions: [$ctx.SupabaseUser.user.id]
-                                  },
-                                  cacheKey: null,
-                                  invalidatedKeys: ["plasmic_refresh_all"],
-                                  roleId: null
-                                }
-                              };
-                              return (async ({ dataOp, continueOnError }) => {
-                                try {
-                                  const response = await executePlasmicDataOp(
-                                    dataOp,
-                                    {
-                                      userAuthToken:
-                                        dataSourcesCtx?.userAuthToken,
-                                      user: dataSourcesCtx?.user
-                                    }
-                                  );
-                                  await plasmicInvalidate(
-                                    dataOp.invalidatedKeys
-                                  );
-                                  return response;
-                                } catch (e) {
-                                  if (!continueOnError) {
-                                    throw e;
-                                  }
-                                  return e;
-                                }
-                              })?.apply(null, [actionArgs]);
-                            })()
-                          : undefined;
-                        if (
-                          $steps["postgresUpdateMany"] != null &&
-                          typeof $steps["postgresUpdateMany"] === "object" &&
-                          typeof $steps["postgresUpdateMany"].then ===
-                            "function"
-                        ) {
-                          $steps["postgresUpdateMany"] = await $steps[
-                            "postgresUpdateMany"
-                          ];
-                        }
-                      }}
-                    >
-                      <div
-                        data-plasmic-name={"frame8"}
-                        data-plasmic-override={overrides.frame8}
-                        className={classNames(projectcss.all, sty.frame8)}
-                      />
-
-                      <PhTrashIcon
-                        className={classNames(projectcss.all, sty.svg__rF5F)}
-                        role={"img"}
-                      />
-                    </div>
-                  </UploadWrapper>
                   <Stack__
                     as={"div"}
-                    data-plasmic-name={"tableCell"}
-                    data-plasmic-override={overrides.tableCell}
+                    data-plasmic-name={"frame1437254343"}
+                    data-plasmic-override={overrides.frame1437254343}
                     hasGap={true}
-                    className={classNames(projectcss.all, sty.tableCell)}
+                    className={classNames(projectcss.all, sty.frame1437254343)}
                   >
-                    <Switch
-                      data-plasmic-name={"_switch"}
-                      data-plasmic-override={overrides._switch}
-                      autoFocus={false}
-                      className={classNames("__wab_instance", sty._switch)}
-                      isSelected={generateStateValueProp($state, [
-                        "_switch",
-                        "isSelected"
+                    <UploadWrapper
+                      data-plasmic-name={"upload2"}
+                      data-plasmic-override={overrides.upload2}
+                      accept={""}
+                      className={classNames("__wab_instance", sty.upload2)}
+                      files={generateStateValueProp($state, [
+                        "upload2",
+                        "files"
                       ])}
-                      label={
-                        <div
-                          data-plasmic-name={"text6"}
-                          data-plasmic-override={overrides.text6}
-                          className={classNames(
-                            projectcss.all,
-                            projectcss.__wab_text,
-                            sty.text6
-                          )}
-                        >
-                          <React.Fragment>
-                            {(() => {
-                              try {
-                                return $state._switch.isSelected
-                                  ? "En recherche active"
-                                  : "Pas en recherche";
-                              } catch (e) {
-                                if (
-                                  e instanceof TypeError ||
-                                  e?.plasmicType === "PlasmicUndefinedDataError"
-                                ) {
-                                  return "En recherche active";
-                                }
-                                throw e;
-                              }
-                            })()}
-                          </React.Fragment>
-                        </div>
-                      }
-                      onChange={async (...eventArgs: any) => {
+                      maxCount={1}
+                      onFilesChange={async (...eventArgs: any) => {
                         generateStateOnChangeProp($state, [
-                          "_switch",
-                          "isSelected"
+                          "upload2",
+                          "files"
                         ]).apply(null, eventArgs);
 
-                        if (
-                          eventArgs.length > 1 &&
-                          eventArgs[1] &&
-                          eventArgs[1]._plasmic_state_init_
-                        ) {
-                          return;
-                        }
-
-                        (async val => {
+                        (async files => {
                           const $steps = {};
+
+                          $steps["supabaseUploadFile"] = true
+                            ? (() => {
+                                const actionArgs = {
+                                  dataOp: {
+                                    sourceId: "rtEg85U6Vbyi94cRAe93i7",
+                                    opId: "84c0bb0b-0e3b-43a7-ae52-d0cf288eb28f",
+                                    userArgs: {
+                                      path: [
+                                        $ctx.SupabaseUser.user.id,
+                                        $state.upload2.files[0].name
+                                      ],
+                                      content: [
+                                        $state.upload2.files[0].contents
+                                      ],
+                                      contentType: [
+                                        $state.upload2.files[0].type
+                                      ]
+                                    },
+                                    cacheKey: null,
+                                    invalidatedKeys: [],
+                                    roleId: null
+                                  }
+                                };
+                                return (async ({ dataOp, continueOnError }) => {
+                                  try {
+                                    const response = await executePlasmicDataOp(
+                                      dataOp,
+                                      {
+                                        userAuthToken:
+                                          dataSourcesCtx?.userAuthToken,
+                                        user: dataSourcesCtx?.user
+                                      }
+                                    );
+                                    await plasmicInvalidate(
+                                      dataOp.invalidatedKeys
+                                    );
+                                    return response;
+                                  } catch (e) {
+                                    if (!continueOnError) {
+                                      throw e;
+                                    }
+                                    return e;
+                                  }
+                                })?.apply(null, [actionArgs]);
+                              })()
+                            : undefined;
+                          if (
+                            $steps["supabaseUploadFile"] != null &&
+                            typeof $steps["supabaseUploadFile"] === "object" &&
+                            typeof $steps["supabaseUploadFile"].then ===
+                              "function"
+                          ) {
+                            $steps["supabaseUploadFile"] = await $steps[
+                              "supabaseUploadFile"
+                            ];
+                          }
 
                           $steps["postgresUpdateById"] = true
                             ? (() => {
                                 const actionArgs = {
                                   dataOp: {
                                     sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
-                                    opId: "d9daea55-b1a9-4e05-aa41-e2d6803f96d8",
+                                    opId: "ca8056ed-4ec7-4218-bb8b-d4f4da770307",
                                     userArgs: {
                                       keys: [$ctx.SupabaseUser.user.id],
                                       variables: [
-                                        $state._switch.isSelected,
-                                        $state._switch.isSelected
-                                          ? new Date(Date.now() + 60000)
-                                          : new Date()
+                                        $steps.supabaseUploadFile?.path.split(
+                                          "/"
+                                        )[1]
                                       ]
                                     },
                                     cacheKey: null,
@@ -1223,2331 +1036,257 @@ function PlasmicParametresCandidat__RenderFunc(props: {
                           }
                         }).apply(null, eventArgs);
                       }}
-                    />
-                  </Stack__>
-                  <Stack__
-                    as={"div"}
-                    data-plasmic-name={"textInputBase6"}
-                    data-plasmic-override={overrides.textInputBase6}
-                    hasGap={true}
-                    className={classNames(projectcss.all, sty.textInputBase6)}
-                  >
-                    <div
-                      data-plasmic-name={"hintText6"}
-                      data-plasmic-override={overrides.hintText6}
-                      className={classNames(
-                        projectcss.all,
-                        projectcss.__wab_text,
-                        sty.hintText6
-                      )}
+                      showUploadList={false}
                     >
-                      {
-                        'Votre statut "En recherche active" sera d\u00e9sactiv\u00e9 apr\u00e8s 48h. R\u00e9activez-le si vous \u00eates toujours en recherche active.'
-                      }
-                    </div>
-                  </Stack__>
-                </Stack__>
-                {(() => {
-                  const child$Props = {
-                    className: classNames("__wab_instance", sty.formulaire),
-                    extendedOnValuesChange: async (...eventArgs: any) => {
-                      generateStateOnChangePropForCodeComponents(
-                        $state,
-                        "value",
-                        ["formulaire", "value"],
-                        FormWrapper_Helpers
-                      ).apply(null, eventArgs);
-                    },
-                    formItems: [
-                      { label: "Name", name: "name", inputType: "Text" },
-                      {
-                        label: "Message",
-                        name: "message",
-                        inputType: "Text Area"
-                      }
-                    ],
-                    initialValues: undefined,
-                    labelCol: { span: 8, horizontalOnly: true },
-                    layout: "vertical",
-                    mode: "advanced",
-                    onFinish: async values => {
-                      const $steps = {};
-
-                      $steps["updateUser"] = true
-                        ? (() => {
-                            const actionArgs = {
-                              dataOp: {
-                                sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
-                                opId: "95866b48-3695-471e-94b6-e2a448369b0b",
-                                userArgs: {
-                                  keys: [$ctx.SupabaseUser.user.id],
-                                  variables: [
-                                    $queries.fetchUserCoordinates.data.response
-                                      .features[0].geometry.coordinates[1],
-                                    $queries.fetchUserCoordinates.data.response
-                                      .features[0].geometry.coordinates[0],
-                                    $state.formulaire.value.address,
-                                    $state.formulaire.value.city,
-                                    $state.formulaire.value.country,
-                                    $state.formulaire.value.email,
-                                    $state.formulaire.value.first_name,
-                                    $ctx.SupabaseUser.user.id,
-                                    $state.formulaire.value.last_name,
-                                    $state.formulaire.value.level,
-                                    $state.formulaire.value.linkedin_url,
-                                    $state.formulaire.value.short_presentation,
-                                    JSON.stringify(
-                                      $state.formulaire.value.skill
-                                    ),
-                                    JSON.stringify(
-                                      $state.formulaire.value.transport_mode
-                                    ),
-                                    $state.formulaire.value.phone_number,
-                                    $state.formulaire.value.postal_code
-                                  ]
-                                },
-                                cacheKey: null,
-                                invalidatedKeys: [
-                                  "9c25c922-f186-4ed9-850f-6ded6b307e4e"
-                                ],
-                                roleId: null
-                              }
-                            };
-                            return (async ({ dataOp, continueOnError }) => {
-                              try {
-                                const response = await executePlasmicDataOp(
-                                  dataOp,
-                                  {
-                                    userAuthToken:
-                                      dataSourcesCtx?.userAuthToken,
-                                    user: dataSourcesCtx?.user
-                                  }
-                                );
-                                await plasmicInvalidate(dataOp.invalidatedKeys);
-                                return response;
-                              } catch (e) {
-                                if (!continueOnError) {
-                                  throw e;
-                                }
-                                return e;
-                              }
-                            })?.apply(null, [actionArgs]);
-                          })()
-                        : undefined;
-                      if (
-                        $steps["updateUser"] != null &&
-                        typeof $steps["updateUser"] === "object" &&
-                        typeof $steps["updateUser"].then === "function"
-                      ) {
-                        $steps["updateUser"] = await $steps["updateUser"];
-                      }
-
-                      $steps["invokeGlobalAction"] = true
-                        ? (() => {
-                            const actionArgs = {
-                              args: [
-                                "success",
-                                "Votre profil a bien \u00e9t\u00e9 mis \u00e0 jour !"
-                              ]
-                            };
-                            return $globalActions[
-                              "plasmic-antd5-config-provider.showNotification"
-                            ]?.apply(null, [...actionArgs.args]);
-                          })()
-                        : undefined;
-                      if (
-                        $steps["invokeGlobalAction"] != null &&
-                        typeof $steps["invokeGlobalAction"] === "object" &&
-                        typeof $steps["invokeGlobalAction"].then === "function"
-                      ) {
-                        $steps["invokeGlobalAction"] = await $steps[
-                          "invokeGlobalAction"
-                        ];
-                      }
-                    },
-                    onIsSubmittingChange: async (...eventArgs: any) => {
-                      generateStateOnChangePropForCodeComponents(
-                        $state,
-                        "isSubmitting",
-                        ["formulaire", "isSubmitting"],
-                        FormWrapper_Helpers
-                      ).apply(null, eventArgs);
-                    },
-                    ref: ref => {
-                      $refs["formulaire"] = ref;
-                    },
-                    submitSlot: null,
-                    wrapperCol: { span: 16, horizontalOnly: true }
-                  };
-                  initializeCodeComponentStates(
-                    $state,
-                    [
-                      {
-                        name: "value",
-                        plasmicStateName: "formulaire.value"
-                      },
-                      {
-                        name: "isSubmitting",
-                        plasmicStateName: "formulaire.isSubmitting"
-                      }
-                    ],
-                    [],
-                    FormWrapper_Helpers ?? {},
-                    child$Props
-                  );
-
-                  return (
-                    <FormWrapper
-                      data-plasmic-name={"formulaire"}
-                      data-plasmic-override={overrides.formulaire}
-                      {...child$Props}
-                    >
-                      <Stack__
-                        as={"div"}
-                        data-plasmic-name={"prenomNom"}
-                        data-plasmic-override={overrides.prenomNom}
-                        hasGap={true}
-                        className={classNames(projectcss.all, sty.prenomNom)}
-                      >
-                        <FormItemWrapper
-                          className={classNames(
-                            "__wab_instance",
-                            sty.formField__gu1TP
-                          )}
-                          label={
-                            <div
-                              className={classNames(
-                                projectcss.all,
-                                projectcss.__wab_text,
-                                sty.text__jcv5C
-                              )}
-                            >
-                              {"Pr\u00e9nom*"}
-                            </div>
-                          }
-                          name={"first_name"}
-                        >
-                          <TextInput
-                            data-plasmic-name={"firstName"}
-                            data-plasmic-override={overrides.firstName}
-                            className={classNames(
-                              "__wab_instance",
-                              sty.firstName
-                            )}
-                            defaultValue={(() => {
-                              try {
-                                return $queries.getMe?.data[0]?.first_name;
-                              } catch (e) {
-                                if (
-                                  e instanceof TypeError ||
-                                  e?.plasmicType === "PlasmicUndefinedDataError"
-                                ) {
-                                  return undefined;
-                                }
-                                throw e;
-                              }
-                            })()}
-                            onChange={async (...eventArgs: any) => {
-                              generateStateOnChangeProp($state, [
-                                "firstName",
-                                "value"
-                              ]).apply(null, eventArgs);
-
-                              if (
-                                eventArgs.length > 1 &&
-                                eventArgs[1] &&
-                                eventArgs[1]._plasmic_state_init_
-                              ) {
-                                return;
-                              }
-                            }}
-                            placeholder={"Pr\u00e9nom"}
-                          />
-                        </FormItemWrapper>
-                        <FormItemWrapper
-                          className={classNames(
-                            "__wab_instance",
-                            sty.formField___4ZPYl
-                          )}
-                          label={
-                            <div
-                              className={classNames(
-                                projectcss.all,
-                                projectcss.__wab_text,
-                                sty.text__aw3GJ
-                              )}
-                            >
-                              {"Nom*"}
-                            </div>
-                          }
-                          name={"last_name"}
-                        >
-                          <TextInput
-                            data-plasmic-name={"lastName"}
-                            data-plasmic-override={overrides.lastName}
-                            className={classNames(
-                              "__wab_instance",
-                              sty.lastName
-                            )}
-                            defaultValue={(() => {
-                              try {
-                                return $queries.getMe.data[0].last_name;
-                              } catch (e) {
-                                if (
-                                  e instanceof TypeError ||
-                                  e?.plasmicType === "PlasmicUndefinedDataError"
-                                ) {
-                                  return undefined;
-                                }
-                                throw e;
-                              }
-                            })()}
-                            onChange={async (...eventArgs: any) => {
-                              generateStateOnChangeProp($state, [
-                                "lastName",
-                                "value"
-                              ]).apply(null, eventArgs);
-
-                              if (
-                                eventArgs.length > 1 &&
-                                eventArgs[1] &&
-                                eventArgs[1]._plasmic_state_init_
-                              ) {
-                                return;
-                              }
-                            }}
-                            placeholder={"Nom"}
-                          />
-                        </FormItemWrapper>
-                      </Stack__>
-                      <FormItemWrapper
-                        className={classNames(
-                          "__wab_instance",
-                          sty.formField__y2STw
-                        )}
-                        label={
-                          <div
-                            className={classNames(
-                              projectcss.all,
-                              projectcss.__wab_text,
-                              sty.text__wDbQt
-                            )}
-                          >
-                            {"Email*"}
-                          </div>
+                      <PlasmicImg__
+                        alt={""}
+                        className={classNames(sty.img__yE9QY)}
+                        displayHeight={
+                          hasVariant(globalVariants, "screen", "mobileOnly")
+                            ? "130px"
+                            : "132px"
                         }
-                        name={"email"}
-                      >
-                        <TextInput
-                          data-plasmic-name={"textInput3"}
-                          data-plasmic-override={overrides.textInput3}
-                          className={classNames(
-                            "__wab_instance",
-                            sty.textInput3
-                          )}
-                          defaultValue={(() => {
-                            try {
-                              return $queries.getMe.data[0].email;
-                            } catch (e) {
-                              if (
-                                e instanceof TypeError ||
-                                e?.plasmicType === "PlasmicUndefinedDataError"
-                              ) {
-                                return undefined;
-                              }
-                              throw e;
-                            }
-                          })()}
-                          disabled={true}
-                          onChange={async (...eventArgs: any) => {
-                            generateStateOnChangeProp($state, [
-                              "textInput3",
-                              "value"
-                            ]).apply(null, eventArgs);
-
-                            if (
-                              eventArgs.length > 1 &&
-                              eventArgs[1] &&
-                              eventArgs[1]._plasmic_state_init_
-                            ) {
-                              return;
-                            }
-                          }}
-                          placeholder={"Email"}
-                        />
-                      </FormItemWrapper>
-                      <Stack__
-                        as={"div"}
-                        data-plasmic-name={"telephone"}
-                        data-plasmic-override={overrides.telephone}
-                        hasGap={true}
-                        className={classNames(projectcss.all, sty.telephone)}
-                      >
-                        <FormItemWrapper
-                          className={classNames(
-                            "__wab_instance",
-                            sty.formField__auHds
-                          )}
-                          label={
-                            <div
-                              className={classNames(
-                                projectcss.all,
-                                projectcss.__wab_text,
-                                sty.text__jM6R
-                              )}
-                            >
-                              {"T\u00e9l\u00e9phone"}
-                            </div>
-                          }
-                          name={"countryCode"}
-                        >
-                          <PhoneSelector
-                            data-plasmic-name={"phoneSelector"}
-                            data-plasmic-override={overrides.phoneSelector}
-                            className={classNames(
-                              "__wab_instance",
-                              sty.phoneSelector
-                            )}
-                          />
-                        </FormItemWrapper>
-                        <FormItemWrapper
-                          className={classNames(
-                            "__wab_instance",
-                            sty.formField__mP1Tq
-                          )}
-                          label={
-                            <div
-                              className={classNames(
-                                projectcss.all,
-                                projectcss.__wab_text,
-                                sty.text__wsoid
-                              )}
-                            >
-                              {""}
-                            </div>
-                          }
-                          name={"phone_number"}
-                        >
-                          <TextInput
-                            data-plasmic-name={"textInput5"}
-                            data-plasmic-override={overrides.textInput5}
-                            className={classNames(
-                              "__wab_instance",
-                              sty.textInput5
-                            )}
-                            defaultValue={(() => {
-                              try {
-                                return $queries.getMe.data[0].phone_number;
-                              } catch (e) {
-                                if (
-                                  e instanceof TypeError ||
-                                  e?.plasmicType === "PlasmicUndefinedDataError"
-                                ) {
-                                  return undefined;
-                                }
-                                throw e;
-                              }
-                            })()}
-                            inputType={"tel"}
-                            onChange={async (...eventArgs: any) => {
-                              generateStateOnChangeProp($state, [
-                                "textInput5",
-                                "value"
-                              ]).apply(null, eventArgs);
-
-                              if (
-                                eventArgs.length > 1 &&
-                                eventArgs[1] &&
-                                eventArgs[1]._plasmic_state_init_
-                              ) {
-                                return;
-                              }
-                            }}
-                            placeholder={"0606060606"}
-                          />
-                        </FormItemWrapper>
-                      </Stack__>
-                      <FormItemWrapper
-                        className={classNames(
-                          "__wab_instance",
-                          sty.formField__cAjBw
-                        )}
-                        label={
-                          <div
-                            className={classNames(
-                              projectcss.all,
-                              projectcss.__wab_text,
-                              sty.text__xComo
-                            )}
-                          >
-                            {"Adresse"}
-                          </div>
+                        displayMaxHeight={"none"}
+                        displayMaxWidth={"100%"}
+                        displayMinHeight={"0"}
+                        displayMinWidth={"0"}
+                        displayWidth={
+                          hasVariant(globalVariants, "screen", "mobileOnly")
+                            ? "130px"
+                            : "132px"
                         }
-                        name={"address"}
-                      >
-                        <TextInput
-                          data-plasmic-name={"rue"}
-                          data-plasmic-override={overrides.rue}
-                          autoComplete={["off"]}
-                          className={classNames("__wab_instance", sty.rue)}
-                          defaultValue={(() => {
-                            try {
-                              return $queries.getMe.data[0].address;
-                            } catch (e) {
-                              if (
-                                e instanceof TypeError ||
-                                e?.plasmicType === "PlasmicUndefinedDataError"
-                              ) {
-                                return undefined;
-                              }
-                              throw e;
-                            }
-                          })()}
-                          onChange={async (...eventArgs: any) => {
-                            generateStateOnChangeProp($state, [
-                              "rue",
-                              "value"
-                            ]).apply(null, eventArgs);
-
-                            if (
-                              eventArgs.length > 1 &&
-                              eventArgs[1] &&
-                              eventArgs[1]._plasmic_state_init_
-                            ) {
-                              return;
-                            }
-                          }}
-                          placeholder={"Rue"}
-                        />
-                      </FormItemWrapper>
-                      <Stack__
-                        as={"div"}
-                        data-plasmic-name={"codePosteVille"}
-                        data-plasmic-override={overrides.codePosteVille}
-                        hasGap={true}
-                        className={classNames(
-                          projectcss.all,
-                          sty.codePosteVille
-                        )}
-                      >
-                        <FormItemWrapper
-                          className={classNames(
-                            "__wab_instance",
-                            sty.formField__r239
-                          )}
-                          hidden={false}
-                          label={""}
-                          name={"postal_code"}
-                          noLabel={true}
-                        >
-                          <TextInput
-                            data-plasmic-name={"codePostal"}
-                            data-plasmic-override={overrides.codePostal}
-                            className={classNames(
-                              "__wab_instance",
-                              sty.codePostal
-                            )}
-                            defaultValue={(() => {
-                              try {
-                                return $queries.getMe.data[0].postal_code;
-                              } catch (e) {
-                                if (
-                                  e instanceof TypeError ||
-                                  e?.plasmicType === "PlasmicUndefinedDataError"
-                                ) {
-                                  return undefined;
-                                }
-                                throw e;
-                              }
-                            })()}
-                            onChange={async (...eventArgs: any) => {
-                              generateStateOnChangeProp($state, [
-                                "codePostal",
-                                "value"
-                              ]).apply(null, eventArgs);
-
-                              if (
-                                eventArgs.length > 1 &&
-                                eventArgs[1] &&
-                                eventArgs[1]._plasmic_state_init_
-                              ) {
-                                return;
-                              }
-                            }}
-                            placeholder={"Code postal"}
-                          />
-                        </FormItemWrapper>
-                        <FormItemWrapper
-                          className={classNames(
-                            "__wab_instance",
-                            sty.formField__u1Dml
-                          )}
-                          label={"Adresse*"}
-                          name={"city"}
-                          noLabel={true}
-                        >
-                          <TextInput
-                            data-plasmic-name={"ville"}
-                            data-plasmic-override={overrides.ville}
-                            className={classNames("__wab_instance", sty.ville)}
-                            defaultValue={(() => {
-                              try {
-                                return $queries.getMe.data[0].city;
-                              } catch (e) {
-                                if (
-                                  e instanceof TypeError ||
-                                  e?.plasmicType === "PlasmicUndefinedDataError"
-                                ) {
-                                  return undefined;
-                                }
-                                throw e;
-                              }
-                            })()}
-                            onChange={async (...eventArgs: any) => {
-                              generateStateOnChangeProp($state, [
-                                "ville",
-                                "value"
-                              ]).apply(null, eventArgs);
-
-                              if (
-                                eventArgs.length > 1 &&
-                                eventArgs[1] &&
-                                eventArgs[1]._plasmic_state_init_
-                              ) {
-                                return;
-                              }
-                            }}
-                            placeholder={"Ville"}
-                          />
-                        </FormItemWrapper>
-                      </Stack__>
-                      <FormItemWrapper
-                        className={classNames(
-                          "__wab_instance",
-                          sty.formField__ttUxH
-                        )}
-                        label={"Adresse*"}
-                        name={"country"}
-                        noLabel={true}
-                      >
-                        <Select
-                          data-plasmic-name={"select4"}
-                          data-plasmic-override={overrides.select4}
-                          className={classNames("__wab_instance", sty.select4)}
-                          initialSelectedValue={(() => {
-                            try {
-                              return $queries.getMe.data[0].country;
-                            } catch (e) {
-                              if (
-                                e instanceof TypeError ||
-                                e?.plasmicType === "PlasmicUndefinedDataError"
-                              ) {
-                                return undefined;
-                              }
-                              throw e;
-                            }
-                          })()}
-                          items={(_par =>
-                            !_par ? [] : Array.isArray(_par) ? _par : [_par])(
-                            (() => {
-                              try {
-                                return $state.countries;
-                              } catch (e) {
-                                if (
-                                  e instanceof TypeError ||
-                                  e?.plasmicType === "PlasmicUndefinedDataError"
-                                ) {
-                                  return [];
-                                }
-                                throw e;
-                              }
-                            })()
-                          ).map((__plasmic_item_0, __plasmic_idx_0) => {
-                            const currentItem = __plasmic_item_0;
-                            const currentIndex = __plasmic_idx_0;
-                            return (
-                              <MenuItem
-                                className={classNames(
-                                  "__wab_instance",
-                                  sty.menuItem___08SP
-                                )}
-                                key={currentIndex}
-                                label={(() => {
-                                  try {
-                                    return currentItem;
-                                  } catch (e) {
-                                    if (
-                                      e instanceof TypeError ||
-                                      e?.plasmicType ===
-                                        "PlasmicUndefinedDataError"
-                                    ) {
-                                      return undefined;
-                                    }
-                                    throw e;
-                                  }
-                                })()}
-                                value={(() => {
-                                  try {
-                                    return currentItem;
-                                  } catch (e) {
-                                    if (
-                                      e instanceof TypeError ||
-                                      e?.plasmicType ===
-                                        "PlasmicUndefinedDataError"
-                                    ) {
-                                      return undefined;
-                                    }
-                                    throw e;
-                                  }
-                                })()}
-                              />
-                            );
-                          })}
-                          onChange={async (...eventArgs: any) => {
-                            generateStateOnChangeProp($state, [
-                              "select4",
-                              "value"
-                            ]).apply(null, eventArgs);
-
-                            if (
-                              eventArgs.length > 1 &&
-                              eventArgs[1] &&
-                              eventArgs[1]._plasmic_state_init_
-                            ) {
-                              return;
-                            }
-                          }}
-                          placeholder={"Pays"}
-                          showLabel={false}
-                        />
-                      </FormItemWrapper>
-                      <FormItemWrapper
-                        className={classNames(
-                          "__wab_instance",
-                          sty.formField__aGgNa
-                        )}
-                        initialValue={(() => {
-                          try {
-                            return (() => {
-                              const selectedTransportModes =
-                                $queries.getMe.data?.[0]?.transport_mode || [];
-                              const selectedIds =
-                                $queries.getTransportModes.data
-                                  .filter(mode =>
-                                    selectedTransportModes.includes(mode.id)
-                                  )
-                                  .map(mode => mode.id);
-                              return selectedIds;
-                            })();
-                          } catch (e) {
-                            if (
-                              e instanceof TypeError ||
-                              e?.plasmicType === "PlasmicUndefinedDataError"
-                            ) {
-                              return undefined;
-                            }
-                            throw e;
-                          }
-                        })()}
-                        label={
-                          <div
-                            className={classNames(
-                              projectcss.all,
-                              projectcss.__wab_text,
-                              sty.text__gj9T
-                            )}
-                          >
-                            {"Moyens de transport"}
-                          </div>
+                        loading={"lazy"}
+                        src={
+                          $queries.getPp.signedUrl
+                            ? $queries.getPp.signedUrl
+                            : "https://images.icon-icons.com/1769/PNG/512/4092564-about-mobile-ui-profile-ui-user-website_114033.png"
                         }
-                        name={"transport_mode"}
-                        noLabel={false}
-                        preserve={false}
-                      >
-                        <AntdSelect
-                          data-plasmic-name={"modeOfTransportSelect"}
-                          data-plasmic-override={
-                            overrides.modeOfTransportSelect
-                          }
-                          allowClear={true}
-                          autoFocus={false}
-                          bordered={false}
-                          className={classNames(
-                            "__wab_instance",
-                            sty.modeOfTransportSelect
-                          )}
-                          defaultStylesClassName={classNames(
-                            projectcss.root_reset,
-                            projectcss.plasmic_default_styles,
-                            projectcss.plasmic_mixins,
-                            projectcss.plasmic_tokens,
-                            plasmic_antd_5_hostless_css.plasmic_tokens,
-                            plasmic_library_tailwind_3_4_number_tokens_css.plasmic_tokens,
-                            plasmic_plasmic_rich_components_css.plasmic_tokens
-                          )}
-                          disabled={false}
-                          dropdownMatchSelectWidth={false}
-                          mode={"multiple"}
-                          onChange={async (...eventArgs: any) => {
-                            generateStateOnChangeProp($state, [
-                              "modeOfTransportSelect",
-                              "value"
-                            ]).apply(null, eventArgs);
-                          }}
-                          options={(() => {
-                            try {
-                              return (() => {
-                                const selectedTransportModes =
-                                  $queries.getMe.data?.[0]?.transport_mode ||
-                                  [];
-                                return $queries.getTransportModes.data.map(
-                                  mode => ({
-                                    value: mode.id,
-                                    label: mode.mode,
-                                    selected: selectedTransportModes.includes(
-                                      mode.id
-                                    )
-                                  })
-                                );
-                              })();
-                            } catch (e) {
-                              if (
-                                e instanceof TypeError ||
-                                e?.plasmicType === "PlasmicUndefinedDataError"
-                              ) {
-                                return [];
-                              }
-                              throw e;
-                            }
-                          })()}
-                          placeholder={
-                            <Stack__
-                              as={"div"}
-                              hasGap={true}
-                              className={classNames(
-                                projectcss.all,
-                                sty.freeBox__i5V8N
-                              )}
-                            >
-                              <div
-                                className={classNames(
-                                  projectcss.all,
-                                  projectcss.__wab_text,
-                                  sty.text__szn5Q
-                                )}
-                              >
-                                {"Moyens de transport"}
-                              </div>
-                            </Stack__>
-                          }
-                          popupScopeClassName={
-                            sty["modeOfTransportSelect__popup"]
-                          }
-                          showSearch={false}
-                          size={"large"}
-                          suffixIcon={
-                            <ChevronDown2Icon
-                              className={classNames(
-                                projectcss.all,
-                                sty.svg___7ARQ
-                              )}
-                              role={"img"}
-                            />
-                          }
-                          useChildren={false}
-                          value={generateStateValueProp($state, [
-                            "modeOfTransportSelect",
-                            "value"
-                          ])}
-                        />
-                      </FormItemWrapper>
-                      <FormItemWrapper
-                        className={classNames(
-                          "__wab_instance",
-                          sty.formField___2RAap
-                        )}
-                        label={
-                          <div
-                            className={classNames(
-                              projectcss.all,
-                              sty.freeBox__eh9HC
-                            )}
-                          >
-                            <div
-                              className={classNames(
-                                projectcss.all,
-                                projectcss.__wab_text,
-                                sty.text__rgfup
-                              )}
-                            >
-                              {"Pr\u00e9sentation courte"}
-                            </div>
-                            <div
-                              className={classNames(
-                                projectcss.all,
-                                projectcss.__wab_text,
-                                sty.text__dRa08
-                              )}
-                            >
-                              {
-                                "D\u00e9crivez le type de poste que vous cherchez, les missions que vous souhaitez effectuer. Ajouter les mots-cl\u00e9s qui vous semblent les plus pertinents pour trouver les jobs qui correspondent \u00e0 votre recherche.\r\n\r"
-                              }
-                            </div>
-                          </div>
-                        }
-                        name={"short_presentation"}
-                      >
-                        <TextAreaInput
-                          data-plasmic-name={"textAreaInput"}
-                          data-plasmic-override={overrides.textAreaInput}
-                          className={classNames(
-                            "__wab_instance",
-                            sty.textAreaInput
-                          )}
-                          defaultValue={(() => {
-                            try {
-                              return $queries.getMe.data[0].short_presentation;
-                            } catch (e) {
-                              if (
-                                e instanceof TypeError ||
-                                e?.plasmicType === "PlasmicUndefinedDataError"
-                              ) {
-                                return undefined;
-                              }
-                              throw e;
-                            }
-                          })()}
-                          onChange={async (...eventArgs: any) => {
-                            generateStateOnChangeProp($state, [
-                              "textAreaInput",
-                              "value"
-                            ]).apply(null, eventArgs);
-
-                            if (
-                              eventArgs.length > 1 &&
-                              eventArgs[1] &&
-                              eventArgs[1]._plasmic_state_init_
-                            ) {
-                              return;
-                            }
-                          }}
-                          placeholder={"Pr\u00e9sentation"}
-                        />
-                      </FormItemWrapper>
-                      <FormItemWrapper
-                        className={classNames(
-                          "__wab_instance",
-                          sty.formField__cpEfl
-                        )}
-                        hidden={false}
-                        initialValue={(() => {
-                          const selectedSkills =
-                            $queries.getMe.data?.[0]?.skill || [];
-                          return $queries.getSoftSkill.data
-                            .filter(skill => selectedSkills.includes(skill.id))
-                            .map(skill => ({
-                              value: skill.id,
-                              label: skill.skill
-                            }));
-                        })()}
-                        label={
-                          <div
-                            className={classNames(
-                              projectcss.all,
-                              projectcss.__wab_text,
-                              sty.text__lGeBc
-                            )}
-                          >
-                            {"Comp\u00e9tences"}
-                          </div>
-                        }
-                        name={"skill"}
-                      >
-                        <AntdSelect
-                          data-plasmic-name={"select3"}
-                          data-plasmic-override={overrides.select3}
-                          allowClear={true}
-                          bordered={false}
-                          className={classNames("__wab_instance", sty.select3)}
-                          defaultStylesClassName={classNames(
-                            projectcss.root_reset,
-                            projectcss.plasmic_default_styles,
-                            projectcss.plasmic_mixins,
-                            projectcss.plasmic_tokens,
-                            plasmic_antd_5_hostless_css.plasmic_tokens,
-                            plasmic_library_tailwind_3_4_number_tokens_css.plasmic_tokens,
-                            plasmic_plasmic_rich_components_css.plasmic_tokens
-                          )}
-                          dropdownMatchSelectWidth={false}
-                          mode={"multiple"}
-                          onChange={async (...eventArgs: any) => {
-                            generateStateOnChangeProp($state, [
-                              "select3",
-                              "value"
-                            ]).apply(null, eventArgs);
-                          }}
-                          options={(() => {
-                            try {
-                              return $queries.getSoftSkill.data.map(skill => ({
-                                value: skill.id,
-                                label: skill.skill
-                              }));
-                            } catch (e) {
-                              if (
-                                e instanceof TypeError ||
-                                e?.plasmicType === "PlasmicUndefinedDataError"
-                              ) {
-                                return [];
-                              }
-                              throw e;
-                            }
-                          })()}
-                          placeholder={
-                            <Stack__
-                              as={"div"}
-                              hasGap={true}
-                              className={classNames(
-                                projectcss.all,
-                                sty.freeBox__fubWb
-                              )}
-                            >
-                              <PlusIcon
-                                className={classNames(
-                                  projectcss.all,
-                                  sty.svg__t52Yn
-                                )}
-                                role={"img"}
-                              />
-
-                              <div
-                                className={classNames(
-                                  projectcss.all,
-                                  projectcss.__wab_text,
-                                  sty.text___4SVtn
-                                )}
-                              >
-                                {"Ajouter"}
-                              </div>
-                            </Stack__>
-                          }
-                          popupScopeClassName={sty["select3__popup"]}
-                          showSearch={false}
-                          size={"large"}
-                          suffixIcon={
-                            <ChevronDown2Icon
-                              className={classNames(
-                                projectcss.all,
-                                sty.svg___0Bqzq
-                              )}
-                              role={"img"}
-                            />
-                          }
-                          value={generateStateValueProp($state, [
-                            "select3",
-                            "value"
-                          ])}
-                        />
-
-                        <AntdSelect
-                          data-plasmic-name={"select8"}
-                          data-plasmic-override={overrides.select8}
-                          allowClear={true}
-                          autoFocus={false}
-                          className={classNames("__wab_instance", sty.select8)}
-                          defaultStylesClassName={classNames(
-                            projectcss.root_reset,
-                            projectcss.plasmic_default_styles,
-                            projectcss.plasmic_mixins,
-                            projectcss.plasmic_tokens,
-                            plasmic_antd_5_hostless_css.plasmic_tokens,
-                            plasmic_library_tailwind_3_4_number_tokens_css.plasmic_tokens,
-                            plasmic_plasmic_rich_components_css.plasmic_tokens
-                          )}
-                          mode={"multiple"}
-                          onChange={async (...eventArgs: any) => {
-                            generateStateOnChangeProp($state, [
-                              "select8",
-                              "value"
-                            ]).apply(null, eventArgs);
-                          }}
-                          options={(() => {
-                            try {
-                              return $queries.getSoftSkill.data.map(skill => ({
-                                value: skill.skill,
-                                label: skill.skill
-                              }));
-                            } catch (e) {
-                              if (
-                                e instanceof TypeError ||
-                                e?.plasmicType === "PlasmicUndefinedDataError"
-                              ) {
-                                return [];
-                              }
-                              throw e;
-                            }
-                          })()}
-                          placeholder={
-                            <div
-                              className={classNames(
-                                projectcss.all,
-                                projectcss.__wab_text,
-                                sty.text__xU0H
-                              )}
-                            >
-                              {"Ajouter"}
-                            </div>
-                          }
-                          popupScopeClassName={sty["select8__popup"]}
-                          size={"large"}
-                          suffixIcon={
-                            <ChevronDownIcon
-                              className={classNames(
-                                projectcss.all,
-                                sty.svg__iv9X7
-                              )}
-                              role={"img"}
-                            />
-                          }
-                          value={generateStateValueProp($state, [
-                            "select8",
-                            "value"
-                          ])}
-                        />
-                      </FormItemWrapper>
-                      <FormItemWrapper
-                        className={classNames(
-                          "__wab_instance",
-                          sty.formField___5YLjM
-                        )}
-                        hidden={false}
-                        initialValue={$queries.getMe?.data[0]?.level}
-                        label={
-                          <div
-                            className={classNames(
-                              projectcss.all,
-                              projectcss.__wab_text,
-                              sty.text__mtCAv
-                            )}
-                          >
-                            {"Niveau d'exp\u00e9rience"}
-                          </div>
-                        }
-                        name={"level"}
-                      >
-                        <Select
-                          data-plasmic-name={"select"}
-                          data-plasmic-override={overrides.select}
-                          className={classNames("__wab_instance", sty.select)}
-                          initialSelectedValue={(() => {
-                            try {
-                              return $queries.getMe.data[0].level;
-                            } catch (e) {
-                              if (
-                                e instanceof TypeError ||
-                                e?.plasmicType === "PlasmicUndefinedDataError"
-                              ) {
-                                return undefined;
-                              }
-                              throw e;
-                            }
-                          })()}
-                          items={(_par =>
-                            !_par ? [] : Array.isArray(_par) ? _par : [_par])(
-                            (() => {
-                              try {
-                                return $queries.getXpLevel.data;
-                              } catch (e) {
-                                if (
-                                  e instanceof TypeError ||
-                                  e?.plasmicType === "PlasmicUndefinedDataError"
-                                ) {
-                                  return [];
-                                }
-                                throw e;
-                              }
-                            })()
-                          ).map((__plasmic_item_0, __plasmic_idx_0) => {
-                            const currentItem = __plasmic_item_0;
-                            const currentIndex = __plasmic_idx_0;
-                            return (
-                              <MenuItem
-                                key={currentIndex}
-                                label={(() => {
-                                  try {
-                                    return currentItem.level;
-                                  } catch (e) {
-                                    if (
-                                      e instanceof TypeError ||
-                                      e?.plasmicType ===
-                                        "PlasmicUndefinedDataError"
-                                    ) {
-                                      return undefined;
-                                    }
-                                    throw e;
-                                  }
-                                })()}
-                                value={(() => {
-                                  try {
-                                    return currentItem.id;
-                                  } catch (e) {
-                                    if (
-                                      e instanceof TypeError ||
-                                      e?.plasmicType ===
-                                        "PlasmicUndefinedDataError"
-                                    ) {
-                                      return undefined;
-                                    }
-                                    throw e;
-                                  }
-                                })()}
-                              />
-                            );
-                          })}
-                          onChange={async (...eventArgs: any) => {
-                            generateStateOnChangeProp($state, [
-                              "select",
-                              "value"
-                            ]).apply(null, eventArgs);
-
-                            if (
-                              eventArgs.length > 1 &&
-                              eventArgs[1] &&
-                              eventArgs[1]._plasmic_state_init_
-                            ) {
-                              return;
-                            }
-                          }}
-                          placeholder={"S\u00e9l\u00e9ctionner"}
-                          showLabel={false}
-                        />
-                      </FormItemWrapper>
-                      <FormItemWrapper
-                        className={classNames(
-                          "__wab_instance",
-                          sty.formField__vvnjx
-                        )}
-                        label={
-                          <div
-                            className={classNames(
-                              projectcss.all,
-                              projectcss.__wab_text,
-                              sty.text__tTve0
-                            )}
-                          >
-                            {"Linkedin"}
-                          </div>
-                        }
-                        name={"linkedin_url"}
-                      >
-                        <TextInput
-                          data-plasmic-name={"textInput4"}
-                          data-plasmic-override={overrides.textInput4}
-                          className={classNames(
-                            "__wab_instance",
-                            sty.textInput4
-                          )}
-                          defaultValue={(() => {
-                            try {
-                              return $queries.getMe.data[0].linkedin_url;
-                            } catch (e) {
-                              if (
-                                e instanceof TypeError ||
-                                e?.plasmicType === "PlasmicUndefinedDataError"
-                              ) {
-                                return undefined;
-                              }
-                              throw e;
-                            }
-                          })()}
-                          onChange={async (...eventArgs: any) => {
-                            generateStateOnChangeProp($state, [
-                              "textInput4",
-                              "value"
-                            ]).apply(null, eventArgs);
-
-                            if (
-                              eventArgs.length > 1 &&
-                              eventArgs[1] &&
-                              eventArgs[1]._plasmic_state_init_
-                            ) {
-                              return;
-                            }
-                          }}
-                          placeholder={"https://"}
-                        />
-                      </FormItemWrapper>
-                      <Button
-                        className={classNames(
-                          "__wab_instance",
-                          sty.button___2IaMi
-                        )}
-                        color={"white"}
-                        end={
-                          <GroupIcon
-                            className={classNames(
-                              projectcss.all,
-                              sty.svg__ga8Yf
-                            )}
-                            role={"img"}
-                          />
-                        }
-                        iconEnd={true}
-                        label={
-                          <div
-                            className={classNames(
-                              projectcss.all,
-                              projectcss.__wab_text,
-                              sty.text__xnogZ
-                            )}
-                          >
-                            {"Enregistrer"}
-                          </div>
-                        }
-                        submitsForm={true}
-                        type={"bordered"}
                       />
-                    </FormWrapper>
-                  );
-                })()}
-              </div>
-              <Stack__
-                as={"div"}
-                data-plasmic-name={"cvModificationDuMdp"}
-                data-plasmic-override={overrides.cvModificationDuMdp}
-                hasGap={true}
-                className={classNames(projectcss.all, sty.cvModificationDuMdp)}
-              >
-                <Stack__
-                  as={"div"}
-                  data-plasmic-name={"uploadCvLdm"}
-                  data-plasmic-override={overrides.uploadCvLdm}
-                  hasGap={true}
-                  className={classNames(projectcss.all, sty.uploadCvLdm)}
-                >
-                  <Stack__
-                    as={"div"}
-                    data-plasmic-name={"frame10"}
-                    data-plasmic-override={overrides.frame10}
-                    hasGap={true}
-                    className={classNames(projectcss.all, sty.frame10)}
-                  >
-                    <div
-                      data-plasmic-name={"email"}
-                      data-plasmic-override={overrides.email}
-                      className={classNames(
-                        projectcss.all,
-                        projectcss.__wab_text,
-                        sty.email
-                      )}
-                    >
-                      {"CV"}
-                    </div>
-                    {(() => {
-                      try {
-                        return $queries.getMe.data[0].cv_file === null;
-                      } catch (e) {
-                        if (
-                          e instanceof TypeError ||
-                          e?.plasmicType === "PlasmicUndefinedDataError"
-                        ) {
-                          return true;
-                        }
-                        throw e;
-                      }
-                    })() ? (
+
                       <div
-                        data-plasmic-name={"cvnoUpload"}
-                        data-plasmic-override={overrides.cvnoUpload}
-                        className={classNames(projectcss.all, sty.cvnoUpload)}
+                        data-plasmic-name={"editIcon"}
+                        data-plasmic-override={overrides.editIcon}
+                        className={classNames(projectcss.all, sty.editIcon)}
                       >
-                        <UploadWrapper
-                          data-plasmic-name={"upload"}
-                          data-plasmic-override={overrides.upload}
-                          accept={""}
-                          className={classNames("__wab_instance", sty.upload)}
-                          files={generateStateValueProp($state, [
-                            "upload",
-                            "files"
-                          ])}
-                          maxCount={1}
-                          onFilesChange={async (...eventArgs: any) => {
-                            generateStateOnChangeProp($state, [
-                              "upload",
-                              "files"
-                            ]).apply(null, eventArgs);
+                        <div
+                          data-plasmic-name={"frame7"}
+                          data-plasmic-override={overrides.frame7}
+                          className={classNames(projectcss.all, sty.frame7)}
+                        />
 
-                            (async files => {
-                              const $steps = {};
+                        <PhPencilSimpleIcon
+                          className={classNames(
+                            projectcss.all,
+                            sty.svg___5XUxq
+                          )}
+                          role={"img"}
+                        />
+                      </div>
+                      <div
+                        data-plasmic-name={"deleteIcon"}
+                        data-plasmic-override={overrides.deleteIcon}
+                        className={classNames(projectcss.all, sty.deleteIcon)}
+                        onClick={async event => {
+                          const $steps = {};
 
-                              $steps["updateErrorMsg"] = true
-                                ? (() => {
-                                    const actionArgs = {
-                                      variable: {
-                                        objRoot: $state,
-                                        variablePath: ["errorMsg"]
-                                      },
-                                      operation: 0,
-                                      value: []
-                                    };
-                                    return (({
-                                      variable,
-                                      value,
-                                      startIndex,
-                                      deleteCount
-                                    }) => {
-                                      if (!variable) {
-                                        return;
-                                      }
-                                      const { objRoot, variablePath } =
-                                        variable;
+                          $steps["updateUpload2Files"] = true
+                            ? (() => {
+                                const actionArgs = {
+                                  variable: {
+                                    objRoot: $state,
+                                    variablePath: ["upload2", "files"]
+                                  },
+                                  operation: 1
+                                };
+                                return (({
+                                  variable,
+                                  value,
+                                  startIndex,
+                                  deleteCount
+                                }) => {
+                                  if (!variable) {
+                                    return;
+                                  }
+                                  const { objRoot, variablePath } = variable;
 
-                                      $stateSet(objRoot, variablePath, value);
-                                      return value;
-                                    })?.apply(null, [actionArgs]);
-                                  })()
-                                : undefined;
-                              if (
-                                $steps["updateErrorMsg"] != null &&
-                                typeof $steps["updateErrorMsg"] === "object" &&
-                                typeof $steps["updateErrorMsg"].then ===
-                                  "function"
-                              ) {
-                                $steps["updateErrorMsg"] = await $steps[
-                                  "updateErrorMsg"
-                                ];
-                              }
-
-                              $steps["supabaseUploadFile"] = (() => {
-                                const files = $state.upload.files;
-                                if (
-                                  !Array.isArray(files) ||
-                                  files.length === 0
-                                ) {
-                                  return false;
-                                }
-                                const file = files[0];
-                                const maxSize = 2 * 1024 * 1024;
-                                const allowedTypes = [
-                                  "application/pdf",
-                                  "application/msword",
-                                  "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-                                  "image/jpeg",
-                                  "image/png"
-                                ];
-
-                                const allowedExtensions = [
-                                  ".pdf",
-                                  ".doc",
-                                  ".docx",
-                                  ".jpg",
-                                  ".jpeg",
-                                  ".png"
-                                ];
-
-                                const fileTypeOk = allowedTypes.includes(
-                                  file.type
-                                );
-                                const fileName = file.name?.toLowerCase() || "";
-                                const fileExtensionOk = allowedExtensions.some(
-                                  ext => fileName.endsWith(ext)
-                                );
-                                if (file.size > maxSize) {
-                                  $state.errorMsg.push({
-                                    fichier: "cv",
-                                    title: "Fichier trop volumineux",
-                                    description:
-                                      "Le CV ne doit pas dépasser 2 Mo."
-                                  });
-                                  return false;
-                                }
-                                if (!fileTypeOk && !fileExtensionOk) {
-                                  $state.errorMsg.push({
-                                    fichier: "cv",
-                                    title: "Format de fichier invalide",
-                                    description:
-                                      "Le format du CV n'est pas accepté."
-                                  });
-                                  return false;
-                                }
-                                return true;
+                                  $stateSet(objRoot, variablePath, undefined);
+                                  return undefined;
+                                })?.apply(null, [actionArgs]);
                               })()
-                                ? (() => {
-                                    const actionArgs = {
-                                      dataOp: {
-                                        sourceId: "rtEg85U6Vbyi94cRAe93i7",
-                                        opId: "2c27e5ea-862c-480e-bff8-3da6871e0b04",
-                                        userArgs: {
-                                          path: [
-                                            $ctx.SupabaseUser.user.id,
-                                            (() => {
-                                              const file =
-                                                $state.upload.files[0];
-                                              if (file) {
-                                                const formattedName = file.name
-                                                  .trim()
-                                                  .toLowerCase()
-                                                  .replace(
-                                                    /[^a-z0-9.\-_]/g,
-                                                    "_"
-                                                  )
-                                                  .replace(/_+/g, "_")
-                                                  .replace(/^_+|_+$/g, "");
-                                                return formattedName;
-                                              }
-                                            })()
-                                          ],
-                                          content: [
-                                            $state.upload.files[0].contents
-                                          ],
-                                          contentType: [
-                                            $state.upload.files[0].type
-                                          ],
-                                          upsert: [true]
-                                        },
-                                        cacheKey: null,
-                                        invalidatedKeys: [],
-                                        roleId: null
-                                      }
-                                    };
-                                    return (async ({
-                                      dataOp,
-                                      continueOnError
-                                    }) => {
-                                      try {
-                                        const response =
-                                          await executePlasmicDataOp(dataOp, {
-                                            userAuthToken:
-                                              dataSourcesCtx?.userAuthToken,
-                                            user: dataSourcesCtx?.user
-                                          });
-                                        await plasmicInvalidate(
-                                          dataOp.invalidatedKeys
-                                        );
-                                        return response;
-                                      } catch (e) {
-                                        if (!continueOnError) {
-                                          throw e;
-                                        }
-                                        return e;
-                                      }
-                                    })?.apply(null, [actionArgs]);
-                                  })()
-                                : undefined;
-                              if (
-                                $steps["supabaseUploadFile"] != null &&
-                                typeof $steps["supabaseUploadFile"] ===
-                                  "object" &&
-                                typeof $steps["supabaseUploadFile"].then ===
-                                  "function"
-                              ) {
-                                $steps["supabaseUploadFile"] = await $steps[
-                                  "supabaseUploadFile"
-                                ];
-                              }
+                            : undefined;
+                          if (
+                            $steps["updateUpload2Files"] != null &&
+                            typeof $steps["updateUpload2Files"] === "object" &&
+                            typeof $steps["updateUpload2Files"].then ===
+                              "function"
+                          ) {
+                            $steps["updateUpload2Files"] = await $steps[
+                              "updateUpload2Files"
+                            ];
+                          }
 
-                              $steps["postgresUpdateById"] =
-                                $state.errorMsg.length == 0
-                                  ? (() => {
-                                      const actionArgs = {
-                                        dataOp: {
-                                          sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
-                                          opId: "1d316c45-4c3c-4fdb-88bb-e87b178387e4",
-                                          userArgs: {
-                                            keys: [$ctx.SupabaseUser.user.id],
-                                            variables: [
-                                              $steps.supabaseUploadFile?.path.split(
-                                                "/"
-                                              )[1],
-                                              (() => {})()
-                                            ]
-                                          },
-                                          cacheKey: null,
-                                          invalidatedKeys: [
-                                            "9c25c922-f186-4ed9-850f-6ded6b307e4e"
-                                          ],
-                                          roleId: null
-                                        }
-                                      };
-                                      return (async ({
-                                        dataOp,
-                                        continueOnError
-                                      }) => {
-                                        try {
-                                          const response =
-                                            await executePlasmicDataOp(dataOp, {
-                                              userAuthToken:
-                                                dataSourcesCtx?.userAuthToken,
-                                              user: dataSourcesCtx?.user
-                                            });
-                                          await plasmicInvalidate(
-                                            dataOp.invalidatedKeys
-                                          );
-                                          return response;
-                                        } catch (e) {
-                                          if (!continueOnError) {
-                                            throw e;
-                                          }
-                                          return e;
-                                        }
-                                      })?.apply(null, [actionArgs]);
-                                    })()
-                                  : undefined;
-                              if (
-                                $steps["postgresUpdateById"] != null &&
-                                typeof $steps["postgresUpdateById"] ===
-                                  "object" &&
-                                typeof $steps["postgresUpdateById"].then ===
-                                  "function"
-                              ) {
-                                $steps["postgresUpdateById"] = await $steps[
-                                  "postgresUpdateById"
-                                ];
-                              }
-                            }).apply(null, eventArgs);
-                          }}
-                          showUploadList={false}
-                        >
-                          <div
-                            data-plasmic-name={"content"}
-                            data-plasmic-override={overrides.content}
-                            className={classNames(projectcss.all, sty.content)}
-                          >
-                            <div
-                              className={classNames(
-                                projectcss.all,
-                                sty.freeBox__mrjhl
-                              )}
-                            >
-                              <Stack__
-                                as={PlasmicImg__}
-                                hasGap={true}
-                                alt={""}
-                                className={classNames(sty.img__liyK)}
-                                displayHeight={"25px"}
-                                displayMaxHeight={"none"}
-                                displayMaxWidth={"100%"}
-                                displayMinHeight={"0"}
-                                displayMinWidth={"0"}
-                                displayWidth={"25px"}
-                                loading={"lazy"}
-                                src={{
-                                  src: "/plasmic/jam_production_🚀/images/attachementJpg.jpg",
-                                  fullWidth: 512,
-                                  fullHeight: 512,
-                                  aspectRatio: undefined
-                                }}
-                              />
-                            </div>
-                            <div
-                              className={classNames(
-                                projectcss.all,
-                                projectcss.__wab_text,
-                                sty.text__ccA9
-                              )}
-                            >
-                              {"Importer ou d\u00e9poser un fichier"}
-                            </div>
-                            <div
-                              className={classNames(
-                                projectcss.all,
-                                projectcss.__wab_text,
-                                sty.text__a8Q0B
-                              )}
-                            >
-                              {"PDF (max. 2Mo)"}
-                            </div>
-                          </div>
-                        </UploadWrapper>
-                      </div>
-                    ) : null}
-                    {(() => {
-                      try {
-                        return (
-                          $state.errorMsg &&
-                          $state.errorMsg.length > 0 &&
-                          $state.errorMsg[0].fichier == "cv"
-                        );
-                      } catch (e) {
-                        if (
-                          e instanceof TypeError ||
-                          e?.plasmicType === "PlasmicUndefinedDataError"
-                        ) {
-                          return true;
-                        }
-                        throw e;
-                      }
-                    })() ? (
-                      <div
-                        className={classNames(
-                          projectcss.all,
-                          sty.freeBox__ptXCo
-                        )}
-                      >
-                        <div
-                          className={classNames(
-                            projectcss.all,
-                            projectcss.__wab_text,
-                            sty.text__a87C8
-                          )}
-                        >
-                          <React.Fragment>
-                            {(() => {
-                              try {
-                                return $state.errorMsg[0].title + " :";
-                              } catch (e) {
-                                if (
-                                  e instanceof TypeError ||
-                                  e?.plasmicType === "PlasmicUndefinedDataError"
-                                ) {
-                                  return "";
-                                }
-                                throw e;
-                              }
-                            })()}
-                          </React.Fragment>
-                        </div>
-                        <div
-                          className={classNames(
-                            projectcss.all,
-                            projectcss.__wab_text,
-                            sty.text__qo27D
-                          )}
-                        >
-                          <React.Fragment>
-                            {(() => {
-                              try {
-                                return $state.errorMsg[0].description;
-                              } catch (e) {
-                                if (
-                                  e instanceof TypeError ||
-                                  e?.plasmicType === "PlasmicUndefinedDataError"
-                                ) {
-                                  return "";
-                                }
-                                throw e;
-                              }
-                            })()}
-                          </React.Fragment>
-                        </div>
-                      </div>
-                    ) : null}
-                    {(() => {
-                      try {
-                        return $queries.getMe.data[0].cv_file !== null;
-                      } catch (e) {
-                        if (
-                          e instanceof TypeError ||
-                          e?.plasmicType === "PlasmicUndefinedDataError"
-                        ) {
-                          return true;
-                        }
-                        throw e;
-                      }
-                    })() ? (
-                      <div
-                        data-plasmic-name={"cvUpload"}
-                        data-plasmic-override={overrides.cvUpload}
-                        className={classNames(projectcss.all, sty.cvUpload)}
-                      >
-                        <PhTrashIcon
-                          className={classNames(projectcss.all, sty.svg__eOmVd)}
-                          onClick={async event => {
-                            const $steps = {};
+                          $steps["runCode"] = true
+                            ? (() => {
+                                const actionArgs = {
+                                  customFunction: async () => {
+                                    return event.stopPropagation();
+                                  }
+                                };
+                                return (({ customFunction }) => {
+                                  return customFunction();
+                                })?.apply(null, [actionArgs]);
+                              })()
+                            : undefined;
+                          if (
+                            $steps["runCode"] != null &&
+                            typeof $steps["runCode"] === "object" &&
+                            typeof $steps["runCode"].then === "function"
+                          ) {
+                            $steps["runCode"] = await $steps["runCode"];
+                          }
 
-                            $steps["postgresUpdateMany"] = true
-                              ? (() => {
-                                  const actionArgs = {
-                                    dataOp: {
-                                      sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
-                                      opId: "1d26c89c-b999-4426-9e24-85aec7f766ef",
-                                      userArgs: {
-                                        conditions: [$ctx.SupabaseUser.user.id],
-                                        variables: [null]
-                                      },
-                                      cacheKey: null,
-                                      invalidatedKeys: [
-                                        "9c25c922-f186-4ed9-850f-6ded6b307e4e"
-                                      ],
-                                      roleId: null
-                                    }
-                                  };
-                                  return (async ({
-                                    dataOp,
-                                    continueOnError
-                                  }) => {
-                                    try {
-                                      const response =
-                                        await executePlasmicDataOp(dataOp, {
-                                          userAuthToken:
-                                            dataSourcesCtx?.userAuthToken,
-                                          user: dataSourcesCtx?.user
-                                        });
-                                      await plasmicInvalidate(
-                                        dataOp.invalidatedKeys
-                                      );
-                                      return response;
-                                    } catch (e) {
-                                      if (!continueOnError) {
-                                        throw e;
-                                      }
-                                      return e;
-                                    }
-                                  })?.apply(null, [actionArgs]);
-                                })()
-                              : undefined;
-                            if (
-                              $steps["postgresUpdateMany"] != null &&
-                              typeof $steps["postgresUpdateMany"] ===
-                                "object" &&
-                              typeof $steps["postgresUpdateMany"].then ===
-                                "function"
-                            ) {
-                              $steps["postgresUpdateMany"] = await $steps[
-                                "postgresUpdateMany"
-                              ];
-                            }
-
-                            $steps["updateUploadFiles"] = true
-                              ? (() => {
-                                  const actionArgs = {
-                                    variable: {
-                                      objRoot: $state,
-                                      variablePath: ["upload", "files"]
+                          $steps["postgresUpdateMany"] = true
+                            ? (() => {
+                                const actionArgs = {
+                                  dataOp: {
+                                    sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
+                                    opId: "00154d6f-41ac-4e44-8d5a-da12df8e7c56",
+                                    userArgs: {
+                                      variables: [null],
+                                      conditions: [$ctx.SupabaseUser.user.id]
                                     },
-                                    operation: 0,
-                                    value: []
-                                  };
-                                  return (({
-                                    variable,
-                                    value,
-                                    startIndex,
-                                    deleteCount
-                                  }) => {
-                                    if (!variable) {
-                                      return;
+                                    cacheKey: null,
+                                    invalidatedKeys: ["plasmic_refresh_all"],
+                                    roleId: null
+                                  }
+                                };
+                                return (async ({ dataOp, continueOnError }) => {
+                                  try {
+                                    const response = await executePlasmicDataOp(
+                                      dataOp,
+                                      {
+                                        userAuthToken:
+                                          dataSourcesCtx?.userAuthToken,
+                                        user: dataSourcesCtx?.user
+                                      }
+                                    );
+                                    await plasmicInvalidate(
+                                      dataOp.invalidatedKeys
+                                    );
+                                    return response;
+                                  } catch (e) {
+                                    if (!continueOnError) {
+                                      throw e;
                                     }
-                                    const { objRoot, variablePath } = variable;
-
-                                    $stateSet(objRoot, variablePath, value);
-                                    return value;
-                                  })?.apply(null, [actionArgs]);
-                                })()
-                              : undefined;
-                            if (
-                              $steps["updateUploadFiles"] != null &&
-                              typeof $steps["updateUploadFiles"] === "object" &&
-                              typeof $steps["updateUploadFiles"].then ===
-                                "function"
-                            ) {
-                              $steps["updateUploadFiles"] = await $steps[
-                                "updateUploadFiles"
-                              ];
-                            }
-                          }}
-                          role={"img"}
+                                    return e;
+                                  }
+                                })?.apply(null, [actionArgs]);
+                              })()
+                            : undefined;
+                          if (
+                            $steps["postgresUpdateMany"] != null &&
+                            typeof $steps["postgresUpdateMany"] === "object" &&
+                            typeof $steps["postgresUpdateMany"].then ===
+                              "function"
+                          ) {
+                            $steps["postgresUpdateMany"] = await $steps[
+                              "postgresUpdateMany"
+                            ];
+                          }
+                        }}
+                      >
+                        <div
+                          data-plasmic-name={"frame8"}
+                          data-plasmic-override={overrides.frame8}
+                          className={classNames(projectcss.all, sty.frame8)}
                         />
 
-                        <div
-                          data-plasmic-name={"content5"}
-                          data-plasmic-override={overrides.content5}
-                          className={classNames(projectcss.all, sty.content5)}
-                        >
+                        <PhTrashIcon
+                          className={classNames(projectcss.all, sty.svg__rF5F)}
+                          role={"img"}
+                        />
+                      </div>
+                    </UploadWrapper>
+                    <Stack__
+                      as={"div"}
+                      data-plasmic-name={"tableCell"}
+                      data-plasmic-override={overrides.tableCell}
+                      hasGap={true}
+                      className={classNames(projectcss.all, sty.tableCell)}
+                    >
+                      <Switch
+                        data-plasmic-name={"_switch"}
+                        data-plasmic-override={overrides._switch}
+                        autoFocus={false}
+                        className={classNames("__wab_instance", sty._switch)}
+                        isSelected={generateStateValueProp($state, [
+                          "_switch",
+                          "isSelected"
+                        ])}
+                        label={
                           <div
-                            className={classNames(
-                              projectcss.all,
-                              sty.freeBox__cmIex
-                            )}
-                          >
-                            <Stack__
-                              as={PlasmicImg__}
-                              hasGap={true}
-                              alt={""}
-                              className={classNames(sty.img__jin6E)}
-                              displayHeight={"25px"}
-                              displayMaxHeight={"none"}
-                              displayMaxWidth={"100%"}
-                              displayMinHeight={"0"}
-                              displayMinWidth={"0"}
-                              displayWidth={"25px"}
-                              loading={"lazy"}
-                              src={{
-                                src: "/plasmic/jam_production_🚀/images/attachementJpg.jpg",
-                                fullWidth: 512,
-                                fullHeight: 512,
-                                aspectRatio: undefined
-                              }}
-                            />
-                          </div>
-                          <div
+                            data-plasmic-name={"text6"}
+                            data-plasmic-override={overrides.text6}
                             className={classNames(
                               projectcss.all,
                               projectcss.__wab_text,
-                              sty.text__m8XXb
+                              sty.text6
                             )}
                           >
                             <React.Fragment>
                               {(() => {
                                 try {
-                                  return $queries.getMe.data[0].cv_file;
+                                  return $state._switch.isSelected
+                                    ? "En recherche active"
+                                    : "Pas en recherche";
                                 } catch (e) {
                                   if (
                                     e instanceof TypeError ||
                                     e?.plasmicType ===
                                       "PlasmicUndefinedDataError"
                                   ) {
-                                    return "Importer ou d\u00e9poser un fichier";
+                                    return "En recherche active";
                                   }
                                   throw e;
                                 }
                               })()}
                             </React.Fragment>
                           </div>
-                        </div>
-                      </div>
-                    ) : null}
-                  </Stack__>
-                  <Stack__
-                    as={"div"}
-                    data-plasmic-name={"frame11"}
-                    data-plasmic-override={overrides.frame11}
-                    hasGap={true}
-                    className={classNames(projectcss.all, sty.frame11)}
-                  >
-                    <div
-                      data-plasmic-name={"email2"}
-                      data-plasmic-override={overrides.email2}
-                      className={classNames(
-                        projectcss.all,
-                        projectcss.__wab_text,
-                        sty.email2
-                      )}
-                    >
-                      {"Lettre de motivation"}
-                    </div>
-                    {(() => {
-                      try {
-                        return (
-                          $queries.getMe.data[0].cover_letter_file === null
-                        );
-                      } catch (e) {
-                        if (
-                          e instanceof TypeError ||
-                          e?.plasmicType === "PlasmicUndefinedDataError"
-                        ) {
-                          return true;
                         }
-                        throw e;
-                      }
-                    })() ? (
-                      <div
-                        data-plasmic-name={"lmNoUpload"}
-                        data-plasmic-override={overrides.lmNoUpload}
-                        className={classNames(projectcss.all, sty.lmNoUpload)}
-                      >
-                        <UploadWrapper
-                          data-plasmic-name={"upload3"}
-                          data-plasmic-override={overrides.upload3}
-                          accept={""}
-                          className={classNames("__wab_instance", sty.upload3)}
-                          dragAndDropFiles={false}
-                          files={generateStateValueProp($state, [
-                            "upload3",
-                            "files"
-                          ])}
-                          maxCount={1}
-                          onFilesChange={async (...eventArgs: any) => {
-                            generateStateOnChangeProp($state, [
-                              "upload3",
-                              "files"
-                            ]).apply(null, eventArgs);
+                        onChange={async (...eventArgs: any) => {
+                          generateStateOnChangeProp($state, [
+                            "_switch",
+                            "isSelected"
+                          ]).apply(null, eventArgs);
 
-                            (async files => {
-                              const $steps = {};
+                          if (
+                            eventArgs.length > 1 &&
+                            eventArgs[1] &&
+                            eventArgs[1]._plasmic_state_init_
+                          ) {
+                            return;
+                          }
 
-                              $steps["errorMsg"] = true
-                                ? (() => {
-                                    const actionArgs = {
-                                      variable: {
-                                        objRoot: $state,
-                                        variablePath: ["errorMsg"]
-                                      },
-                                      operation: 0,
-                                      value: []
-                                    };
-                                    return (({
-                                      variable,
-                                      value,
-                                      startIndex,
-                                      deleteCount
-                                    }) => {
-                                      if (!variable) {
-                                        return;
-                                      }
-                                      const { objRoot, variablePath } =
-                                        variable;
-
-                                      $stateSet(objRoot, variablePath, value);
-                                      return value;
-                                    })?.apply(null, [actionArgs]);
-                                  })()
-                                : undefined;
-                              if (
-                                $steps["errorMsg"] != null &&
-                                typeof $steps["errorMsg"] === "object" &&
-                                typeof $steps["errorMsg"].then === "function"
-                              ) {
-                                $steps["errorMsg"] = await $steps["errorMsg"];
-                              }
-
-                              $steps["supabaseUploadFile"] = (() => {
-                                const files = $state.upload3.files;
-                                if (
-                                  !Array.isArray(files) ||
-                                  files.length === 0
-                                ) {
-                                  return false;
-                                }
-                                const file = files[0];
-                                const maxSize = 2 * 1024 * 1024;
-                                const allowedTypes = [
-                                  "application/pdf",
-                                  "application/msword",
-                                  "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-                                  "image/jpeg",
-                                  "image/png"
-                                ];
-
-                                const allowedExtensions = [
-                                  ".pdf",
-                                  ".doc",
-                                  ".docx",
-                                  ".jpg",
-                                  ".jpeg",
-                                  ".png"
-                                ];
-
-                                const fileTypeOk = allowedTypes.includes(
-                                  file.type
-                                );
-                                const fileName = file.name?.toLowerCase() || "";
-                                const fileExtensionOk = allowedExtensions.some(
-                                  ext => fileName.endsWith(ext)
-                                );
-                                if (file.size > maxSize) {
-                                  $state.errorMsg.push({
-                                    fichier: "ldm",
-                                    title: "Fichier trop volumineux",
-                                    description:
-                                      "La lettre de motivation ne doit pas dépasser 2 Mo."
-                                  });
-                                  return false;
-                                }
-                                if (!fileTypeOk && !fileExtensionOk) {
-                                  $state.errorMsg.push({
-                                    fichier: "ldm",
-                                    title: "Format de fichier invalide",
-                                    description:
-                                      "Le format de la lettre de motivation n'est pas accepté."
-                                  });
-                                  return false;
-                                }
-                                return true;
-                              })()
-                                ? (() => {
-                                    const actionArgs = {
-                                      dataOp: {
-                                        sourceId: "rtEg85U6Vbyi94cRAe93i7",
-                                        opId: "2c27e5ea-862c-480e-bff8-3da6871e0b04",
-                                        userArgs: {
-                                          path: [
-                                            $ctx.SupabaseUser.user.id,
-                                            (() => {
-                                              const file =
-                                                $state.upload3.files[0];
-                                              if (file) {
-                                                const formattedName = file.name
-                                                  .trim()
-                                                  .toLowerCase()
-                                                  .replace(
-                                                    /[^a-z0-9.\-_]/g,
-                                                    "_"
-                                                  )
-                                                  .replace(/_+/g, "_")
-                                                  .replace(/^_+|_+$/g, "");
-                                                return formattedName;
-                                              }
-                                            })()
-                                          ],
-                                          content: [
-                                            $state.upload3.files[0].contents
-                                          ],
-                                          contentType: [
-                                            $state.upload3.files[0].type
-                                          ],
-                                          upsert: [true]
-                                        },
-                                        cacheKey: null,
-                                        invalidatedKeys: [],
-                                        roleId: null
-                                      }
-                                    };
-                                    return (async ({
-                                      dataOp,
-                                      continueOnError
-                                    }) => {
-                                      try {
-                                        const response =
-                                          await executePlasmicDataOp(dataOp, {
-                                            userAuthToken:
-                                              dataSourcesCtx?.userAuthToken,
-                                            user: dataSourcesCtx?.user
-                                          });
-                                        await plasmicInvalidate(
-                                          dataOp.invalidatedKeys
-                                        );
-                                        return response;
-                                      } catch (e) {
-                                        if (!continueOnError) {
-                                          throw e;
-                                        }
-                                        return e;
-                                      }
-                                    })?.apply(null, [actionArgs]);
-                                  })()
-                                : undefined;
-                              if (
-                                $steps["supabaseUploadFile"] != null &&
-                                typeof $steps["supabaseUploadFile"] ===
-                                  "object" &&
-                                typeof $steps["supabaseUploadFile"].then ===
-                                  "function"
-                              ) {
-                                $steps["supabaseUploadFile"] = await $steps[
-                                  "supabaseUploadFile"
-                                ];
-                              }
-
-                              $steps["postgresUpdateById"] =
-                                $state.errorMsg.length == 0
-                                  ? (() => {
-                                      const actionArgs = {
-                                        dataOp: {
-                                          sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
-                                          opId: "1d316c45-4c3c-4fdb-88bb-e87b178387e4",
-                                          userArgs: {
-                                            keys: [$ctx.SupabaseUser.user.id],
-                                            variables: [
-                                              (() => {})(),
-                                              $steps.supabaseUploadFile?.path.split(
-                                                "/"
-                                              )[1]
-                                            ]
-                                          },
-                                          cacheKey: null,
-                                          invalidatedKeys: [
-                                            "9c25c922-f186-4ed9-850f-6ded6b307e4e"
-                                          ],
-                                          roleId: null
-                                        }
-                                      };
-                                      return (async ({
-                                        dataOp,
-                                        continueOnError
-                                      }) => {
-                                        try {
-                                          const response =
-                                            await executePlasmicDataOp(dataOp, {
-                                              userAuthToken:
-                                                dataSourcesCtx?.userAuthToken,
-                                              user: dataSourcesCtx?.user
-                                            });
-                                          await plasmicInvalidate(
-                                            dataOp.invalidatedKeys
-                                          );
-                                          return response;
-                                        } catch (e) {
-                                          if (!continueOnError) {
-                                            throw e;
-                                          }
-                                          return e;
-                                        }
-                                      })?.apply(null, [actionArgs]);
-                                    })()
-                                  : undefined;
-                              if (
-                                $steps["postgresUpdateById"] != null &&
-                                typeof $steps["postgresUpdateById"] ===
-                                  "object" &&
-                                typeof $steps["postgresUpdateById"].then ===
-                                  "function"
-                              ) {
-                                $steps["postgresUpdateById"] = await $steps[
-                                  "postgresUpdateById"
-                                ];
-                              }
-                            }).apply(null, eventArgs);
-                          }}
-                          showUploadList={false}
-                        >
-                          <div
-                            className={classNames(
-                              projectcss.all,
-                              sty.freeBox__ywp0V
-                            )}
-                          >
-                            <div
-                              className={classNames(
-                                projectcss.all,
-                                sty.freeBox__oWGo
-                              )}
-                            >
-                              <Stack__
-                                as={PlasmicImg__}
-                                hasGap={true}
-                                alt={""}
-                                className={classNames(sty.img__hAnWf)}
-                                displayHeight={"25px"}
-                                displayMaxHeight={"none"}
-                                displayMaxWidth={"100%"}
-                                displayMinHeight={"0"}
-                                displayMinWidth={"0"}
-                                displayWidth={"25px"}
-                                loading={"lazy"}
-                                src={{
-                                  src: "/plasmic/jam_production_🚀/images/attachementJpg.jpg",
-                                  fullWidth: 512,
-                                  fullHeight: 512,
-                                  aspectRatio: undefined
-                                }}
-                              />
-                            </div>
-                            <div
-                              className={classNames(
-                                projectcss.all,
-                                projectcss.__wab_text,
-                                sty.text__cpLcg
-                              )}
-                            >
-                              {"Importer ou d\u00e9poser un fichier"}
-                            </div>
-                            <div
-                              className={classNames(
-                                projectcss.all,
-                                projectcss.__wab_text,
-                                sty.text__pprMa
-                              )}
-                            >
-                              {"PDF (max. 2Mo)"}
-                            </div>
-                          </div>
-                        </UploadWrapper>
-                      </div>
-                    ) : null}
-                    {(() => {
-                      try {
-                        return (
-                          $state.errorMsg &&
-                          $state.errorMsg.length > 0 &&
-                          $state.errorMsg[0].fichier == "ldm"
-                        );
-                      } catch (e) {
-                        if (
-                          e instanceof TypeError ||
-                          e?.plasmicType === "PlasmicUndefinedDataError"
-                        ) {
-                          return true;
-                        }
-                        throw e;
-                      }
-                    })() ? (
-                      <div
-                        className={classNames(
-                          projectcss.all,
-                          sty.freeBox__eJdi2
-                        )}
-                      >
-                        <div
-                          className={classNames(
-                            projectcss.all,
-                            projectcss.__wab_text,
-                            sty.text__bV4H
-                          )}
-                        >
-                          <React.Fragment>
-                            {(() => {
-                              try {
-                                return $state.errorMsg[0].title + " :";
-                              } catch (e) {
-                                if (
-                                  e instanceof TypeError ||
-                                  e?.plasmicType === "PlasmicUndefinedDataError"
-                                ) {
-                                  return "";
-                                }
-                                throw e;
-                              }
-                            })()}
-                          </React.Fragment>
-                        </div>
-                        <div
-                          className={classNames(
-                            projectcss.all,
-                            projectcss.__wab_text,
-                            sty.text__qobQf
-                          )}
-                        >
-                          <React.Fragment>
-                            {(() => {
-                              try {
-                                return $state.errorMsg[0].description;
-                              } catch (e) {
-                                if (
-                                  e instanceof TypeError ||
-                                  e?.plasmicType === "PlasmicUndefinedDataError"
-                                ) {
-                                  return "";
-                                }
-                                throw e;
-                              }
-                            })()}
-                          </React.Fragment>
-                        </div>
-                      </div>
-                    ) : null}
-                    {(() => {
-                      try {
-                        return (
-                          $queries.getMe.data[0].cover_letter_file !== null
-                        );
-                      } catch (e) {
-                        if (
-                          e instanceof TypeError ||
-                          e?.plasmicType === "PlasmicUndefinedDataError"
-                        ) {
-                          return true;
-                        }
-                        throw e;
-                      }
-                    })() ? (
-                      <div
-                        data-plasmic-name={"lmUpload"}
-                        data-plasmic-override={overrides.lmUpload}
-                        className={classNames(projectcss.all, sty.lmUpload)}
-                      >
-                        <PhTrashIcon
-                          className={classNames(projectcss.all, sty.svg__y9Q64)}
-                          onClick={async event => {
+                          (async val => {
                             const $steps = {};
 
-                            $steps["postgresUpdateMany"] = true
+                            $steps["postgresUpdateById"] = true
                               ? (() => {
                                   const actionArgs = {
                                     dataOp: {
                                       sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
-                                      opId: "e205d484-80c7-4de7-b5c0-7d0135a1a283",
+                                      opId: "d9daea55-b1a9-4e05-aa41-e2d6803f96d8",
                                       userArgs: {
-                                        conditions: [$ctx.SupabaseUser.user.id],
-                                        variables: [null]
+                                        keys: [$ctx.SupabaseUser.user.id],
+                                        variables: [
+                                          $state._switch.isSelected,
+                                          (() => {
+                                            return (active_search_until = $state
+                                              ._switch.isSelected
+                                              ? new Date(Date.now() + 172800000)
+                                              : new Date());
+                                          })()
+                                        ]
                                       },
                                       cacheKey: null,
                                       invalidatedKeys: [
@@ -3581,142 +1320,685 @@ function PlasmicParametresCandidat__RenderFunc(props: {
                                 })()
                               : undefined;
                             if (
-                              $steps["postgresUpdateMany"] != null &&
-                              typeof $steps["postgresUpdateMany"] ===
+                              $steps["postgresUpdateById"] != null &&
+                              typeof $steps["postgresUpdateById"] ===
                                 "object" &&
-                              typeof $steps["postgresUpdateMany"].then ===
+                              typeof $steps["postgresUpdateById"].then ===
                                 "function"
                             ) {
-                              $steps["postgresUpdateMany"] = await $steps[
-                                "postgresUpdateMany"
+                              $steps["postgresUpdateById"] = await $steps[
+                                "postgresUpdateById"
                               ];
                             }
-                          }}
-                          role={"img"}
-                        />
-
-                        <div
-                          data-plasmic-name={"content3"}
-                          data-plasmic-override={overrides.content3}
-                          className={classNames(projectcss.all, sty.content3)}
-                        >
-                          <div
-                            className={classNames(
-                              projectcss.all,
-                              sty.freeBox__ksiuw
-                            )}
-                          >
-                            <Stack__
-                              as={PlasmicImg__}
-                              hasGap={true}
-                              alt={""}
-                              className={classNames(sty.img__zf67Z)}
-                              displayHeight={"25px"}
-                              displayMaxHeight={"none"}
-                              displayMaxWidth={"100%"}
-                              displayMinHeight={"0"}
-                              displayMinWidth={"0"}
-                              displayWidth={"25px"}
-                              loading={"lazy"}
-                              src={{
-                                src: "/plasmic/jam_production_🚀/images/attachementJpg.jpg",
-                                fullWidth: 512,
-                                fullHeight: 512,
-                                aspectRatio: undefined
-                              }}
-                            />
-                          </div>
-                          <div
-                            className={classNames(
-                              projectcss.all,
-                              projectcss.__wab_text,
-                              sty.text__qkgUb
-                            )}
-                          >
-                            <React.Fragment>
-                              {(() => {
-                                try {
-                                  return $queries.getMe.data[0]
-                                    .cover_letter_file;
-                                } catch (e) {
-                                  if (
-                                    e instanceof TypeError ||
-                                    e?.plasmicType ===
-                                      "PlasmicUndefinedDataError"
-                                  ) {
-                                    return "Importer ou d\u00e9poser un fichier";
-                                  }
-                                  throw e;
-                                }
-                              })()}
-                            </React.Fragment>
-                          </div>
-                        </div>
+                          }).apply(null, eventArgs);
+                        }}
+                      />
+                    </Stack__>
+                    <Stack__
+                      as={"div"}
+                      data-plasmic-name={"textInputBase6"}
+                      data-plasmic-override={overrides.textInputBase6}
+                      hasGap={true}
+                      className={classNames(projectcss.all, sty.textInputBase6)}
+                    >
+                      <div
+                        data-plasmic-name={"hintText6"}
+                        data-plasmic-override={overrides.hintText6}
+                        className={classNames(
+                          projectcss.all,
+                          projectcss.__wab_text,
+                          sty.hintText6
+                        )}
+                      >
+                        {
+                          'Votre statut "En recherche active" sera d\u00e9sactiv\u00e9 apr\u00e8s 48h. R\u00e9activez-le si vous \u00eates toujours en recherche active.'
+                        }
                       </div>
-                    ) : null}
+                    </Stack__>
                   </Stack__>
-                </Stack__>
-                <div
-                  data-plasmic-name={"reinitialisationDuMdp"}
-                  data-plasmic-override={overrides.reinitialisationDuMdp}
-                  className={classNames(
-                    projectcss.all,
-                    sty.reinitialisationDuMdp
-                  )}
-                >
-                  <Stack__
-                    as={"div"}
-                    data-plasmic-name={"card3"}
-                    data-plasmic-override={overrides.card3}
-                    hasGap={true}
-                    className={classNames(projectcss.all, sty.card3)}
-                  >
-                    <ResetPassword
-                      data-plasmic-name={"resetPassword"}
-                      data-plasmic-override={overrides.resetPassword}
-                      alertPosition={"top"}
-                      cancelButtonStyle={"tertiary"}
-                      cancelButtonText={"Annuler"}
-                      className={classNames(
-                        "__wab_instance",
-                        sty.resetPassword
-                      )}
-                      confirmPassword={generateStateValueProp($state, [
-                        "resetPassword",
-                        "confirmPassword"
-                      ])}
-                      confirmPasswordLabel={
-                        "R\u00e9p\u00e9tez le mot de passe*"
-                      }
-                      confirmPasswordPlaceholder={
-                        "Confirmez votre mot de passe"
-                      }
-                      eyeIconColor={"#666"}
-                      inputStyle={"simple"}
-                      maxAlerts={3}
-                      onConfirmPasswordChange={async (...eventArgs: any) => {
-                        generateStateOnChangeProp($state, [
-                          "resetPassword",
-                          "confirmPassword"
-                        ]).apply(null, eventArgs);
-                      }}
-                      onPasswordChange={async (...eventArgs: any) => {
-                        generateStateOnChangeProp($state, [
-                          "resetPassword",
-                          "password"
-                        ]).apply(null, eventArgs);
-                      }}
-                      onSubmit={async event => {
+                  {(() => {
+                    const child$Props = {
+                      className: classNames("__wab_instance", sty.formulaire),
+                      extendedOnValuesChange: async (...eventArgs: any) => {
+                        generateStateOnChangePropForCodeComponents(
+                          $state,
+                          "value",
+                          ["formulaire", "value"],
+                          FormWrapper_Helpers
+                        ).apply(null, eventArgs);
+                      },
+                      formItems: [
+                        { label: "Name", name: "name", inputType: "Text" },
+                        {
+                          label: "Message",
+                          name: "message",
+                          inputType: "Text Area"
+                        }
+                      ],
+                      initialValues: undefined,
+                      labelCol: { span: 8, horizontalOnly: true },
+                      layout: "vertical",
+                      mode: "advanced",
+                      onFinish: async values => {
                         const $steps = {};
 
-                        $steps["postgresUpdateById"] = true
+                        $steps["updateUser"] = true
+                          ? (() => {
+                              const actionArgs = {
+                                dataOp: {
+                                  sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
+                                  opId: "95866b48-3695-471e-94b6-e2a448369b0b",
+                                  userArgs: {
+                                    keys: [$ctx.SupabaseUser.user.id],
+                                    variables: [
+                                      $queries.fetchUserCoordinates.data
+                                        .response.features[0].geometry
+                                        .coordinates[1],
+                                      $queries.fetchUserCoordinates.data
+                                        .response.features[0].geometry
+                                        .coordinates[0],
+                                      $state.formulaire.value.address,
+                                      $state.formulaire.value.city,
+                                      $state.formulaire.value.country,
+                                      $state.formulaire.value.email,
+                                      $state.formulaire.value.first_name,
+                                      $ctx.SupabaseUser.user.id,
+                                      $state.formulaire.value.last_name,
+                                      $state.formulaire.value.level,
+                                      $state.formulaire.value.linkedin_url,
+                                      $state.formulaire.value
+                                        .short_presentation,
+                                      JSON.stringify(
+                                        $state.formulaire.value.skill
+                                      ),
+                                      JSON.stringify(
+                                        $state.formulaire.value.transport_mode
+                                      ),
+                                      $state.formulaire.value.phone_number,
+                                      $state.formulaire.value.postal_code
+                                    ]
+                                  },
+                                  cacheKey: null,
+                                  invalidatedKeys: [
+                                    "9c25c922-f186-4ed9-850f-6ded6b307e4e"
+                                  ],
+                                  roleId: null
+                                }
+                              };
+                              return (async ({ dataOp, continueOnError }) => {
+                                try {
+                                  const response = await executePlasmicDataOp(
+                                    dataOp,
+                                    {
+                                      userAuthToken:
+                                        dataSourcesCtx?.userAuthToken,
+                                      user: dataSourcesCtx?.user
+                                    }
+                                  );
+                                  await plasmicInvalidate(
+                                    dataOp.invalidatedKeys
+                                  );
+                                  return response;
+                                } catch (e) {
+                                  if (!continueOnError) {
+                                    throw e;
+                                  }
+                                  return e;
+                                }
+                              })?.apply(null, [actionArgs]);
+                            })()
+                          : undefined;
+                        if (
+                          $steps["updateUser"] != null &&
+                          typeof $steps["updateUser"] === "object" &&
+                          typeof $steps["updateUser"].then === "function"
+                        ) {
+                          $steps["updateUser"] = await $steps["updateUser"];
+                        }
+
+                        $steps["showMsg"] = true
                           ? (() => {
                               const actionArgs = {
                                 args: [
-                                  (() => {
+                                  "success",
+                                  "Votre profil a bien \u00e9t\u00e9 mis \u00e0 jour !"
+                                ]
+                              };
+                              return $globalActions[
+                                "plasmic-antd5-config-provider.showNotification"
+                              ]?.apply(null, [...actionArgs.args]);
+                            })()
+                          : undefined;
+                        if (
+                          $steps["showMsg"] != null &&
+                          typeof $steps["showMsg"] === "object" &&
+                          typeof $steps["showMsg"].then === "function"
+                        ) {
+                          $steps["showMsg"] = await $steps["showMsg"];
+                        }
+                      },
+                      onIsSubmittingChange: async (...eventArgs: any) => {
+                        generateStateOnChangePropForCodeComponents(
+                          $state,
+                          "isSubmitting",
+                          ["formulaire", "isSubmitting"],
+                          FormWrapper_Helpers
+                        ).apply(null, eventArgs);
+                      },
+                      ref: ref => {
+                        $refs["formulaire"] = ref;
+                      },
+                      submitSlot: null,
+                      wrapperCol: { span: 16, horizontalOnly: true }
+                    };
+                    initializeCodeComponentStates(
+                      $state,
+                      [
+                        {
+                          name: "value",
+                          plasmicStateName: "formulaire.value"
+                        },
+                        {
+                          name: "isSubmitting",
+                          plasmicStateName: "formulaire.isSubmitting"
+                        }
+                      ],
+                      [],
+                      FormWrapper_Helpers ?? {},
+                      child$Props
+                    );
+
+                    return (
+                      <FormWrapper
+                        data-plasmic-name={"formulaire"}
+                        data-plasmic-override={overrides.formulaire}
+                        {...child$Props}
+                      >
+                        <Stack__
+                          as={"div"}
+                          data-plasmic-name={"prenomNom"}
+                          data-plasmic-override={overrides.prenomNom}
+                          hasGap={true}
+                          className={classNames(projectcss.all, sty.prenomNom)}
+                        >
+                          <FormItemWrapper
+                            className={classNames(
+                              "__wab_instance",
+                              sty.formField__gu1TP
+                            )}
+                            label={
+                              <div
+                                className={classNames(
+                                  projectcss.all,
+                                  projectcss.__wab_text,
+                                  sty.text__jcv5C
+                                )}
+                              >
+                                {"Pr\u00e9nom*"}
+                              </div>
+                            }
+                            name={"first_name"}
+                          >
+                            <TextInput
+                              data-plasmic-name={"firstName"}
+                              data-plasmic-override={overrides.firstName}
+                              className={classNames(
+                                "__wab_instance",
+                                sty.firstName
+                              )}
+                              defaultValue={(() => {
+                                try {
+                                  return $queries.getMe?.data[0]?.first_name;
+                                } catch (e) {
+                                  if (
+                                    e instanceof TypeError ||
+                                    e?.plasmicType ===
+                                      "PlasmicUndefinedDataError"
+                                  ) {
+                                    return undefined;
+                                  }
+                                  throw e;
+                                }
+                              })()}
+                              onChange={async (...eventArgs: any) => {
+                                generateStateOnChangeProp($state, [
+                                  "firstName",
+                                  "value"
+                                ]).apply(null, eventArgs);
+
+                                if (
+                                  eventArgs.length > 1 &&
+                                  eventArgs[1] &&
+                                  eventArgs[1]._plasmic_state_init_
+                                ) {
+                                  return;
+                                }
+                              }}
+                              placeholder={"Pr\u00e9nom"}
+                            />
+                          </FormItemWrapper>
+                          <FormItemWrapper
+                            className={classNames(
+                              "__wab_instance",
+                              sty.formField___4ZPYl
+                            )}
+                            label={
+                              <div
+                                className={classNames(
+                                  projectcss.all,
+                                  projectcss.__wab_text,
+                                  sty.text__aw3GJ
+                                )}
+                              >
+                                {"Nom*"}
+                              </div>
+                            }
+                            name={"last_name"}
+                          >
+                            <TextInput
+                              data-plasmic-name={"lastName"}
+                              data-plasmic-override={overrides.lastName}
+                              className={classNames(
+                                "__wab_instance",
+                                sty.lastName
+                              )}
+                              defaultValue={(() => {
+                                try {
+                                  return $queries.getMe.data[0].last_name;
+                                } catch (e) {
+                                  if (
+                                    e instanceof TypeError ||
+                                    e?.plasmicType ===
+                                      "PlasmicUndefinedDataError"
+                                  ) {
+                                    return undefined;
+                                  }
+                                  throw e;
+                                }
+                              })()}
+                              onChange={async (...eventArgs: any) => {
+                                generateStateOnChangeProp($state, [
+                                  "lastName",
+                                  "value"
+                                ]).apply(null, eventArgs);
+
+                                if (
+                                  eventArgs.length > 1 &&
+                                  eventArgs[1] &&
+                                  eventArgs[1]._plasmic_state_init_
+                                ) {
+                                  return;
+                                }
+                              }}
+                              placeholder={"Nom"}
+                            />
+                          </FormItemWrapper>
+                        </Stack__>
+                        <FormItemWrapper
+                          className={classNames(
+                            "__wab_instance",
+                            sty.formField__y2STw
+                          )}
+                          label={
+                            <div
+                              className={classNames(
+                                projectcss.all,
+                                projectcss.__wab_text,
+                                sty.text__wDbQt
+                              )}
+                            >
+                              {"Email*"}
+                            </div>
+                          }
+                          name={"email"}
+                        >
+                          <TextInput
+                            data-plasmic-name={"textInput3"}
+                            data-plasmic-override={overrides.textInput3}
+                            className={classNames(
+                              "__wab_instance",
+                              sty.textInput3
+                            )}
+                            defaultValue={(() => {
+                              try {
+                                return $queries.getMe.data[0].email;
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return undefined;
+                                }
+                                throw e;
+                              }
+                            })()}
+                            disabled={true}
+                            onChange={async (...eventArgs: any) => {
+                              generateStateOnChangeProp($state, [
+                                "textInput3",
+                                "value"
+                              ]).apply(null, eventArgs);
+
+                              if (
+                                eventArgs.length > 1 &&
+                                eventArgs[1] &&
+                                eventArgs[1]._plasmic_state_init_
+                              ) {
+                                return;
+                              }
+                            }}
+                            placeholder={"Email"}
+                          />
+                        </FormItemWrapper>
+                        <Stack__
+                          as={"div"}
+                          data-plasmic-name={"telephone"}
+                          data-plasmic-override={overrides.telephone}
+                          hasGap={true}
+                          className={classNames(projectcss.all, sty.telephone)}
+                        >
+                          <FormItemWrapper
+                            className={classNames(
+                              "__wab_instance",
+                              sty.formField__auHds
+                            )}
+                            label={
+                              <div
+                                className={classNames(
+                                  projectcss.all,
+                                  projectcss.__wab_text,
+                                  sty.text__jM6R
+                                )}
+                              >
+                                {"T\u00e9l\u00e9phone"}
+                              </div>
+                            }
+                            name={"countryCode"}
+                          >
+                            <PhoneSelector
+                              data-plasmic-name={"phoneSelector"}
+                              data-plasmic-override={overrides.phoneSelector}
+                              className={classNames(
+                                "__wab_instance",
+                                sty.phoneSelector
+                              )}
+                            />
+                          </FormItemWrapper>
+                          <FormItemWrapper
+                            className={classNames(
+                              "__wab_instance",
+                              sty.formField__mP1Tq
+                            )}
+                            label={
+                              <div
+                                className={classNames(
+                                  projectcss.all,
+                                  projectcss.__wab_text,
+                                  sty.text__wsoid
+                                )}
+                              >
+                                {""}
+                              </div>
+                            }
+                            name={"phone_number"}
+                          >
+                            <TextInput
+                              data-plasmic-name={"textInput5"}
+                              data-plasmic-override={overrides.textInput5}
+                              className={classNames(
+                                "__wab_instance",
+                                sty.textInput5
+                              )}
+                              defaultValue={(() => {
+                                try {
+                                  return $queries.getMe.data[0].phone_number;
+                                } catch (e) {
+                                  if (
+                                    e instanceof TypeError ||
+                                    e?.plasmicType ===
+                                      "PlasmicUndefinedDataError"
+                                  ) {
+                                    return undefined;
+                                  }
+                                  throw e;
+                                }
+                              })()}
+                              inputType={"tel"}
+                              onChange={async (...eventArgs: any) => {
+                                generateStateOnChangeProp($state, [
+                                  "textInput5",
+                                  "value"
+                                ]).apply(null, eventArgs);
+
+                                if (
+                                  eventArgs.length > 1 &&
+                                  eventArgs[1] &&
+                                  eventArgs[1]._plasmic_state_init_
+                                ) {
+                                  return;
+                                }
+                              }}
+                              placeholder={"0606060606"}
+                            />
+                          </FormItemWrapper>
+                        </Stack__>
+                        <FormItemWrapper
+                          className={classNames(
+                            "__wab_instance",
+                            sty.formField__cAjBw
+                          )}
+                          label={
+                            <div
+                              className={classNames(
+                                projectcss.all,
+                                projectcss.__wab_text,
+                                sty.text__xComo
+                              )}
+                            >
+                              {"Adresse"}
+                            </div>
+                          }
+                          name={"address"}
+                        >
+                          <TextInput
+                            data-plasmic-name={"rue"}
+                            data-plasmic-override={overrides.rue}
+                            autoComplete={["off"]}
+                            className={classNames("__wab_instance", sty.rue)}
+                            defaultValue={(() => {
+                              try {
+                                return $queries.getMe.data[0].address;
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return undefined;
+                                }
+                                throw e;
+                              }
+                            })()}
+                            onChange={async (...eventArgs: any) => {
+                              generateStateOnChangeProp($state, [
+                                "rue",
+                                "value"
+                              ]).apply(null, eventArgs);
+
+                              if (
+                                eventArgs.length > 1 &&
+                                eventArgs[1] &&
+                                eventArgs[1]._plasmic_state_init_
+                              ) {
+                                return;
+                              }
+                            }}
+                            placeholder={"Rue"}
+                          />
+                        </FormItemWrapper>
+                        <Stack__
+                          as={"div"}
+                          data-plasmic-name={"codePosteVille"}
+                          data-plasmic-override={overrides.codePosteVille}
+                          hasGap={true}
+                          className={classNames(
+                            projectcss.all,
+                            sty.codePosteVille
+                          )}
+                        >
+                          <FormItemWrapper
+                            className={classNames(
+                              "__wab_instance",
+                              sty.formField__r239
+                            )}
+                            hidden={false}
+                            label={""}
+                            name={"postal_code"}
+                            noLabel={true}
+                          >
+                            <TextInput
+                              data-plasmic-name={"codePostal"}
+                              data-plasmic-override={overrides.codePostal}
+                              className={classNames(
+                                "__wab_instance",
+                                sty.codePostal
+                              )}
+                              defaultValue={(() => {
+                                try {
+                                  return $queries.getMe.data[0].postal_code;
+                                } catch (e) {
+                                  if (
+                                    e instanceof TypeError ||
+                                    e?.plasmicType ===
+                                      "PlasmicUndefinedDataError"
+                                  ) {
+                                    return undefined;
+                                  }
+                                  throw e;
+                                }
+                              })()}
+                              onChange={async (...eventArgs: any) => {
+                                generateStateOnChangeProp($state, [
+                                  "codePostal",
+                                  "value"
+                                ]).apply(null, eventArgs);
+
+                                if (
+                                  eventArgs.length > 1 &&
+                                  eventArgs[1] &&
+                                  eventArgs[1]._plasmic_state_init_
+                                ) {
+                                  return;
+                                }
+                              }}
+                              placeholder={"Code postal"}
+                            />
+                          </FormItemWrapper>
+                          <FormItemWrapper
+                            className={classNames(
+                              "__wab_instance",
+                              sty.formField__u1Dml
+                            )}
+                            label={"Adresse*"}
+                            name={"city"}
+                            noLabel={true}
+                          >
+                            <TextInput
+                              data-plasmic-name={"ville"}
+                              data-plasmic-override={overrides.ville}
+                              className={classNames(
+                                "__wab_instance",
+                                sty.ville
+                              )}
+                              defaultValue={(() => {
+                                try {
+                                  return $queries.getMe.data[0].city;
+                                } catch (e) {
+                                  if (
+                                    e instanceof TypeError ||
+                                    e?.plasmicType ===
+                                      "PlasmicUndefinedDataError"
+                                  ) {
+                                    return undefined;
+                                  }
+                                  throw e;
+                                }
+                              })()}
+                              onChange={async (...eventArgs: any) => {
+                                generateStateOnChangeProp($state, [
+                                  "ville",
+                                  "value"
+                                ]).apply(null, eventArgs);
+
+                                if (
+                                  eventArgs.length > 1 &&
+                                  eventArgs[1] &&
+                                  eventArgs[1]._plasmic_state_init_
+                                ) {
+                                  return;
+                                }
+                              }}
+                              placeholder={"Ville"}
+                            />
+                          </FormItemWrapper>
+                        </Stack__>
+                        <FormItemWrapper
+                          className={classNames(
+                            "__wab_instance",
+                            sty.formField__ttUxH
+                          )}
+                          label={"Adresse*"}
+                          name={"country"}
+                          noLabel={true}
+                        >
+                          <Select
+                            data-plasmic-name={"select4"}
+                            data-plasmic-override={overrides.select4}
+                            className={classNames(
+                              "__wab_instance",
+                              sty.select4
+                            )}
+                            initialSelectedValue={(() => {
+                              try {
+                                return $queries.getMe.data[0].country;
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return undefined;
+                                }
+                                throw e;
+                              }
+                            })()}
+                            items={(_par =>
+                              !_par ? [] : Array.isArray(_par) ? _par : [_par])(
+                              (() => {
+                                try {
+                                  return $state.countries;
+                                } catch (e) {
+                                  if (
+                                    e instanceof TypeError ||
+                                    e?.plasmicType ===
+                                      "PlasmicUndefinedDataError"
+                                  ) {
+                                    return [];
+                                  }
+                                  throw e;
+                                }
+                              })()
+                            ).map((__plasmic_item_0, __plasmic_idx_0) => {
+                              const currentItem = __plasmic_item_0;
+                              const currentIndex = __plasmic_idx_0;
+                              return (
+                                <MenuItem
+                                  className={classNames(
+                                    "__wab_instance",
+                                    sty.menuItem___08SP
+                                  )}
+                                  key={currentIndex}
+                                  label={(() => {
                                     try {
-                                      return $state.resetPassword
-                                        .confirmPassword;
+                                      return currentItem;
                                     } catch (e) {
                                       if (
                                         e instanceof TypeError ||
@@ -3727,70 +2009,1884 @@ function PlasmicParametresCandidat__RenderFunc(props: {
                                       }
                                       throw e;
                                     }
-                                  })()
-                                ]
-                              };
-                              return $globalActions[
-                                "SupabaseUserGlobalContext.updateUserPassword"
-                              ]?.apply(null, [...actionArgs.args]);
-                            })()
-                          : undefined;
-                        if (
-                          $steps["postgresUpdateById"] != null &&
-                          typeof $steps["postgresUpdateById"] === "object" &&
-                          typeof $steps["postgresUpdateById"].then ===
-                            "function"
-                        ) {
-                          $steps["postgresUpdateById"] = await $steps[
-                            "postgresUpdateById"
-                          ];
-                        }
-                      }}
-                      password={generateStateValueProp($state, [
-                        "resetPassword",
-                        "password"
-                      ])}
-                      passwordLabel={"Nouveau mot de passe*"}
-                      passwordPlaceholder={"Entrez votre nouveau mot de passe"}
-                      resetSuccessMessage={
-                        "Votre mot de passe a été réinitialisé avec succès!"
-                      }
-                      showAlerts={true}
-                      showPasswordStrength={true}
-                      showPasswordToggle={true}
-                      submitButtonStyle={"primary"}
-                      submitButtonText={"Réinitialiser"}
-                      title={``}
-                      titleHeading={"h1"}
-                      wrapperStyle={"card"}
-                    />
+                                  })()}
+                                  value={(() => {
+                                    try {
+                                      return currentItem;
+                                    } catch (e) {
+                                      if (
+                                        e instanceof TypeError ||
+                                        e?.plasmicType ===
+                                          "PlasmicUndefinedDataError"
+                                      ) {
+                                        return undefined;
+                                      }
+                                      throw e;
+                                    }
+                                  })()}
+                                />
+                              );
+                            })}
+                            onChange={async (...eventArgs: any) => {
+                              generateStateOnChangeProp($state, [
+                                "select4",
+                                "value"
+                              ]).apply(null, eventArgs);
 
-                    {(() => {
-                      const child$Props = {
-                        className: classNames("__wab_instance", sty.form),
-                        extendedOnValuesChange: async (...eventArgs: any) => {
-                          generateStateOnChangePropForCodeComponents(
-                            $state,
-                            "value",
-                            ["form", "value"],
-                            FormWrapper_Helpers
-                          ).apply(null, eventArgs);
-                        },
-                        formItems: [
-                          { label: "Name", name: "name", inputType: "Text" },
-                          {
-                            label: "Message",
-                            name: "message",
-                            inputType: "Text Area"
+                              if (
+                                eventArgs.length > 1 &&
+                                eventArgs[1] &&
+                                eventArgs[1]._plasmic_state_init_
+                              ) {
+                                return;
+                              }
+                            }}
+                            placeholder={"Pays"}
+                            showLabel={false}
+                          />
+                        </FormItemWrapper>
+                        <FormItemWrapper
+                          className={classNames(
+                            "__wab_instance",
+                            sty.formField__aGgNa
+                          )}
+                          initialValue={(() => {
+                            try {
+                              return (() => {
+                                const selectedTransportModes =
+                                  $queries.getMe.data?.[0]?.transport_mode ||
+                                  [];
+                                const selectedIds =
+                                  $queries.getTransportModes.data
+                                    .filter(mode =>
+                                      selectedTransportModes.includes(mode.id)
+                                    )
+                                    .map(mode => mode.id);
+                                return selectedIds;
+                              })();
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return undefined;
+                              }
+                              throw e;
+                            }
+                          })()}
+                          label={
+                            <div
+                              className={classNames(
+                                projectcss.all,
+                                projectcss.__wab_text,
+                                sty.text__gj9T
+                              )}
+                            >
+                              {"Moyens de transport"}
+                            </div>
                           }
-                        ],
-                        labelCol: { span: 8, horizontalOnly: true },
-                        layout: "vertical",
-                        mode: "advanced",
-                        onFinish: async values => {
+                          name={"transport_mode"}
+                          noLabel={false}
+                          preserve={false}
+                        >
+                          <AntdSelect
+                            data-plasmic-name={"modeOfTransportSelect"}
+                            data-plasmic-override={
+                              overrides.modeOfTransportSelect
+                            }
+                            allowClear={true}
+                            autoFocus={false}
+                            bordered={false}
+                            className={classNames(
+                              "__wab_instance",
+                              sty.modeOfTransportSelect
+                            )}
+                            defaultStylesClassName={classNames(
+                              projectcss.root_reset,
+                              projectcss.plasmic_default_styles,
+                              projectcss.plasmic_mixins,
+                              projectcss.plasmic_tokens,
+                              plasmic_antd_5_hostless_css.plasmic_tokens,
+                              plasmic_library_tailwind_3_4_number_tokens_css.plasmic_tokens,
+                              plasmic_plasmic_rich_components_css.plasmic_tokens
+                            )}
+                            disabled={false}
+                            dropdownMatchSelectWidth={false}
+                            mode={"multiple"}
+                            onChange={async (...eventArgs: any) => {
+                              generateStateOnChangeProp($state, [
+                                "modeOfTransportSelect",
+                                "value"
+                              ]).apply(null, eventArgs);
+                            }}
+                            options={(() => {
+                              try {
+                                return (() => {
+                                  const selectedTransportModes =
+                                    $queries.getMe.data?.[0]?.transport_mode ||
+                                    [];
+                                  return $queries.getTransportModes.data.map(
+                                    mode => ({
+                                      value: mode.id,
+                                      label: mode.mode,
+                                      selected: selectedTransportModes.includes(
+                                        mode.id
+                                      )
+                                    })
+                                  );
+                                })();
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return [];
+                                }
+                                throw e;
+                              }
+                            })()}
+                            placeholder={
+                              <Stack__
+                                as={"div"}
+                                hasGap={true}
+                                className={classNames(
+                                  projectcss.all,
+                                  sty.freeBox__i5V8N
+                                )}
+                              >
+                                <div
+                                  className={classNames(
+                                    projectcss.all,
+                                    projectcss.__wab_text,
+                                    sty.text__szn5Q
+                                  )}
+                                >
+                                  {"Moyens de transport"}
+                                </div>
+                              </Stack__>
+                            }
+                            popupScopeClassName={
+                              sty["modeOfTransportSelect__popup"]
+                            }
+                            showSearch={false}
+                            size={"large"}
+                            suffixIcon={
+                              <ChevronDown2Icon
+                                className={classNames(
+                                  projectcss.all,
+                                  sty.svg___7ARQ
+                                )}
+                                role={"img"}
+                              />
+                            }
+                            useChildren={false}
+                            value={generateStateValueProp($state, [
+                              "modeOfTransportSelect",
+                              "value"
+                            ])}
+                          />
+                        </FormItemWrapper>
+                        <FormItemWrapper
+                          className={classNames(
+                            "__wab_instance",
+                            sty.formField___2RAap
+                          )}
+                          label={
+                            <div
+                              className={classNames(
+                                projectcss.all,
+                                sty.freeBox__eh9HC
+                              )}
+                            >
+                              <div
+                                className={classNames(
+                                  projectcss.all,
+                                  projectcss.__wab_text,
+                                  sty.text__rgfup
+                                )}
+                              >
+                                {"Pr\u00e9sentation courte"}
+                              </div>
+                              <div
+                                className={classNames(
+                                  projectcss.all,
+                                  projectcss.__wab_text,
+                                  sty.text__dRa08
+                                )}
+                              >
+                                {
+                                  "D\u00e9crivez le type de poste que vous cherchez, les missions que vous souhaitez effectuer. Ajouter les mots-cl\u00e9s qui vous semblent les plus pertinents pour trouver les jobs qui correspondent \u00e0 votre recherche.\r\n\r"
+                                }
+                              </div>
+                            </div>
+                          }
+                          name={"short_presentation"}
+                        >
+                          <TextAreaInput
+                            data-plasmic-name={"textAreaInput"}
+                            data-plasmic-override={overrides.textAreaInput}
+                            className={classNames(
+                              "__wab_instance",
+                              sty.textAreaInput
+                            )}
+                            defaultValue={(() => {
+                              try {
+                                return $queries.getMe.data[0]
+                                  .short_presentation;
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return undefined;
+                                }
+                                throw e;
+                              }
+                            })()}
+                            onChange={async (...eventArgs: any) => {
+                              generateStateOnChangeProp($state, [
+                                "textAreaInput",
+                                "value"
+                              ]).apply(null, eventArgs);
+
+                              if (
+                                eventArgs.length > 1 &&
+                                eventArgs[1] &&
+                                eventArgs[1]._plasmic_state_init_
+                              ) {
+                                return;
+                              }
+                            }}
+                            placeholder={"Pr\u00e9sentation"}
+                          />
+                        </FormItemWrapper>
+                        <FormItemWrapper
+                          className={classNames(
+                            "__wab_instance",
+                            sty.formField__cpEfl
+                          )}
+                          hidden={false}
+                          initialValue={(() => {
+                            const selectedSkills =
+                              $queries.getMe.data?.[0]?.skill || [];
+                            return $queries.getSoftSkill.data
+                              .filter(skill =>
+                                selectedSkills.includes(skill.id)
+                              )
+                              .map(skill => ({
+                                value: skill.id,
+                                label: skill.skill
+                              }));
+                          })()}
+                          label={
+                            <div
+                              className={classNames(
+                                projectcss.all,
+                                projectcss.__wab_text,
+                                sty.text__lGeBc
+                              )}
+                            >
+                              {"Comp\u00e9tences"}
+                            </div>
+                          }
+                          name={"skill"}
+                        >
+                          <AntdSelect
+                            data-plasmic-name={"select3"}
+                            data-plasmic-override={overrides.select3}
+                            allowClear={true}
+                            bordered={false}
+                            className={classNames(
+                              "__wab_instance",
+                              sty.select3
+                            )}
+                            defaultStylesClassName={classNames(
+                              projectcss.root_reset,
+                              projectcss.plasmic_default_styles,
+                              projectcss.plasmic_mixins,
+                              projectcss.plasmic_tokens,
+                              plasmic_antd_5_hostless_css.plasmic_tokens,
+                              plasmic_library_tailwind_3_4_number_tokens_css.plasmic_tokens,
+                              plasmic_plasmic_rich_components_css.plasmic_tokens
+                            )}
+                            dropdownMatchSelectWidth={false}
+                            mode={"multiple"}
+                            onChange={async (...eventArgs: any) => {
+                              generateStateOnChangeProp($state, [
+                                "select3",
+                                "value"
+                              ]).apply(null, eventArgs);
+                            }}
+                            options={(() => {
+                              try {
+                                return $queries.getSoftSkill.data.map(
+                                  skill => ({
+                                    value: skill.skill,
+                                    label: skill.skill
+                                  })
+                                );
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return [];
+                                }
+                                throw e;
+                              }
+                            })()}
+                            placeholder={
+                              <Stack__
+                                as={"div"}
+                                hasGap={true}
+                                className={classNames(
+                                  projectcss.all,
+                                  sty.freeBox__fubWb
+                                )}
+                              >
+                                <PlusIcon
+                                  className={classNames(
+                                    projectcss.all,
+                                    sty.svg__t52Yn
+                                  )}
+                                  role={"img"}
+                                />
+
+                                <div
+                                  className={classNames(
+                                    projectcss.all,
+                                    projectcss.__wab_text,
+                                    sty.text___4SVtn
+                                  )}
+                                >
+                                  {"Ajouter"}
+                                </div>
+                              </Stack__>
+                            }
+                            popupScopeClassName={sty["select3__popup"]}
+                            showSearch={false}
+                            size={"large"}
+                            suffixIcon={
+                              <ChevronDown2Icon
+                                className={classNames(
+                                  projectcss.all,
+                                  sty.svg___0Bqzq
+                                )}
+                                role={"img"}
+                              />
+                            }
+                            value={generateStateValueProp($state, [
+                              "select3",
+                              "value"
+                            ])}
+                          />
+
+                          <AntdSelect
+                            data-plasmic-name={"select8"}
+                            data-plasmic-override={overrides.select8}
+                            allowClear={true}
+                            autoFocus={false}
+                            className={classNames(
+                              "__wab_instance",
+                              sty.select8
+                            )}
+                            defaultStylesClassName={classNames(
+                              projectcss.root_reset,
+                              projectcss.plasmic_default_styles,
+                              projectcss.plasmic_mixins,
+                              projectcss.plasmic_tokens,
+                              plasmic_antd_5_hostless_css.plasmic_tokens,
+                              plasmic_library_tailwind_3_4_number_tokens_css.plasmic_tokens,
+                              plasmic_plasmic_rich_components_css.plasmic_tokens
+                            )}
+                            mode={"multiple"}
+                            onChange={async (...eventArgs: any) => {
+                              generateStateOnChangeProp($state, [
+                                "select8",
+                                "value"
+                              ]).apply(null, eventArgs);
+                            }}
+                            options={(() => {
+                              try {
+                                return $queries.getSoftSkill.data.map(
+                                  skill => ({
+                                    value: skill.skill,
+                                    label: skill.skill
+                                  })
+                                );
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return [];
+                                }
+                                throw e;
+                              }
+                            })()}
+                            placeholder={
+                              <div
+                                className={classNames(
+                                  projectcss.all,
+                                  projectcss.__wab_text,
+                                  sty.text__xU0H
+                                )}
+                              >
+                                {"Ajouter"}
+                              </div>
+                            }
+                            popupScopeClassName={sty["select8__popup"]}
+                            size={"large"}
+                            suffixIcon={
+                              <ChevronDownIcon
+                                className={classNames(
+                                  projectcss.all,
+                                  sty.svg__iv9X7
+                                )}
+                                role={"img"}
+                              />
+                            }
+                            value={generateStateValueProp($state, [
+                              "select8",
+                              "value"
+                            ])}
+                          />
+                        </FormItemWrapper>
+                        <FormItemWrapper
+                          className={classNames(
+                            "__wab_instance",
+                            sty.formField___5YLjM
+                          )}
+                          hidden={false}
+                          initialValue={$queries.getMe?.data[0]?.level}
+                          label={
+                            <div
+                              className={classNames(
+                                projectcss.all,
+                                projectcss.__wab_text,
+                                sty.text__mtCAv
+                              )}
+                            >
+                              {"Niveau d'exp\u00e9rience"}
+                            </div>
+                          }
+                          name={"level"}
+                        >
+                          <Select
+                            data-plasmic-name={"select"}
+                            data-plasmic-override={overrides.select}
+                            className={classNames("__wab_instance", sty.select)}
+                            initialSelectedValue={(() => {
+                              try {
+                                return $queries.getMe.data[0].level;
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return undefined;
+                                }
+                                throw e;
+                              }
+                            })()}
+                            items={(_par =>
+                              !_par ? [] : Array.isArray(_par) ? _par : [_par])(
+                              (() => {
+                                try {
+                                  return $queries.getXpLevel.data;
+                                } catch (e) {
+                                  if (
+                                    e instanceof TypeError ||
+                                    e?.plasmicType ===
+                                      "PlasmicUndefinedDataError"
+                                  ) {
+                                    return [];
+                                  }
+                                  throw e;
+                                }
+                              })()
+                            ).map((__plasmic_item_0, __plasmic_idx_0) => {
+                              const currentItem = __plasmic_item_0;
+                              const currentIndex = __plasmic_idx_0;
+                              return (
+                                <MenuItem
+                                  key={currentIndex}
+                                  label={(() => {
+                                    try {
+                                      return currentItem.level;
+                                    } catch (e) {
+                                      if (
+                                        e instanceof TypeError ||
+                                        e?.plasmicType ===
+                                          "PlasmicUndefinedDataError"
+                                      ) {
+                                        return undefined;
+                                      }
+                                      throw e;
+                                    }
+                                  })()}
+                                  value={(() => {
+                                    try {
+                                      return currentItem.id;
+                                    } catch (e) {
+                                      if (
+                                        e instanceof TypeError ||
+                                        e?.plasmicType ===
+                                          "PlasmicUndefinedDataError"
+                                      ) {
+                                        return undefined;
+                                      }
+                                      throw e;
+                                    }
+                                  })()}
+                                />
+                              );
+                            })}
+                            onChange={async (...eventArgs: any) => {
+                              generateStateOnChangeProp($state, [
+                                "select",
+                                "value"
+                              ]).apply(null, eventArgs);
+
+                              if (
+                                eventArgs.length > 1 &&
+                                eventArgs[1] &&
+                                eventArgs[1]._plasmic_state_init_
+                              ) {
+                                return;
+                              }
+                            }}
+                            placeholder={"S\u00e9l\u00e9ctionner"}
+                            showLabel={false}
+                          />
+                        </FormItemWrapper>
+                        <FormItemWrapper
+                          className={classNames(
+                            "__wab_instance",
+                            sty.formField__vvnjx
+                          )}
+                          label={
+                            <div
+                              className={classNames(
+                                projectcss.all,
+                                projectcss.__wab_text,
+                                sty.text__tTve0
+                              )}
+                            >
+                              {"Linkedin"}
+                            </div>
+                          }
+                          name={"linkedin_url"}
+                        >
+                          <TextInput
+                            data-plasmic-name={"textInput4"}
+                            data-plasmic-override={overrides.textInput4}
+                            className={classNames(
+                              "__wab_instance",
+                              sty.textInput4
+                            )}
+                            defaultValue={(() => {
+                              try {
+                                return $queries.getMe.data[0].linkedin_url;
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return undefined;
+                                }
+                                throw e;
+                              }
+                            })()}
+                            onChange={async (...eventArgs: any) => {
+                              generateStateOnChangeProp($state, [
+                                "textInput4",
+                                "value"
+                              ]).apply(null, eventArgs);
+
+                              if (
+                                eventArgs.length > 1 &&
+                                eventArgs[1] &&
+                                eventArgs[1]._plasmic_state_init_
+                              ) {
+                                return;
+                              }
+                            }}
+                            placeholder={"https://"}
+                          />
+                        </FormItemWrapper>
+                        <Button
+                          className={classNames(
+                            "__wab_instance",
+                            sty.button___2IaMi
+                          )}
+                          color={"white"}
+                          end={
+                            <GroupIcon
+                              className={classNames(
+                                projectcss.all,
+                                sty.svg__ga8Yf
+                              )}
+                              role={"img"}
+                            />
+                          }
+                          iconEnd={true}
+                          label={
+                            <div
+                              className={classNames(
+                                projectcss.all,
+                                projectcss.__wab_text,
+                                sty.text__xnogZ
+                              )}
+                            >
+                              {"Enregistrer"}
+                            </div>
+                          }
+                          submitsForm={true}
+                          type={"bordered"}
+                        />
+                      </FormWrapper>
+                    );
+                  })()}
+                </div>
+                <Stack__
+                  as={"div"}
+                  data-plasmic-name={"cvModificationDuMdp"}
+                  data-plasmic-override={overrides.cvModificationDuMdp}
+                  hasGap={true}
+                  className={classNames(
+                    projectcss.all,
+                    sty.cvModificationDuMdp
+                  )}
+                >
+                  <Stack__
+                    as={"div"}
+                    data-plasmic-name={"uploadCvLdm"}
+                    data-plasmic-override={overrides.uploadCvLdm}
+                    hasGap={true}
+                    className={classNames(projectcss.all, sty.uploadCvLdm)}
+                  >
+                    <Stack__
+                      as={"div"}
+                      data-plasmic-name={"frame10"}
+                      data-plasmic-override={overrides.frame10}
+                      hasGap={true}
+                      className={classNames(projectcss.all, sty.frame10)}
+                    >
+                      <div
+                        data-plasmic-name={"email"}
+                        data-plasmic-override={overrides.email}
+                        className={classNames(
+                          projectcss.all,
+                          projectcss.__wab_text,
+                          sty.email
+                        )}
+                      >
+                        {"CV"}
+                      </div>
+                      {(() => {
+                        try {
+                          return $queries.getMe.data[0].cv_file === null;
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return true;
+                          }
+                          throw e;
+                        }
+                      })() ? (
+                        <div
+                          data-plasmic-name={"cvnoUpload"}
+                          data-plasmic-override={overrides.cvnoUpload}
+                          className={classNames(projectcss.all, sty.cvnoUpload)}
+                        >
+                          <UploadWrapper
+                            data-plasmic-name={"upload"}
+                            data-plasmic-override={overrides.upload}
+                            accept={""}
+                            className={classNames("__wab_instance", sty.upload)}
+                            files={generateStateValueProp($state, [
+                              "upload",
+                              "files"
+                            ])}
+                            maxCount={1}
+                            onFilesChange={async (...eventArgs: any) => {
+                              generateStateOnChangeProp($state, [
+                                "upload",
+                                "files"
+                              ]).apply(null, eventArgs);
+
+                              (async files => {
+                                const $steps = {};
+
+                                $steps["updateErrorMsg"] = true
+                                  ? (() => {
+                                      const actionArgs = {
+                                        variable: {
+                                          objRoot: $state,
+                                          variablePath: ["errorMsg"]
+                                        },
+                                        operation: 0,
+                                        value: []
+                                      };
+                                      return (({
+                                        variable,
+                                        value,
+                                        startIndex,
+                                        deleteCount
+                                      }) => {
+                                        if (!variable) {
+                                          return;
+                                        }
+                                        const { objRoot, variablePath } =
+                                          variable;
+
+                                        $stateSet(objRoot, variablePath, value);
+                                        return value;
+                                      })?.apply(null, [actionArgs]);
+                                    })()
+                                  : undefined;
+                                if (
+                                  $steps["updateErrorMsg"] != null &&
+                                  typeof $steps["updateErrorMsg"] ===
+                                    "object" &&
+                                  typeof $steps["updateErrorMsg"].then ===
+                                    "function"
+                                ) {
+                                  $steps["updateErrorMsg"] = await $steps[
+                                    "updateErrorMsg"
+                                  ];
+                                }
+
+                                $steps["supabaseUploadFile"] = (() => {
+                                  const files = $state.upload.files;
+                                  if (
+                                    !Array.isArray(files) ||
+                                    files.length === 0
+                                  ) {
+                                    return false;
+                                  }
+                                  const file = files[0];
+                                  const maxSize = 2 * 1024 * 1024;
+                                  const allowedTypes = [
+                                    "application/pdf",
+                                    "application/msword",
+                                    "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+                                    "image/jpeg",
+                                    "image/png"
+                                  ];
+
+                                  const allowedExtensions = [
+                                    ".pdf",
+                                    ".doc",
+                                    ".docx",
+                                    ".jpg",
+                                    ".jpeg",
+                                    ".png"
+                                  ];
+
+                                  const fileTypeOk = allowedTypes.includes(
+                                    file.type
+                                  );
+                                  const fileName =
+                                    file.name?.toLowerCase() || "";
+                                  const fileExtensionOk =
+                                    allowedExtensions.some(ext =>
+                                      fileName.endsWith(ext)
+                                    );
+                                  if (file.size > maxSize) {
+                                    $state.errorMsg.push({
+                                      fichier: "cv",
+                                      title: "Fichier trop volumineux",
+                                      description:
+                                        "Le CV ne doit pas dépasser 2 Mo."
+                                    });
+                                    return false;
+                                  }
+                                  if (!fileTypeOk && !fileExtensionOk) {
+                                    $state.errorMsg.push({
+                                      fichier: "cv",
+                                      title: "Format de fichier invalide",
+                                      description:
+                                        "Le format du CV n'est pas accepté."
+                                    });
+                                    return false;
+                                  }
+                                  return true;
+                                })()
+                                  ? (() => {
+                                      const actionArgs = {
+                                        dataOp: {
+                                          sourceId: "rtEg85U6Vbyi94cRAe93i7",
+                                          opId: "2c27e5ea-862c-480e-bff8-3da6871e0b04",
+                                          userArgs: {
+                                            path: [
+                                              $ctx.SupabaseUser.user.id,
+                                              (() => {
+                                                const file =
+                                                  $state.upload.files[0];
+                                                if (file) {
+                                                  const formattedName =
+                                                    file.name
+                                                      .trim()
+                                                      .toLowerCase()
+                                                      .replace(
+                                                        /[^a-z0-9.\-_]/g,
+                                                        "_"
+                                                      )
+                                                      .replace(/_+/g, "_")
+                                                      .replace(/^_+|_+$/g, "");
+                                                  return formattedName;
+                                                }
+                                              })()
+                                            ],
+                                            content: [
+                                              $state.upload.files[0].contents
+                                            ],
+                                            contentType: [
+                                              $state.upload.files[0].type
+                                            ],
+                                            upsert: [true]
+                                          },
+                                          cacheKey: null,
+                                          invalidatedKeys: [],
+                                          roleId: null
+                                        }
+                                      };
+                                      return (async ({
+                                        dataOp,
+                                        continueOnError
+                                      }) => {
+                                        try {
+                                          const response =
+                                            await executePlasmicDataOp(dataOp, {
+                                              userAuthToken:
+                                                dataSourcesCtx?.userAuthToken,
+                                              user: dataSourcesCtx?.user
+                                            });
+                                          await plasmicInvalidate(
+                                            dataOp.invalidatedKeys
+                                          );
+                                          return response;
+                                        } catch (e) {
+                                          if (!continueOnError) {
+                                            throw e;
+                                          }
+                                          return e;
+                                        }
+                                      })?.apply(null, [actionArgs]);
+                                    })()
+                                  : undefined;
+                                if (
+                                  $steps["supabaseUploadFile"] != null &&
+                                  typeof $steps["supabaseUploadFile"] ===
+                                    "object" &&
+                                  typeof $steps["supabaseUploadFile"].then ===
+                                    "function"
+                                ) {
+                                  $steps["supabaseUploadFile"] = await $steps[
+                                    "supabaseUploadFile"
+                                  ];
+                                }
+
+                                $steps["postgresUpdateById"] =
+                                  $state.errorMsg.length == 0
+                                    ? (() => {
+                                        const actionArgs = {
+                                          dataOp: {
+                                            sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
+                                            opId: "1d316c45-4c3c-4fdb-88bb-e87b178387e4",
+                                            userArgs: {
+                                              keys: [$ctx.SupabaseUser.user.id],
+                                              variables: [
+                                                $steps.supabaseUploadFile?.path.split(
+                                                  "/"
+                                                )[1],
+                                                (() => {})()
+                                              ]
+                                            },
+                                            cacheKey: null,
+                                            invalidatedKeys: [
+                                              "9c25c922-f186-4ed9-850f-6ded6b307e4e"
+                                            ],
+                                            roleId: null
+                                          }
+                                        };
+                                        return (async ({
+                                          dataOp,
+                                          continueOnError
+                                        }) => {
+                                          try {
+                                            const response =
+                                              await executePlasmicDataOp(
+                                                dataOp,
+                                                {
+                                                  userAuthToken:
+                                                    dataSourcesCtx?.userAuthToken,
+                                                  user: dataSourcesCtx?.user
+                                                }
+                                              );
+                                            await plasmicInvalidate(
+                                              dataOp.invalidatedKeys
+                                            );
+                                            return response;
+                                          } catch (e) {
+                                            if (!continueOnError) {
+                                              throw e;
+                                            }
+                                            return e;
+                                          }
+                                        })?.apply(null, [actionArgs]);
+                                      })()
+                                    : undefined;
+                                if (
+                                  $steps["postgresUpdateById"] != null &&
+                                  typeof $steps["postgresUpdateById"] ===
+                                    "object" &&
+                                  typeof $steps["postgresUpdateById"].then ===
+                                    "function"
+                                ) {
+                                  $steps["postgresUpdateById"] = await $steps[
+                                    "postgresUpdateById"
+                                  ];
+                                }
+                              }).apply(null, eventArgs);
+                            }}
+                            showUploadList={false}
+                          >
+                            <div
+                              data-plasmic-name={"content"}
+                              data-plasmic-override={overrides.content}
+                              className={classNames(
+                                projectcss.all,
+                                sty.content
+                              )}
+                            >
+                              <div
+                                className={classNames(
+                                  projectcss.all,
+                                  sty.freeBox__mrjhl
+                                )}
+                              >
+                                <Stack__
+                                  as={PlasmicImg__}
+                                  hasGap={true}
+                                  alt={""}
+                                  className={classNames(sty.img__liyK)}
+                                  displayHeight={"25px"}
+                                  displayMaxHeight={"none"}
+                                  displayMaxWidth={"100%"}
+                                  displayMinHeight={"0"}
+                                  displayMinWidth={"0"}
+                                  displayWidth={"25px"}
+                                  loading={"lazy"}
+                                  src={{
+                                    src: "/plasmic/jam_production_🚀/images/attachementJpg.jpg",
+                                    fullWidth: 512,
+                                    fullHeight: 512,
+                                    aspectRatio: undefined
+                                  }}
+                                />
+                              </div>
+                              <div
+                                className={classNames(
+                                  projectcss.all,
+                                  projectcss.__wab_text,
+                                  sty.text__ccA9
+                                )}
+                              >
+                                {"Importer ou d\u00e9poser un fichier"}
+                              </div>
+                              <div
+                                className={classNames(
+                                  projectcss.all,
+                                  projectcss.__wab_text,
+                                  sty.text__a8Q0B
+                                )}
+                              >
+                                {"PDF (max. 2Mo)"}
+                              </div>
+                            </div>
+                          </UploadWrapper>
+                        </div>
+                      ) : null}
+                      {(() => {
+                        try {
+                          return (
+                            $state.errorMsg &&
+                            $state.errorMsg.length > 0 &&
+                            $state.errorMsg[0].fichier == "cv"
+                          );
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return true;
+                          }
+                          throw e;
+                        }
+                      })() ? (
+                        <div
+                          className={classNames(
+                            projectcss.all,
+                            sty.freeBox__ptXCo
+                          )}
+                        >
+                          <div
+                            className={classNames(
+                              projectcss.all,
+                              projectcss.__wab_text,
+                              sty.text__a87C8
+                            )}
+                          >
+                            <React.Fragment>
+                              {(() => {
+                                try {
+                                  return $state.errorMsg[0].title + " :";
+                                } catch (e) {
+                                  if (
+                                    e instanceof TypeError ||
+                                    e?.plasmicType ===
+                                      "PlasmicUndefinedDataError"
+                                  ) {
+                                    return "";
+                                  }
+                                  throw e;
+                                }
+                              })()}
+                            </React.Fragment>
+                          </div>
+                          <div
+                            className={classNames(
+                              projectcss.all,
+                              projectcss.__wab_text,
+                              sty.text__qo27D
+                            )}
+                          >
+                            <React.Fragment>
+                              {(() => {
+                                try {
+                                  return $state.errorMsg[0].description;
+                                } catch (e) {
+                                  if (
+                                    e instanceof TypeError ||
+                                    e?.plasmicType ===
+                                      "PlasmicUndefinedDataError"
+                                  ) {
+                                    return "";
+                                  }
+                                  throw e;
+                                }
+                              })()}
+                            </React.Fragment>
+                          </div>
+                        </div>
+                      ) : null}
+                      {(() => {
+                        try {
+                          return $queries.getMe.data[0].cv_file !== null;
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return true;
+                          }
+                          throw e;
+                        }
+                      })() ? (
+                        <div
+                          data-plasmic-name={"cvUpload"}
+                          data-plasmic-override={overrides.cvUpload}
+                          className={classNames(projectcss.all, sty.cvUpload)}
+                        >
+                          <PhTrashIcon
+                            className={classNames(
+                              projectcss.all,
+                              sty.svg__eOmVd
+                            )}
+                            onClick={async event => {
+                              const $steps = {};
+
+                              $steps["postgresUpdateMany"] = true
+                                ? (() => {
+                                    const actionArgs = {
+                                      dataOp: {
+                                        sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
+                                        opId: "1d26c89c-b999-4426-9e24-85aec7f766ef",
+                                        userArgs: {
+                                          conditions: [
+                                            $ctx.SupabaseUser.user.id
+                                          ],
+                                          variables: [null]
+                                        },
+                                        cacheKey: null,
+                                        invalidatedKeys: [
+                                          "9c25c922-f186-4ed9-850f-6ded6b307e4e"
+                                        ],
+                                        roleId: null
+                                      }
+                                    };
+                                    return (async ({
+                                      dataOp,
+                                      continueOnError
+                                    }) => {
+                                      try {
+                                        const response =
+                                          await executePlasmicDataOp(dataOp, {
+                                            userAuthToken:
+                                              dataSourcesCtx?.userAuthToken,
+                                            user: dataSourcesCtx?.user
+                                          });
+                                        await plasmicInvalidate(
+                                          dataOp.invalidatedKeys
+                                        );
+                                        return response;
+                                      } catch (e) {
+                                        if (!continueOnError) {
+                                          throw e;
+                                        }
+                                        return e;
+                                      }
+                                    })?.apply(null, [actionArgs]);
+                                  })()
+                                : undefined;
+                              if (
+                                $steps["postgresUpdateMany"] != null &&
+                                typeof $steps["postgresUpdateMany"] ===
+                                  "object" &&
+                                typeof $steps["postgresUpdateMany"].then ===
+                                  "function"
+                              ) {
+                                $steps["postgresUpdateMany"] = await $steps[
+                                  "postgresUpdateMany"
+                                ];
+                              }
+
+                              $steps["updateUploadFiles"] = true
+                                ? (() => {
+                                    const actionArgs = {
+                                      variable: {
+                                        objRoot: $state,
+                                        variablePath: ["upload", "files"]
+                                      },
+                                      operation: 0,
+                                      value: []
+                                    };
+                                    return (({
+                                      variable,
+                                      value,
+                                      startIndex,
+                                      deleteCount
+                                    }) => {
+                                      if (!variable) {
+                                        return;
+                                      }
+                                      const { objRoot, variablePath } =
+                                        variable;
+
+                                      $stateSet(objRoot, variablePath, value);
+                                      return value;
+                                    })?.apply(null, [actionArgs]);
+                                  })()
+                                : undefined;
+                              if (
+                                $steps["updateUploadFiles"] != null &&
+                                typeof $steps["updateUploadFiles"] ===
+                                  "object" &&
+                                typeof $steps["updateUploadFiles"].then ===
+                                  "function"
+                              ) {
+                                $steps["updateUploadFiles"] = await $steps[
+                                  "updateUploadFiles"
+                                ];
+                              }
+                            }}
+                            role={"img"}
+                          />
+
+                          <div
+                            data-plasmic-name={"content5"}
+                            data-plasmic-override={overrides.content5}
+                            className={classNames(projectcss.all, sty.content5)}
+                          >
+                            <div
+                              className={classNames(
+                                projectcss.all,
+                                sty.freeBox__cmIex
+                              )}
+                            >
+                              <Stack__
+                                as={PlasmicImg__}
+                                hasGap={true}
+                                alt={""}
+                                className={classNames(sty.img__jin6E)}
+                                displayHeight={"25px"}
+                                displayMaxHeight={"none"}
+                                displayMaxWidth={"100%"}
+                                displayMinHeight={"0"}
+                                displayMinWidth={"0"}
+                                displayWidth={"25px"}
+                                loading={"lazy"}
+                                src={{
+                                  src: "/plasmic/jam_production_🚀/images/attachementJpg.jpg",
+                                  fullWidth: 512,
+                                  fullHeight: 512,
+                                  aspectRatio: undefined
+                                }}
+                              />
+                            </div>
+                            <div
+                              className={classNames(
+                                projectcss.all,
+                                projectcss.__wab_text,
+                                sty.text__m8XXb
+                              )}
+                            >
+                              <React.Fragment>
+                                {(() => {
+                                  try {
+                                    return $queries.getMe.data[0].cv_file;
+                                  } catch (e) {
+                                    if (
+                                      e instanceof TypeError ||
+                                      e?.plasmicType ===
+                                        "PlasmicUndefinedDataError"
+                                    ) {
+                                      return "Importer ou d\u00e9poser un fichier";
+                                    }
+                                    throw e;
+                                  }
+                                })()}
+                              </React.Fragment>
+                            </div>
+                          </div>
+                        </div>
+                      ) : null}
+                    </Stack__>
+                    <Stack__
+                      as={"div"}
+                      data-plasmic-name={"frame11"}
+                      data-plasmic-override={overrides.frame11}
+                      hasGap={true}
+                      className={classNames(projectcss.all, sty.frame11)}
+                    >
+                      <div
+                        data-plasmic-name={"email2"}
+                        data-plasmic-override={overrides.email2}
+                        className={classNames(
+                          projectcss.all,
+                          projectcss.__wab_text,
+                          sty.email2
+                        )}
+                      >
+                        {"Lettre de motivation"}
+                      </div>
+                      {(() => {
+                        try {
+                          return (
+                            $queries.getMe.data[0].cover_letter_file === null
+                          );
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return true;
+                          }
+                          throw e;
+                        }
+                      })() ? (
+                        <div
+                          data-plasmic-name={"lmNoUpload"}
+                          data-plasmic-override={overrides.lmNoUpload}
+                          className={classNames(projectcss.all, sty.lmNoUpload)}
+                        >
+                          <UploadWrapper
+                            data-plasmic-name={"upload3"}
+                            data-plasmic-override={overrides.upload3}
+                            accept={""}
+                            className={classNames(
+                              "__wab_instance",
+                              sty.upload3
+                            )}
+                            dragAndDropFiles={false}
+                            files={generateStateValueProp($state, [
+                              "upload3",
+                              "files"
+                            ])}
+                            maxCount={1}
+                            onFilesChange={async (...eventArgs: any) => {
+                              generateStateOnChangeProp($state, [
+                                "upload3",
+                                "files"
+                              ]).apply(null, eventArgs);
+
+                              (async files => {
+                                const $steps = {};
+
+                                $steps["errorMsg"] = true
+                                  ? (() => {
+                                      const actionArgs = {
+                                        variable: {
+                                          objRoot: $state,
+                                          variablePath: ["errorMsg"]
+                                        },
+                                        operation: 0,
+                                        value: []
+                                      };
+                                      return (({
+                                        variable,
+                                        value,
+                                        startIndex,
+                                        deleteCount
+                                      }) => {
+                                        if (!variable) {
+                                          return;
+                                        }
+                                        const { objRoot, variablePath } =
+                                          variable;
+
+                                        $stateSet(objRoot, variablePath, value);
+                                        return value;
+                                      })?.apply(null, [actionArgs]);
+                                    })()
+                                  : undefined;
+                                if (
+                                  $steps["errorMsg"] != null &&
+                                  typeof $steps["errorMsg"] === "object" &&
+                                  typeof $steps["errorMsg"].then === "function"
+                                ) {
+                                  $steps["errorMsg"] = await $steps["errorMsg"];
+                                }
+
+                                $steps["supabaseUploadFile"] = (() => {
+                                  const files = $state.upload3.files;
+                                  if (
+                                    !Array.isArray(files) ||
+                                    files.length === 0
+                                  ) {
+                                    return false;
+                                  }
+                                  const file = files[0];
+                                  const maxSize = 2 * 1024 * 1024;
+                                  const allowedTypes = [
+                                    "application/pdf",
+                                    "application/msword",
+                                    "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+                                    "image/jpeg",
+                                    "image/png"
+                                  ];
+
+                                  const allowedExtensions = [
+                                    ".pdf",
+                                    ".doc",
+                                    ".docx",
+                                    ".jpg",
+                                    ".jpeg",
+                                    ".png"
+                                  ];
+
+                                  const fileTypeOk = allowedTypes.includes(
+                                    file.type
+                                  );
+                                  const fileName =
+                                    file.name?.toLowerCase() || "";
+                                  const fileExtensionOk =
+                                    allowedExtensions.some(ext =>
+                                      fileName.endsWith(ext)
+                                    );
+                                  if (file.size > maxSize) {
+                                    $state.errorMsg.push({
+                                      fichier: "ldm",
+                                      title: "Fichier trop volumineux",
+                                      description:
+                                        "La lettre de motivation ne doit pas dépasser 2 Mo."
+                                    });
+                                    return false;
+                                  }
+                                  if (!fileTypeOk && !fileExtensionOk) {
+                                    $state.errorMsg.push({
+                                      fichier: "ldm",
+                                      title: "Format de fichier invalide",
+                                      description:
+                                        "Le format de la lettre de motivation n'est pas accepté."
+                                    });
+                                    return false;
+                                  }
+                                  return true;
+                                })()
+                                  ? (() => {
+                                      const actionArgs = {
+                                        dataOp: {
+                                          sourceId: "rtEg85U6Vbyi94cRAe93i7",
+                                          opId: "2c27e5ea-862c-480e-bff8-3da6871e0b04",
+                                          userArgs: {
+                                            path: [
+                                              $ctx.SupabaseUser.user.id,
+                                              (() => {
+                                                const file =
+                                                  $state.upload3.files[0];
+                                                if (file) {
+                                                  const formattedName =
+                                                    file.name
+                                                      .trim()
+                                                      .toLowerCase()
+                                                      .replace(
+                                                        /[^a-z0-9.\-_]/g,
+                                                        "_"
+                                                      )
+                                                      .replace(/_+/g, "_")
+                                                      .replace(/^_+|_+$/g, "");
+                                                  return formattedName;
+                                                }
+                                              })()
+                                            ],
+                                            content: [
+                                              $state.upload3.files[0].contents
+                                            ],
+                                            contentType: [
+                                              $state.upload3.files[0].type
+                                            ],
+                                            upsert: [true]
+                                          },
+                                          cacheKey: null,
+                                          invalidatedKeys: [],
+                                          roleId: null
+                                        }
+                                      };
+                                      return (async ({
+                                        dataOp,
+                                        continueOnError
+                                      }) => {
+                                        try {
+                                          const response =
+                                            await executePlasmicDataOp(dataOp, {
+                                              userAuthToken:
+                                                dataSourcesCtx?.userAuthToken,
+                                              user: dataSourcesCtx?.user
+                                            });
+                                          await plasmicInvalidate(
+                                            dataOp.invalidatedKeys
+                                          );
+                                          return response;
+                                        } catch (e) {
+                                          if (!continueOnError) {
+                                            throw e;
+                                          }
+                                          return e;
+                                        }
+                                      })?.apply(null, [actionArgs]);
+                                    })()
+                                  : undefined;
+                                if (
+                                  $steps["supabaseUploadFile"] != null &&
+                                  typeof $steps["supabaseUploadFile"] ===
+                                    "object" &&
+                                  typeof $steps["supabaseUploadFile"].then ===
+                                    "function"
+                                ) {
+                                  $steps["supabaseUploadFile"] = await $steps[
+                                    "supabaseUploadFile"
+                                  ];
+                                }
+
+                                $steps["postgresUpdateById"] =
+                                  $state.errorMsg.length == 0
+                                    ? (() => {
+                                        const actionArgs = {
+                                          dataOp: {
+                                            sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
+                                            opId: "1d316c45-4c3c-4fdb-88bb-e87b178387e4",
+                                            userArgs: {
+                                              keys: [$ctx.SupabaseUser.user.id],
+                                              variables: [
+                                                (() => {})(),
+                                                $steps.supabaseUploadFile?.path.split(
+                                                  "/"
+                                                )[1]
+                                              ]
+                                            },
+                                            cacheKey: null,
+                                            invalidatedKeys: [
+                                              "9c25c922-f186-4ed9-850f-6ded6b307e4e"
+                                            ],
+                                            roleId: null
+                                          }
+                                        };
+                                        return (async ({
+                                          dataOp,
+                                          continueOnError
+                                        }) => {
+                                          try {
+                                            const response =
+                                              await executePlasmicDataOp(
+                                                dataOp,
+                                                {
+                                                  userAuthToken:
+                                                    dataSourcesCtx?.userAuthToken,
+                                                  user: dataSourcesCtx?.user
+                                                }
+                                              );
+                                            await plasmicInvalidate(
+                                              dataOp.invalidatedKeys
+                                            );
+                                            return response;
+                                          } catch (e) {
+                                            if (!continueOnError) {
+                                              throw e;
+                                            }
+                                            return e;
+                                          }
+                                        })?.apply(null, [actionArgs]);
+                                      })()
+                                    : undefined;
+                                if (
+                                  $steps["postgresUpdateById"] != null &&
+                                  typeof $steps["postgresUpdateById"] ===
+                                    "object" &&
+                                  typeof $steps["postgresUpdateById"].then ===
+                                    "function"
+                                ) {
+                                  $steps["postgresUpdateById"] = await $steps[
+                                    "postgresUpdateById"
+                                  ];
+                                }
+                              }).apply(null, eventArgs);
+                            }}
+                            showUploadList={false}
+                          >
+                            <div
+                              className={classNames(
+                                projectcss.all,
+                                sty.freeBox__ywp0V
+                              )}
+                            >
+                              <div
+                                className={classNames(
+                                  projectcss.all,
+                                  sty.freeBox__oWGo
+                                )}
+                              >
+                                <Stack__
+                                  as={PlasmicImg__}
+                                  hasGap={true}
+                                  alt={""}
+                                  className={classNames(sty.img__hAnWf)}
+                                  displayHeight={"25px"}
+                                  displayMaxHeight={"none"}
+                                  displayMaxWidth={"100%"}
+                                  displayMinHeight={"0"}
+                                  displayMinWidth={"0"}
+                                  displayWidth={"25px"}
+                                  loading={"lazy"}
+                                  src={{
+                                    src: "/plasmic/jam_production_🚀/images/attachementJpg.jpg",
+                                    fullWidth: 512,
+                                    fullHeight: 512,
+                                    aspectRatio: undefined
+                                  }}
+                                />
+                              </div>
+                              <div
+                                className={classNames(
+                                  projectcss.all,
+                                  projectcss.__wab_text,
+                                  sty.text__cpLcg
+                                )}
+                              >
+                                {"Importer ou d\u00e9poser un fichier"}
+                              </div>
+                              <div
+                                className={classNames(
+                                  projectcss.all,
+                                  projectcss.__wab_text,
+                                  sty.text__pprMa
+                                )}
+                              >
+                                {"PDF (max. 2Mo)"}
+                              </div>
+                            </div>
+                          </UploadWrapper>
+                        </div>
+                      ) : null}
+                      {(() => {
+                        try {
+                          return (
+                            $state.errorMsg &&
+                            $state.errorMsg.length > 0 &&
+                            $state.errorMsg[0].fichier == "ldm"
+                          );
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return true;
+                          }
+                          throw e;
+                        }
+                      })() ? (
+                        <div
+                          className={classNames(
+                            projectcss.all,
+                            sty.freeBox__eJdi2
+                          )}
+                        >
+                          <div
+                            className={classNames(
+                              projectcss.all,
+                              projectcss.__wab_text,
+                              sty.text__bV4H
+                            )}
+                          >
+                            <React.Fragment>
+                              {(() => {
+                                try {
+                                  return $state.errorMsg[0].title + " :";
+                                } catch (e) {
+                                  if (
+                                    e instanceof TypeError ||
+                                    e?.plasmicType ===
+                                      "PlasmicUndefinedDataError"
+                                  ) {
+                                    return "";
+                                  }
+                                  throw e;
+                                }
+                              })()}
+                            </React.Fragment>
+                          </div>
+                          <div
+                            className={classNames(
+                              projectcss.all,
+                              projectcss.__wab_text,
+                              sty.text__qobQf
+                            )}
+                          >
+                            <React.Fragment>
+                              {(() => {
+                                try {
+                                  return $state.errorMsg[0].description;
+                                } catch (e) {
+                                  if (
+                                    e instanceof TypeError ||
+                                    e?.plasmicType ===
+                                      "PlasmicUndefinedDataError"
+                                  ) {
+                                    return "";
+                                  }
+                                  throw e;
+                                }
+                              })()}
+                            </React.Fragment>
+                          </div>
+                        </div>
+                      ) : null}
+                      {(() => {
+                        try {
+                          return (
+                            $queries.getMe.data[0].cover_letter_file !== null
+                          );
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return true;
+                          }
+                          throw e;
+                        }
+                      })() ? (
+                        <div
+                          data-plasmic-name={"lmUpload"}
+                          data-plasmic-override={overrides.lmUpload}
+                          className={classNames(projectcss.all, sty.lmUpload)}
+                        >
+                          <PhTrashIcon
+                            className={classNames(
+                              projectcss.all,
+                              sty.svg__y9Q64
+                            )}
+                            onClick={async event => {
+                              const $steps = {};
+
+                              $steps["postgresUpdateMany"] = true
+                                ? (() => {
+                                    const actionArgs = {
+                                      dataOp: {
+                                        sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
+                                        opId: "e205d484-80c7-4de7-b5c0-7d0135a1a283",
+                                        userArgs: {
+                                          conditions: [
+                                            $ctx.SupabaseUser.user.id
+                                          ],
+                                          variables: [null]
+                                        },
+                                        cacheKey: null,
+                                        invalidatedKeys: [
+                                          "9c25c922-f186-4ed9-850f-6ded6b307e4e"
+                                        ],
+                                        roleId: null
+                                      }
+                                    };
+                                    return (async ({
+                                      dataOp,
+                                      continueOnError
+                                    }) => {
+                                      try {
+                                        const response =
+                                          await executePlasmicDataOp(dataOp, {
+                                            userAuthToken:
+                                              dataSourcesCtx?.userAuthToken,
+                                            user: dataSourcesCtx?.user
+                                          });
+                                        await plasmicInvalidate(
+                                          dataOp.invalidatedKeys
+                                        );
+                                        return response;
+                                      } catch (e) {
+                                        if (!continueOnError) {
+                                          throw e;
+                                        }
+                                        return e;
+                                      }
+                                    })?.apply(null, [actionArgs]);
+                                  })()
+                                : undefined;
+                              if (
+                                $steps["postgresUpdateMany"] != null &&
+                                typeof $steps["postgresUpdateMany"] ===
+                                  "object" &&
+                                typeof $steps["postgresUpdateMany"].then ===
+                                  "function"
+                              ) {
+                                $steps["postgresUpdateMany"] = await $steps[
+                                  "postgresUpdateMany"
+                                ];
+                              }
+                            }}
+                            role={"img"}
+                          />
+
+                          <div
+                            data-plasmic-name={"content3"}
+                            data-plasmic-override={overrides.content3}
+                            className={classNames(projectcss.all, sty.content3)}
+                          >
+                            <div
+                              className={classNames(
+                                projectcss.all,
+                                sty.freeBox__ksiuw
+                              )}
+                            >
+                              <Stack__
+                                as={PlasmicImg__}
+                                hasGap={true}
+                                alt={""}
+                                className={classNames(sty.img__zf67Z)}
+                                displayHeight={"25px"}
+                                displayMaxHeight={"none"}
+                                displayMaxWidth={"100%"}
+                                displayMinHeight={"0"}
+                                displayMinWidth={"0"}
+                                displayWidth={"25px"}
+                                loading={"lazy"}
+                                src={{
+                                  src: "/plasmic/jam_production_🚀/images/attachementJpg.jpg",
+                                  fullWidth: 512,
+                                  fullHeight: 512,
+                                  aspectRatio: undefined
+                                }}
+                              />
+                            </div>
+                            <div
+                              className={classNames(
+                                projectcss.all,
+                                projectcss.__wab_text,
+                                sty.text__qkgUb
+                              )}
+                            >
+                              <React.Fragment>
+                                {(() => {
+                                  try {
+                                    return $queries.getMe.data[0]
+                                      .cover_letter_file;
+                                  } catch (e) {
+                                    if (
+                                      e instanceof TypeError ||
+                                      e?.plasmicType ===
+                                        "PlasmicUndefinedDataError"
+                                    ) {
+                                      return "Importer ou d\u00e9poser un fichier";
+                                    }
+                                    throw e;
+                                  }
+                                })()}
+                              </React.Fragment>
+                            </div>
+                          </div>
+                        </div>
+                      ) : null}
+                    </Stack__>
+                  </Stack__>
+                  <div
+                    data-plasmic-name={"reinitialisationDuMdp"}
+                    data-plasmic-override={overrides.reinitialisationDuMdp}
+                    className={classNames(
+                      projectcss.all,
+                      sty.reinitialisationDuMdp
+                    )}
+                  >
+                    <Stack__
+                      as={"div"}
+                      data-plasmic-name={"card3"}
+                      data-plasmic-override={overrides.card3}
+                      hasGap={true}
+                      className={classNames(projectcss.all, sty.card3)}
+                    >
+                      <ResetPassword
+                        data-plasmic-name={"resetPassword"}
+                        data-plasmic-override={overrides.resetPassword}
+                        alertPosition={"top"}
+                        cancelButtonStyle={"tertiary"}
+                        cancelButtonText={"Annuler"}
+                        className={classNames(
+                          "__wab_instance",
+                          sty.resetPassword
+                        )}
+                        confirmPassword={generateStateValueProp($state, [
+                          "resetPassword",
+                          "confirmPassword"
+                        ])}
+                        confirmPasswordLabel={
+                          "R\u00e9p\u00e9tez le mot de passe*"
+                        }
+                        confirmPasswordPlaceholder={
+                          "Confirmez votre mot de passe"
+                        }
+                        eyeIconColor={"#666"}
+                        inputStyle={"simple"}
+                        maxAlerts={3}
+                        onConfirmPasswordChange={async (...eventArgs: any) => {
+                          generateStateOnChangeProp($state, [
+                            "resetPassword",
+                            "confirmPassword"
+                          ]).apply(null, eventArgs);
+                        }}
+                        onPasswordChange={async (...eventArgs: any) => {
+                          generateStateOnChangeProp($state, [
+                            "resetPassword",
+                            "password"
+                          ]).apply(null, eventArgs);
+                        }}
+                        onSubmit={async event => {
                           const $steps = {};
 
-                          $steps["invokeGlobalAction"] = true
+                          $steps["postgresUpdateById"] = true
                             ? (() => {
                                 const actionArgs = {
                                   args: [
@@ -3817,348 +3913,277 @@ function PlasmicParametresCandidat__RenderFunc(props: {
                               })()
                             : undefined;
                           if (
-                            $steps["invokeGlobalAction"] != null &&
-                            typeof $steps["invokeGlobalAction"] === "object" &&
-                            typeof $steps["invokeGlobalAction"].then ===
+                            $steps["postgresUpdateById"] != null &&
+                            typeof $steps["postgresUpdateById"] === "object" &&
+                            typeof $steps["postgresUpdateById"].then ===
                               "function"
                           ) {
-                            $steps["invokeGlobalAction"] = await $steps[
-                              "invokeGlobalAction"
-                            ];
-                          }
-                        },
-                        onIsSubmittingChange: async (...eventArgs: any) => {
-                          generateStateOnChangePropForCodeComponents(
-                            $state,
-                            "isSubmitting",
-                            ["form", "isSubmitting"],
-                            FormWrapper_Helpers
-                          ).apply(null, eventArgs);
-                        },
-                        ref: ref => {
-                          $refs["form"] = ref;
-                        },
-                        submitSlot: null,
-                        wrapperCol: { span: 16, horizontalOnly: true }
-                      };
-                      initializeCodeComponentStates(
-                        $state,
-                        [
-                          {
-                            name: "value",
-                            plasmicStateName: "form.value"
-                          },
-                          {
-                            name: "isSubmitting",
-                            plasmicStateName: "form.isSubmitting"
-                          }
-                        ],
-                        [],
-                        FormWrapper_Helpers ?? {},
-                        child$Props
-                      );
-
-                      return (
-                        <FormWrapper
-                          data-plasmic-name={"form"}
-                          data-plasmic-override={overrides.form}
-                          {...child$Props}
-                        >
-                          <Button
-                            className={classNames(
-                              "__wab_instance",
-                              sty.button__z6Bk1
-                            )}
-                            color={"white"}
-                            end={
-                              <GroupIcon
-                                className={classNames(
-                                  projectcss.all,
-                                  sty.svg__gnFr
-                                )}
-                                role={"img"}
-                              />
-                            }
-                            iconEnd={true}
-                            label={
-                              <div
-                                className={classNames(
-                                  projectcss.all,
-                                  projectcss.__wab_text,
-                                  sty.text___3Ie04
-                                )}
-                              >
-                                {"enregistrer"}
-                              </div>
-                            }
-                            submitsForm={true}
-                            type={"bordered"}
-                          />
-                        </FormWrapper>
-                      );
-                    })()}
-                    <Stack__
-                      as={"div"}
-                      data-plasmic-name={"card4"}
-                      data-plasmic-override={overrides.card4}
-                      hasGap={true}
-                      className={classNames(projectcss.all, sty.card4)}
-                    >
-                      <DeleteAccount2
-                        data-plasmic-name={"deleteAccount2"}
-                        data-plasmic-override={overrides.deleteAccount2}
-                        className={classNames(
-                          "__wab_instance",
-                          sty.deleteAccount2
-                        )}
-                        color={"white"}
-                        iconStart={true}
-                        label={
-                          <div
-                            className={classNames(
-                              projectcss.all,
-                              projectcss.__wab_text,
-                              sty.text__sk2Jw
-                            )}
-                          >
-                            {"supprimer le compte"}
-                          </div>
-                        }
-                        onClick={async event => {
-                          const $steps = {};
-
-                          $steps["updateSupprCompteIsOpen"] = true
-                            ? (() => {
-                                const actionArgs = {
-                                  variable: {
-                                    objRoot: $state,
-                                    variablePath: ["supprCompte", "isOpen"]
-                                  },
-                                  operation: 0,
-                                  value: true
-                                };
-                                return (({
-                                  variable,
-                                  value,
-                                  startIndex,
-                                  deleteCount
-                                }) => {
-                                  if (!variable) {
-                                    return;
-                                  }
-                                  const { objRoot, variablePath } = variable;
-
-                                  $stateSet(objRoot, variablePath, value);
-                                  return value;
-                                })?.apply(null, [actionArgs]);
-                              })()
-                            : undefined;
-                          if (
-                            $steps["updateSupprCompteIsOpen"] != null &&
-                            typeof $steps["updateSupprCompteIsOpen"] ===
-                              "object" &&
-                            typeof $steps["updateSupprCompteIsOpen"].then ===
-                              "function"
-                          ) {
-                            $steps["updateSupprCompteIsOpen"] = await $steps[
-                              "updateSupprCompteIsOpen"
+                            $steps["postgresUpdateById"] = await $steps[
+                              "postgresUpdateById"
                             ];
                           }
                         }}
-                        start={
-                          <PhTrashIcon
-                            className={classNames(
-                              projectcss.all,
-                              sty.svg__o4Hmo
-                            )}
-                            role={"img"}
-                          />
+                        password={generateStateValueProp($state, [
+                          "resetPassword",
+                          "password"
+                        ])}
+                        passwordLabel={"Nouveau mot de passe*"}
+                        passwordPlaceholder={
+                          "Entrez votre nouveau mot de passe"
                         }
+                        resetSuccessMessage={
+                          "Votre mot de passe a été réinitialisé avec succès!"
+                        }
+                        showAlerts={true}
+                        showPasswordStrength={true}
+                        showPasswordToggle={true}
+                        submitButtonStyle={"primary"}
+                        submitButtonText={"Réinitialiser"}
+                        title={``}
+                        titleHeading={"h1"}
+                        wrapperStyle={"card"}
                       />
+
+                      {(() => {
+                        const child$Props = {
+                          className: classNames("__wab_instance", sty.form),
+                          extendedOnValuesChange: async (...eventArgs: any) => {
+                            generateStateOnChangePropForCodeComponents(
+                              $state,
+                              "value",
+                              ["form", "value"],
+                              FormWrapper_Helpers
+                            ).apply(null, eventArgs);
+                          },
+                          formItems: [
+                            { label: "Name", name: "name", inputType: "Text" },
+                            {
+                              label: "Message",
+                              name: "message",
+                              inputType: "Text Area"
+                            }
+                          ],
+                          labelCol: { span: 8, horizontalOnly: true },
+                          layout: "vertical",
+                          mode: "advanced",
+                          onFinish: async values => {
+                            const $steps = {};
+
+                            $steps["invokeGlobalAction"] = true
+                              ? (() => {
+                                  const actionArgs = {
+                                    args: [
+                                      (() => {
+                                        try {
+                                          return $state.resetPassword
+                                            .confirmPassword;
+                                        } catch (e) {
+                                          if (
+                                            e instanceof TypeError ||
+                                            e?.plasmicType ===
+                                              "PlasmicUndefinedDataError"
+                                          ) {
+                                            return undefined;
+                                          }
+                                          throw e;
+                                        }
+                                      })()
+                                    ]
+                                  };
+                                  return $globalActions[
+                                    "SupabaseUserGlobalContext.updateUserPassword"
+                                  ]?.apply(null, [...actionArgs.args]);
+                                })()
+                              : undefined;
+                            if (
+                              $steps["invokeGlobalAction"] != null &&
+                              typeof $steps["invokeGlobalAction"] ===
+                                "object" &&
+                              typeof $steps["invokeGlobalAction"].then ===
+                                "function"
+                            ) {
+                              $steps["invokeGlobalAction"] = await $steps[
+                                "invokeGlobalAction"
+                              ];
+                            }
+                          },
+                          onIsSubmittingChange: async (...eventArgs: any) => {
+                            generateStateOnChangePropForCodeComponents(
+                              $state,
+                              "isSubmitting",
+                              ["form", "isSubmitting"],
+                              FormWrapper_Helpers
+                            ).apply(null, eventArgs);
+                          },
+                          ref: ref => {
+                            $refs["form"] = ref;
+                          },
+                          submitSlot: null,
+                          wrapperCol: { span: 16, horizontalOnly: true }
+                        };
+                        initializeCodeComponentStates(
+                          $state,
+                          [
+                            {
+                              name: "value",
+                              plasmicStateName: "form.value"
+                            },
+                            {
+                              name: "isSubmitting",
+                              plasmicStateName: "form.isSubmitting"
+                            }
+                          ],
+                          [],
+                          FormWrapper_Helpers ?? {},
+                          child$Props
+                        );
+
+                        return (
+                          <FormWrapper
+                            data-plasmic-name={"form"}
+                            data-plasmic-override={overrides.form}
+                            {...child$Props}
+                          >
+                            <Button
+                              className={classNames(
+                                "__wab_instance",
+                                sty.button__z6Bk1
+                              )}
+                              color={"white"}
+                              end={
+                                <GroupIcon
+                                  className={classNames(
+                                    projectcss.all,
+                                    sty.svg__gnFr
+                                  )}
+                                  role={"img"}
+                                />
+                              }
+                              iconEnd={true}
+                              label={
+                                <div
+                                  className={classNames(
+                                    projectcss.all,
+                                    projectcss.__wab_text,
+                                    sty.text___3Ie04
+                                  )}
+                                >
+                                  {"enregistrer"}
+                                </div>
+                              }
+                              submitsForm={true}
+                              type={"bordered"}
+                            />
+                          </FormWrapper>
+                        );
+                      })()}
+                      <Stack__
+                        as={"div"}
+                        data-plasmic-name={"card4"}
+                        data-plasmic-override={overrides.card4}
+                        hasGap={true}
+                        className={classNames(projectcss.all, sty.card4)}
+                      >
+                        <DeleteAccount2
+                          data-plasmic-name={"deleteAccount2"}
+                          data-plasmic-override={overrides.deleteAccount2}
+                          className={classNames(
+                            "__wab_instance",
+                            sty.deleteAccount2
+                          )}
+                          color={"white"}
+                          iconStart={true}
+                          label={
+                            <div
+                              className={classNames(
+                                projectcss.all,
+                                projectcss.__wab_text,
+                                sty.text__sk2Jw
+                              )}
+                            >
+                              {"supprimer le compte"}
+                            </div>
+                          }
+                          onClick={async event => {
+                            const $steps = {};
+
+                            $steps["updateSupprCompteIsOpen"] = true
+                              ? (() => {
+                                  const actionArgs = {
+                                    variable: {
+                                      objRoot: $state,
+                                      variablePath: ["supprCompte", "isOpen"]
+                                    },
+                                    operation: 0,
+                                    value: true
+                                  };
+                                  return (({
+                                    variable,
+                                    value,
+                                    startIndex,
+                                    deleteCount
+                                  }) => {
+                                    if (!variable) {
+                                      return;
+                                    }
+                                    const { objRoot, variablePath } = variable;
+
+                                    $stateSet(objRoot, variablePath, value);
+                                    return value;
+                                  })?.apply(null, [actionArgs]);
+                                })()
+                              : undefined;
+                            if (
+                              $steps["updateSupprCompteIsOpen"] != null &&
+                              typeof $steps["updateSupprCompteIsOpen"] ===
+                                "object" &&
+                              typeof $steps["updateSupprCompteIsOpen"].then ===
+                                "function"
+                            ) {
+                              $steps["updateSupprCompteIsOpen"] = await $steps[
+                                "updateSupprCompteIsOpen"
+                              ];
+                            }
+                          }}
+                          start={
+                            <PhTrashIcon
+                              className={classNames(
+                                projectcss.all,
+                                sty.svg__o4Hmo
+                              )}
+                              role={"img"}
+                            />
+                          }
+                        />
+                      </Stack__>
                     </Stack__>
-                  </Stack__>
-                </div>
+                  </div>
+                </Stack__>
               </Stack__>
-            </Stack__>
-            <Modal
-              data-plasmic-name={"supprCompte"}
-              data-plasmic-override={overrides.supprCompte}
-              className={classNames("__wab_instance", sty.supprCompte)}
-              content={
-                <Stack__
-                  as={"div"}
-                  hasGap={true}
-                  className={classNames(projectcss.all, sty.freeBox__cgtlR)}
-                >
-                  <ReshotIconAlert7T6Wum8VleSvgIcon
-                    className={classNames(projectcss.all, sty.svg__a3Ceg)}
-                    onClick={async event => {
-                      const $steps = {};
-
-                      $steps["postgresUpdateMany"] = true
-                        ? (() => {
-                            const actionArgs = {
-                              dataOp: {
-                                sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
-                                opId: "e205d484-80c7-4de7-b5c0-7d0135a1a283",
-                                userArgs: {
-                                  conditions: [$ctx.SupabaseUser.user.id],
-                                  variables: [null]
-                                },
-                                cacheKey: null,
-                                invalidatedKeys: ["plasmic_refresh_all"],
-                                roleId: null
-                              }
-                            };
-                            return (async ({ dataOp, continueOnError }) => {
-                              try {
-                                const response = await executePlasmicDataOp(
-                                  dataOp,
-                                  {
-                                    userAuthToken:
-                                      dataSourcesCtx?.userAuthToken,
-                                    user: dataSourcesCtx?.user
-                                  }
-                                );
-                                await plasmicInvalidate(dataOp.invalidatedKeys);
-                                return response;
-                              } catch (e) {
-                                if (!continueOnError) {
-                                  throw e;
-                                }
-                                return e;
-                              }
-                            })?.apply(null, [actionArgs]);
-                          })()
-                        : undefined;
-                      if (
-                        $steps["postgresUpdateMany"] != null &&
-                        typeof $steps["postgresUpdateMany"] === "object" &&
-                        typeof $steps["postgresUpdateMany"].then === "function"
-                      ) {
-                        $steps["postgresUpdateMany"] = await $steps[
-                          "postgresUpdateMany"
-                        ];
-                      }
-                    }}
-                    role={"img"}
-                  />
-
-                  <div
-                    className={classNames(
-                      projectcss.all,
-                      projectcss.__wab_text,
-                      sty.text__zLnT
-                    )}
+              <Modal
+                data-plasmic-name={"supprCompte"}
+                data-plasmic-override={overrides.supprCompte}
+                className={classNames("__wab_instance", sty.supprCompte)}
+                content={
+                  <Stack__
+                    as={"div"}
+                    hasGap={true}
+                    className={classNames(projectcss.all, sty.freeBox__cgtlR)}
                   >
-                    {"Supprimer le compte"}
-                  </div>
-                  <div
-                    data-plasmic-name={"e"}
-                    data-plasmic-override={overrides.e}
-                    className={classNames(
-                      projectcss.all,
-                      projectcss.__wab_text,
-                      sty.e
-                    )}
-                  >
-                    {
-                      "\u00cates-vous s\u00fbr de vouloir supprimer le compte?\nCette action est irr\u00e9versible."
-                    }
-                  </div>
-                  <div
-                    className={classNames(projectcss.all, sty.freeBox__iRVws)}
-                  >
-                    <Button
-                      className={classNames(
-                        "__wab_instance",
-                        sty.button__qbMpH
-                      )}
-                      color={"white"}
-                      label={
-                        <div
-                          className={classNames(
-                            projectcss.all,
-                            projectcss.__wab_text,
-                            sty.text__l2Rn8
-                          )}
-                        >
-                          {"Annuler"}
-                        </div>
-                      }
+                    <ReshotIconAlert7T6Wum8VleSvgIcon
+                      className={classNames(projectcss.all, sty.svg__a3Ceg)}
                       onClick={async event => {
                         const $steps = {};
 
-                        $steps["updateSupprCompteIsOpen"] = true
-                          ? (() => {
-                              const actionArgs = {
-                                variable: {
-                                  objRoot: $state,
-                                  variablePath: ["supprCompte", "isOpen"]
-                                },
-                                operation: 0,
-                                value: false
-                              };
-                              return (({
-                                variable,
-                                value,
-                                startIndex,
-                                deleteCount
-                              }) => {
-                                if (!variable) {
-                                  return;
-                                }
-                                const { objRoot, variablePath } = variable;
-
-                                $stateSet(objRoot, variablePath, value);
-                                return value;
-                              })?.apply(null, [actionArgs]);
-                            })()
-                          : undefined;
-                        if (
-                          $steps["updateSupprCompteIsOpen"] != null &&
-                          typeof $steps["updateSupprCompteIsOpen"] ===
-                            "object" &&
-                          typeof $steps["updateSupprCompteIsOpen"].then ===
-                            "function"
-                        ) {
-                          $steps["updateSupprCompteIsOpen"] = await $steps[
-                            "updateSupprCompteIsOpen"
-                          ];
-                        }
-                      }}
-                      type={"bordered"}
-                    />
-
-                    <DeleteAccount
-                      data-plasmic-name={"deleteAccount"}
-                      data-plasmic-override={overrides.deleteAccount}
-                      className={classNames(
-                        "__wab_instance",
-                        sty.deleteAccount
-                      )}
-                      label={
-                        <div
-                          className={classNames(
-                            projectcss.all,
-                            projectcss.__wab_text,
-                            sty.text___6T4XP
-                          )}
-                        >
-                          {"Supprimer"}
-                        </div>
-                      }
-                      onClick={async event => {
-                        const $steps = {};
-
-                        $steps["postgresDeleteMany"] = true
+                        $steps["postgresUpdateMany"] = true
                           ? (() => {
                               const actionArgs = {
                                 dataOp: {
                                   sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
-                                  opId: "e4bd9ed9-80bc-49ab-a767-fc37dc7c41a9",
+                                  opId: "e205d484-80c7-4de7-b5c0-7d0135a1a283",
                                   userArgs: {
-                                    conditions: [$ctx.SupabaseUser.user.id]
+                                    conditions: [$ctx.SupabaseUser.user.id],
+                                    variables: [null]
                                   },
                                   cacheKey: null,
                                   invalidatedKeys: ["plasmic_refresh_all"],
@@ -4189,124 +4214,288 @@ function PlasmicParametresCandidat__RenderFunc(props: {
                             })()
                           : undefined;
                         if (
-                          $steps["postgresDeleteMany"] != null &&
-                          typeof $steps["postgresDeleteMany"] === "object" &&
-                          typeof $steps["postgresDeleteMany"].then ===
+                          $steps["postgresUpdateMany"] != null &&
+                          typeof $steps["postgresUpdateMany"] === "object" &&
+                          typeof $steps["postgresUpdateMany"].then ===
                             "function"
                         ) {
-                          $steps["postgresDeleteMany"] = await $steps[
-                            "postgresDeleteMany"
+                          $steps["postgresUpdateMany"] = await $steps[
+                            "postgresUpdateMany"
                           ];
                         }
-
-                        $steps["goToAccueil"] = true
-                          ? (() => {
-                              const actionArgs = { destination: `/` };
-                              return (({ destination }) => {
-                                if (
-                                  typeof destination === "string" &&
-                                  destination.startsWith("#")
-                                ) {
-                                  document
-                                    .getElementById(destination.substr(1))
-                                    .scrollIntoView({ behavior: "smooth" });
-                                } else {
-                                  __nextRouter?.push(destination);
-                                }
-                              })?.apply(null, [actionArgs]);
-                            })()
-                          : undefined;
-                        if (
-                          $steps["goToAccueil"] != null &&
-                          typeof $steps["goToAccueil"] === "object" &&
-                          typeof $steps["goToAccueil"].then === "function"
-                        ) {
-                          $steps["goToAccueil"] = await $steps["goToAccueil"];
-                        }
                       }}
+                      role={"img"}
                     />
-                  </div>
-                </Stack__>
-              }
-              footer={null}
-              heading={null}
-              isOpen={generateStateValueProp($state, ["supprCompte", "isOpen"])}
-              onOpenChange={async (...eventArgs: any) => {
-                generateStateOnChangeProp($state, [
+
+                    <div
+                      className={classNames(
+                        projectcss.all,
+                        projectcss.__wab_text,
+                        sty.text__zLnT
+                      )}
+                    >
+                      {"Supprimer le compte"}
+                    </div>
+                    <div
+                      data-plasmic-name={"e"}
+                      data-plasmic-override={overrides.e}
+                      className={classNames(
+                        projectcss.all,
+                        projectcss.__wab_text,
+                        sty.e
+                      )}
+                    >
+                      {
+                        "\u00cates-vous s\u00fbr de vouloir supprimer le compte?\nCette action est irr\u00e9versible."
+                      }
+                    </div>
+                    <div
+                      className={classNames(projectcss.all, sty.freeBox__iRVws)}
+                    >
+                      <Button
+                        className={classNames(
+                          "__wab_instance",
+                          sty.button__qbMpH
+                        )}
+                        color={"white"}
+                        label={
+                          <div
+                            className={classNames(
+                              projectcss.all,
+                              projectcss.__wab_text,
+                              sty.text__l2Rn8
+                            )}
+                          >
+                            {"Annuler"}
+                          </div>
+                        }
+                        onClick={async event => {
+                          const $steps = {};
+
+                          $steps["updateSupprCompteIsOpen"] = true
+                            ? (() => {
+                                const actionArgs = {
+                                  variable: {
+                                    objRoot: $state,
+                                    variablePath: ["supprCompte", "isOpen"]
+                                  },
+                                  operation: 0,
+                                  value: false
+                                };
+                                return (({
+                                  variable,
+                                  value,
+                                  startIndex,
+                                  deleteCount
+                                }) => {
+                                  if (!variable) {
+                                    return;
+                                  }
+                                  const { objRoot, variablePath } = variable;
+
+                                  $stateSet(objRoot, variablePath, value);
+                                  return value;
+                                })?.apply(null, [actionArgs]);
+                              })()
+                            : undefined;
+                          if (
+                            $steps["updateSupprCompteIsOpen"] != null &&
+                            typeof $steps["updateSupprCompteIsOpen"] ===
+                              "object" &&
+                            typeof $steps["updateSupprCompteIsOpen"].then ===
+                              "function"
+                          ) {
+                            $steps["updateSupprCompteIsOpen"] = await $steps[
+                              "updateSupprCompteIsOpen"
+                            ];
+                          }
+                        }}
+                        type={"bordered"}
+                      />
+
+                      <DeleteAccount
+                        data-plasmic-name={"deleteAccount"}
+                        data-plasmic-override={overrides.deleteAccount}
+                        className={classNames(
+                          "__wab_instance",
+                          sty.deleteAccount
+                        )}
+                        label={
+                          <div
+                            className={classNames(
+                              projectcss.all,
+                              projectcss.__wab_text,
+                              sty.text___6T4XP
+                            )}
+                          >
+                            {"Supprimer"}
+                          </div>
+                        }
+                        onClick={async event => {
+                          const $steps = {};
+
+                          $steps["postgresDeleteMany"] = true
+                            ? (() => {
+                                const actionArgs = {
+                                  dataOp: {
+                                    sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
+                                    opId: "e4bd9ed9-80bc-49ab-a767-fc37dc7c41a9",
+                                    userArgs: {
+                                      conditions: [$ctx.SupabaseUser.user.id]
+                                    },
+                                    cacheKey: null,
+                                    invalidatedKeys: ["plasmic_refresh_all"],
+                                    roleId: null
+                                  }
+                                };
+                                return (async ({ dataOp, continueOnError }) => {
+                                  try {
+                                    const response = await executePlasmicDataOp(
+                                      dataOp,
+                                      {
+                                        userAuthToken:
+                                          dataSourcesCtx?.userAuthToken,
+                                        user: dataSourcesCtx?.user
+                                      }
+                                    );
+                                    await plasmicInvalidate(
+                                      dataOp.invalidatedKeys
+                                    );
+                                    return response;
+                                  } catch (e) {
+                                    if (!continueOnError) {
+                                      throw e;
+                                    }
+                                    return e;
+                                  }
+                                })?.apply(null, [actionArgs]);
+                              })()
+                            : undefined;
+                          if (
+                            $steps["postgresDeleteMany"] != null &&
+                            typeof $steps["postgresDeleteMany"] === "object" &&
+                            typeof $steps["postgresDeleteMany"].then ===
+                              "function"
+                          ) {
+                            $steps["postgresDeleteMany"] = await $steps[
+                              "postgresDeleteMany"
+                            ];
+                          }
+
+                          $steps["goToAccueil"] = true
+                            ? (() => {
+                                const actionArgs = { destination: `/` };
+                                return (({ destination }) => {
+                                  if (
+                                    typeof destination === "string" &&
+                                    destination.startsWith("#")
+                                  ) {
+                                    document
+                                      .getElementById(destination.substr(1))
+                                      .scrollIntoView({ behavior: "smooth" });
+                                  } else {
+                                    __nextRouter?.push(destination);
+                                  }
+                                })?.apply(null, [actionArgs]);
+                              })()
+                            : undefined;
+                          if (
+                            $steps["goToAccueil"] != null &&
+                            typeof $steps["goToAccueil"] === "object" &&
+                            typeof $steps["goToAccueil"].then === "function"
+                          ) {
+                            $steps["goToAccueil"] = await $steps["goToAccueil"];
+                          }
+                        }}
+                      />
+                    </div>
+                  </Stack__>
+                }
+                footer={null}
+                heading={null}
+                isOpen={generateStateValueProp($state, [
                   "supprCompte",
                   "isOpen"
-                ]).apply(null, eventArgs);
+                ])}
+                onOpenChange={async (...eventArgs: any) => {
+                  generateStateOnChangeProp($state, [
+                    "supprCompte",
+                    "isOpen"
+                  ]).apply(null, eventArgs);
 
-                if (
-                  eventArgs.length > 1 &&
-                  eventArgs[1] &&
-                  eventArgs[1]._plasmic_state_init_
-                ) {
-                  return;
-                }
-              }}
-              showFooter={false}
-              showHeader={false}
-              trigger={
-                <div
-                  className={classNames(projectcss.all, sty.freeBox__t4AIu)}
-                />
-              }
-            />
-
-            {(
-              hasVariant(globalVariants, "screen", "mobileOnly") ? true : false
-            ) ? (
-              <Stack__
-                as={"div"}
-                data-plasmic-name={"expandTab"}
-                data-plasmic-override={overrides.expandTab}
-                hasGap={true}
-                className={classNames(projectcss.all, sty.expandTab)}
-                onClick={async event => {
-                  const $steps = {};
-
-                  $steps["invokeGlobalAction"] = true
-                    ? (() => {
-                        const actionArgs = { args: ["/"] };
-                        return $globalActions[
-                          "SupabaseUserGlobalContext.logout"
-                        ]?.apply(null, [...actionArgs.args]);
-                      })()
-                    : undefined;
                   if (
-                    $steps["invokeGlobalAction"] != null &&
-                    typeof $steps["invokeGlobalAction"] === "object" &&
-                    typeof $steps["invokeGlobalAction"].then === "function"
+                    eventArgs.length > 1 &&
+                    eventArgs[1] &&
+                    eventArgs[1]._plasmic_state_init_
                   ) {
-                    $steps["invokeGlobalAction"] = await $steps[
-                      "invokeGlobalAction"
-                    ];
+                    return;
                   }
                 }}
-              >
-                <SolarLogoutOutlineIcon
-                  className={classNames(projectcss.all, sty.svg__itDrT)}
-                  role={"img"}
-                />
+                showFooter={false}
+                showHeader={false}
+                trigger={
+                  <div
+                    className={classNames(projectcss.all, sty.freeBox__t4AIu)}
+                  />
+                }
+              />
 
-                <div
-                  className={classNames(
-                    projectcss.all,
-                    projectcss.__wab_text,
-                    sty.text___8Dkjd
-                  )}
+              {(
+                hasVariant(globalVariants, "screen", "mobileOnly")
+                  ? true
+                  : false
+              ) ? (
+                <Stack__
+                  as={"div"}
+                  data-plasmic-name={"expandTab"}
+                  data-plasmic-override={overrides.expandTab}
+                  hasGap={true}
+                  className={classNames(projectcss.all, sty.expandTab)}
+                  onClick={async event => {
+                    const $steps = {};
+
+                    $steps["invokeGlobalAction"] = true
+                      ? (() => {
+                          const actionArgs = { args: ["/"] };
+                          return $globalActions[
+                            "SupabaseUserGlobalContext.logout"
+                          ]?.apply(null, [...actionArgs.args]);
+                        })()
+                      : undefined;
+                    if (
+                      $steps["invokeGlobalAction"] != null &&
+                      typeof $steps["invokeGlobalAction"] === "object" &&
+                      typeof $steps["invokeGlobalAction"].then === "function"
+                    ) {
+                      $steps["invokeGlobalAction"] = await $steps[
+                        "invokeGlobalAction"
+                      ];
+                    }
+                  }}
                 >
-                  {"D\u00e9connexion"}
-                </div>
-              </Stack__>
-            ) : null}
-          </Stack__>
-          <MobileNavbarBottom
-            data-plasmic-name={"mobileNavbarBottom"}
-            data-plasmic-override={overrides.mobileNavbarBottom}
-            className={classNames("__wab_instance", sty.mobileNavbarBottom)}
-          />
+                  <SolarLogoutOutlineIcon
+                    className={classNames(projectcss.all, sty.svg__itDrT)}
+                    role={"img"}
+                  />
+
+                  <div
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.__wab_text,
+                      sty.text___8Dkjd
+                    )}
+                  >
+                    {"D\u00e9connexion"}
+                  </div>
+                </Stack__>
+              ) : null}
+            </Stack__>
+            <MobileNavbarBottom
+              data-plasmic-name={"mobileNavbarBottom"}
+              data-plasmic-override={overrides.mobileNavbarBottom}
+              className={classNames("__wab_instance", sty.mobileNavbarBottom)}
+            />
+          </div>
         </div>
       </div>
     </React.Fragment>
@@ -4316,6 +4505,74 @@ function PlasmicParametresCandidat__RenderFunc(props: {
 const PlasmicDescendants = {
   parametresDeCompte: [
     "parametresDeCompte",
+    "pageLoader",
+    "body",
+    "mobileNavbarTop",
+    "sidebar",
+    "main",
+    "heading",
+    "container",
+    "informationsPersonnelles",
+    "frame1437254343",
+    "upload2",
+    "editIcon",
+    "frame7",
+    "deleteIcon",
+    "frame8",
+    "tableCell",
+    "_switch",
+    "text6",
+    "textInputBase6",
+    "hintText6",
+    "formulaire",
+    "prenomNom",
+    "firstName",
+    "lastName",
+    "textInput3",
+    "telephone",
+    "phoneSelector",
+    "textInput5",
+    "rue",
+    "codePosteVille",
+    "codePostal",
+    "ville",
+    "select4",
+    "modeOfTransportSelect",
+    "textAreaInput",
+    "select3",
+    "select8",
+    "select",
+    "textInput4",
+    "cvModificationDuMdp",
+    "uploadCvLdm",
+    "frame10",
+    "email",
+    "cvnoUpload",
+    "upload",
+    "content",
+    "cvUpload",
+    "content5",
+    "frame11",
+    "email2",
+    "lmNoUpload",
+    "upload3",
+    "lmUpload",
+    "content3",
+    "reinitialisationDuMdp",
+    "card3",
+    "resetPassword",
+    "form",
+    "card4",
+    "deleteAccount2",
+    "supprCompte",
+    "e",
+    "deleteAccount",
+    "expandTab",
+    "mobileNavbarBottom"
+  ],
+  pageLoader: ["pageLoader"],
+  body: [
+    "body",
     "mobileNavbarTop",
     "sidebar",
     "main",
@@ -4684,6 +4941,8 @@ type DescendantsType<T extends NodeNameType> =
   (typeof PlasmicDescendants)[T][number];
 type NodeDefaultElementType = {
   parametresDeCompte: "div";
+  pageLoader: typeof PageLoader;
+  body: "div";
   mobileNavbarTop: typeof MobileNavbarTop;
   sidebar: typeof Sidebar;
   main: "main";
@@ -4808,6 +5067,8 @@ export const PlasmicParametresCandidat = Object.assign(
   makeNodeComponent("parametresDeCompte"),
   {
     // Helper components rendering sub-elements
+    pageLoader: makeNodeComponent("pageLoader"),
+    body: makeNodeComponent("body"),
     mobileNavbarTop: makeNodeComponent("mobileNavbarTop"),
     sidebar: makeNodeComponent("sidebar"),
     main: makeNodeComponent("main"),

@@ -52,10 +52,9 @@
     align-content: stretch;
     display: flex;
     flex-direction: column;
-    padding-top: 64px;
-    padding-bottom: 64px;
     grid-column-start: 1 !important;
     grid-column-end: -1 !important;
+    padding: 64px 0px;
   }
 }
 .imageWrapper {

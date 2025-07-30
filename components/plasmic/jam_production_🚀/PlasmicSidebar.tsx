@@ -59,7 +59,15 @@ import {
   useGlobalActions
 } from "@plasmicapp/react-web/lib/host";
 
+import {
+  executePlasmicDataOp,
+  usePlasmicDataOp,
+  usePlasmicInvalidate
+} from "@plasmicapp/react-web/lib/data-sources";
+
 import SideBarButton from "../../SideBarButton"; // plasmic-import: QWOZXZk1eTc0/component
+import { Separator } from "../../../plasmic-library/others/Separator/Separator"; // plasmic-import: DY1R_wd6WfSn/codeComponent
+import { Fetcher } from "@plasmicapp/react-web/lib/data-sources";
 
 import { useScreenVariants as useScreenVariantshm8Nko4B5BDd } from "./PlasmicGlobalVariant__Screen"; // plasmic-import: HM8Nko4B5BDd/globalVariant
 
@@ -79,6 +87,8 @@ import HeartStraightIcon from "./icons/PlasmicIcon__HeartStraight"; // plasmic-i
 import EnvelopeSimple2Icon from "./icons/PlasmicIcon__EnvelopeSimple2"; // plasmic-import: 44ROc7g2Vqof/icon
 import PhGearFillIcon from "./icons/PlasmicIcon__PhGearFill"; // plasmic-import: M0oN64eO6n3z/icon
 import SolarLogoutOutlineIcon from "./icons/PlasmicIcon__SolarLogoutOutline"; // plasmic-import: UZfkN-2mqbQ1/icon
+import IconPhFileTextIcon from "./icons/PlasmicIcon__IconPhFileText"; // plasmic-import: FeEx4DkPe8hp/icon
+import IconPhUsersThreeIcon from "./icons/PlasmicIcon__IconPhUsersThree"; // plasmic-import: 9cl-NgfR2fAr/icon
 
 createPlasmicElementProxy;
 
@@ -87,20 +97,39 @@ export type PlasmicSidebar__VariantsArgs = {};
 type VariantPropType = keyof PlasmicSidebar__VariantsArgs;
 export const PlasmicSidebar__VariantProps = new Array<VariantPropType>();
 
-export type PlasmicSidebar__ArgsType = {};
+export type PlasmicSidebar__ArgsType = {
+  disableLinks?: boolean;
+  onDisableLinksChange?: (val: string) => void;
+  role?: string;
+  onRoleChange?: (val: string) => void;
+};
 type ArgPropType = keyof PlasmicSidebar__ArgsType;
-export const PlasmicSidebar__ArgProps = new Array<ArgPropType>();
+export const PlasmicSidebar__ArgProps = new Array<ArgPropType>(
+  "disableLinks",
+  "onDisableLinksChange",
+  "role",
+  "onRoleChange"
+);
 
 export type PlasmicSidebar__OverridesType = {
-  sidebarMenu?: Flex__<"nav">;
+  sidebar?: Flex__<"nav">;
   logoWrapper?: Flex__<"a"> & Partial<LinkProps>;
-  container?: Flex__<"div">;
+  candidatLinks?: Flex__<"div">;
   links?: Flex__<"div">;
   disconnectButton?: Flex__<"div">;
-  link?: Flex__<"a"> & Partial<LinkProps>;
+  employerLinks?: Flex__<"div">;
+  links2?: Flex__<"div">;
+  disconnectButton2?: Flex__<"div">;
+  adminLinks?: Flex__<"div">;
+  links3?: Flex__<"div">;
+  disconnectButton3?: Flex__<"div">;
 };
 
 export interface DefaultSidebarProps {
+  disableLinks?: boolean;
+  onDisableLinksChange?: (val: string) => void;
+  role?: string;
+  onRoleChange?: (val: string) => void;
   className?: string;
 }
 
@@ -145,6 +174,75 @@ function PlasmicSidebar__RenderFunc(props: {
 
   const $globalActions = useGlobalActions?.();
 
+  let [$queries, setDollarQueries] = React.useState<
+    Record<string, ReturnType<typeof usePlasmicDataOp>>
+  >({});
+  const stateSpecs: Parameters<typeof useDollarState>[0] = React.useMemo(
+    () => [
+      {
+        path: "showButton",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $ctx }) => false
+      },
+      {
+        path: "disableLinks",
+        type: "writable",
+        variableType: "boolean",
+
+        valueProp: "disableLinks",
+        onChangeProp: "onDisableLinksChange"
+      },
+      {
+        path: "role",
+        type: "writable",
+        variableType: "text",
+
+        valueProp: "role",
+        onChangeProp: "onRoleChange"
+      }
+    ],
+    [$props, $ctx, $refs]
+  );
+  const $state = useDollarState(stateSpecs, {
+    $props,
+    $ctx,
+    $queries: $queries,
+    $refs
+  });
+
+  const new$Queries: Record<string, ReturnType<typeof usePlasmicDataOp>> = {
+    sidebarGetUserStripeInfos: usePlasmicDataOp(() => {
+      return {
+        sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
+        opId: "1284f981-03a5-4aae-9f90-4a9eb18e1c6b",
+        userArgs: {
+          filters: [$ctx.SupabaseUser.user.id]
+        },
+        cacheKey: `plasmic.$.1284f981-03a5-4aae-9f90-4a9eb18e1c6b.$.`,
+        invalidatedKeys: null,
+        roleId: null
+      };
+    }),
+    sidebarUserMonthlyRecharge: usePlasmicDataOp(() => {
+      return {
+        sourceId: "5T6gSzGCrEfYgV9rAkCoaD",
+        opId: "9258b35e-6135-4ba7-8ce4-fe23b60361d6",
+        userArgs: {
+          params: [$queries.sidebarGetUserStripeInfos.data[0].customer_id]
+        },
+        cacheKey: `plasmic.$.9258b35e-6135-4ba7-8ce4-fe23b60361d6.$.`,
+        invalidatedKeys: null,
+        roleId: null
+      };
+    })
+  };
+  if (Object.keys(new$Queries).some(k => new$Queries[k] !== $queries[k])) {
+    setDollarQueries(new$Queries);
+
+    $queries = new$Queries;
+  }
+
   const globalVariants = ensureGlobalVariants({
     screen: useScreenVariantshm8Nko4B5BDd()
   });
@@ -152,8 +250,8 @@ function PlasmicSidebar__RenderFunc(props: {
   return (
     <Stack__
       as={"nav"}
-      data-plasmic-name={"sidebarMenu"}
-      data-plasmic-override={overrides.sidebarMenu}
+      data-plasmic-name={"sidebar"}
+      data-plasmic-override={overrides.sidebar}
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
       hasGap={true}
@@ -166,7 +264,7 @@ function PlasmicSidebar__RenderFunc(props: {
         plasmic_antd_5_hostless_css.plasmic_tokens,
         plasmic_library_tailwind_3_4_number_tokens_css.plasmic_tokens,
         plasmic_plasmic_rich_components_css.plasmic_tokens,
-        sty.sidebarMenu
+        sty.sidebar
       )}
     >
       <Stack__
@@ -221,471 +319,1706 @@ function PlasmicSidebar__RenderFunc(props: {
           {"JOB AROUND ME"}
         </div>
       </Stack__>
-      <div
-        data-plasmic-name={"container"}
-        data-plasmic-override={overrides.container}
-        className={classNames(projectcss.all, sty.container)}
-      >
-        <Stack__
-          as={"div"}
-          data-plasmic-name={"links"}
-          data-plasmic-override={overrides.links}
-          hasGap={true}
-          className={classNames(projectcss.all, sty.links)}
+      {(() => {
+        try {
+          return $state.role == "candidat";
+        } catch (e) {
+          if (
+            e instanceof TypeError ||
+            e?.plasmicType === "PlasmicUndefinedDataError"
+          ) {
+            return true;
+          }
+          throw e;
+        }
+      })() ? (
+        <div
+          data-plasmic-name={"candidatLinks"}
+          data-plasmic-override={overrides.candidatLinks}
+          className={classNames(projectcss.all, sty.candidatLinks)}
         >
-          <SideBarButton
-            className={classNames("__wab_instance", sty.sideBarButton__ybHin)}
-            iconStart={true}
-            label={
-              <div
-                className={classNames(
-                  projectcss.all,
-                  projectcss.__wab_text,
-                  sty.text__pYn1Z
-                )}
-              >
-                {"Recherche job"}
-              </div>
-            }
-            onClick={async event => {
-              const $steps = {};
-
-              $steps["goToAccueil"] = true
-                ? (() => {
-                    const actionArgs = { destination: `/` };
-                    return (({ destination }) => {
-                      if (
-                        typeof destination === "string" &&
-                        destination.startsWith("#")
-                      ) {
-                        document
-                          .getElementById(destination.substr(1))
-                          .scrollIntoView({ behavior: "smooth" });
-                      } else {
-                        __nextRouter?.push(destination);
-                      }
-                    })?.apply(null, [actionArgs]);
-                  })()
-                : undefined;
-              if (
-                $steps["goToAccueil"] != null &&
-                typeof $steps["goToAccueil"] === "object" &&
-                typeof $steps["goToAccueil"].then === "function"
-              ) {
-                $steps["goToAccueil"] = await $steps["goToAccueil"];
-              }
-            }}
-            start={
-              <SearchIcon
-                className={classNames(projectcss.all, sty.svg__szCwB)}
-                role={"img"}
-              />
-            }
-            type={(() => {
-              try {
-                return $ctx.pagePath === "/" ? "actif" : "";
-              } catch (e) {
-                if (
-                  e instanceof TypeError ||
-                  e?.plasmicType === "PlasmicUndefinedDataError"
-                ) {
-                  return "actif";
-                }
-                throw e;
-              }
-            })()}
-          />
-
-          <SideBarButton
-            className={classNames("__wab_instance", sty.sideBarButton__eQp4)}
-            iconStart={true}
-            label={
-              <div
-                className={classNames(
-                  projectcss.all,
-                  projectcss.__wab_text,
-                  sty.text__mXn1A
-                )}
-              >
-                {"Mes candidatures"}
-              </div>
-            }
-            onClick={async event => {
-              const $steps = {};
-
-              $steps["goToMesCandidatures"] = true
-                ? (() => {
-                    const actionArgs = { destination: `/candidatures` };
-                    return (({ destination }) => {
-                      if (
-                        typeof destination === "string" &&
-                        destination.startsWith("#")
-                      ) {
-                        document
-                          .getElementById(destination.substr(1))
-                          .scrollIntoView({ behavior: "smooth" });
-                      } else {
-                        __nextRouter?.push(destination);
-                      }
-                    })?.apply(null, [actionArgs]);
-                  })()
-                : undefined;
-              if (
-                $steps["goToMesCandidatures"] != null &&
-                typeof $steps["goToMesCandidatures"] === "object" &&
-                typeof $steps["goToMesCandidatures"].then === "function"
-              ) {
-                $steps["goToMesCandidatures"] = await $steps[
-                  "goToMesCandidatures"
-                ];
-              }
-            }}
-            start={
-              <GridFourIcon
-                className={classNames(projectcss.all, sty.svg__onoj8)}
-                role={"img"}
-              />
-            }
-            type={(() => {
-              try {
-                return $ctx.pagePath === "/candidatures" ? "actif" : "";
-              } catch (e) {
-                if (
-                  e instanceof TypeError ||
-                  e?.plasmicType === "PlasmicUndefinedDataError"
-                ) {
-                  return "actif";
-                }
-                throw e;
-              }
-            })()}
-          />
-
-          <SideBarButton
-            className={classNames("__wab_instance", sty.sideBarButton__unDnB)}
-            iconStart={true}
-            label={
-              <div
-                className={classNames(
-                  projectcss.all,
-                  projectcss.__wab_text,
-                  sty.text__yj6GY
-                )}
-              >
-                {"Mes annonces"}
-              </div>
-            }
-            onClick={async event => {
-              const $steps = {};
-
-              $steps["goToMesAnnonces"] = true
-                ? (() => {
-                    const actionArgs = { destination: `/annonces` };
-                    return (({ destination }) => {
-                      if (
-                        typeof destination === "string" &&
-                        destination.startsWith("#")
-                      ) {
-                        document
-                          .getElementById(destination.substr(1))
-                          .scrollIntoView({ behavior: "smooth" });
-                      } else {
-                        __nextRouter?.push(destination);
-                      }
-                    })?.apply(null, [actionArgs]);
-                  })()
-                : undefined;
-              if (
-                $steps["goToMesAnnonces"] != null &&
-                typeof $steps["goToMesAnnonces"] === "object" &&
-                typeof $steps["goToMesAnnonces"].then === "function"
-              ) {
-                $steps["goToMesAnnonces"] = await $steps["goToMesAnnonces"];
-              }
-            }}
-            start={
-              <HeartStraightIcon
-                className={classNames(projectcss.all, sty.svg__xNuo3)}
-                role={"img"}
-              />
-            }
-            type={(() => {
-              try {
-                return $ctx.pagePath === "/annonces" ? "actif" : "";
-              } catch (e) {
-                if (
-                  e instanceof TypeError ||
-                  e?.plasmicType === "PlasmicUndefinedDataError"
-                ) {
-                  return "actif";
-                }
-                throw e;
-              }
-            })()}
-          />
-
-          <SideBarButton
-            className={classNames("__wab_instance", sty.sideBarButton__xlKVn)}
-            iconStart={true}
-            label={
-              <div
-                className={classNames(
-                  projectcss.all,
-                  projectcss.__wab_text,
-                  sty.text__lb6Xu
-                )}
-              >
-                {"mes alertes"}
-              </div>
-            }
-            onClick={async event => {
-              const $steps = {};
-
-              $steps["goToMesAlertes"] = true
-                ? (() => {
-                    const actionArgs = { destination: `/alertes` };
-                    return (({ destination }) => {
-                      if (
-                        typeof destination === "string" &&
-                        destination.startsWith("#")
-                      ) {
-                        document
-                          .getElementById(destination.substr(1))
-                          .scrollIntoView({ behavior: "smooth" });
-                      } else {
-                        __nextRouter?.push(destination);
-                      }
-                    })?.apply(null, [actionArgs]);
-                  })()
-                : undefined;
-              if (
-                $steps["goToMesAlertes"] != null &&
-                typeof $steps["goToMesAlertes"] === "object" &&
-                typeof $steps["goToMesAlertes"].then === "function"
-              ) {
-                $steps["goToMesAlertes"] = await $steps["goToMesAlertes"];
-              }
-            }}
-            start={
-              <EnvelopeSimple2Icon
-                className={classNames(projectcss.all, sty.svg__x4G2D)}
-                role={"img"}
-              />
-            }
-            type={(() => {
-              try {
-                return $ctx.pagePath === "/alertes" ? "actif" : "";
-              } catch (e) {
-                if (
-                  e instanceof TypeError ||
-                  e?.plasmicType === "PlasmicUndefinedDataError"
-                ) {
-                  return "actif";
-                }
-                throw e;
-              }
-            })()}
-          />
-
-          <SideBarButton
-            className={classNames("__wab_instance", sty.sideBarButton__uGb2)}
-            iconStart={true}
-            label={
-              <div
-                className={classNames(
-                  projectcss.all,
-                  projectcss.__wab_text,
-                  sty.text__nghUf
-                )}
-              >
-                {"parametres"}
-              </div>
-            }
-            onClick={async event => {
-              const $steps = {};
-
-              $steps["goToParametresDeCompte"] = true
-                ? (() => {
-                    const actionArgs = { destination: `/parametres-candidat` };
-                    return (({ destination }) => {
-                      if (
-                        typeof destination === "string" &&
-                        destination.startsWith("#")
-                      ) {
-                        document
-                          .getElementById(destination.substr(1))
-                          .scrollIntoView({ behavior: "smooth" });
-                      } else {
-                        __nextRouter?.push(destination);
-                      }
-                    })?.apply(null, [actionArgs]);
-                  })()
-                : undefined;
-              if (
-                $steps["goToParametresDeCompte"] != null &&
-                typeof $steps["goToParametresDeCompte"] === "object" &&
-                typeof $steps["goToParametresDeCompte"].then === "function"
-              ) {
-                $steps["goToParametresDeCompte"] = await $steps[
-                  "goToParametresDeCompte"
-                ];
-              }
-            }}
-            start={
-              <PhGearFillIcon
-                className={classNames(projectcss.all, sty.svg___7PPcX)}
-                role={"img"}
-              />
-            }
-            type={(() => {
-              try {
-                return $ctx.pagePath === "/parametres-candidat" ? "actif" : "";
-              } catch (e) {
-                if (
-                  e instanceof TypeError ||
-                  e?.plasmicType === "PlasmicUndefinedDataError"
-                ) {
-                  return "actif";
-                }
-                throw e;
-              }
-            })()}
-          />
-        </Stack__>
-        <Stack__
-          as={"div"}
-          data-plasmic-name={"disconnectButton"}
-          data-plasmic-override={overrides.disconnectButton}
-          hasGap={true}
-          className={classNames(projectcss.all, sty.disconnectButton)}
-        >
-          <SolarLogoutOutlineIcon
-            className={classNames(projectcss.all, sty.svg__qm6FN)}
-            role={"img"}
-          />
-
-          <PlasmicLink__
-            data-plasmic-name={"link"}
-            data-plasmic-override={overrides.link}
-            className={classNames(
-              projectcss.all,
-              projectcss.a,
-              projectcss.__wab_text,
-              sty.link
-            )}
-            component={Link}
-            href={""}
-            onClick={async event => {
-              const $steps = {};
-
-              $steps["invokeGlobalAction"] = true
-                ? (() => {
-                    const actionArgs = { args: ["/login"] };
-                    return $globalActions[
-                      "SupabaseUserGlobalContext.logout"
-                    ]?.apply(null, [...actionArgs.args]);
-                  })()
-                : undefined;
-              if (
-                $steps["invokeGlobalAction"] != null &&
-                typeof $steps["invokeGlobalAction"] === "object" &&
-                typeof $steps["invokeGlobalAction"].then === "function"
-              ) {
-                $steps["invokeGlobalAction"] = await $steps[
-                  "invokeGlobalAction"
-                ];
-              }
-            }}
-            platform={"nextjs"}
+          <Stack__
+            as={"div"}
+            data-plasmic-name={"links"}
+            data-plasmic-override={overrides.links}
+            hasGap={true}
+            className={classNames(projectcss.all, sty.links)}
           >
-            {"D\u00e9connexion"}
-          </PlasmicLink__>
-          <SideBarButton
-            className={classNames("__wab_instance", sty.sideBarButton__bG6GX)}
-            iconStart={true}
-            label={
-              <div
-                className={classNames(
-                  projectcss.all,
-                  projectcss.__wab_text,
-                  sty.text__jJnT7
-                )}
-              >
-                {"D\u00e9connexion"}
-              </div>
-            }
-            onClick={async event => {
-              const $steps = {};
-
-              $steps["invokeGlobalAction"] = true
-                ? (() => {
-                    const actionArgs = { args: ["/"] };
-                    return $globalActions[
-                      "SupabaseUserGlobalContext.logout"
-                    ]?.apply(null, [...actionArgs.args]);
-                  })()
-                : undefined;
-              if (
-                $steps["invokeGlobalAction"] != null &&
-                typeof $steps["invokeGlobalAction"] === "object" &&
-                typeof $steps["invokeGlobalAction"].then === "function"
-              ) {
-                $steps["invokeGlobalAction"] = await $steps[
-                  "invokeGlobalAction"
-                ];
+            <SideBarButton
+              className={classNames("__wab_instance", sty.sideBarButton__ybHin)}
+              iconStart={true}
+              label={
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__pYn1Z
+                  )}
+                >
+                  {"Recherche job"}
+                </div>
               }
-            }}
-            start={
-              <SolarLogoutOutlineIcon
-                className={classNames(projectcss.all, sty.svg__jHbiR)}
-                role={"img"}
-              />
-            }
-            type={(() => {
+              onClick={async event => {
+                const $steps = {};
+
+                $steps["goToAccueil"] = true
+                  ? (() => {
+                      const actionArgs = { destination: `/` };
+                      return (({ destination }) => {
+                        if (
+                          typeof destination === "string" &&
+                          destination.startsWith("#")
+                        ) {
+                          document
+                            .getElementById(destination.substr(1))
+                            .scrollIntoView({ behavior: "smooth" });
+                        } else {
+                          __nextRouter?.push(destination);
+                        }
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["goToAccueil"] != null &&
+                  typeof $steps["goToAccueil"] === "object" &&
+                  typeof $steps["goToAccueil"].then === "function"
+                ) {
+                  $steps["goToAccueil"] = await $steps["goToAccueil"];
+                }
+              }}
+              start={
+                <SearchIcon
+                  className={classNames(projectcss.all, sty.svg__szCwB)}
+                  role={"img"}
+                />
+              }
+              type={(() => {
+                try {
+                  return $ctx.pagePath === "/" ? "actif" : "";
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return "actif";
+                  }
+                  throw e;
+                }
+              })()}
+            />
+
+            <SideBarButton
+              className={classNames("__wab_instance", sty.sideBarButton__eQp4)}
+              iconStart={true}
+              label={
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__mXn1A
+                  )}
+                >
+                  {"Mes candidatures"}
+                </div>
+              }
+              onClick={async event => {
+                const $steps = {};
+
+                $steps["goToMesCandidatures"] = true
+                  ? (() => {
+                      const actionArgs = { destination: `/candidatures` };
+                      return (({ destination }) => {
+                        if (
+                          typeof destination === "string" &&
+                          destination.startsWith("#")
+                        ) {
+                          document
+                            .getElementById(destination.substr(1))
+                            .scrollIntoView({ behavior: "smooth" });
+                        } else {
+                          __nextRouter?.push(destination);
+                        }
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["goToMesCandidatures"] != null &&
+                  typeof $steps["goToMesCandidatures"] === "object" &&
+                  typeof $steps["goToMesCandidatures"].then === "function"
+                ) {
+                  $steps["goToMesCandidatures"] = await $steps[
+                    "goToMesCandidatures"
+                  ];
+                }
+              }}
+              start={
+                <GridFourIcon
+                  className={classNames(projectcss.all, sty.svg__onoj8)}
+                  role={"img"}
+                />
+              }
+              type={(() => {
+                try {
+                  return $ctx.pagePath === "/candidatures" ? "actif" : "";
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return "actif";
+                  }
+                  throw e;
+                }
+              })()}
+            />
+
+            <SideBarButton
+              className={classNames("__wab_instance", sty.sideBarButton__unDnB)}
+              iconStart={true}
+              label={
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__yj6GY
+                  )}
+                >
+                  {"Mes annonces"}
+                </div>
+              }
+              onClick={async event => {
+                const $steps = {};
+
+                $steps["goToMesAnnonces"] = true
+                  ? (() => {
+                      const actionArgs = { destination: `/annonces` };
+                      return (({ destination }) => {
+                        if (
+                          typeof destination === "string" &&
+                          destination.startsWith("#")
+                        ) {
+                          document
+                            .getElementById(destination.substr(1))
+                            .scrollIntoView({ behavior: "smooth" });
+                        } else {
+                          __nextRouter?.push(destination);
+                        }
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["goToMesAnnonces"] != null &&
+                  typeof $steps["goToMesAnnonces"] === "object" &&
+                  typeof $steps["goToMesAnnonces"].then === "function"
+                ) {
+                  $steps["goToMesAnnonces"] = await $steps["goToMesAnnonces"];
+                }
+              }}
+              start={
+                <HeartStraightIcon
+                  className={classNames(projectcss.all, sty.svg__xNuo3)}
+                  role={"img"}
+                />
+              }
+              type={(() => {
+                try {
+                  return $ctx.pagePath === "/annonces" ? "actif" : "";
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return "actif";
+                  }
+                  throw e;
+                }
+              })()}
+            />
+
+            <SideBarButton
+              className={classNames("__wab_instance", sty.sideBarButton__xlKVn)}
+              iconStart={true}
+              label={
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__lb6Xu
+                  )}
+                >
+                  {"mes alertes"}
+                </div>
+              }
+              onClick={async event => {
+                const $steps = {};
+
+                $steps["goToMesAlertes"] = true
+                  ? (() => {
+                      const actionArgs = { destination: `/alertes` };
+                      return (({ destination }) => {
+                        if (
+                          typeof destination === "string" &&
+                          destination.startsWith("#")
+                        ) {
+                          document
+                            .getElementById(destination.substr(1))
+                            .scrollIntoView({ behavior: "smooth" });
+                        } else {
+                          __nextRouter?.push(destination);
+                        }
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["goToMesAlertes"] != null &&
+                  typeof $steps["goToMesAlertes"] === "object" &&
+                  typeof $steps["goToMesAlertes"].then === "function"
+                ) {
+                  $steps["goToMesAlertes"] = await $steps["goToMesAlertes"];
+                }
+              }}
+              start={
+                <EnvelopeSimple2Icon
+                  className={classNames(projectcss.all, sty.svg__x4G2D)}
+                  role={"img"}
+                />
+              }
+              type={(() => {
+                try {
+                  return $ctx.pagePath === "/alertes" ? "actif" : "";
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return "actif";
+                  }
+                  throw e;
+                }
+              })()}
+            />
+
+            <SideBarButton
+              className={classNames("__wab_instance", sty.sideBarButton__uGb2)}
+              iconStart={true}
+              label={
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__nghUf
+                  )}
+                >
+                  {"parametres"}
+                </div>
+              }
+              onClick={async event => {
+                const $steps = {};
+
+                $steps["goToParametresDeCompte"] = true
+                  ? (() => {
+                      const actionArgs = {
+                        destination: `/parametres-candidat`
+                      };
+                      return (({ destination }) => {
+                        if (
+                          typeof destination === "string" &&
+                          destination.startsWith("#")
+                        ) {
+                          document
+                            .getElementById(destination.substr(1))
+                            .scrollIntoView({ behavior: "smooth" });
+                        } else {
+                          __nextRouter?.push(destination);
+                        }
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["goToParametresDeCompte"] != null &&
+                  typeof $steps["goToParametresDeCompte"] === "object" &&
+                  typeof $steps["goToParametresDeCompte"].then === "function"
+                ) {
+                  $steps["goToParametresDeCompte"] = await $steps[
+                    "goToParametresDeCompte"
+                  ];
+                }
+              }}
+              start={
+                <PhGearFillIcon
+                  className={classNames(projectcss.all, sty.svg___7PPcX)}
+                  role={"img"}
+                />
+              }
+              type={(() => {
+                try {
+                  return $ctx.pagePath === "/parametres-candidat"
+                    ? "actif"
+                    : "";
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return "actif";
+                  }
+                  throw e;
+                }
+              })()}
+            />
+          </Stack__>
+          <Stack__
+            as={"div"}
+            data-plasmic-name={"disconnectButton"}
+            data-plasmic-override={overrides.disconnectButton}
+            hasGap={true}
+            className={classNames(projectcss.all, sty.disconnectButton)}
+          >
+            <SolarLogoutOutlineIcon
+              className={classNames(projectcss.all, sty.svg__qm6FN)}
+              role={"img"}
+            />
+
+            <PlasmicLink__
+              className={classNames(
+                projectcss.all,
+                projectcss.a,
+                projectcss.__wab_text,
+                sty.link__wrqAe
+              )}
+              component={Link}
+              href={""}
+              onClick={async event => {
+                const $steps = {};
+
+                $steps["invokeGlobalAction"] = true
+                  ? (() => {
+                      const actionArgs = { args: ["/login"] };
+                      return $globalActions[
+                        "SupabaseUserGlobalContext.logout"
+                      ]?.apply(null, [...actionArgs.args]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["invokeGlobalAction"] != null &&
+                  typeof $steps["invokeGlobalAction"] === "object" &&
+                  typeof $steps["invokeGlobalAction"].then === "function"
+                ) {
+                  $steps["invokeGlobalAction"] = await $steps[
+                    "invokeGlobalAction"
+                  ];
+                }
+              }}
+              platform={"nextjs"}
+            >
+              {"D\u00e9connexion"}
+            </PlasmicLink__>
+            <SideBarButton
+              className={classNames("__wab_instance", sty.sideBarButton__bG6GX)}
+              iconStart={true}
+              label={
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__jJnT7
+                  )}
+                >
+                  {"D\u00e9connexion"}
+                </div>
+              }
+              onClick={async event => {
+                const $steps = {};
+
+                $steps["invokeGlobalAction"] = true
+                  ? (() => {
+                      const actionArgs = { args: ["/"] };
+                      return $globalActions[
+                        "SupabaseUserGlobalContext.logout"
+                      ]?.apply(null, [...actionArgs.args]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["invokeGlobalAction"] != null &&
+                  typeof $steps["invokeGlobalAction"] === "object" &&
+                  typeof $steps["invokeGlobalAction"].then === "function"
+                ) {
+                  $steps["invokeGlobalAction"] = await $steps[
+                    "invokeGlobalAction"
+                  ];
+                }
+              }}
+              start={
+                <SolarLogoutOutlineIcon
+                  className={classNames(projectcss.all, sty.svg__jHbiR)}
+                  role={"img"}
+                />
+              }
+              type={(() => {
+                try {
+                  return $ctx.pagePath === "/" ? "actif" : "";
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return "actif";
+                  }
+                  throw e;
+                }
+              })()}
+            />
+          </Stack__>
+        </div>
+      ) : null}
+      {(() => {
+        try {
+          return $state.role == "employer";
+        } catch (e) {
+          if (
+            e instanceof TypeError ||
+            e?.plasmicType === "PlasmicUndefinedDataError"
+          ) {
+            return true;
+          }
+          throw e;
+        }
+      })() ? (
+        <Stack__
+          as={"div"}
+          data-plasmic-name={"employerLinks"}
+          data-plasmic-override={overrides.employerLinks}
+          hasGap={true}
+          className={classNames(projectcss.all, sty.employerLinks)}
+        >
+          <Stack__
+            as={"div"}
+            data-plasmic-name={"links2"}
+            data-plasmic-override={overrides.links2}
+            hasGap={true}
+            className={classNames(projectcss.all, sty.links2)}
+          >
+            <SideBarButton
+              className={classNames(
+                "__wab_instance",
+                sty.sideBarButton___7LAme
+              )}
+              disabled={(() => {
+                try {
+                  return $state.disableLinks;
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return undefined;
+                  }
+                  throw e;
+                }
+              })()}
+              iconStart={true}
+              label={
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__dz75
+                  )}
+                >
+                  {"MES OFFRES"}
+                </div>
+              }
+              linkTo={`/offre-employeur`}
+              onClick={async event => {
+                const $steps = {};
+
+                $steps["goToOffreEmployeur"] = true
+                  ? (() => {
+                      const actionArgs = { destination: `/offre-employeur` };
+                      return (({ destination }) => {
+                        if (
+                          typeof destination === "string" &&
+                          destination.startsWith("#")
+                        ) {
+                          document
+                            .getElementById(destination.substr(1))
+                            .scrollIntoView({ behavior: "smooth" });
+                        } else {
+                          __nextRouter?.push(destination);
+                        }
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["goToOffreEmployeur"] != null &&
+                  typeof $steps["goToOffreEmployeur"] === "object" &&
+                  typeof $steps["goToOffreEmployeur"].then === "function"
+                ) {
+                  $steps["goToOffreEmployeur"] = await $steps[
+                    "goToOffreEmployeur"
+                  ];
+                }
+              }}
+              start={
+                <GridFourIcon
+                  className={classNames(projectcss.all, sty.svg__aqy53)}
+                  role={"img"}
+                />
+              }
+              type={(() => {
+                try {
+                  return $ctx.pagePath === "/offre-employeur" ||
+                    $ctx.pagePath === "/candidatures-employeur/[job_id]"
+                    ? "actif"
+                    : "";
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return "actif";
+                  }
+                  throw e;
+                }
+              })()}
+            />
+
+            <SideBarButton
+              className={classNames("__wab_instance", sty.sideBarButton__fAuua)}
+              disabled={(() => {
+                try {
+                  return $state.disableLinks;
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return undefined;
+                  }
+                  throw e;
+                }
+              })()}
+              iconStart={true}
+              label={
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__tvpT4
+                  )}
+                >
+                  {"Recherche Candidat"}
+                </div>
+              }
+              linkTo={`/recherche-candidat`}
+              onClick={async event => {
+                const $steps = {};
+
+                $steps["goToAccueil"] = true
+                  ? (() => {
+                      const actionArgs = { destination: `/recherche-candidat` };
+                      return (({ destination }) => {
+                        if (
+                          typeof destination === "string" &&
+                          destination.startsWith("#")
+                        ) {
+                          document
+                            .getElementById(destination.substr(1))
+                            .scrollIntoView({ behavior: "smooth" });
+                        } else {
+                          __nextRouter?.push(destination);
+                        }
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["goToAccueil"] != null &&
+                  typeof $steps["goToAccueil"] === "object" &&
+                  typeof $steps["goToAccueil"].then === "function"
+                ) {
+                  $steps["goToAccueil"] = await $steps["goToAccueil"];
+                }
+              }}
+              start={
+                <SearchIcon
+                  className={classNames(projectcss.all, sty.svg__ri08Y)}
+                  role={"img"}
+                />
+              }
+              type={(() => {
+                try {
+                  return $ctx.pagePath === "/recherche-candidat" ? "actif" : "";
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return "actif";
+                  }
+                  throw e;
+                }
+              })()}
+            />
+
+            <SideBarButton
+              className={classNames("__wab_instance", sty.sideBarButton__qEg5Q)}
+              disabled={(() => {
+                try {
+                  return $state.disableLinks;
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return undefined;
+                  }
+                  throw e;
+                }
+              })()}
+              iconStart={true}
+              label={
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__zAoaM
+                  )}
+                >
+                  {"parametres"}
+                </div>
+              }
+              linkTo={`/parametres-employeur`}
+              onClick={async event => {
+                const $steps = {};
+
+                $steps["goToParametresEmployeur"] = true
+                  ? (() => {
+                      const actionArgs = {
+                        destination: `/parametres-employeur`
+                      };
+                      return (({ destination }) => {
+                        if (
+                          typeof destination === "string" &&
+                          destination.startsWith("#")
+                        ) {
+                          document
+                            .getElementById(destination.substr(1))
+                            .scrollIntoView({ behavior: "smooth" });
+                        } else {
+                          __nextRouter?.push(destination);
+                        }
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["goToParametresEmployeur"] != null &&
+                  typeof $steps["goToParametresEmployeur"] === "object" &&
+                  typeof $steps["goToParametresEmployeur"].then === "function"
+                ) {
+                  $steps["goToParametresEmployeur"] = await $steps[
+                    "goToParametresEmployeur"
+                  ];
+                }
+              }}
+              start={
+                <PhGearFillIcon
+                  className={classNames(projectcss.all, sty.svg__mqqq5)}
+                  role={"img"}
+                />
+              }
+              type={(() => {
+                try {
+                  return $ctx.pagePath === "/parametres-employeur" ||
+                    $ctx.pagePath === "/parametres-abonnement"
+                    ? "actif"
+                    : "";
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return "actif";
+                  }
+                  throw e;
+                }
+              })()}
+            />
+
+            {(() => {
               try {
-                return $ctx.pagePath === "/" ? "actif" : "";
+                return $ctx.pagePath === "/parametres-employeur" ||
+                  $ctx.pagePath === "parametres-abonnement"
+                  ? ($state.showButton = true)
+                  : $state.showButton;
               } catch (e) {
                 if (
                   e instanceof TypeError ||
                   e?.plasmicType === "PlasmicUndefinedDataError"
                 ) {
-                  return "actif";
+                  return true;
                 }
                 throw e;
               }
-            })()}
-          />
+            })() ? (
+              <SideBarButton
+                className={classNames(
+                  "__wab_instance",
+                  sty.sideBarButton__c6S9
+                )}
+                label={
+                  <div
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.__wab_text,
+                      sty.text__mPezf
+                    )}
+                  >
+                    {"Mon compte"}
+                  </div>
+                }
+                linkTo={`/parametres-employeur`}
+                onClick={async event => {
+                  const $steps = {};
+
+                  $steps["goToParametresDeCompte"] = true
+                    ? (() => {
+                        const actionArgs = {
+                          destination: `/parametres-employeur`
+                        };
+                        return (({ destination }) => {
+                          if (
+                            typeof destination === "string" &&
+                            destination.startsWith("#")
+                          ) {
+                            document
+                              .getElementById(destination.substr(1))
+                              .scrollIntoView({ behavior: "smooth" });
+                          } else {
+                            __nextRouter?.push(destination);
+                          }
+                        })?.apply(null, [actionArgs]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["goToParametresDeCompte"] != null &&
+                    typeof $steps["goToParametresDeCompte"] === "object" &&
+                    typeof $steps["goToParametresDeCompte"].then === "function"
+                  ) {
+                    $steps["goToParametresDeCompte"] = await $steps[
+                      "goToParametresDeCompte"
+                    ];
+                  }
+                }}
+                start={null}
+                type={(() => {
+                  try {
+                    return $ctx.pagePath === "/parametres-employeur"
+                      ? "actif"
+                      : "";
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return "actif";
+                    }
+                    throw e;
+                  }
+                })()}
+              />
+            ) : null}
+            {(() => {
+              try {
+                return $ctx.pagePath === "/parametres-abonnement" ||
+                  $ctx.pagePath === "parametres-employeur"
+                  ? ($state.showButton = true)
+                  : $state.showButton;
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return true;
+                }
+                throw e;
+              }
+            })() ? (
+              <SideBarButton
+                className={classNames(
+                  "__wab_instance",
+                  sty.sideBarButton__jJ8XX
+                )}
+                label={
+                  <div
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.__wab_text,
+                      sty.text__c6PGr
+                    )}
+                  >
+                    {"Mon abonnement"}
+                  </div>
+                }
+                linkTo={`/parametres-abonnement`}
+                onClick={async event => {
+                  const $steps = {};
+
+                  $steps["goToParametresDeCompte"] = true
+                    ? (() => {
+                        const actionArgs = {
+                          destination: `/parametres-abonnement`
+                        };
+                        return (({ destination }) => {
+                          if (
+                            typeof destination === "string" &&
+                            destination.startsWith("#")
+                          ) {
+                            document
+                              .getElementById(destination.substr(1))
+                              .scrollIntoView({ behavior: "smooth" });
+                          } else {
+                            __nextRouter?.push(destination);
+                          }
+                        })?.apply(null, [actionArgs]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["goToParametresDeCompte"] != null &&
+                    typeof $steps["goToParametresDeCompte"] === "object" &&
+                    typeof $steps["goToParametresDeCompte"].then === "function"
+                  ) {
+                    $steps["goToParametresDeCompte"] = await $steps[
+                      "goToParametresDeCompte"
+                    ];
+                  }
+                }}
+                start={null}
+                type={(() => {
+                  try {
+                    return $ctx.pagePath === "/parametres-abonnement"
+                      ? "actif"
+                      : "";
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return "actif";
+                    }
+                    throw e;
+                  }
+                })()}
+              />
+            ) : null}
+          </Stack__>
+          <Stack__
+            as={"div"}
+            data-plasmic-name={"disconnectButton2"}
+            data-plasmic-override={overrides.disconnectButton2}
+            hasGap={true}
+            className={classNames(projectcss.all, sty.disconnectButton2)}
+          >
+            <div className={classNames(projectcss.all, sty.freeBox__tllFj)}>
+              <div
+                className={classNames(
+                  projectcss.all,
+                  projectcss.__wab_text,
+                  sty.text__bqHyS
+                )}
+              >
+                <React.Fragment>
+                  <span
+                    className={"plasmic_default__all plasmic_default__span"}
+                    style={{ fontWeight: 600 }}
+                  >
+                    {"VOS ANNONCES"}
+                  </span>
+                </React.Fragment>
+              </div>
+              <div className={classNames(projectcss.all, sty.freeBox__u1JpD)}>
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__p6ADo
+                  )}
+                >
+                  <React.Fragment>
+                    <span
+                      className={"plasmic_default__all plasmic_default__span"}
+                      style={{ fontWeight: 500 }}
+                    >
+                      {"Classiques :"}
+                    </span>
+                  </React.Fragment>
+                </div>
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__w7Abm,
+                    (() => {
+                      try {
+                        return $queries.sidebarUserMonthlyRecharge?.data
+                          ?.response?.solde?.totalClassic == 0
+                          ? "grey-600"
+                          : "green-500";
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return undefined;
+                        }
+                        throw e;
+                      }
+                    })()
+                  )}
+                >
+                  <React.Fragment>
+                    {(() => {
+                      try {
+                        return (
+                          ($queries.sidebarUserMonthlyRecharge.data?.response
+                            ?.solde?.totalClassic || 0) +
+                          "/" +
+                          ($queries.sidebarUserMonthlyRecharge.data?.response
+                            ?.total?.totalClassic || 0)
+                        );
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return "";
+                        }
+                        throw e;
+                      }
+                    })()}
+                  </React.Fragment>
+                </div>
+              </div>
+              <Separator
+                className={
+                  "" + " " + classNames("__wab_instance", sty.separateur__vwUpc)
+                }
+                decorative={false}
+                orientation={"horizontal"}
+              />
+
+              <div className={classNames(projectcss.all, sty.freeBox__xkpLi)}>
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__j42GZ
+                  )}
+                >
+                  <React.Fragment>
+                    <span
+                      className={"plasmic_default__all plasmic_default__span"}
+                      style={{ fontWeight: 500 }}
+                    >
+                      {"Last Minute :"}
+                    </span>
+                  </React.Fragment>
+                </div>
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__xHjbx,
+                    (() => {
+                      try {
+                        return $queries.sidebarUserMonthlyRecharge.data
+                          ?.response?.solde?.totalLastMinute == 0
+                          ? "grey-600"
+                          : "green-500";
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return undefined;
+                        }
+                        throw e;
+                      }
+                    })()
+                  )}
+                >
+                  <React.Fragment>
+                    {(() => {
+                      try {
+                        return (
+                          ($queries.sidebarUserMonthlyRecharge.data?.response
+                            ?.solde?.totalLastMinute || 0) +
+                          "/" +
+                          ($queries.sidebarUserMonthlyRecharge.data?.response
+                            ?.total?.totalLastMinute || 0)
+                        );
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return "";
+                        }
+                        throw e;
+                      }
+                    })()}
+                  </React.Fragment>
+                </div>
+              </div>
+              <Separator
+                className={
+                  "" + " " + classNames("__wab_instance", sty.separateur__wnuP5)
+                }
+                decorative={false}
+                orientation={"horizontal"}
+              />
+
+              <div className={classNames(projectcss.all, sty.freeBox__aJKi)}>
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__wXRH
+                  )}
+                >
+                  <React.Fragment>
+                    <span
+                      className={"plasmic_default__all plasmic_default__span"}
+                      style={{ fontWeight: 500 }}
+                    >
+                      {"Boost\u00e9es :"}
+                    </span>
+                  </React.Fragment>
+                </div>
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__pDmN3,
+                    (() => {
+                      try {
+                        return $queries.sidebarUserMonthlyRecharge.data
+                          ?.response?.solde?.totalBoost == 0
+                          ? "grey-600"
+                          : "green-500";
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return undefined;
+                        }
+                        throw e;
+                      }
+                    })()
+                  )}
+                >
+                  <React.Fragment>
+                    {(() => {
+                      try {
+                        return (
+                          ($queries.sidebarUserMonthlyRecharge.data?.response
+                            ?.solde?.totalBoost || 0) +
+                          "/" +
+                          ($queries.sidebarUserMonthlyRecharge.data?.response
+                            ?.total?.totalBoost || 0)
+                        );
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return "";
+                        }
+                        throw e;
+                      }
+                    })()}
+                  </React.Fragment>
+                </div>
+              </div>
+              <Separator
+                className={
+                  "" + " " + classNames("__wab_instance", sty.separateur__rtNs)
+                }
+                decorative={false}
+                orientation={"horizontal"}
+              />
+            </div>
+            <SolarLogoutOutlineIcon
+              className={classNames(projectcss.all, sty.svg__bgBnu)}
+              role={"img"}
+            />
+
+            <PlasmicLink__
+              className={classNames(
+                projectcss.all,
+                projectcss.a,
+                projectcss.__wab_text,
+                sty.link__mrpVm
+              )}
+              component={Link}
+              href={""}
+              onClick={async event => {
+                const $steps = {};
+
+                $steps["invokeGlobalAction"] = true
+                  ? (() => {
+                      const actionArgs = { args: ["/login"] };
+                      return $globalActions[
+                        "SupabaseUserGlobalContext.logout"
+                      ]?.apply(null, [...actionArgs.args]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["invokeGlobalAction"] != null &&
+                  typeof $steps["invokeGlobalAction"] === "object" &&
+                  typeof $steps["invokeGlobalAction"].then === "function"
+                ) {
+                  $steps["invokeGlobalAction"] = await $steps[
+                    "invokeGlobalAction"
+                  ];
+                }
+              }}
+              platform={"nextjs"}
+            >
+              {"D\u00e9connexion"}
+            </PlasmicLink__>
+            <SideBarButton
+              className={classNames("__wab_instance", sty.sideBarButton__uZl0Z)}
+              end={
+                <PictogramIcon
+                  className={classNames(projectcss.all, sty.svg___0Eilz)}
+                  role={"img"}
+                />
+              }
+              iconStart={true}
+              label={
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__qnI0
+                  )}
+                >
+                  {"D\u00e9connexion"}
+                </div>
+              }
+              onClick={async event => {
+                const $steps = {};
+
+                $steps["invokeGlobalAction"] = true
+                  ? (() => {
+                      const actionArgs = { args: ["/"] };
+                      return $globalActions[
+                        "SupabaseUserGlobalContext.logout"
+                      ]?.apply(null, [...actionArgs.args]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["invokeGlobalAction"] != null &&
+                  typeof $steps["invokeGlobalAction"] === "object" &&
+                  typeof $steps["invokeGlobalAction"].then === "function"
+                ) {
+                  $steps["invokeGlobalAction"] = await $steps[
+                    "invokeGlobalAction"
+                  ];
+                }
+              }}
+              start={
+                <SolarLogoutOutlineIcon
+                  className={classNames(projectcss.all, sty.svg__rN8A)}
+                  role={"img"}
+                />
+              }
+              type={(() => {
+                try {
+                  return $ctx.pagePath === "/" ? "actif" : "";
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return "actif";
+                  }
+                  throw e;
+                }
+              })()}
+            />
+          </Stack__>
         </Stack__>
-      </div>
+      ) : null}
+      {(() => {
+        try {
+          return $state.role == "admin";
+        } catch (e) {
+          if (
+            e instanceof TypeError ||
+            e?.plasmicType === "PlasmicUndefinedDataError"
+          ) {
+            return true;
+          }
+          throw e;
+        }
+      })() ? (
+        <div
+          data-plasmic-name={"adminLinks"}
+          data-plasmic-override={overrides.adminLinks}
+          className={classNames(projectcss.all, sty.adminLinks)}
+        >
+          <Stack__
+            as={"div"}
+            data-plasmic-name={"links3"}
+            data-plasmic-override={overrides.links3}
+            hasGap={true}
+            className={classNames(projectcss.all, sty.links3)}
+          >
+            <SideBarButton
+              className={classNames("__wab_instance", sty.sideBarButton__r9Uhx)}
+              iconStart={true}
+              label={
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__rgqdy
+                  )}
+                >
+                  {"Gestion des offres"}
+                </div>
+              }
+              linkTo={`/offre_admin`}
+              onClick={async event => {
+                const $steps = {};
+
+                $steps["goToOffreAdmin"] = true
+                  ? (() => {
+                      const actionArgs = { destination: `/offre_admin` };
+                      return (({ destination }) => {
+                        if (
+                          typeof destination === "string" &&
+                          destination.startsWith("#")
+                        ) {
+                          document
+                            .getElementById(destination.substr(1))
+                            .scrollIntoView({ behavior: "smooth" });
+                        } else {
+                          __nextRouter?.push(destination);
+                        }
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["goToOffreAdmin"] != null &&
+                  typeof $steps["goToOffreAdmin"] === "object" &&
+                  typeof $steps["goToOffreAdmin"].then === "function"
+                ) {
+                  $steps["goToOffreAdmin"] = await $steps["goToOffreAdmin"];
+                }
+              }}
+              start={
+                <IconPhFileTextIcon
+                  className={classNames(projectcss.all, sty.svg__ufYwD)}
+                  role={"img"}
+                />
+              }
+              type={(() => {
+                try {
+                  return $ctx.pagePath === "/offre_admin" ? "actif" : "";
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return "actif";
+                  }
+                  throw e;
+                }
+              })()}
+            />
+
+            <SideBarButton
+              className={classNames("__wab_instance", sty.sideBarButton__ecR6L)}
+              iconStart={true}
+              label={
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__wmYi1
+                  )}
+                >
+                  {"gestion des users"}
+                </div>
+              }
+              linkTo={`/user_admin`}
+              onClick={async event => {
+                const $steps = {};
+
+                $steps["goToAccueil"] = true
+                  ? (() => {
+                      const actionArgs = { destination: `/user_admin` };
+                      return (({ destination }) => {
+                        if (
+                          typeof destination === "string" &&
+                          destination.startsWith("#")
+                        ) {
+                          document
+                            .getElementById(destination.substr(1))
+                            .scrollIntoView({ behavior: "smooth" });
+                        } else {
+                          __nextRouter?.push(destination);
+                        }
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["goToAccueil"] != null &&
+                  typeof $steps["goToAccueil"] === "object" &&
+                  typeof $steps["goToAccueil"].then === "function"
+                ) {
+                  $steps["goToAccueil"] = await $steps["goToAccueil"];
+                }
+              }}
+              start={
+                <IconPhUsersThreeIcon
+                  className={classNames(projectcss.all, sty.svg__e9Pc5)}
+                  role={"img"}
+                />
+              }
+              type={(() => {
+                try {
+                  return $ctx.pagePath === "/user_admin" ? "actif" : "";
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return "actif";
+                  }
+                  throw e;
+                }
+              })()}
+            />
+
+            {(() => {
+              try {
+                return $ctx.pagePath === "/parametres-employeur" ||
+                  $ctx.pagePath === "parametres-abonnement"
+                  ? ($state.showButton = true)
+                  : $state.showButton;
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return true;
+                }
+                throw e;
+              }
+            })() ? (
+              <SideBarButton
+                className={classNames(
+                  "__wab_instance",
+                  sty.sideBarButton__wPBww
+                )}
+                label={
+                  <div
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.__wab_text,
+                      sty.text__cPvIs
+                    )}
+                  >
+                    {"Mon compte"}
+                  </div>
+                }
+                linkTo={`/parametres-employeur`}
+                onClick={async event => {
+                  const $steps = {};
+
+                  $steps["goToParametresDeCompte"] = true
+                    ? (() => {
+                        const actionArgs = {
+                          destination: `/parametres-candidat`
+                        };
+                        return (({ destination }) => {
+                          if (
+                            typeof destination === "string" &&
+                            destination.startsWith("#")
+                          ) {
+                            document
+                              .getElementById(destination.substr(1))
+                              .scrollIntoView({ behavior: "smooth" });
+                          } else {
+                            __nextRouter?.push(destination);
+                          }
+                        })?.apply(null, [actionArgs]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["goToParametresDeCompte"] != null &&
+                    typeof $steps["goToParametresDeCompte"] === "object" &&
+                    typeof $steps["goToParametresDeCompte"].then === "function"
+                  ) {
+                    $steps["goToParametresDeCompte"] = await $steps[
+                      "goToParametresDeCompte"
+                    ];
+                  }
+                }}
+                start={null}
+                type={(() => {
+                  try {
+                    return $ctx.pagePath === "/parametres-employeur"
+                      ? "actif"
+                      : "";
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return "actif";
+                    }
+                    throw e;
+                  }
+                })()}
+              />
+            ) : null}
+            {(() => {
+              try {
+                return $ctx.pagePath === "/parametres-abonnement" ||
+                  $ctx.pagePath === "parametres-employeur"
+                  ? ($state.showButton = true)
+                  : $state.showButton;
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return true;
+                }
+                throw e;
+              }
+            })() ? (
+              <SideBarButton
+                className={classNames(
+                  "__wab_instance",
+                  sty.sideBarButton___1VsZo
+                )}
+                label={
+                  <div
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.__wab_text,
+                      sty.text___0W62
+                    )}
+                  >
+                    {"Mon abonnement"}
+                  </div>
+                }
+                linkTo={`/parametres-abonnement`}
+                onClick={async event => {
+                  const $steps = {};
+
+                  $steps["goToParametresDeCompte"] = true
+                    ? (() => {
+                        const actionArgs = {
+                          destination: `/parametres-candidat`
+                        };
+                        return (({ destination }) => {
+                          if (
+                            typeof destination === "string" &&
+                            destination.startsWith("#")
+                          ) {
+                            document
+                              .getElementById(destination.substr(1))
+                              .scrollIntoView({ behavior: "smooth" });
+                          } else {
+                            __nextRouter?.push(destination);
+                          }
+                        })?.apply(null, [actionArgs]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["goToParametresDeCompte"] != null &&
+                    typeof $steps["goToParametresDeCompte"] === "object" &&
+                    typeof $steps["goToParametresDeCompte"].then === "function"
+                  ) {
+                    $steps["goToParametresDeCompte"] = await $steps[
+                      "goToParametresDeCompte"
+                    ];
+                  }
+                }}
+                start={null}
+                type={(() => {
+                  try {
+                    return $ctx.pagePath === "/parametres-abonnement"
+                      ? "actif"
+                      : "";
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return "actif";
+                    }
+                    throw e;
+                  }
+                })()}
+              />
+            ) : null}
+          </Stack__>
+          <Stack__
+            as={"div"}
+            data-plasmic-name={"disconnectButton3"}
+            data-plasmic-override={overrides.disconnectButton3}
+            hasGap={true}
+            className={classNames(projectcss.all, sty.disconnectButton3)}
+          >
+            <SolarLogoutOutlineIcon
+              className={classNames(projectcss.all, sty.svg__ez8Qf)}
+              role={"img"}
+            />
+
+            <PlasmicLink__
+              className={classNames(
+                projectcss.all,
+                projectcss.a,
+                projectcss.__wab_text,
+                sty.link__qjkIa
+              )}
+              component={Link}
+              href={""}
+              onClick={async event => {
+                const $steps = {};
+
+                $steps["invokeGlobalAction"] = true
+                  ? (() => {
+                      const actionArgs = { args: ["/login"] };
+                      return $globalActions[
+                        "SupabaseUserGlobalContext.logout"
+                      ]?.apply(null, [...actionArgs.args]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["invokeGlobalAction"] != null &&
+                  typeof $steps["invokeGlobalAction"] === "object" &&
+                  typeof $steps["invokeGlobalAction"].then === "function"
+                ) {
+                  $steps["invokeGlobalAction"] = await $steps[
+                    "invokeGlobalAction"
+                  ];
+                }
+              }}
+              platform={"nextjs"}
+            >
+              {"D\u00e9connexion"}
+            </PlasmicLink__>
+            <SideBarButton
+              className={classNames("__wab_instance", sty.sideBarButton__ng41)}
+              iconStart={true}
+              label={
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__xbI3
+                  )}
+                >
+                  {"D\u00e9connexion"}
+                </div>
+              }
+              onClick={async event => {
+                const $steps = {};
+
+                $steps["invokeGlobalAction"] = true
+                  ? (() => {
+                      const actionArgs = { args: ["/"] };
+                      return $globalActions[
+                        "SupabaseUserGlobalContext.logout"
+                      ]?.apply(null, [...actionArgs.args]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["invokeGlobalAction"] != null &&
+                  typeof $steps["invokeGlobalAction"] === "object" &&
+                  typeof $steps["invokeGlobalAction"].then === "function"
+                ) {
+                  $steps["invokeGlobalAction"] = await $steps[
+                    "invokeGlobalAction"
+                  ];
+                }
+              }}
+              start={
+                <SolarLogoutOutlineIcon
+                  className={classNames(projectcss.all, sty.svg__weJz9)}
+                  role={"img"}
+                />
+              }
+              type={(() => {
+                try {
+                  return $ctx.pagePath === "/" ? "actif" : "";
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return "actif";
+                  }
+                  throw e;
+                }
+              })()}
+            />
+          </Stack__>
+        </div>
+      ) : null}
     </Stack__>
   ) as React.ReactElement | null;
 }
 
 const PlasmicDescendants = {
-  sidebarMenu: [
-    "sidebarMenu",
+  sidebar: [
+    "sidebar",
     "logoWrapper",
-    "container",
+    "candidatLinks",
     "links",
     "disconnectButton",
-    "link"
+    "employerLinks",
+    "links2",
+    "disconnectButton2",
+    "adminLinks",
+    "links3",
+    "disconnectButton3"
   ],
   logoWrapper: ["logoWrapper"],
-  container: ["container", "links", "disconnectButton", "link"],
+  candidatLinks: ["candidatLinks", "links", "disconnectButton"],
   links: ["links"],
-  disconnectButton: ["disconnectButton", "link"],
-  link: ["link"]
+  disconnectButton: ["disconnectButton"],
+  employerLinks: ["employerLinks", "links2", "disconnectButton2"],
+  links2: ["links2"],
+  disconnectButton2: ["disconnectButton2"],
+  adminLinks: ["adminLinks", "links3", "disconnectButton3"],
+  links3: ["links3"],
+  disconnectButton3: ["disconnectButton3"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
   (typeof PlasmicDescendants)[T][number];
 type NodeDefaultElementType = {
-  sidebarMenu: "nav";
+  sidebar: "nav";
   logoWrapper: "a";
-  container: "div";
+  candidatLinks: "div";
   links: "div";
   disconnectButton: "div";
-  link: "a";
+  employerLinks: "div";
+  links2: "div";
+  disconnectButton2: "div";
+  adminLinks: "div";
+  links3: "div";
+  disconnectButton3: "div";
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -735,7 +2068,7 @@ function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
       forNode: nodeName
     });
   };
-  if (nodeName === "sidebarMenu") {
+  if (nodeName === "sidebar") {
     func.displayName = "PlasmicSidebar";
   } else {
     func.displayName = `PlasmicSidebar.${nodeName}`;
@@ -745,14 +2078,19 @@ function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
 
 export const PlasmicSidebar = Object.assign(
   // Top-level PlasmicSidebar renders the root element
-  makeNodeComponent("sidebarMenu"),
+  makeNodeComponent("sidebar"),
   {
     // Helper components rendering sub-elements
     logoWrapper: makeNodeComponent("logoWrapper"),
-    container: makeNodeComponent("container"),
+    candidatLinks: makeNodeComponent("candidatLinks"),
     links: makeNodeComponent("links"),
     disconnectButton: makeNodeComponent("disconnectButton"),
-    link: makeNodeComponent("link"),
+    employerLinks: makeNodeComponent("employerLinks"),
+    links2: makeNodeComponent("links2"),
+    disconnectButton2: makeNodeComponent("disconnectButton2"),
+    adminLinks: makeNodeComponent("adminLinks"),
+    links3: makeNodeComponent("links3"),
+    disconnectButton3: makeNodeComponent("disconnectButton3"),
 
     // Metadata about props expected for PlasmicSidebar
     internalVariantProps: PlasmicSidebar__VariantProps,

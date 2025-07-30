@@ -67,7 +67,7 @@ import {
 } from "@plasmicapp/react-web/lib/data-sources";
 
 import MobileNavbarTop from "../../MobileNavbarTop"; // plasmic-import: mAg8Ml3XUEhy/component
-import Sidebar2 from "../../Sidebar2"; // plasmic-import: RXqL3kdDrXwo/component
+import Sidebar from "../../Sidebar"; // plasmic-import: M06HuWMcBQV2/component
 import Button from "../../Button"; // plasmic-import: 9ixtKbGKv7x-/component
 import JobCard from "../../JobCard"; // plasmic-import: 9MKR6AAbT8y6/component
 import Modal from "../../Modal"; // plasmic-import: fsC3QwUZz9uz/component
@@ -149,7 +149,7 @@ export const PlasmicOffreEmployeur__ArgProps = new Array<ArgPropType>();
 export type PlasmicOffreEmployeur__OverridesType = {
   espaceEmployeur?: Flex__<"div">;
   mobileNavbarTop?: Flex__<typeof MobileNavbarTop>;
-  sidebarEmployer?: Flex__<typeof Sidebar2>;
+  sidebar?: Flex__<typeof Sidebar>;
   main?: Flex__<"main">;
   heading2?: Flex__<"h1">;
   annonces3?: Flex__<"div">;
@@ -1451,28 +1451,6 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
         ]
       },
       {
-        path: "sidebarEmployer.disableLinks",
-        type: "private",
-        variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) =>
-          (() => {
-            try {
-              return (
-                $queries.getUser.isLoading ||
-                !$queries.getUser.data[0].onboarding
-              );
-            } catch (e) {
-              if (
-                e instanceof TypeError ||
-                e?.plasmicType === "PlasmicUndefinedDataError"
-              ) {
-                return false;
-              }
-              throw e;
-            }
-          })()
-      },
-      {
         path: "textAreaInput6.value",
         type: "private",
         variableType: "text",
@@ -1629,6 +1607,34 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
               throw e;
             }
           })()
+      },
+      {
+        path: "sidebar.disableLinks",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $ctx }) =>
+          (() => {
+            try {
+              return (
+                $queries.getUser.isLoading ||
+                !$queries.getUser.data[0].onboarding
+              );
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return false;
+              }
+              throw e;
+            }
+          })()
+      },
+      {
+        path: "sidebar.role",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $ctx }) => "employer"
       }
     ],
     [$props, $ctx, $refs]
@@ -1871,17 +1877,17 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
             className={classNames("__wab_instance", sty.mobileNavbarTop)}
           />
 
-          <Sidebar2
-            data-plasmic-name={"sidebarEmployer"}
-            data-plasmic-override={overrides.sidebarEmployer}
-            className={classNames("__wab_instance", sty.sidebarEmployer)}
+          <Sidebar
+            data-plasmic-name={"sidebar"}
+            data-plasmic-override={overrides.sidebar}
+            className={classNames("__wab_instance", sty.sidebar)}
             disableLinks={generateStateValueProp($state, [
-              "sidebarEmployer",
+              "sidebar",
               "disableLinks"
             ])}
             onDisableLinksChange={async (...eventArgs: any) => {
               generateStateOnChangeProp($state, [
-                "sidebarEmployer",
+                "sidebar",
                 "disableLinks"
               ]).apply(null, eventArgs);
 
@@ -1893,6 +1899,21 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                 return;
               }
             }}
+            onRoleChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, ["sidebar", "role"]).apply(
+                null,
+                eventArgs
+              );
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+            role={generateStateValueProp($state, ["sidebar", "role"])}
           />
 
           <Stack__
@@ -5757,14 +5778,14 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                                         cacheKey: null,
                                         invalidatedKeys: [
                                           "316176a9-f0d4-44d7-baa0-a763336a6271",
-                                          "d0186466-dcbb-4702-a724-88cda73c66bb",
+                                          "45d75b0d-ceb7-4bb3-8424-9d51489051ff",
                                           "e38cc2f4-cfb6-40a3-bc90-0b9ce2786a30",
                                           "1284f981-03a5-4aae-9f90-4a9eb18e1c6b",
                                           "1284f981-03a5-4aae-9f90-4a9eb18e1c6b",
-                                          "44279b1d-8867-4128-97b8-520ffe67ab32",
+                                          "ba382dfb-c617-44db-a36f-dda3fa7e919f",
                                           "9258b35e-6135-4ba7-8ce4-fe23b60361d6",
                                           "c91b3dad-0831-48c9-8dd7-50555a9ed2f8",
-                                          "b6275ba2-c35f-44d1-b0e1-514c5df26532"
+                                          "1e5faa2f-5522-4407-882f-20d431c967fa"
                                         ],
                                         roleId: null
                                       },
@@ -16324,13 +16345,56 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                                     opId: "ac3aeb59-a5a8-4309-9807-433a1356e04e",
                                     userArgs: {
                                       body: [
-                                        {
-                                          to: `${$queries.getUser.data[0].email}`,
-                                          template: "employerSubscription",
-                                          subject:
-                                            "Bienvenue dans ton nouvel abonnement 🎉",
-                                          params: { name: "Marius" }
-                                        }
+                                        (() => {
+                                          const product =
+                                            $state.stripeProductsListState.find(
+                                              item =>
+                                                item.id === $state.productId
+                                            );
+                                          let benefits = [];
+                                          if (product) {
+                                            if (product.name === "Basic") {
+                                              benefits = [
+                                                "Essai gratuit pendant 30 jours",
+                                                "3 annonces par mois",
+                                                "1 annonce last minute par mois",
+                                                ""
+                                              ];
+                                            } else if (
+                                              product.name === "Premium"
+                                            ) {
+                                              benefits = [
+                                                "Essai gratuit pendant 30 jours",
+                                                "8 annonces classiques par mois",
+                                                "4 annonce last minute par mois",
+                                                "2 annonces boostées par mois"
+                                              ];
+                                            }
+                                          }
+                                          const emailPayload = {
+                                            to: $queries.getUser.data[0].email,
+                                            template: "employerSubscription",
+                                            subject:
+                                              "Bienvenue dans ton nouvel abonnement \uD83C\uDF89",
+                                            params: {
+                                              name:
+                                                $queries.getUser.data[0]
+                                                  .first_name +
+                                                " " +
+                                                $queries.getUser.data[0]
+                                                  .last_name,
+                                              subscriptionName: product
+                                                ? product.name
+                                                : "Abonnement",
+                                              benefit1: benefits[0] || "",
+                                              benefit2: benefits[1] || "",
+                                              benefit3: benefits[2] || "",
+                                              manageUrl:
+                                                "https://jam-staging.agence-scroll.com/parametres-abonnement"
+                                            }
+                                          };
+                                          return emailPayload;
+                                        })()
                                       ]
                                     },
                                     cacheKey: null,
@@ -17994,7 +18058,7 @@ const PlasmicDescendants = {
   espaceEmployeur: [
     "espaceEmployeur",
     "mobileNavbarTop",
-    "sidebarEmployer",
+    "sidebar",
     "main",
     "heading2",
     "annonces3",
@@ -18179,7 +18243,7 @@ const PlasmicDescendants = {
     "amount"
   ],
   mobileNavbarTop: ["mobileNavbarTop"],
-  sidebarEmployer: ["sidebarEmployer"],
+  sidebar: ["sidebar"],
   main: [
     "main",
     "heading2",
@@ -18865,7 +18929,7 @@ type DescendantsType<T extends NodeNameType> =
 type NodeDefaultElementType = {
   espaceEmployeur: "div";
   mobileNavbarTop: typeof MobileNavbarTop;
-  sidebarEmployer: typeof Sidebar2;
+  sidebar: typeof Sidebar;
   main: "main";
   heading2: "h1";
   annonces3: "div";
@@ -19111,7 +19175,7 @@ export const PlasmicOffreEmployeur = Object.assign(
   {
     // Helper components rendering sub-elements
     mobileNavbarTop: makeNodeComponent("mobileNavbarTop"),
-    sidebarEmployer: makeNodeComponent("sidebarEmployer"),
+    sidebar: makeNodeComponent("sidebar"),
     main: makeNodeComponent("main"),
     heading2: makeNodeComponent("heading2"),
     annonces3: makeNodeComponent("annonces3"),

@@ -35,14 +35,9 @@
     display: flex;
   }
 }
-.sidebar2:global(.__wab_instance) {
+.sidebar:global(.__wab_instance) {
   max-width: 100%;
-  min-height: 20%;
-}
-@media (min-width: 0px) and (max-width: 768px) {
-  .sidebar2:global(.__wab_instance) {
-    display: none;
-  }
+  width: 20%;
 }
 .main {
   height: 100%;

@@ -318,12 +318,11 @@ export type PlasmicAccueilEmployeur__OverridesType = {
   logo?: Flex__<"div">;
   frame16?: Flex__<"div">;
   frame17?: Flex__<"div">;
-  frame18?: Flex__<"div">;
-  frame19?: Flex__<"div">;
-  frame20?: Flex__<"div">;
   socials?: Flex__<"div">;
-  socialIcon?: Flex__<"div">;
-  socialIcon2?: Flex__<"div">;
+  facebook?: Flex__<typeof PlasmicImg__>;
+  x?: Flex__<"svg">;
+  insta?: Flex__<"svg">;
+  linkedin?: Flex__<"svg">;
   footerLinksContainer?: Flex__<"div">;
   footerLinksColumn?: Flex__<"div">;
   heading5?: Flex__<"div">;
@@ -3685,9 +3684,11 @@ function PlasmicAccueilEmployeur__RenderFunc(props: {
                       hasGap={true}
                       className={classNames(projectcss.all, sty.logo)}
                     >
-                      <div
+                      <Stack__
+                        as={"div"}
                         data-plasmic-name={"frame16"}
                         data-plasmic-override={overrides.frame16}
+                        hasGap={true}
                         className={classNames(projectcss.all, sty.frame16)}
                         onClick={async event => {
                           const $steps = {};
@@ -3718,78 +3719,27 @@ function PlasmicAccueilEmployeur__RenderFunc(props: {
                           }
                         }}
                       >
-                        <div
-                          className={classNames(
-                            projectcss.all,
-                            sty.freeBox__gWu5
-                          )}
-                        >
-                          <Group9Icon
-                            className={classNames(
-                              projectcss.all,
-                              sty.svg__ccUrY
-                            )}
-                            role={"img"}
-                          />
-                        </div>
+                        <PictogramIcon
+                          className={classNames(projectcss.all, sty.svg__ccUrY)}
+                          role={"img"}
+                        />
+
                         <div
                           data-plasmic-name={"frame17"}
                           data-plasmic-override={overrides.frame17}
                           className={classNames(projectcss.all, sty.frame17)}
                         >
-                          <Stack__
-                            as={"div"}
-                            data-plasmic-name={"frame18"}
-                            data-plasmic-override={overrides.frame18}
-                            hasGap={true}
-                            className={classNames(projectcss.all, sty.frame18)}
+                          <div
+                            className={classNames(
+                              projectcss.all,
+                              projectcss.__wab_text,
+                              sty.text__fahv1
+                            )}
                           >
-                            <div
-                              className={classNames(
-                                projectcss.all,
-                                projectcss.__wab_text,
-                                sty.text__fahv1
-                              )}
-                            >
-                              {"JOB"}
-                            </div>
-                          </Stack__>
-                          <Stack__
-                            as={"div"}
-                            data-plasmic-name={"frame19"}
-                            data-plasmic-override={overrides.frame19}
-                            hasGap={true}
-                            className={classNames(projectcss.all, sty.frame19)}
-                          >
-                            <div
-                              className={classNames(
-                                projectcss.all,
-                                projectcss.__wab_text,
-                                sty.text__d6K0R
-                              )}
-                            >
-                              {"AROUND"}
-                            </div>
-                          </Stack__>
-                          <Stack__
-                            as={"div"}
-                            data-plasmic-name={"frame20"}
-                            data-plasmic-override={overrides.frame20}
-                            hasGap={true}
-                            className={classNames(projectcss.all, sty.frame20)}
-                          >
-                            <div
-                              className={classNames(
-                                projectcss.all,
-                                projectcss.__wab_text,
-                                sty.text___1FiIm
-                              )}
-                            >
-                              {"ME"}
-                            </div>
-                          </Stack__>
+                            {"JOB AROUND ME"}
+                          </div>
                         </div>
-                      </div>
+                      </Stack__>
                     </Stack__>
                     <Stack__
                       as={"div"}
@@ -3799,8 +3749,10 @@ function PlasmicAccueilEmployeur__RenderFunc(props: {
                       className={classNames(projectcss.all, sty.socials)}
                     >
                       <PlasmicImg__
+                        data-plasmic-name={"facebook"}
+                        data-plasmic-override={overrides.facebook}
                         alt={""}
-                        className={classNames(sty.img___7Kt28)}
+                        className={classNames(sty.facebook)}
                         displayHeight={"24px"}
                         displayMaxHeight={"none"}
                         displayMaxWidth={"100%"}
@@ -3817,30 +3769,25 @@ function PlasmicAccueilEmployeur__RenderFunc(props: {
                       />
 
                       <SocialIcon8Icon
-                        className={classNames(projectcss.all, sty.svg__j1Vxv)}
+                        data-plasmic-name={"x"}
+                        data-plasmic-override={overrides.x}
+                        className={classNames(projectcss.all, sty.x)}
                         role={"img"}
                       />
 
-                      <div
-                        data-plasmic-name={"socialIcon"}
-                        data-plasmic-override={overrides.socialIcon}
-                        className={classNames(projectcss.all, sty.socialIcon)}
-                      >
-                        <Group10Icon
-                          className={classNames(projectcss.all, sty.svg__fh2M7)}
-                          role={"img"}
-                        />
-                      </div>
-                      <div
-                        data-plasmic-name={"socialIcon2"}
-                        data-plasmic-override={overrides.socialIcon2}
-                        className={classNames(projectcss.all, sty.socialIcon2)}
-                      >
-                        <Group11Icon
-                          className={classNames(projectcss.all, sty.svg__sO2It)}
-                          role={"img"}
-                        />
-                      </div>
+                      <Group10Icon
+                        data-plasmic-name={"insta"}
+                        data-plasmic-override={overrides.insta}
+                        className={classNames(projectcss.all, sty.insta)}
+                        role={"img"}
+                      />
+
+                      <Group11Icon
+                        data-plasmic-name={"linkedin"}
+                        data-plasmic-override={overrides.linkedin}
+                        className={classNames(projectcss.all, sty.linkedin)}
+                        role={"img"}
+                      />
                     </Stack__>
                   </Stack__>
                   <div
@@ -4469,12 +4416,11 @@ const PlasmicDescendants = {
     "logo",
     "frame16",
     "frame17",
-    "frame18",
-    "frame19",
-    "frame20",
     "socials",
-    "socialIcon",
-    "socialIcon2",
+    "facebook",
+    "x",
+    "insta",
+    "linkedin",
     "footerLinksContainer",
     "footerLinksColumn",
     "heading5",
@@ -4692,12 +4638,11 @@ const PlasmicDescendants = {
     "logo",
     "frame16",
     "frame17",
-    "frame18",
-    "frame19",
-    "frame20",
     "socials",
-    "socialIcon",
-    "socialIcon2",
+    "facebook",
+    "x",
+    "insta",
+    "linkedin",
     "footerLinksContainer",
     "footerLinksColumn",
     "heading5",
@@ -5800,12 +5745,11 @@ const PlasmicDescendants = {
     "logo",
     "frame16",
     "frame17",
-    "frame18",
-    "frame19",
-    "frame20",
     "socials",
-    "socialIcon",
-    "socialIcon2",
+    "facebook",
+    "x",
+    "insta",
+    "linkedin",
     "footerLinksContainer",
     "footerLinksColumn",
     "heading5",
@@ -5823,12 +5767,11 @@ const PlasmicDescendants = {
     "logo",
     "frame16",
     "frame17",
-    "frame18",
-    "frame19",
-    "frame20",
     "socials",
-    "socialIcon",
-    "socialIcon2",
+    "facebook",
+    "x",
+    "insta",
+    "linkedin",
     "footerLinksContainer",
     "footerLinksColumn",
     "heading5",
@@ -5841,12 +5784,11 @@ const PlasmicDescendants = {
     "logo",
     "frame16",
     "frame17",
-    "frame18",
-    "frame19",
-    "frame20",
     "socials",
-    "socialIcon",
-    "socialIcon2",
+    "facebook",
+    "x",
+    "insta",
+    "linkedin",
     "footerLinksContainer",
     "footerLinksColumn",
     "heading5",
@@ -5858,22 +5800,20 @@ const PlasmicDescendants = {
     "logo",
     "frame16",
     "frame17",
-    "frame18",
-    "frame19",
-    "frame20",
     "socials",
-    "socialIcon",
-    "socialIcon2"
+    "facebook",
+    "x",
+    "insta",
+    "linkedin"
   ],
-  logo: ["logo", "frame16", "frame17", "frame18", "frame19", "frame20"],
-  frame16: ["frame16", "frame17", "frame18", "frame19", "frame20"],
-  frame17: ["frame17", "frame18", "frame19", "frame20"],
-  frame18: ["frame18"],
-  frame19: ["frame19"],
-  frame20: ["frame20"],
-  socials: ["socials", "socialIcon", "socialIcon2"],
-  socialIcon: ["socialIcon"],
-  socialIcon2: ["socialIcon2"],
+  logo: ["logo", "frame16", "frame17"],
+  frame16: ["frame16", "frame17"],
+  frame17: ["frame17"],
+  socials: ["socials", "facebook", "x", "insta", "linkedin"],
+  facebook: ["facebook"],
+  x: ["x"],
+  insta: ["insta"],
+  linkedin: ["linkedin"],
   footerLinksContainer: [
     "footerLinksContainer",
     "footerLinksColumn",
@@ -6101,12 +6041,11 @@ type NodeDefaultElementType = {
   logo: "div";
   frame16: "div";
   frame17: "div";
-  frame18: "div";
-  frame19: "div";
-  frame20: "div";
   socials: "div";
-  socialIcon: "div";
-  socialIcon2: "div";
+  facebook: typeof PlasmicImg__;
+  x: "svg";
+  insta: "svg";
+  linkedin: "svg";
   footerLinksContainer: "div";
   footerLinksColumn: "div";
   heading5: "div";
@@ -6388,12 +6327,11 @@ export const PlasmicAccueilEmployeur = Object.assign(
     logo: makeNodeComponent("logo"),
     frame16: makeNodeComponent("frame16"),
     frame17: makeNodeComponent("frame17"),
-    frame18: makeNodeComponent("frame18"),
-    frame19: makeNodeComponent("frame19"),
-    frame20: makeNodeComponent("frame20"),
     socials: makeNodeComponent("socials"),
-    socialIcon: makeNodeComponent("socialIcon"),
-    socialIcon2: makeNodeComponent("socialIcon2"),
+    facebook: makeNodeComponent("facebook"),
+    x: makeNodeComponent("x"),
+    insta: makeNodeComponent("insta"),
+    linkedin: makeNodeComponent("linkedin"),
     footerLinksContainer: makeNodeComponent("footerLinksContainer"),
     footerLinksColumn: makeNodeComponent("footerLinksColumn"),
     heading5: makeNodeComponent("heading5"),

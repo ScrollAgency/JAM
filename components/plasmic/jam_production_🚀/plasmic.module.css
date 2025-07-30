@@ -81,7 +81,7 @@
   --plasmic-token-interaction-pressed: var(--token-_T_Uje23l_Nn);
   --token-6E_dkwkzSygq: var(--token-vINZR3MlEOSB);
   --plasmic-token-size-10: var(--token-6E_dkwkzSygq);
-  --token-XkcIRFBUIQDs: #bbef68;
+  --token-XkcIRFBUIQDs: #bafe68;
   --plasmic-token-brand-brand-foreground: var(--token-XkcIRFBUIQDs);
   --token-MqZ3sYlfZ07n: #f9fafb;
   --plasmic-token-neutral-neutral-foreground: var(--token-MqZ3sYlfZ07n);
@@ -275,6 +275,8 @@
   --plasmic-token-unnamed-style-token-7: var(--token-ZyOgaQtifCc_);
   --token-c6cbk3snPTmk: #fca5d3;
   --plasmic-token-unnamed-style-token-8: var(--token-c6cbk3snPTmk);
+  --token-KprZbH6Ec6P_: 47px;
+  --plasmic-token-unnamed-style-token-9: var(--token-KprZbH6Ec6P_);
 }
 
 @media (min-width: 0px) and (max-width: 768px) {
@@ -294,7 +296,10 @@
   );
 }
 
-.plasmic_default_styles {
+.plasmic_default_styles,
+.plasmic_default_styles:where(
+    .global_unnamedGlobalGroupOfVariants_unnamedVariant
+  ) {
   --mixin-wvrN6qTZTx0r_font-family: "Inter", sans-serif;
   --mixin-wvrN6qTZTx0r_font-size: 14px;
   --mixin-wvrN6qTZTx0r_font-weight: 400;
@@ -419,13 +424,17 @@
 }
 
 @media (min-width: 0px) and (max-width: 768px) {
-  .plasmic_default_styles {
+  .plasmic_default_styles,
+  .plasmic_default_styles:where(
+      .global_unnamedGlobalGroupOfVariants_unnamedVariant
+    ) {
     --mixin-1-EG1vyUAJjP_font-size: 48px;
     --mixin-1-EG1vyUAJjP_white-space: pre-wrap;
   }
 }
 
-.plasmic_mixins {
+.plasmic_mixins,
+.plasmic_mixins:where(.global_unnamedGlobalGroupOfVariants_unnamedVariant) {
   --mixin-H_1NklKde37Q_white-space: pre-wrap;
   --plasmic-mixin-filter-input_white-space: var(
     --mixin-H_1NklKde37Q_white-space
@@ -486,6 +495,18 @@
   );
   --mixin-Q83fI2tR0VZ2_white-space: pre-wrap;
   --plasmic-mixin-tag-style_white-space: var(--mixin-Q83fI2tR0VZ2_white-space);
+  --mixin-UiD5Lb-hDEns_white-space: pre-wrap;
+  --plasmic-mixin-unnamed-style-preset-7_white-space: var(
+    --mixin-UiD5Lb-hDEns_white-space
+  );
+  --mixin-znxNjmCtj9gK_white-space: pre-wrap;
+  --plasmic-mixin-filter-input-lg-search_white-space: var(
+    --mixin-znxNjmCtj9gK_white-space
+  );
+  --mixin-tjMLvqJ2zJfD_white-space: pre-wrap;
+  --plasmic-mixin-filter-input-lg-location_white-space: var(
+    --mixin-tjMLvqJ2zJfD_white-space
+  );
 }
 
 :where(.all) {

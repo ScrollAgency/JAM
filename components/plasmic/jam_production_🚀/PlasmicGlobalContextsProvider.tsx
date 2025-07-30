@@ -17,19 +17,15 @@ export interface GlobalContextsProviderProps {
   antdConfigProviderProps?: Partial<
     Omit<React.ComponentProps<typeof AntdConfigProvider>, "children">
   >;
-
   supabaseUserGlobalContextProps?: Partial<
     Omit<React.ComponentProps<typeof SupabaseUserGlobalContext>, "children">
   >;
-
   commerceProviderComponentProps?: Partial<
     Omit<React.ComponentProps<typeof CommerceProviderComponent>, "children">
   >;
-
   embedCssProps?: Partial<
     Omit<React.ComponentProps<typeof EmbedCss>, "children">
   >;
-
   cmsCredentialsProviderProps?: Partial<
     Omit<React.ComponentProps<typeof CmsCredentialsProvider>, "children">
   >;
@@ -103,7 +99,7 @@ export default function GlobalContextsProvider(
       loadingText={
         antdConfigProviderProps && "loadingText" in antdConfigProviderProps
           ? antdConfigProviderProps.loadingText!
-          : undefined
+          : "Chargement..."
       }
       removeLoading={
         antdConfigProviderProps && "removeLoading" in antdConfigProviderProps
@@ -169,7 +165,7 @@ export default function GlobalContextsProvider(
             css={
               embedCssProps && "css" in embedCssProps
                 ? embedCssProps.css!
-                : ".no-scroll-bar {\n  -ms-overflow-style: none;  /* Internet Explorer 10+ */\n  scrollbar-width: none;\n  /* Firefox */\n}\n\n.no-scroll-bar::-webkit-scrollbar {\n  display: none;\n  /* Safari and Chrome */\n}\n\n\n\n\n/* CSS snippet */\n\n.stretch {\n  width: 100%;\n}\n\n.last-minute {\n  background: linear-gradient(180deg, #F6165B, #F36320); /* Rose \u2192 Orange (haut \u2192 bas) */\n  -webkit-background-clip: text;\n  -webkit-text-fill-color: transparent;\n\n  background-clip: text;\n  color: transparent;\n}\n\n.zero-charge {\n  color: #C8C8C8;\n}\n\ncharge {\n  color: #666666;\n}\n\n.grey-600 {\n  color: #666666;\n}\n\n.green-500 {\n  color: #BBFE68;\n}\n\n\n.spinner {\n  width: 50px;\n  height: 50px;\n  animation: spin 0.4s linear infinite;\n  transform-origin: center;\n}\n\n@keyframes spin {\n  100% {\n    transform: rotate(360deg);\n  }\n}"
+                : ".no-scroll-bar {\n  -ms-overflow-style: none;  /* Internet Explorer 10+ */\n  scrollbar-width: none;\n  /* Firefox */\n}\n\n.no-scroll-bar::-webkit-scrollbar {\n  display: none;\n  /* Safari and Chrome */\n}\n\n\n\n\n/* CSS snippet */\n\n.stretch {\n  width: 100%;\n}\n\n.last-minute {\n  background: linear-gradient(180deg, #F6165B, #F36320); /* Rose \u2192 Orange (haut \u2192 bas) */\n  -webkit-background-clip: text;\n  -webkit-text-fill-color: transparent;\n\n  background-clip: text;\n  color: transparent;\n}\n\n.zero-charge {\n  color: #C8C8C8;\n}\n\ncharge {\n  color: #666666;\n}\n\n.grey-600 {\n  color: #666666;\n}\n\n.green-500 {\n  color: #BBFE68;\n}\n\n\n.spinner {\n  width: 50px;\n  height: 50px;\n  animation: spin 0.4s linear infinite;\n  transform-origin: center;\n}\n\n@keyframes spin {\n  100% {\n    transform: rotate(360deg);\n  }\n}\n\n\n\n.crisp-client .cc-1brb6[data-full-view=true] .cc-1yy0g .cc-1m2mf {\n  bottom: 70px !important;\n  right: 14px !important;\n  z-index: 1 !important;\n}\n\n.wg-default, .wg-default .country-selector {\n      bottom: 70px !important;\n      left: 0 !important;\n}"
             }
           >
             <CmsCredentialsProvider

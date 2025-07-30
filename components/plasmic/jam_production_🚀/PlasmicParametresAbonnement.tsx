@@ -66,8 +66,8 @@ import {
   usePlasmicInvalidate
 } from "@plasmicapp/react-web/lib/data-sources";
 
+import Sidebar from "../../Sidebar"; // plasmic-import: M06HuWMcBQV2/component
 import { PageLoader } from "../../others/PageLoader/PageLoader"; // plasmic-import: FHDrnDhA4DZe/codeComponent
-import Sidebar2 from "../../Sidebar2"; // plasmic-import: RXqL3kdDrXwo/component
 import Modal from "../../Modal"; // plasmic-import: fsC3QwUZz9uz/component
 import { JamButton } from "../../forms/JamButton/JamButton"; // plasmic-import: UiI0wt2mxfuf/codeComponent
 import Button from "../../Button"; // plasmic-import: 9ixtKbGKv7x-/component
@@ -114,9 +114,9 @@ export const PlasmicParametresAbonnement__ArgProps = new Array<ArgPropType>();
 
 export type PlasmicParametresAbonnement__OverridesType = {
   root?: Flex__<"div">;
+  sidebar?: Flex__<typeof Sidebar>;
   actionCreditSuccess?: Flex__<typeof PageLoader>;
   actionCreditSuccessDepreciated?: Flex__<typeof PageLoader>;
-  sidebar2?: Flex__<typeof Sidebar2>;
   main?: Flex__<"div">;
   heading?: Flex__<"div">;
   modalCreditsAlerts?: Flex__<typeof Modal>;
@@ -317,12 +317,6 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
           })()
       },
       {
-        path: "sidebar2.disableLinks",
-        type: "private",
-        variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => false
-      },
-      {
         path: "stripeSessionId",
         type: "private",
         variableType: "text",
@@ -357,6 +351,18 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
         type: "private",
         variableType: "boolean",
         initFunc: ({ $props, $state, $queries, $ctx }) => false
+      },
+      {
+        path: "sidebar.disableLinks",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $ctx }) => false
+      },
+      {
+        path: "sidebar.role",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $ctx }) => "employer"
       }
     ],
     [$props, $ctx, $refs]
@@ -384,11 +390,11 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
     getUserStripeInfos: usePlasmicDataOp(() => {
       return {
         sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
-        opId: "44279b1d-8867-4128-97b8-520ffe67ab32",
+        opId: "ba382dfb-c617-44db-a36f-dda3fa7e919f",
         userArgs: {
-          filters: [$ctx.SupabaseUser.user.id]
+          query: [$ctx.SupabaseUser.user.id]
         },
-        cacheKey: `plasmic.$.44279b1d-8867-4128-97b8-520ffe67ab32.$.`,
+        cacheKey: `plasmic.$.ba382dfb-c617-44db-a36f-dda3fa7e919f.$.`,
         invalidatedKeys: null,
         roleId: null
       };
@@ -457,6 +463,45 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
             sty.root
           )}
         >
+          <Sidebar
+            data-plasmic-name={"sidebar"}
+            data-plasmic-override={overrides.sidebar}
+            className={classNames("__wab_instance", sty.sidebar)}
+            disableLinks={generateStateValueProp($state, [
+              "sidebar",
+              "disableLinks"
+            ])}
+            onDisableLinksChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, [
+                "sidebar",
+                "disableLinks"
+              ]).apply(null, eventArgs);
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+            onRoleChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, ["sidebar", "role"]).apply(
+                null,
+                eventArgs
+              );
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+            role={generateStateValueProp($state, ["sidebar", "role"])}
+          />
+
           <PageLoader
             data-plasmic-name={"actionCreditSuccess"}
             data-plasmic-override={overrides.actionCreditSuccess}
@@ -979,30 +1024,6 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                 throw e;
               }
             })()}
-          />
-
-          <Sidebar2
-            data-plasmic-name={"sidebar2"}
-            data-plasmic-override={overrides.sidebar2}
-            className={classNames("__wab_instance", sty.sidebar2)}
-            disableLinks={generateStateValueProp($state, [
-              "sidebar2",
-              "disableLinks"
-            ])}
-            onDisableLinksChange={async (...eventArgs: any) => {
-              generateStateOnChangeProp($state, [
-                "sidebar2",
-                "disableLinks"
-              ]).apply(null, eventArgs);
-
-              if (
-                eventArgs.length > 1 &&
-                eventArgs[1] &&
-                eventArgs[1]._plasmic_state_init_
-              ) {
-                return;
-              }
-            }}
           />
 
           <Stack__
@@ -1738,6 +1759,78 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                               $steps["successNotificartion"] = await $steps[
                                 "successNotificartion"
                               ];
+                            }
+
+                            $steps["httpPost"] = true
+                              ? (() => {
+                                  const actionArgs = {
+                                    dataOp: {
+                                      sourceId: "5T6gSzGCrEfYgV9rAkCoaD",
+                                      opId: "ac3aeb59-a5a8-4309-9807-433a1356e04e",
+                                      userArgs: {
+                                        body: [
+                                          (() => {
+                                            const subscriptionName =
+                                              $queries.getUserStripeInfos
+                                                .data[0].product_id ===
+                                              "prod_S81L3WBaA1HwM0"
+                                                ? "Premium"
+                                                : "Basic";
+                                            return {
+                                              to: $queries.getUserStripeInfos
+                                                .data[0].email,
+                                              template: "subscriptionCanceled",
+                                              subject:
+                                                "Ton abonnement a été résilié \uD83D\uDED1",
+                                              params: {
+                                                name:
+                                                  $queries.getUserStripeInfos
+                                                    .data[0].first_name +
+                                                  " " +
+                                                  $queries.getUserStripeInfos
+                                                    .data[0].last_name,
+                                                subscriptionName:
+                                                  subscriptionName
+                                              }
+                                            };
+                                          })()
+                                        ]
+                                      },
+                                      cacheKey: null,
+                                      invalidatedKeys: [],
+                                      roleId: null
+                                    }
+                                  };
+                                  return (async ({
+                                    dataOp,
+                                    continueOnError
+                                  }) => {
+                                    try {
+                                      const response =
+                                        await executePlasmicDataOp(dataOp, {
+                                          userAuthToken:
+                                            dataSourcesCtx?.userAuthToken,
+                                          user: dataSourcesCtx?.user
+                                        });
+                                      await plasmicInvalidate(
+                                        dataOp.invalidatedKeys
+                                      );
+                                      return response;
+                                    } catch (e) {
+                                      if (!continueOnError) {
+                                        throw e;
+                                      }
+                                      return e;
+                                    }
+                                  })?.apply(null, [actionArgs]);
+                                })()
+                              : undefined;
+                            if (
+                              $steps["httpPost"] != null &&
+                              typeof $steps["httpPost"] === "object" &&
+                              typeof $steps["httpPost"].then === "function"
+                            ) {
+                              $steps["httpPost"] = await $steps["httpPost"];
                             }
 
                             $steps["goToParametresAbonnement"] = true
@@ -4347,9 +4440,9 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
 const PlasmicDescendants = {
   root: [
     "root",
+    "sidebar",
     "actionCreditSuccess",
     "actionCreditSuccessDepreciated",
-    "sidebar2",
     "main",
     "heading",
     "modalCreditsAlerts",
@@ -4404,9 +4497,9 @@ const PlasmicDescendants = {
     "amount",
     "stripeCheckout"
   ],
+  sidebar: ["sidebar"],
   actionCreditSuccess: ["actionCreditSuccess"],
   actionCreditSuccessDepreciated: ["actionCreditSuccessDepreciated"],
-  sidebar2: ["sidebar2"],
   main: [
     "main",
     "heading",
@@ -4676,9 +4769,9 @@ type DescendantsType<T extends NodeNameType> =
   (typeof PlasmicDescendants)[T][number];
 type NodeDefaultElementType = {
   root: "div";
+  sidebar: typeof Sidebar;
   actionCreditSuccess: typeof PageLoader;
   actionCreditSuccessDepreciated: typeof PageLoader;
-  sidebar2: typeof Sidebar2;
   main: "div";
   heading: "div";
   modalCreditsAlerts: typeof Modal;
@@ -4794,11 +4887,11 @@ export const PlasmicParametresAbonnement = Object.assign(
   makeNodeComponent("root"),
   {
     // Helper components rendering sub-elements
+    sidebar: makeNodeComponent("sidebar"),
     actionCreditSuccess: makeNodeComponent("actionCreditSuccess"),
     actionCreditSuccessDepreciated: makeNodeComponent(
       "actionCreditSuccessDepreciated"
     ),
-    sidebar2: makeNodeComponent("sidebar2"),
     main: makeNodeComponent("main"),
     heading: makeNodeComponent("heading"),
     modalCreditsAlerts: makeNodeComponent("modalCreditsAlerts"),

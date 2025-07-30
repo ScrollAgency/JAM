@@ -67,7 +67,7 @@ import {
 } from "@plasmicapp/react-web/lib/data-sources";
 
 import MobileNavbarTop from "../../MobileNavbarTop"; // plasmic-import: mAg8Ml3XUEhy/component
-import Sidebar2 from "../../Sidebar2"; // plasmic-import: RXqL3kdDrXwo/component
+import Sidebar from "../../Sidebar"; // plasmic-import: M06HuWMcBQV2/component
 import { FormWrapper } from "@plasmicpkgs/antd5/skinny/Form";
 import { formHelpers as FormWrapper_Helpers } from "@plasmicpkgs/antd5/skinny/Form";
 import { FormItemWrapper } from "@plasmicpkgs/antd5/skinny/FormItem";
@@ -117,7 +117,7 @@ export const PlasmicRechercheCandidat__ArgProps = new Array<ArgPropType>();
 export type PlasmicRechercheCandidat__OverridesType = {
   rechercehCandidat?: Flex__<"div">;
   mobileNavbarTop?: Flex__<typeof MobileNavbarTop>;
-  sidebar2?: Flex__<typeof Sidebar2>;
+  sidebar?: Flex__<typeof Sidebar>;
   main?: Flex__<"main">;
   h1?: Flex__<"h1">;
   filterForm?: Flex__<typeof FormWrapper>;
@@ -344,10 +344,16 @@ function PlasmicRechercheCandidat__RenderFunc(props: {
         variableType: "text"
       },
       {
-        path: "sidebar2.disableLinks",
+        path: "sidebar.disableLinks",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $ctx }) => false
+      },
+      {
+        path: "sidebar.role",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => false
+        initFunc: ({ $props, $state, $queries, $ctx }) => "employer"
       }
     ],
     [$props, $ctx, $refs]
@@ -441,17 +447,17 @@ function PlasmicRechercheCandidat__RenderFunc(props: {
             className={classNames("__wab_instance", sty.mobileNavbarTop)}
           />
 
-          <Sidebar2
-            data-plasmic-name={"sidebar2"}
-            data-plasmic-override={overrides.sidebar2}
-            className={classNames("__wab_instance", sty.sidebar2)}
+          <Sidebar
+            data-plasmic-name={"sidebar"}
+            data-plasmic-override={overrides.sidebar}
+            className={classNames("__wab_instance", sty.sidebar)}
             disableLinks={generateStateValueProp($state, [
-              "sidebar2",
+              "sidebar",
               "disableLinks"
             ])}
             onDisableLinksChange={async (...eventArgs: any) => {
               generateStateOnChangeProp($state, [
-                "sidebar2",
+                "sidebar",
                 "disableLinks"
               ]).apply(null, eventArgs);
 
@@ -463,6 +469,21 @@ function PlasmicRechercheCandidat__RenderFunc(props: {
                 return;
               }
             }}
+            onRoleChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, ["sidebar", "role"]).apply(
+                null,
+                eventArgs
+              );
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+            role={generateStateValueProp($state, ["sidebar", "role"])}
           />
 
           <Stack__
@@ -2589,7 +2610,7 @@ const PlasmicDescendants = {
   rechercehCandidat: [
     "rechercehCandidat",
     "mobileNavbarTop",
-    "sidebar2",
+    "sidebar",
     "main",
     "h1",
     "filterForm",
@@ -2652,7 +2673,7 @@ const PlasmicDescendants = {
     "mobileNavbarBottomCompany"
   ],
   mobileNavbarTop: ["mobileNavbarTop"],
-  sidebar2: ["sidebar2"],
+  sidebar: ["sidebar"],
   main: [
     "main",
     "h1",
@@ -2986,7 +3007,7 @@ type DescendantsType<T extends NodeNameType> =
 type NodeDefaultElementType = {
   rechercehCandidat: "div";
   mobileNavbarTop: typeof MobileNavbarTop;
-  sidebar2: typeof Sidebar2;
+  sidebar: typeof Sidebar;
   main: "main";
   h1: "h1";
   filterForm: typeof FormWrapper;
@@ -3110,7 +3131,7 @@ export const PlasmicRechercheCandidat = Object.assign(
   {
     // Helper components rendering sub-elements
     mobileNavbarTop: makeNodeComponent("mobileNavbarTop"),
-    sidebar2: makeNodeComponent("sidebar2"),
+    sidebar: makeNodeComponent("sidebar"),
     main: makeNodeComponent("main"),
     h1: makeNodeComponent("h1"),
     filterForm: makeNodeComponent("filterForm"),

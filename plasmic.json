@@ -2258,6 +2258,19 @@
           "cssFilePath": "plasmic/jam_production_🚀/PlasmicFooter.module.css",
           "scheme": "blackbox",
           "componentType": "component"
+        },
+        {
+          "id": "nbNWFt-vOCjr",
+          "name": "SectionCard",
+          "type": "managed",
+          "projectId": "f7DE9y7qp46fyCw5nuY8f9",
+          "renderModuleFilePath": "plasmic/jam_production_🚀/PlasmicSectionCard.tsx",
+          "importSpec": {
+            "modulePath": "SectionCard.tsx"
+          },
+          "cssFilePath": "plasmic/jam_production_🚀/PlasmicSectionCard.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
         }
       ],
       "icons": [
@@ -5142,6 +5155,12 @@
         "name": "Screen",
         "projectId": "f7DE9y7qp46fyCw5nuY8f9",
         "contextFilePath": "plasmic/jam_production_🚀/PlasmicGlobalVariant__Screen.tsx"
+      },
+      {
+        "id": "XIKLz2YbSl05",
+        "name": "UnnamedGlobalGroupOfVariants",
+        "projectId": "f7DE9y7qp46fyCw5nuY8f9",
+        "contextFilePath": "plasmic/jam_production_🚀/PlasmicGlobalVariant__UnnamedGlobalGroupOfVariants.tsx"
       }
     ]
   },

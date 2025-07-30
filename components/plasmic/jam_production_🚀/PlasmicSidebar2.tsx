@@ -325,7 +325,7 @@ function PlasmicSidebar2__RenderFunc(props: {
             className={classNames("__wab_instance", sty.sideBarButton__qTcNb)}
             disabled={(() => {
               try {
-                return $state.disableLinks;
+                return (() => {})();
               } catch (e) {
                 if (
                   e instanceof TypeError ||
@@ -407,7 +407,7 @@ function PlasmicSidebar2__RenderFunc(props: {
             className={classNames("__wab_instance", sty.sideBarButton___0Uclj)}
             disabled={(() => {
               try {
-                return $state.disableLinks;
+                return (() => {})();
               } catch (e) {
                 if (
                   e instanceof TypeError ||
@@ -484,7 +484,7 @@ function PlasmicSidebar2__RenderFunc(props: {
             className={classNames("__wab_instance", sty.sideBarButton__ndpsZ)}
             disabled={(() => {
               try {
-                return $state.disableLinks;
+                return (() => {})();
               } catch (e) {
                 if (
                   e instanceof TypeError ||
@@ -564,10 +564,7 @@ function PlasmicSidebar2__RenderFunc(props: {
 
           {(() => {
             try {
-              return $ctx.pagePath === "/parametres-employeur" ||
-                $ctx.pagePath === "parametres-abonnement"
-                ? ($state.showButton = true)
-                : $state.showButton;
+              return (() => {})();
             } catch (e) {
               if (
                 e instanceof TypeError ||
@@ -644,10 +641,7 @@ function PlasmicSidebar2__RenderFunc(props: {
           ) : null}
           {(() => {
             try {
-              return $ctx.pagePath === "/parametres-abonnement" ||
-                $ctx.pagePath === "parametres-employeur"
-                ? ($state.showButton = true)
-                : $state.showButton;
+              return (() => {})();
             } catch (e) {
               if (
                 e instanceof TypeError ||

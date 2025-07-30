@@ -287,6 +287,18 @@ function PlasmicMesAlertes__RenderFunc(props: {
         type: "private",
         variableType: "boolean",
         initFunc: ({ $props, $state, $queries, $ctx }) => false
+      },
+      {
+        path: "sidebar.disableLinks",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $ctx }) => false
+      },
+      {
+        path: "sidebar.role",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $ctx }) => "candidat"
       }
     ],
     [$props, $ctx, $refs]
@@ -391,6 +403,39 @@ function PlasmicMesAlertes__RenderFunc(props: {
             data-plasmic-name={"sidebar"}
             data-plasmic-override={overrides.sidebar}
             className={classNames("__wab_instance", sty.sidebar)}
+            disableLinks={generateStateValueProp($state, [
+              "sidebar",
+              "disableLinks"
+            ])}
+            onDisableLinksChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, [
+                "sidebar",
+                "disableLinks"
+              ]).apply(null, eventArgs);
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+            onRoleChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, ["sidebar", "role"]).apply(
+                null,
+                eventArgs
+              );
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+            role={generateStateValueProp($state, ["sidebar", "role"])}
           />
 
           <MobileNavbarTop

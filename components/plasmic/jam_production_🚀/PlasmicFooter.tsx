@@ -90,7 +90,6 @@ export type PlasmicFooter__OverridesType = {
   container?: Flex__<"div">;
   column?: Flex__<"div">;
   frame6?: Flex__<"div">;
-  freeBox?: Flex__<"div">;
   frame7?: Flex__<"div">;
   frame9?: Flex__<"div">;
   frame11?: Flex__<"div">;
@@ -193,16 +192,11 @@ function PlasmicFooter__RenderFunc(props: {
             hasGap={true}
             className={classNames(projectcss.all, sty.frame6)}
           >
-            <div
-              data-plasmic-name={"freeBox"}
-              data-plasmic-override={overrides.freeBox}
-              className={classNames(projectcss.all, sty.freeBox)}
-            >
-              <Vector12Icon
-                className={classNames(projectcss.all, sty.svg__slGgf)}
-                role={"img"}
-              />
-            </div>
+            <Vector12Icon
+              className={classNames(projectcss.all, sty.svg__slGgf)}
+              role={"img"}
+            />
+
             <div
               data-plasmic-name={"frame7"}
               data-plasmic-override={overrides.frame7}
@@ -514,7 +508,6 @@ const PlasmicDescendants = {
     "container",
     "column",
     "frame6",
-    "freeBox",
     "frame7",
     "frame9",
     "frame11",
@@ -532,7 +525,6 @@ const PlasmicDescendants = {
     "container",
     "column",
     "frame6",
-    "freeBox",
     "frame7",
     "frame9",
     "frame11",
@@ -545,7 +537,6 @@ const PlasmicDescendants = {
   column: [
     "column",
     "frame6",
-    "freeBox",
     "frame7",
     "frame9",
     "frame11",
@@ -553,8 +544,7 @@ const PlasmicDescendants = {
     "socials",
     "img"
   ],
-  frame6: ["frame6", "freeBox", "frame7", "frame9", "frame11", "frame12"],
-  freeBox: ["freeBox"],
+  frame6: ["frame6", "frame7", "frame9", "frame11", "frame12"],
   frame7: ["frame7", "frame9", "frame11", "frame12"],
   frame9: ["frame9"],
   frame11: ["frame11"],
@@ -576,7 +566,6 @@ type NodeDefaultElementType = {
   container: "div";
   column: "div";
   frame6: "div";
-  freeBox: "div";
   frame7: "div";
   frame9: "div";
   frame11: "div";
@@ -654,7 +643,6 @@ export const PlasmicFooter = Object.assign(
     container: makeNodeComponent("container"),
     column: makeNodeComponent("column"),
     frame6: makeNodeComponent("frame6"),
-    freeBox: makeNodeComponent("freeBox"),
     frame7: makeNodeComponent("frame7"),
     frame9: makeNodeComponent("frame9"),
     frame11: makeNodeComponent("frame11"),

@@ -387,6 +387,7 @@ function PlasmicConnexion__RenderFunc(props: {
                 emailLabel={"Email"}
                 forgotPasswordPosition={"left"}
                 forgotPasswordText={"Mot de passe oubli\u00e9 ?"}
+                inputGap={"1rem"}
                 inputStyle={"simple"}
                 onEmailChange={async (...eventArgs: any) => {
                   generateStateOnChangeProp($state, [

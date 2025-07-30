@@ -683,10 +683,13 @@ function PlasmicInscriptionCandidat__RenderFunc(props: {
                     placeholderPhone={"060606060606"}
                     privacyPolicyText={"politique de confidentialit\u00e9"}
                     redirectAfterSignUp={``}
+                    redirectTo={
+                      "https://jam-staging.agence-scroll.com/auth/oauth-callback"
+                    }
                     showAlerts={true}
                     showLabels={true}
                     showLoginLink={true}
-                    showOAuthButtons={false}
+                    showOAuthButtons={true}
                     showPasswordToggle={true}
                     showPhoneInput={true}
                     submitButtonIcon={

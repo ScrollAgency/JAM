@@ -67,7 +67,7 @@ import {
 } from "@plasmicapp/react-web/lib/data-sources";
 
 import MobileNavbarTop from "../../MobileNavbarTop"; // plasmic-import: mAg8Ml3XUEhy/component
-import Sidebar2 from "../../Sidebar2"; // plasmic-import: RXqL3kdDrXwo/component
+import Sidebar from "../../Sidebar"; // plasmic-import: M06HuWMcBQV2/component
 import Button from "../../Button"; // plasmic-import: 9ixtKbGKv7x-/component
 import { DataGridV2 } from "../../others/DataGridV2/DataGridV2"; // plasmic-import: iL_5-0entnZc/codeComponent
 import LoadingComponent from "../../LoadingComponent"; // plasmic-import: H7nb8l13ZEyx/component
@@ -115,7 +115,7 @@ export const PlasmicCandidaturesEmployeur__ArgProps = new Array<ArgPropType>();
 export type PlasmicCandidaturesEmployeur__OverridesType = {
   root?: Flex__<"div">;
   mobileNavbarTop?: Flex__<typeof MobileNavbarTop>;
-  sidebar2?: Flex__<typeof Sidebar2>;
+  sidebar?: Flex__<typeof Sidebar>;
   main?: Flex__<"main">;
   heading3?: Flex__<"div">;
   infos?: Flex__<"div">;
@@ -282,12 +282,6 @@ function PlasmicCandidaturesEmployeur__RenderFunc(props: {
         initFunc: ({ $props, $state, $queries, $ctx }) => ""
       },
       {
-        path: "sidebar2.disableLinks",
-        type: "private",
-        variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => false
-      },
-      {
         path: "confirmRejectModal.isOpen",
         type: "private",
         variableType: "boolean",
@@ -298,6 +292,18 @@ function PlasmicCandidaturesEmployeur__RenderFunc(props: {
         type: "private",
         variableType: "object",
         initFunc: ({ $props, $state, $queries, $ctx }) => ({})
+      },
+      {
+        path: "sidebar.disableLinks",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $ctx }) => false
+      },
+      {
+        path: "sidebar.role",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $ctx }) => "employer"
       }
     ],
     [$props, $ctx, $refs]
@@ -417,17 +423,17 @@ function PlasmicCandidaturesEmployeur__RenderFunc(props: {
             className={classNames("__wab_instance", sty.mobileNavbarTop)}
           />
 
-          <Sidebar2
-            data-plasmic-name={"sidebar2"}
-            data-plasmic-override={overrides.sidebar2}
-            className={classNames("__wab_instance", sty.sidebar2)}
+          <Sidebar
+            data-plasmic-name={"sidebar"}
+            data-plasmic-override={overrides.sidebar}
+            className={classNames("__wab_instance", sty.sidebar)}
             disableLinks={generateStateValueProp($state, [
-              "sidebar2",
+              "sidebar",
               "disableLinks"
             ])}
             onDisableLinksChange={async (...eventArgs: any) => {
               generateStateOnChangeProp($state, [
-                "sidebar2",
+                "sidebar",
                 "disableLinks"
               ]).apply(null, eventArgs);
 
@@ -439,6 +445,21 @@ function PlasmicCandidaturesEmployeur__RenderFunc(props: {
                 return;
               }
             }}
+            onRoleChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, ["sidebar", "role"]).apply(
+                null,
+                eventArgs
+              );
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+            role={generateStateValueProp($state, ["sidebar", "role"])}
           />
 
           <Stack__
@@ -3415,7 +3436,7 @@ const PlasmicDescendants = {
   root: [
     "root",
     "mobileNavbarTop",
-    "sidebar2",
+    "sidebar",
     "main",
     "heading3",
     "infos",
@@ -3449,7 +3470,7 @@ const PlasmicDescendants = {
     "mobileNavbarBottomCompany"
   ],
   mobileNavbarTop: ["mobileNavbarTop"],
-  sidebar2: ["sidebar2"],
+  sidebar: ["sidebar"],
   main: [
     "main",
     "heading3",
@@ -3543,7 +3564,7 @@ type DescendantsType<T extends NodeNameType> =
 type NodeDefaultElementType = {
   root: "div";
   mobileNavbarTop: typeof MobileNavbarTop;
-  sidebar2: typeof Sidebar2;
+  sidebar: typeof Sidebar;
   main: "main";
   heading3: "div";
   infos: "div";
@@ -3638,7 +3659,7 @@ export const PlasmicCandidaturesEmployeur = Object.assign(
   {
     // Helper components rendering sub-elements
     mobileNavbarTop: makeNodeComponent("mobileNavbarTop"),
-    sidebar2: makeNodeComponent("sidebar2"),
+    sidebar: makeNodeComponent("sidebar"),
     main: makeNodeComponent("main"),
     heading3: makeNodeComponent("heading3"),
     infos: makeNodeComponent("infos"),

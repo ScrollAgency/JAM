@@ -1954,6 +1954,8 @@
 .ul__uaVbt {
   display: flex;
   flex-direction: column;
+  width: 100%;
+  min-width: 0;
 }
 .item10 {
   width: auto;
@@ -2055,6 +2057,8 @@
 .ul__qejSk {
   display: flex;
   flex-direction: column;
+  width: 100%;
+  min-width: 0;
 }
 .item11 {
   width: auto;
@@ -2156,6 +2160,8 @@
 .ul__dnJLf {
   display: flex;
   flex-direction: column;
+  width: 100%;
+  min-width: 0;
 }
 .item12 {
   width: auto;

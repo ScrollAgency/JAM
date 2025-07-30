@@ -79,8 +79,7 @@ import Select from "../../Select"; // plasmic-import: ZMB-SB-xJDyQ/component
 import MenuItem from "../../MenuItem"; // plasmic-import: plmAgyhhAdMc/component
 import MenuSection from "../../MenuSection"; // plasmic-import: MUvYPH7rZO6i/component
 import { AntdSelect } from "@plasmicpkgs/antd5/skinny/registerSelect";
-import { AntdTextArea } from "@plasmicpkgs/antd5/skinny/registerInput";
-import { inputHelpers as AntdTextArea_Helpers } from "@plasmicpkgs/antd5/skinny/registerInput";
+import TextAreaInput from "../../TextAreaInput"; // plasmic-import: nVAUbPc6gpoz/component
 import { FileUploader } from "../../others/FileUploader/FileUploader"; // plasmic-import: RpVDoPZzyXH3/codeComponent
 import { Login } from "../../../plasmic-library/authentication/Login"; // plasmic-import: DTfpuarR8FPx/codeComponent
 import { AntdInput } from "@plasmicpkgs/antd5/skinny/registerInput";
@@ -88,9 +87,14 @@ import { inputHelpers as AntdInput_Helpers } from "@plasmicpkgs/antd5/skinny/reg
 import ClearBtn from "../../ClearBtn"; // plasmic-import: w2sS9PPQXQ_k/component
 import JobCard20 from "../../JobCard20"; // plasmic-import: VbqA3KvJ940Z/component
 import { MapBox } from "../../../plasmic-library/others/Map/Map"; // plasmic-import: LQF6pcE1iukm/codeComponent
+import SectionCard from "../../SectionCard"; // plasmic-import: nbNWFt-vOCjr/component
 import Footer from "../../Footer"; // plasmic-import: ZOpOgPOAiAAY/component
 import { Fetcher } from "@plasmicapp/react-web/lib/data-sources";
 
+import {
+  UnnamedGlobalGroupOfVariantsValue,
+  useUnnamedGlobalGroupOfVariants
+} from "./PlasmicGlobalVariant__UnnamedGlobalGroupOfVariants"; // plasmic-import: XIKLz2YbSl05/globalVariant
 import { useScreenVariants as useScreenVariantshm8Nko4B5BDd } from "./PlasmicGlobalVariant__Screen"; // plasmic-import: HM8Nko4B5BDd/globalVariant
 
 import "@plasmicapp/react-web/lib/plasmic.css";
@@ -128,9 +132,6 @@ import Vector19Icon from "./icons/PlasmicIcon__Vector19"; // plasmic-import: x-e
 import Icon8Icon from "./icons/PlasmicIcon__Icon8"; // plasmic-import: yCa_tEPZRIxr/icon
 import HeartStraightStreamlinePhosphorSvgIcon from "./icons/PlasmicIcon__HeartStraightStreamlinePhosphorSvg"; // plasmic-import: TgoKIDr5z3En/icon
 import PhClockCountdownFill3Icon from "./icons/PlasmicIcon__PhClockCountdownFill3"; // plasmic-import: j8TopiIYLYKn/icon
-import PersonSimpleWalkIcon from "./icons/PlasmicIcon__PersonSimpleWalk"; // plasmic-import: SiceSr5Gywz4/icon
-import Mail2Icon from "./icons/PlasmicIcon__Mail2"; // plasmic-import: rZP3MS1dOHIL/icon
-import ClockCountdownIcon from "./icons/PlasmicIcon__ClockCountdown"; // plasmic-import: SFl8xy9PdAWQ/icon
 
 createPlasmicElementProxy;
 
@@ -232,7 +233,7 @@ export type PlasmicAccueil__OverridesType = {
   select2?: Flex__<typeof Select>;
   select4?: Flex__<typeof Select>;
   select5?: Flex__<typeof AntdSelect>;
-  textArea?: Flex__<typeof AntdTextArea>;
+  textAreaInput?: Flex__<typeof TextAreaInput>;
   select7?: Flex__<typeof AntdSelect>;
   select?: Flex__<typeof Select>;
   frame13?: Flex__<"div">;
@@ -306,7 +307,6 @@ export type PlasmicAccueil__OverridesType = {
   select10?: Flex__<typeof AntdSelect>;
   select14?: Flex__<typeof AntdSelect>;
   select12?: Flex__<typeof AntdSelect>;
-  select11?: Flex__<typeof AntdSelect>;
   button8?: Flex__<typeof Button>;
   clearBtn?: Flex__<typeof ClearBtn>;
   resetFormBtn?: Flex__<"button">;
@@ -339,21 +339,9 @@ export type PlasmicAccueil__OverridesType = {
   supportingText5?: Flex__<"p">;
   supportingText9?: Flex__<"p">;
   section?: Flex__<"article">;
-  featureText4?: Flex__<"div">;
-  featuredIcon4?: Flex__<"div">;
-  textAndSupportingText4?: Flex__<"div">;
-  text?: Flex__<"div">;
-  supportingText6?: Flex__<"p">;
-  featureText5?: Flex__<"div">;
-  featuredIcon5?: Flex__<"div">;
-  textAndSupportingText5?: Flex__<"div">;
-  text2?: Flex__<"div">;
-  supportingText7?: Flex__<"p">;
-  featureText6?: Flex__<"div">;
-  featuredIcon6?: Flex__<"div">;
-  textAndSupportingText6?: Flex__<"div">;
-  text3?: Flex__<"div">;
-  supportingText8?: Flex__<"p">;
+  sectionCard?: Flex__<typeof SectionCard>;
+  sectionCard2?: Flex__<typeof SectionCard>;
+  sectionCard3?: Flex__<typeof SectionCard>;
   footer?: Flex__<typeof Footer>;
 };
 
@@ -448,14 +436,6 @@ function PlasmicAccueil__RenderFunc(props: {
         onMutate: generateOnMutateForSpec("isSubmitting", FormWrapper_Helpers)
       },
       {
-        path: "textArea.value",
-        type: "private",
-        variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
-
-        onMutate: generateOnMutateForSpec("value", AntdTextArea_Helpers)
-      },
-      {
         path: "select.value",
         type: "private",
         variableType: "text",
@@ -519,7 +499,7 @@ function PlasmicAccueil__RenderFunc(props: {
         path: "isDiv1Visible",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => false
+        initFunc: ({ $props, $state, $queries, $ctx }) => true
       },
       {
         path: "couleurLike",
@@ -609,12 +589,6 @@ function PlasmicAccueil__RenderFunc(props: {
       },
       {
         path: "select10.value",
-        type: "private",
-        variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
-      },
-      {
-        path: "select11.value",
         type: "private",
         variableType: "text",
         initFunc: ({ $props, $state, $queries, $ctx }) => undefined
@@ -1238,6 +1212,90 @@ function PlasmicAccueil__RenderFunc(props: {
         type: "private",
         variableType: "text",
         initFunc: ({ $props, $state, $queries, $ctx }) => ""
+      },
+      {
+        path: "textAreaInput.value",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+      },
+      {
+        path: "sectionCard.icon",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $ctx }) => "img1"
+      },
+      {
+        path: "sectionCard.title",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $ctx }) =>
+          "Il suffit de traverser la rue"
+      },
+      {
+        path: "sectionCard.description",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $ctx }) =>
+          "Gr\u00e2ce \u00e0 la carte, rep\u00e9rez les jobs \u00e0 pourvoir pr\u00e8s de chez vous."
+      },
+      {
+        path: "sectionCard2.icon",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $ctx }) => "img2"
+      },
+      {
+        path: "sectionCard2.title",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $ctx }) =>
+          "Ne ratez aucune offre"
+      },
+      {
+        path: "sectionCard2.description",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $ctx }) =>
+          "Soyez alert\u00e9 par email d\u00e8s qu\u2019une nouvelle offre d\u2019emploi correspond \u00e0 vos crit\u00e8res de recherche."
+      },
+      {
+        path: "sectionCard3.icon",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $ctx }) => "img3"
+      },
+      {
+        path: "sectionCard3.title",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $ctx }) => "Jobs Last Minute"
+      },
+      {
+        path: "sectionCard3.description",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $ctx }) =>
+          "Fini l\u2019attente, gr\u00e2ce aux jobs Last Minute, vous postulez et recevez une r\u00e9ponse sous 24-48h."
+      },
+      {
+        path: "isMobile",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $ctx }) =>
+          (() => {
+            try {
+              return window.innerWidth < 768;
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return false;
+              }
+              throw e;
+            }
+          })()
       }
     ],
     [$props, $ctx, $refs]
@@ -1255,7 +1313,7 @@ function PlasmicAccueil__RenderFunc(props: {
     getJobOffersMobile: usePlasmicDataOp(() => {
       return {
         sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
-        opId: "d0186466-dcbb-4702-a724-88cda73c66bb",
+        opId: "45d75b0d-ceb7-4bb3-8424-9d51489051ff",
         userArgs: {
           query: [
             $state.formFilter2?.value?.contract_type,
@@ -1282,15 +1340,16 @@ function PlasmicAccueil__RenderFunc(props: {
             $state.keyWords,
             $state.keyWords,
             $state.searchLocation,
-            $state.isLastMinute
+            $state.isLastMinute,
+            $state.isMobile
           ]
         },
-        cacheKey: `plasmic.$.d0186466-dcbb-4702-a724-88cda73c66bb.$.`,
+        cacheKey: `plasmic.$.45d75b0d-ceb7-4bb3-8424-9d51489051ff.$.`,
         invalidatedKeys: null,
         roleId: null
       };
     }),
-    getUsersLikes: usePlasmicDataOp(() => {
+    userLikedJobs: usePlasmicDataOp(() => {
       return {
         sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
         opId: "24ab9e7e-7e19-4ab2-82fc-82df12596da0",
@@ -1302,31 +1361,7 @@ function PlasmicAccueil__RenderFunc(props: {
         roleId: null
       };
     }),
-    homeGetJobById: usePlasmicDataOp(() => {
-      return {
-        sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
-        opId: "25a00478-4e30-4965-8940-e968e2ffc8ce",
-        userArgs: {
-          keys: [$state.jobId]
-        },
-        cacheKey: `plasmic.$.25a00478-4e30-4965-8940-e968e2ffc8ce.$.`,
-        invalidatedKeys: null,
-        roleId: null
-      };
-    }),
-    homeGetCompanyById: usePlasmicDataOp(() => {
-      return {
-        sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
-        opId: "a552b22b-2946-4fd1-9ca2-36439cbb13a7",
-        userArgs: {
-          keys: [$queries.homeGetJobById?.data[0]?.company_id ?? 1]
-        },
-        cacheKey: `plasmic.$.a552b22b-2946-4fd1-9ca2-36439cbb13a7.$.`,
-        invalidatedKeys: null,
-        roleId: null
-      };
-    }),
-    getCurrentUserById: usePlasmicDataOp(() => {
+    currentUser: usePlasmicDataOp(() => {
       return {
         sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
         opId: "9c25c922-f186-4ed9-850f-6ded6b307e4e",
@@ -1374,32 +1409,12 @@ function PlasmicAccueil__RenderFunc(props: {
         opId: "8be05618-e3eb-4b37-889a-c18c2902bc93",
         userArgs: {
           path: [
-            $queries.getCurrentUserById?.data[0]?.id +
+            $queries.currentUser?.data[0]?.id +
               "/" +
-              $queries.getCurrentUserById?.data[0]?.profile_photo
+              $queries.currentUser?.data[0]?.profile_photo
           ]
         },
         cacheKey: `plasmic.$.8be05618-e3eb-4b37-889a-c18c2902bc93.$.`,
-        invalidatedKeys: null,
-        roleId: null
-      };
-    }),
-    getCriteriaByJobId: usePlasmicDataOp(() => {
-      return {
-        sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
-        opId: "e572e8d5-6ba8-4999-8195-2d3913411ba3",
-        userArgs: {
-          filters: [
-            $queries.homeGetJobById?.data[0]?.contract_type_id,
-            $queries.homeGetJobById?.data[0]?.sector_activity_id,
-            $queries.homeGetJobById?.data[0]?.availability_status_id,
-            $queries.homeGetJobById?.data[0]?.working_time_id,
-            $queries.homeGetJobById?.data[0]?.work_mode_id,
-            $queries.homeGetJobById?.data[0]?.company_size_id,
-            $queries.homeGetJobById?.data[0]?.salary_id
-          ]
-        },
-        cacheKey: `plasmic.$.e572e8d5-6ba8-4999-8195-2d3913411ba3.$.`,
         invalidatedKeys: null,
         roleId: null
       };
@@ -1445,13 +1460,13 @@ function PlasmicAccueil__RenderFunc(props: {
         userArgs: {
           params: [
             $state.form?.value?.postal_code ||
-              $queries.getCurrentUserById?.data[0]?.postal_code ||
+              $queries.currentUser?.data[0]?.postal_code ||
               "75000",
             $state.form?.value?.address ||
-              $queries.getCurrentUserById?.data[0]?.address ||
+              $queries.currentUser?.data[0]?.address ||
               "",
             $state.form?.value?.city ||
-              $queries.getCurrentUserById?.data[0]?.city ||
+              $queries.currentUser?.data[0]?.city ||
               "paris"
           ]
         },
@@ -1460,10 +1475,10 @@ function PlasmicAccueil__RenderFunc(props: {
         roleId: null
       };
     }),
-    getJobOffers: usePlasmicDataOp(() => {
+    jobOffers: usePlasmicDataOp(() => {
       return {
         sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
-        opId: "b6275ba2-c35f-44d1-b0e1-514c5df26532",
+        opId: "1e5faa2f-5522-4407-882f-20d431c967fa",
         userArgs: {
           query: [
             $state.formFilter?.value?.contract_type,
@@ -1490,10 +1505,11 @@ function PlasmicAccueil__RenderFunc(props: {
             $state.keyWords,
             $state.keyWords,
             $state.searchLocation,
-            $state.isLastMinute
+            $state.isLastMinute,
+            !$state.isMobile
           ]
         },
-        cacheKey: `plasmic.$.b6275ba2-c35f-44d1-b0e1-514c5df26532.$.`,
+        cacheKey: `plasmic.$.1e5faa2f-5522-4407-882f-20d431c967fa.$.`,
         invalidatedKeys: null,
         roleId: null
       };
@@ -1518,6 +1534,7 @@ function PlasmicAccueil__RenderFunc(props: {
   }
 
   const globalVariants = ensureGlobalVariants({
+    unnamedGlobalGroupOfVariants: useUnnamedGlobalGroupOfVariants(),
     screen: useScreenVariantshm8Nko4B5BDd()
   });
 
@@ -1546,7 +1563,15 @@ function PlasmicAccueil__RenderFunc(props: {
             plasmic_antd_5_hostless_css.plasmic_tokens,
             plasmic_library_tailwind_3_4_number_tokens_css.plasmic_tokens,
             plasmic_plasmic_rich_components_css.plasmic_tokens,
-            sty.rechercheJob
+            sty.rechercheJob,
+            {
+              [sty.rechercheJobglobal_unnamedGlobalGroupOfVariants_unnamedVariant]:
+                hasVariant(
+                  globalVariants,
+                  "unnamedGlobalGroupOfVariants",
+                  "unnamedVariant"
+                )
+            }
           )}
         >
           <Modal
@@ -1722,7 +1747,7 @@ function PlasmicAccueil__RenderFunc(props: {
                     >
                       {(() => {
                         try {
-                          return !$queries.getUsersLikes.data.some(
+                          return !$queries.userLikedJobs.data.some(
                             like => like.job_id === $state.jobObject.id
                           );
                         } catch (e) {
@@ -1744,7 +1769,7 @@ function PlasmicAccueil__RenderFunc(props: {
 
                             $steps["postgresUpdateMany"] =
                               $ctx.SupabaseUser?.user?.id != undefined &&
-                              !$queries.getUsersLikes.data.some(
+                              !$queries.userLikedJobs.data.some(
                                 like => like.job_id === $state.jobObject.id
                               )
                                 ? (() => {
@@ -1806,7 +1831,7 @@ function PlasmicAccueil__RenderFunc(props: {
 
                             $steps["invokeGlobalAction"] =
                               $ctx.SupabaseUser?.user?.id != undefined &&
-                              !$queries.getUsersLikes.data.some(
+                              !$queries.userLikedJobs.data.some(
                                 like => like.job_id === $state.jobObject.id
                               )
                                 ? (() => {
@@ -1932,7 +1957,7 @@ function PlasmicAccueil__RenderFunc(props: {
                       ) : null}
                       {(() => {
                         try {
-                          return $queries.getUsersLikes.data.some(
+                          return $queries.userLikedJobs.data.some(
                             like => like.job_id === $state.jobObject.id
                           );
                         } catch (e) {
@@ -1953,7 +1978,7 @@ function PlasmicAccueil__RenderFunc(props: {
                             const $steps = {};
 
                             $steps["postgresUpdateMany"] =
-                              $queries.getUsersLikes.data.some(
+                              $queries.userLikedJobs.data.some(
                                 like => like.job_id === $state.jobObject.id
                               )
                                 ? (() => {
@@ -3292,171 +3317,189 @@ function PlasmicAccueil__RenderFunc(props: {
                       >
                         <Stack__
                           as={"div"}
-                          data-plasmic-name={"frame76"}
-                          data-plasmic-override={overrides.frame76}
                           hasGap={true}
-                          className={classNames(projectcss.all, sty.frame76)}
+                          className={classNames(
+                            projectcss.all,
+                            sty.freeBox__rTyC
+                          )}
                         >
-                          <PhFileTextIcon
-                            className={classNames(
-                              projectcss.all,
-                              sty.svg__cxduz
-                            )}
-                            role={"img"}
-                          />
-
-                          <div
-                            data-plasmic-name={"dkTrucksPark7"}
-                            data-plasmic-override={overrides.dkTrucksPark7}
-                            className={classNames(
-                              projectcss.all,
-                              projectcss.__wab_text,
-                              sty.dkTrucksPark7
-                            )}
+                          <Stack__
+                            as={"div"}
+                            data-plasmic-name={"frame76"}
+                            data-plasmic-override={overrides.frame76}
+                            hasGap={true}
+                            className={classNames(projectcss.all, sty.frame76)}
                           >
-                            <React.Fragment>
-                              {(() => {
-                                try {
-                                  return $state.jobObject.contract_type;
-                                } catch (e) {
-                                  if (
-                                    e instanceof TypeError ||
-                                    e?.plasmicType ===
-                                      "PlasmicUndefinedDataError"
-                                  ) {
-                                    return "CDI";
+                            <PhFileTextIcon
+                              className={classNames(
+                                projectcss.all,
+                                sty.svg__cxduz
+                              )}
+                              role={"img"}
+                            />
+
+                            <div
+                              data-plasmic-name={"dkTrucksPark7"}
+                              data-plasmic-override={overrides.dkTrucksPark7}
+                              className={classNames(
+                                projectcss.all,
+                                projectcss.__wab_text,
+                                sty.dkTrucksPark7
+                              )}
+                            >
+                              <React.Fragment>
+                                {(() => {
+                                  try {
+                                    return $state.jobObject.contract_type;
+                                  } catch (e) {
+                                    if (
+                                      e instanceof TypeError ||
+                                      e?.plasmicType ===
+                                        "PlasmicUndefinedDataError"
+                                    ) {
+                                      return "CDI";
+                                    }
+                                    throw e;
                                   }
-                                  throw e;
-                                }
-                              })()}
-                            </React.Fragment>
-                          </div>
+                                })()}
+                              </React.Fragment>
+                            </div>
+                          </Stack__>
+                          <Stack__
+                            as={"div"}
+                            data-plasmic-name={"frame77"}
+                            data-plasmic-override={overrides.frame77}
+                            hasGap={true}
+                            className={classNames(projectcss.all, sty.frame77)}
+                          >
+                            <PhClockIcon
+                              className={classNames(
+                                projectcss.all,
+                                sty.svg__tXdCm
+                              )}
+                              role={"img"}
+                            />
+
+                            <div
+                              data-plasmic-name={"dkTrucksPark8"}
+                              data-plasmic-override={overrides.dkTrucksPark8}
+                              className={classNames(
+                                projectcss.all,
+                                projectcss.__wab_text,
+                                sty.dkTrucksPark8
+                              )}
+                            >
+                              <React.Fragment>
+                                {(() => {
+                                  try {
+                                    return $state.jobObject.working_time;
+                                  } catch (e) {
+                                    if (
+                                      e instanceof TypeError ||
+                                      e?.plasmicType ===
+                                        "PlasmicUndefinedDataError"
+                                    ) {
+                                      return "25h";
+                                    }
+                                    throw e;
+                                  }
+                                })()}
+                              </React.Fragment>
+                            </div>
+                          </Stack__>
                         </Stack__>
                         <Stack__
                           as={"div"}
-                          data-plasmic-name={"frame77"}
-                          data-plasmic-override={overrides.frame77}
                           hasGap={true}
-                          className={classNames(projectcss.all, sty.frame77)}
+                          className={classNames(
+                            projectcss.all,
+                            sty.freeBox__hwxVw
+                          )}
                         >
-                          <PhClockIcon
-                            className={classNames(
-                              projectcss.all,
-                              sty.svg__tXdCm
-                            )}
-                            role={"img"}
-                          />
-
-                          <div
-                            data-plasmic-name={"dkTrucksPark8"}
-                            data-plasmic-override={overrides.dkTrucksPark8}
-                            className={classNames(
-                              projectcss.all,
-                              projectcss.__wab_text,
-                              sty.dkTrucksPark8
-                            )}
+                          <Stack__
+                            as={"div"}
+                            data-plasmic-name={"frame16"}
+                            data-plasmic-override={overrides.frame16}
+                            hasGap={true}
+                            className={classNames(projectcss.all, sty.frame16)}
                           >
-                            <React.Fragment>
-                              {(() => {
-                                try {
-                                  return $state.jobObject.working_time;
-                                } catch (e) {
-                                  if (
-                                    e instanceof TypeError ||
-                                    e?.plasmicType ===
-                                      "PlasmicUndefinedDataError"
-                                  ) {
-                                    return "25h";
-                                  }
-                                  throw e;
-                                }
-                              })()}
-                            </React.Fragment>
-                          </div>
-                        </Stack__>
-                        <Stack__
-                          as={"div"}
-                          data-plasmic-name={"frame16"}
-                          data-plasmic-override={overrides.frame16}
-                          hasGap={true}
-                          className={classNames(projectcss.all, sty.frame16)}
-                        >
-                          <PhCoinsLightIcon
-                            className={classNames(
-                              projectcss.all,
-                              sty.svg__fQers
-                            )}
-                            role={"img"}
-                          />
+                            <PhCoinsLightIcon
+                              className={classNames(
+                                projectcss.all,
+                                sty.svg__fQers
+                              )}
+                              role={"img"}
+                            />
 
-                          <div
-                            data-plasmic-name={"dkTrucksPark9"}
-                            data-plasmic-override={overrides.dkTrucksPark9}
-                            className={classNames(
-                              projectcss.all,
-                              projectcss.__wab_text,
-                              sty.dkTrucksPark9
-                            )}
-                          >
-                            <React.Fragment>
-                              {(() => {
-                                try {
-                                  return $state.jobObject.salary;
-                                } catch (e) {
-                                  if (
-                                    e instanceof TypeError ||
-                                    e?.plasmicType ===
-                                      "PlasmicUndefinedDataError"
-                                  ) {
-                                    return "2000\u20ac";
+                            <div
+                              data-plasmic-name={"dkTrucksPark9"}
+                              data-plasmic-override={overrides.dkTrucksPark9}
+                              className={classNames(
+                                projectcss.all,
+                                projectcss.__wab_text,
+                                sty.dkTrucksPark9
+                              )}
+                            >
+                              <React.Fragment>
+                                {(() => {
+                                  try {
+                                    return $state.jobObject.salary;
+                                  } catch (e) {
+                                    if (
+                                      e instanceof TypeError ||
+                                      e?.plasmicType ===
+                                        "PlasmicUndefinedDataError"
+                                    ) {
+                                      return "2000\u20ac";
+                                    }
+                                    throw e;
                                   }
-                                  throw e;
-                                }
-                              })()}
-                            </React.Fragment>
-                          </div>
-                        </Stack__>
-                        <Stack__
-                          as={"div"}
-                          data-plasmic-name={"frame17"}
-                          data-plasmic-override={overrides.frame17}
-                          hasGap={true}
-                          className={classNames(projectcss.all, sty.frame17)}
-                        >
-                          <PhClockCountdownIcon
-                            className={classNames(
-                              projectcss.all,
-                              sty.svg___7Q4Yk
-                            )}
-                            role={"img"}
-                          />
+                                })()}
+                              </React.Fragment>
+                            </div>
+                          </Stack__>
+                          <Stack__
+                            as={"div"}
+                            data-plasmic-name={"frame17"}
+                            data-plasmic-override={overrides.frame17}
+                            hasGap={true}
+                            className={classNames(projectcss.all, sty.frame17)}
+                          >
+                            <PhClockCountdownIcon
+                              className={classNames(
+                                projectcss.all,
+                                sty.svg___7Q4Yk
+                              )}
+                              role={"img"}
+                            />
 
-                          <div
-                            data-plasmic-name={"dkTrucksPark10"}
-                            data-plasmic-override={overrides.dkTrucksPark10}
-                            className={classNames(
-                              projectcss.all,
-                              projectcss.__wab_text,
-                              sty.dkTrucksPark10
-                            )}
-                          >
-                            <React.Fragment>
-                              {(() => {
-                                try {
-                                  return $state.jobObject.availability_status;
-                                } catch (e) {
-                                  if (
-                                    e instanceof TypeError ||
-                                    e?.plasmicType ===
-                                      "PlasmicUndefinedDataError"
-                                  ) {
-                                    return "Imm\u00e9diat";
+                            <div
+                              data-plasmic-name={"dkTrucksPark10"}
+                              data-plasmic-override={overrides.dkTrucksPark10}
+                              className={classNames(
+                                projectcss.all,
+                                projectcss.__wab_text,
+                                sty.dkTrucksPark10
+                              )}
+                            >
+                              <React.Fragment>
+                                {(() => {
+                                  try {
+                                    return $state.jobObject.availability_status;
+                                  } catch (e) {
+                                    if (
+                                      e instanceof TypeError ||
+                                      e?.plasmicType ===
+                                        "PlasmicUndefinedDataError"
+                                    ) {
+                                      return "Imm\u00e9diat";
+                                    }
+                                    throw e;
                                   }
-                                  throw e;
-                                }
-                              })()}
-                            </React.Fragment>
-                          </div>
+                                })()}
+                              </React.Fragment>
+                            </div>
+                          </Stack__>
                         </Stack__>
                       </Stack__>
                     </Stack__>
@@ -3557,51 +3600,74 @@ function PlasmicAccueil__RenderFunc(props: {
                                 </React.Fragment>
                               </div>
                             </Stack__>
-                            <Stack__
-                              as={"div"}
-                              data-plasmic-name={"frame82"}
-                              data-plasmic-override={overrides.frame82}
-                              hasGap={true}
-                              className={classNames(
-                                projectcss.all,
-                                sty.frame82
-                              )}
-                            >
-                              <PhUsersThreeIcon
-                                className={classNames(
-                                  projectcss.all,
-                                  sty.svg__fyKu
-                                )}
-                                role={"img"}
-                              />
-
-                              <div
-                                data-plasmic-name={"dkTrucksPark12"}
-                                data-plasmic-override={overrides.dkTrucksPark12}
-                                className={classNames(
-                                  projectcss.all,
-                                  projectcss.__wab_text,
-                                  sty.dkTrucksPark12
-                                )}
-                              >
-                                <React.Fragment>
-                                  {(() => {
+                            {(
+                              hasVariant(globalVariants, "screen", "mobileOnly")
+                                ? (() => {
                                     try {
-                                      return $state.jobObject.company_size;
+                                      return (
+                                        $state.jobObject.company_size != null
+                                      );
                                     } catch (e) {
                                       if (
                                         e instanceof TypeError ||
                                         e?.plasmicType ===
                                           "PlasmicUndefinedDataError"
                                       ) {
-                                        return "450";
+                                        return true;
                                       }
                                       throw e;
                                     }
-                                  })()}
-                                </React.Fragment>
-                              </div>
-                            </Stack__>
+                                  })()
+                                : true
+                            ) ? (
+                              <Stack__
+                                as={"div"}
+                                data-plasmic-name={"frame82"}
+                                data-plasmic-override={overrides.frame82}
+                                hasGap={true}
+                                className={classNames(
+                                  projectcss.all,
+                                  sty.frame82
+                                )}
+                              >
+                                <PhUsersThreeIcon
+                                  className={classNames(
+                                    projectcss.all,
+                                    sty.svg__fyKu
+                                  )}
+                                  role={"img"}
+                                />
+
+                                <div
+                                  data-plasmic-name={"dkTrucksPark12"}
+                                  data-plasmic-override={
+                                    overrides.dkTrucksPark12
+                                  }
+                                  className={classNames(
+                                    projectcss.all,
+                                    projectcss.__wab_text,
+                                    sty.dkTrucksPark12
+                                  )}
+                                >
+                                  <React.Fragment>
+                                    {(() => {
+                                      try {
+                                        return $state.jobObject.company_size;
+                                      } catch (e) {
+                                        if (
+                                          e instanceof TypeError ||
+                                          e?.plasmicType ===
+                                            "PlasmicUndefinedDataError"
+                                        ) {
+                                          return "450";
+                                        }
+                                        throw e;
+                                      }
+                                    })()}
+                                  </React.Fragment>
+                                </div>
+                              </Stack__>
+                            ) : null}
                             <Stack__
                               as={"div"}
                               data-plasmic-name={"frame83"}
@@ -3659,38 +3725,52 @@ function PlasmicAccueil__RenderFunc(props: {
                           </Stack__>
                         </Stack__>
                       </Stack__>
-                      <Stack__
-                        as={"div"}
-                        data-plasmic-name={"frame85"}
-                        data-plasmic-override={overrides.frame85}
-                        hasGap={true}
-                        className={classNames(projectcss.all, sty.frame85)}
-                      >
-                        <PlasmicImg__
-                          alt={""}
-                          className={classNames(sty.img___23SpF)}
-                          displayHeight={"55px"}
-                          displayMaxHeight={"none"}
-                          displayMaxWidth={"none"}
-                          displayMinHeight={"0"}
-                          displayMinWidth={"0"}
-                          displayWidth={"150px"}
-                          loading={"lazy"}
-                          src={(() => {
-                            try {
-                              return $state.jobObject.logo_file;
-                            } catch (e) {
-                              if (
-                                e instanceof TypeError ||
-                                e?.plasmicType === "PlasmicUndefinedDataError"
-                              ) {
-                                return undefined;
+                      {(() => {
+                        try {
+                          return $state.jobObject.logo_file != null;
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return true;
+                          }
+                          throw e;
+                        }
+                      })() ? (
+                        <Stack__
+                          as={"div"}
+                          data-plasmic-name={"frame85"}
+                          data-plasmic-override={overrides.frame85}
+                          hasGap={true}
+                          className={classNames(projectcss.all, sty.frame85)}
+                        >
+                          <PlasmicImg__
+                            alt={""}
+                            className={classNames(sty.img___23SpF)}
+                            displayHeight={"55px"}
+                            displayMaxHeight={"none"}
+                            displayMaxWidth={"none"}
+                            displayMinHeight={"0"}
+                            displayMinWidth={"0"}
+                            displayWidth={"150px"}
+                            loading={"lazy"}
+                            src={(() => {
+                              try {
+                                return $state.jobObject.logo_file;
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return undefined;
+                                }
+                                throw e;
                               }
-                              throw e;
-                            }
-                          })()}
-                        />
-                      </Stack__>
+                            })()}
+                          />
+                        </Stack__>
+                      ) : null}
                     </Stack__>
                   </Stack__>
                 ) : null}
@@ -3715,7 +3795,7 @@ function PlasmicAccueil__RenderFunc(props: {
                     ],
                     initialValues: (() => {
                       try {
-                        return $queries.getCurrentUserById.data[0];
+                        return $queries.currentUser.data[0];
                       } catch (e) {
                         if (
                           e instanceof TypeError ||
@@ -3867,11 +3947,10 @@ function PlasmicAccueil__RenderFunc(props: {
                                   variables: [
                                     $steps.cv?.path.split("/")[1] != undefined
                                       ? $steps.cv?.path.split("/")[1]
-                                      : $queries.getCurrentUserById.data[0]
-                                          .cv_file,
+                                      : $queries.currentUser.data[0].cv_file,
                                     $steps.ldm?.path.split("/")[1] != undefined
                                       ? $steps.ldm?.path.split("/")[1]
-                                      : $queries.getCurrentUserById.data[0]
+                                      : $queries.currentUser.data[0]
                                           .cover_letter_file,
                                     $state.form.value.address,
                                     $state.form.value.city,
@@ -3947,12 +4026,11 @@ function PlasmicAccueil__RenderFunc(props: {
                                     $state.form.value.city,
                                     $steps.ldm != undefined
                                       ? $steps.ldm?.path.split("/")[1]
-                                      : $queries.getCurrentUserById.data[0]
+                                      : $queries.currentUser.data[0]
                                           .cover_letter_file,
                                     $steps.cv != undefined
                                       ? $steps.cv?.path.split("/")[1]
-                                      : $queries.getCurrentUserById.data[0]
-                                          .cv_file,
+                                      : $queries.currentUser.data[0].cv_file,
                                     $state.form.value.level,
                                     $state.form.value.linkedin_url,
                                     $state.form.value.postal_code,
@@ -4109,16 +4187,16 @@ function PlasmicAccueil__RenderFunc(props: {
                                       to: `${$state.jobObject.employer_email}`,
                                       template: "applicationReceived",
                                       subject:
-                                        "Nouvelle candidature reçue pour votre offre 💼",
+                                        "Nouvelle candidature reçue pour votre offre \uD83D\uDCBC",
                                       params: {
                                         firstName:
                                           $state.jobObject.employer_name,
                                         jobTitle: $state.jobObject.title,
                                         candidateName:
-                                          $queries.getCurrentUserById.data[0]
+                                          $queries.currentUser.data[0]
                                             .first_name +
                                           " " +
-                                          $queries.getCurrentUserById.data[0]
+                                          $queries.currentUser.data[0]
                                             .last_name,
                                         applicationUrl: `https://jam-staging.agence-scroll.com/candidatures-employeur/${$state.jobObject.id}`
                                       }
@@ -4593,8 +4671,7 @@ function PlasmicAccueil__RenderFunc(props: {
                             )}
                             defaultValue={(() => {
                               try {
-                                return $queries.getCurrentUserById.data[0]
-                                  .first_name;
+                                return $queries.currentUser.data[0].first_name;
                               } catch (e) {
                                 if (
                                   e instanceof TypeError ||
@@ -4640,8 +4717,7 @@ function PlasmicAccueil__RenderFunc(props: {
                             )}
                             defaultValue={(() => {
                               try {
-                                return $queries.getCurrentUserById.data[0]
-                                  .last_name;
+                                return $queries.currentUser.data[0].last_name;
                               } catch (e) {
                                 if (
                                   e instanceof TypeError ||
@@ -4688,7 +4764,7 @@ function PlasmicAccueil__RenderFunc(props: {
                           )}
                           defaultValue={(() => {
                             try {
-                              return $queries.getCurrentUserById.data[0].email;
+                              return $queries.currentUser.data[0].email;
                             } catch (e) {
                               if (
                                 e instanceof TypeError ||
@@ -4771,7 +4847,7 @@ function PlasmicAccueil__RenderFunc(props: {
                             )}
                             defaultValue={(() => {
                               try {
-                                return $queries.getCurrentUserById.data[0]
+                                return $queries.currentUser.data[0]
                                   .phone_number;
                               } catch (e) {
                                 if (
@@ -4827,8 +4903,7 @@ function PlasmicAccueil__RenderFunc(props: {
                           className={classNames("__wab_instance", sty.rue)}
                           defaultValue={(() => {
                             try {
-                              return $queries.getCurrentUserById.data[0]
-                                .address;
+                              return $queries.currentUser.data[0].address;
                             } catch (e) {
                               if (
                                 e instanceof TypeError ||
@@ -4896,8 +4971,7 @@ function PlasmicAccueil__RenderFunc(props: {
                             )}
                             defaultValue={(() => {
                               try {
-                                return $queries.getCurrentUserById.data[0]
-                                  .postal_code;
+                                return $queries.currentUser.data[0].postal_code;
                               } catch (e) {
                                 if (
                                   e instanceof TypeError ||
@@ -4951,7 +5025,7 @@ function PlasmicAccueil__RenderFunc(props: {
                             className={classNames("__wab_instance", sty.ville)}
                             defaultValue={(() => {
                               try {
-                                return $queries.getCurrentUserById.data[0].city;
+                                return $queries.currentUser.data[0].city;
                               } catch (e) {
                                 if (
                                   e instanceof TypeError ||
@@ -5137,8 +5211,8 @@ function PlasmicAccueil__RenderFunc(props: {
                         initialValue={(() => {
                           try {
                             return (
-                              $queries.getCurrentUserById.data[0]
-                                .transport_mode || undefined
+                              $queries.currentUser.data[0].transport_mode ||
+                              undefined
                             );
                           } catch (e) {
                             if (
@@ -5256,47 +5330,29 @@ function PlasmicAccueil__RenderFunc(props: {
                         }
                         name={"short_presentation"}
                       >
-                        {(() => {
-                          const child$Props = {
-                            className: classNames(
-                              "__wab_instance",
-                              sty.textArea
-                            ),
-                            onChange: async (...eventArgs: any) => {
-                              generateStateOnChangePropForCodeComponents(
-                                $state,
-                                "value",
-                                ["textArea", "value"],
-                                AntdTextArea_Helpers
-                              ).apply(null, eventArgs);
-                            },
-                            placeholder: "Pr\u00e9sentation",
-                            value: generateStateValueProp($state, [
-                              "textArea",
+                        <TextAreaInput
+                          data-plasmic-name={"textAreaInput"}
+                          data-plasmic-override={overrides.textAreaInput}
+                          className={classNames(
+                            "__wab_instance",
+                            sty.textAreaInput
+                          )}
+                          onChange={async (...eventArgs: any) => {
+                            generateStateOnChangeProp($state, [
+                              "textAreaInput",
                               "value"
-                            ])
-                          };
-                          initializeCodeComponentStates(
-                            $state,
-                            [
-                              {
-                                name: "value",
-                                plasmicStateName: "textArea.value"
-                              }
-                            ],
-                            [],
-                            AntdTextArea_Helpers ?? {},
-                            child$Props
-                          );
+                            ]).apply(null, eventArgs);
 
-                          return (
-                            <AntdTextArea
-                              data-plasmic-name={"textArea"}
-                              data-plasmic-override={overrides.textArea}
-                              {...child$Props}
-                            />
-                          );
-                        })()}
+                            if (
+                              eventArgs.length > 1 &&
+                              eventArgs[1] &&
+                              eventArgs[1]._plasmic_state_init_
+                            ) {
+                              return;
+                            }
+                          }}
+                          placeholder={"Pr\u00e9sentation"}
+                        />
                       </FormItemWrapper>
                       <FormItemWrapper
                         className={classNames(
@@ -5306,8 +5362,7 @@ function PlasmicAccueil__RenderFunc(props: {
                         initialValue={(() => {
                           try {
                             return (
-                              $queries.getCurrentUserById.data[0].skill ||
-                              undefined
+                              $queries.currentUser.data[0].skill || undefined
                             );
                           } catch (e) {
                             if (
@@ -5325,6 +5380,11 @@ function PlasmicAccueil__RenderFunc(props: {
                         <AntdSelect
                           data-plasmic-name={"select7"}
                           data-plasmic-override={overrides.select7}
+                          bordered={
+                            hasVariant(globalVariants, "screen", "mobileOnly")
+                              ? true
+                              : undefined
+                          }
                           className={classNames("__wab_instance", sty.select7)}
                           defaultStylesClassName={classNames(
                             projectcss.root_reset,
@@ -5370,7 +5430,11 @@ function PlasmicAccueil__RenderFunc(props: {
                             </div>
                           }
                           popupScopeClassName={sty["select7__popup"]}
-                          size={"large"}
+                          size={
+                            hasVariant(globalVariants, "screen", "mobileOnly")
+                              ? "large"
+                              : "large"
+                          }
                           suffixIcon={
                             <ChevronDownIcon
                               className={classNames(
@@ -5391,9 +5455,7 @@ function PlasmicAccueil__RenderFunc(props: {
                           "__wab_instance",
                           sty.formField___0N6P1
                         )}
-                        initialValue={
-                          $queries.getCurrentUserById?.data[0]?.level
-                        }
+                        initialValue={$queries.currentUser?.data[0]?.level}
                         label={"Niveau d'exp\u00e9rience"}
                         name={"level"}
                       >
@@ -5403,7 +5465,7 @@ function PlasmicAccueil__RenderFunc(props: {
                           className={classNames("__wab_instance", sty.select)}
                           initialSelectedValue={(() => {
                             try {
-                              return $queries.getCurrentUserById.data[0].level;
+                              return $queries.currentUser.data[0].level;
                             } catch (e) {
                               if (
                                 e instanceof TypeError ||
@@ -5512,8 +5574,7 @@ function PlasmicAccueil__RenderFunc(props: {
                           {(() => {
                             try {
                               return (
-                                $queries.getCurrentUserById.data[0].cv_file !==
-                                null
+                                $queries.currentUser.data[0].cv_file !== null
                               );
                             } catch (e) {
                               if (
@@ -5702,8 +5763,8 @@ function PlasmicAccueil__RenderFunc(props: {
                                   <React.Fragment>
                                     {(() => {
                                       try {
-                                        return $queries.getCurrentUserById
-                                          .data[0].cv_file;
+                                        return $queries.currentUser.data[0]
+                                          .cv_file;
                                       } catch (e) {
                                         if (
                                           e instanceof TypeError ||
@@ -5723,8 +5784,7 @@ function PlasmicAccueil__RenderFunc(props: {
                           {(() => {
                             try {
                               return (
-                                $queries.getCurrentUserById.data[0].cv_file ===
-                                null
+                                $queries.currentUser.data[0].cv_file === null
                               );
                             } catch (e) {
                               if (
@@ -5835,7 +5895,7 @@ function PlasmicAccueil__RenderFunc(props: {
                           {(() => {
                             try {
                               return (
-                                $queries.getCurrentUserById.data[0]
+                                $queries.currentUser.data[0]
                                   .cover_letter_file !== null
                               );
                             } catch (e) {
@@ -6025,8 +6085,8 @@ function PlasmicAccueil__RenderFunc(props: {
                                   <React.Fragment>
                                     {(() => {
                                       try {
-                                        return $queries.getCurrentUserById
-                                          .data[0].cover_letter_file;
+                                        return $queries.currentUser.data[0]
+                                          .cover_letter_file;
                                       } catch (e) {
                                         if (
                                           e instanceof TypeError ||
@@ -6046,7 +6106,7 @@ function PlasmicAccueil__RenderFunc(props: {
                           {(() => {
                             try {
                               return (
-                                $queries.getCurrentUserById.data[0]
+                                $queries.currentUser.data[0]
                                   .cover_letter_file === null
                               );
                             } catch (e) {
@@ -6223,8 +6283,7 @@ function PlasmicAccueil__RenderFunc(props: {
                           )}
                           defaultValue={(() => {
                             try {
-                              return $queries.getCurrentUserById.data[0]
-                                .linkedin_url;
+                              return $queries.currentUser.data[0].linkedin_url;
                             } catch (e) {
                               if (
                                 e instanceof TypeError ||
@@ -6301,6 +6360,7 @@ function PlasmicAccueil__RenderFunc(props: {
                     emailLabel={"Email"}
                     forgotPasswordPosition={"left"}
                     forgotPasswordText={"Mot de passe oublié ?"}
+                    inputGap={"1rem"}
                     inputStyle={"simple"}
                     onEmailChange={async (...eventArgs: any) => {
                       generateStateOnChangeProp($state, [
@@ -8306,24 +8366,25 @@ function PlasmicAccueil__RenderFunc(props: {
                 onClick={async event => {
                   const $steps = {};
 
-                  $steps["goToLogin"] =
-                    $ctx.SupabaseUser.user == null
-                      ? (() => {
-                          const actionArgs = { destination: `/login` };
-                          return (({ destination }) => {
-                            if (
-                              typeof destination === "string" &&
-                              destination.startsWith("#")
-                            ) {
-                              document
-                                .getElementById(destination.substr(1))
-                                .scrollIntoView({ behavior: "smooth" });
-                            } else {
-                              __nextRouter?.push(destination);
-                            }
-                          })?.apply(null, [actionArgs]);
-                        })()
-                      : undefined;
+                  $steps["goToLogin"] = (() => {
+                    return !!!$ctx.SupabaseUser.user;
+                  })()
+                    ? (() => {
+                        const actionArgs = { destination: `/login` };
+                        return (({ destination }) => {
+                          if (
+                            typeof destination === "string" &&
+                            destination.startsWith("#")
+                          ) {
+                            document
+                              .getElementById(destination.substr(1))
+                              .scrollIntoView({ behavior: "smooth" });
+                          } else {
+                            __nextRouter?.push(destination);
+                          }
+                        })?.apply(null, [actionArgs]);
+                      })()
+                    : undefined;
                   if (
                     $steps["goToLogin"] != null &&
                     typeof $steps["goToLogin"] === "object" &&
@@ -8333,8 +8394,8 @@ function PlasmicAccueil__RenderFunc(props: {
                   }
 
                   $steps["goToCandidateSettings"] =
-                    $ctx.SupabaseUser.user !== null &&
-                    $ctx.SupabaseUser.user.user_metadata.role == "User"
+                    !!$ctx.SupabaseUser.user &&
+                    $ctx.SupabaseUser.user.user_metadata.role === "User"
                       ? (() => {
                           const actionArgs = {
                             destination: `/parametres-candidat`
@@ -8364,7 +8425,7 @@ function PlasmicAccueil__RenderFunc(props: {
                   }
 
                   $steps["goToEmployerSettings"] =
-                    $ctx.SupabaseUser.user !== null &&
+                    !!$ctx.SupabaseUser.user &&
                     $ctx.SupabaseUser.user.user_metadata.role == "Company"
                       ? (() => {
                           const actionArgs = {
@@ -8395,7 +8456,7 @@ function PlasmicAccueil__RenderFunc(props: {
                   }
 
                   $steps["goToAdminSettings"] =
-                    $ctx.SupabaseUser.user !== null &&
+                    !!$ctx.SupabaseUser.user &&
                     $ctx.SupabaseUser.user.user_metadata.role == "Admin"
                       ? (() => {
                           const actionArgs = { destination: `/offre_admin` };
@@ -8757,10 +8818,6 @@ function PlasmicAccueil__RenderFunc(props: {
                           ["formFilter", "value"],
                           FormWrapper_Helpers
                         ).apply(null, eventArgs);
-
-                        (async (changedValues, allValues) => {
-                          const $steps = {};
-                        }).apply(null, eventArgs);
                       },
                       formItems: [
                         { label: "Name", name: "name", inputType: "Text" },
@@ -8773,108 +8830,6 @@ function PlasmicAccueil__RenderFunc(props: {
                       labelCol: { span: 8, horizontalOnly: true },
                       layout: "vertical",
                       mode: "advanced",
-                      onFinish: async values => {
-                        const $steps = {};
-
-                        $steps["postgresCustomRead"] = true
-                          ? (() => {
-                              const actionArgs = {
-                                dataOp: {
-                                  sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
-                                  opId: "fe604a34-de03-44c2-9c0d-5a034312dd6a",
-                                  userArgs: {
-                                    query: [
-                                      $state.formFilter?.value?.contract_type,
-                                      $state.formFilter?.value?.contract_type ==
-                                        undefined,
-                                      $state.formFilter?.value?.contract_type ==
-                                        undefined ||
-                                        $state.formFilter.value.contract_type
-                                          .length == 0,
-                                      $state.formFilter?.value?.working_time,
-                                      $state.formFilter?.value?.working_time ==
-                                        undefined,
-                                      $state.formFilter?.value?.working_time ==
-                                        undefined ||
-                                        $state.formFilter.value.working_time
-                                          .length == 0,
-                                      $state.formFilter?.value
-                                        ?.availability_status,
-                                      $state.formFilter?.value
-                                        ?.availability_status == undefined,
-                                      $state.formFilter?.value
-                                        ?.availability_status == undefined ||
-                                        $state.formFilter.value
-                                          .availability_status.length == 0,
-                                      $state.formFilter?.value?.work_mode,
-                                      $state.formFilter?.value?.work_mode ==
-                                        undefined,
-                                      $state.formFilter?.value?.work_mode ==
-                                        undefined ||
-                                        $state.formFilter.value.work_mode
-                                          .length == 0,
-                                      $state.formFilter?.value?.company_size,
-                                      $state.formFilter?.value?.company_size ==
-                                        undefined,
-                                      $state.formFilter?.value?.company_size ==
-                                        undefined ||
-                                        $state.formFilter.value.company_size
-                                          .length == 0,
-                                      $state.formFilter?.value?.salary,
-                                      $state.formFilter?.value?.salary ==
-                                        undefined,
-                                      $state.formFilter?.value?.salary ==
-                                        undefined ||
-                                        $state.formFilter.value.salary.length ==
-                                          0,
-                                      $state.formFilter?.value?.sector_activity,
-                                      $state.formFilter?.value
-                                        ?.sector_activity == undefined,
-                                      $state.formFilter?.value
-                                        ?.sector_activity == undefined ||
-                                        $state.formFilter.value.sector_activity
-                                          .length == 0
-                                    ]
-                                  },
-                                  cacheKey: null,
-                                  invalidatedKeys: null,
-                                  roleId: null
-                                }
-                              };
-                              return (async ({ dataOp, continueOnError }) => {
-                                try {
-                                  const response = await executePlasmicDataOp(
-                                    dataOp,
-                                    {
-                                      userAuthToken:
-                                        dataSourcesCtx?.userAuthToken,
-                                      user: dataSourcesCtx?.user
-                                    }
-                                  );
-                                  await plasmicInvalidate(
-                                    dataOp.invalidatedKeys
-                                  );
-                                  return response;
-                                } catch (e) {
-                                  if (!continueOnError) {
-                                    throw e;
-                                  }
-                                  return e;
-                                }
-                              })?.apply(null, [actionArgs]);
-                            })()
-                          : undefined;
-                        if (
-                          $steps["postgresCustomRead"] != null &&
-                          typeof $steps["postgresCustomRead"] === "object" &&
-                          typeof $steps["postgresCustomRead"].then ===
-                            "function"
-                        ) {
-                          $steps["postgresCustomRead"] = await $steps[
-                            "postgresCustomRead"
-                          ];
-                        }
-                      },
                       onIsSubmittingChange: async (...eventArgs: any) => {
                         generateStateOnChangePropForCodeComponents(
                           $state,
@@ -9981,113 +9936,6 @@ function PlasmicAccueil__RenderFunc(props: {
                               ])}
                             />
                           </FormItemWrapper>
-                          <FormItemWrapper
-                            className={classNames(
-                              "__wab_instance",
-                              sty.formField___1WFbm
-                            )}
-                            label={"Name"}
-                            name={"company_size"}
-                            noLabel={true}
-                          >
-                            <AntdSelect
-                              data-plasmic-name={"select11"}
-                              data-plasmic-override={overrides.select11}
-                              allowClear={true}
-                              autoFocus={false}
-                              bordered={false}
-                              className={classNames(
-                                "__wab_instance",
-                                sty.select11
-                              )}
-                              defaultStylesClassName={classNames(
-                                projectcss.root_reset,
-                                projectcss.plasmic_default_styles,
-                                projectcss.plasmic_mixins,
-                                projectcss.plasmic_tokens,
-                                plasmic_antd_5_hostless_css.plasmic_tokens,
-                                plasmic_library_tailwind_3_4_number_tokens_css.plasmic_tokens,
-                                plasmic_plasmic_rich_components_css.plasmic_tokens
-                              )}
-                              mode={"multiple"}
-                              onChange={async (...eventArgs: any) => {
-                                generateStateOnChangeProp($state, [
-                                  "select11",
-                                  "value"
-                                ]).apply(null, eventArgs);
-                              }}
-                              optionClassName={classNames({
-                                [sty["pcls_REhv2N_f8MfM"]]: true
-                              })}
-                              options={(() => {
-                                try {
-                                  return $queries.getCriteria.data
-                                    .filter(
-                                      item => item.type === "company_size"
-                                    )
-                                    .map(item => ({
-                                      value: item.name,
-                                      label: item.name
-                                    }));
-                                } catch (e) {
-                                  if (
-                                    e instanceof TypeError ||
-                                    e?.plasmicType ===
-                                      "PlasmicUndefinedDataError"
-                                  ) {
-                                    return [];
-                                  }
-                                  throw e;
-                                }
-                              })()}
-                              placeholder={
-                                <Stack__
-                                  as={"div"}
-                                  hasGap={true}
-                                  className={classNames(
-                                    projectcss.all,
-                                    sty.freeBox___2UCJv
-                                  )}
-                                >
-                                  <PlasmicImg__
-                                    alt={""}
-                                    className={classNames(sty.img___9ScV6)}
-                                    displayHeight={"18px"}
-                                    displayMaxHeight={"none"}
-                                    displayMaxWidth={"100%"}
-                                    displayMinHeight={"0"}
-                                    displayMinWidth={"0"}
-                                    displayWidth={"18px"}
-                                    loading={"lazy"}
-                                    src={{
-                                      src: "/plasmic/jam_production_🚀/images/image4.svg",
-                                      fullWidth: 20,
-                                      fullHeight: 20,
-                                      aspectRatio: 1
-                                    }}
-                                  />
-
-                                  <div
-                                    className={classNames(
-                                      projectcss.all,
-                                      projectcss.__wab_text,
-                                      sty.text__af7J2
-                                    )}
-                                  >
-                                    {"Taille entreprise"}
-                                  </div>
-                                </Stack__>
-                              }
-                              popupScopeClassName={sty["select11__popup"]}
-                              showSearch={true}
-                              size={"large"}
-                              useChildren={false}
-                              value={generateStateValueProp($state, [
-                                "select11",
-                                "value"
-                              ])}
-                            />
-                          </FormItemWrapper>
                           <Button
                             data-plasmic-name={"button8"}
                             data-plasmic-override={overrides.button8}
@@ -10594,7 +10442,7 @@ function PlasmicAccueil__RenderFunc(props: {
                                     if ($state.isDiv1Visible == false) {
                                       return "Afficher la liste des résultats";
                                     } else if (
-                                      $queries.getJobOffers.data.length === 0
+                                      $queries.jobOffers.data.length === 0
                                     ) {
                                       return "Aucun resultat";
                                     } else if (
@@ -10625,11 +10473,11 @@ function PlasmicAccueil__RenderFunc(props: {
                                   return (() => {
                                     if (
                                       $state.isDiv1Visible == false &&
-                                      $queries.getJobOffers?.data?.length > 0
+                                      $queries.jobOffers?.data?.length > 0
                                     ) {
                                       return "Afficher la liste des résultats";
                                     } else if (
-                                      $queries.getJobOffers.data.length === 0
+                                      $queries.jobOffers.data.length === 0
                                     ) {
                                       return "Aucun resultat";
                                     } else {
@@ -10987,7 +10835,7 @@ function PlasmicAccueil__RenderFunc(props: {
                           !_par ? [] : Array.isArray(_par) ? _par : [_par])(
                           (() => {
                             try {
-                              return $queries.getJobOffers.data;
+                              return $queries.getJobOffersMobile.data;
                             } catch (e) {
                               if (
                                 e instanceof TypeError ||
@@ -11136,7 +10984,7 @@ function PlasmicAccueil__RenderFunc(props: {
                               >
                                 {(() => {
                                   try {
-                                    return !$queries.getUsersLikes.data.some(
+                                    return !$queries.userLikedJobs.data.some(
                                       like => like.job_id === currentItem.id
                                     );
                                   } catch (e) {
@@ -11160,9 +11008,9 @@ function PlasmicAccueil__RenderFunc(props: {
                                     onClick={async event => {
                                       const $steps = {};
 
-                                      $steps["postgresUpdateMany"] =
+                                      $steps["updateDb"] =
                                         $ctx.SupabaseUser?.user?.id &&
-                                        !$queries.getUsersLikes.data.some(
+                                        !$queries.userLikedJobs.data.some(
                                           like => like.job_id === currentItem.id
                                         )
                                           ? (() => {
@@ -11212,58 +11060,15 @@ function PlasmicAccueil__RenderFunc(props: {
                                             })()
                                           : undefined;
                                       if (
-                                        $steps["postgresUpdateMany"] != null &&
-                                        typeof $steps["postgresUpdateMany"] ===
+                                        $steps["updateDb"] != null &&
+                                        typeof $steps["updateDb"] ===
                                           "object" &&
-                                        typeof $steps["postgresUpdateMany"]
-                                          .then === "function"
+                                        typeof $steps["updateDb"].then ===
+                                          "function"
                                       ) {
-                                        $steps["postgresUpdateMany"] =
-                                          await $steps["postgresUpdateMany"];
-                                      }
-
-                                      $steps["invokeGlobalAction"] =
-                                        $ctx.SupabaseUser?.user?.id &&
-                                        !$queries.getUsersLikes.data.some(
-                                          like => like.job_id === currentItem.id
-                                        )
-                                          ? (() => {
-                                              const actionArgs = {
-                                                args: [
-                                                  "success",
-                                                  (() => {
-                                                    try {
-                                                      return `L'annonce "${currentItem.title}" a bien été ajoutée de vos favoris`;
-                                                    } catch (e) {
-                                                      if (
-                                                        e instanceof
-                                                          TypeError ||
-                                                        e?.plasmicType ===
-                                                          "PlasmicUndefinedDataError"
-                                                      ) {
-                                                        return undefined;
-                                                      }
-                                                      throw e;
-                                                    }
-                                                  })()
-                                                ]
-                                              };
-                                              return $globalActions[
-                                                "plasmic-antd5-config-provider.showNotification"
-                                              ]?.apply(null, [
-                                                ...actionArgs.args
-                                              ]);
-                                            })()
-                                          : undefined;
-                                      if (
-                                        $steps["invokeGlobalAction"] != null &&
-                                        typeof $steps["invokeGlobalAction"] ===
-                                          "object" &&
-                                        typeof $steps["invokeGlobalAction"]
-                                          .then === "function"
-                                      ) {
-                                        $steps["invokeGlobalAction"] =
-                                          await $steps["invokeGlobalAction"];
+                                        $steps["updateDb"] = await $steps[
+                                          "updateDb"
+                                        ];
                                       }
 
                                       $steps["refreshData"] = true
@@ -11296,6 +11101,51 @@ function PlasmicAccueil__RenderFunc(props: {
                                       ) {
                                         $steps["refreshData"] = await $steps[
                                           "refreshData"
+                                        ];
+                                      }
+
+                                      $steps["showToast"] =
+                                        $ctx.SupabaseUser?.user?.id &&
+                                        !$queries.userLikedJobs.data.some(
+                                          like => like.job_id === currentItem.id
+                                        )
+                                          ? (() => {
+                                              const actionArgs = {
+                                                args: [
+                                                  "success",
+                                                  (() => {
+                                                    try {
+                                                      return `L'annonce "${currentItem.title}" a bien été ajoutée de vos favoris`;
+                                                    } catch (e) {
+                                                      if (
+                                                        e instanceof
+                                                          TypeError ||
+                                                        e?.plasmicType ===
+                                                          "PlasmicUndefinedDataError"
+                                                      ) {
+                                                        return undefined;
+                                                      }
+                                                      throw e;
+                                                    }
+                                                  })()
+                                                ]
+                                              };
+                                              return $globalActions[
+                                                "plasmic-antd5-config-provider.showNotification"
+                                              ]?.apply(null, [
+                                                ...actionArgs.args
+                                              ]);
+                                            })()
+                                          : undefined;
+                                      if (
+                                        $steps["showToast"] != null &&
+                                        typeof $steps["showToast"] ===
+                                          "object" &&
+                                        typeof $steps["showToast"].then ===
+                                          "function"
+                                      ) {
+                                        $steps["showToast"] = await $steps[
+                                          "showToast"
                                         ];
                                       }
 
@@ -11400,7 +11250,7 @@ function PlasmicAccueil__RenderFunc(props: {
                                 ) : null}
                                 {(() => {
                                   try {
-                                    return $queries.getUsersLikes.data.some(
+                                    return $queries.userLikedJobs.data.some(
                                       like => like.job_id === currentItem.id
                                     );
                                   } catch (e) {
@@ -11424,9 +11274,9 @@ function PlasmicAccueil__RenderFunc(props: {
                                     onClick={async event => {
                                       const $steps = {};
 
-                                      $steps["postgresUpdateMany"] =
+                                      $steps["updateDb"] =
                                         $ctx.SupabaseUser?.user?.id &&
-                                        $queries.getUsersLikes.data.some(
+                                        $queries.userLikedJobs.data.some(
                                           like => like.job_id === currentItem.id
                                         )
                                           ? (() => {
@@ -11471,53 +11321,15 @@ function PlasmicAccueil__RenderFunc(props: {
                                             })()
                                           : undefined;
                                       if (
-                                        $steps["postgresUpdateMany"] != null &&
-                                        typeof $steps["postgresUpdateMany"] ===
+                                        $steps["updateDb"] != null &&
+                                        typeof $steps["updateDb"] ===
                                           "object" &&
-                                        typeof $steps["postgresUpdateMany"]
-                                          .then === "function"
+                                        typeof $steps["updateDb"].then ===
+                                          "function"
                                       ) {
-                                        $steps["postgresUpdateMany"] =
-                                          await $steps["postgresUpdateMany"];
-                                      }
-
-                                      $steps["invokeGlobalAction"] = true
-                                        ? (() => {
-                                            const actionArgs = {
-                                              args: [
-                                                "success",
-                                                (() => {
-                                                  try {
-                                                    return `L'annonce "${currentItem.title}" a bien été retirée de vos favoris`;
-                                                  } catch (e) {
-                                                    if (
-                                                      e instanceof TypeError ||
-                                                      e?.plasmicType ===
-                                                        "PlasmicUndefinedDataError"
-                                                    ) {
-                                                      return undefined;
-                                                    }
-                                                    throw e;
-                                                  }
-                                                })()
-                                              ]
-                                            };
-                                            return $globalActions[
-                                              "plasmic-antd5-config-provider.showNotification"
-                                            ]?.apply(null, [
-                                              ...actionArgs.args
-                                            ]);
-                                          })()
-                                        : undefined;
-                                      if (
-                                        $steps["invokeGlobalAction"] != null &&
-                                        typeof $steps["invokeGlobalAction"] ===
-                                          "object" &&
-                                        typeof $steps["invokeGlobalAction"]
-                                          .then === "function"
-                                      ) {
-                                        $steps["invokeGlobalAction"] =
-                                          await $steps["invokeGlobalAction"];
+                                        $steps["updateDb"] = await $steps[
+                                          "updateDb"
+                                        ];
                                       }
 
                                       $steps["refreshData"] = true
@@ -11550,6 +11362,46 @@ function PlasmicAccueil__RenderFunc(props: {
                                       ) {
                                         $steps["refreshData"] = await $steps[
                                           "refreshData"
+                                        ];
+                                      }
+
+                                      $steps["showToast"] = true
+                                        ? (() => {
+                                            const actionArgs = {
+                                              args: [
+                                                "success",
+                                                (() => {
+                                                  try {
+                                                    return `L'annonce "${currentItem.title}" a bien été retirée de vos favoris`;
+                                                  } catch (e) {
+                                                    if (
+                                                      e instanceof TypeError ||
+                                                      e?.plasmicType ===
+                                                        "PlasmicUndefinedDataError"
+                                                    ) {
+                                                      return undefined;
+                                                    }
+                                                    throw e;
+                                                  }
+                                                })()
+                                              ]
+                                            };
+                                            return $globalActions[
+                                              "plasmic-antd5-config-provider.showNotification"
+                                            ]?.apply(null, [
+                                              ...actionArgs.args
+                                            ]);
+                                          })()
+                                        : undefined;
+                                      if (
+                                        $steps["showToast"] != null &&
+                                        typeof $steps["showToast"] ===
+                                          "object" &&
+                                        typeof $steps["showToast"].then ===
+                                          "function"
+                                      ) {
+                                        $steps["showToast"] = await $steps[
+                                          "showToast"
                                         ];
                                       }
                                     }}
@@ -12533,10 +12385,10 @@ function PlasmicAccueil__RenderFunc(props: {
                       markers={(() => {
                         try {
                           return (() => {
-                            const jobOffers = $queries.getJobOffers.data ?? [];
+                            const jobOffers = $queries.jobOffers.data ?? [];
                             const applications =
                               $queries.getApplication.data ?? [];
-                            const userLikes = $queries.getUsersLikes.data ?? [];
+                            const userLikes = $queries.userLikedJobs.data ?? [];
                             const appliedJobIds = new Set(
                               applications.map(app => app.job_id)
                             );
@@ -12758,168 +12610,182 @@ function PlasmicAccueil__RenderFunc(props: {
                 hasGap={true}
                 className={classNames(projectcss.all, sty.section)}
               >
-                <Stack__
-                  as={"div"}
-                  data-plasmic-name={"featureText4"}
-                  data-plasmic-override={overrides.featureText4}
-                  hasGap={true}
-                  className={classNames(projectcss.all, sty.featureText4)}
-                >
-                  <div
-                    data-plasmic-name={"featuredIcon4"}
-                    data-plasmic-override={overrides.featuredIcon4}
-                    className={classNames(projectcss.all, sty.featuredIcon4)}
-                  >
-                    <PersonSimpleWalkIcon
-                      className={classNames(projectcss.all, sty.svg__rNea)}
-                      role={"img"}
-                    />
-                  </div>
-                  <Stack__
-                    as={"div"}
-                    data-plasmic-name={"textAndSupportingText4"}
-                    data-plasmic-override={overrides.textAndSupportingText4}
-                    hasGap={true}
-                    className={classNames(
-                      projectcss.all,
-                      sty.textAndSupportingText4
-                    )}
-                  >
-                    <div
-                      data-plasmic-name={"text"}
-                      data-plasmic-override={overrides.text}
-                      className={classNames(
-                        projectcss.all,
-                        projectcss.__wab_text,
-                        sty.text
-                      )}
-                    >
-                      {"Il suffit de traverser la rue"}
-                    </div>
-                    <p
-                      data-plasmic-name={"supportingText6"}
-                      data-plasmic-override={overrides.supportingText6}
-                      className={classNames(
-                        projectcss.all,
-                        projectcss.p,
-                        projectcss.__wab_text,
-                        sty.supportingText6
-                      )}
-                    >
-                      {
-                        "Gr\u00e2ce \u00e0 la carte, rep\u00e9rez les jobs \u00e0 pourvoir pr\u00e8s de chez vous."
-                      }
-                    </p>
-                  </Stack__>
-                </Stack__>
-                <Stack__
-                  as={"div"}
-                  data-plasmic-name={"featureText5"}
-                  data-plasmic-override={overrides.featureText5}
-                  hasGap={true}
-                  className={classNames(projectcss.all, sty.featureText5)}
-                >
-                  <div
-                    data-plasmic-name={"featuredIcon5"}
-                    data-plasmic-override={overrides.featuredIcon5}
-                    className={classNames(projectcss.all, sty.featuredIcon5)}
-                  >
-                    <Mail2Icon
-                      className={classNames(projectcss.all, sty.svg__vgh53)}
-                      role={"img"}
-                    />
-                  </div>
-                  <Stack__
-                    as={"div"}
-                    data-plasmic-name={"textAndSupportingText5"}
-                    data-plasmic-override={overrides.textAndSupportingText5}
-                    hasGap={true}
-                    className={classNames(
-                      projectcss.all,
-                      sty.textAndSupportingText5
-                    )}
-                  >
-                    <div
-                      data-plasmic-name={"text2"}
-                      data-plasmic-override={overrides.text2}
-                      className={classNames(
-                        projectcss.all,
-                        projectcss.__wab_text,
-                        sty.text2
-                      )}
-                    >
-                      {"Ne manquez aucune offre"}
-                    </div>
-                    <p
-                      data-plasmic-name={"supportingText7"}
-                      data-plasmic-override={overrides.supportingText7}
-                      className={classNames(
-                        projectcss.all,
-                        projectcss.p,
-                        projectcss.__wab_text,
-                        sty.supportingText7
-                      )}
-                    >
-                      {
-                        "Soyez inform\u00e9 en temps r\u00e9el lorsqu'une nouvelle offre d'emploi correspond \u00e0 vos crit\u00e8res de recherche."
-                      }
-                    </p>
-                  </Stack__>
-                </Stack__>
-                <Stack__
-                  as={"div"}
-                  data-plasmic-name={"featureText6"}
-                  data-plasmic-override={overrides.featureText6}
-                  hasGap={true}
-                  className={classNames(projectcss.all, sty.featureText6)}
-                >
-                  <div
-                    data-plasmic-name={"featuredIcon6"}
-                    data-plasmic-override={overrides.featuredIcon6}
-                    className={classNames(projectcss.all, sty.featuredIcon6)}
-                  >
-                    <ClockCountdownIcon
-                      className={classNames(projectcss.all, sty.svg___1Rw0)}
-                      role={"img"}
-                    />
-                  </div>
-                  <Stack__
-                    as={"div"}
-                    data-plasmic-name={"textAndSupportingText6"}
-                    data-plasmic-override={overrides.textAndSupportingText6}
-                    hasGap={true}
-                    className={classNames(
-                      projectcss.all,
-                      sty.textAndSupportingText6
-                    )}
-                  >
-                    <div
-                      data-plasmic-name={"text3"}
-                      data-plasmic-override={overrides.text3}
-                      className={classNames(
-                        projectcss.all,
-                        projectcss.__wab_text,
-                        sty.text3
-                      )}
-                    >
-                      {"Last Minute"}
-                    </div>
-                    <p
-                      data-plasmic-name={"supportingText8"}
-                      data-plasmic-override={overrides.supportingText8}
-                      className={classNames(
-                        projectcss.all,
-                        projectcss.p,
-                        projectcss.__wab_text,
-                        sty.supportingText8
-                      )}
-                    >
-                      {
-                        "Avoir l\u2018acc\u00e8s aux jobs \u00e0 pourvoir imm\u00e9diatement. Offres urgentes, besoin imm\u00e9dia"
-                      }
-                    </p>
-                  </Stack__>
-                </Stack__>
+                <SectionCard
+                  data-plasmic-name={"sectionCard"}
+                  data-plasmic-override={overrides.sectionCard}
+                  className={classNames("__wab_instance", sty.sectionCard)}
+                  description={generateStateValueProp($state, [
+                    "sectionCard",
+                    "description"
+                  ])}
+                  icon={generateStateValueProp($state, ["sectionCard", "icon"])}
+                  onDescriptionChange={async (...eventArgs: any) => {
+                    generateStateOnChangeProp($state, [
+                      "sectionCard",
+                      "description"
+                    ]).apply(null, eventArgs);
+
+                    if (
+                      eventArgs.length > 1 &&
+                      eventArgs[1] &&
+                      eventArgs[1]._plasmic_state_init_
+                    ) {
+                      return;
+                    }
+                  }}
+                  onIconChange={async (...eventArgs: any) => {
+                    generateStateOnChangeProp($state, [
+                      "sectionCard",
+                      "icon"
+                    ]).apply(null, eventArgs);
+
+                    if (
+                      eventArgs.length > 1 &&
+                      eventArgs[1] &&
+                      eventArgs[1]._plasmic_state_init_
+                    ) {
+                      return;
+                    }
+                  }}
+                  onTitleChange={async (...eventArgs: any) => {
+                    generateStateOnChangeProp($state, [
+                      "sectionCard",
+                      "title"
+                    ]).apply(null, eventArgs);
+
+                    if (
+                      eventArgs.length > 1 &&
+                      eventArgs[1] &&
+                      eventArgs[1]._plasmic_state_init_
+                    ) {
+                      return;
+                    }
+                  }}
+                  title={generateStateValueProp($state, [
+                    "sectionCard",
+                    "title"
+                  ])}
+                />
+
+                <SectionCard
+                  data-plasmic-name={"sectionCard2"}
+                  data-plasmic-override={overrides.sectionCard2}
+                  className={classNames("__wab_instance", sty.sectionCard2)}
+                  description={generateStateValueProp($state, [
+                    "sectionCard2",
+                    "description"
+                  ])}
+                  icon={generateStateValueProp($state, [
+                    "sectionCard2",
+                    "icon"
+                  ])}
+                  onDescriptionChange={async (...eventArgs: any) => {
+                    generateStateOnChangeProp($state, [
+                      "sectionCard2",
+                      "description"
+                    ]).apply(null, eventArgs);
+
+                    if (
+                      eventArgs.length > 1 &&
+                      eventArgs[1] &&
+                      eventArgs[1]._plasmic_state_init_
+                    ) {
+                      return;
+                    }
+                  }}
+                  onIconChange={async (...eventArgs: any) => {
+                    generateStateOnChangeProp($state, [
+                      "sectionCard2",
+                      "icon"
+                    ]).apply(null, eventArgs);
+
+                    if (
+                      eventArgs.length > 1 &&
+                      eventArgs[1] &&
+                      eventArgs[1]._plasmic_state_init_
+                    ) {
+                      return;
+                    }
+                  }}
+                  onTitleChange={async (...eventArgs: any) => {
+                    generateStateOnChangeProp($state, [
+                      "sectionCard2",
+                      "title"
+                    ]).apply(null, eventArgs);
+
+                    if (
+                      eventArgs.length > 1 &&
+                      eventArgs[1] &&
+                      eventArgs[1]._plasmic_state_init_
+                    ) {
+                      return;
+                    }
+                  }}
+                  title={generateStateValueProp($state, [
+                    "sectionCard2",
+                    "title"
+                  ])}
+                />
+
+                <SectionCard
+                  data-plasmic-name={"sectionCard3"}
+                  data-plasmic-override={overrides.sectionCard3}
+                  className={classNames("__wab_instance", sty.sectionCard3)}
+                  description={generateStateValueProp($state, [
+                    "sectionCard3",
+                    "description"
+                  ])}
+                  icon={generateStateValueProp($state, [
+                    "sectionCard3",
+                    "icon"
+                  ])}
+                  onDescriptionChange={async (...eventArgs: any) => {
+                    generateStateOnChangeProp($state, [
+                      "sectionCard3",
+                      "description"
+                    ]).apply(null, eventArgs);
+
+                    if (
+                      eventArgs.length > 1 &&
+                      eventArgs[1] &&
+                      eventArgs[1]._plasmic_state_init_
+                    ) {
+                      return;
+                    }
+                  }}
+                  onIconChange={async (...eventArgs: any) => {
+                    generateStateOnChangeProp($state, [
+                      "sectionCard3",
+                      "icon"
+                    ]).apply(null, eventArgs);
+
+                    if (
+                      eventArgs.length > 1 &&
+                      eventArgs[1] &&
+                      eventArgs[1]._plasmic_state_init_
+                    ) {
+                      return;
+                    }
+                  }}
+                  onTitleChange={async (...eventArgs: any) => {
+                    generateStateOnChangeProp($state, [
+                      "sectionCard3",
+                      "title"
+                    ]).apply(null, eventArgs);
+
+                    if (
+                      eventArgs.length > 1 &&
+                      eventArgs[1] &&
+                      eventArgs[1]._plasmic_state_init_
+                    ) {
+                      return;
+                    }
+                  }}
+                  title={generateStateValueProp($state, [
+                    "sectionCard3",
+                    "title"
+                  ])}
+                />
               </Stack__>
             </Stack__>
           </main>
@@ -13024,7 +12890,7 @@ const PlasmicDescendants = {
     "select2",
     "select4",
     "select5",
-    "textArea",
+    "textAreaInput",
     "select7",
     "select",
     "frame13",
@@ -13098,7 +12964,6 @@ const PlasmicDescendants = {
     "select10",
     "select14",
     "select12",
-    "select11",
     "button8",
     "clearBtn",
     "resetFormBtn",
@@ -13131,21 +12996,9 @@ const PlasmicDescendants = {
     "supportingText5",
     "supportingText9",
     "section",
-    "featureText4",
-    "featuredIcon4",
-    "textAndSupportingText4",
-    "text",
-    "supportingText6",
-    "featureText5",
-    "featuredIcon5",
-    "textAndSupportingText5",
-    "text2",
-    "supportingText7",
-    "featureText6",
-    "featuredIcon6",
-    "textAndSupportingText6",
-    "text3",
-    "supportingText8",
+    "sectionCard",
+    "sectionCard2",
+    "sectionCard3",
     "footer"
   ],
   jobDetails: [
@@ -13377,7 +13230,7 @@ const PlasmicDescendants = {
     "select2",
     "select4",
     "select5",
-    "textArea",
+    "textAreaInput",
     "select7",
     "select",
     "frame13",
@@ -13454,7 +13307,7 @@ const PlasmicDescendants = {
     "select2",
     "select4",
     "select5",
-    "textArea",
+    "textAreaInput",
     "select7",
     "select",
     "frame13",
@@ -13615,7 +13468,7 @@ const PlasmicDescendants = {
     "select2",
     "select4",
     "select5",
-    "textArea",
+    "textAreaInput",
     "select7",
     "select",
     "frame13",
@@ -13661,7 +13514,7 @@ const PlasmicDescendants = {
   select2: ["select2"],
   select4: ["select4"],
   select5: ["select5"],
-  textArea: ["textArea"],
+  textAreaInput: ["textAreaInput"],
   select7: ["select7"],
   select: ["select"],
   frame13: [
@@ -13829,7 +13682,6 @@ const PlasmicDescendants = {
     "select10",
     "select14",
     "select12",
-    "select11",
     "button8",
     "clearBtn",
     "resetFormBtn",
@@ -13862,21 +13714,9 @@ const PlasmicDescendants = {
     "supportingText5",
     "supportingText9",
     "section",
-    "featureText4",
-    "featuredIcon4",
-    "textAndSupportingText4",
-    "text",
-    "supportingText6",
-    "featureText5",
-    "featuredIcon5",
-    "textAndSupportingText5",
-    "text2",
-    "supportingText7",
-    "featureText6",
-    "featuredIcon6",
-    "textAndSupportingText6",
-    "text3",
-    "supportingText8"
+    "sectionCard",
+    "sectionCard2",
+    "sectionCard3"
   ],
   bgImage: ["bgImage"],
   section1: [
@@ -13898,7 +13738,6 @@ const PlasmicDescendants = {
     "select10",
     "select14",
     "select12",
-    "select11",
     "button8",
     "clearBtn",
     "resetFormBtn",
@@ -13947,7 +13786,6 @@ const PlasmicDescendants = {
     "select10",
     "select14",
     "select12",
-    "select11",
     "button8",
     "clearBtn",
     "resetFormBtn",
@@ -13984,7 +13822,6 @@ const PlasmicDescendants = {
     "select10",
     "select14",
     "select12",
-    "select11",
     "button8",
     "clearBtn",
     "resetFormBtn"
@@ -14000,7 +13837,6 @@ const PlasmicDescendants = {
     "select10",
     "select14",
     "select12",
-    "select11",
     "button8",
     "clearBtn",
     "resetFormBtn"
@@ -14015,7 +13851,6 @@ const PlasmicDescendants = {
     "select10",
     "select14",
     "select12",
-    "select11",
     "button8",
     "clearBtn",
     "resetFormBtn"
@@ -14028,7 +13863,6 @@ const PlasmicDescendants = {
   select10: ["select10"],
   select14: ["select14"],
   select12: ["select12"],
-  select11: ["select11"],
   button8: ["button8"],
   clearBtn: ["clearBtn"],
   resetFormBtn: ["resetFormBtn"],
@@ -14115,21 +13949,9 @@ const PlasmicDescendants = {
     "supportingText5",
     "supportingText9",
     "section",
-    "featureText4",
-    "featuredIcon4",
-    "textAndSupportingText4",
-    "text",
-    "supportingText6",
-    "featureText5",
-    "featuredIcon5",
-    "textAndSupportingText5",
-    "text2",
-    "supportingText7",
-    "featureText6",
-    "featuredIcon6",
-    "textAndSupportingText6",
-    "text3",
-    "supportingText8"
+    "sectionCard",
+    "sectionCard2",
+    "sectionCard3"
   ],
   headingAndSupportingText2: [
     "headingAndSupportingText2",
@@ -14146,65 +13968,10 @@ const PlasmicDescendants = {
   heading2: ["heading2"],
   supportingText5: ["supportingText5"],
   supportingText9: ["supportingText9"],
-  section: [
-    "section",
-    "featureText4",
-    "featuredIcon4",
-    "textAndSupportingText4",
-    "text",
-    "supportingText6",
-    "featureText5",
-    "featuredIcon5",
-    "textAndSupportingText5",
-    "text2",
-    "supportingText7",
-    "featureText6",
-    "featuredIcon6",
-    "textAndSupportingText6",
-    "text3",
-    "supportingText8"
-  ],
-  featureText4: [
-    "featureText4",
-    "featuredIcon4",
-    "textAndSupportingText4",
-    "text",
-    "supportingText6"
-  ],
-  featuredIcon4: ["featuredIcon4"],
-  textAndSupportingText4: ["textAndSupportingText4", "text", "supportingText6"],
-  text: ["text"],
-  supportingText6: ["supportingText6"],
-  featureText5: [
-    "featureText5",
-    "featuredIcon5",
-    "textAndSupportingText5",
-    "text2",
-    "supportingText7"
-  ],
-  featuredIcon5: ["featuredIcon5"],
-  textAndSupportingText5: [
-    "textAndSupportingText5",
-    "text2",
-    "supportingText7"
-  ],
-  text2: ["text2"],
-  supportingText7: ["supportingText7"],
-  featureText6: [
-    "featureText6",
-    "featuredIcon6",
-    "textAndSupportingText6",
-    "text3",
-    "supportingText8"
-  ],
-  featuredIcon6: ["featuredIcon6"],
-  textAndSupportingText6: [
-    "textAndSupportingText6",
-    "text3",
-    "supportingText8"
-  ],
-  text3: ["text3"],
-  supportingText8: ["supportingText8"],
+  section: ["section", "sectionCard", "sectionCard2", "sectionCard3"],
+  sectionCard: ["sectionCard"],
+  sectionCard2: ["sectionCard2"],
+  sectionCard3: ["sectionCard3"],
   footer: ["footer"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
@@ -14299,7 +14066,7 @@ type NodeDefaultElementType = {
   select2: typeof Select;
   select4: typeof Select;
   select5: typeof AntdSelect;
-  textArea: typeof AntdTextArea;
+  textAreaInput: typeof TextAreaInput;
   select7: typeof AntdSelect;
   select: typeof Select;
   frame13: "div";
@@ -14373,7 +14140,6 @@ type NodeDefaultElementType = {
   select10: typeof AntdSelect;
   select14: typeof AntdSelect;
   select12: typeof AntdSelect;
-  select11: typeof AntdSelect;
   button8: typeof Button;
   clearBtn: typeof ClearBtn;
   resetFormBtn: "button";
@@ -14406,21 +14172,9 @@ type NodeDefaultElementType = {
   supportingText5: "p";
   supportingText9: "p";
   section: "article";
-  featureText4: "div";
-  featuredIcon4: "div";
-  textAndSupportingText4: "div";
-  text: "div";
-  supportingText6: "p";
-  featureText5: "div";
-  featuredIcon5: "div";
-  textAndSupportingText5: "div";
-  text2: "div";
-  supportingText7: "p";
-  featureText6: "div";
-  featuredIcon6: "div";
-  textAndSupportingText6: "div";
-  text3: "div";
-  supportingText8: "p";
+  sectionCard: typeof SectionCard;
+  sectionCard2: typeof SectionCard;
+  sectionCard3: typeof SectionCard;
   footer: typeof Footer;
 };
 
@@ -14571,7 +14325,7 @@ export const PlasmicAccueil = Object.assign(
     select2: makeNodeComponent("select2"),
     select4: makeNodeComponent("select4"),
     select5: makeNodeComponent("select5"),
-    textArea: makeNodeComponent("textArea"),
+    textAreaInput: makeNodeComponent("textAreaInput"),
     select7: makeNodeComponent("select7"),
     select: makeNodeComponent("select"),
     frame13: makeNodeComponent("frame13"),
@@ -14649,7 +14403,6 @@ export const PlasmicAccueil = Object.assign(
     select10: makeNodeComponent("select10"),
     select14: makeNodeComponent("select14"),
     select12: makeNodeComponent("select12"),
-    select11: makeNodeComponent("select11"),
     button8: makeNodeComponent("button8"),
     clearBtn: makeNodeComponent("clearBtn"),
     resetFormBtn: makeNodeComponent("resetFormBtn"),
@@ -14682,21 +14435,9 @@ export const PlasmicAccueil = Object.assign(
     supportingText5: makeNodeComponent("supportingText5"),
     supportingText9: makeNodeComponent("supportingText9"),
     section: makeNodeComponent("section"),
-    featureText4: makeNodeComponent("featureText4"),
-    featuredIcon4: makeNodeComponent("featuredIcon4"),
-    textAndSupportingText4: makeNodeComponent("textAndSupportingText4"),
-    text: makeNodeComponent("text"),
-    supportingText6: makeNodeComponent("supportingText6"),
-    featureText5: makeNodeComponent("featureText5"),
-    featuredIcon5: makeNodeComponent("featuredIcon5"),
-    textAndSupportingText5: makeNodeComponent("textAndSupportingText5"),
-    text2: makeNodeComponent("text2"),
-    supportingText7: makeNodeComponent("supportingText7"),
-    featureText6: makeNodeComponent("featureText6"),
-    featuredIcon6: makeNodeComponent("featuredIcon6"),
-    textAndSupportingText6: makeNodeComponent("textAndSupportingText6"),
-    text3: makeNodeComponent("text3"),
-    supportingText8: makeNodeComponent("supportingText8"),
+    sectionCard: makeNodeComponent("sectionCard"),
+    sectionCard2: makeNodeComponent("sectionCard2"),
+    sectionCard3: makeNodeComponent("sectionCard3"),
     footer: makeNodeComponent("footer"),
 
     // Metadata about props expected for PlasmicAccueil

@@ -66,7 +66,7 @@ import {
   usePlasmicInvalidate
 } from "@plasmicapp/react-web/lib/data-sources";
 
-import Sidebar3 from "../../Sidebar3"; // plasmic-import: wO_leu131AjQ/component
+import Sidebar from "../../Sidebar"; // plasmic-import: M06HuWMcBQV2/component
 import { DataGridOffre } from "../../others/DataGridOffre/DataGridOffre"; // plasmic-import: xkvR5y_rqfm4/codeComponent
 import Modal from "../../Modal"; // plasmic-import: fsC3QwUZz9uz/component
 import Button from "../../Button"; // plasmic-import: 9ixtKbGKv7x-/component
@@ -105,7 +105,7 @@ export const PlasmicOffreAdmin__ArgProps = new Array<ArgPropType>();
 
 export type PlasmicOffreAdmin__OverridesType = {
   root?: Flex__<"div">;
-  sidebar3?: Flex__<typeof Sidebar3>;
+  sidebar?: Flex__<typeof Sidebar>;
   main?: Flex__<"div">;
   h1?: Flex__<"h1">;
   dataGridOffre?: Flex__<typeof DataGridOffre>;
@@ -208,6 +208,18 @@ function PlasmicOffreAdmin__RenderFunc(props: {
         type: "private",
         variableType: "array",
         initFunc: ({ $props, $state, $queries, $ctx }) => []
+      },
+      {
+        path: "sidebar.disableLinks",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $ctx }) => false
+      },
+      {
+        path: "sidebar.role",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $ctx }) => "admin"
       }
     ],
     [$props, $ctx, $refs]
@@ -271,10 +283,43 @@ function PlasmicOffreAdmin__RenderFunc(props: {
             sty.root
           )}
         >
-          <Sidebar3
-            data-plasmic-name={"sidebar3"}
-            data-plasmic-override={overrides.sidebar3}
-            className={classNames("__wab_instance", sty.sidebar3)}
+          <Sidebar
+            data-plasmic-name={"sidebar"}
+            data-plasmic-override={overrides.sidebar}
+            className={classNames("__wab_instance", sty.sidebar)}
+            disableLinks={generateStateValueProp($state, [
+              "sidebar",
+              "disableLinks"
+            ])}
+            onDisableLinksChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, [
+                "sidebar",
+                "disableLinks"
+              ]).apply(null, eventArgs);
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+            onRoleChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, ["sidebar", "role"]).apply(
+                null,
+                eventArgs
+              );
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+            role={generateStateValueProp($state, ["sidebar", "role"])}
           />
 
           <Stack__
@@ -1382,7 +1427,7 @@ function PlasmicOffreAdmin__RenderFunc(props: {
 const PlasmicDescendants = {
   root: [
     "root",
-    "sidebar3",
+    "sidebar",
     "main",
     "h1",
     "dataGridOffre",
@@ -1407,7 +1452,7 @@ const PlasmicDescendants = {
     "button",
     "deleteAccount"
   ],
-  sidebar3: ["sidebar3"],
+  sidebar: ["sidebar"],
   main: [
     "main",
     "h1",
@@ -1502,7 +1547,7 @@ type DescendantsType<T extends NodeNameType> =
   (typeof PlasmicDescendants)[T][number];
 type NodeDefaultElementType = {
   root: "div";
-  sidebar3: typeof Sidebar3;
+  sidebar: typeof Sidebar;
   main: "div";
   h1: "h1";
   dataGridOffre: typeof DataGridOffre;
@@ -1588,7 +1633,7 @@ export const PlasmicOffreAdmin = Object.assign(
   makeNodeComponent("root"),
   {
     // Helper components rendering sub-elements
-    sidebar3: makeNodeComponent("sidebar3"),
+    sidebar: makeNodeComponent("sidebar"),
     main: makeNodeComponent("main"),
     h1: makeNodeComponent("h1"),
     dataGridOffre: makeNodeComponent("dataGridOffre"),

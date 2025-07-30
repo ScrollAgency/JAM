@@ -1772,7 +1772,7 @@ function PlasmicMentionsLegales__RenderFunc(props: {
                             )}
                           >
                             {
-                              "JobAroundMe est \u00e9dit\u00e9 par la soci\u00e9t\u00e9 JobAroundMe S\u00e0rl-S, dont le si\u00e8ge est situ\u00e9 \u00e0 5 rue Nelson Mandela\r\n\r\nL-4035 , immatricul\u00e9e sous le num\u00e9ro B297124.\n"
+                              "JobAroundMe est \u00e9dit\u00e9 par la soci\u00e9t\u00e9 JobAroundMe S\u00e0rl-S, dont le si\u00e8ge est situ\u00e9 \u00e0 5 rue Nelson Mandela\r\n\r\nL-4035 , immatricul\u00e9e sous le num\u00e9ro B297124."
                             }
                           </div>
                         </Stack__>

@@ -256,6 +256,18 @@
   > img {
   margin-top: 32px;
 }
+@media (min-width: 0px) and (max-width: 768px) {
+  .contentWrapper {
+    width: 100%;
+    min-width: 0;
+    padding: 32px;
+  }
+}
+@media (min-width: 0px) and (max-width: 768px) {
+  .contentWrapper > :global(.__wab_flex-container) {
+    min-width: 0;
+  }
+}
 .title {
   height: auto;
   display: flex;
@@ -282,6 +294,7 @@
   position: relative;
   align-self: stretch;
   flex-direction: column;
+  width: auto;
 }
 .wrapper > :global(.__wab_flex-container) {
   flex-direction: column;

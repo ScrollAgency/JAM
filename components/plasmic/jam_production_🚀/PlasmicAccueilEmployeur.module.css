@@ -5564,29 +5564,55 @@
   display: flex;
   position: relative;
   flex-direction: row;
-  align-items: center;
-  justify-content: flex-start;
   cursor: pointer;
 }
-.freeBox__gWu5 {
-  display: block;
-  position: relative;
-  width: 68px;
-  height: 68px;
-  flex-shrink: 0;
+.frame16 > :global(.__wab_flex-container) {
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+}
+@media (min-width: 0px) and (max-width: 768px) {
+  .frame16 > :global(.__wab_flex-container) {
+    margin-left: calc(0px - 8px);
+    width: calc(100% + 8px);
+    margin-top: calc(0px - 0px);
+    height: calc(100% + 0px);
+  }
+}
+@media (min-width: 0px) and (max-width: 768px) {
+  .frame16 > :global(.__wab_flex-container) > *,
+  .frame16 > :global(.__wab_flex-container) > :global(.__wab_slot) > *,
+  .frame16 > :global(.__wab_flex-container) > picture > img,
+  .frame16
+    > :global(.__wab_flex-container)
+    > :global(.__wab_slot)
+    > picture
+    > img {
+    margin-left: 8px;
+    margin-top: 0px;
+  }
 }
 .svg__ccUrY {
   object-fit: cover;
   max-width: 100%;
   color: #bafe68;
-  transform: scale(0.999999982885729, 0.9999999828857289) rotate(135deg);
-  width: 47.76081085205078px;
-  height: 47.76081085205078px;
+  transform: none;
+  width: 35px;
+  height: 35px;
   display: block;
   transform-origin: top left;
-  position: absolute;
-  left: 68px;
-  top: 34px;
+  position: relative;
+  left: auto;
+  top: auto;
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+@media (min-width: 0px) and (max-width: 768px) {
+  .svg__ccUrY {
+    width: 56px;
+    height: 58px;
+    flex-shrink: 0;
+  }
 }
 .frame17 {
   width: auto;
@@ -5597,109 +5623,7 @@
   align-items: center;
   justify-content: flex-start;
 }
-.frame18 {
-  width: auto;
-  height: auto;
-  display: flex;
-  position: relative;
-  overflow: hidden;
-  flex-direction: row;
-  padding-left: 1.8032640218734741px;
-  padding-right: 1.8032640218734741px;
-}
-.frame18 > :global(.__wab_flex-container) {
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  margin-left: calc(0px - 1.1270400285720825px);
-  width: calc(100% + 1.1270400285720825px);
-}
-.frame18 > :global(.__wab_flex-container) > *,
-.frame18 > :global(.__wab_flex-container) > :global(.__wab_slot) > *,
-.frame18 > :global(.__wab_flex-container) > picture > img,
-.frame18
-  > :global(.__wab_flex-container)
-  > :global(.__wab_slot)
-  > picture
-  > img {
-  margin-left: 1.1270400285720825px;
-}
 .text__fahv1 {
-  display: block;
-  font-size: 15px;
-  font-family: "DM Sans", sans-serif;
-  font-weight: 600;
-  letter-spacing: 0em;
-  line-height: 100%;
-  color: rgba(255, 255, 255, 1);
-  position: relative;
-}
-.frame19 {
-  width: auto;
-  height: auto;
-  display: flex;
-  position: relative;
-  overflow: hidden;
-  flex-direction: row;
-  padding-left: 1.8032640218734741px;
-  padding-right: 1.8032640218734741px;
-  border-radius: 22.540800094604492px;
-}
-.frame19 > :global(.__wab_flex-container) {
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  margin-left: calc(0px - 1.1270400285720825px);
-  width: calc(100% + 1.1270400285720825px);
-}
-.frame19 > :global(.__wab_flex-container) > *,
-.frame19 > :global(.__wab_flex-container) > :global(.__wab_slot) > *,
-.frame19 > :global(.__wab_flex-container) > picture > img,
-.frame19
-  > :global(.__wab_flex-container)
-  > :global(.__wab_slot)
-  > picture
-  > img {
-  margin-left: 1.1270400285720825px;
-}
-.text__d6K0R {
-  display: block;
-  font-size: 15px;
-  font-family: "DM Sans", sans-serif;
-  font-weight: 600;
-  letter-spacing: 0em;
-  line-height: 100%;
-  color: rgba(255, 255, 255, 1);
-  position: relative;
-}
-.frame20 {
-  width: auto;
-  height: auto;
-  display: flex;
-  position: relative;
-  overflow: hidden;
-  flex-direction: row;
-  padding-left: 1.8032640218734741px;
-  padding-right: 1.8032640218734741px;
-}
-.frame20 > :global(.__wab_flex-container) {
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  margin-left: calc(0px - 1.1270400285720825px);
-  width: calc(100% + 1.1270400285720825px);
-}
-.frame20 > :global(.__wab_flex-container) > *,
-.frame20 > :global(.__wab_flex-container) > :global(.__wab_slot) > *,
-.frame20 > :global(.__wab_flex-container) > picture > img,
-.frame20
-  > :global(.__wab_flex-container)
-  > :global(.__wab_slot)
-  > picture
-  > img {
-  margin-left: 1.1270400285720825px;
-}
-.text___1FiIm {
   display: block;
   font-size: 15px;
   font-family: "DM Sans", sans-serif;
@@ -5715,7 +5639,7 @@
   display: flex;
   position: relative;
   flex-direction: row;
-  padding-left: 16px;
+  padding-left: 0px;
   padding-right: 16px;
 }
 .socials > :global(.__wab_flex-container) {
@@ -5737,8 +5661,8 @@
 }
 @media (min-width: 0px) and (max-width: 768px) {
   .socials {
-    padding-left: 0px;
-    padding-right: 0px;
+    padding-left: 16px;
+    padding-right: 16px;
   }
 }
 @media (min-width: 0px) and (max-width: 768px) {
@@ -5747,67 +5671,53 @@
     align-items: center;
   }
 }
-.img___7Kt28 {
+.facebook {
   object-fit: cover;
   max-width: 100%;
   width: 24px;
   height: 24px;
-  display: block;
   position: relative;
   overflow: hidden;
   flex-shrink: 0;
+  display: none;
 }
-.img___7Kt28 > picture > img {
+.facebook > picture > img {
   object-fit: cover;
 }
-.svg__j1Vxv {
+.x {
   object-fit: cover;
   max-width: 100%;
   color: #909090;
   width: 24px;
   height: 24px;
-  display: block;
   position: relative;
   overflow: hidden;
   flex-shrink: 0;
+  display: none;
 }
-.socialIcon {
-  width: 24px;
-  height: 24px;
-  display: block;
-  position: relative;
-  overflow: hidden;
-  flex-shrink: 0;
-}
-.svg__fh2M7 {
+.insta {
   object-fit: cover;
   max-width: 100%;
   color: #909090;
   width: 23.985939025878906px;
   height: 23.995311737060547px;
   display: block;
-  position: absolute;
-  top: 0px;
-  left: 0px;
-}
-.socialIcon2 {
-  width: 24px;
-  height: 24px;
-  display: block;
   position: relative;
-  overflow: hidden;
+  top: auto;
+  left: auto;
   flex-shrink: 0;
 }
-.svg__sO2It {
+.linkedin {
   object-fit: cover;
   max-width: 100%;
   color: #909090;
   width: 24px;
   height: 24px;
-  display: block;
   position: absolute;
   top: 0px;
   left: 0px;
+  flex-shrink: 0;
+  display: none;
 }
 .footerLinksContainer {
   height: auto;

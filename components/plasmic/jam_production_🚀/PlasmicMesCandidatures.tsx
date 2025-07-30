@@ -189,6 +189,18 @@ function PlasmicMesCandidatures__RenderFunc(props: {
         type: "private",
         variableType: "number",
         initFunc: ({ $props, $state, $queries, $ctx }) => 1
+      },
+      {
+        path: "slidebarMenu.disableLinks",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $ctx }) => false
+      },
+      {
+        path: "slidebarMenu.role",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $ctx }) => "candidat"
       }
     ],
     [$props, $ctx, $refs]
@@ -271,6 +283,39 @@ function PlasmicMesCandidatures__RenderFunc(props: {
             data-plasmic-name={"slidebarMenu"}
             data-plasmic-override={overrides.slidebarMenu}
             className={classNames("__wab_instance", sty.slidebarMenu)}
+            disableLinks={generateStateValueProp($state, [
+              "slidebarMenu",
+              "disableLinks"
+            ])}
+            onDisableLinksChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, [
+                "slidebarMenu",
+                "disableLinks"
+              ]).apply(null, eventArgs);
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+            onRoleChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, ["slidebarMenu", "role"]).apply(
+                null,
+                eventArgs
+              );
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+            role={generateStateValueProp($state, ["slidebarMenu", "role"])}
           />
 
           <MobileNavbarTop

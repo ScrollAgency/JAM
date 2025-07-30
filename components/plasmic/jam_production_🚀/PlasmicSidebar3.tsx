@@ -391,10 +391,7 @@ function PlasmicSidebar3__RenderFunc(props: {
 
           {(() => {
             try {
-              return $ctx.pagePath === "/parametres-employeur" ||
-                $ctx.pagePath === "parametres-abonnement"
-                ? ($state.showButton = true)
-                : $state.showButton;
+              return (() => {})();
             } catch (e) {
               if (
                 e instanceof TypeError ||
@@ -471,10 +468,7 @@ function PlasmicSidebar3__RenderFunc(props: {
           ) : null}
           {(() => {
             try {
-              return $ctx.pagePath === "/parametres-abonnement" ||
-                $ctx.pagePath === "parametres-employeur"
-                ? ($state.showButton = true)
-                : $state.showButton;
+              return (() => {})();
             } catch (e) {
               if (
                 e instanceof TypeError ||

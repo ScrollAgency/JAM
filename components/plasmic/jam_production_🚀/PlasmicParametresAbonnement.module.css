@@ -2,14 +2,23 @@
   display: flex;
   flex-direction: row;
   position: relative;
-  align-items: stretch;
-  justify-content: flex-start;
+  align-items: center;
+  justify-content: flex-end;
   width: 100%;
   height: 100%;
   max-width: 100%;
   grid-column-start: 1 !important;
   grid-column-end: -1 !important;
   min-height: 0;
+}
+.sidebar:global(.__wab_instance) {
+  max-width: 100%;
+  left: 0;
+  top: 0;
+  z-index: 1;
+  position: fixed;
+  bottom: 0;
+  width: 20%;
 }
 .actionCreditSuccess:global(.__wab_instance) {
   max-width: 100%;
@@ -18,9 +27,6 @@
 .actionCreditSuccessDepreciated:global(.__wab_instance) {
   max-width: 100%;
   object-fit: cover;
-}
-.sidebar2:global(.__wab_instance) {
-  max-width: 100%;
 }
 .main {
   display: flex;

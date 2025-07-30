@@ -66,7 +66,7 @@ import {
   usePlasmicInvalidate
 } from "@plasmicapp/react-web/lib/data-sources";
 
-import Sidebar3 from "../../Sidebar3"; // plasmic-import: wO_leu131AjQ/component
+import Sidebar from "../../Sidebar"; // plasmic-import: M06HuWMcBQV2/component
 import { SideEffect } from "@plasmicpkgs/plasmic-basic-components";
 import Button from "../../Button"; // plasmic-import: 9ixtKbGKv7x-/component
 import { DataGridUser } from "../../others/DataGridUser/DataGridUser"; // plasmic-import: HXtz_l-PfcN1/codeComponent
@@ -102,7 +102,7 @@ export const PlasmicUserAdmin__ArgProps = new Array<ArgPropType>();
 
 export type PlasmicUserAdmin__OverridesType = {
   root?: Flex__<"div">;
-  sidebar3?: Flex__<typeof Sidebar3>;
+  sidebar?: Flex__<typeof Sidebar>;
   main?: Flex__<"div">;
   sideEffect?: Flex__<typeof SideEffect>;
   h1?: Flex__<"h1">;
@@ -194,6 +194,18 @@ function PlasmicUserAdmin__RenderFunc(props: {
         type: "private",
         variableType: "number",
         initFunc: ({ $props, $state, $queries, $ctx }) => 0
+      },
+      {
+        path: "sidebar.disableLinks",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $ctx }) => false
+      },
+      {
+        path: "sidebar.role",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $ctx }) => "admin"
       }
     ],
     [$props, $ctx, $refs]
@@ -277,10 +289,43 @@ function PlasmicUserAdmin__RenderFunc(props: {
             sty.root
           )}
         >
-          <Sidebar3
-            data-plasmic-name={"sidebar3"}
-            data-plasmic-override={overrides.sidebar3}
-            className={classNames("__wab_instance", sty.sidebar3)}
+          <Sidebar
+            data-plasmic-name={"sidebar"}
+            data-plasmic-override={overrides.sidebar}
+            className={classNames("__wab_instance", sty.sidebar)}
+            disableLinks={generateStateValueProp($state, [
+              "sidebar",
+              "disableLinks"
+            ])}
+            onDisableLinksChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, [
+                "sidebar",
+                "disableLinks"
+              ]).apply(null, eventArgs);
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+            onRoleChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, ["sidebar", "role"]).apply(
+                null,
+                eventArgs
+              );
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+            role={generateStateValueProp($state, ["sidebar", "role"])}
           />
 
           <Stack__
@@ -1159,7 +1204,7 @@ function PlasmicUserAdmin__RenderFunc(props: {
 const PlasmicDescendants = {
   root: [
     "root",
-    "sidebar3",
+    "sidebar",
     "main",
     "sideEffect",
     "h1",
@@ -1169,7 +1214,7 @@ const PlasmicDescendants = {
     "deleteAccount",
     "mobileNavbarBottomAdmin"
   ],
-  sidebar3: ["sidebar3"],
+  sidebar: ["sidebar"],
   main: ["main", "sideEffect", "h1", "supprUser", "svg", "e2", "deleteAccount"],
   sideEffect: ["sideEffect"],
   h1: ["h1"],
@@ -1184,7 +1229,7 @@ type DescendantsType<T extends NodeNameType> =
   (typeof PlasmicDescendants)[T][number];
 type NodeDefaultElementType = {
   root: "div";
-  sidebar3: typeof Sidebar3;
+  sidebar: typeof Sidebar;
   main: "div";
   sideEffect: typeof SideEffect;
   h1: "h1";
@@ -1255,7 +1300,7 @@ export const PlasmicUserAdmin = Object.assign(
   makeNodeComponent("root"),
   {
     // Helper components rendering sub-elements
-    sidebar3: makeNodeComponent("sidebar3"),
+    sidebar: makeNodeComponent("sidebar"),
     main: makeNodeComponent("main"),
     sideEffect: makeNodeComponent("sideEffect"),
     h1: makeNodeComponent("h1"),

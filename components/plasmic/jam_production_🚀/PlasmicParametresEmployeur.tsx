@@ -67,7 +67,7 @@ import {
 } from "@plasmicapp/react-web/lib/data-sources";
 
 import MobileNavbarTop from "../../MobileNavbarTop"; // plasmic-import: mAg8Ml3XUEhy/component
-import Sidebar2 from "../../Sidebar2"; // plasmic-import: RXqL3kdDrXwo/component
+import Sidebar from "../../Sidebar"; // plasmic-import: M06HuWMcBQV2/component
 import { FormWrapper } from "@plasmicpkgs/antd5/skinny/Form";
 import { formHelpers as FormWrapper_Helpers } from "@plasmicpkgs/antd5/skinny/Form";
 import { FormItemWrapper } from "@plasmicpkgs/antd5/skinny/FormItem";
@@ -115,7 +115,7 @@ export const PlasmicParametresEmployeur__ArgProps = new Array<ArgPropType>();
 export type PlasmicParametresEmployeur__OverridesType = {
   parametresEmployeur?: Flex__<"div">;
   mobileNavbarTop?: Flex__<typeof MobileNavbarTop>;
-  sidebar2?: Flex__<typeof Sidebar2>;
+  sidebar?: Flex__<typeof Sidebar>;
   main?: Flex__<"div">;
   heading?: Flex__<"div">;
   card4?: Flex__<"div">;
@@ -340,10 +340,220 @@ function PlasmicParametresEmployeur__RenderFunc(props: {
         initFunc: ({ $props, $state, $queries, $ctx }) => undefined
       },
       {
-        path: "sidebar2.disableLinks",
+        path: "sidebar.disableLinks",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $ctx }) => false
+      },
+      {
+        path: "sidebar.role",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => false
+        initFunc: ({ $props, $state, $queries, $ctx }) => "employer"
+      },
+      {
+        path: "countries",
+        type: "private",
+        variableType: "array",
+        initFunc: ({ $props, $state, $queries, $ctx }) => [
+          "Afghanistan",
+          "Afrique du Sud",
+          "Albanie",
+          "Alg\u00e9rie",
+          "Allemagne",
+          "Andorre",
+          "Angola",
+          "Antigua-et-Barbuda",
+          "Arabie saoudite",
+          "Argentine",
+          "Arm\u00e9nie",
+          "Australie",
+          "Autriche",
+          "Azerba\u00efdjan",
+          "Bahamas",
+          "Bahre\u00efn",
+          "Bangladesh",
+          "Barbade",
+          "Belgique",
+          "Belize",
+          "B\u00e9nin",
+          "Bhoutan",
+          "Bi\u00e9lorussie",
+          "Birmanie (Myanmar)",
+          "Bolivie",
+          "Bosnie-Herz\u00e9govine",
+          "Botswana",
+          "Br\u00e9sil",
+          "Brunei",
+          "Bulgarie",
+          "Burkina Faso",
+          "Burundi",
+          "Cambodge",
+          "Cameroun",
+          "Canada",
+          "Cap-Vert",
+          "Centrafrique (R\u00e9publique)",
+          "Chili",
+          "Chine",
+          "Chypre",
+          "Colombie",
+          "Comores",
+          "Congo (R\u00e9publique d\u00e9mocratique du)",
+          "Congo (R\u00e9publique du)",
+          "Cor\u00e9e du Nord",
+          "Cor\u00e9e du Sud",
+          "Costa Rica",
+          "C\u00f4te d'Ivoire",
+          "Croatie",
+          "Cuba",
+          "Danemark",
+          "Djibouti",
+          "Dominique",
+          "\u00c9gypte",
+          "\u00c9mirats arabes unis",
+          "\u00c9quateur",
+          "\u00c9rythr\u00e9e",
+          "Espagne",
+          "Estonie",
+          "Eswatini",
+          "\u00c9tats-Unis",
+          "\u00c9thiopie",
+          "Fidji",
+          "Finlande",
+          "France",
+          "Gabon",
+          "Gambie",
+          "G\u00e9orgie",
+          "Ghana",
+          "Gr\u00e8ce",
+          "Grenade",
+          "Guatemala",
+          "Guin\u00e9e",
+          "Guin\u00e9e-Bissau",
+          "Guin\u00e9e \u00e9quatoriale",
+          "Guyana",
+          "Ha\u00efti",
+          "Honduras",
+          "Hongrie",
+          "\u00celes Marshall",
+          "\u00celes Salomon",
+          "Inde",
+          "Indon\u00e9sie",
+          "Irak",
+          "Iran",
+          "Irlande",
+          "Islande",
+          "Isra\u00ebl",
+          "Italie",
+          "Jama\u00efque",
+          "Japon",
+          "Jordanie",
+          "Kazakhstan",
+          "Kenya",
+          "Kirghizistan",
+          "Kiribati",
+          "Kosovo",
+          "Kowe\u00eft",
+          "Laos",
+          "Lesotho",
+          "Lettonie",
+          "Liban",
+          "Liberia",
+          "Libye",
+          "Liechtenstein",
+          "Lituanie",
+          "Luxembourg",
+          "Mac\u00e9doine du Nord",
+          "Madagascar",
+          "Malaisie",
+          "Malawi",
+          "Maldives",
+          "Mali",
+          "Malte",
+          "Maroc",
+          "Maurice",
+          "Mauritanie",
+          "Mexique",
+          "Micron\u00e9sie",
+          "Moldavie",
+          "Monaco",
+          "Mongolie",
+          "Mont\u00e9n\u00e9gro",
+          "Mozambique",
+          "Namibie",
+          "Nauru",
+          "N\u00e9pal",
+          "Nicaragua",
+          "Niger",
+          "Nigeria",
+          "Norv\u00e8ge",
+          "Nouvelle-Z\u00e9lande",
+          "Oman",
+          "Ouganda",
+          "Ouzb\u00e9kistan",
+          "Pakistan",
+          "Palaos",
+          "Palestine",
+          "Panama",
+          "Papouasie-Nouvelle-Guin\u00e9e",
+          "Paraguay",
+          "Pays-Bas",
+          "P\u00e9rou",
+          "Philippines",
+          "Pologne",
+          "Portugal",
+          "Qatar",
+          "R\u00e9publique dominicaine",
+          "R\u00e9publique tch\u00e8que",
+          "Roumanie",
+          "Royaume-Uni",
+          "Russie",
+          "Rwanda",
+          "Saint-Christophe-et-Ni\u00e9v\u00e8s",
+          "Sainte-Lucie",
+          "Saint-Marin",
+          "Saint-Vincent-et-les-Grenadines",
+          "Salvador",
+          "Samoa",
+          "Sao Tom\u00e9-et-Principe",
+          "S\u00e9n\u00e9gal",
+          "Serbie",
+          "Seychelles",
+          "Sierra Leone",
+          "Singapour",
+          "Slovaquie",
+          "Slov\u00e9nie",
+          "Somalie",
+          "Soudan",
+          "Soudan du Sud",
+          "Sri Lanka",
+          "Su\u00e8de",
+          "Suisse",
+          "Suriname",
+          "Syrie",
+          "Tadjikistan",
+          "Ta\u00efwan",
+          "Tanzanie",
+          "Tchad",
+          "Tha\u00eflande",
+          "Timor oriental",
+          "Togo",
+          "Tonga",
+          "Trinit\u00e9-et-Tobago",
+          "Tunisie",
+          "Turkm\u00e9nistan",
+          "Turquie",
+          "Tuvalu",
+          "Ukraine",
+          "Uruguay",
+          "Vanuatu",
+          "Vatican",
+          "Venezuela",
+          "Vi\u00eat Nam",
+          "Y\u00e9men",
+          "Zambie",
+          "Zimbabwe"
+        ]
       }
     ],
     [$props, $ctx, $refs]
@@ -407,16 +617,6 @@ function PlasmicParametresEmployeur__RenderFunc(props: {
         invalidatedKeys: null,
         roleId: null
       };
-    }),
-    getCountries: usePlasmicDataOp(() => {
-      return {
-        sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
-        opId: "55fe18eb-11a3-411e-bf08-f786d3cb4a98",
-        userArgs: {},
-        cacheKey: `plasmic.$.55fe18eb-11a3-411e-bf08-f786d3cb4a98.$.`,
-        invalidatedKeys: null,
-        roleId: null
-      };
     })
   };
   if (Object.keys(new$Queries).some(k => new$Queries[k] !== $queries[k])) {
@@ -463,17 +663,17 @@ function PlasmicParametresEmployeur__RenderFunc(props: {
             className={classNames("__wab_instance", sty.mobileNavbarTop)}
           />
 
-          <Sidebar2
-            data-plasmic-name={"sidebar2"}
-            data-plasmic-override={overrides.sidebar2}
-            className={classNames("__wab_instance", sty.sidebar2)}
+          <Sidebar
+            data-plasmic-name={"sidebar"}
+            data-plasmic-override={overrides.sidebar}
+            className={classNames("__wab_instance", sty.sidebar)}
             disableLinks={generateStateValueProp($state, [
-              "sidebar2",
+              "sidebar",
               "disableLinks"
             ])}
             onDisableLinksChange={async (...eventArgs: any) => {
               generateStateOnChangeProp($state, [
-                "sidebar2",
+                "sidebar",
                 "disableLinks"
               ]).apply(null, eventArgs);
 
@@ -485,6 +685,21 @@ function PlasmicParametresEmployeur__RenderFunc(props: {
                 return;
               }
             }}
+            onRoleChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, ["sidebar", "role"]).apply(
+                null,
+                eventArgs
+              );
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+            role={generateStateValueProp($state, ["sidebar", "role"])}
           />
 
           <Stack__
@@ -542,7 +757,7 @@ function PlasmicParametresEmployeur__RenderFunc(props: {
                       onFinish: async values => {
                         const $steps = {};
 
-                        $steps["postgresUpdateById"] = true
+                        $steps["updateDb"] = true
                           ? (() => {
                               const actionArgs = {
                                 dataOp: {
@@ -587,17 +802,14 @@ function PlasmicParametresEmployeur__RenderFunc(props: {
                             })()
                           : undefined;
                         if (
-                          $steps["postgresUpdateById"] != null &&
-                          typeof $steps["postgresUpdateById"] === "object" &&
-                          typeof $steps["postgresUpdateById"].then ===
-                            "function"
+                          $steps["updateDb"] != null &&
+                          typeof $steps["updateDb"] === "object" &&
+                          typeof $steps["updateDb"].then === "function"
                         ) {
-                          $steps["postgresUpdateById"] = await $steps[
-                            "postgresUpdateById"
-                          ];
+                          $steps["updateDb"] = await $steps["updateDb"];
                         }
 
-                        $steps["invokeGlobalAction"] = true
+                        $steps["showToast"] = true
                           ? (() => {
                               const actionArgs = {
                                 args: [
@@ -611,14 +823,11 @@ function PlasmicParametresEmployeur__RenderFunc(props: {
                             })()
                           : undefined;
                         if (
-                          $steps["invokeGlobalAction"] != null &&
-                          typeof $steps["invokeGlobalAction"] === "object" &&
-                          typeof $steps["invokeGlobalAction"].then ===
-                            "function"
+                          $steps["showToast"] != null &&
+                          typeof $steps["showToast"] === "object" &&
+                          typeof $steps["showToast"].then === "function"
                         ) {
-                          $steps["invokeGlobalAction"] = await $steps[
-                            "invokeGlobalAction"
-                          ];
+                          $steps["showToast"] = await $steps["showToast"];
                         }
                       },
                       onFinishFailed: async data => {
@@ -1927,7 +2136,7 @@ function PlasmicParametresEmployeur__RenderFunc(props: {
                             !_par ? [] : Array.isArray(_par) ? _par : [_par])(
                             (() => {
                               try {
-                                return $queries.getCountries.data;
+                                return $state.countries;
                               } catch (e) {
                                 if (
                                   e instanceof TypeError ||
@@ -1950,7 +2159,7 @@ function PlasmicParametresEmployeur__RenderFunc(props: {
                                 key={currentIndex}
                                 label={(() => {
                                   try {
-                                    return currentItem.Name;
+                                    return currentItem;
                                   } catch (e) {
                                     if (
                                       e instanceof TypeError ||
@@ -1964,7 +2173,7 @@ function PlasmicParametresEmployeur__RenderFunc(props: {
                                 })()}
                                 value={(() => {
                                   try {
-                                    return currentItem.Name;
+                                    return currentItem;
                                   } catch (e) {
                                     if (
                                       e instanceof TypeError ||
@@ -2436,7 +2645,7 @@ const PlasmicDescendants = {
   parametresEmployeur: [
     "parametresEmployeur",
     "mobileNavbarTop",
-    "sidebar2",
+    "sidebar",
     "main",
     "heading",
     "card4",
@@ -2474,7 +2683,7 @@ const PlasmicDescendants = {
     "mobileNavbarBottomCompany"
   ],
   mobileNavbarTop: ["mobileNavbarTop"],
-  sidebar2: ["sidebar2"],
+  sidebar: ["sidebar"],
   main: [
     "main",
     "heading",
@@ -2613,7 +2822,7 @@ type DescendantsType<T extends NodeNameType> =
 type NodeDefaultElementType = {
   parametresEmployeur: "div";
   mobileNavbarTop: typeof MobileNavbarTop;
-  sidebar2: typeof Sidebar2;
+  sidebar: typeof Sidebar;
   main: "div";
   heading: "div";
   card4: "div";
@@ -2712,7 +2921,7 @@ export const PlasmicParametresEmployeur = Object.assign(
   {
     // Helper components rendering sub-elements
     mobileNavbarTop: makeNodeComponent("mobileNavbarTop"),
-    sidebar2: makeNodeComponent("sidebar2"),
+    sidebar: makeNodeComponent("sidebar"),
     main: makeNodeComponent("main"),
     heading: makeNodeComponent("heading"),
     card4: makeNodeComponent("card4"),

@@ -407,7 +407,7 @@ function PlasmicMobileNavbarBottom__RenderFunc(props: {
           }
           type={(() => {
             try {
-              return $ctx.pagePath === "/parametres" ? "actif" : "";
+              return $ctx.pagePath === "/parametres-candidat" ? "actif" : "";
             } catch (e) {
               if (
                 e instanceof TypeError ||

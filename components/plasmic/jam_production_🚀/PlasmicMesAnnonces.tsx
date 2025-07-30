@@ -84,8 +84,7 @@ import Select from "../../Select"; // plasmic-import: ZMB-SB-xJDyQ/component
 import MenuItem from "../../MenuItem"; // plasmic-import: plmAgyhhAdMc/component
 import MenuSection from "../../MenuSection"; // plasmic-import: MUvYPH7rZO6i/component
 import { AntdSelect } from "@plasmicpkgs/antd5/skinny/registerSelect";
-import { AntdTextArea } from "@plasmicpkgs/antd5/skinny/registerInput";
-import { inputHelpers as AntdTextArea_Helpers } from "@plasmicpkgs/antd5/skinny/registerInput";
+import TextAreaInput from "../../TextAreaInput"; // plasmic-import: nVAUbPc6gpoz/component
 import { FileUploader } from "../../others/FileUploader/FileUploader"; // plasmic-import: RpVDoPZzyXH3/codeComponent
 import { Fetcher } from "@plasmicapp/react-web/lib/data-sources";
 
@@ -213,7 +212,7 @@ export type PlasmicMesAnnonces__OverridesType = {
   select2?: Flex__<typeof Select>;
   select4?: Flex__<typeof Select>;
   select3?: Flex__<typeof AntdSelect>;
-  textArea?: Flex__<typeof AntdTextArea>;
+  textAreaInput?: Flex__<typeof TextAreaInput>;
   select7?: Flex__<typeof AntdSelect>;
   select5?: Flex__<typeof Select>;
   frame14?: Flex__<"div">;
@@ -370,14 +369,6 @@ function PlasmicMesAnnonces__RenderFunc(props: {
         type: "private",
         variableType: "text",
         initFunc: ({ $props, $state, $queries, $ctx }) => undefined
-      },
-      {
-        path: "textArea.value",
-        type: "private",
-        variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
-
-        onMutate: generateOnMutateForSpec("value", AntdTextArea_Helpers)
       },
       {
         path: "select7.value",
@@ -707,6 +698,24 @@ function PlasmicMesAnnonces__RenderFunc(props: {
         path: "likeJobCard[].isApplied",
         type: "private",
         variableType: "boolean"
+      },
+      {
+        path: "textAreaInput.value",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+      },
+      {
+        path: "sidebar.disableLinks",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $ctx }) => false
+      },
+      {
+        path: "sidebar.role",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $ctx }) => "candidat"
       }
     ],
     [$props, $ctx, $refs]
@@ -822,15 +831,15 @@ function PlasmicMesAnnonces__RenderFunc(props: {
     fetchUserCoordinates: usePlasmicDataOp(() => {
       return {
         sourceId: "3fRequBPthJKGmQ2njgcZi",
-        opId: "65bb2e57-e5e0-4bd7-9479-d9c8f9ccecef",
+        opId: "8c868659-4850-46a7-98a2-048f1f0a938e",
         userArgs: {
           params: [
-            $state.form?.value?.address,
-            $state.form?.value?.city,
-            $state.form?.value?.Country
+            $state.form.value.city ?? "Paris",
+            $state.form.value.Country ?? "France",
+            $state.form.value.postal_code ?? "75000"
           ]
         },
-        cacheKey: `plasmic.$.65bb2e57-e5e0-4bd7-9479-d9c8f9ccecef.$.`,
+        cacheKey: `plasmic.$.8c868659-4850-46a7-98a2-048f1f0a938e.$.`,
         invalidatedKeys: null,
         roleId: null
       };
@@ -884,6 +893,39 @@ function PlasmicMesAnnonces__RenderFunc(props: {
             data-plasmic-name={"sidebar"}
             data-plasmic-override={overrides.sidebar}
             className={classNames("__wab_instance", sty.sidebar)}
+            disableLinks={generateStateValueProp($state, [
+              "sidebar",
+              "disableLinks"
+            ])}
+            onDisableLinksChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, [
+                "sidebar",
+                "disableLinks"
+              ]).apply(null, eventArgs);
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+            onRoleChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, ["sidebar", "role"]).apply(
+                null,
+                eventArgs
+              );
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+            role={generateStateValueProp($state, ["sidebar", "role"])}
           />
 
           <Stack__
@@ -1544,7 +1586,7 @@ function PlasmicMesAnnonces__RenderFunc(props: {
                         onClick={async event => {
                           const $steps = {};
 
-                          $steps["postgresDeleteMany"] = true
+                          $steps["updateDb"] = true
                             ? (() => {
                                 const actionArgs = {
                                   dataOp: {
@@ -1585,14 +1627,11 @@ function PlasmicMesAnnonces__RenderFunc(props: {
                               })()
                             : undefined;
                           if (
-                            $steps["postgresDeleteMany"] != null &&
-                            typeof $steps["postgresDeleteMany"] === "object" &&
-                            typeof $steps["postgresDeleteMany"].then ===
-                              "function"
+                            $steps["updateDb"] != null &&
+                            typeof $steps["updateDb"] === "object" &&
+                            typeof $steps["updateDb"].then === "function"
                           ) {
-                            $steps["postgresDeleteMany"] = await $steps[
-                              "postgresDeleteMany"
-                            ];
+                            $steps["updateDb"] = await $steps["updateDb"];
                           }
 
                           $steps["runCode"] = true
@@ -1615,7 +1654,7 @@ function PlasmicMesAnnonces__RenderFunc(props: {
                             $steps["runCode"] = await $steps["runCode"];
                           }
 
-                          $steps["invokeGlobalAction"] = true
+                          $steps["showToast"] = true
                             ? (() => {
                                 const actionArgs = {
                                   args: [
@@ -1642,14 +1681,11 @@ function PlasmicMesAnnonces__RenderFunc(props: {
                               })()
                             : undefined;
                           if (
-                            $steps["invokeGlobalAction"] != null &&
-                            typeof $steps["invokeGlobalAction"] === "object" &&
-                            typeof $steps["invokeGlobalAction"].then ===
-                              "function"
+                            $steps["showToast"] != null &&
+                            typeof $steps["showToast"] === "object" &&
+                            typeof $steps["showToast"].then === "function"
                           ) {
-                            $steps["invokeGlobalAction"] = await $steps[
-                              "invokeGlobalAction"
-                            ];
+                            $steps["showToast"] = await $steps["showToast"];
                           }
                         }}
                         role={"img"}
@@ -3402,38 +3438,52 @@ function PlasmicMesAnnonces__RenderFunc(props: {
                           </Stack__>
                         </Stack__>
                       </Stack__>
-                      <Stack__
-                        as={"div"}
-                        data-plasmic-name={"frame85"}
-                        data-plasmic-override={overrides.frame85}
-                        hasGap={true}
-                        className={classNames(projectcss.all, sty.frame85)}
-                      >
-                        <PlasmicImg__
-                          alt={""}
-                          className={classNames(sty.img__j7AdV)}
-                          displayHeight={"55px"}
-                          displayMaxHeight={"none"}
-                          displayMaxWidth={"none"}
-                          displayMinHeight={"0"}
-                          displayMinWidth={"0"}
-                          displayWidth={"150px"}
-                          loading={"lazy"}
-                          src={(() => {
-                            try {
-                              return $state.currentJobObject.logo_file;
-                            } catch (e) {
-                              if (
-                                e instanceof TypeError ||
-                                e?.plasmicType === "PlasmicUndefinedDataError"
-                              ) {
-                                return undefined;
+                      {(() => {
+                        try {
+                          return $state.currentJobObject.logo_file != null;
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return true;
+                          }
+                          throw e;
+                        }
+                      })() ? (
+                        <Stack__
+                          as={"div"}
+                          data-plasmic-name={"frame85"}
+                          data-plasmic-override={overrides.frame85}
+                          hasGap={true}
+                          className={classNames(projectcss.all, sty.frame85)}
+                        >
+                          <PlasmicImg__
+                            alt={""}
+                            className={classNames(sty.img__j7AdV)}
+                            displayHeight={"55px"}
+                            displayMaxHeight={"none"}
+                            displayMaxWidth={"none"}
+                            displayMinHeight={"0"}
+                            displayMinWidth={"0"}
+                            displayWidth={"150px"}
+                            loading={"lazy"}
+                            src={(() => {
+                              try {
+                                return $state.currentJobObject.logo_file;
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return undefined;
+                                }
+                                throw e;
                               }
-                              throw e;
-                            }
-                          })()}
-                        />
-                      </Stack__>
+                            })()}
+                          />
+                        </Stack__>
+                      ) : null}
                     </Stack__>
                   </Stack__>
                 ) : null}
@@ -4871,7 +4921,7 @@ function PlasmicMesAnnonces__RenderFunc(props: {
                             try {
                               return $queries.getTransportModes.data.map(
                                 mode => ({
-                                  value: mode.id,
+                                  value: mode.mode,
                                   label: mode.mode
                                 })
                               );
@@ -4953,47 +5003,29 @@ function PlasmicMesAnnonces__RenderFunc(props: {
                         }
                         name={"short_presentation"}
                       >
-                        {(() => {
-                          const child$Props = {
-                            className: classNames(
-                              "__wab_instance",
-                              sty.textArea
-                            ),
-                            onChange: async (...eventArgs: any) => {
-                              generateStateOnChangePropForCodeComponents(
-                                $state,
-                                "value",
-                                ["textArea", "value"],
-                                AntdTextArea_Helpers
-                              ).apply(null, eventArgs);
-                            },
-                            placeholder: "Pr\u00e9sentation",
-                            value: generateStateValueProp($state, [
-                              "textArea",
+                        <TextAreaInput
+                          data-plasmic-name={"textAreaInput"}
+                          data-plasmic-override={overrides.textAreaInput}
+                          className={classNames(
+                            "__wab_instance",
+                            sty.textAreaInput
+                          )}
+                          onChange={async (...eventArgs: any) => {
+                            generateStateOnChangeProp($state, [
+                              "textAreaInput",
                               "value"
-                            ])
-                          };
-                          initializeCodeComponentStates(
-                            $state,
-                            [
-                              {
-                                name: "value",
-                                plasmicStateName: "textArea.value"
-                              }
-                            ],
-                            [],
-                            AntdTextArea_Helpers ?? {},
-                            child$Props
-                          );
+                            ]).apply(null, eventArgs);
 
-                          return (
-                            <AntdTextArea
-                              data-plasmic-name={"textArea"}
-                              data-plasmic-override={overrides.textArea}
-                              {...child$Props}
-                            />
-                          );
-                        })()}
+                            if (
+                              eventArgs.length > 1 &&
+                              eventArgs[1] &&
+                              eventArgs[1]._plasmic_state_init_
+                            ) {
+                              return;
+                            }
+                          }}
+                          placeholder={"Pr\u00e9sentation"}
+                        />
                       </FormItemWrapper>
                       <FormItemWrapper
                         className={classNames(
@@ -5912,7 +5944,7 @@ const PlasmicDescendants = {
     "select2",
     "select4",
     "select3",
-    "textArea",
+    "textAreaInput",
     "select7",
     "select5",
     "frame14",
@@ -6117,7 +6149,7 @@ const PlasmicDescendants = {
     "select2",
     "select4",
     "select3",
-    "textArea",
+    "textAreaInput",
     "select7",
     "select5",
     "frame14",
@@ -6221,7 +6253,7 @@ const PlasmicDescendants = {
     "select2",
     "select4",
     "select3",
-    "textArea",
+    "textAreaInput",
     "select7",
     "select5",
     "frame14",
@@ -6266,7 +6298,7 @@ const PlasmicDescendants = {
   select2: ["select2"],
   select4: ["select4"],
   select3: ["select3"],
-  textArea: ["textArea"],
+  textAreaInput: ["textAreaInput"],
   select7: ["select7"],
   select5: ["select5"],
   frame14: [
@@ -6401,7 +6433,7 @@ type NodeDefaultElementType = {
   select2: typeof Select;
   select4: typeof Select;
   select3: typeof AntdSelect;
-  textArea: typeof AntdTextArea;
+  textAreaInput: typeof TextAreaInput;
   select7: typeof AntdSelect;
   select5: typeof Select;
   frame14: "div";
@@ -6569,7 +6601,7 @@ export const PlasmicMesAnnonces = Object.assign(
     select2: makeNodeComponent("select2"),
     select4: makeNodeComponent("select4"),
     select3: makeNodeComponent("select3"),
-    textArea: makeNodeComponent("textArea"),
+    textAreaInput: makeNodeComponent("textAreaInput"),
     select7: makeNodeComponent("select7"),
     select5: makeNodeComponent("select5"),
     frame14: makeNodeComponent("frame14"),
