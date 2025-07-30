@@ -269,6 +269,24 @@
     "status": "uptodate",
     "category": "ui"
   },
+  "DataGridOffre": {
+    "localVersion": "0.0.0",
+    "remoteVersion": "0.0.0",
+    "status": "uptodate",
+    "category": "ui"
+  },
+  "DataGridUser": {
+    "localVersion": "0.0.0",
+    "remoteVersion": "0.0.0",
+    "status": "uptodate",
+    "category": "ui"
+  },
+  "DataGridV2": {
+    "localVersion": "0.0.0",
+    "remoteVersion": "0.0.0",
+    "status": "uptodate",
+    "category": "ui"
+  },
   "FileUploader": {
     "localVersion": "0.0.1",
     "remoteVersion": "0.0.1",
@@ -296,6 +314,18 @@
   "Kanban": {
     "localVersion": "0.0.1",
     "remoteVersion": "0.0.1",
+    "status": "uptodate",
+    "category": "ui"
+  },
+  "Notation": {
+    "localVersion": "0.0.0",
+    "remoteVersion": "0.0.0",
+    "status": "uptodate",
+    "category": "ui"
+  },
+  "Separator": {
+    "localVersion": "0.0.0",
+    "remoteVersion": "0.0.0",
     "status": "uptodate",
     "category": "ui"
   },
