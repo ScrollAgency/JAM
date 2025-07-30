@@ -5,7 +5,7 @@ const LoginMeta = {
   description: "Un formulaire simple pour se connecter",
   importPath: "./plasmic-library/authentication/Login",
   thumbnailUrl: "http://localhost:29015/library/Login.png",
-  
+
   props: {
 
     // Wrapper styles
@@ -14,6 +14,13 @@ const LoginMeta = {
       defaultValue: "card",
       options: ["simple", "card", "custom"],
       description: "Style du conteneur global",
+    },
+
+    // Espace entre les inputs (et entre inputs et bouton)
+    inputGap: {
+      type: "string",
+      defaultValue: "1rem",
+      description: "Espace vertical entre les champs du formulaire (ex: '16px', '2rem', etc.)",
     },
 
     // Title
@@ -69,9 +76,9 @@ const LoginMeta = {
     },
 
     redirectTo: {
-        type: "string",
-        defaultValue: "/auth/oauth-callback",
-        description: "URL vers laquelle rediriger après le login oAuth",
+      type: "string",
+      defaultValue: "/auth/oauth-callback",
+      description: "URL vers laquelle rediriger après le login oAuth",
     },
 
     // Links
@@ -135,7 +142,7 @@ const LoginMeta = {
       defaultValue: false,
       description: "Affiche ou non le lien signup du bas",
     },
-    
+
     // Events handlers
     onEmailChange: {
       type: "eventHandler",

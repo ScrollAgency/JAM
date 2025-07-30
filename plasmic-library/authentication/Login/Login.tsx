@@ -17,6 +17,11 @@ export interface LoginProps {
   // Input
   inputStyle?: "simple" | "advance";
 
+  /**
+   * Espace (padding ou gap) entre les inputs du formulaire de login (ex: '16px', '1rem', etc.)
+   */
+  inputGap?: string;
+
   // Email
   email?: string;
   emailLabel?: string;
@@ -39,7 +44,7 @@ export interface LoginProps {
   // Buttons
   buttonStyle?: "primary" | "secondary" | "tertiary";
   submitButtonText?: string;
-  
+
   // OAuth
   googleButtonText?: string;
   appleButtonText?: string;
@@ -61,19 +66,21 @@ export interface LoginProps {
 }
 
 function Login_(
-  props: LoginProps, 
+  props: LoginProps,
   ref: HTMLElementRefOf<"div">
 ) {
   const {
     // Wrapper
-    wrapperStyle = "card", 
+    wrapperStyle = "card",
 
     // Title
-    titleHeading = "h1",  
-    title = "Connexion",  
+    titleHeading = "h1",
+    title = "Connexion",
 
     // Input
-    inputStyle = "simple", 
+    inputStyle = "simple",
+
+    inputGap = "1rem",
 
     // Email
     emailLabel = "Email",
@@ -84,7 +91,7 @@ function Login_(
     placeholderPassword = "Entrez votre mot de passe",
     eyeIconColor = "#666",
 
-    redirectTo= "/auth/oauth-callback",
+    redirectTo = "/auth/oauth-callback",
 
     // Links
     forgotPasswordText = "Mot de passe oublié ?",
@@ -93,8 +100,8 @@ function Login_(
     forgotPasswordPosition = "left",
 
     // Buttons
-    buttonStyle = "primary", 
-    submitButtonText = "Connexion",  
+    buttonStyle = "primary",
+    submitButtonText = "Connexion",
 
     // OAuth
     googleButtonText = "GOOGLE",
@@ -103,19 +110,19 @@ function Login_(
     oAuthSeparatorText = "ou",
 
     // show / hide
-    showCreateAccount = true,  
+    showCreateAccount = true,
     showPasswordToggle = true,
     showGoogleButton = false,
     showAppleButton = false,
     showBottomSignupLink = false,
 
     // Events handlers
-    onEmailChange,  
+    onEmailChange,
     onPasswordChange,
     onSubmit,
     onError,
   } = props;
-  
+
   type HeadingKeys = "heading1" | "heading2" | "heading3";
 
   const headingKey = `heading${titleHeading.slice(1)}` as HeadingKeys;
@@ -164,13 +171,13 @@ function Login_(
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    
+
     try {
       validateForm();
       setIsSubmitting(true);
-      
+
       await onSubmit?.(event);
-      
+
     } catch (error) {
       handleError(error instanceof Error ? error : new Error(String(error)));
     } finally {
@@ -181,7 +188,7 @@ function Login_(
   // Rendu des boutons OAuth
   const renderOAuthButtons = () => {
     if (!showGoogleButton && !showAppleButton) return null;
-    
+
     return (
       <div style={presets.oAuthButtons as React.CSSProperties}>
         {showGoogleButton && (
@@ -205,7 +212,7 @@ function Login_(
             <span>{appleButtonText}</span>
           </button>
         )}
-       
+
       </div>
     );
   };
@@ -231,56 +238,61 @@ function Login_(
         onSubmit={handleSubmit}
         style={presets.form as React.CSSProperties}
       >
-        <div style={{ rowGap: presets.inputField.rowGap }}>
-          <label style={presets.formLabel as React.CSSProperties} htmlFor="email">{emailLabel}</label>
-          <input
-            type="email"
-            id="email"
-            placeholder={placeholderEmail}
-            style={presets.inputs[inputStyle]} 
-            value={email}
-            onChange={handleEmailChange}
-          />
-        </div>
 
-        <div style={ presets.inputField }>
-          <label style={presets.formLabel as React.CSSProperties} htmlFor="password">{passwordLabel}</label>
-          <div style={{ position: "relative" }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: inputGap }}>
+          <div style={{ rowGap: presets.inputField.rowGap }}>
+            <label style={presets.formLabel as React.CSSProperties} htmlFor="email">{emailLabel}</label>
             <input
-              type={showPassword ? "text" : "password"}
-              id="password"
-              placeholder={placeholderPassword}
-              style={presets.inputs[inputStyle]} 
-              value={password}
-              onChange={handlePasswordChange}
+              type="email"
+              id="email"
+              placeholder={placeholderEmail}
+              style={presets.inputs[inputStyle]}
+              value={email}
+              onChange={handleEmailChange}
             />
-            {showPasswordToggle && (
-              <button 
-                type="button"
-                onClick={togglePasswordVisibility}
-                style={presets.togglePasswordVisibility as React.CSSProperties}
-                aria-label={showPassword ? "Masquer le mot de passe" : "Afficher le mot de passe"}
-              >
-                {showPassword ? <EyeIcon /> : <ViewIcon />}
-              </button>
-            )}
+          </div>
+
+          <div style={presets.inputField}>
+            <label style={presets.formLabel as React.CSSProperties} htmlFor="password">{passwordLabel}</label>
+            <div style={{ position: "relative" }}>
+              <input
+                type={showPassword ? "text" : "password"}
+                id="password"
+                placeholder={placeholderPassword}
+                style={presets.inputs[inputStyle]}
+                value={password}
+                onChange={handlePasswordChange}
+              />
+              {showPasswordToggle && (
+                <button
+                  type="button"
+                  onClick={togglePasswordVisibility}
+                  style={presets.togglePasswordVisibility as React.CSSProperties}
+                  aria-label={showPassword ? "Masquer le mot de passe" : "Afficher le mot de passe"}
+                >
+                  {showPassword ? <EyeIcon /> : <ViewIcon />}
+                </button>
+              )}
+            </div>
+            {/* Lien Mot de passe oublié sous le champ mot de passe */}
+            <div style={{ marginTop: '0.5em', textAlign: forgotPasswordPosition === 'left' ? 'left' : 'right' }}>
+              <Link href="/forgot-password"><span style={presets.links.linkLeft}>{forgotPasswordText}</span></Link>
+            </div>
           </div>
         </div>
 
-        <div style={{ 
-          display: "flex", 
-          justifyContent: "space-between", 
-          flexDirection: forgotPasswordPosition === "left" ? "row" : "row-reverse" 
-        }}>
-          <Link href="/forgot-password"><span style={presets.links.linkLeft}>{forgotPasswordText}</span></Link>
+        {/* Ajout du gap entre le bloc inputs et le bouton */}
+        <div style={{ height: inputGap }} />
 
-          {showCreateAccount && (
+        {/* Lien Créer un compte à côté du bouton, si activé */}
+        {showCreateAccount && (
+          <div style={{ margin: `${inputGap} 0`, textAlign: 'right' }}>
             <Link href="/register"><span style={presets.links.linkRight}>{createAccountText}</span></Link>
-          )}
-        </div>
+          </div>
+        )}
 
-        <button 
-          type="submit" 
+        <button
+          type="submit"
           style={{
             ...presets.buttons[buttonStyle] as React.CSSProperties,
             opacity: isSubmitting ? 0.7 : 1,
@@ -294,7 +306,7 @@ function Login_(
         {(showGoogleButton || showAppleButton) && oAuthSeparatorText && (
           <div style={presets.separator as React.CSSProperties}>
             <div style={presets.separatorHr as React.CSSProperties} />
-              <span style={presets.separatorText as React.CSSProperties}>{oAuthSeparatorText}</span>
+            <span style={presets.separatorText as React.CSSProperties}>{oAuthSeparatorText}</span>
             {/* <div style={presets.separatorHr as React.CSSProperties} /> */}
           </div>
         )}
