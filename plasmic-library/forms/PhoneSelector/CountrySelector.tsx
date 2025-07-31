@@ -3,14 +3,22 @@ import { CountryCode, countries } from "./countries";
 import { useCountryFlag } from "./useCountryFlag";
 import Image from "next/image";
 
-function CountrySelector() {
-  const [selectedCountry, setSelectedCountry] = React.useState<CountryCode>(
-    countries[0]
-  );
-  // interface PhoneInputProps {
-  //   selectedCountry: CountryCode;
-  // }
+
+interface CountrySelectorProps {
+  onChange?: (dialCode: string, country: string) => void;
+}
+
+function CountrySelector({ onChange }: CountrySelectorProps) {
+  // Par défaut France (+33)
+  const defaultCountry = countries.find(c => c.dialCode === "+33") || countries[0];
+  const [selectedCountry, setSelectedCountry] = React.useState<CountryCode>(defaultCountry);
   const flagUrl = useCountryFlag(selectedCountry.code === "UK" ? "gb" : selectedCountry.code);
+
+  React.useEffect(() => {
+    if (onChange) {
+      onChange(selectedCountry.dialCode, selectedCountry.name);
+    }
+  }, [selectedCountry, onChange]);
 
   return (
     <div className="flex flex-col flex-1 w-full">
@@ -25,16 +33,15 @@ function CountrySelector() {
           />
           <select
             aria-label="Select country code"
-            value={selectedCountry.code}
-            onChange={(e) =>
-              setSelectedCountry(
-                countries.find((country) => country.code === e.target.value)!
-              )
-            }
+            value={selectedCountry.dialCode}
+            onChange={(e) => {
+              const found = countries.find((country) => country.dialCode === e.target.value);
+              if (found) setSelectedCountry(found);
+            }}
             className="self-stretch my-auto bg-transparent border-none text-black"
           >
             {countries.map((country) => (
-              <option key={country.code} value={country.code}>
+              <option key={country.code} value={country.dialCode}>
                 {country.code} ({country.dialCode})
               </option>
             ))}
