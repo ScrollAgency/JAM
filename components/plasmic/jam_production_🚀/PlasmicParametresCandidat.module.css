@@ -1029,6 +1029,7 @@
   position: relative;
   flex-direction: column;
   width: 50%;
+  background: #ffffff;
   min-height: 0;
 }
 .cvModificationDuMdp > :global(.__wab_flex-container) {

@@ -350,7 +350,7 @@ function PlasmicParametresCandidat__RenderFunc(props: {
         initFunc: ({ $props, $state, $queries, $ctx }) =>
           (() => {
             try {
-              return $queries.getMe.data[0].is_active_search;
+              return $queries.currentUser.data[0].is_active_search;
             } catch (e) {
               if (
                 e instanceof TypeError ||
@@ -669,7 +669,7 @@ function PlasmicParametresCandidat__RenderFunc(props: {
   const plasmicInvalidate = usePlasmicInvalidate();
 
   const new$Queries: Record<string, ReturnType<typeof usePlasmicDataOp>> = {
-    getMe: usePlasmicDataOp(() => {
+    currentUser: usePlasmicDataOp(() => {
       return {
         sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
         opId: "9c25c922-f186-4ed9-850f-6ded6b307e4e",
@@ -687,9 +687,9 @@ function PlasmicParametresCandidat__RenderFunc(props: {
         opId: "b0990d74-47ad-4ed0-bba9-345bcb6b0c9a",
         userArgs: {
           path: [
-            $queries.getMe.data[0].id +
+            $queries.currentUser.data[0].id +
               "/" +
-              $queries.getMe.data[0].profile_photo
+              $queries.currentUser.data[0].profile_photo
           ]
         },
         cacheKey: `plasmic.$.b0990d74-47ad-4ed0-bba9-345bcb6b0c9a.$.`,
@@ -1509,7 +1509,8 @@ function PlasmicParametresCandidat__RenderFunc(props: {
                               )}
                               defaultValue={(() => {
                                 try {
-                                  return $queries.getMe?.data[0]?.first_name;
+                                  return $queries.currentUser?.data[0]
+                                    ?.first_name;
                                 } catch (e) {
                                   if (
                                     e instanceof TypeError ||
@@ -1565,7 +1566,7 @@ function PlasmicParametresCandidat__RenderFunc(props: {
                               )}
                               defaultValue={(() => {
                                 try {
-                                  return $queries.getMe.data[0].last_name;
+                                  return $queries.currentUser.data[0].last_name;
                                 } catch (e) {
                                   if (
                                     e instanceof TypeError ||
@@ -1623,7 +1624,7 @@ function PlasmicParametresCandidat__RenderFunc(props: {
                             )}
                             defaultValue={(() => {
                               try {
-                                return $queries.getMe.data[0].email;
+                                return $queries.currentUser.data[0].email;
                               } catch (e) {
                                 if (
                                   e instanceof TypeError ||
@@ -1713,7 +1714,8 @@ function PlasmicParametresCandidat__RenderFunc(props: {
                               )}
                               defaultValue={(() => {
                                 try {
-                                  return $queries.getMe.data[0].phone_number;
+                                  return $queries.currentUser.data[0]
+                                    .phone_number;
                                 } catch (e) {
                                   if (
                                     e instanceof TypeError ||
@@ -1769,7 +1771,7 @@ function PlasmicParametresCandidat__RenderFunc(props: {
                             className={classNames("__wab_instance", sty.rue)}
                             defaultValue={(() => {
                               try {
-                                return $queries.getMe.data[0].address;
+                                return $queries.currentUser.data[0].address;
                               } catch (e) {
                                 if (
                                   e instanceof TypeError ||
@@ -1826,7 +1828,8 @@ function PlasmicParametresCandidat__RenderFunc(props: {
                               )}
                               defaultValue={(() => {
                                 try {
-                                  return $queries.getMe.data[0].postal_code;
+                                  return $queries.currentUser.data[0]
+                                    .postal_code;
                                 } catch (e) {
                                   if (
                                     e instanceof TypeError ||
@@ -1873,7 +1876,7 @@ function PlasmicParametresCandidat__RenderFunc(props: {
                               )}
                               defaultValue={(() => {
                                 try {
-                                  return $queries.getMe.data[0].city;
+                                  return $queries.currentUser.data[0].city;
                                 } catch (e) {
                                   if (
                                     e instanceof TypeError ||
@@ -1921,7 +1924,7 @@ function PlasmicParametresCandidat__RenderFunc(props: {
                             )}
                             initialSelectedValue={(() => {
                               try {
-                                return $queries.getMe.data[0].country;
+                                return $queries.currentUser.data[0].country;
                               } catch (e) {
                                 if (
                                   e instanceof TypeError ||
@@ -2016,8 +2019,8 @@ function PlasmicParametresCandidat__RenderFunc(props: {
                             try {
                               return (() => {
                                 const selectedTransportModes =
-                                  $queries.getMe.data?.[0]?.transport_mode ||
-                                  [];
+                                  $queries.currentUser.data?.[0]
+                                    ?.transport_mode || [];
                                 const selectedIds =
                                   $queries.getTransportModes.data
                                     .filter(mode =>
@@ -2085,8 +2088,8 @@ function PlasmicParametresCandidat__RenderFunc(props: {
                               try {
                                 return (() => {
                                   const selectedTransportModes =
-                                    $queries.getMe.data?.[0]?.transport_mode ||
-                                    [];
+                                    $queries.currentUser.data?.[0]
+                                      ?.transport_mode || [];
                                   return $queries.getTransportModes.data.map(
                                     mode => ({
                                       value: mode.id,
@@ -2193,7 +2196,7 @@ function PlasmicParametresCandidat__RenderFunc(props: {
                             )}
                             defaultValue={(() => {
                               try {
-                                return $queries.getMe.data[0]
+                                return $queries.currentUser.data[0]
                                   .short_presentation;
                               } catch (e) {
                                 if (
@@ -2230,7 +2233,7 @@ function PlasmicParametresCandidat__RenderFunc(props: {
                           hidden={false}
                           initialValue={(() => {
                             const selectedSkills =
-                              $queries.getMe.data?.[0]?.skill || [];
+                              $queries.currentUser.data?.[0]?.skill || [];
                             return $queries.getSoftSkill.data
                               .filter(skill =>
                                 selectedSkills.includes(skill.id)
@@ -2420,7 +2423,7 @@ function PlasmicParametresCandidat__RenderFunc(props: {
                             sty.formField___5YLjM
                           )}
                           hidden={false}
-                          initialValue={$queries.getMe?.data[0]?.level}
+                          initialValue={$queries.currentUser?.data[0]?.level}
                           label={
                             <div
                               className={classNames(
@@ -2440,7 +2443,7 @@ function PlasmicParametresCandidat__RenderFunc(props: {
                             className={classNames("__wab_instance", sty.select)}
                             initialSelectedValue={(() => {
                               try {
-                                return $queries.getMe.data[0].level;
+                                return $queries.currentUser.data[0].level;
                               } catch (e) {
                                 if (
                                   e instanceof TypeError ||
@@ -2549,7 +2552,8 @@ function PlasmicParametresCandidat__RenderFunc(props: {
                             )}
                             defaultValue={(() => {
                               try {
-                                return $queries.getMe.data[0].linkedin_url;
+                                return $queries.currentUser.data[0]
+                                  .linkedin_url;
                               } catch (e) {
                                 if (
                                   e instanceof TypeError ||
@@ -2648,7 +2652,7 @@ function PlasmicParametresCandidat__RenderFunc(props: {
                       </div>
                       {(() => {
                         try {
-                          return $queries.getMe.data[0].cv_file === null;
+                          return $queries.currentUser.data[0].cv_file === null;
                         } catch (e) {
                           if (
                             e instanceof TypeError ||
@@ -3049,7 +3053,7 @@ function PlasmicParametresCandidat__RenderFunc(props: {
                       ) : null}
                       {(() => {
                         try {
-                          return $queries.getMe.data[0].cv_file !== null;
+                          return $queries.currentUser.data[0].cv_file !== null;
                         } catch (e) {
                           if (
                             e instanceof TypeError ||
@@ -3211,7 +3215,7 @@ function PlasmicParametresCandidat__RenderFunc(props: {
                               <React.Fragment>
                                 {(() => {
                                   try {
-                                    return $queries.getMe.data[0].cv_file;
+                                    return $queries.currentUser.data[0].cv_file;
                                   } catch (e) {
                                     if (
                                       e instanceof TypeError ||
@@ -3250,7 +3254,8 @@ function PlasmicParametresCandidat__RenderFunc(props: {
                       {(() => {
                         try {
                           return (
-                            $queries.getMe.data[0].cover_letter_file === null
+                            $queries.currentUser.data[0].cover_letter_file ===
+                            null
                           );
                         } catch (e) {
                           if (
@@ -3651,7 +3656,8 @@ function PlasmicParametresCandidat__RenderFunc(props: {
                       {(() => {
                         try {
                           return (
-                            $queries.getMe.data[0].cover_letter_file !== null
+                            $queries.currentUser.data[0].cover_letter_file !==
+                            null
                           );
                         } catch (e) {
                           if (
@@ -3775,7 +3781,7 @@ function PlasmicParametresCandidat__RenderFunc(props: {
                               <React.Fragment>
                                 {(() => {
                                   try {
-                                    return $queries.getMe.data[0]
+                                    return $queries.currentUser.data[0]
                                       .cover_letter_file;
                                   } catch (e) {
                                     if (

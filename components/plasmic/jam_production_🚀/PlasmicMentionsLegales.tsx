@@ -1432,9 +1432,8 @@ function PlasmicMentionsLegales__RenderFunc(props: {
                                 }
                                 style={{ color: "var(--token-XkcIRFBUIQDs)" }}
                               >
-                                {"H\u00e9bergemen"}
+                                {"H\u00e9bergement"}
                               </span>
-                              <React.Fragment>{"t"}</React.Fragment>
                             </React.Fragment>
                           </div>
                           <div

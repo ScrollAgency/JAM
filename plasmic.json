@@ -2273,7 +2273,7 @@
           "componentType": "component"
         },
         {
-          "id": "HFhBkzRv34p_",
+          "id": "tkmqAedvjHOe",
           "name": "Accueil2",
           "type": "managed",
           "projectId": "f7DE9y7qp46fyCw5nuY8f9",
@@ -4664,6 +4664,16 @@
           "id": "myHQQM6ZckN3",
           "name": "pexels-shvetsa-5711948.jpg",
           "filePath": "../public/plasmic/jam_production_🚀/images/pexelsShvetsa5711948Jpg.jpg"
+        },
+        {
+          "id": "F1TNOBFrjzdH",
+          "name": "Frame 1171275265.png",
+          "filePath": "../public/plasmic/jam_production_🚀/images/frame1171275265Png.png"
+        },
+        {
+          "id": "B2q4WjV45ljR",
+          "name": "Pictogram.svg",
+          "filePath": "../public/plasmic/jam_production_🚀/images/pictogramSvg.svg"
         }
       ],
       "indirect": false,
