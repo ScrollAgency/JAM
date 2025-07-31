@@ -1237,7 +1237,7 @@ function PlasmicParametresCandidat__RenderFunc(props: {
                           (async val => {
                             const $steps = {};
 
-                            $steps["postgresUpdateById"] = true
+                            $steps["updateDb"] = true
                               ? (() => {
                                   const actionArgs = {
                                     dataOp: {
@@ -1247,12 +1247,10 @@ function PlasmicParametresCandidat__RenderFunc(props: {
                                         keys: [$ctx.SupabaseUser.user.id],
                                         variables: [
                                           $state._switch.isSelected,
-                                          (() => {
-                                            return (active_search_until = $state
-                                              ._switch.isSelected
-                                              ? new Date(Date.now() + 172800000)
-                                              : new Date());
-                                          })()
+                                          (active_search_until = $state._switch
+                                            .isSelected
+                                            ? new Date(Date.now() + 172800000)
+                                            : new Date())
                                         ]
                                       },
                                       cacheKey: null,
@@ -1287,15 +1285,11 @@ function PlasmicParametresCandidat__RenderFunc(props: {
                                 })()
                               : undefined;
                             if (
-                              $steps["postgresUpdateById"] != null &&
-                              typeof $steps["postgresUpdateById"] ===
-                                "object" &&
-                              typeof $steps["postgresUpdateById"].then ===
-                                "function"
+                              $steps["updateDb"] != null &&
+                              typeof $steps["updateDb"] === "object" &&
+                              typeof $steps["updateDb"].then === "function"
                             ) {
-                              $steps["postgresUpdateById"] = await $steps[
-                                "postgresUpdateById"
-                              ];
+                              $steps["updateDb"] = await $steps["updateDb"];
                             }
                           }).apply(null, eventArgs);
                         }}
@@ -1606,6 +1600,7 @@ function PlasmicParametresCandidat__RenderFunc(props: {
                             "__wab_instance",
                             sty.formField__y2STw
                           )}
+                          hidden={false}
                           label={
                             <div
                               className={classNames(
@@ -3060,7 +3055,7 @@ function PlasmicParametresCandidat__RenderFunc(props: {
                             e instanceof TypeError ||
                             e?.plasmicType === "PlasmicUndefinedDataError"
                           ) {
-                            return true;
+                            return false;
                           }
                           throw e;
                         }
@@ -3663,7 +3658,7 @@ function PlasmicParametresCandidat__RenderFunc(props: {
                             e instanceof TypeError ||
                             e?.plasmicType === "PlasmicUndefinedDataError"
                           ) {
-                            return true;
+                            return false;
                           }
                           throw e;
                         }
