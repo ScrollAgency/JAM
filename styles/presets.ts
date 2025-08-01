@@ -73,6 +73,30 @@ export const presets = {
 
   },
 
+separatorHr: {
+    flex: 1, 
+    borderBottom: "1px solid #ccc",
+  },
+separatorText: {
+    margin: "0 8px", 
+    ontSize: "14px", 
+    color: "#666",
+  },
+linkSignupBottom: {
+    display: "flex",
+    justifyContent: "center",
+    width: "100%",
+    marginTop: "24px"
+  },
+
+linkSignupBottomText: {
+    color: "#002400",
+    fontSize: "14px",
+    fontWeight: "500",
+    textDecoration: "none",
+    cursor: "pointer"
+  },
+
   // typography
   heading1: {
     fontFamily: "Manrope, sans-serif",
@@ -482,6 +506,7 @@ export const presets = {
     width: "100%",
     marginTop: "16px",
     marginBottom: "16px",
+    backgroundColor: getTokenValue("white-500"),
     "@media (max-width: 768px)": {
       flexDirection: "column",
       gap: "8px",
@@ -495,7 +520,7 @@ export const presets = {
     height: "56px",
     borderRadius: "28px",
     border: "1px solid #E5E7EB",
-    backgroundColor: getTokenValue("white-500"),
+    backgroundColor: getTokenValue("white"),
     color: getTokenValue("black-500"),
     fontWeight: "500",
     fontSize: "16px",

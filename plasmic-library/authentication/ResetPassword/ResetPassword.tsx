@@ -3,14 +3,10 @@ import { forwardRef, useCallback, useEffect, useState } from "react";
 import type { HTMLElementRefOf } from "@plasmicapp/react-web";
 import Link from "next/link";
 import { presets } from "@/styles/presets";
-import AlertManager, { type AlertType, type AlertMessage } from "../../alerts/AlertManager/AlertManager";
-import { EyeIcon, ViewIcon } from "../icons/icons";
+import AlertManager, { type AlertType, type AlertMessage } from "@/plasmic-library/alerts/AlertManager/AlertManager";
+import { EyeIcon, ViewIcon } from "@/plasmic-library/icons/icons";
 
-const ArrowIcon = () => (
-  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M12 4L10.59 5.41L16.17 11H4V13H16.17L10.59 18.59L12 20L20 12L12 4Z" fill="currentColor" />
-  </svg>
-);
+import styles from './ResetPassword.module.css';
 
 export interface ResetPasswordProps {
   // Wrapper
@@ -26,20 +22,12 @@ export interface ResetPasswordProps {
   // Password
   password?: string;
   passwordLabel?: string;
+  passwordPlaceholder?: string;
   confirmPasswordLabel?: string;
   confirmPassword?: string;
-  eyeIconColor?: string;
+  confirmPasswordPlaceholder?: string;
   passwordInfoText?: string;
-
-  // Buttons
-  buttonSubmitStyle?: "primary" | "secondary" | "tertiary";
-  submitButtonText?: string;
-  submitButtonIcon?: React.ReactNode;   // <-- Nouvelle prop pour l'icône du bouton submit
-  submitButtonIconPosition?: "left" | "right";
-  buttonAbordStyle?: "primary" | "secondary" | "tertiary";
-  cancelButtonText?: string;
-  showSubmitButton?: boolean;
-  showCancelButton?: boolean;
+  eyeIconColor?: string;
 
   // Alert
   alertPosition?: 'top' | 'bottom' | 'inline';
@@ -53,9 +41,16 @@ export interface ResetPasswordProps {
   };
   resetSuccessMessage?: string;
 
+  // Buttons
+  submitButtonStyle?: "primary" | "secondary" | "tertiary";
+  submitButtonText?: string;
+  cancelButtonStyle?: "primary" | "secondary" | "tertiary";
+  cancelButtonText?: string;
+
   // show / hide
   showPasswordToggle?: boolean;
   showAlerts?: boolean;
+  showPasswordStrength?: boolean;
 
   // Events handlers
   onPasswordChange?: (value: string) => void;
@@ -75,26 +70,17 @@ function ResetPassword_(
     // Title
     titleHeading = "h1",
     title = "Réinitialiser le mot de passe",
-
+    
     // Input
     inputStyle = "simple",
 
     // Password
-    passwordLabel = "Nouveau mot de passe*",
-    confirmPasswordLabel = "Répétez le mot de passe*",
-    eyeIconColor = "#666",
+    passwordLabel= "Nouveau mot de passe*",
+    passwordPlaceholder = "••••••••",
+    confirmPasswordLabel= "Répétez le mot de passe*",
+    confirmPasswordPlaceholder = "••••••••",
     passwordInfoText = "Utilisez 8 caractères ou plus en mélangeant lettres, chiffres et symboles.",
-
-
-    // Buttons
-    buttonSubmitStyle = "primary",
-    submitButtonText = "Réinitialiser",
-    submitButtonIcon,
-    submitButtonIconPosition = "right",
-    buttonAbordStyle = "tertiary",
-    cancelButtonText = "Annuler",
-    showSubmitButton = true,
-    showCancelButton = true,
+    eyeIconColor = "#666",
 
     // Alert
     alertPosition = 'top',
@@ -102,9 +88,16 @@ function ResetPassword_(
     customErrorMessages,
     resetSuccessMessage = "Votre mot de passe a été réinitialisé avec succès!",
 
+    // Buttons
+    submitButtonStyle = "primary",
+    submitButtonText = "Réinitialiser",
+    cancelButtonStyle = "tertiary",
+    cancelButtonText = "Annuler",
+
     // show / hide
     showPasswordToggle = true,
     showAlerts = true,
+    showPasswordStrength = true,
 
     // Events handlers
     onPasswordChange,
@@ -113,10 +106,15 @@ function ResetPassword_(
     onAlertClose,
   } = props;
 
+  type HeadingKeys = "heading1" | "heading2" | "heading3";
+
+  const headingKey = `heading${titleHeading.slice(1)}` as HeadingKeys;
+  const headingStyle = presets[headingKey] || presets.heading1;
   const Title = titleHeading as keyof JSX.IntrinsicElements;
   const [password, setPassword] = useState(props.password || "");
   const [confirmPassword, setConfirmPassword] = useState(props.confirmPassword || "");
   const [passwordStrength, setPasswordStrength] = useState(0);
+  const [passwordsMatch, setPasswordsMatch] = useState(password === confirmPassword);
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [alerts, setAlerts] = useState<AlertMessage[]>([]);
@@ -142,17 +140,31 @@ function ResetPassword_(
     if (onAlertClose) onAlertClose(id);
   };
 
+  const checkPasswordStrength = useCallback((password: string) => {
+    const criteria = [/[a-z]/, /[A-Z]/, /\d/, /[^A-Za-z0-9]/];
+    const hasMinLength = password.length >= 8;
+    const criteriaCount = criteria.filter(regex => regex.test(password)).length;
+    const strength = hasMinLength ? criteriaCount : Math.min(criteriaCount, 2);
+    setPasswordStrength(strength);
+  }, []);
+
   const handlePasswordChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-    setPassword(e.target.value);
-    checkPasswordStrength(e.target.value);
-    if (onPasswordChange) onPasswordChange(e.target.value);
-  }, [onPasswordChange]);
+    const value = e.target.value;
+    setPassword(value);
+    checkPasswordStrength(value);
+    setPasswordsMatch(value === confirmPassword);
+    if (onPasswordChange) onPasswordChange(value);
+  }, [confirmPassword, onPasswordChange, checkPasswordStrength]);
+
 
 
   const handleConfirmPasswordChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-    setConfirmPassword(e.target.value);
-    if (onConfirmPasswordChange) onConfirmPasswordChange(e.target.value);
-  }, [onConfirmPasswordChange]);
+    const value = e.target.value;
+    setConfirmPassword(value);
+    setPasswordsMatch(password === value);
+    if (onConfirmPasswordChange) onConfirmPasswordChange(value);
+  }, [password, onConfirmPasswordChange]);
+
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
@@ -160,14 +172,6 @@ function ResetPassword_(
 
   const toggleConfirmPasswordVisibility = () => {
     setShowConfirmPassword(!showConfirmPassword);
-  };
-
-  const checkPasswordStrength = (password: string) => {
-    const criteria = [/[a-z]/, /[A-Z]/, /\d/, /[^A-Za-z0-9]/];
-    const hasMinLength = password.length >= 8;
-    const criteriaCount = criteria.filter(regex => regex.test(password)).length;
-    const strength = hasMinLength ? criteriaCount : Math.min(criteriaCount, 2);
-    setPasswordStrength(strength);
   };
 
   const getStrengthColor = (strength: number) => {
@@ -196,6 +200,42 @@ function ResetPassword_(
     return bars;
   };
 
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setAlerts([]);
+
+    const errors: string[] = [];
+
+    if (passwordStrength < 3) {
+      errors.push(errorMessages.weakPassword);
+    }
+
+    if (password !== confirmPassword) {
+      setPasswordsMatch(false);
+      errors.push(errorMessages.passwordMismatch);
+    } else {
+      setPasswordsMatch(true);
+    }
+
+    if (errors.length > 0) {
+      for (const error of errors) {
+        addAlert('error', error);
+      }
+      return;
+    }
+
+    if (onSubmit) {
+      (async () => {
+        try {
+          await onSubmit(event);
+          addAlert("success", resetSuccessMessage);
+        } catch (error) {
+          addAlert("error", error instanceof Error ? error.message || errorMessages.networkError : errorMessages.networkError);
+        }
+      })();
+    }
+  };
+
   useEffect(() => {
     return () => {
       setAlerts([]);
@@ -203,52 +243,22 @@ function ResetPassword_(
   }, []);
 
   useEffect(() => {
-    setPassword(props.password || "");
-  }, [props.password]);
-
+    const pwd = props.password || "";
+    setPassword(pwd);
+    checkPasswordStrength(pwd);
+  }, [props.password, checkPasswordStrength]);
+  
   useEffect(() => {
     setConfirmPassword(props.confirmPassword || "");
-  }, [props.confirmPassword]);
-
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    setAlerts([]);
-    let isValid = true;
-    let hasShownError = false;
-
-    if (passwordStrength < 3) {
-      isValid = false;
-      addAlert('error', errorMessages.weakPassword);
-      hasShownError = true;
-    }
-
-    if (password !== confirmPassword) {
-      isValid = false;
-      if (!hasShownError) {
-        addAlert('error', errorMessages.passwordMismatch);
-      }
-    }
-
-    if (isValid && onSubmit) {
-      try {
-        onSubmit(event);
-        addAlert('success', resetSuccessMessage);
-      } catch (error) {
-        if (error instanceof Error) {
-          addAlert('error', error.message || errorMessages.networkError);
-        } else {
-          addAlert('error', errorMessages.networkError);
-        }
-      }
-    }
-  };
+  },  [props.confirmPassword]);
 
   return (
     <div
       ref={ref}
+      className={styles[`wrapper-${wrapperStyle}`]}
       style={presets.wrappers[wrapperStyle] as React.CSSProperties}
     >
-      <Title style={presets.heading1}>{title}</Title>
+      <Title style={headingStyle}>{title}</Title>
 
       {showAlerts && <AlertManager
         alerts={alerts}
@@ -261,12 +271,13 @@ function ResetPassword_(
         onSubmit={handleSubmit}
         style={{ display: "flex", flexDirection: "column", rowGap: presets.form.rowGap }}
       >
-        <div style={presets.inputField as React.CSSProperties}>
+        <div style={{ rowGap: presets.inputField.rowGap }}>
           <label style={presets.formLabel as React.CSSProperties} htmlFor="passwordInput">{passwordLabel}</label>
-          <div style={{ position: "relative" }}>
+          <div style={presets.passwordInputWrapper as React.CSSProperties}>
             <input
               type={showPassword ? "text" : "password"}
               id="passwordInput"
+              placeholder={passwordPlaceholder}
               value={password}
               onChange={handlePasswordChange}
               required
@@ -276,25 +287,30 @@ function ResetPassword_(
               <button
                 type="button"
                 onClick={togglePasswordVisibility}
-                style={{ ...presets.togglePasswordVisibility, color: eyeIconColor } as React.CSSProperties}
+                style={{ ...presets.togglePasswordVisibility, color: eyeIconColor} as React.CSSProperties}
                 aria-label={showPassword ? "Masquer le mot de passe" : "Afficher le mot de passe"}
               >
                 {showPassword ? <EyeIcon /> : <ViewIcon />}
               </button>
             )}
           </div>
-          <div style={presets.strengthBars}>{renderStrengthBars()}</div>
-          <small style={presets.checkPassword as React.CSSProperties}>
-            {passwordInfoText}
-          </small>
+
+          {showPasswordStrength && (
+            <>
+              <div style={presets.strengthBars}>{renderStrengthBars()}</div>
+              <small style={presets.passwordHint as React.CSSProperties}>{passwordInfoText}</small>
+            </>
+          )}
+
         </div>
 
-        <div style={presets.inputField as React.CSSProperties}>
+        <div style={{ rowGap: presets.inputField.rowGap }}>
           <label style={presets.formLabel as React.CSSProperties} htmlFor="confirmPasswordInput">{confirmPasswordLabel}</label>
-          <div style={{ position: "relative" }}>
+          <div style={presets.passwordInputWrapper as React.CSSProperties}>
             <input
               type={showConfirmPassword ? "text" : "password"}
               id="confirmPasswordInput"
+              placeholder={confirmPasswordPlaceholder}
               value={confirmPassword}
               onChange={handleConfirmPasswordChange}
               required
@@ -311,37 +327,37 @@ function ResetPassword_(
               </button>
             )}
           </div>
+          
+          {!passwordsMatch && (
+            <small style={{ color: 'red', marginTop: 4 }}>
+              {errorMessages.passwordMismatch}
+            </small>
+          )}
+          
         </div>
 
-        {showSubmitButton && (
-          <button
-            type="submit"
-            style={{
-              ...(presets.buttons[buttonSubmitStyle] as React.CSSProperties),
-              color: "#000",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              gap: "12px", // espace entre texte et icône
-            }}
-          >
-            {submitButtonIconPosition === "left" && submitButtonIcon}
-            {submitButtonText}
-            {submitButtonIconPosition !== "left" && submitButtonIcon}
-          </button>
-        )}
+        <button
+          type="submit"
+          style={{
+            ...presets.buttons[submitButtonStyle] as React.CSSProperties,
+            cursor: passwordStrength < 4 || !passwordsMatch ? "not-allowed" : "pointer",
+            opacity: passwordStrength < 4 || !passwordsMatch ? 0.5 : 1,
+          }}
+          disabled={passwordStrength < 4 || !passwordsMatch}
+        >
+          {submitButtonText}
+        </button>
       </form>
 
-      {showCancelButton && (
-        <Link href="/login">
-          <button
-            type="button"
-            style={presets.buttons[buttonAbordStyle] as React.CSSProperties}
-          >
-            {cancelButtonText}
-          </button>
-        </Link>
-      )}
+      <Link href="/login">
+        <button
+          type="button"
+          className={styles[`button-${cancelButtonStyle}`]}
+          style={presets.buttons[cancelButtonStyle] as React.CSSProperties}
+        >
+          {cancelButtonText}
+        </button>
+      </Link>
     </div>
   );
 }

@@ -25,6 +25,13 @@ const ButtonGoogleMeta = {
         options: ["small", "large"],
         required: false,
       },
+
+      redirectTo: {
+        type: "string",
+        defaultValue: "/",
+        description: "URL vers laquelle rediriger après login Google",
+      },
+      
       state: {
         type: "choice",
         defaultValue: "default",

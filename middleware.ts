@@ -4,20 +4,35 @@ import { NextResponse, type NextRequest } from 'next/server'
 const loginPage = '/login'
 
 const publicRoutes = [
-    '/',
-    '/accueil-employeur',
-    '/plasmic-host',
+  '/',
+  '/plasmic-host',
 
-    '/login',
-    '/register-candidat',
-    '/register-company',
-    '/register',
-    '/forgot-password',
-    '/reset-password',
-    '/reset-password/[recovery_token]',
+  '/login',
+  '/signup',
+  '/forgot-password',
+  '/reset-password',
+  '/user-invite',
+  '/reset-password/[recovery_token]',
+  '/register',
+  '/register-candidat',
+  '/register-company',
+  '/accueil-employeur',
+  '/mentions-legales',
+  '/cgu',
 
-    '/first-install',
-    '/plasmic-library',
+  '/auth/oauth-callback',
+  '/auth/auth-code-error',
+
+  '/first-install',
+  '/plasmic-library',
+  '/libellule',
+  '/api/save-data',
+  '/api/lib-ellule/update',
+  '/api/lib-ellule/files',
+  '/api/lib-ellule/listComponents',
+  '/api/lib-ellule/generate-components',
+  '/api/lib-ellule/save-infos',
+  '/api/lib-ellule/get-infos',
 ]
 
 export async function middleware(request: NextRequest) {

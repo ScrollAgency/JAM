@@ -1,10 +1,13 @@
 const LoginMeta = {
   name: "Login",
-  section: "🔑 Authentication",
-  displayName: "Login Form",
+  section: "1.🔑 Authentication",
+  displayName: "Login",
   description: "Un formulaire simple pour se connecter",
-  thumbnailUrl: "https://plasmic-api.agence-scroll.com/login.png",
+  importPath: "./plasmic-library/authentication/Login",
+  thumbnailUrl: "http://localhost:29015/library/Login.png",
+
   props: {
+
     // Wrapper styles
     wrapperStyle: {
       type: "choice",
@@ -12,10 +15,12 @@ const LoginMeta = {
       options: ["simple", "card", "custom"],
       description: "Style du conteneur global",
     },
-    padding: {
+
+    // Espace entre les inputs (et entre inputs et bouton)
+    inputGap: {
       type: "string",
-      defaultValue: "48px",
-      description: "Espacement interne du composant",
+      defaultValue: "1rem",
+      description: "Espace vertical entre les champs du formulaire (ex: '16px', '2rem', etc.)",
     },
 
     // Title
@@ -70,6 +75,12 @@ const LoginMeta = {
       defaultValue: "Entrez votre mot de passe",
     },
 
+    redirectTo: {
+      type: "string",
+      defaultValue: "/auth/oauth-callback",
+      description: "URL vers laquelle rediriger après le login oAuth",
+    },
+
     // Links
     forgotPasswordText: {
       type: "string",
@@ -80,23 +91,18 @@ const LoginMeta = {
       defaultValue: "Créer un compte",
       description: "Texte à afficher pour le lien Créer un compte",
     },
-    signUpPrefixText: {
+    signUpLinkText: {
       type: "string",
-      defaultValue: "Pas encore de compte ?",
-      description: "Texte affiché avant le lien d'inscription",
+      defaultValue: "Pas encore de compte ? INSCRIPTION",
+      description: "Texte à afficher pour le lien Signup du bas",
     },
-    signUpLinkLabel: {
-      type: "string",
-      defaultValue: "INSCRIPTION",
-      description: "Texte du lien d'inscription",
-    },
-
     forgotPasswordPosition: {
       type: "choice",
       defaultValue: "left",
       options: ["left", "right"],
       description: "Position du lien forgot password",
     },
+
 
     // Buttons
     buttonStyle: {
@@ -109,28 +115,27 @@ const LoginMeta = {
       type: "string",
       defaultValue: "Connexion",
     },
-    submitButtonIcon: {
-      type: "slot",
-      hidePlaceholder: true,
-      description: "Icône à afficher dans le bouton de connexion",
-    },
-    submitButtonIconPosition: {
-      type: "choice",
-      options: ["left", "right"],
-      defaultValue: "right",
-      description: "Position de l'icône dans le bouton de connexion",
-    },
 
     // show / hide
+    showCreateAccount: {
+      type: "boolean",
+      defaultValue: false,
+      description: "Affiche ou non le lien Créer un compte",
+    },
     showPasswordToggle: {
       type: "boolean",
       defaultValue: true,
       description: "Affiche ou non l'oeil",
     },
-    showSocialOAuth: {
+    showGoogleButton: {
       type: "boolean",
-      defaultValue: true,
-      description: "Affiche ou non la section complète de connexion sociale (séparateur + boutons)",
+      defaultValue: false,
+      description: "Affiche ou non le bouton Google",
+    },
+    showAppleButton: {
+      type: "boolean",
+      defaultValue: false,
+      description: "Affiche ou non le bouton Apple",
     },
     showBottomSignupLink: {
       type: "boolean",
@@ -161,19 +166,18 @@ const LoginMeta = {
   // States
   states: {
     email: {
-      type: "writable",
-      variableType: "text",
-      valueProp: "email",
-      onChangeProp: "onEmailChange",
+      type: 'writable',
+      variableType: 'text',
+      valueProp: 'email',
+      onChangeProp: 'onEmailChange'
     },
     password: {
-      type: "writable",
-      variableType: "text",
-      valueProp: "password",
-      onChangeProp: "onPasswordChange",
+      type: 'writable',
+      variableType: 'text',
+      valueProp: 'password',
+      onChangeProp: 'onPasswordChange'
     },
   },
-  importPath: "./components/auth/Login",
 };
 
 export default LoginMeta;

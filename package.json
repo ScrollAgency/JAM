@@ -25,8 +25,10 @@
     "@supabase/supabase-js": "^2.48.1",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "cookie": "^1.0.2",
     "date-fns": "^4.1.0",
     "framer-motion": "^12.3.1",
+    "js-cookie": "^3.0.5",
     "lucide-react": "^0.475.0",
     "mapbox-gl": "^3.9.4",
     "next": "^14.2.21",
@@ -40,6 +42,7 @@
     "tailwindcss": "^3.4.17"
   },
   "devDependencies": {
+    "@types/js-cookie": "^3.0.6",
     "@types/node": "^20.6.3",
     "@types/react": "^18.2.15",
     "@types/react-dom": "^18.2.7",

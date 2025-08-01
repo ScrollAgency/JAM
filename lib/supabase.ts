@@ -1,4 +1,4 @@
-"use client"; // Assure que ce fichier est exécuté uniquement côté client
+"use client";
 
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 

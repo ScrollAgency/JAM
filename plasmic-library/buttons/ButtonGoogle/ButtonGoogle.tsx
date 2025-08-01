@@ -4,6 +4,7 @@ import { cn } from "@/lib/utils";
 import { cva } from "class-variance-authority";
 import Image from "next/image";
 import { supabase } from "@/lib/supabase";
+import { presets } from "@/styles/presets";
 
 type HTMLButtonProps = Pick<ButtonHTMLAttributes<HTMLButtonElement>, "onClick" | "disabled">;
 
@@ -13,6 +14,7 @@ interface ButtonProps extends HTMLButtonProps {
     destructive?: boolean;
     hierarchy?: "primary" | "secondary";
     size?: "small" | "large";
+    redirectTo?: string;
     state?: "default" | "hover" | "focused" | "disabled";
     iconImage?: string;
     className?: string;
@@ -37,6 +39,7 @@ const AuthButton = forwardRef<ButtonActions, ButtonProps>(
             iconImage,
             className,
             authProvider = "google",
+            redirectTo = "/",
         },
         ref
     ) => {
@@ -52,25 +55,26 @@ const AuthButton = forwardRef<ButtonActions, ButtonProps>(
             if (authProvider === "google") {
                 event.preventDefault();
                 try {
-                    const { data, error } = await supabase.auth.signInWithOAuth({
-                        provider: "google",
-                        options: {
-                            redirectTo: `${window.location.origin}/home`,
-                        },
-                    });
+                const { data, error } = await supabase.auth.signInWithOAuth({
+                    provider: "google",
+                    options: {
+                    redirectTo,
+                    },
+                });
 
-                    if (error) {
-                        console.error("Login error:", error.message);
-                    } else {
-                        console.log("Login successful:", data);
-                    }
+                if (error) {
+                    console.error("Login error:", error.message);
+                } else {
+                    console.log("Login successful:", data);
+                }
                 } catch (err) {
-                    console.error("Unexpected error:", err);
+                console.error("Unexpected error:", err);
                 }
             } else if (onClick) {
                 onClick(event);
             }
         };
+
 
         const variants = cva(
             "flex items-center justify-center gap-3 rounded transition-all outline-none group",
@@ -117,6 +121,7 @@ const AuthButton = forwardRef<ButtonActions, ButtonProps>(
                 disabled={disabled}
                 className={cn(variants({ destructive, hierarchy, size, state }), className)}
                 type="button"
+                style={presets.oAuthButton as React.CSSProperties}
             >
                 {iconImage && (icon === "start" || icon === "end" || icon === "only") && (
                     <Image src={iconImage} alt="Icon" width={20} height={20} />
