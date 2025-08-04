@@ -190,13 +190,11 @@ function PlasmicSectionCard__RenderFunc(props: {
   });
 
   return (
-    <Stack__
-      as={"div"}
+    <div
       data-plasmic-name={"sectionCard"}
       data-plasmic-override={overrides.sectionCard}
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
-      hasGap={true}
       className={classNames(
         projectcss.all,
         projectcss.root_reset,
@@ -269,11 +267,9 @@ function PlasmicSectionCard__RenderFunc(props: {
           />
         ) : null}
       </div>
-      <Stack__
-        as={"div"}
+      <div
         data-plasmic-name={"textAndSupportingText4"}
         data-plasmic-override={overrides.textAndSupportingText4}
-        hasGap={true}
         className={classNames(projectcss.all, sty.textAndSupportingText4)}
       >
         <div
@@ -327,8 +323,8 @@ function PlasmicSectionCard__RenderFunc(props: {
             })()}
           </React.Fragment>
         </p>
-      </Stack__>
-    </Stack__>
+      </div>
+    </div>
   ) as React.ReactElement | null;
 }
 

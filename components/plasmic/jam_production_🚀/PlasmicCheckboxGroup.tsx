@@ -247,11 +247,7 @@ function PlasmicCheckboxGroup__RenderFunc(props: {
       ) : null}
       {renderPlasmicSlot({
         defaultContents: (
-          <Stack__
-            as={"div"}
-            hasGap={true}
-            className={classNames(projectcss.all, sty.freeBox___7Moff)}
-          >
+          <div className={classNames(projectcss.all, sty.freeBox___7Moff)}>
             <Checkbox
               className={classNames("__wab_instance", sty.checkbox__cNDsR)}
               label={"Option 1"}
@@ -269,7 +265,7 @@ function PlasmicCheckboxGroup__RenderFunc(props: {
               label={"Option 3"}
               value={"option3"}
             />
-          </Stack__>
+          </div>
         ),
         value: args.options
       })}

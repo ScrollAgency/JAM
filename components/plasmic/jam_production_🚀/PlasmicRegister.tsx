@@ -180,18 +180,14 @@ function PlasmicRegister__RenderFunc(props: {
             data-plasmic-override={overrides.user}
             className={classNames(projectcss.all, sty.user)}
           >
-            <Stack__
-              as={"div"}
+            <div
               data-plasmic-name={"imageWrapper"}
               data-plasmic-override={overrides.imageWrapper}
-              hasGap={true}
               className={classNames(projectcss.all, sty.imageWrapper)}
             >
-              <Stack__
-                as={"div"}
+              <div
                 data-plasmic-name={"logoWrapper"}
                 data-plasmic-override={overrides.logoWrapper}
-                hasGap={true}
                 className={classNames(projectcss.all, sty.logoWrapper)}
                 onClick={async event => {
                   const $steps = {};
@@ -234,11 +230,9 @@ function PlasmicRegister__RenderFunc(props: {
                   data-plasmic-override={overrides.baseline}
                   className={classNames(projectcss.all, sty.baseline)}
                 >
-                  <Stack__
-                    as={"div"}
+                  <div
                     data-plasmic-name={"frame"}
                     data-plasmic-override={overrides.frame}
-                    hasGap={true}
                     className={classNames(projectcss.all, sty.frame)}
                   >
                     <div
@@ -250,12 +244,10 @@ function PlasmicRegister__RenderFunc(props: {
                     >
                       {"JOB"}
                     </div>
-                  </Stack__>
-                  <Stack__
-                    as={"div"}
+                  </div>
+                  <div
                     data-plasmic-name={"frame2"}
                     data-plasmic-override={overrides.frame2}
-                    hasGap={true}
                     className={classNames(projectcss.all, sty.frame2)}
                   >
                     <div
@@ -267,12 +259,10 @@ function PlasmicRegister__RenderFunc(props: {
                     >
                       {"AROUND"}
                     </div>
-                  </Stack__>
-                  <Stack__
-                    as={"div"}
+                  </div>
+                  <div
                     data-plasmic-name={"frame3"}
                     data-plasmic-override={overrides.frame3}
-                    hasGap={true}
                     className={classNames(projectcss.all, sty.frame3)}
                   >
                     <div
@@ -284,15 +274,13 @@ function PlasmicRegister__RenderFunc(props: {
                     >
                       {"ME"}
                     </div>
-                  </Stack__>
+                  </div>
                 </div>
-              </Stack__>
-            </Stack__>
-            <Stack__
-              as={"div"}
+              </div>
+            </div>
+            <div
               data-plasmic-name={"contentWrapper"}
               data-plasmic-override={overrides.contentWrapper}
-              hasGap={true}
               className={classNames(projectcss.all, sty.contentWrapper)}
             >
               <div
@@ -312,18 +300,14 @@ function PlasmicRegister__RenderFunc(props: {
                   {"Vous \u00eates"}
                 </div>
               </div>
-              <Stack__
-                as={"div"}
+              <div
                 data-plasmic-name={"wrapper"}
                 data-plasmic-override={overrides.wrapper}
-                hasGap={true}
                 className={classNames(projectcss.all, sty.wrapper)}
               >
-                <Stack__
-                  as={"button"}
+                <button
                   data-plasmic-name={"tileButton"}
                   data-plasmic-override={overrides.tileButton}
-                  hasGap={true}
                   className={classNames(
                     projectcss.all,
                     projectcss.button,
@@ -377,12 +361,10 @@ function PlasmicRegister__RenderFunc(props: {
                   >
                     {"candidat"}
                   </div>
-                </Stack__>
-                <Stack__
-                  as={"button"}
+                </button>
+                <button
                   data-plasmic-name={"tileButton2"}
                   data-plasmic-override={overrides.tileButton2}
-                  hasGap={true}
                   className={classNames(
                     projectcss.all,
                     projectcss.button,
@@ -426,9 +408,9 @@ function PlasmicRegister__RenderFunc(props: {
                   >
                     {"employeur"}
                   </div>
-                </Stack__>
-              </Stack__>
-            </Stack__>
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </div>

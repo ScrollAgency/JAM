@@ -462,11 +462,9 @@ function PlasmicCandidaturesEmployeur__RenderFunc(props: {
             role={generateStateValueProp($state, ["sidebar", "role"])}
           />
 
-          <Stack__
-            as={"main"}
+          <main
             data-plasmic-name={"main"}
             data-plasmic-override={overrides.main}
-            hasGap={true}
             className={classNames(projectcss.all, sty.main)}
           >
             <div className={classNames(projectcss.all, sty.freeBox__rl1Ro)}>
@@ -495,18 +493,14 @@ function PlasmicCandidaturesEmployeur__RenderFunc(props: {
                   })()}
                 </React.Fragment>
               </div>
-              <Stack__
-                as={"div"}
+              <div
                 data-plasmic-name={"infos"}
                 data-plasmic-override={overrides.infos}
-                hasGap={true}
                 className={classNames(projectcss.all, sty.infos)}
               >
-                <Stack__
-                  as={"div"}
+                <div
                   data-plasmic-name={"sector"}
                   data-plasmic-override={overrides.sector}
-                  hasGap={true}
                   className={classNames(projectcss.all, sty.sector)}
                 >
                   <IconPhBriefcaseIcon
@@ -537,12 +531,10 @@ function PlasmicCandidaturesEmployeur__RenderFunc(props: {
                       })()}
                     </React.Fragment>
                   </div>
-                </Stack__>
-                <Stack__
-                  as={"div"}
+                </div>
+                <div
                   data-plasmic-name={"contract"}
                   data-plasmic-override={overrides.contract}
-                  hasGap={true}
                   className={classNames(projectcss.all, sty.contract)}
                 >
                   <IconPhFileTextIcon
@@ -573,12 +565,10 @@ function PlasmicCandidaturesEmployeur__RenderFunc(props: {
                       })()}
                     </React.Fragment>
                   </div>
-                </Stack__>
-                <Stack__
-                  as={"div"}
+                </div>
+                <div
                   data-plasmic-name={"avaibility"}
                   data-plasmic-override={overrides.avaibility}
-                  hasGap={true}
                   className={classNames(projectcss.all, sty.avaibility)}
                 >
                   <IconPhClockCountdownIcon
@@ -609,12 +599,10 @@ function PlasmicCandidaturesEmployeur__RenderFunc(props: {
                       })()}
                     </React.Fragment>
                   </div>
-                </Stack__>
-                <Stack__
-                  as={"div"}
+                </div>
+                <div
                   data-plasmic-name={"hours"}
                   data-plasmic-override={overrides.hours}
-                  hasGap={true}
                   className={classNames(projectcss.all, sty.hours)}
                 >
                   <IconPhClockIcon
@@ -645,12 +633,10 @@ function PlasmicCandidaturesEmployeur__RenderFunc(props: {
                       })()}
                     </React.Fragment>
                   </div>
-                </Stack__>
-                <Stack__
-                  as={"div"}
+                </div>
+                <div
                   data-plasmic-name={"salary"}
                   data-plasmic-override={overrides.salary}
-                  hasGap={true}
                   className={classNames(projectcss.all, sty.salary)}
                 >
                   <IconPhCoinsLightIcon
@@ -681,12 +667,10 @@ function PlasmicCandidaturesEmployeur__RenderFunc(props: {
                       })()}
                     </React.Fragment>
                   </div>
-                </Stack__>
-                <Stack__
-                  as={"div"}
+                </div>
+                <div
                   data-plasmic-name={"workMode"}
                   data-plasmic-override={overrides.workMode}
-                  hasGap={true}
                   className={classNames(projectcss.all, sty.workMode)}
                 >
                   <IconPhOfficeChairIcon
@@ -717,8 +701,8 @@ function PlasmicCandidaturesEmployeur__RenderFunc(props: {
                       })()}
                     </React.Fragment>
                   </div>
-                </Stack__>
-              </Stack__>
+                </div>
+              </div>
               <Button
                 className={classNames("__wab_instance", sty.button__eGc2W)}
                 color={"white"}
@@ -1633,9 +1617,7 @@ function PlasmicCandidaturesEmployeur__RenderFunc(props: {
                 className={classNames("__wab_instance", sty.notation)}
                 closeOnBackdropClick={false}
                 content={
-                  <Stack__
-                    as={"div"}
-                    hasGap={true}
+                  <div
                     className={classNames(projectcss.all, sty.freeBox___4KFsX)}
                   >
                     <div
@@ -1701,9 +1683,7 @@ function PlasmicCandidaturesEmployeur__RenderFunc(props: {
                         })()}
                       </React.Fragment>
                     </div>
-                    <Stack__
-                      as={"div"}
-                      hasGap={true}
+                    <div
                       className={classNames(
                         projectcss.all,
                         sty.freeBox___3M0Nd
@@ -1757,10 +1737,8 @@ function PlasmicCandidaturesEmployeur__RenderFunc(props: {
                           })()}
                         </React.Fragment>
                       </div>
-                    </Stack__>
-                    <Stack__
-                      as={"div"}
-                      hasGap={true}
+                    </div>
+                    <div
                       className={classNames(projectcss.all, sty.freeBox__meJhM)}
                     >
                       <div
@@ -1983,7 +1961,7 @@ function PlasmicCandidaturesEmployeur__RenderFunc(props: {
                           }
                         })()}
                       />
-                    </Stack__>
+                    </div>
                     <Button
                       className={classNames(
                         "__wab_instance",
@@ -2052,15 +2030,21 @@ function PlasmicCandidaturesEmployeur__RenderFunc(props: {
                                         $queries.getUserAccepted.data[0]
                                           .job_application_id
                                       ],
+
                                       variables: [
                                         ($state.ponctualite +
                                           $state.respect +
                                           $state.prestation) /
                                           3,
+
                                         $state.ponctualite,
+
                                         $state.prestation,
+
                                         $state.respect,
+
                                         $state.ponctualite,
+
                                         $state.prestation
                                       ]
                                     },
@@ -2153,7 +2137,7 @@ function PlasmicCandidaturesEmployeur__RenderFunc(props: {
                         }
                       }}
                     />
-                  </Stack__>
+                  </div>
                 }
                 footer={null}
                 heading={
@@ -2318,11 +2302,7 @@ function PlasmicCandidaturesEmployeur__RenderFunc(props: {
               data-plasmic-override={overrides.lettreDeMotivation}
               className={classNames("__wab_instance", sty.lettreDeMotivation)}
               content={
-                <Stack__
-                  as={"div"}
-                  hasGap={true}
-                  className={classNames(projectcss.all, sty.freeBox__s9LSt)}
-                >
+                <div className={classNames(projectcss.all, sty.freeBox__s9LSt)}>
                   <Iframe
                     className={classNames("__wab_instance", sty.iframe__qSahi)}
                     preview={true}
@@ -2342,7 +2322,7 @@ function PlasmicCandidaturesEmployeur__RenderFunc(props: {
                     srcDoc={"<div><h3>Heading</h3><p>Example text...</p></div>"}
                     useHtml={false}
                   />
-                </Stack__>
+                </div>
               }
               footer={
                 <div className={classNames(projectcss.all, sty.freeBox__vhcUd)}>
@@ -2431,11 +2411,7 @@ function PlasmicCandidaturesEmployeur__RenderFunc(props: {
               data-plasmic-override={overrides.cv}
               className={classNames("__wab_instance", sty.cv)}
               content={
-                <Stack__
-                  as={"div"}
-                  hasGap={true}
-                  className={classNames(projectcss.all, sty.freeBox__oCDv5)}
-                >
+                <div className={classNames(projectcss.all, sty.freeBox__oCDv5)}>
                   <Iframe
                     className={classNames("__wab_instance", sty.iframe__mv5Qg)}
                     preview={true}
@@ -2455,7 +2431,7 @@ function PlasmicCandidaturesEmployeur__RenderFunc(props: {
                     srcDoc={"<div><h3>Heading</h3><p>Example text...</p></div>"}
                     useHtml={false}
                   />
-                </Stack__>
+                </div>
               }
               footer={
                 <div className={classNames(projectcss.all, sty.freeBox__fdP5)}>
@@ -2591,17 +2567,13 @@ function PlasmicCandidaturesEmployeur__RenderFunc(props: {
               showHeader={false}
               trigger={null}
             />
-          </Stack__>
+          </main>
           <Modal
             data-plasmic-name={"successsApplications"}
             data-plasmic-override={overrides.successsApplications}
             className={classNames("__wab_instance", sty.successsApplications)}
             content={
-              <Stack__
-                as={"div"}
-                hasGap={true}
-                className={classNames(projectcss.all, sty.freeBox__oHhNq)}
-              >
+              <div className={classNames(projectcss.all, sty.freeBox__oHhNq)}>
                 <div
                   className={classNames(
                     projectcss.all,
@@ -2639,11 +2611,7 @@ function PlasmicCandidaturesEmployeur__RenderFunc(props: {
                     })()}
                   </React.Fragment>
                 </div>
-                <Stack__
-                  as={"div"}
-                  hasGap={true}
-                  className={classNames(projectcss.all, sty.freeBox__yEt5Q)}
-                >
+                <div className={classNames(projectcss.all, sty.freeBox__yEt5Q)}>
                   <PlasmicImg__
                     alt={""}
                     className={classNames(sty.img___8UbGx)}
@@ -2667,7 +2635,7 @@ function PlasmicCandidaturesEmployeur__RenderFunc(props: {
                   >
                     <React.Fragment>{$state.currentCandidat}</React.Fragment>
                   </div>
-                </Stack__>
+                </div>
                 <div
                   className={classNames(
                     projectcss.all,
@@ -2679,7 +2647,7 @@ function PlasmicCandidaturesEmployeur__RenderFunc(props: {
                     "En confirmant votre recrutement, \nl'offre deviendra automatiquement indisponible\n pour les autres candidats."
                   }
                 </div>
-              </Stack__>
+              </div>
             }
             footer={
               <div className={classNames(projectcss.all, sty.freeBox__w4Lt1)}>
@@ -3011,18 +2979,14 @@ function PlasmicCandidaturesEmployeur__RenderFunc(props: {
             data-plasmic-override={overrides.confirmRejectModal}
             className={classNames("__wab_instance", sty.confirmRejectModal)}
             content={
-              <Stack__
-                as={"div"}
+              <div
                 data-plasmic-name={"modal2"}
                 data-plasmic-override={overrides.modal2}
-                hasGap={true}
                 className={classNames(projectcss.all, sty.modal2)}
               >
-                <Stack__
-                  as={"div"}
+                <div
                   data-plasmic-name={"content"}
                   data-plasmic-override={overrides.content}
-                  hasGap={true}
                   className={classNames(projectcss.all, sty.content)}
                 >
                   <div
@@ -3035,11 +2999,9 @@ function PlasmicCandidaturesEmployeur__RenderFunc(props: {
                       role={"img"}
                     />
                   </div>
-                  <Stack__
-                    as={"div"}
+                  <div
                     data-plasmic-name={"textAndSupportingText"}
                     data-plasmic-override={overrides.textAndSupportingText}
-                    hasGap={true}
                     className={classNames(
                       projectcss.all,
                       sty.textAndSupportingText
@@ -3071,13 +3033,11 @@ function PlasmicCandidaturesEmployeur__RenderFunc(props: {
                         "Cette action est irr\u00e9versible. \nLe ou la candidat\u00b7e en sera inform\u00e9\u00b7e par e\u2011mail."
                       }
                     </div>
-                  </Stack__>
-                </Stack__>
-                <Stack__
-                  as={"div"}
+                  </div>
+                </div>
+                <div
                   data-plasmic-name={"frame1437254298"}
                   data-plasmic-override={overrides.frame1437254298}
-                  hasGap={true}
                   className={classNames(projectcss.all, sty.frame1437254298)}
                 >
                   <Button7
@@ -3359,8 +3319,8 @@ function PlasmicCandidaturesEmployeur__RenderFunc(props: {
                     }}
                     size={"extraLarge"}
                   />
-                </Stack__>
-              </Stack__>
+                </div>
+              </div>
             }
             footer={null}
             heading={

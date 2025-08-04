@@ -1774,8 +1774,11 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
         userArgs: {
           params: [
             $state.form2?.value?.address ?? "",
+
             $state.form2?.value?.location ?? "Paris",
+
             $state.form2?.value?.postal_code ?? "75000",
+
             $state.form2?.value?.country ?? "France"
           ]
         },
@@ -1916,18 +1919,12 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
             role={generateStateValueProp($state, ["sidebar", "role"])}
           />
 
-          <Stack__
-            as={"main"}
+          <main
             data-plasmic-name={"main"}
             data-plasmic-override={overrides.main}
-            hasGap={true}
             className={classNames(projectcss.all, sty.main)}
           >
-            <Stack__
-              as={"div"}
-              hasGap={true}
-              className={classNames(projectcss.all, sty.freeBox__aaCyB)}
-            >
+            <div className={classNames(projectcss.all, sty.freeBox__aaCyB)}>
               <div className={classNames(projectcss.all, sty.freeBox__nVzsW)}>
                 <h1
                   data-plasmic-name={"heading2"}
@@ -2084,11 +2081,9 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                   throw e;
                 }
               })() ? (
-                <Stack__
-                  as={"div"}
+                <div
                   data-plasmic-name={"annonces3"}
                   data-plasmic-override={overrides.annonces3}
-                  hasGap={true}
                   className={classNames(projectcss.all, sty.annonces3)}
                 >
                   {(() => {
@@ -2132,9 +2127,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                     const currentItem = __plasmic_item_0;
                     const currentIndex = __plasmic_idx_0;
                     return (
-                      <Stack__
-                        as={"div"}
-                        hasGap={true}
+                      <div
                         className={classNames(
                           projectcss.all,
                           sty.freeBox__xXjUr
@@ -2559,6 +2552,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                                                 }
                                               })()
                                             ],
+
                                             conditions: [
                                               $ctx.SupabaseUser.user.id
                                             ]
@@ -2898,6 +2892,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                                           opId: "dc7ec104-f8da-4927-a69d-7d2625ce7e24",
                                           userArgs: {
                                             keys: [currentItem.id],
+
                                             variables: [
                                               $state.currentJobObject
                                                 .is_last_minute
@@ -2957,6 +2952,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                                             conditions: [
                                               $ctx.SupabaseUser.user.id
                                             ],
+
                                             variables: [
                                               (() => {
                                                 const recharge = Number(
@@ -2978,6 +2974,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                                                 }
                                                 return recharge;
                                               })(),
+
                                               (() => {
                                                 const rechargeClassic = Number(
                                                   $queries.offreStripeUserInfos
@@ -3555,10 +3552,10 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                             />
                           );
                         })()}
-                      </Stack__>
+                      </div>
                     );
                   })}
-                </Stack__>
+                </div>
               ) : null}
               {(
                 hasVariant(globalVariants, "screen", "mobileOnly")
@@ -3592,11 +3589,9 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                       }
                     })()
               ) ? (
-                <Stack__
-                  as={"div"}
+                <div
                   data-plasmic-name={"noAnnonce2"}
                   data-plasmic-override={overrides.noAnnonce2}
-                  hasGap={true}
                   className={classNames(projectcss.all, sty.noAnnonce2)}
                 >
                   <div
@@ -3614,11 +3609,9 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                       role={"img"}
                     />
                   </div>
-                  <Stack__
-                    as={"div"}
+                  <div
                     data-plasmic-name={"textAndSupportingText3"}
                     data-plasmic-override={overrides.textAndSupportingText3}
-                    hasGap={true}
                     className={classNames(
                       projectcss.all,
                       sty.textAndSupportingText3
@@ -3648,7 +3641,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                         "Cr\u00e9ez des offres d'emploi et trouvez un collaborateur qui correspond \u00e0 vos attentes."
                       }
                     </div>
-                  </Stack__>
+                  </div>
                   <Button
                     className={classNames("__wab_instance", sty.button__cIye4)}
                     disabled={(() => {
@@ -3783,21 +3776,17 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                       }
                     }}
                   />
-                </Stack__>
+                </div>
               ) : null}
-            </Stack__>
-          </Stack__>
+            </div>
+          </main>
           <Modal
             data-plasmic-name={"createJob"}
             data-plasmic-override={overrides.createJob}
             className={classNames("__wab_instance", sty.createJob)}
             closeOnBackdropClick={false}
             content={
-              <Stack__
-                as={"div"}
-                hasGap={true}
-                className={classNames(projectcss.all, sty.freeBox___6L6T6)}
-              >
+              <div className={classNames(projectcss.all, sty.freeBox___6L6T6)}>
                 <h3
                   className={classNames(
                     projectcss.all,
@@ -3913,9 +3902,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                           placeholder={"Intitul\u00e9 du poste"}
                         />
                       </FormItemWrapper>
-                      <Stack__
-                        as={"div"}
-                        hasGap={true}
+                      <div
                         className={classNames(
                           projectcss.all,
                           sty.freeBox__a9Nj9
@@ -4160,10 +4147,8 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                             showLabel={false}
                           />
                         </FormItemWrapper>
-                      </Stack__>
-                      <Stack__
-                        as={"div"}
-                        hasGap={true}
+                      </div>
+                      <div
                         className={classNames(
                           projectcss.all,
                           sty.freeBox__aBfi
@@ -4407,10 +4392,8 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                             showLabel={false}
                           />
                         </FormItemWrapper>
-                      </Stack__>
-                      <Stack__
-                        as={"div"}
-                        hasGap={true}
+                      </div>
+                      <div
                         className={classNames(
                           projectcss.all,
                           sty.freeBox__fZqHs
@@ -4560,10 +4543,8 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                             );
                           })()}
                         </FormItemWrapper>
-                      </Stack__>
-                      <Stack__
-                        as={"div"}
-                        hasGap={true}
+                      </div>
+                      <div
                         className={classNames(
                           projectcss.all,
                           sty.freeBox__dt1Rs
@@ -4915,10 +4896,8 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                             showLabel={false}
                           />
                         </FormItemWrapper>
-                      </Stack__>
-                      <Stack__
-                        as={"div"}
-                        hasGap={true}
+                      </div>
+                      <div
                         className={classNames(
                           projectcss.all,
                           sty.freeBox__dmHah
@@ -4987,9 +4966,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                               }
                             })()}
                             placeholder={
-                              <Stack__
-                                as={"div"}
-                                hasGap={true}
+                              <div
                                 className={classNames(
                                   projectcss.all,
                                   sty.freeBox__dpr1C
@@ -5023,7 +5000,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                                     </span>
                                   </React.Fragment>
                                 </div>
-                              </Stack__>
+                              </div>
                             }
                             popupScopeClassName={sty["select13__popup"]}
                             size={"large"}
@@ -5042,7 +5019,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                             ])}
                           />
                         </FormItemWrapper>
-                      </Stack__>
+                      </div>
                       <div
                         className={classNames(
                           projectcss.all,
@@ -5102,11 +5079,9 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                             placeholder={"Rue"}
                           />
                         </FormItemWrapper>
-                        <Stack__
-                          as={"div"}
+                        <div
                           data-plasmic-name={"codePosteVille"}
                           data-plasmic-override={overrides.codePosteVille}
-                          hasGap={true}
                           className={classNames(
                             projectcss.all,
                             sty.codePosteVille
@@ -5249,7 +5224,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                               placeholder={"Ville"}
                             />
                           </FormItemWrapper>
-                        </Stack__>
+                        </div>
                         <FormItemWrapper
                           className={classNames(
                             "__wab_instance",
@@ -5477,9 +5452,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                           }
                         />
                       </FormItemWrapper>
-                      <Stack__
-                        as={"div"}
-                        hasGap={true}
+                      <div
                         className={classNames(
                           projectcss.all,
                           sty.freeBox__brNtc
@@ -5523,28 +5496,47 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                                       userArgs: {
                                         variables: [
                                           $state.form2.value.address,
+
                                           $state.form2.value
                                             .availability_status,
+
                                           $queries.getCompanies.data[0].id,
+
                                           $state.form2.value.contract_type,
+
                                           $state.form2.value.country,
+
                                           $state.form2.value.description,
+
                                           $state.form2.value.location,
+
                                           $state.form2.value.postal_code,
+
                                           $state.form2.value.requirements,
+
                                           $state.form2.value.salary,
+
                                           $state.form2.value.sector_activity,
+
                                           $state.form2.value.title,
+
                                           $state.form2.value.work_mode,
+
                                           $state.form2.value.working_time,
+
                                           $state.form2.value.benefits,
+
                                           $state.lastMinuteToggle
                                             .switch2IsSelected,
+
                                           $state.form2.value.end_date,
+
                                           $state.form2.value.start_date,
+
                                           $queries.fetchJobCoordinates.data
                                             .response.features[0].geometry
                                             .coordinates[1],
+
                                           $queries.fetchJobCoordinates.data
                                             .response.features[0].geometry
                                             .coordinates[0]
@@ -5748,31 +5740,51 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                                         userArgs: {
                                           variables: [
                                             $state.form2.value.address,
+
                                             $state.form2.value
                                               .availability_status,
+
                                             $queries.getCompanies.data[0].id,
+
                                             $state.form2.value.contract_type,
+
                                             $state.form2.value.country,
+
                                             $state.form2.value.description,
+
                                             $state.form2.value.location,
+
                                             $state.form2.value.postal_code,
+
                                             $state.form2.value.requirements,
+
                                             $state.form2.value.salary,
+
                                             $state.form2.value.sector_activity,
+
                                             $state.form2.value.title,
+
                                             $state.form2.value.work_mode,
+
                                             $state.form2.value.working_time,
+
                                             $state.form2.value.benefits,
+
                                             $state.lastMinuteToggle
                                               .switch2IsSelected,
+
                                             $state.form2.value.end_date,
+
                                             $state.form2.value.start_date,
+
                                             $queries.fetchJobCoordinates.data
                                               .response.features[0].geometry
                                               .coordinates[1],
+
                                             $queries.fetchJobCoordinates.data
                                               .response.features[0].geometry
                                               .coordinates[0],
+
                                             $state.form2.value.team_size
                                           ]
                                         },
@@ -5869,6 +5881,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                                                 return rechargeLastminute;
                                               }
                                             })(),
+
                                             (() => {
                                               const recharge = Number(
                                                 $queries.offreStripeUserInfos
@@ -5892,6 +5905,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                                               return recharge;
                                             })()
                                           ],
+
                                           conditions: [
                                             $ctx.SupabaseUser.user.id
                                           ]
@@ -5994,11 +6008,11 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                           resetsForm={true}
                           submitsForm={false}
                         />
-                      </Stack__>
+                      </div>
                     </FormWrapper>
                   );
                 })()}
-              </Stack__>
+              </div>
             }
             footer={null}
             heading={
@@ -6107,11 +6121,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
             className={classNames("__wab_instance", sty.editJob)}
             closeOnBackdropClick={false}
             content={
-              <Stack__
-                as={"div"}
-                hasGap={true}
-                className={classNames(projectcss.all, sty.freeBox___3GNlx)}
-              >
+              <div className={classNames(projectcss.all, sty.freeBox___3GNlx)}>
                 <h3
                   className={classNames(
                     projectcss.all,
@@ -6279,9 +6289,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                           placeholder={"Intitul\u00e9 du poste"}
                         />
                       </FormItemWrapper>
-                      <Stack__
-                        as={"div"}
-                        hasGap={true}
+                      <div
                         className={classNames(
                           projectcss.all,
                           sty.freeBox__av5TW
@@ -6551,10 +6559,8 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                             showLabel={false}
                           />
                         </FormItemWrapper>
-                      </Stack__>
-                      <Stack__
-                        as={"div"}
-                        hasGap={true}
+                      </div>
+                      <div
                         className={classNames(
                           projectcss.all,
                           sty.freeBox__oOiW7
@@ -6823,10 +6829,8 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                             showLabel={false}
                           />
                         </FormItemWrapper>
-                      </Stack__>
-                      <Stack__
-                        as={"div"}
-                        hasGap={true}
+                      </div>
+                      <div
                         className={classNames(
                           projectcss.all,
                           sty.freeBox__ubwCf
@@ -6985,10 +6989,8 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                             );
                           })()}
                         </FormItemWrapper>
-                      </Stack__>
-                      <Stack__
-                        as={"div"}
-                        hasGap={true}
+                      </div>
+                      <div
                         className={classNames(
                           projectcss.all,
                           sty.freeBox__dzWrt
@@ -7130,9 +7132,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                             sty.formField__vn2Hd
                           )}
                           label={
-                            <Stack__
-                              as={"div"}
-                              hasGap={true}
+                            <div
                               className={classNames(
                                 projectcss.all,
                                 sty.freeBox__q7Lqj
@@ -7197,7 +7197,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                                   ["lastMinuteToggle2", "switch2IsSelected"]
                                 )}
                               />
-                            </Stack__>
+                            </div>
                           }
                           name={"availability_status"}
                           rules={[{ ruleType: "required", message: "requis" }]}
@@ -7317,7 +7317,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                             showLabel={false}
                           />
                         </FormItemWrapper>
-                      </Stack__>
+                      </div>
                       <FormItemWrapper
                         className={classNames(
                           "__wab_instance",
@@ -7392,9 +7392,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                             }
                           })()}
                           placeholder={
-                            <Stack__
-                              as={"div"}
-                              hasGap={true}
+                            <div
                               className={classNames(
                                 projectcss.all,
                                 sty.freeBox__ftRXb
@@ -7428,7 +7426,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                                   </span>
                                 </React.Fragment>
                               </div>
-                            </Stack__>
+                            </div>
                           }
                           popupScopeClassName={sty["select26__popup"]}
                           size={"large"}
@@ -7505,11 +7503,9 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                             placeholder={"Rue"}
                           />
                         </FormItemWrapper>
-                        <Stack__
-                          as={"div"}
+                        <div
                           data-plasmic-name={"codePosteVille2"}
                           data-plasmic-override={overrides.codePosteVille2}
-                          hasGap={true}
                           className={classNames(
                             projectcss.all,
                             sty.codePosteVille2
@@ -7650,7 +7646,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                               placeholder={"Ville"}
                             />
                           </FormItemWrapper>
-                        </Stack__>
+                        </div>
                         <FormItemWrapper
                           className={classNames(
                             "__wab_instance",
@@ -7904,9 +7900,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                           }
                         />
                       </FormItemWrapper>
-                      <Stack__
-                        as={"div"}
-                        hasGap={true}
+                      <div
                         className={classNames(
                           projectcss.all,
                           sty.freeBox__iZbYo
@@ -7962,29 +7956,47 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                                         opId: "48aea369-0123-4982-81fa-bf39a6b7c9d0",
                                         userArgs: {
                                           keys: [$state.currentJobObject.id],
+
                                           variables: [
                                             $state.formUpdate.value.address,
+
                                             $state.formUpdate.value
                                               .availability_status,
+
                                             $state.formUpdate.value.benefits,
+
                                             $queries.getCompanies.data[0].id,
+
                                             $state.formUpdate.value
                                               .contract_type,
+
                                             $state.formUpdate.value.country,
+
                                             $state.formUpdate.value.description,
+
                                             $state.formUpdate.value.location,
+
                                             $state.formUpdate.value.postal_code,
+
                                             $state.formUpdate.value
                                               .requirements,
+
                                             $state.formUpdate.value.salary,
+
                                             $state.formUpdate.value
                                               .sector_activity,
+
                                             $state.formUpdate.value.title,
+
                                             $state.formUpdate.value.work_mode,
+
                                             $state.formUpdate.value
                                               .working_time,
+
                                             $state.formUpdate.value.end_date,
+
                                             $state.formUpdate.value.start_date,
+
                                             $state.lastMinuteToggle2
                                               .switch2IsSelected
                                           ]
@@ -8198,29 +8210,47 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                                         opId: "5eea695a-3fb1-4308-a778-894638e90d68",
                                         userArgs: {
                                           keys: [$state.currentJobObject.id],
+
                                           variables: [
                                             $state.formUpdate.value.address,
+
                                             $state.formUpdate.value.benefits,
+
                                             $state.currentJobObject.company_id,
+
                                             $state.formUpdate.value.country,
+
                                             $state.formUpdate.value.description,
+
                                             $state.formUpdate.value.location,
+
                                             $state.formUpdate.value.postal_code,
+
                                             $state.formUpdate.value
                                               .requirements,
+
                                             $state.formUpdate.value.salary,
+
                                             $state.formUpdate.value.title,
+
                                             $state.formUpdate.value.end_date,
+
                                             $state.formUpdate.value.start_date,
+
                                             $state.formUpdate.value
                                               .availability_status,
+
                                             $state.formUpdate.value
                                               .contract_type,
+
                                             $state.formUpdate.value
                                               .sector_activity,
+
                                             $state.formUpdate.value.work_mode,
+
                                             $state.formUpdate.value
                                               .working_time,
+
                                             $state.lastMinuteToggle2
                                               .switch2IsSelected
                                           ]
@@ -8275,6 +8305,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                                       opId: "b3ab694d-132d-4e5d-9ada-cb46ac6ddaad",
                                       userArgs: {
                                         conditions: [$ctx.SupabaseUser.user.id],
+
                                         variables: [
                                           (() => {
                                             const rechargeClassic = Number(
@@ -8311,6 +8342,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                                             }
                                             return rechargeLastminute;
                                           })(),
+
                                           (() => {
                                             const recharge = Number(
                                               $queries.offreStripeUserInfos
@@ -8451,11 +8483,11 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                           }}
                           submitsForm={true}
                         />
-                      </Stack__>
+                      </div>
                     </FormWrapper>
                   );
                 })()}
-              </Stack__>
+              </div>
             }
             footer={null}
             heading={
@@ -8562,11 +8594,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
             data-plasmic-override={overrides.deleteJob}
             className={classNames("__wab_instance", sty.deleteJob)}
             content={
-              <Stack__
-                as={"div"}
-                hasGap={true}
-                className={classNames(projectcss.all, sty.freeBox__tKZaF)}
-              >
+              <div className={classNames(projectcss.all, sty.freeBox__tKZaF)}>
                 <ReshotIconAlert7T6Wum8VleSvgIcon
                   className={classNames(projectcss.all, sty.svg__c2AS)}
                   onClick={async event => {
@@ -8580,6 +8608,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                               opId: "e205d484-80c7-4de7-b5c0-7d0135a1a283",
                               userArgs: {
                                 conditions: [$ctx.SupabaseUser.user.id],
+
                                 variables: [null]
                               },
                               cacheKey: null,
@@ -8644,11 +8673,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                     "Attention : cette action est irr\u00e9versible. L\u2019offre sera d\u00e9finitivement supprim\u00e9e."
                   }
                 </p>
-                <Stack__
-                  as={"div"}
-                  hasGap={true}
-                  className={classNames(projectcss.all, sty.freeBox__pvg0T)}
-                >
+                <div className={classNames(projectcss.all, sty.freeBox__pvg0T)}>
                   <Button
                     className={classNames("__wab_instance", sty.button__nHbY)}
                     color={"white"}
@@ -8847,8 +8872,8 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                       }
                     }}
                   />
-                </Stack__>
-              </Stack__>
+                </div>
+              </div>
             }
             footer={null}
             heading={
@@ -8939,18 +8964,14 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
             data-plasmic-override={overrides.jobDetails}
             className={classNames("__wab_instance", sty.jobDetails)}
             content={
-              <Stack__
-                as={"div"}
+              <div
                 data-plasmic-name={"jobListing"}
                 data-plasmic-override={overrides.jobListing}
-                hasGap={true}
                 className={classNames(projectcss.all, sty.jobListing)}
               >
-                <Stack__
-                  as={"div"}
+                <div
                   data-plasmic-name={"frame38"}
                   data-plasmic-override={overrides.frame38}
-                  hasGap={true}
                   className={classNames(projectcss.all, sty.frame38)}
                 >
                   <div
@@ -8976,22 +8997,18 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                       })()}
                     </React.Fragment>
                   </div>
-                </Stack__>
-                <Stack__
-                  as={"div"}
+                </div>
+                <div
                   data-plasmic-name={"jobDetail"}
                   data-plasmic-override={overrides.jobDetail}
-                  hasGap={true}
                   className={classNames(projectcss.all, sty.jobDetail)}
                 >
                   <div
                     className={classNames(projectcss.all, sty.freeBox__wrJh3)}
                   >
-                    <Stack__
-                      as={"div"}
+                    <div
                       data-plasmic-name={"location"}
                       data-plasmic-override={overrides.location}
-                      hasGap={true}
                       className={classNames(projectcss.all, sty.location)}
                     >
                       <PhMapPin2Icon
@@ -9030,7 +9047,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                           })()}
                         </React.Fragment>
                       </div>
-                    </Stack__>
+                    </div>
                     <div
                       className={classNames(
                         projectcss.all,
@@ -9068,25 +9085,19 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                       </React.Fragment>
                     </div>
                   </div>
-                  <Stack__
-                    as={"div"}
+                  <div
                     data-plasmic-name={"frame46"}
                     data-plasmic-override={overrides.frame46}
-                    hasGap={true}
                     className={classNames(projectcss.all, sty.frame46)}
                   >
-                    <Stack__
-                      as={"div"}
+                    <div
                       data-plasmic-name={"frame47"}
                       data-plasmic-override={overrides.frame47}
-                      hasGap={true}
                       className={classNames(projectcss.all, sty.frame47)}
                     >
-                      <Stack__
-                        as={"div"}
+                      <div
                         data-plasmic-name={"frame48"}
                         data-plasmic-override={overrides.frame48}
-                        hasGap={true}
                         className={classNames(projectcss.all, sty.frame48)}
                       >
                         <PhFileTextIcon
@@ -9117,12 +9128,10 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                             })()}
                           </React.Fragment>
                         </div>
-                      </Stack__>
-                      <Stack__
-                        as={"div"}
+                      </div>
+                      <div
                         data-plasmic-name={"frame49"}
                         data-plasmic-override={overrides.frame49}
-                        hasGap={true}
                         className={classNames(projectcss.all, sty.frame49)}
                       >
                         <PhClockIcon
@@ -9153,12 +9162,10 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                             })()}
                           </React.Fragment>
                         </div>
-                      </Stack__>
-                      <Stack__
-                        as={"div"}
+                      </div>
+                      <div
                         data-plasmic-name={"frame50"}
                         data-plasmic-override={overrides.frame50}
-                        hasGap={true}
                         className={classNames(projectcss.all, sty.frame50)}
                       >
                         <PhCoinsLightIcon
@@ -9189,12 +9196,10 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                             })()}
                           </React.Fragment>
                         </div>
-                      </Stack__>
-                      <Stack__
-                        as={"div"}
+                      </div>
+                      <div
                         data-plasmic-name={"frame51"}
                         data-plasmic-override={overrides.frame51}
-                        hasGap={true}
                         className={classNames(projectcss.all, sty.frame51)}
                       >
                         <PhClockCountdownIcon
@@ -9226,8 +9231,8 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                             })()}
                           </React.Fragment>
                         </div>
-                      </Stack__>
-                    </Stack__>
+                      </div>
+                    </div>
                     <Button
                       className={classNames(
                         "__wab_instance",
@@ -9331,13 +9336,11 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                         }
                       }}
                     />
-                  </Stack__>
-                </Stack__>
-                <Stack__
-                  as={"div"}
+                  </div>
+                </div>
+                <div
                   data-plasmic-name={"jobDescriptionContainer"}
                   data-plasmic-override={overrides.jobDescriptionContainer}
-                  hasGap={true}
                   className={classNames(
                     projectcss.all,
                     sty.jobDescriptionContainer
@@ -9377,11 +9380,9 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                       })()}
                     </React.Fragment>
                   </p>
-                  <Stack__
-                    as={"div"}
+                  <div
                     data-plasmic-name={"benefits"}
                     data-plasmic-override={overrides.benefits}
-                    hasGap={true}
                     className={classNames(projectcss.all, sty.benefits)}
                   >
                     {(_par =>
@@ -9431,13 +9432,11 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                         </div>
                       );
                     })}
-                  </Stack__>
-                </Stack__>
-                <Stack__
-                  as={"div"}
+                  </div>
+                </div>
+                <div
                   data-plasmic-name={"expectedProfileContainer"}
                   data-plasmic-override={overrides.expectedProfileContainer}
-                  hasGap={true}
                   className={classNames(
                     projectcss.all,
                     sty.expectedProfileContainer
@@ -9477,12 +9476,10 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                       })()}
                     </React.Fragment>
                   </p>
-                </Stack__>
-                <Stack__
-                  as={"div"}
+                </div>
+                <div
                   data-plasmic-name={"companyContainer"}
                   data-plasmic-override={overrides.companyContainer}
-                  hasGap={true}
                   className={classNames(projectcss.all, sty.companyContainer)}
                 >
                   <div
@@ -9527,9 +9524,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                       })()}
                     />
                   </div>
-                  <Stack__
-                    as={"div"}
-                    hasGap={true}
+                  <div
                     className={classNames(projectcss.all, sty.freeBox__xJuMr)}
                   >
                     <p
@@ -9556,18 +9551,14 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                         })()}
                       </React.Fragment>
                     </p>
-                    <Stack__
-                      as={"div"}
+                    <div
                       data-plasmic-name={"companyDetail"}
                       data-plasmic-override={overrides.companyDetail}
-                      hasGap={true}
                       className={classNames(projectcss.all, sty.companyDetail)}
                     >
-                      <Stack__
-                        as={"div"}
+                      <div
                         data-plasmic-name={"sectorActivity"}
                         data-plasmic-override={overrides.sectorActivity}
-                        hasGap={true}
                         className={classNames(
                           projectcss.all,
                           sty.sectorActivity
@@ -9613,12 +9604,10 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                             })()}
                           </React.Fragment>
                         </p>
-                      </Stack__>
-                      <Stack__
-                        as={"div"}
+                      </div>
+                      <div
                         data-plasmic-name={"companySize"}
                         data-plasmic-override={overrides.companySize}
-                        hasGap={true}
                         className={classNames(projectcss.all, sty.companySize)}
                       >
                         <PhUsersThreeIcon
@@ -9650,12 +9639,10 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                             })()}
                           </React.Fragment>
                         </p>
-                      </Stack__>
-                      <Stack__
-                        as={"div"}
+                      </div>
+                      <div
                         data-plasmic-name={"companyLocation"}
                         data-plasmic-override={overrides.companyLocation}
-                        hasGap={true}
                         className={classNames(
                           projectcss.all,
                           sty.companyLocation
@@ -9690,9 +9677,9 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                             })()}
                           </React.Fragment>
                         </p>
-                      </Stack__>
-                    </Stack__>
-                  </Stack__>
+                      </div>
+                    </div>
+                  </div>
                   <p
                     className={classNames(
                       projectcss.all,
@@ -9717,8 +9704,8 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                       })()}
                     </React.Fragment>
                   </p>
-                </Stack__>
-              </Stack__>
+                </div>
+              </div>
             }
             footer={null}
             heading={
@@ -9948,11 +9935,14 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                                 userArgs: {
                                   path: [
                                     $ctx.SupabaseUser.user.id,
+
                                     $state.form.value.kbis_file[0].name
                                   ],
+
                                   content: [
                                     $state.form.value.kbis_file[0].contents
                                   ],
+
                                   contentType: [
                                     $state.form.value.kbis_file[0].type
                                   ]
@@ -10016,11 +10006,14 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                                 userArgs: {
                                   path: [
                                     $ctx.SupabaseUser.user.id,
+
                                     $state.form.value.identity_file[0].name
                                   ],
+
                                   content: [
                                     $state.form.value.identity_file[0].contents
                                   ],
+
                                   contentType: [
                                     $state.form.value.identity_file[0].type
                                   ]
@@ -10114,18 +10107,31 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                                   userArgs: {
                                     variables: [
                                       $state.form.value.address,
+
                                       $state.form.value.country,
+
                                       $state.form.value.description,
+
                                       $state.form.value.identity_file[0].name,
+
                                       $state.form.value.kbis_file[0].name,
+
                                       $state.form.value.location,
+
                                       $state.form.value.name,
+
                                       $state.form.value.postal_code,
+
                                       $state.form.value.sector,
+
                                       $state.form.value.siren,
+
                                       $state.form.value.team_size,
+
                                       $state.form.value.website,
+
                                       $ctx.SupabaseUser.user.id,
+
                                       $state.form.value.description
                                     ]
                                   },
@@ -10203,9 +10209,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                       data-plasmic-override={overrides.form}
                       {...child$Props}
                     >
-                      <Stack__
-                        as={"div"}
-                        hasGap={true}
+                      <div
                         className={classNames(
                           projectcss.all,
                           sty.freeBox__v9K4S
@@ -10249,11 +10253,14 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                                         userArgs: {
                                           path: [
                                             $ctx.SupabaseUser.user.id,
+
                                             $state.upload2.files[0].name
                                           ],
+
                                           content: [
                                             $state.upload2.files[0].contents
                                           ],
+
                                           contentType: [
                                             $state.upload2.files[0].type
                                           ]
@@ -10309,6 +10316,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                                           keys: [
                                             $queries.getCompanies.data[0].id
                                           ],
+
                                           variables: [
                                             $steps.supabaseUploadFile?.path.split(
                                               "/"
@@ -10479,6 +10487,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                                           conditions: [
                                             $ctx.SupabaseUser.user.id
                                           ],
+
                                           variables: [null]
                                         },
                                         cacheKey: null,
@@ -10540,7 +10549,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                             />
                           </div>
                         </UploadWrapper>
-                      </Stack__>
+                      </div>
                       <FormItemWrapper
                         className={classNames(
                           "__wab_instance",
@@ -10676,9 +10685,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                           placeholder={"Rue"}
                         />
                       </FormItemWrapper>
-                      <Stack__
-                        as={"div"}
-                        hasGap={true}
+                      <div
                         className={classNames(
                           projectcss.all,
                           sty.freeBox__c7Bnf
@@ -10780,7 +10787,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                             placeholder={"Ville"}
                           />
                         </FormItemWrapper>
-                      </Stack__>
+                      </div>
                       <FormItemWrapper
                         className={classNames(
                           "__wab_instance",
@@ -10925,9 +10932,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                           placeholder={"Num\u00e9ro de SIREN"}
                         />
                       </FormItemWrapper>
-                      <Stack__
-                        as={"div"}
-                        hasGap={true}
+                      <div
                         className={classNames(
                           projectcss.all,
                           sty.freeBox__a0AQ5
@@ -11081,7 +11086,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                             ])}
                           />
                         </FormItemWrapper>
-                      </Stack__>
+                      </div>
                       <FormItemWrapper
                         className={classNames(
                           "__wab_instance",
@@ -11124,9 +11129,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                           placeholder={"https://"}
                         />
                       </FormItemWrapper>
-                      <Stack__
-                        as={"div"}
-                        hasGap={true}
+                      <div
                         className={classNames(
                           projectcss.all,
                           sty.freeBox___60MFh
@@ -11182,9 +11185,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                                 sty.content
                               )}
                             >
-                              <Stack__
-                                as={PlasmicImg__}
-                                hasGap={true}
+                              <PlasmicImg__
                                 alt={""}
                                 className={classNames(sty.img___3If9U)}
                                 displayHeight={"39px"}
@@ -11272,9 +11273,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                                 sty.content2
                               )}
                             >
-                              <Stack__
-                                as={PlasmicImg__}
-                                hasGap={true}
+                              <PlasmicImg__
                                 alt={""}
                                 className={classNames(sty.img__xmJh4)}
                                 displayHeight={"39px"}
@@ -11313,7 +11312,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                             </div>
                           </UploadWrapper>
                         </FormItemWrapper>
-                      </Stack__>
+                      </div>
                       <div
                         className={classNames(
                           projectcss.all,
@@ -11487,11 +11486,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
             className={classNames("__wab_instance", sty.profilCreate)}
             closeOnBackdropClick={false}
             content={
-              <Stack__
-                as={"div"}
-                hasGap={true}
-                className={classNames(projectcss.all, sty.freeBox__zkf8O)}
-              >
+              <div className={classNames(projectcss.all, sty.freeBox__zkf8O)}>
                 <CheckIcon
                   className={classNames(projectcss.all, sty.svg__rb9S5)}
                   onClick={async event => {
@@ -11505,6 +11500,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                               opId: "e205d484-80c7-4de7-b5c0-7d0135a1a283",
                               userArgs: {
                                 conditions: [$ctx.SupabaseUser.user.id],
+
                                 variables: [null]
                               },
                               cacheKey: null,
@@ -11590,7 +11586,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                     step3={true}
                   />
                 </div>
-              </Stack__>
+              </div>
             }
             footer={null}
             heading={null}
@@ -11633,11 +11629,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
               className={classNames("__wab_instance", sty.stopInscription)}
               closeOnBackdropClick={false}
               content={
-                <Stack__
-                  as={"div"}
-                  hasGap={true}
-                  className={classNames(projectcss.all, sty.freeBox__jombb)}
-                >
+                <div className={classNames(projectcss.all, sty.freeBox__jombb)}>
                   <ReshotIconAlert7T6Wum8VleSvgIcon
                     className={classNames(projectcss.all, sty.svg__ujQcB)}
                     onClick={async event => {
@@ -11651,6 +11643,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                                 opId: "e205d484-80c7-4de7-b5c0-7d0135a1a283",
                                 userArgs: {
                                   conditions: [$ctx.SupabaseUser.user.id],
+
                                   variables: [null]
                                 },
                                 cacheKey: null,
@@ -11890,7 +11883,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                       }}
                     />
                   </div>
-                </Stack__>
+                </div>
               }
               footer={null}
               heading={null}
@@ -11940,11 +11933,9 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
               data-plasmic-override={overrides.modalOnboarding}
               className={classNames(projectcss.all, sty.modalOnboarding)}
             >
-              <Stack__
-                as={"div"}
+              <div
                 data-plasmic-name={"modal"}
                 data-plasmic-override={overrides.modal}
-                hasGap={true}
                 className={classNames(projectcss.all, sty.modal)}
               >
                 {(() => {
@@ -12554,9 +12545,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                           data-plasmic-override={overrides.form4}
                           {...child$Props}
                         >
-                          <Stack__
-                            as={"div"}
-                            hasGap={true}
+                          <div
                             className={classNames(
                               projectcss.all,
                               sty.freeBox__b5Bgd
@@ -12662,7 +12651,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                                 />
                               </div>
                             </UploadWrapper>
-                          </Stack__>
+                          </div>
                           <FormItemWrapper
                             className={classNames(
                               "__wab_instance",
@@ -12815,9 +12804,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                               placeholder={"Rue"}
                             />
                           </FormItemWrapper>
-                          <Stack__
-                            as={"div"}
-                            hasGap={true}
+                          <div
                             className={classNames(
                               projectcss.all,
                               sty.freeBox__v7DaP
@@ -12907,7 +12894,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                                 placeholder={"Ville"}
                               />
                             </FormItemWrapper>
-                          </Stack__>
+                          </div>
                           <FormItemWrapper
                             className={classNames(
                               "__wab_instance",
@@ -13048,9 +13035,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                               placeholder={"Num\u00e9ro de SIREN"}
                             />
                           </FormItemWrapper>
-                          <Stack__
-                            as={"div"}
-                            hasGap={true}
+                          <div
                             className={classNames(
                               projectcss.all,
                               sty.freeBox__jYvAa
@@ -13185,7 +13170,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                                 ])}
                               />
                             </FormItemWrapper>
-                          </Stack__>
+                          </div>
                           <FormItemWrapper
                             className={classNames(
                               "__wab_instance",
@@ -13228,9 +13213,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                               placeholder={"https://"}
                             />
                           </FormItemWrapper>
-                          <Stack__
-                            as={"div"}
-                            hasGap={true}
+                          <div
                             className={classNames(
                               projectcss.all,
                               sty.freeBox__wbRba
@@ -13283,9 +13266,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                                     sty.content3
                                   )}
                                 >
-                                  <Stack__
-                                    as={PlasmicImg__}
-                                    hasGap={true}
+                                  <PlasmicImg__
                                     alt={""}
                                     className={classNames(sty.img___77WpQ)}
                                     displayHeight={"39px"}
@@ -13371,9 +13352,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                                     sty.content4
                                   )}
                                 >
-                                  <Stack__
-                                    as={PlasmicImg__}
-                                    hasGap={true}
+                                  <PlasmicImg__
                                     alt={""}
                                     className={classNames(sty.img__jOPf2)}
                                     displayHeight={"39px"}
@@ -13412,7 +13391,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                                 </div>
                               </UploadWrapper>
                             </FormItemWrapper>
-                          </Stack__>
+                          </div>
                           <div
                             className={classNames(
                               projectcss.all,
@@ -13645,6 +13624,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                                     userArgs: {
                                       path: [
                                         $ctx.SupabaseUser.user.id,
+
                                         (() => {
                                           const file =
                                             $state.form5.value.kbis_file[0];
@@ -13659,9 +13639,11 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                                           }
                                         })()
                                       ],
+
                                       content: [
                                         $state.form5.value.kbis_file[0].contents
                                       ],
+
                                       contentType: [
                                         $state.form5.value.kbis_file[0].type
                                       ]
@@ -13758,6 +13740,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                                     userArgs: {
                                       path: [
                                         $ctx.SupabaseUser.user.id,
+
                                         (() => {
                                           const file =
                                             $state.form5.value.identity_file[0];
@@ -13772,10 +13755,12 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                                           }
                                         })()
                                       ],
+
                                       content: [
                                         $state.form5.value.identity_file[0]
                                           .contents
                                       ],
+
                                       contentType: [
                                         $state.form5.value.identity_file[0].type
                                       ]
@@ -13864,19 +13849,32 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                                       userArgs: {
                                         variables: [
                                           $state.form5.value.address,
+
                                           $state.form5.value.country,
+
                                           $state.form5.value.description,
+
                                           $state.form5.value.identity_file[0]
                                             .name,
+
                                           $state.form5.value.kbis_file[0].name,
+
                                           $state.form5.value.location,
+
                                           $state.form5.value.name,
+
                                           $state.form5.value.postal_code,
+
                                           $state.form5.value.sector,
+
                                           $state.form5.value.siren,
+
                                           $state.form5.value.team_size,
+
                                           $state.form5.value.website,
+
                                           $ctx.SupabaseUser.user.id,
+
                                           $state.form5.value.descriptions
                                         ]
                                       },
@@ -14034,9 +14032,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                           data-plasmic-override={overrides.form5}
                           {...child$Props}
                         >
-                          <Stack__
-                            as={"div"}
-                            hasGap={true}
+                          <div
                             className={classNames(
                               projectcss.all,
                               sty.freeBox___3S3V3
@@ -14083,6 +14079,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                                             userArgs: {
                                               path: [
                                                 $ctx.SupabaseUser.user.id,
+
                                                 (() => {
                                                   const file =
                                                     $state.upload7.files[0];
@@ -14104,9 +14101,11 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                                                   }
                                                 })()
                                               ],
+
                                               content: [
                                                 $state.upload7.files[0].contents
                                               ],
+
                                               contentType: [
                                                 $state.upload7.files[0].type
                                               ]
@@ -14163,6 +14162,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                                             opId: "ca8056ed-4ec7-4218-bb8b-d4f4da770307",
                                             userArgs: {
                                               keys: [$ctx.SupabaseUser.user.id],
+
                                               variables: [
                                                 $steps.supabaseUploadFile?.path.split(
                                                   "/"
@@ -14369,6 +14369,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                                                 conditions: [
                                                   $ctx.SupabaseUser.user.id
                                                 ],
+
                                                 variables: [null]
                                               },
                                               cacheKey: null,
@@ -14436,7 +14437,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                                 </div>
                               </div>
                             </UploadWrapper>
-                          </Stack__>
+                          </div>
                           <FormItemWrapper
                             className={classNames(
                               "__wab_instance",
@@ -14592,9 +14593,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                               placeholder={"Rue"}
                             />
                           </FormItemWrapper>
-                          <Stack__
-                            as={"div"}
-                            hasGap={true}
+                          <div
                             className={classNames(
                               projectcss.all,
                               sty.freeBox__y1Huc
@@ -14696,7 +14695,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                                 placeholder={"Ville"}
                               />
                             </FormItemWrapper>
-                          </Stack__>
+                          </div>
                           <FormItemWrapper
                             className={classNames(
                               "__wab_instance",
@@ -14850,9 +14849,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                               placeholder={"Num\u00e9ro de SIREN"}
                             />
                           </FormItemWrapper>
-                          <Stack__
-                            as={"div"}
-                            hasGap={true}
+                          <div
                             className={classNames(
                               projectcss.all,
                               sty.freeBox__tChE6
@@ -15075,7 +15072,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                                 showLabel={false}
                               />
                             </FormItemWrapper>
-                          </Stack__>
+                          </div>
                           <FormItemWrapper
                             className={classNames(
                               "__wab_instance",
@@ -15118,9 +15115,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                               placeholder={"https://"}
                             />
                           </FormItemWrapper>
-                          <Stack__
-                            as={"div"}
-                            hasGap={true}
+                          <div
                             className={classNames(
                               projectcss.all,
                               sty.freeBox__fOMkY
@@ -15194,9 +15189,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                                       sty.content5
                                     )}
                                   >
-                                    <Stack__
-                                      as={PlasmicImg__}
-                                      hasGap={true}
+                                    <PlasmicImg__
                                       alt={""}
                                       className={classNames(sty.img__s0UJ)}
                                       displayHeight={"39px"}
@@ -15430,9 +15423,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                                       sty.content6
                                     )}
                                   >
-                                    <Stack__
-                                      as={PlasmicImg__}
-                                      hasGap={true}
+                                    <PlasmicImg__
                                       alt={""}
                                       className={classNames(sty.img__qj4QN)}
                                       displayHeight={"39px"}
@@ -15598,7 +15589,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                                 ])}
                               />
                             </FormItemWrapper>
-                          </Stack__>
+                          </div>
                           <div
                             className={classNames(
                               projectcss.all,
@@ -15696,11 +15687,9 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                     throw e;
                   }
                 })() ? (
-                  <Stack__
-                    as={"div"}
+                  <div
                     data-plasmic-name={"step1"}
                     data-plasmic-override={overrides.step1}
-                    hasGap={true}
                     className={classNames(projectcss.all, sty.step1)}
                   >
                     <dd
@@ -15714,9 +15703,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                     >
                       {"Choix d\u2019abonnement"}
                     </dd>
-                    <Stack__
-                      as={"div"}
-                      hasGap={true}
+                    <div
                       className={classNames(projectcss.all, sty.freeBox__lxHr5)}
                     >
                       {(_par =>
@@ -15869,12 +15856,10 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                           </div>
                         );
                       })}
-                    </Stack__>
-                    <Stack__
-                      as={"div"}
+                    </div>
+                    <div
                       data-plasmic-name={"actions"}
                       data-plasmic-override={overrides.actions}
-                      hasGap={true}
                       className={classNames(projectcss.all, sty.actions)}
                     >
                       <Button
@@ -15982,6 +15967,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                                           product =>
                                             product.id === $state.productId
                                         ).default_price.id,
+
                                         (() => {
                                           const currentUrl =
                                             window.location.href;
@@ -16001,6 +15987,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                                             "/offre-employeur?onboarding=success&session_id={CHECKOUT_SESSION_ID}"
                                           );
                                         })(),
+
                                         (() => {
                                           const currentUrl =
                                             window.location.href;
@@ -16020,6 +16007,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                                             "/offre-employeur?onboarding=profil&stripe=cancel"
                                           );
                                         })(),
+
                                         $ctx.SupabaseUser.user.email
                                       ]
                                     },
@@ -16144,8 +16132,8 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                         }}
                         submitsForm={true}
                       />
-                    </Stack__>
-                  </Stack__>
+                    </div>
+                  </div>
                 ) : null}
                 {(() => {
                   try {
@@ -16167,11 +16155,9 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                     throw e;
                   }
                 })() ? (
-                  <Stack__
-                    as={"div"}
+                  <div
                     data-plasmic-name={"step2"}
                     data-plasmic-override={overrides.step2}
-                    hasGap={true}
                     className={classNames(projectcss.all, sty.step2)}
                   >
                     <div
@@ -16405,7 +16391,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                         }}
                       />
                     </div>
-                  </Stack__>
+                  </div>
                 ) : null}
                 <ProgressBar
                   className={classNames(
@@ -16455,7 +16441,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                     }
                   })()}
                 />
-              </Stack__>
+              </div>
               <PageLoader
                 data-plasmic-name={"stripeCancel"}
                 data-plasmic-override={overrides.stripeCancel}
@@ -16966,20 +16952,29 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                               userArgs: {
                                 variables: [
                                   $state.stripeCustomerId,
+
                                   $state.priceId,
+
                                   $state.productId,
+
                                   $state.productId === "prod_S81KBWHPyJa53z"
                                     ? 0
                                     : 2,
+
                                   $state.productId === "prod_S81KBWHPyJa53z"
                                     ? 3
                                     : 8,
+
                                   $state.productId === "prod_S81KBWHPyJa53z"
                                     ? 1
                                     : 4,
+
                                   $state.stripeSessionId,
+
                                   $state.stripeStatus,
+
                                   $state.stripeSubscriptionId,
+
                                   $ctx.SupabaseUser.user.id
                                 ]
                               },
@@ -17199,11 +17194,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
             data-plasmic-override={overrides.insufficientCharges}
             className={classNames("__wab_instance", sty.insufficientCharges)}
             content={
-              <Stack__
-                as={"div"}
-                hasGap={true}
-                className={classNames(projectcss.all, sty.freeBox__wuVFt)}
-              >
+              <div className={classNames(projectcss.all, sty.freeBox__wuVFt)}>
                 <ReshotIconAlert7T6Wum8VleSvgIcon
                   className={classNames(projectcss.all, sty.svg__dpQld)}
                   onClick={async event => {
@@ -17217,6 +17208,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                               opId: "e205d484-80c7-4de7-b5c0-7d0135a1a283",
                               userArgs: {
                                 conditions: [$ctx.SupabaseUser.user.id],
+
                                 variables: [null]
                               },
                               cacheKey: null,
@@ -17279,11 +17271,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                     "Vous avez utilis\u00e9 tous vos cr\u00e9dits. Pour publier votre offre, \nveuillez racheter des cr\u00e9dits, ou attendre le \nrenouvellement de votre abonnement."
                   }
                 </div>
-                <Stack__
-                  as={"div"}
-                  hasGap={true}
-                  className={classNames(projectcss.all, sty.freeBox__lxWj2)}
-                >
+                <div className={classNames(projectcss.all, sty.freeBox__lxWj2)}>
                   <Button
                     className={classNames("__wab_instance", sty.button__gGh7)}
                     color={"white"}
@@ -17403,8 +17391,8 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                       }
                     }}
                   />
-                </Stack__>
-              </Stack__>
+                </div>
+              </div>
             }
             footer={
               <div className={classNames(projectcss.all, sty.freeBox__xtJo)} />
@@ -17457,11 +17445,9 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
             data-plasmic-override={overrides.rechargeLastMinute}
             className={classNames("__wab_instance", sty.rechargeLastMinute)}
             content={
-              <Stack__
-                as={"div"}
+              <div
                 data-plasmic-name={"recharges"}
                 data-plasmic-override={overrides.recharges}
-                hasGap={true}
                 className={classNames(projectcss.all, sty.recharges)}
               >
                 <div
@@ -17483,9 +17469,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                     data-plasmic-override={overrides.classic}
                     className={classNames(projectcss.all, sty.classic)}
                   >
-                    <Stack__
-                      as={"div"}
-                      hasGap={true}
+                    <div
                       className={classNames(
                         projectcss.all,
                         sty.freeBox___2FGl5
@@ -17514,10 +17498,8 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                           </span>
                         </React.Fragment>
                       </div>
-                    </Stack__>
-                    <Stack__
-                      as={"div"}
-                      hasGap={true}
+                    </div>
+                    <div
                       className={classNames(projectcss.all, sty.freeBox__ofaUh)}
                     >
                       <div
@@ -17596,16 +17578,14 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                           })()}
                         </React.Fragment>
                       </div>
-                    </Stack__>
+                    </div>
                   </div>
                   <div
                     data-plasmic-name={"lastminust"}
                     data-plasmic-override={overrides.lastminust}
                     className={classNames(projectcss.all, sty.lastminust)}
                   >
-                    <Stack__
-                      as={"div"}
-                      hasGap={true}
+                    <div
                       className={classNames(projectcss.all, sty.freeBox__ytYeB)}
                     >
                       <PhClockCountdownFillIcon
@@ -17631,10 +17611,8 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                           </span>
                         </React.Fragment>
                       </div>
-                    </Stack__>
-                    <Stack__
-                      as={"div"}
-                      hasGap={true}
+                    </div>
+                    <div
                       className={classNames(projectcss.all, sty.freeBox__fLwdU)}
                     >
                       <div
@@ -17713,16 +17691,14 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                           })()}
                         </React.Fragment>
                       </div>
-                    </Stack__>
+                    </div>
                   </div>
                   <div
                     data-plasmic-name={"boost"}
                     data-plasmic-override={overrides.boost}
                     className={classNames(projectcss.all, sty.boost)}
                   >
-                    <Stack__
-                      as={"div"}
-                      hasGap={true}
+                    <div
                       className={classNames(projectcss.all, sty.freeBox__t8KdP)}
                     >
                       <Icon15Icon
@@ -17748,10 +17724,8 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                           </span>
                         </React.Fragment>
                       </div>
-                    </Stack__>
-                    <Stack__
-                      as={"div"}
-                      hasGap={true}
+                    </div>
+                    <div
                       className={classNames(projectcss.all, sty.freeBox__wml6Z)}
                     >
                       <div
@@ -17830,14 +17804,10 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                           })()}
                         </React.Fragment>
                       </div>
-                    </Stack__>
+                    </div>
                   </div>
                 </div>
-                <Stack__
-                  as={"div"}
-                  hasGap={true}
-                  className={classNames(projectcss.all, sty.freeBox__dumov)}
-                >
+                <div className={classNames(projectcss.all, sty.freeBox__dumov)}>
                   <div
                     className={classNames(
                       projectcss.all,
@@ -17874,7 +17844,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                     }}
                     placeholder={"CODEPROMO"}
                   />
-                </Stack__>
+                </div>
                 <div
                   data-plasmic-name={"totalAmount"}
                   data-plasmic-override={overrides.totalAmount}
@@ -17971,7 +17941,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                     }
                   />
                 </div>
-              </Stack__>
+              </div>
             }
             heading={
               <h3

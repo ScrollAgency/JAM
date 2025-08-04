@@ -238,13 +238,11 @@ function PlasmicSidebar2__RenderFunc(props: {
   });
 
   return (
-    <Stack__
-      as={"nav"}
+    <nav
       data-plasmic-name={"sidebarMenu"}
       data-plasmic-override={overrides.sidebarMenu}
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
-      hasGap={true}
       className={classNames(
         projectcss.all,
         projectcss.root_reset,
@@ -257,11 +255,9 @@ function PlasmicSidebar2__RenderFunc(props: {
         sty.sidebarMenu
       )}
     >
-      <Stack__
-        as={PlasmicLink__}
+      <PlasmicLink__
         data-plasmic-name={"logoWrapper"}
         data-plasmic-override={overrides.logoWrapper}
-        hasGap={true}
         className={classNames(projectcss.all, projectcss.a, sty.logoWrapper)}
         component={Link}
         onClick={async event => {
@@ -308,17 +304,15 @@ function PlasmicSidebar2__RenderFunc(props: {
         >
           {"JOB AROUND ME"}
         </div>
-      </Stack__>
+      </PlasmicLink__>
       <div
         data-plasmic-name={"container"}
         data-plasmic-override={overrides.container}
         className={classNames(projectcss.all, sty.container)}
       >
-        <Stack__
-          as={"div"}
+        <div
           data-plasmic-name={"links"}
           data-plasmic-override={overrides.links}
-          hasGap={true}
           className={classNames(projectcss.all, sty.links)}
         >
           <SideBarButton
@@ -716,12 +710,10 @@ function PlasmicSidebar2__RenderFunc(props: {
               })()}
             />
           ) : null}
-        </Stack__>
-        <Stack__
-          as={"div"}
+        </div>
+        <div
           data-plasmic-name={"disconnectButton"}
           data-plasmic-override={overrides.disconnectButton}
-          hasGap={true}
           className={classNames(projectcss.all, sty.disconnectButton)}
         >
           <div className={classNames(projectcss.all, sty.freeBox__iiBjj)}>
@@ -1050,9 +1042,9 @@ function PlasmicSidebar2__RenderFunc(props: {
               }
             })()}
           />
-        </Stack__>
+        </div>
       </div>
-    </Stack__>
+    </nav>
   ) as React.ReactElement | null;
 }
 

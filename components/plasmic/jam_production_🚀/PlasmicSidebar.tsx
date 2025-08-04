@@ -248,13 +248,11 @@ function PlasmicSidebar__RenderFunc(props: {
   });
 
   return (
-    <Stack__
-      as={"nav"}
+    <nav
       data-plasmic-name={"sidebar"}
       data-plasmic-override={overrides.sidebar}
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
-      hasGap={true}
       className={classNames(
         projectcss.all,
         projectcss.root_reset,
@@ -267,11 +265,9 @@ function PlasmicSidebar__RenderFunc(props: {
         sty.sidebar
       )}
     >
-      <Stack__
-        as={PlasmicLink__}
+      <PlasmicLink__
         data-plasmic-name={"logoWrapper"}
         data-plasmic-override={overrides.logoWrapper}
-        hasGap={true}
         className={classNames(projectcss.all, projectcss.a, sty.logoWrapper)}
         component={Link}
         onClick={async event => {
@@ -318,7 +314,7 @@ function PlasmicSidebar__RenderFunc(props: {
         >
           {"JOB AROUND ME"}
         </div>
-      </Stack__>
+      </PlasmicLink__>
       {(() => {
         try {
           return $state.role == "candidat";
@@ -337,11 +333,9 @@ function PlasmicSidebar__RenderFunc(props: {
           data-plasmic-override={overrides.candidatLinks}
           className={classNames(projectcss.all, sty.candidatLinks)}
         >
-          <Stack__
-            as={"div"}
+          <div
             data-plasmic-name={"links"}
             data-plasmic-override={overrides.links}
-            hasGap={true}
             className={classNames(projectcss.all, sty.links)}
           >
             <SideBarButton
@@ -666,12 +660,10 @@ function PlasmicSidebar__RenderFunc(props: {
                 }
               })()}
             />
-          </Stack__>
-          <Stack__
-            as={"div"}
+          </div>
+          <div
             data-plasmic-name={"disconnectButton"}
             data-plasmic-override={overrides.disconnectButton}
-            hasGap={true}
             className={classNames(projectcss.all, sty.disconnectButton)}
           >
             <SolarLogoutOutlineIcon
@@ -768,7 +760,7 @@ function PlasmicSidebar__RenderFunc(props: {
                 }
               })()}
             />
-          </Stack__>
+          </div>
         </div>
       ) : null}
       {(() => {
@@ -784,18 +776,14 @@ function PlasmicSidebar__RenderFunc(props: {
           throw e;
         }
       })() ? (
-        <Stack__
-          as={"div"}
+        <div
           data-plasmic-name={"employerLinks"}
           data-plasmic-override={overrides.employerLinks}
-          hasGap={true}
           className={classNames(projectcss.all, sty.employerLinks)}
         >
-          <Stack__
-            as={"div"}
+          <div
             data-plasmic-name={"links2"}
             data-plasmic-override={overrides.links2}
-            hasGap={true}
             className={classNames(projectcss.all, sty.links2)}
           >
             <SideBarButton
@@ -1210,12 +1198,10 @@ function PlasmicSidebar__RenderFunc(props: {
                 })()}
               />
             ) : null}
-          </Stack__>
-          <Stack__
-            as={"div"}
+          </div>
+          <div
             data-plasmic-name={"disconnectButton2"}
             data-plasmic-override={overrides.disconnectButton2}
-            hasGap={true}
             className={classNames(projectcss.all, sty.disconnectButton2)}
           >
             <div className={classNames(projectcss.all, sty.freeBox__tllFj)}>
@@ -1548,8 +1534,8 @@ function PlasmicSidebar__RenderFunc(props: {
                 }
               })()}
             />
-          </Stack__>
-        </Stack__>
+          </div>
+        </div>
       ) : null}
       {(() => {
         try {
@@ -1569,11 +1555,9 @@ function PlasmicSidebar__RenderFunc(props: {
           data-plasmic-override={overrides.adminLinks}
           className={classNames(projectcss.all, sty.adminLinks)}
         >
-          <Stack__
-            as={"div"}
+          <div
             data-plasmic-name={"links3"}
             data-plasmic-override={overrides.links3}
-            hasGap={true}
             className={classNames(projectcss.all, sty.links3)}
           >
             <SideBarButton
@@ -1870,12 +1854,10 @@ function PlasmicSidebar__RenderFunc(props: {
                 })()}
               />
             ) : null}
-          </Stack__>
-          <Stack__
-            as={"div"}
+          </div>
+          <div
             data-plasmic-name={"disconnectButton3"}
             data-plasmic-override={overrides.disconnectButton3}
-            hasGap={true}
             className={classNames(projectcss.all, sty.disconnectButton3)}
           >
             <SolarLogoutOutlineIcon
@@ -1972,10 +1954,10 @@ function PlasmicSidebar__RenderFunc(props: {
                 }
               })()}
             />
-          </Stack__>
+          </div>
         </div>
       ) : null}
-    </Stack__>
+    </nav>
   ) as React.ReactElement | null;
 }
 

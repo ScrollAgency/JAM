@@ -471,9 +471,7 @@ function PlasmicSideBarButton__RenderFunc(props: {
           })}
         />
       ) : null}
-      <Stack__
-        as={"div"}
-        hasGap={true}
+      <div
         className={classNames(projectcss.all, sty.freeBox__xw9Ld, {
           [sty.freeBoxcolor_neutral__xw9LdRe9UA]: hasVariant(
             $state,
@@ -915,7 +913,7 @@ function PlasmicSideBarButton__RenderFunc(props: {
             })
           })}
         </div>
-      </Stack__>
+      </div>
     </BaseButton>
   ) as React.ReactElement | null;
 }

@@ -219,11 +219,9 @@ function PlasmicCvUploaded__RenderFunc(props: {
           role={"img"}
         />
 
-        <Stack__
-          as={"div"}
+        <div
           data-plasmic-name={"content7"}
           data-plasmic-override={overrides.content7}
-          hasGap={true}
           className={classNames(projectcss.all, sty.content7)}
         >
           <div
@@ -231,11 +229,9 @@ function PlasmicCvUploaded__RenderFunc(props: {
             data-plasmic-override={overrides.freeBox}
             className={classNames(projectcss.all, sty.freeBox)}
           >
-            <Stack__
-              as={PlasmicImg__}
+            <PlasmicImg__
               data-plasmic-name={"img"}
               data-plasmic-override={overrides.img}
-              hasGap={true}
               alt={""}
               className={classNames(sty.img)}
               displayHeight={"25px"}
@@ -278,7 +274,7 @@ function PlasmicCvUploaded__RenderFunc(props: {
               })()}
             </React.Fragment>
           </div>
-        </Stack__>
+        </div>
       </div>
     ) : null
   ) as React.ReactElement | null;

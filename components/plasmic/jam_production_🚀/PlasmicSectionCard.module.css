@@ -3,29 +3,15 @@
   display: flex;
   flex-grow: 0;
   flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
   height: auto;
   width: 373px;
   flex-shrink: 1;
   position: relative;
+  row-gap: 32px;
   border-radius: 20px;
   padding: 32px 24px;
-}
-.sectionCard > :global(.__wab_flex-container) {
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  margin-top: calc(0px - 32px);
-  height: calc(100% + 32px);
-}
-.sectionCard > :global(.__wab_flex-container) > *,
-.sectionCard > :global(.__wab_flex-container) > :global(.__wab_slot) > *,
-.sectionCard > :global(.__wab_flex-container) > picture > img,
-.sectionCard
-  > :global(.__wab_flex-container)
-  > :global(.__wab_slot)
-  > picture
-  > img {
-  margin-top: 32px;
 }
 @media (min-width: 0px) and (max-width: 768px) {
   .sectionCard {
@@ -33,11 +19,6 @@
     height: auto;
     min-width: 0;
     padding: 32px 24px;
-  }
-}
-@media (min-width: 0px) and (max-width: 768px) {
-  .sectionCard > :global(.__wab_flex-container) {
-    min-width: 0;
   }
 }
 .freeBox {
@@ -89,26 +70,9 @@
   position: relative;
   align-self: stretch;
   flex-direction: column;
-}
-.textAndSupportingText4 > :global(.__wab_flex-container) {
-  flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  margin-top: calc(0px - 12px);
-  height: calc(100% + 12px);
-}
-.textAndSupportingText4 > :global(.__wab_flex-container) > *,
-.textAndSupportingText4
-  > :global(.__wab_flex-container)
-  > :global(.__wab_slot)
-  > *,
-.textAndSupportingText4 > :global(.__wab_flex-container) > picture > img,
-.textAndSupportingText4
-  > :global(.__wab_flex-container)
-  > :global(.__wab_slot)
-  > picture
-  > img {
-  margin-top: 12px;
+  row-gap: 12px;
 }
 .text {
   display: block;

@@ -150,6 +150,7 @@ export const PlasmicAccueil__ArgProps = new Array<ArgPropType>();
 export type PlasmicAccueil__OverridesType = {
   rechercheJob?: Flex__<"div">;
   loadingBoundary?: Flex__<typeof LoadingBoundary>;
+  screen?: Flex__<"div">;
   frame6?: Flex__<"div">;
   frame7?: Flex__<"div">;
   frame8?: Flex__<"div">;
@@ -163,10 +164,11 @@ export type PlasmicAccueil__OverridesType = {
   link?: Flex__<"a"> & Partial<LinkProps>;
   main?: Flex__<"main">;
   bgImage?: Flex__<typeof PlasmicImg__>;
-  section1?: Flex__<"section">;
-  title?: Flex__<"div">;
+  hero?: Flex__<"section">;
+  heroLeft?: Flex__<"div">;
   badgeGroup?: Flex__<"div">;
   message?: Flex__<"div">;
+  title?: Flex__<"div">;
   trouvezUnJobNaJamaisEteAussiSimple?: Flex__<"h1">;
   trouvezUnJobNaJamaisEteAussiSimple2?: Flex__<"p">;
   jobSearchSection?: Flex__<"div">;
@@ -1259,14 +1261,14 @@ function PlasmicAccueil__RenderFunc(props: {
         type: "private",
         variableType: "text",
         initFunc: ({ $props, $state, $queries, $ctx }) =>
-          "Ne ratez aucune offre"
+          "Ne manquez aucune offre"
       },
       {
         path: "sectionCard2.description",
         type: "private",
         variableType: "text",
         initFunc: ({ $props, $state, $queries, $ctx }) =>
-          "Soyez alert\u00e9 par email d\u00e8s qu\u2019une nouvelle offre d\u2019emploi correspond \u00e0 vos crit\u00e8res de recherche."
+          "Soyez inform\u00e9 en temps r\u00e9el lorsqu'une nouvelle offre d'emploi correspond \u00e0 vos crit\u00e8res de recherche."
       },
       {
         path: "sectionCard3.icon",
@@ -1278,14 +1280,14 @@ function PlasmicAccueil__RenderFunc(props: {
         path: "sectionCard3.title",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => "Jobs Last Minute"
+        initFunc: ({ $props, $state, $queries, $ctx }) => "Last Minute"
       },
       {
         path: "sectionCard3.description",
         type: "private",
         variableType: "text",
         initFunc: ({ $props, $state, $queries, $ctx }) =>
-          "Fini l\u2019attente, gr\u00e2ce aux jobs Last Minute, vous postulez et recevez une r\u00e9ponse sous 24-48h."
+          "Avoir l\u2018acc\u00e8s aux jobs \u00e0 pourvoir imm\u00e9diatement. Offres urgentes, besoin imm\u00e9diat."
       },
       {
         path: "isMobile",
@@ -1570,9 +1572,11 @@ function PlasmicAccueil__RenderFunc(props: {
             $state.form?.value?.postal_code ||
               $queries.currentUser?.data[0]?.postal_code ||
               "75000",
+
             $state.form?.value?.address ||
               $queries.currentUser?.data[0]?.address ||
               "",
+
             $state.form?.value?.city ||
               $queries.currentUser?.data[0]?.city ||
               "paris"
@@ -1590,20 +1594,35 @@ function PlasmicAccueil__RenderFunc(props: {
         userArgs: {
           query: [
             $state.contractType,
+
             $state.contractType.length == 0,
+
             $state.salary,
+
             $state.salary.length == 0,
+
             $state.availabilityStatus,
+
             $state.availabilityStatus.length == 0,
+
             $state.workingTime,
+
             $state.workingTime.length == 0,
+
             $state.workMode,
+
             $state.workMode.length == 0,
+
             $state.sectorActivity2,
+
             $state.sectorActivity2 == "",
+
             $state.keyWords,
+
             $state.keyWords,
+
             $state.searchLocation,
+
             $state.isLastMinute
           ]
         },
@@ -1666,10 +1685,10 @@ function PlasmicAccueil__RenderFunc(props: {
             loadingState={
               <DataCtxReader__>
                 {$ctx => (
-                  <Stack__
-                    as={"div"}
-                    hasGap={true}
-                    className={classNames(projectcss.all, sty.freeBox__otYpP)}
+                  <div
+                    data-plasmic-name={"screen"}
+                    data-plasmic-override={overrides.screen}
+                    className={classNames(projectcss.all, sty.screen)}
                   >
                     <PlasmicImg__
                       alt={""}
@@ -1680,7 +1699,7 @@ function PlasmicAccueil__RenderFunc(props: {
                       displayMinHeight={"0"}
                       displayMinWidth={"0"}
                       displayWidth={"70px"}
-                      loading={"lazy"}
+                      loading={"eager"}
                       src={{
                         src: "/plasmic/jam_production_🚀/images/pictogramSvg.svg",
                         fullWidth: 95,
@@ -1740,7 +1759,7 @@ function PlasmicAccueil__RenderFunc(props: {
                         </div>
                       </div>
                     </div>
-                  </Stack__>
+                  </div>
                 )}
               </DataCtxReader__>
             }
@@ -1748,18 +1767,14 @@ function PlasmicAccueil__RenderFunc(props: {
             <DataCtxReader__>
               {$ctx => (
                 <React.Fragment>
-                  <Stack__
-                    as={"header"}
+                  <header
                     data-plasmic-name={"header"}
                     data-plasmic-override={overrides.header}
-                    hasGap={true}
                     className={classNames(projectcss.all, sty.header)}
                   >
-                    <Stack__
-                      as={"div"}
+                    <div
                       data-plasmic-name={"jamLogo"}
                       data-plasmic-override={overrides.jamLogo}
-                      hasGap={true}
                       className={classNames(projectcss.all, sty.jamLogo)}
                       onClick={async event => {
                         const $steps = {};
@@ -1846,10 +1861,8 @@ function PlasmicAccueil__RenderFunc(props: {
                           </div>
                         </div>
                       </div>
-                    </Stack__>
-                    <Stack__
-                      as={"div"}
-                      hasGap={true}
+                    </div>
+                    <div
                       className={classNames(projectcss.all, sty.freeBox__cWnZj)}
                     >
                       <PlasmicLink__
@@ -2275,8 +2288,8 @@ function PlasmicAccueil__RenderFunc(props: {
                           }}
                         />
                       ) : null}
-                    </Stack__>
-                  </Stack__>
+                    </div>
+                  </header>
                   <main
                     data-plasmic-name={"main"}
                     data-plasmic-override={overrides.main}
@@ -2306,261 +2319,1257 @@ function PlasmicAccueil__RenderFunc(props: {
                     />
 
                     <section
-                      data-plasmic-name={"section1"}
-                      data-plasmic-override={overrides.section1}
-                      className={classNames(projectcss.all, sty.section1)}
+                      data-plasmic-name={"hero"}
+                      data-plasmic-override={overrides.hero}
+                      className={classNames(projectcss.all, sty.hero)}
                     >
-                      <Stack__
-                        as={"div"}
-                        data-plasmic-name={"title"}
-                        data-plasmic-override={overrides.title}
-                        hasGap={true}
-                        className={classNames(projectcss.all, sty.title)}
+                      <div
+                        data-plasmic-name={"heroLeft"}
+                        data-plasmic-override={overrides.heroLeft}
+                        className={classNames(projectcss.all, sty.heroLeft)}
                       >
-                        <Stack__
-                          as={"div"}
-                          hasGap={true}
-                          className={classNames(
-                            projectcss.all,
-                            sty.freeBox___0Chyr
-                          )}
+                        <div
+                          data-plasmic-name={"badgeGroup"}
+                          data-plasmic-override={overrides.badgeGroup}
+                          className={classNames(projectcss.all, sty.badgeGroup)}
                         >
-                          <Stack__
-                            as={"div"}
-                            data-plasmic-name={"badgeGroup"}
-                            data-plasmic-override={overrides.badgeGroup}
-                            hasGap={true}
+                          <div
+                            data-plasmic-name={"message"}
+                            data-plasmic-override={overrides.message}
                             className={classNames(
                               projectcss.all,
-                              sty.badgeGroup
+                              projectcss.__wab_text,
+                              sty.message
+                            )}
+                          >
+                            {"Get ready to find a job"}
+                          </div>
+                        </div>
+                        <div
+                          className={classNames(
+                            projectcss.all,
+                            sty.freeBox__v7K4A
+                          )}
+                        >
+                          <div
+                            data-plasmic-name={"title"}
+                            data-plasmic-override={overrides.title}
+                            className={classNames(projectcss.all, sty.title)}
+                          >
+                            <div
+                              className={classNames(
+                                projectcss.all,
+                                sty.freeBox___0Chyr
+                              )}
+                            >
+                              <h1
+                                data-plasmic-name={
+                                  "trouvezUnJobNaJamaisEteAussiSimple"
+                                }
+                                data-plasmic-override={
+                                  overrides.trouvezUnJobNaJamaisEteAussiSimple
+                                }
+                                className={classNames(
+                                  projectcss.all,
+                                  projectcss.h1,
+                                  projectcss.__wab_text,
+                                  sty.trouvezUnJobNaJamaisEteAussiSimple,
+                                  "isDynamicForTranslate"
+                                )}
+                              >
+                                <React.Fragment>
+                                  <React.Fragment>
+                                    {
+                                      "Trouver un job n\u2019a jamais \u00e9t\u00e9 aussi "
+                                    }
+                                  </React.Fragment>
+                                  <span
+                                    className={
+                                      "plasmic_default__all plasmic_default__span"
+                                    }
+                                    style={{
+                                      color: "#BBFE68",
+                                      fontWeight: 600
+                                    }}
+                                  >
+                                    {"simple"}
+                                  </span>
+                                </React.Fragment>
+                              </h1>
+                              <p
+                                data-plasmic-name={
+                                  "trouvezUnJobNaJamaisEteAussiSimple2"
+                                }
+                                data-plasmic-override={
+                                  overrides.trouvezUnJobNaJamaisEteAussiSimple2
+                                }
+                                className={classNames(
+                                  projectcss.all,
+                                  projectcss.p,
+                                  projectcss.__wab_text,
+                                  sty.trouvezUnJobNaJamaisEteAussiSimple2
+                                )}
+                              >
+                                <React.Fragment>
+                                  <span
+                                    className={
+                                      "plasmic_default__all plasmic_default__span"
+                                    }
+                                    style={{ fontWeight: 300 }}
+                                  >
+                                    {
+                                      "Trouvez facilement un emploi pr\u00e8s de chez vous et connectez-vous aux employeurs locaux."
+                                    }
+                                  </span>
+                                </React.Fragment>
+                              </p>
+                            </div>
+                          </div>
+                          <div
+                            data-plasmic-name={"jobSearchSection"}
+                            data-plasmic-override={overrides.jobSearchSection}
+                            className={classNames(
+                              projectcss.all,
+                              sty.jobSearchSection
                             )}
                           >
                             <div
-                              data-plasmic-name={"message"}
-                              data-plasmic-override={overrides.message}
+                              data-plasmic-name={"filters"}
+                              data-plasmic-override={overrides.filters}
                               className={classNames(
                                 projectcss.all,
-                                projectcss.__wab_text,
-                                sty.message
+                                sty.filters
                               )}
                             >
-                              {"Get ready to find a job"}
-                            </div>
-                          </Stack__>
-                          <h1
-                            data-plasmic-name={
-                              "trouvezUnJobNaJamaisEteAussiSimple"
-                            }
-                            data-plasmic-override={
-                              overrides.trouvezUnJobNaJamaisEteAussiSimple
-                            }
-                            className={classNames(
-                              projectcss.all,
-                              projectcss.h1,
-                              projectcss.__wab_text,
-                              sty.trouvezUnJobNaJamaisEteAussiSimple,
-                              "isDynamicForTranslate"
-                            )}
-                          >
-                            <React.Fragment>
-                              <React.Fragment>
-                                {
-                                  "Trouver un job n\u2019a jamais \u00e9t\u00e9 aussi "
-                                }
-                              </React.Fragment>
-                              <span
-                                className={
-                                  "plasmic_default__all plasmic_default__span"
-                                }
-                                style={{ color: "#BBFE68", fontWeight: 600 }}
-                              >
-                                {"simple"}
-                              </span>
-                            </React.Fragment>
-                          </h1>
-                        </Stack__>
-                        <p
-                          data-plasmic-name={
-                            "trouvezUnJobNaJamaisEteAussiSimple2"
-                          }
-                          data-plasmic-override={
-                            overrides.trouvezUnJobNaJamaisEteAussiSimple2
-                          }
-                          className={classNames(
-                            projectcss.all,
-                            projectcss.p,
-                            projectcss.__wab_text,
-                            sty.trouvezUnJobNaJamaisEteAussiSimple2
-                          )}
-                        >
-                          <React.Fragment>
-                            <span
-                              className={
-                                "plasmic_default__all plasmic_default__span"
-                              }
-                              style={{ fontWeight: 300 }}
-                            >
-                              {
-                                "Trouvez facilement un emploi pr\u00e8s de chez vous et connectez-vous aux employeurs locaux."
-                              }
-                            </span>
-                          </React.Fragment>
-                        </p>
-                      </Stack__>
-                      <Stack__
-                        as={"div"}
-                        data-plasmic-name={"jobSearchSection"}
-                        data-plasmic-override={overrides.jobSearchSection}
-                        hasGap={true}
-                        className={classNames(
-                          projectcss.all,
-                          sty.jobSearchSection
-                        )}
-                      >
-                        <Stack__
-                          as={"div"}
-                          data-plasmic-name={"filters"}
-                          data-plasmic-override={overrides.filters}
-                          hasGap={true}
-                          className={classNames(projectcss.all, sty.filters)}
-                        >
-                          {(() => {
-                            const child$Props = {
-                              className: classNames(
-                                "__wab_instance",
-                                sty.formFilter
-                              ),
-                              extendedOnValuesChange: async (
-                                ...eventArgs: any
-                              ) => {
-                                generateStateOnChangePropForCodeComponents(
-                                  $state,
-                                  "value",
-                                  ["formFilter", "value"],
-                                  FormWrapper_Helpers
-                                ).apply(null, eventArgs);
-                              },
-                              formItems: [
-                                {
-                                  label: "Name",
-                                  name: "name",
-                                  inputType: "Text"
-                                },
-                                {
-                                  label: "Message",
-                                  name: "message",
-                                  inputType: "Text Area"
-                                }
-                              ],
-                              labelCol: { span: 8, horizontalOnly: true },
-                              layout: "vertical",
-                              mode: "advanced",
-                              onIsSubmittingChange: async (
-                                ...eventArgs: any
-                              ) => {
-                                generateStateOnChangePropForCodeComponents(
-                                  $state,
-                                  "isSubmitting",
-                                  ["formFilter", "isSubmitting"],
-                                  FormWrapper_Helpers
-                                ).apply(null, eventArgs);
-                              },
-                              ref: ref => {
-                                $refs["formFilter"] = ref;
-                              },
-                              submitSlot: null,
-                              wrapperCol: { span: 16, horizontalOnly: true }
-                            };
-                            initializeCodeComponentStates(
-                              $state,
-                              [
-                                {
-                                  name: "value",
-                                  plasmicStateName: "formFilter.value"
-                                },
-                                {
-                                  name: "isSubmitting",
-                                  plasmicStateName: "formFilter.isSubmitting"
-                                }
-                              ],
-                              [],
-                              FormWrapper_Helpers ?? {},
-                              child$Props
-                            );
-
-                            return (
-                              <FormWrapper
-                                data-plasmic-name={"formFilter"}
-                                data-plasmic-override={overrides.formFilter}
-                                {...child$Props}
-                              >
-                                <Stack__
-                                  as={"div"}
-                                  data-plasmic-name={"wrapContent"}
-                                  data-plasmic-override={overrides.wrapContent}
-                                  hasGap={true}
-                                  className={classNames(
-                                    projectcss.all,
-                                    sty.wrapContent
-                                  )}
-                                >
-                                  <FormItemWrapper
-                                    className={classNames(
-                                      "__wab_instance",
-                                      sty.formField___6Jwam
-                                    )}
-                                    initialValue={""}
-                                    label={
-                                      <div
-                                        className={classNames(
-                                          projectcss.all,
-                                          projectcss.__wab_text,
-                                          sty.text___7WSaY
-                                        )}
-                                      >
-                                        {"Label"}
-                                      </div>
+                              {(() => {
+                                const child$Props = {
+                                  className: classNames(
+                                    "__wab_instance",
+                                    sty.formFilter
+                                  ),
+                                  extendedOnValuesChange: async (
+                                    ...eventArgs: any
+                                  ) => {
+                                    generateStateOnChangePropForCodeComponents(
+                                      $state,
+                                      "value",
+                                      ["formFilter", "value"],
+                                      FormWrapper_Helpers
+                                    ).apply(null, eventArgs);
+                                  },
+                                  formItems: [
+                                    {
+                                      label: "Name",
+                                      name: "name",
+                                      inputType: "Text"
+                                    },
+                                    {
+                                      label: "Message",
+                                      name: "message",
+                                      inputType: "Text Area"
                                     }
-                                    name={"key_words"}
-                                    noLabel={true}
+                                  ],
+                                  labelCol: { span: 8, horizontalOnly: true },
+                                  layout: "vertical",
+                                  mode: "advanced",
+                                  onIsSubmittingChange: async (
+                                    ...eventArgs: any
+                                  ) => {
+                                    generateStateOnChangePropForCodeComponents(
+                                      $state,
+                                      "isSubmitting",
+                                      ["formFilter", "isSubmitting"],
+                                      FormWrapper_Helpers
+                                    ).apply(null, eventArgs);
+                                  },
+                                  ref: ref => {
+                                    $refs["formFilter"] = ref;
+                                  },
+                                  submitSlot: null,
+                                  wrapperCol: { span: 16, horizontalOnly: true }
+                                };
+                                initializeCodeComponentStates(
+                                  $state,
+                                  [
+                                    {
+                                      name: "value",
+                                      plasmicStateName: "formFilter.value"
+                                    },
+                                    {
+                                      name: "isSubmitting",
+                                      plasmicStateName:
+                                        "formFilter.isSubmitting"
+                                    }
+                                  ],
+                                  [],
+                                  FormWrapper_Helpers ?? {},
+                                  child$Props
+                                );
+
+                                return (
+                                  <FormWrapper
+                                    data-plasmic-name={"formFilter"}
+                                    data-plasmic-override={overrides.formFilter}
+                                    {...child$Props}
                                   >
                                     <div
+                                      data-plasmic-name={"wrapContent"}
+                                      data-plasmic-override={
+                                        overrides.wrapContent
+                                      }
                                       className={classNames(
                                         projectcss.all,
-                                        sty.freeBox__rOqAn
+                                        sty.wrapContent
                                       )}
                                     >
-                                      {(() => {
-                                        const child$Props = {
-                                          allowClear: true,
-                                          className: classNames(
+                                      <FormItemWrapper
+                                        className={classNames(
+                                          "__wab_instance",
+                                          sty.formField___6Jwam
+                                        )}
+                                        initialValue={""}
+                                        label={
+                                          <div
+                                            className={classNames(
+                                              projectcss.all,
+                                              projectcss.__wab_text,
+                                              sty.text___7WSaY
+                                            )}
+                                          >
+                                            {"Label"}
+                                          </div>
+                                        }
+                                        name={"key_words"}
+                                        noLabel={true}
+                                      >
+                                        <div
+                                          className={classNames(
+                                            projectcss.all,
+                                            sty.freeBox__rOqAn
+                                          )}
+                                        >
+                                          {(() => {
+                                            const child$Props = {
+                                              allowClear: true,
+                                              className: classNames(
+                                                "__wab_instance",
+                                                sty.input3
+                                              ),
+                                              onChange: async (
+                                                ...eventArgs: any
+                                              ) => {
+                                                generateStateOnChangePropForCodeComponents(
+                                                  $state,
+                                                  "value",
+                                                  ["input3", "value"],
+                                                  AntdInput_Helpers
+                                                ).apply(null, eventArgs);
+
+                                                (async event => {
+                                                  const $steps = {};
+
+                                                  $steps["updateKeyWords"] =
+                                                    true
+                                                      ? (() => {
+                                                          const actionArgs = {
+                                                            variable: {
+                                                              objRoot: $state,
+                                                              variablePath: [
+                                                                "keyWords"
+                                                              ]
+                                                            },
+                                                            operation: 0,
+                                                            value:
+                                                              $state.input3
+                                                                .value
+                                                          };
+                                                          return (({
+                                                            variable,
+                                                            value,
+                                                            startIndex,
+                                                            deleteCount
+                                                          }) => {
+                                                            if (!variable) {
+                                                              return;
+                                                            }
+                                                            const {
+                                                              objRoot,
+                                                              variablePath
+                                                            } = variable;
+
+                                                            $stateSet(
+                                                              objRoot,
+                                                              variablePath,
+                                                              value
+                                                            );
+                                                            return value;
+                                                          })?.apply(null, [
+                                                            actionArgs
+                                                          ]);
+                                                        })()
+                                                      : undefined;
+                                                  if (
+                                                    $steps["updateKeyWords"] !=
+                                                      null &&
+                                                    typeof $steps[
+                                                      "updateKeyWords"
+                                                    ] === "object" &&
+                                                    typeof $steps[
+                                                      "updateKeyWords"
+                                                    ].then === "function"
+                                                  ) {
+                                                    $steps["updateKeyWords"] =
+                                                      await $steps[
+                                                        "updateKeyWords"
+                                                      ];
+                                                  }
+                                                }).apply(null, eventArgs);
+                                              },
+                                              placeholder:
+                                                "Mot-cl\u00e9, job, entreprise",
+                                              prefix: (
+                                                <PlasmicImg__
+                                                  alt={""}
+                                                  className={classNames(
+                                                    sty.img__bgjoy
+                                                  )}
+                                                  displayHeight={"20px"}
+                                                  displayMaxHeight={"none"}
+                                                  displayMaxWidth={"none"}
+                                                  displayMinHeight={"0"}
+                                                  displayMinWidth={"0"}
+                                                  displayWidth={"20px"}
+                                                  loading={"lazy"}
+                                                  src={{
+                                                    src: "/plasmic/jam_production_🚀/images/image10.svg",
+                                                    fullWidth: 21,
+                                                    fullHeight: 20,
+                                                    aspectRatio: 1.05
+                                                  }}
+                                                />
+                                              ),
+
+                                              size: "large",
+                                              value: generateStateValueProp(
+                                                $state,
+                                                ["input3", "value"]
+                                              )
+                                            };
+                                            initializeCodeComponentStates(
+                                              $state,
+                                              [
+                                                {
+                                                  name: "value",
+                                                  plasmicStateName:
+                                                    "input3.value"
+                                                }
+                                              ],
+                                              [],
+                                              AntdInput_Helpers ?? {},
+                                              child$Props
+                                            );
+                                            initializePlasmicStates(
+                                              $state,
+                                              [
+                                                {
+                                                  name: "input3.value",
+                                                  initFunc: ({
+                                                    $props,
+                                                    $state,
+                                                    $queries
+                                                  }) =>
+                                                    (() => {
+                                                      try {
+                                                        return (
+                                                          $ctx.query.name || ""
+                                                        );
+                                                      } catch (e) {
+                                                        if (
+                                                          e instanceof
+                                                            TypeError ||
+                                                          e?.plasmicType ===
+                                                            "PlasmicUndefinedDataError"
+                                                        ) {
+                                                          return undefined;
+                                                        }
+                                                        throw e;
+                                                      }
+                                                    })()
+                                                }
+                                              ],
+                                              []
+                                            );
+                                            return (
+                                              <AntdInput
+                                                data-plasmic-name={"input3"}
+                                                data-plasmic-override={
+                                                  overrides.input3
+                                                }
+                                                {...child$Props}
+                                              />
+                                            );
+                                          })()}
+                                        </div>
+                                      </FormItemWrapper>
+                                      <FormItemWrapper
+                                        className={classNames(
+                                          "__wab_instance",
+                                          sty.formField__zKiqa
+                                        )}
+                                        initialValue={""}
+                                        label={
+                                          <div
+                                            className={classNames(
+                                              projectcss.all,
+                                              projectcss.__wab_text,
+                                              sty.text__ipMk7
+                                            )}
+                                          >
+                                            {"Label"}
+                                          </div>
+                                        }
+                                        name={"location"}
+                                        noLabel={true}
+                                      >
+                                        <div
+                                          className={classNames(
+                                            projectcss.all,
+                                            sty.freeBox__r7PSa
+                                          )}
+                                        >
+                                          {(() => {
+                                            const child$Props = {
+                                              allowClear: true,
+                                              className: classNames(
+                                                "__wab_instance",
+                                                sty.input4
+                                              ),
+                                              onChange: async (
+                                                ...eventArgs: any
+                                              ) => {
+                                                generateStateOnChangePropForCodeComponents(
+                                                  $state,
+                                                  "value",
+                                                  ["input4", "value"],
+                                                  AntdInput_Helpers
+                                                ).apply(null, eventArgs);
+
+                                                (async event => {
+                                                  const $steps = {};
+
+                                                  $steps[
+                                                    "updateSearchLocation"
+                                                  ] = true
+                                                    ? (() => {
+                                                        const actionArgs = {
+                                                          variable: {
+                                                            objRoot: $state,
+                                                            variablePath: [
+                                                              "searchLocation"
+                                                            ]
+                                                          },
+                                                          operation: 0,
+                                                          value:
+                                                            $state.input4.value
+                                                        };
+                                                        return (({
+                                                          variable,
+                                                          value,
+                                                          startIndex,
+                                                          deleteCount
+                                                        }) => {
+                                                          if (!variable) {
+                                                            return;
+                                                          }
+                                                          const {
+                                                            objRoot,
+                                                            variablePath
+                                                          } = variable;
+
+                                                          $stateSet(
+                                                            objRoot,
+                                                            variablePath,
+                                                            value
+                                                          );
+                                                          return value;
+                                                        })?.apply(null, [
+                                                          actionArgs
+                                                        ]);
+                                                      })()
+                                                    : undefined;
+                                                  if (
+                                                    $steps[
+                                                      "updateSearchLocation"
+                                                    ] != null &&
+                                                    typeof $steps[
+                                                      "updateSearchLocation"
+                                                    ] === "object" &&
+                                                    typeof $steps[
+                                                      "updateSearchLocation"
+                                                    ].then === "function"
+                                                  ) {
+                                                    $steps[
+                                                      "updateSearchLocation"
+                                                    ] = await $steps[
+                                                      "updateSearchLocation"
+                                                    ];
+                                                  }
+                                                }).apply(null, eventArgs);
+                                              },
+                                              placeholder: "Localisation",
+                                              prefix: (
+                                                <PlasmicImg__
+                                                  alt={""}
+                                                  className={classNames(
+                                                    sty.img__wMeId
+                                                  )}
+                                                  displayHeight={"18px"}
+                                                  displayMaxHeight={"none"}
+                                                  displayMaxWidth={"100%"}
+                                                  displayMinHeight={"0"}
+                                                  displayMinWidth={"0"}
+                                                  displayWidth={"18px"}
+                                                  loading={"lazy"}
+                                                  src={{
+                                                    src: "/plasmic/jam_production_🚀/images/locationPinSvgrepoComSvg.svg",
+                                                    fullWidth: 800,
+                                                    fullHeight: 800,
+                                                    aspectRatio: undefined
+                                                  }}
+                                                />
+                                              ),
+
+                                              size: "large",
+                                              value: generateStateValueProp(
+                                                $state,
+                                                ["input4", "value"]
+                                              )
+                                            };
+                                            initializeCodeComponentStates(
+                                              $state,
+                                              [
+                                                {
+                                                  name: "value",
+                                                  plasmicStateName:
+                                                    "input4.value"
+                                                }
+                                              ],
+                                              [],
+                                              AntdInput_Helpers ?? {},
+                                              child$Props
+                                            );
+                                            initializePlasmicStates(
+                                              $state,
+                                              [
+                                                {
+                                                  name: "input4.value",
+                                                  initFunc: ({
+                                                    $props,
+                                                    $state,
+                                                    $queries
+                                                  }) =>
+                                                    (() => {
+                                                      try {
+                                                        return (
+                                                          $ctx.query.city || ""
+                                                        );
+                                                      } catch (e) {
+                                                        if (
+                                                          e instanceof
+                                                            TypeError ||
+                                                          e?.plasmicType ===
+                                                            "PlasmicUndefinedDataError"
+                                                        ) {
+                                                          return undefined;
+                                                        }
+                                                        throw e;
+                                                      }
+                                                    })()
+                                                }
+                                              ],
+                                              []
+                                            );
+                                            return (
+                                              <AntdInput
+                                                data-plasmic-name={"input4"}
+                                                data-plasmic-override={
+                                                  overrides.input4
+                                                }
+                                                {...child$Props}
+                                              />
+                                            );
+                                          })()}
+                                        </div>
+                                      </FormItemWrapper>
+                                      <FormItemWrapper
+                                        className={classNames(
+                                          "__wab_instance",
+                                          sty.formField__tdjl9
+                                        )}
+                                        label={"Name"}
+                                        name={"sector_activity"}
+                                        noLabel={true}
+                                      >
+                                        <AntdSelect
+                                          data-plasmic-name={"select13"}
+                                          data-plasmic-override={
+                                            overrides.select13
+                                          }
+                                          allowClear={true}
+                                          autoFocus={false}
+                                          bordered={false}
+                                          className={classNames(
                                             "__wab_instance",
-                                            sty.input3
-                                          ),
-                                          onChange: async (
+                                            sty.select13
+                                          )}
+                                          defaultStylesClassName={classNames(
+                                            projectcss.root_reset,
+                                            projectcss.plasmic_default_styles,
+                                            projectcss.plasmic_mixins,
+                                            projectcss.plasmic_tokens,
+                                            plasmic_antd_5_hostless_css.plasmic_tokens,
+                                            plasmic_library_tailwind_3_4_number_tokens_css.plasmic_tokens,
+                                            plasmic_plasmic_rich_components_css.plasmic_tokens
+                                          )}
+                                          dropdownMatchSelectWidth={true}
+                                          mode={"single"}
+                                          onChange={async (
                                             ...eventArgs: any
                                           ) => {
-                                            generateStateOnChangePropForCodeComponents(
-                                              $state,
-                                              "value",
-                                              ["input3", "value"],
-                                              AntdInput_Helpers
-                                            ).apply(null, eventArgs);
+                                            generateStateOnChangeProp($state, [
+                                              "select13",
+                                              "value"
+                                            ]).apply(null, eventArgs);
+                                          }}
+                                          optionClassName={classNames({
+                                            [sty["pcls_TulvYrdlFkLz"]]: true
+                                          })}
+                                          options={(() => {
+                                            try {
+                                              return $queries.getCriteria.data
+                                                .filter(
+                                                  item =>
+                                                    item.type ===
+                                                    "sector_activity"
+                                                )
+                                                .map(item => ({
+                                                  value: item.name,
+                                                  label: item.name
+                                                }));
+                                            } catch (e) {
+                                              if (
+                                                e instanceof TypeError ||
+                                                e?.plasmicType ===
+                                                  "PlasmicUndefinedDataError"
+                                              ) {
+                                                return [];
+                                              }
+                                              throw e;
+                                            }
+                                          })()}
+                                          placeholder={
+                                            <div
+                                              className={classNames(
+                                                projectcss.all,
+                                                sty.freeBox__cepRq
+                                              )}
+                                            >
+                                              <PlasmicImg__
+                                                alt={""}
+                                                className={classNames(
+                                                  sty.img__noDyM
+                                                )}
+                                                displayHeight={"18px"}
+                                                displayMaxHeight={"none"}
+                                                displayMaxWidth={"100%"}
+                                                displayMinHeight={"0"}
+                                                displayMinWidth={"0"}
+                                                displayWidth={"18px"}
+                                                loading={"lazy"}
+                                                src={{
+                                                  src: "/plasmic/jam_production_🚀/images/image2.svg",
+                                                  fullWidth: 20,
+                                                  fullHeight: 20,
+                                                  aspectRatio: 1
+                                                }}
+                                              />
 
-                                            (async event => {
+                                              <div
+                                                className={classNames(
+                                                  projectcss.all,
+                                                  projectcss.__wab_text,
+                                                  sty.text__cIt50
+                                                )}
+                                              >
+                                                {"Secteur d'activit\u00e9"}
+                                              </div>
+                                            </div>
+                                          }
+                                          popupScopeClassName={
+                                            sty["select13__popup"]
+                                          }
+                                          showSearch={true}
+                                          size={"large"}
+                                          useChildren={false}
+                                          value={generateStateValueProp(
+                                            $state,
+                                            ["select13", "value"]
+                                          )}
+                                        />
+                                      </FormItemWrapper>
+                                      <FormItemWrapper
+                                        className={classNames(
+                                          "__wab_instance",
+                                          sty.formField__dm5ZL
+                                        )}
+                                        label={"Name"}
+                                        name={"availability_status"}
+                                        noLabel={true}
+                                        preserve={false}
+                                      >
+                                        <AntdSelect
+                                          data-plasmic-name={"select9"}
+                                          data-plasmic-override={
+                                            overrides.select9
+                                          }
+                                          allowClear={true}
+                                          bordered={false}
+                                          className={classNames(
+                                            "__wab_instance",
+                                            sty.select9
+                                          )}
+                                          defaultStylesClassName={classNames(
+                                            projectcss.root_reset,
+                                            projectcss.plasmic_default_styles,
+                                            projectcss.plasmic_mixins,
+                                            projectcss.plasmic_tokens,
+                                            plasmic_antd_5_hostless_css.plasmic_tokens,
+                                            plasmic_library_tailwind_3_4_number_tokens_css.plasmic_tokens,
+                                            plasmic_plasmic_rich_components_css.plasmic_tokens
+                                          )}
+                                          mode={"multiple"}
+                                          onChange={async (
+                                            ...eventArgs: any
+                                          ) => {
+                                            generateStateOnChangeProp($state, [
+                                              "select9",
+                                              "value"
+                                            ]).apply(null, eventArgs);
+                                          }}
+                                          optionClassName={classNames({
+                                            [sty["pcls_dj7ANnXN0yWv"]]: true
+                                          })}
+                                          options={(() => {
+                                            try {
+                                              return $queries.getCriteria.data
+                                                .filter(
+                                                  item =>
+                                                    item.type ===
+                                                    "availability_status"
+                                                )
+                                                .map(item => ({
+                                                  value: item.name,
+                                                  label: item.name
+                                                }));
+                                            } catch (e) {
+                                              if (
+                                                e instanceof TypeError ||
+                                                e?.plasmicType ===
+                                                  "PlasmicUndefinedDataError"
+                                              ) {
+                                                return [];
+                                              }
+                                              throw e;
+                                            }
+                                          })()}
+                                          placeholder={
+                                            <div
+                                              className={classNames(
+                                                projectcss.all,
+                                                sty.freeBox___1O30W
+                                              )}
+                                            >
+                                              <PlasmicImg__
+                                                alt={""}
+                                                className={classNames(
+                                                  sty.img__nzBml
+                                                )}
+                                                displayHeight={"18px"}
+                                                displayMaxHeight={"none"}
+                                                displayMaxWidth={"100%"}
+                                                displayMinHeight={"0"}
+                                                displayMinWidth={"0"}
+                                                displayWidth={"18px"}
+                                                loading={"lazy"}
+                                                src={{
+                                                  src: "/plasmic/jam_production_🚀/images/image3.svg",
+                                                  fullWidth: 20,
+                                                  fullHeight: 20,
+                                                  aspectRatio: 1
+                                                }}
+                                              />
+
+                                              <div
+                                                className={classNames(
+                                                  projectcss.all,
+                                                  projectcss.__wab_text,
+                                                  sty.text___6OmLu
+                                                )}
+                                              >
+                                                {"Disponibilit\u00e9"}
+                                              </div>
+                                            </div>
+                                          }
+                                          popupScopeClassName={
+                                            sty["select9__popup"]
+                                          }
+                                          showSearch={true}
+                                          size={"large"}
+                                          value={generateStateValueProp(
+                                            $state,
+                                            ["select9", "value"]
+                                          )}
+                                        />
+                                      </FormItemWrapper>
+                                      <FormItemWrapper
+                                        className={classNames(
+                                          "__wab_instance",
+                                          sty.formField___2W6T
+                                        )}
+                                        hidden={false}
+                                        initialValue={(() => {
+                                          try {
+                                            return $ctx.query?.contract_types ==
+                                              ""
+                                              ? undefined
+                                              : $ctx.query?.contract_types?.split(
+                                                  ","
+                                                );
+                                          } catch (e) {
+                                            if (
+                                              e instanceof TypeError ||
+                                              e?.plasmicType ===
+                                                "PlasmicUndefinedDataError"
+                                            ) {
+                                              return undefined;
+                                            }
+                                            throw e;
+                                          }
+                                        })()}
+                                        label={"Name"}
+                                        name={"contract_type"}
+                                        noLabel={true}
+                                        preserve={false}
+                                        shouldUpdate={false}
+                                      >
+                                        <AntdSelect
+                                          data-plasmic-name={"select8"}
+                                          data-plasmic-override={
+                                            overrides.select8
+                                          }
+                                          allowClear={true}
+                                          bordered={false}
+                                          className={classNames(
+                                            "__wab_instance",
+                                            sty.select8
+                                          )}
+                                          defaultStylesClassName={classNames(
+                                            projectcss.root_reset,
+                                            projectcss.plasmic_default_styles,
+                                            projectcss.plasmic_mixins,
+                                            projectcss.plasmic_tokens,
+                                            plasmic_antd_5_hostless_css.plasmic_tokens,
+                                            plasmic_library_tailwind_3_4_number_tokens_css.plasmic_tokens,
+                                            plasmic_plasmic_rich_components_css.plasmic_tokens
+                                          )}
+                                          dropdownMatchSelectWidth={false}
+                                          mode={"multiple"}
+                                          onChange={async (
+                                            ...eventArgs: any
+                                          ) => {
+                                            generateStateOnChangeProp($state, [
+                                              "select8",
+                                              "value"
+                                            ]).apply(null, eventArgs);
+                                          }}
+                                          optionClassName={classNames({
+                                            [sty["pcls_PaVAJpZUdheZ"]]: true
+                                          })}
+                                          options={(() => {
+                                            try {
+                                              return $queries.getCriteria.data
+                                                .filter(
+                                                  item =>
+                                                    item.type ===
+                                                    "contract_type"
+                                                )
+                                                .map(item => ({
+                                                  value: item.name,
+                                                  label: item.name
+                                                }));
+                                            } catch (e) {
+                                              if (
+                                                e instanceof TypeError ||
+                                                e?.plasmicType ===
+                                                  "PlasmicUndefinedDataError"
+                                              ) {
+                                                return [];
+                                              }
+                                              throw e;
+                                            }
+                                          })()}
+                                          placeholder={
+                                            <div
+                                              className={classNames(
+                                                projectcss.all,
+                                                sty.freeBox__kNiQ
+                                              )}
+                                            >
+                                              <PlasmicImg__
+                                                alt={""}
+                                                className={classNames(
+                                                  sty.img__tuqV3
+                                                )}
+                                                displayHeight={"18px"}
+                                                displayMaxHeight={"none"}
+                                                displayMaxWidth={"100%"}
+                                                displayMinHeight={"0"}
+                                                displayMinWidth={"0"}
+                                                displayWidth={"18px"}
+                                                loading={"lazy"}
+                                                src={{
+                                                  src: "/plasmic/jam_production_🚀/images/image7.svg",
+                                                  fullWidth: 20,
+                                                  fullHeight: 20,
+                                                  aspectRatio: 1
+                                                }}
+                                              />
+
+                                              <div
+                                                className={classNames(
+                                                  projectcss.all,
+                                                  projectcss.__wab_text,
+                                                  sty.text___3Kr4B
+                                                )}
+                                              >
+                                                {"Type de contrat"}
+                                              </div>
+                                            </div>
+                                          }
+                                          popupScopeClassName={
+                                            sty["select8__popup"]
+                                          }
+                                          showSearch={true}
+                                          size={"large"}
+                                          suffixIcon={null}
+                                          value={generateStateValueProp(
+                                            $state,
+                                            ["select8", "value"]
+                                          )}
+                                        />
+                                      </FormItemWrapper>
+                                      <FormItemWrapper
+                                        className={classNames(
+                                          "__wab_instance",
+                                          sty.formField__eZlqS
+                                        )}
+                                        initialValue={(() => {
+                                          try {
+                                            return $ctx.query?.work_times == ""
+                                              ? undefined
+                                              : $ctx.query?.work_times?.split(
+                                                  ","
+                                                );
+                                          } catch (e) {
+                                            if (
+                                              e instanceof TypeError ||
+                                              e?.plasmicType ===
+                                                "PlasmicUndefinedDataError"
+                                            ) {
+                                              return undefined;
+                                            }
+                                            throw e;
+                                          }
+                                        })()}
+                                        label={"Name"}
+                                        name={"working_time"}
+                                        noLabel={true}
+                                      >
+                                        <AntdSelect
+                                          data-plasmic-name={"select10"}
+                                          data-plasmic-override={
+                                            overrides.select10
+                                          }
+                                          allowClear={true}
+                                          bordered={false}
+                                          className={classNames(
+                                            "__wab_instance",
+                                            sty.select10
+                                          )}
+                                          defaultOpen={false}
+                                          defaultStylesClassName={classNames(
+                                            projectcss.root_reset,
+                                            projectcss.plasmic_default_styles,
+                                            projectcss.plasmic_mixins,
+                                            projectcss.plasmic_tokens,
+                                            plasmic_antd_5_hostless_css.plasmic_tokens,
+                                            plasmic_library_tailwind_3_4_number_tokens_css.plasmic_tokens,
+                                            plasmic_plasmic_rich_components_css.plasmic_tokens
+                                          )}
+                                          mode={"multiple"}
+                                          onChange={async (
+                                            ...eventArgs: any
+                                          ) => {
+                                            generateStateOnChangeProp($state, [
+                                              "select10",
+                                              "value"
+                                            ]).apply(null, eventArgs);
+                                          }}
+                                          optionClassName={classNames({
+                                            [sty["pcls_tE82JyaC8VXE"]]: true
+                                          })}
+                                          options={(() => {
+                                            try {
+                                              return $queries.getCriteria.data
+                                                .filter(
+                                                  item =>
+                                                    item.type === "working_time"
+                                                )
+                                                .map(item => ({
+                                                  value: item.name,
+                                                  label: item.name
+                                                }));
+                                            } catch (e) {
+                                              if (
+                                                e instanceof TypeError ||
+                                                e?.plasmicType ===
+                                                  "PlasmicUndefinedDataError"
+                                              ) {
+                                                return [];
+                                              }
+                                              throw e;
+                                            }
+                                          })()}
+                                          placeholder={
+                                            <div
+                                              className={classNames(
+                                                projectcss.all,
+                                                sty.freeBox__uy0Tz
+                                              )}
+                                            >
+                                              <Vector22Icon
+                                                className={classNames(
+                                                  projectcss.all,
+                                                  sty.svg__lvs5K
+                                                )}
+                                                role={"img"}
+                                              />
+
+                                              <div
+                                                className={classNames(
+                                                  projectcss.all,
+                                                  projectcss.__wab_text,
+                                                  sty.text__ni5N
+                                                )}
+                                              >
+                                                {"Temps de travail"}
+                                              </div>
+                                            </div>
+                                          }
+                                          popupScopeClassName={
+                                            sty["select10__popup"]
+                                          }
+                                          showSearch={true}
+                                          size={"large"}
+                                          value={generateStateValueProp(
+                                            $state,
+                                            ["select10", "value"]
+                                          )}
+                                        />
+                                      </FormItemWrapper>
+                                      <FormItemWrapper
+                                        className={classNames(
+                                          "__wab_instance",
+                                          sty.formField___9FKic
+                                        )}
+                                        label={"Name"}
+                                        name={"work_mode"}
+                                        noLabel={true}
+                                      >
+                                        <AntdSelect
+                                          data-plasmic-name={"select14"}
+                                          data-plasmic-override={
+                                            overrides.select14
+                                          }
+                                          allowClear={true}
+                                          autoFocus={false}
+                                          bordered={false}
+                                          className={classNames(
+                                            "__wab_instance",
+                                            sty.select14
+                                          )}
+                                          defaultStylesClassName={classNames(
+                                            projectcss.root_reset,
+                                            projectcss.plasmic_default_styles,
+                                            projectcss.plasmic_mixins,
+                                            projectcss.plasmic_tokens,
+                                            plasmic_antd_5_hostless_css.plasmic_tokens,
+                                            plasmic_library_tailwind_3_4_number_tokens_css.plasmic_tokens,
+                                            plasmic_plasmic_rich_components_css.plasmic_tokens
+                                          )}
+                                          mode={"multiple"}
+                                          onChange={async (
+                                            ...eventArgs: any
+                                          ) => {
+                                            generateStateOnChangeProp($state, [
+                                              "select14",
+                                              "value"
+                                            ]).apply(null, eventArgs);
+                                          }}
+                                          optionClassName={classNames({
+                                            [sty["pcls_R9D3KUDsYzj1"]]: true
+                                          })}
+                                          options={(() => {
+                                            try {
+                                              return $queries.getCriteria.data
+                                                .filter(
+                                                  item =>
+                                                    item.type === "work_mode"
+                                                )
+                                                .map(item => ({
+                                                  value: item.name,
+                                                  label: item.name
+                                                }));
+                                            } catch (e) {
+                                              if (
+                                                e instanceof TypeError ||
+                                                e?.plasmicType ===
+                                                  "PlasmicUndefinedDataError"
+                                              ) {
+                                                return [];
+                                              }
+                                              throw e;
+                                            }
+                                          })()}
+                                          placeholder={
+                                            <div
+                                              className={classNames(
+                                                projectcss.all,
+                                                sty.freeBox__eKhDu
+                                              )}
+                                            >
+                                              <PlasmicImg__
+                                                alt={""}
+                                                className={classNames(
+                                                  sty.img__xkwQs
+                                                )}
+                                                displayHeight={"18px"}
+                                                displayMaxHeight={"none"}
+                                                displayMaxWidth={"100%"}
+                                                displayMinHeight={"0"}
+                                                displayMinWidth={"0"}
+                                                displayWidth={"18px"}
+                                                loading={"lazy"}
+                                                src={{
+                                                  src: "/plasmic/jam_production_🚀/images/image6.svg",
+                                                  fullWidth: 20,
+                                                  fullHeight: 20,
+                                                  aspectRatio: 1
+                                                }}
+                                              />
+
+                                              <div
+                                                className={classNames(
+                                                  projectcss.all,
+                                                  projectcss.__wab_text,
+                                                  sty.text__rHt4A
+                                                )}
+                                              >
+                                                {"Mode de travail"}
+                                              </div>
+                                            </div>
+                                          }
+                                          popupScopeClassName={
+                                            sty["select14__popup"]
+                                          }
+                                          showSearch={true}
+                                          size={"large"}
+                                          value={generateStateValueProp(
+                                            $state,
+                                            ["select14", "value"]
+                                          )}
+                                        />
+                                      </FormItemWrapper>
+                                      <FormItemWrapper
+                                        className={classNames(
+                                          "__wab_instance",
+                                          sty.formField___7Yt9
+                                        )}
+                                        initialValue={(() => {
+                                          try {
+                                            return $ctx.query?.min_salary == ""
+                                              ? undefined
+                                              : $ctx.query?.min_salary?.split(
+                                                  ","
+                                                );
+                                          } catch (e) {
+                                            if (
+                                              e instanceof TypeError ||
+                                              e?.plasmicType ===
+                                                "PlasmicUndefinedDataError"
+                                            ) {
+                                              return undefined;
+                                            }
+                                            throw e;
+                                          }
+                                        })()}
+                                        label={"Name"}
+                                        name={"salary"}
+                                        noLabel={true}
+                                      >
+                                        <AntdSelect
+                                          data-plasmic-name={"select12"}
+                                          data-plasmic-override={
+                                            overrides.select12
+                                          }
+                                          allowClear={true}
+                                          autoFocus={false}
+                                          bordered={false}
+                                          className={classNames(
+                                            "__wab_instance",
+                                            sty.select12
+                                          )}
+                                          defaultStylesClassName={classNames(
+                                            projectcss.root_reset,
+                                            projectcss.plasmic_default_styles,
+                                            projectcss.plasmic_mixins,
+                                            projectcss.plasmic_tokens,
+                                            plasmic_antd_5_hostless_css.plasmic_tokens,
+                                            plasmic_library_tailwind_3_4_number_tokens_css.plasmic_tokens,
+                                            plasmic_plasmic_rich_components_css.plasmic_tokens
+                                          )}
+                                          mode={"multiple"}
+                                          onChange={async (
+                                            ...eventArgs: any
+                                          ) => {
+                                            generateStateOnChangeProp($state, [
+                                              "select12",
+                                              "value"
+                                            ]).apply(null, eventArgs);
+
+                                            (async (value, option) => {
                                               const $steps = {};
 
-                                              $steps["updateKeyWords"] = true
+                                              $steps["updateSalary"] = true
                                                 ? (() => {
                                                     const actionArgs = {
                                                       variable: {
                                                         objRoot: $state,
-                                                        variablePath: [
-                                                          "keyWords"
-                                                        ]
+                                                        variablePath: ["salary"]
                                                       },
                                                       operation: 0,
-                                                      value: $state.input3.value
+                                                      value:
+                                                        $state.select12.value
                                                     };
                                                     return (({
                                                       variable,
@@ -2588,738 +3597,563 @@ function PlasmicAccueil__RenderFunc(props: {
                                                   })()
                                                 : undefined;
                                               if (
-                                                $steps["updateKeyWords"] !=
+                                                $steps["updateSalary"] !=
                                                   null &&
                                                 typeof $steps[
-                                                  "updateKeyWords"
+                                                  "updateSalary"
                                                 ] === "object" &&
-                                                typeof $steps["updateKeyWords"]
+                                                typeof $steps["updateSalary"]
                                                   .then === "function"
                                               ) {
-                                                $steps["updateKeyWords"] =
-                                                  await $steps[
-                                                    "updateKeyWords"
-                                                  ];
+                                                $steps["updateSalary"] =
+                                                  await $steps["updateSalary"];
                                               }
                                             }).apply(null, eventArgs);
-                                          },
-                                          placeholder:
-                                            "Mot-cl\u00e9, job, entreprise",
-                                          prefix: (
-                                            <PlasmicImg__
-                                              alt={""}
-                                              className={classNames(
-                                                sty.img__bgjoy
-                                              )}
-                                              displayHeight={"20px"}
-                                              displayMaxHeight={"none"}
-                                              displayMaxWidth={"none"}
-                                              displayMinHeight={"0"}
-                                              displayMinWidth={"0"}
-                                              displayWidth={"20px"}
-                                              loading={"lazy"}
-                                              src={{
-                                                src: "/plasmic/jam_production_🚀/images/image10.svg",
-                                                fullWidth: 21,
-                                                fullHeight: 20,
-                                                aspectRatio: 1.05
-                                              }}
-                                            />
-                                          ),
-
-                                          size: "large",
-                                          value: generateStateValueProp(
-                                            $state,
-                                            ["input3", "value"]
-                                          )
-                                        };
-                                        initializeCodeComponentStates(
-                                          $state,
-                                          [
-                                            {
-                                              name: "value",
-                                              plasmicStateName: "input3.value"
-                                            }
-                                          ],
-                                          [],
-                                          AntdInput_Helpers ?? {},
-                                          child$Props
-                                        );
-                                        initializePlasmicStates(
-                                          $state,
-                                          [
-                                            {
-                                              name: "input3.value",
-                                              initFunc: ({
-                                                $props,
-                                                $state,
-                                                $queries
-                                              }) =>
-                                                (() => {
-                                                  try {
-                                                    return (
-                                                      $ctx.query.name || ""
-                                                    );
-                                                  } catch (e) {
-                                                    if (
-                                                      e instanceof TypeError ||
-                                                      e?.plasmicType ===
-                                                        "PlasmicUndefinedDataError"
-                                                    ) {
-                                                      return undefined;
-                                                    }
-                                                    throw e;
-                                                  }
-                                                })()
-                                            }
-                                          ],
-                                          []
-                                        );
-                                        return (
-                                          <AntdInput
-                                            data-plasmic-name={"input3"}
-                                            data-plasmic-override={
-                                              overrides.input3
-                                            }
-                                            {...child$Props}
-                                          />
-                                        );
-                                      })()}
-                                    </div>
-                                  </FormItemWrapper>
-                                  <FormItemWrapper
-                                    className={classNames(
-                                      "__wab_instance",
-                                      sty.formField__zKiqa
-                                    )}
-                                    initialValue={""}
-                                    label={
-                                      <div
-                                        className={classNames(
-                                          projectcss.all,
-                                          projectcss.__wab_text,
-                                          sty.text__ipMk7
-                                        )}
-                                      >
-                                        {"Label"}
-                                      </div>
-                                    }
-                                    name={"location"}
-                                    noLabel={true}
-                                  >
-                                    <div
-                                      className={classNames(
-                                        projectcss.all,
-                                        sty.freeBox__r7PSa
-                                      )}
-                                    >
-                                      {(() => {
-                                        const child$Props = {
-                                          allowClear: true,
-                                          className: classNames(
-                                            "__wab_instance",
-                                            sty.input4
-                                          ),
-                                          onChange: async (
-                                            ...eventArgs: any
-                                          ) => {
-                                            generateStateOnChangePropForCodeComponents(
-                                              $state,
-                                              "value",
-                                              ["input4", "value"],
-                                              AntdInput_Helpers
-                                            ).apply(null, eventArgs);
-
-                                            (async event => {
-                                              const $steps = {};
-
-                                              $steps["updateSearchLocation"] =
-                                                true
-                                                  ? (() => {
-                                                      const actionArgs = {
-                                                        variable: {
-                                                          objRoot: $state,
-                                                          variablePath: [
-                                                            "searchLocation"
-                                                          ]
-                                                        },
-                                                        operation: 0,
-                                                        value:
-                                                          $state.input4.value
-                                                      };
-                                                      return (({
-                                                        variable,
-                                                        value,
-                                                        startIndex,
-                                                        deleteCount
-                                                      }) => {
-                                                        if (!variable) {
-                                                          return;
-                                                        }
-                                                        const {
-                                                          objRoot,
-                                                          variablePath
-                                                        } = variable;
-
-                                                        $stateSet(
-                                                          objRoot,
-                                                          variablePath,
-                                                          value
-                                                        );
-                                                        return value;
-                                                      })?.apply(null, [
-                                                        actionArgs
-                                                      ]);
-                                                    })()
-                                                  : undefined;
+                                          }}
+                                          optionClassName={classNames({
+                                            [sty["pcls_VB9_52Vd-eHG"]]: true
+                                          })}
+                                          options={(() => {
+                                            try {
+                                              return $queries.getCriteria.data
+                                                .filter(
+                                                  item => item.type === "salary"
+                                                )
+                                                .map(item => ({
+                                                  value: item.name,
+                                                  label: item.name
+                                                }));
+                                            } catch (e) {
                                               if (
-                                                $steps[
-                                                  "updateSearchLocation"
-                                                ] != null &&
-                                                typeof $steps[
-                                                  "updateSearchLocation"
-                                                ] === "object" &&
-                                                typeof $steps[
-                                                  "updateSearchLocation"
-                                                ].then === "function"
+                                                e instanceof TypeError ||
+                                                e?.plasmicType ===
+                                                  "PlasmicUndefinedDataError"
                                               ) {
-                                                $steps["updateSearchLocation"] =
-                                                  await $steps[
-                                                    "updateSearchLocation"
-                                                  ];
+                                                return [];
                                               }
-                                            }).apply(null, eventArgs);
-                                          },
-                                          placeholder: "Localisation",
-                                          prefix: (
-                                            <PlasmicImg__
-                                              alt={""}
+                                              throw e;
+                                            }
+                                          })()}
+                                          placeholder={
+                                            <div
                                               className={classNames(
-                                                sty.img__wMeId
+                                                projectcss.all,
+                                                sty.freeBox__mTgel
                                               )}
-                                              displayHeight={"18px"}
-                                              displayMaxHeight={"none"}
-                                              displayMaxWidth={"100%"}
-                                              displayMinHeight={"0"}
-                                              displayMinWidth={"0"}
-                                              displayWidth={"18px"}
-                                              loading={"lazy"}
-                                              src={{
-                                                src: "/plasmic/jam_production_🚀/images/locationPinSvgrepoComSvg.svg",
-                                                fullWidth: 800,
-                                                fullHeight: 800,
-                                                aspectRatio: undefined
-                                              }}
-                                            />
-                                          ),
+                                            >
+                                              <PlasmicImg__
+                                                alt={""}
+                                                className={classNames(
+                                                  sty.img__uL0Eg
+                                                )}
+                                                displayHeight={"18px"}
+                                                displayMaxHeight={"none"}
+                                                displayMaxWidth={"100%"}
+                                                displayMinHeight={"0"}
+                                                displayMinWidth={"0"}
+                                                displayWidth={"18px"}
+                                                loading={"lazy"}
+                                                src={{
+                                                  src: "/plasmic/jam_production_🚀/images/image5.svg",
+                                                  fullWidth: 20,
+                                                  fullHeight: 20,
+                                                  aspectRatio: 1
+                                                }}
+                                              />
 
-                                          size: "large",
-                                          value: generateStateValueProp(
+                                              <div
+                                                className={classNames(
+                                                  projectcss.all,
+                                                  projectcss.__wab_text,
+                                                  sty.text__aa97T
+                                                )}
+                                              >
+                                                {"Salaire"}
+                                              </div>
+                                            </div>
+                                          }
+                                          popupScopeClassName={
+                                            sty["select12__popup"]
+                                          }
+                                          showSearch={true}
+                                          size={"large"}
+                                          useChildren={false}
+                                          value={generateStateValueProp(
                                             $state,
-                                            ["input4", "value"]
-                                          )
-                                        };
-                                        initializeCodeComponentStates(
-                                          $state,
-                                          [
-                                            {
-                                              name: "value",
-                                              plasmicStateName: "input4.value"
-                                            }
-                                          ],
-                                          [],
-                                          AntdInput_Helpers ?? {},
-                                          child$Props
-                                        );
-                                        initializePlasmicStates(
-                                          $state,
-                                          [
-                                            {
-                                              name: "input4.value",
-                                              initFunc: ({
-                                                $props,
-                                                $state,
-                                                $queries
-                                              }) =>
-                                                (() => {
-                                                  try {
-                                                    return (
-                                                      $ctx.query.city || ""
-                                                    );
-                                                  } catch (e) {
-                                                    if (
-                                                      e instanceof TypeError ||
-                                                      e?.plasmicType ===
-                                                        "PlasmicUndefinedDataError"
-                                                    ) {
-                                                      return undefined;
-                                                    }
-                                                    throw e;
+                                            ["select12", "value"]
+                                          )}
+                                        />
+                                      </FormItemWrapper>
+                                      <Button
+                                        data-plasmic-name={"button8"}
+                                        data-plasmic-override={
+                                          overrides.button8
+                                        }
+                                        className={classNames(
+                                          "__wab_instance",
+                                          sty.button8
+                                        )}
+                                        color={"white"}
+                                        iconStart={true}
+                                        label={
+                                          <div
+                                            className={classNames(
+                                              projectcss.all,
+                                              projectcss.__wab_text,
+                                              sty.text__oaHWz
+                                            )}
+                                          >
+                                            {"CRITERES"}
+                                          </div>
+                                        }
+                                        onClick={async event => {
+                                          const $steps = {};
+
+                                          $steps["updateModalIsOpen"] = true
+                                            ? (() => {
+                                                const actionArgs = {
+                                                  variable: {
+                                                    objRoot: $state,
+                                                    variablePath: [
+                                                      "modal",
+                                                      "isOpen"
+                                                    ]
+                                                  },
+                                                  operation: 0,
+                                                  value: true
+                                                };
+                                                return (({
+                                                  variable,
+                                                  value,
+                                                  startIndex,
+                                                  deleteCount
+                                                }) => {
+                                                  if (!variable) {
+                                                    return;
                                                   }
+                                                  const {
+                                                    objRoot,
+                                                    variablePath
+                                                  } = variable;
+
+                                                  $stateSet(
+                                                    objRoot,
+                                                    variablePath,
+                                                    value
+                                                  );
+                                                  return value;
+                                                })?.apply(null, [actionArgs]);
+                                              })()
+                                            : undefined;
+                                          if (
+                                            $steps["updateModalIsOpen"] !=
+                                              null &&
+                                            typeof $steps[
+                                              "updateModalIsOpen"
+                                            ] === "object" &&
+                                            typeof $steps["updateModalIsOpen"]
+                                              .then === "function"
+                                          ) {
+                                            $steps["updateModalIsOpen"] =
+                                              await $steps["updateModalIsOpen"];
+                                          }
+
+                                          $steps["updateFormFilter2Submited"] =
+                                            true
+                                              ? (() => {
+                                                  const actionArgs = {
+                                                    variable: {
+                                                      objRoot: $state,
+                                                      variablePath: [
+                                                        "formFilter2Submited"
+                                                      ]
+                                                    },
+                                                    operation: 0,
+                                                    value: false
+                                                  };
+                                                  return (({
+                                                    variable,
+                                                    value,
+                                                    startIndex,
+                                                    deleteCount
+                                                  }) => {
+                                                    if (!variable) {
+                                                      return;
+                                                    }
+                                                    const {
+                                                      objRoot,
+                                                      variablePath
+                                                    } = variable;
+
+                                                    $stateSet(
+                                                      objRoot,
+                                                      variablePath,
+                                                      value
+                                                    );
+                                                    return value;
+                                                  })?.apply(null, [actionArgs]);
                                                 })()
+                                              : undefined;
+                                          if (
+                                            $steps[
+                                              "updateFormFilter2Submited"
+                                            ] != null &&
+                                            typeof $steps[
+                                              "updateFormFilter2Submited"
+                                            ] === "object" &&
+                                            typeof $steps[
+                                              "updateFormFilter2Submited"
+                                            ].then === "function"
+                                          ) {
+                                            $steps[
+                                              "updateFormFilter2Submited"
+                                            ] = await $steps[
+                                              "updateFormFilter2Submited"
+                                            ];
+                                          }
+                                        }}
+                                        size={"large"}
+                                        start={
+                                          <Vector18Icon
+                                            className={classNames(
+                                              projectcss.all,
+                                              sty.svg__sgWoa
+                                            )}
+                                            role={"img"}
+                                          />
+                                        }
+                                      />
+
+                                      <ClearBtn
+                                        data-plasmic-name={"clearBtn"}
+                                        data-plasmic-override={
+                                          overrides.clearBtn
+                                        }
+                                        className={classNames(
+                                          "__wab_instance",
+                                          sty.clearBtn
+                                        )}
+                                        color={"transparent"}
+                                        iconStart={true}
+                                        label={
+                                          <div
+                                            className={classNames(
+                                              projectcss.all,
+                                              projectcss.__wab_text,
+                                              sty.text__qjv9
+                                            )}
+                                          >
+                                            {"R\u00e9initialiser les filtres"}
+                                          </div>
+                                        }
+                                        onClick={async event => {
+                                          const $steps = {};
+
+                                          $steps["runActionOnFormFilter"] = true
+                                            ? (() => {
+                                                const actionArgs = {
+                                                  tplRef: "formFilter",
+                                                  action: "resetFields"
+                                                };
+                                                return (({
+                                                  tplRef,
+                                                  action,
+                                                  args
+                                                }) => {
+                                                  return $refs?.[tplRef]?.[
+                                                    action
+                                                  ]?.(...(args ?? []));
+                                                })?.apply(null, [actionArgs]);
+                                              })()
+                                            : undefined;
+                                          if (
+                                            $steps["runActionOnFormFilter"] !=
+                                              null &&
+                                            typeof $steps[
+                                              "runActionOnFormFilter"
+                                            ] === "object" &&
+                                            typeof $steps[
+                                              "runActionOnFormFilter"
+                                            ].then === "function"
+                                          ) {
+                                            $steps["runActionOnFormFilter"] =
+                                              await $steps[
+                                                "runActionOnFormFilter"
+                                              ];
+                                          }
+
+                                          $steps["updateFormFilter2Submited"] =
+                                            true
+                                              ? (() => {
+                                                  const actionArgs = {
+                                                    variable: {
+                                                      objRoot: $state,
+                                                      variablePath: [
+                                                        "formFilter2Submited"
+                                                      ]
+                                                    },
+                                                    operation: 0,
+                                                    value: false
+                                                  };
+                                                  return (({
+                                                    variable,
+                                                    value,
+                                                    startIndex,
+                                                    deleteCount
+                                                  }) => {
+                                                    if (!variable) {
+                                                      return;
+                                                    }
+                                                    const {
+                                                      objRoot,
+                                                      variablePath
+                                                    } = variable;
+
+                                                    $stateSet(
+                                                      objRoot,
+                                                      variablePath,
+                                                      value
+                                                    );
+                                                    return value;
+                                                  })?.apply(null, [actionArgs]);
+                                                })()
+                                              : undefined;
+                                          if (
+                                            $steps[
+                                              "updateFormFilter2Submited"
+                                            ] != null &&
+                                            typeof $steps[
+                                              "updateFormFilter2Submited"
+                                            ] === "object" &&
+                                            typeof $steps[
+                                              "updateFormFilter2Submited"
+                                            ].then === "function"
+                                          ) {
+                                            $steps[
+                                              "updateFormFilter2Submited"
+                                            ] = await $steps[
+                                              "updateFormFilter2Submited"
+                                            ];
+                                          }
+
+                                          $steps["runCode"] = true
+                                            ? (() => {
+                                                const actionArgs = {
+                                                  customFunction: async () => {
+                                                    return (() => {
+                                                      $state.input3.value = "";
+                                                      $state.input4.value = "";
+                                                      $state.keyWords = "";
+                                                      return ($state.searchLocation =
+                                                        "");
+                                                    })();
+                                                  }
+                                                };
+                                                return (({
+                                                  customFunction
+                                                }) => {
+                                                  return customFunction();
+                                                })?.apply(null, [actionArgs]);
+                                              })()
+                                            : undefined;
+                                          if (
+                                            $steps["runCode"] != null &&
+                                            typeof $steps["runCode"] ===
+                                              "object" &&
+                                            typeof $steps["runCode"].then ===
+                                              "function"
+                                          ) {
+                                            $steps["runCode"] = await $steps[
+                                              "runCode"
+                                            ];
+                                          }
+                                        }}
+                                        resetsForm={
+                                          hasVariant(
+                                            globalVariants,
+                                            "screen",
+                                            "mobileOnly"
+                                          )
+                                            ? true
+                                            : true
+                                        }
+                                        start={
+                                          <Vector19Icon
+                                            className={classNames(
+                                              projectcss.all,
+                                              sty.svg__tsTyC
+                                            )}
+                                            role={"img"}
+                                          />
+                                        }
+                                      />
+
+                                      {(() => {
+                                        try {
+                                          return Object.values(
+                                            $state.formFilter.value
+                                          ).some(
+                                            val =>
+                                              val !== "" && val !== undefined
+                                          );
+                                        } catch (e) {
+                                          if (
+                                            e instanceof TypeError ||
+                                            e?.plasmicType ===
+                                              "PlasmicUndefinedDataError"
+                                          ) {
+                                            return true;
+                                          }
+                                          throw e;
+                                        }
+                                      })() ? (
+                                        <button
+                                          data-plasmic-name={"resetFormBtn"}
+                                          data-plasmic-override={
+                                            overrides.resetFormBtn
+                                          }
+                                          className={classNames(
+                                            projectcss.all,
+                                            projectcss.button,
+                                            sty.resetFormBtn
+                                          )}
+                                          onClick={async event => {
+                                            const $steps = {};
+
+                                            $steps["runCode"] = true
+                                              ? (() => {
+                                                  const actionArgs = {
+                                                    customFunction:
+                                                      async () => {
+                                                        return (() => {
+                                                          $state.input3.value =
+                                                            "";
+                                                          $state.input4.value =
+                                                            "";
+                                                          $state.keyWords = "";
+                                                          return ($state.searchLocation =
+                                                            "");
+                                                        })();
+                                                      }
+                                                  };
+                                                  return (({
+                                                    customFunction
+                                                  }) => {
+                                                    return customFunction();
+                                                  })?.apply(null, [actionArgs]);
+                                                })()
+                                              : undefined;
+                                            if (
+                                              $steps["runCode"] != null &&
+                                              typeof $steps["runCode"] ===
+                                                "object" &&
+                                              typeof $steps["runCode"].then ===
+                                                "function"
+                                            ) {
+                                              $steps["runCode"] = await $steps[
+                                                "runCode"
+                                              ];
                                             }
-                                          ],
-                                          []
-                                        );
-                                        return (
-                                          <AntdInput
-                                            data-plasmic-name={"input4"}
-                                            data-plasmic-override={
-                                              overrides.input4
+
+                                            $steps["runActionOnFormFilter"] =
+                                              true
+                                                ? (() => {
+                                                    const actionArgs = {
+                                                      tplRef: "formFilter",
+                                                      action: "clearFields"
+                                                    };
+                                                    return (({
+                                                      tplRef,
+                                                      action,
+                                                      args
+                                                    }) => {
+                                                      return $refs?.[tplRef]?.[
+                                                        action
+                                                      ]?.(...(args ?? []));
+                                                    })?.apply(null, [
+                                                      actionArgs
+                                                    ]);
+                                                  })()
+                                                : undefined;
+                                            if (
+                                              $steps["runActionOnFormFilter"] !=
+                                                null &&
+                                              typeof $steps[
+                                                "runActionOnFormFilter"
+                                              ] === "object" &&
+                                              typeof $steps[
+                                                "runActionOnFormFilter"
+                                              ].then === "function"
+                                            ) {
+                                              $steps["runActionOnFormFilter"] =
+                                                await $steps[
+                                                  "runActionOnFormFilter"
+                                                ];
                                             }
-                                            {...child$Props}
-                                          />
-                                        );
-                                      })()}
-                                    </div>
-                                  </FormItemWrapper>
-                                  <FormItemWrapper
-                                    className={classNames(
-                                      "__wab_instance",
-                                      sty.formField__tdjl9
-                                    )}
-                                    label={"Name"}
-                                    name={"sector_activity"}
-                                    noLabel={true}
-                                  >
-                                    <AntdSelect
-                                      data-plasmic-name={"select13"}
-                                      data-plasmic-override={overrides.select13}
-                                      allowClear={true}
-                                      autoFocus={false}
-                                      bordered={false}
-                                      className={classNames(
-                                        "__wab_instance",
-                                        sty.select13
-                                      )}
-                                      defaultStylesClassName={classNames(
-                                        projectcss.root_reset,
-                                        projectcss.plasmic_default_styles,
-                                        projectcss.plasmic_mixins,
-                                        projectcss.plasmic_tokens,
-                                        plasmic_antd_5_hostless_css.plasmic_tokens,
-                                        plasmic_library_tailwind_3_4_number_tokens_css.plasmic_tokens,
-                                        plasmic_plasmic_rich_components_css.plasmic_tokens
-                                      )}
-                                      dropdownMatchSelectWidth={true}
-                                      mode={"single"}
-                                      onChange={async (...eventArgs: any) => {
-                                        generateStateOnChangeProp($state, [
-                                          "select13",
-                                          "value"
-                                        ]).apply(null, eventArgs);
-                                      }}
-                                      optionClassName={classNames({
-                                        [sty["pcls_TulvYrdlFkLz"]]: true
-                                      })}
-                                      options={(() => {
-                                        try {
-                                          return $queries.getCriteria.data
-                                            .filter(
-                                              item =>
-                                                item.type === "sector_activity"
-                                            )
-                                            .map(item => ({
-                                              value: item.name,
-                                              label: item.name
-                                            }));
-                                        } catch (e) {
-                                          if (
-                                            e instanceof TypeError ||
-                                            e?.plasmicType ===
-                                              "PlasmicUndefinedDataError"
-                                          ) {
-                                            return [];
-                                          }
-                                          throw e;
-                                        }
-                                      })()}
-                                      placeholder={
-                                        <Stack__
-                                          as={"div"}
-                                          hasGap={true}
-                                          className={classNames(
-                                            projectcss.all,
-                                            sty.freeBox__cepRq
-                                          )}
-                                        >
-                                          <PlasmicImg__
-                                            alt={""}
-                                            className={classNames(
-                                              sty.img__noDyM
-                                            )}
-                                            displayHeight={"18px"}
-                                            displayMaxHeight={"none"}
-                                            displayMaxWidth={"100%"}
-                                            displayMinHeight={"0"}
-                                            displayMinWidth={"0"}
-                                            displayWidth={"18px"}
-                                            loading={"lazy"}
-                                            src={{
-                                              src: "/plasmic/jam_production_🚀/images/image2.svg",
-                                              fullWidth: 20,
-                                              fullHeight: 20,
-                                              aspectRatio: 1
-                                            }}
-                                          />
 
-                                          <div
-                                            className={classNames(
-                                              projectcss.all,
-                                              projectcss.__wab_text,
-                                              sty.text__cIt50
-                                            )}
-                                          >
-                                            {"Secteur d'activit\u00e9"}
-                                          </div>
-                                        </Stack__>
-                                      }
-                                      popupScopeClassName={
-                                        sty["select13__popup"]
-                                      }
-                                      showSearch={true}
-                                      size={"large"}
-                                      useChildren={false}
-                                      value={generateStateValueProp($state, [
-                                        "select13",
-                                        "value"
-                                      ])}
-                                    />
-                                  </FormItemWrapper>
-                                  <FormItemWrapper
-                                    className={classNames(
-                                      "__wab_instance",
-                                      sty.formField__dm5ZL
-                                    )}
-                                    label={"Name"}
-                                    name={"availability_status"}
-                                    noLabel={true}
-                                    preserve={false}
-                                  >
-                                    <AntdSelect
-                                      data-plasmic-name={"select9"}
-                                      data-plasmic-override={overrides.select9}
-                                      allowClear={true}
-                                      bordered={false}
-                                      className={classNames(
-                                        "__wab_instance",
-                                        sty.select9
-                                      )}
-                                      defaultStylesClassName={classNames(
-                                        projectcss.root_reset,
-                                        projectcss.plasmic_default_styles,
-                                        projectcss.plasmic_mixins,
-                                        projectcss.plasmic_tokens,
-                                        plasmic_antd_5_hostless_css.plasmic_tokens,
-                                        plasmic_library_tailwind_3_4_number_tokens_css.plasmic_tokens,
-                                        plasmic_plasmic_rich_components_css.plasmic_tokens
-                                      )}
-                                      mode={"multiple"}
-                                      onChange={async (...eventArgs: any) => {
-                                        generateStateOnChangeProp($state, [
-                                          "select9",
-                                          "value"
-                                        ]).apply(null, eventArgs);
-                                      }}
-                                      optionClassName={classNames({
-                                        [sty["pcls_dj7ANnXN0yWv"]]: true
-                                      })}
-                                      options={(() => {
-                                        try {
-                                          return $queries.getCriteria.data
-                                            .filter(
-                                              item =>
-                                                item.type ===
-                                                "availability_status"
-                                            )
-                                            .map(item => ({
-                                              value: item.name,
-                                              label: item.name
-                                            }));
-                                        } catch (e) {
-                                          if (
-                                            e instanceof TypeError ||
-                                            e?.plasmicType ===
-                                              "PlasmicUndefinedDataError"
-                                          ) {
-                                            return [];
-                                          }
-                                          throw e;
-                                        }
-                                      })()}
-                                      placeholder={
-                                        <Stack__
-                                          as={"div"}
-                                          hasGap={true}
-                                          className={classNames(
-                                            projectcss.all,
-                                            sty.freeBox___1O30W
-                                          )}
-                                        >
-                                          <PlasmicImg__
-                                            alt={""}
-                                            className={classNames(
-                                              sty.img__nzBml
-                                            )}
-                                            displayHeight={"18px"}
-                                            displayMaxHeight={"none"}
-                                            displayMaxWidth={"100%"}
-                                            displayMinHeight={"0"}
-                                            displayMinWidth={"0"}
-                                            displayWidth={"18px"}
-                                            loading={"lazy"}
-                                            src={{
-                                              src: "/plasmic/jam_production_🚀/images/image3.svg",
-                                              fullWidth: 20,
-                                              fullHeight: 20,
-                                              aspectRatio: 1
-                                            }}
-                                          />
+                                            $steps[
+                                              "updateFormFilter2Submited"
+                                            ] = true
+                                              ? (() => {
+                                                  const actionArgs = {
+                                                    variable: {
+                                                      objRoot: $state,
+                                                      variablePath: [
+                                                        "formFilter2Submited"
+                                                      ]
+                                                    },
+                                                    operation: 0,
+                                                    value: false
+                                                  };
+                                                  return (({
+                                                    variable,
+                                                    value,
+                                                    startIndex,
+                                                    deleteCount
+                                                  }) => {
+                                                    if (!variable) {
+                                                      return;
+                                                    }
+                                                    const {
+                                                      objRoot,
+                                                      variablePath
+                                                    } = variable;
 
-                                          <div
-                                            className={classNames(
-                                              projectcss.all,
-                                              projectcss.__wab_text,
-                                              sty.text___6OmLu
-                                            )}
-                                          >
-                                            {"Disponibilit\u00e9"}
-                                          </div>
-                                        </Stack__>
-                                      }
-                                      popupScopeClassName={
-                                        sty["select9__popup"]
-                                      }
-                                      showSearch={true}
-                                      size={"large"}
-                                      value={generateStateValueProp($state, [
-                                        "select9",
-                                        "value"
-                                      ])}
-                                    />
-                                  </FormItemWrapper>
-                                  <FormItemWrapper
-                                    className={classNames(
-                                      "__wab_instance",
-                                      sty.formField___2W6T
-                                    )}
-                                    hidden={false}
-                                    initialValue={(() => {
-                                      try {
-                                        return $ctx.query?.contract_types == ""
-                                          ? undefined
-                                          : $ctx.query?.contract_types?.split(
-                                              ","
-                                            );
-                                      } catch (e) {
-                                        if (
-                                          e instanceof TypeError ||
-                                          e?.plasmicType ===
-                                            "PlasmicUndefinedDataError"
-                                        ) {
-                                          return undefined;
-                                        }
-                                        throw e;
-                                      }
-                                    })()}
-                                    label={"Name"}
-                                    name={"contract_type"}
-                                    noLabel={true}
-                                    preserve={false}
-                                    shouldUpdate={false}
-                                  >
-                                    <AntdSelect
-                                      data-plasmic-name={"select8"}
-                                      data-plasmic-override={overrides.select8}
-                                      allowClear={true}
-                                      bordered={false}
-                                      className={classNames(
-                                        "__wab_instance",
-                                        sty.select8
-                                      )}
-                                      defaultStylesClassName={classNames(
-                                        projectcss.root_reset,
-                                        projectcss.plasmic_default_styles,
-                                        projectcss.plasmic_mixins,
-                                        projectcss.plasmic_tokens,
-                                        plasmic_antd_5_hostless_css.plasmic_tokens,
-                                        plasmic_library_tailwind_3_4_number_tokens_css.plasmic_tokens,
-                                        plasmic_plasmic_rich_components_css.plasmic_tokens
-                                      )}
-                                      dropdownMatchSelectWidth={false}
-                                      mode={"multiple"}
-                                      onChange={async (...eventArgs: any) => {
-                                        generateStateOnChangeProp($state, [
-                                          "select8",
-                                          "value"
-                                        ]).apply(null, eventArgs);
-                                      }}
-                                      optionClassName={classNames({
-                                        [sty["pcls_PaVAJpZUdheZ"]]: true
-                                      })}
-                                      options={(() => {
-                                        try {
-                                          return $queries.getCriteria.data
-                                            .filter(
-                                              item =>
-                                                item.type === "contract_type"
-                                            )
-                                            .map(item => ({
-                                              value: item.name,
-                                              label: item.name
-                                            }));
-                                        } catch (e) {
-                                          if (
-                                            e instanceof TypeError ||
-                                            e?.plasmicType ===
-                                              "PlasmicUndefinedDataError"
-                                          ) {
-                                            return [];
-                                          }
-                                          throw e;
-                                        }
-                                      })()}
-                                      placeholder={
-                                        <Stack__
-                                          as={"div"}
-                                          hasGap={true}
-                                          className={classNames(
-                                            projectcss.all,
-                                            sty.freeBox__kNiQ
-                                          )}
+                                                    $stateSet(
+                                                      objRoot,
+                                                      variablePath,
+                                                      value
+                                                    );
+                                                    return value;
+                                                  })?.apply(null, [actionArgs]);
+                                                })()
+                                              : undefined;
+                                            if (
+                                              $steps[
+                                                "updateFormFilter2Submited"
+                                              ] != null &&
+                                              typeof $steps[
+                                                "updateFormFilter2Submited"
+                                              ] === "object" &&
+                                              typeof $steps[
+                                                "updateFormFilter2Submited"
+                                              ].then === "function"
+                                            ) {
+                                              $steps[
+                                                "updateFormFilter2Submited"
+                                              ] = await $steps[
+                                                "updateFormFilter2Submited"
+                                              ];
+                                            }
+                                          }}
+                                          ref={ref => {
+                                            $refs["resetFormBtn"] = ref;
+                                          }}
                                         >
-                                          <PlasmicImg__
-                                            alt={""}
-                                            className={classNames(
-                                              sty.img__tuqV3
-                                            )}
-                                            displayHeight={"18px"}
-                                            displayMaxHeight={"none"}
-                                            displayMaxWidth={"100%"}
-                                            displayMinHeight={"0"}
-                                            displayMinWidth={"0"}
-                                            displayWidth={"18px"}
-                                            loading={"lazy"}
-                                            src={{
-                                              src: "/plasmic/jam_production_🚀/images/image7.svg",
-                                              fullWidth: 20,
-                                              fullHeight: 20,
-                                              aspectRatio: 1
-                                            }}
-                                          />
-
-                                          <div
+                                          <Vector19Icon
                                             className={classNames(
                                               projectcss.all,
-                                              projectcss.__wab_text,
-                                              sty.text___3Kr4B
-                                            )}
-                                          >
-                                            {"Type de contrat"}
-                                          </div>
-                                        </Stack__>
-                                      }
-                                      popupScopeClassName={
-                                        sty["select8__popup"]
-                                      }
-                                      showSearch={true}
-                                      size={"large"}
-                                      suffixIcon={null}
-                                      value={generateStateValueProp($state, [
-                                        "select8",
-                                        "value"
-                                      ])}
-                                    />
-                                  </FormItemWrapper>
-                                  <FormItemWrapper
-                                    className={classNames(
-                                      "__wab_instance",
-                                      sty.formField__eZlqS
-                                    )}
-                                    initialValue={(() => {
-                                      try {
-                                        return $ctx.query?.work_times == ""
-                                          ? undefined
-                                          : $ctx.query?.work_times?.split(",");
-                                      } catch (e) {
-                                        if (
-                                          e instanceof TypeError ||
-                                          e?.plasmicType ===
-                                            "PlasmicUndefinedDataError"
-                                        ) {
-                                          return undefined;
-                                        }
-                                        throw e;
-                                      }
-                                    })()}
-                                    label={"Name"}
-                                    name={"working_time"}
-                                    noLabel={true}
-                                  >
-                                    <AntdSelect
-                                      data-plasmic-name={"select10"}
-                                      data-plasmic-override={overrides.select10}
-                                      allowClear={true}
-                                      bordered={false}
-                                      className={classNames(
-                                        "__wab_instance",
-                                        sty.select10
-                                      )}
-                                      defaultOpen={false}
-                                      defaultStylesClassName={classNames(
-                                        projectcss.root_reset,
-                                        projectcss.plasmic_default_styles,
-                                        projectcss.plasmic_mixins,
-                                        projectcss.plasmic_tokens,
-                                        plasmic_antd_5_hostless_css.plasmic_tokens,
-                                        plasmic_library_tailwind_3_4_number_tokens_css.plasmic_tokens,
-                                        plasmic_plasmic_rich_components_css.plasmic_tokens
-                                      )}
-                                      mode={"multiple"}
-                                      onChange={async (...eventArgs: any) => {
-                                        generateStateOnChangeProp($state, [
-                                          "select10",
-                                          "value"
-                                        ]).apply(null, eventArgs);
-                                      }}
-                                      optionClassName={classNames({
-                                        [sty["pcls_tE82JyaC8VXE"]]: true
-                                      })}
-                                      options={(() => {
-                                        try {
-                                          return $queries.getCriteria.data
-                                            .filter(
-                                              item =>
-                                                item.type === "working_time"
-                                            )
-                                            .map(item => ({
-                                              value: item.name,
-                                              label: item.name
-                                            }));
-                                        } catch (e) {
-                                          if (
-                                            e instanceof TypeError ||
-                                            e?.plasmicType ===
-                                              "PlasmicUndefinedDataError"
-                                          ) {
-                                            return [];
-                                          }
-                                          throw e;
-                                        }
-                                      })()}
-                                      placeholder={
-                                        <Stack__
-                                          as={"div"}
-                                          hasGap={true}
-                                          className={classNames(
-                                            projectcss.all,
-                                            sty.freeBox__uy0Tz
-                                          )}
-                                        >
-                                          <Vector22Icon
-                                            className={classNames(
-                                              projectcss.all,
-                                              sty.svg__lvs5K
+                                              sty.svg__qSfLf
                                             )}
                                             role={"img"}
                                           />
@@ -3328,1729 +4162,767 @@ function PlasmicAccueil__RenderFunc(props: {
                                             className={classNames(
                                               projectcss.all,
                                               projectcss.__wab_text,
-                                              sty.text__ni5N
+                                              sty.text__lWfpt
                                             )}
                                           >
-                                            {"Temps de travail"}
+                                            {"R\u00e9initialiser les filtres"}
                                           </div>
-                                        </Stack__>
-                                      }
-                                      popupScopeClassName={
-                                        sty["select10__popup"]
-                                      }
-                                      showSearch={true}
-                                      size={"large"}
-                                      value={generateStateValueProp($state, [
-                                        "select10",
-                                        "value"
-                                      ])}
-                                    />
-                                  </FormItemWrapper>
-                                  <FormItemWrapper
+                                        </button>
+                                      ) : null}
+                                    </div>
+                                  </FormWrapper>
+                                );
+                              })()}
+                            </div>
+                            <div
+                              data-plasmic-name={"mapJobs"}
+                              data-plasmic-override={overrides.mapJobs}
+                              className={classNames(
+                                projectcss.all,
+                                sty.mapJobs
+                              )}
+                            >
+                              <div
+                                data-plasmic-name={"joblistandbtn"}
+                                data-plasmic-override={overrides.joblistandbtn}
+                                className={classNames(
+                                  projectcss.all,
+                                  sty.joblistandbtn
+                                )}
+                              >
+                                <div
+                                  data-plasmic-name={"btn"}
+                                  data-plasmic-override={overrides.btn}
+                                  className={classNames(
+                                    projectcss.all,
+                                    sty.btn
+                                  )}
+                                >
+                                  <div
+                                    data-plasmic-name={"postes"}
+                                    data-plasmic-override={overrides.postes}
                                     className={classNames(
-                                      "__wab_instance",
-                                      sty.formField___9FKic
+                                      projectcss.all,
+                                      sty.postes
                                     )}
-                                    label={"Name"}
-                                    name={"work_mode"}
-                                    noLabel={true}
+                                    onClick={async event => {
+                                      const $steps = {};
+
+                                      $steps["updateIsDiv1Visible2"] = true
+                                        ? (() => {
+                                            const actionArgs = {
+                                              variable: {
+                                                objRoot: $state,
+                                                variablePath: ["isDiv1Visible"]
+                                              },
+                                              operation: 4
+                                            };
+                                            return (({
+                                              variable,
+                                              value,
+                                              startIndex,
+                                              deleteCount
+                                            }) => {
+                                              if (!variable) {
+                                                return;
+                                              }
+                                              const { objRoot, variablePath } =
+                                                variable;
+
+                                              const oldValue = $stateGet(
+                                                objRoot,
+                                                variablePath
+                                              );
+                                              $stateSet(
+                                                objRoot,
+                                                variablePath,
+                                                !oldValue
+                                              );
+                                              return !oldValue;
+                                            })?.apply(null, [actionArgs]);
+                                          })()
+                                        : undefined;
+                                      if (
+                                        $steps["updateIsDiv1Visible2"] !=
+                                          null &&
+                                        typeof $steps[
+                                          "updateIsDiv1Visible2"
+                                        ] === "object" &&
+                                        typeof $steps["updateIsDiv1Visible2"]
+                                          .then === "function"
+                                      ) {
+                                        $steps["updateIsDiv1Visible2"] =
+                                          await $steps["updateIsDiv1Visible2"];
+                                      }
+
+                                      $steps["updateMenuOnOff"] = true
+                                        ? (() => {
+                                            const actionArgs = {
+                                              variable: {
+                                                objRoot: $state,
+                                                variablePath: ["menuOnOff"]
+                                              },
+                                              operation: 4
+                                            };
+                                            return (({
+                                              variable,
+                                              value,
+                                              startIndex,
+                                              deleteCount
+                                            }) => {
+                                              if (!variable) {
+                                                return;
+                                              }
+                                              const { objRoot, variablePath } =
+                                                variable;
+
+                                              const oldValue = $stateGet(
+                                                objRoot,
+                                                variablePath
+                                              );
+                                              $stateSet(
+                                                objRoot,
+                                                variablePath,
+                                                !oldValue
+                                              );
+                                              return !oldValue;
+                                            })?.apply(null, [actionArgs]);
+                                          })()
+                                        : undefined;
+                                      if (
+                                        $steps["updateMenuOnOff"] != null &&
+                                        typeof $steps["updateMenuOnOff"] ===
+                                          "object" &&
+                                        typeof $steps["updateMenuOnOff"]
+                                          .then === "function"
+                                      ) {
+                                        $steps["updateMenuOnOff"] =
+                                          await $steps["updateMenuOnOff"];
+                                      }
+                                    }}
                                   >
-                                    <AntdSelect
-                                      data-plasmic-name={"select14"}
-                                      data-plasmic-override={overrides.select14}
-                                      allowClear={true}
-                                      autoFocus={false}
-                                      bordered={false}
+                                    <div
                                       className={classNames(
-                                        "__wab_instance",
-                                        sty.select14
+                                        projectcss.all,
+                                        projectcss.__wab_text,
+                                        sty.text__lUpz4
                                       )}
-                                      defaultStylesClassName={classNames(
-                                        projectcss.root_reset,
-                                        projectcss.plasmic_default_styles,
-                                        projectcss.plasmic_mixins,
-                                        projectcss.plasmic_tokens,
-                                        plasmic_antd_5_hostless_css.plasmic_tokens,
-                                        plasmic_library_tailwind_3_4_number_tokens_css.plasmic_tokens,
-                                        plasmic_plasmic_rich_components_css.plasmic_tokens
+                                    >
+                                      {hasVariant(
+                                        globalVariants,
+                                        "screen",
+                                        "mobileOnly"
+                                      ) ? (
+                                        <React.Fragment>
+                                          {(() => {
+                                            try {
+                                              return (() => {
+                                                if (
+                                                  $state.isDiv1Visible == false
+                                                ) {
+                                                  return "Afficher la liste des résultats";
+                                                } else if (
+                                                  $queries.jobOffers.data
+                                                    .length === 0
+                                                ) {
+                                                  return "Aucun resultat";
+                                                } else if (
+                                                  $queries.jobOffers === 0 &&
+                                                  $state.formFilter2Submited
+                                                ) {
+                                                  return "Aucun resultat";
+                                                } else {
+                                                  return "Masquer la liste des résultats";
+                                                }
+                                              })();
+                                            } catch (e) {
+                                              if (
+                                                e instanceof TypeError ||
+                                                e?.plasmicType ===
+                                                  "PlasmicUndefinedDataError"
+                                              ) {
+                                                return "Afficher la liste des r\u00e9sultats";
+                                              }
+                                              throw e;
+                                            }
+                                          })()}
+                                        </React.Fragment>
+                                      ) : (
+                                        <React.Fragment>
+                                          {(() => {
+                                            try {
+                                              return (() => {
+                                                if (
+                                                  $state.isDiv1Visible ==
+                                                    false &&
+                                                  $queries.jobOffers?.data
+                                                    ?.length > 0
+                                                ) {
+                                                  return "Afficher la liste des résultats";
+                                                } else if (
+                                                  $queries.jobOffers.data
+                                                    .length === 0
+                                                ) {
+                                                  return "Aucun resultat";
+                                                } else {
+                                                  return "Masquer la liste des résultats";
+                                                }
+                                              })();
+                                            } catch (e) {
+                                              if (
+                                                e instanceof TypeError ||
+                                                e?.plasmicType ===
+                                                  "PlasmicUndefinedDataError"
+                                              ) {
+                                                return "Afficher la liste des r\u00e9sultats";
+                                              }
+                                              throw e;
+                                            }
+                                          })()}
+                                        </React.Fragment>
                                       )}
-                                      mode={"multiple"}
-                                      onChange={async (...eventArgs: any) => {
-                                        generateStateOnChangeProp($state, [
-                                          "select14",
-                                          "value"
-                                        ]).apply(null, eventArgs);
-                                      }}
-                                      optionClassName={classNames({
-                                        [sty["pcls_R9D3KUDsYzj1"]]: true
-                                      })}
-                                      options={(() => {
+                                    </div>
+                                    <div
+                                      data-plasmic-name={"button4"}
+                                      data-plasmic-override={overrides.button4}
+                                      className={classNames(
+                                        projectcss.all,
+                                        sty.button4
+                                      )}
+                                    >
+                                      {(
+                                        hasVariant(
+                                          globalVariants,
+                                          "screen",
+                                          "mobileOnly"
+                                        )
+                                          ? (() => {
+                                              try {
+                                                return $state.isDiv1Visible;
+                                              } catch (e) {
+                                                if (
+                                                  e instanceof TypeError ||
+                                                  e?.plasmicType ===
+                                                    "PlasmicUndefinedDataError"
+                                                ) {
+                                                  return true;
+                                                }
+                                                throw e;
+                                              }
+                                            })()
+                                          : (() => {
+                                              try {
+                                                return !$state.menuOnOff;
+                                              } catch (e) {
+                                                if (
+                                                  e instanceof TypeError ||
+                                                  e?.plasmicType ===
+                                                    "PlasmicUndefinedDataError"
+                                                ) {
+                                                  return true;
+                                                }
+                                                throw e;
+                                              }
+                                            })()
+                                      ) ? (
+                                        <div
+                                          data-plasmic-name={"featuredIcon7"}
+                                          data-plasmic-override={
+                                            overrides.featuredIcon7
+                                          }
+                                          className={classNames(
+                                            projectcss.all,
+                                            sty.featuredIcon7
+                                          )}
+                                          onClick={async event => {
+                                            const $steps = {};
+
+                                            $steps["updateIsDiv1Visible"] = true
+                                              ? (() => {
+                                                  const actionArgs = {
+                                                    variable: {
+                                                      objRoot: $state,
+                                                      variablePath: [
+                                                        "isDiv1Visible"
+                                                      ]
+                                                    },
+                                                    operation: 4
+                                                  };
+                                                  return (({
+                                                    variable,
+                                                    value,
+                                                    startIndex,
+                                                    deleteCount
+                                                  }) => {
+                                                    if (!variable) {
+                                                      return;
+                                                    }
+                                                    const {
+                                                      objRoot,
+                                                      variablePath
+                                                    } = variable;
+
+                                                    const oldValue = $stateGet(
+                                                      objRoot,
+                                                      variablePath
+                                                    );
+                                                    $stateSet(
+                                                      objRoot,
+                                                      variablePath,
+                                                      !oldValue
+                                                    );
+                                                    return !oldValue;
+                                                  })?.apply(null, [actionArgs]);
+                                                })()
+                                              : undefined;
+                                            if (
+                                              $steps["updateIsDiv1Visible"] !=
+                                                null &&
+                                              typeof $steps[
+                                                "updateIsDiv1Visible"
+                                              ] === "object" &&
+                                              typeof $steps[
+                                                "updateIsDiv1Visible"
+                                              ].then === "function"
+                                            ) {
+                                              $steps["updateIsDiv1Visible"] =
+                                                await $steps[
+                                                  "updateIsDiv1Visible"
+                                                ];
+                                            }
+
+                                            $steps["updateMenuOnOff"] = true
+                                              ? (() => {
+                                                  const actionArgs = {
+                                                    variable: {
+                                                      objRoot: $state,
+                                                      variablePath: [
+                                                        "menuOnOff"
+                                                      ]
+                                                    },
+                                                    operation: 4
+                                                  };
+                                                  return (({
+                                                    variable,
+                                                    value,
+                                                    startIndex,
+                                                    deleteCount
+                                                  }) => {
+                                                    if (!variable) {
+                                                      return;
+                                                    }
+                                                    const {
+                                                      objRoot,
+                                                      variablePath
+                                                    } = variable;
+
+                                                    const oldValue = $stateGet(
+                                                      objRoot,
+                                                      variablePath
+                                                    );
+                                                    $stateSet(
+                                                      objRoot,
+                                                      variablePath,
+                                                      !oldValue
+                                                    );
+                                                    return !oldValue;
+                                                  })?.apply(null, [actionArgs]);
+                                                })()
+                                              : undefined;
+                                            if (
+                                              $steps["updateMenuOnOff"] !=
+                                                null &&
+                                              typeof $steps[
+                                                "updateMenuOnOff"
+                                              ] === "object" &&
+                                              typeof $steps["updateMenuOnOff"]
+                                                .then === "function"
+                                            ) {
+                                              $steps["updateMenuOnOff"] =
+                                                await $steps["updateMenuOnOff"];
+                                            }
+                                          }}
+                                        >
+                                          <Icon8Icon
+                                            className={classNames(
+                                              projectcss.all,
+                                              sty.svg__ndq9R
+                                            )}
+                                            role={"img"}
+                                          />
+                                        </div>
+                                      ) : null}
+                                      {(
+                                        hasVariant(
+                                          globalVariants,
+                                          "screen",
+                                          "mobileOnly"
+                                        )
+                                          ? (() => {
+                                              try {
+                                                return !$state.isDiv1Visible;
+                                              } catch (e) {
+                                                if (
+                                                  e instanceof TypeError ||
+                                                  e?.plasmicType ===
+                                                    "PlasmicUndefinedDataError"
+                                                ) {
+                                                  return true;
+                                                }
+                                                throw e;
+                                              }
+                                            })()
+                                          : (() => {
+                                              try {
+                                                return $state.menuOnOff;
+                                              } catch (e) {
+                                                if (
+                                                  e instanceof TypeError ||
+                                                  e?.plasmicType ===
+                                                    "PlasmicUndefinedDataError"
+                                                ) {
+                                                  return true;
+                                                }
+                                                throw e;
+                                              }
+                                            })()
+                                      ) ? (
+                                        <div
+                                          data-plasmic-name={"featuredIcon8"}
+                                          data-plasmic-override={
+                                            overrides.featuredIcon8
+                                          }
+                                          className={classNames(
+                                            projectcss.all,
+                                            sty.featuredIcon8
+                                          )}
+                                          onClick={async event => {
+                                            const $steps = {};
+
+                                            $steps["updateIsDiv1Visible"] = true
+                                              ? (() => {
+                                                  const actionArgs = {
+                                                    variable: {
+                                                      objRoot: $state,
+                                                      variablePath: [
+                                                        "isDiv1Visible"
+                                                      ]
+                                                    },
+                                                    operation: 4
+                                                  };
+                                                  return (({
+                                                    variable,
+                                                    value,
+                                                    startIndex,
+                                                    deleteCount
+                                                  }) => {
+                                                    if (!variable) {
+                                                      return;
+                                                    }
+                                                    const {
+                                                      objRoot,
+                                                      variablePath
+                                                    } = variable;
+
+                                                    const oldValue = $stateGet(
+                                                      objRoot,
+                                                      variablePath
+                                                    );
+                                                    $stateSet(
+                                                      objRoot,
+                                                      variablePath,
+                                                      !oldValue
+                                                    );
+                                                    return !oldValue;
+                                                  })?.apply(null, [actionArgs]);
+                                                })()
+                                              : undefined;
+                                            if (
+                                              $steps["updateIsDiv1Visible"] !=
+                                                null &&
+                                              typeof $steps[
+                                                "updateIsDiv1Visible"
+                                              ] === "object" &&
+                                              typeof $steps[
+                                                "updateIsDiv1Visible"
+                                              ].then === "function"
+                                            ) {
+                                              $steps["updateIsDiv1Visible"] =
+                                                await $steps[
+                                                  "updateIsDiv1Visible"
+                                                ];
+                                            }
+
+                                            $steps["updateMenuOnOff"] = true
+                                              ? (() => {
+                                                  const actionArgs = {
+                                                    variable: {
+                                                      objRoot: $state,
+                                                      variablePath: [
+                                                        "menuOnOff"
+                                                      ]
+                                                    },
+                                                    operation: 4
+                                                  };
+                                                  return (({
+                                                    variable,
+                                                    value,
+                                                    startIndex,
+                                                    deleteCount
+                                                  }) => {
+                                                    if (!variable) {
+                                                      return;
+                                                    }
+                                                    const {
+                                                      objRoot,
+                                                      variablePath
+                                                    } = variable;
+
+                                                    const oldValue = $stateGet(
+                                                      objRoot,
+                                                      variablePath
+                                                    );
+                                                    $stateSet(
+                                                      objRoot,
+                                                      variablePath,
+                                                      !oldValue
+                                                    );
+                                                    return !oldValue;
+                                                  })?.apply(null, [actionArgs]);
+                                                })()
+                                              : undefined;
+                                            if (
+                                              $steps["updateMenuOnOff"] !=
+                                                null &&
+                                              typeof $steps[
+                                                "updateMenuOnOff"
+                                              ] === "object" &&
+                                              typeof $steps["updateMenuOnOff"]
+                                                .then === "function"
+                                            ) {
+                                              $steps["updateMenuOnOff"] =
+                                                await $steps["updateMenuOnOff"];
+                                            }
+                                          }}
+                                        >
+                                          <Icon8Icon
+                                            className={classNames(
+                                              projectcss.all,
+                                              sty.svg__mts9A
+                                            )}
+                                            role={"img"}
+                                          />
+                                        </div>
+                                      ) : null}
+                                    </div>
+                                  </div>
+                                </div>
+                                {(
+                                  hasVariant(
+                                    globalVariants,
+                                    "screen",
+                                    "mobileOnly"
+                                  )
+                                    ? (() => {
                                         try {
-                                          return $queries.getCriteria.data
-                                            .filter(
-                                              item => item.type === "work_mode"
-                                            )
-                                            .map(item => ({
-                                              value: item.name,
-                                              label: item.name
-                                            }));
+                                          return $state.isDiv1Visible;
                                         } catch (e) {
                                           if (
                                             e instanceof TypeError ||
                                             e?.plasmicType ===
                                               "PlasmicUndefinedDataError"
                                           ) {
-                                            return [];
+                                            return true;
                                           }
                                           throw e;
                                         }
-                                      })()}
-                                      placeholder={
-                                        <Stack__
-                                          as={"div"}
-                                          hasGap={true}
-                                          className={classNames(
-                                            projectcss.all,
-                                            sty.freeBox__eKhDu
-                                          )}
-                                        >
-                                          <PlasmicImg__
-                                            alt={""}
-                                            className={classNames(
-                                              sty.img__xkwQs
-                                            )}
-                                            displayHeight={"18px"}
-                                            displayMaxHeight={"none"}
-                                            displayMaxWidth={"100%"}
-                                            displayMinHeight={"0"}
-                                            displayMinWidth={"0"}
-                                            displayWidth={"18px"}
-                                            loading={"lazy"}
-                                            src={{
-                                              src: "/plasmic/jam_production_🚀/images/image6.svg",
-                                              fullWidth: 20,
-                                              fullHeight: 20,
-                                              aspectRatio: 1
-                                            }}
-                                          />
-
-                                          <div
-                                            className={classNames(
-                                              projectcss.all,
-                                              projectcss.__wab_text,
-                                              sty.text__rHt4A
-                                            )}
-                                          >
-                                            {"Mode de travail"}
-                                          </div>
-                                        </Stack__>
-                                      }
-                                      popupScopeClassName={
-                                        sty["select14__popup"]
-                                      }
-                                      showSearch={true}
-                                      size={"large"}
-                                      value={generateStateValueProp($state, [
-                                        "select14",
-                                        "value"
-                                      ])}
-                                    />
-                                  </FormItemWrapper>
-                                  <FormItemWrapper
+                                      })()
+                                    : (() => {
+                                        try {
+                                          return $state.isDiv1Visible;
+                                        } catch (e) {
+                                          if (
+                                            e instanceof TypeError ||
+                                            e?.plasmicType ===
+                                              "PlasmicUndefinedDataError"
+                                          ) {
+                                            return false;
+                                          }
+                                          throw e;
+                                        }
+                                      })()
+                                ) ? (
+                                  <div
+                                    data-plasmic-name={"jobListContainer"}
+                                    data-plasmic-override={
+                                      overrides.jobListContainer
+                                    }
                                     className={classNames(
-                                      "__wab_instance",
-                                      sty.formField___7Yt9
+                                      projectcss.all,
+                                      sty.jobListContainer
                                     )}
-                                    initialValue={(() => {
+                                  >
+                                    {(() => {
                                       try {
-                                        return $ctx.query?.min_salary == ""
-                                          ? undefined
-                                          : $ctx.query?.min_salary?.split(",");
+                                        return !$queries.jobOffers.isLoading;
                                       } catch (e) {
                                         if (
                                           e instanceof TypeError ||
                                           e?.plasmicType ===
                                             "PlasmicUndefinedDataError"
                                         ) {
-                                          return undefined;
+                                          return true;
                                         }
                                         throw e;
                                       }
-                                    })()}
-                                    label={"Name"}
-                                    name={"salary"}
-                                    noLabel={true}
-                                  >
-                                    <AntdSelect
-                                      data-plasmic-name={"select12"}
-                                      data-plasmic-override={overrides.select12}
-                                      allowClear={true}
-                                      autoFocus={false}
-                                      bordered={false}
-                                      className={classNames(
-                                        "__wab_instance",
-                                        sty.select12
-                                      )}
-                                      defaultStylesClassName={classNames(
-                                        projectcss.root_reset,
-                                        projectcss.plasmic_default_styles,
-                                        projectcss.plasmic_mixins,
-                                        projectcss.plasmic_tokens,
-                                        plasmic_antd_5_hostless_css.plasmic_tokens,
-                                        plasmic_library_tailwind_3_4_number_tokens_css.plasmic_tokens,
-                                        plasmic_plasmic_rich_components_css.plasmic_tokens
-                                      )}
-                                      mode={"multiple"}
-                                      onChange={async (...eventArgs: any) => {
-                                        generateStateOnChangeProp($state, [
-                                          "select12",
-                                          "value"
-                                        ]).apply(null, eventArgs);
-
-                                        (async (value, option) => {
-                                          const $steps = {};
-
-                                          $steps["updateSalary"] = true
-                                            ? (() => {
-                                                const actionArgs = {
-                                                  variable: {
-                                                    objRoot: $state,
-                                                    variablePath: ["salary"]
-                                                  },
-                                                  operation: 0,
-                                                  value: $state.select12.value
-                                                };
-                                                return (({
-                                                  variable,
-                                                  value,
-                                                  startIndex,
-                                                  deleteCount
-                                                }) => {
-                                                  if (!variable) {
-                                                    return;
+                                    })()
+                                      ? (_par =>
+                                          !_par
+                                            ? []
+                                            : Array.isArray(_par)
+                                            ? _par
+                                            : [_par])(
+                                          (() => {
+                                            try {
+                                              return $queries.jobOffers.data;
+                                            } catch (e) {
+                                              if (
+                                                e instanceof TypeError ||
+                                                e?.plasmicType ===
+                                                  "PlasmicUndefinedDataError"
+                                              ) {
+                                                return [];
+                                              }
+                                              throw e;
+                                            }
+                                          })()
+                                        ).map(
+                                          (
+                                            __plasmic_item_0,
+                                            __plasmic_idx_0
+                                          ) => {
+                                            const currentItem =
+                                              __plasmic_item_0;
+                                            const currentIndex =
+                                              __plasmic_idx_0;
+                                            return (
+                                              <div
+                                                data-plasmic-name={
+                                                  "jobsOnScroll"
+                                                }
+                                                data-plasmic-override={
+                                                  overrides.jobsOnScroll
+                                                }
+                                                className={classNames(
+                                                  projectcss.all,
+                                                  sty.jobsOnScroll
+                                                )}
+                                                key={currentIndex}
+                                                onClick={async event => {
+                                                  const $steps = {};
+                                                }}
+                                              >
+                                                <div
+                                                  data-plasmic-name={
+                                                    "likeButtons"
                                                   }
-                                                  const {
-                                                    objRoot,
-                                                    variablePath
-                                                  } = variable;
-
-                                                  $stateSet(
-                                                    objRoot,
-                                                    variablePath,
-                                                    value
-                                                  );
-                                                  return value;
-                                                })?.apply(null, [actionArgs]);
-                                              })()
-                                            : undefined;
-                                          if (
-                                            $steps["updateSalary"] != null &&
-                                            typeof $steps["updateSalary"] ===
-                                              "object" &&
-                                            typeof $steps["updateSalary"]
-                                              .then === "function"
-                                          ) {
-                                            $steps["updateSalary"] =
-                                              await $steps["updateSalary"];
-                                          }
-                                        }).apply(null, eventArgs);
-                                      }}
-                                      optionClassName={classNames({
-                                        [sty["pcls_VB9_52Vd-eHG"]]: true
-                                      })}
-                                      options={(() => {
-                                        try {
-                                          return $queries.getCriteria.data
-                                            .filter(
-                                              item => item.type === "salary"
-                                            )
-                                            .map(item => ({
-                                              value: item.name,
-                                              label: item.name
-                                            }));
-                                        } catch (e) {
-                                          if (
-                                            e instanceof TypeError ||
-                                            e?.plasmicType ===
-                                              "PlasmicUndefinedDataError"
-                                          ) {
-                                            return [];
-                                          }
-                                          throw e;
-                                        }
-                                      })()}
-                                      placeholder={
-                                        <Stack__
-                                          as={"div"}
-                                          hasGap={true}
-                                          className={classNames(
-                                            projectcss.all,
-                                            sty.freeBox__mTgel
-                                          )}
-                                        >
-                                          <PlasmicImg__
-                                            alt={""}
-                                            className={classNames(
-                                              sty.img__uL0Eg
-                                            )}
-                                            displayHeight={"18px"}
-                                            displayMaxHeight={"none"}
-                                            displayMaxWidth={"100%"}
-                                            displayMinHeight={"0"}
-                                            displayMinWidth={"0"}
-                                            displayWidth={"18px"}
-                                            loading={"lazy"}
-                                            src={{
-                                              src: "/plasmic/jam_production_🚀/images/image5.svg",
-                                              fullWidth: 20,
-                                              fullHeight: 20,
-                                              aspectRatio: 1
-                                            }}
-                                          />
-
-                                          <div
-                                            className={classNames(
-                                              projectcss.all,
-                                              projectcss.__wab_text,
-                                              sty.text__aa97T
-                                            )}
-                                          >
-                                            {"Salaire"}
-                                          </div>
-                                        </Stack__>
-                                      }
-                                      popupScopeClassName={
-                                        sty["select12__popup"]
-                                      }
-                                      showSearch={true}
-                                      size={"large"}
-                                      useChildren={false}
-                                      value={generateStateValueProp($state, [
-                                        "select12",
-                                        "value"
-                                      ])}
-                                    />
-                                  </FormItemWrapper>
-                                  <Button
-                                    data-plasmic-name={"button8"}
-                                    data-plasmic-override={overrides.button8}
-                                    className={classNames(
-                                      "__wab_instance",
-                                      sty.button8
-                                    )}
-                                    color={"white"}
-                                    iconStart={true}
-                                    label={
-                                      <div
-                                        className={classNames(
-                                          projectcss.all,
-                                          projectcss.__wab_text,
-                                          sty.text__oaHWz
-                                        )}
-                                      >
-                                        {"CRITERES"}
-                                      </div>
-                                    }
-                                    onClick={async event => {
-                                      const $steps = {};
-
-                                      $steps["updateModalIsOpen"] = true
-                                        ? (() => {
-                                            const actionArgs = {
-                                              variable: {
-                                                objRoot: $state,
-                                                variablePath: [
-                                                  "modal",
-                                                  "isOpen"
-                                                ]
-                                              },
-                                              operation: 0,
-                                              value: true
-                                            };
-                                            return (({
-                                              variable,
-                                              value,
-                                              startIndex,
-                                              deleteCount
-                                            }) => {
-                                              if (!variable) {
-                                                return;
-                                              }
-                                              const { objRoot, variablePath } =
-                                                variable;
-
-                                              $stateSet(
-                                                objRoot,
-                                                variablePath,
-                                                value
-                                              );
-                                              return value;
-                                            })?.apply(null, [actionArgs]);
-                                          })()
-                                        : undefined;
-                                      if (
-                                        $steps["updateModalIsOpen"] != null &&
-                                        typeof $steps["updateModalIsOpen"] ===
-                                          "object" &&
-                                        typeof $steps["updateModalIsOpen"]
-                                          .then === "function"
-                                      ) {
-                                        $steps["updateModalIsOpen"] =
-                                          await $steps["updateModalIsOpen"];
-                                      }
-
-                                      $steps["updateFormFilter2Submited"] = true
-                                        ? (() => {
-                                            const actionArgs = {
-                                              variable: {
-                                                objRoot: $state,
-                                                variablePath: [
-                                                  "formFilter2Submited"
-                                                ]
-                                              },
-                                              operation: 0,
-                                              value: false
-                                            };
-                                            return (({
-                                              variable,
-                                              value,
-                                              startIndex,
-                                              deleteCount
-                                            }) => {
-                                              if (!variable) {
-                                                return;
-                                              }
-                                              const { objRoot, variablePath } =
-                                                variable;
-
-                                              $stateSet(
-                                                objRoot,
-                                                variablePath,
-                                                value
-                                              );
-                                              return value;
-                                            })?.apply(null, [actionArgs]);
-                                          })()
-                                        : undefined;
-                                      if (
-                                        $steps["updateFormFilter2Submited"] !=
-                                          null &&
-                                        typeof $steps[
-                                          "updateFormFilter2Submited"
-                                        ] === "object" &&
-                                        typeof $steps[
-                                          "updateFormFilter2Submited"
-                                        ].then === "function"
-                                      ) {
-                                        $steps["updateFormFilter2Submited"] =
-                                          await $steps[
-                                            "updateFormFilter2Submited"
-                                          ];
-                                      }
-                                    }}
-                                    size={"large"}
-                                    start={
-                                      <Vector18Icon
-                                        className={classNames(
-                                          projectcss.all,
-                                          sty.svg__sgWoa
-                                        )}
-                                        role={"img"}
-                                      />
-                                    }
-                                  />
-
-                                  <ClearBtn
-                                    data-plasmic-name={"clearBtn"}
-                                    data-plasmic-override={overrides.clearBtn}
-                                    className={classNames(
-                                      "__wab_instance",
-                                      sty.clearBtn
-                                    )}
-                                    color={"transparent"}
-                                    iconStart={true}
-                                    label={
-                                      <div
-                                        className={classNames(
-                                          projectcss.all,
-                                          projectcss.__wab_text,
-                                          sty.text__qjv9
-                                        )}
-                                      >
-                                        {"R\u00e9initialiser les filtres"}
-                                      </div>
-                                    }
-                                    onClick={async event => {
-                                      const $steps = {};
-
-                                      $steps["runActionOnFormFilter"] = true
-                                        ? (() => {
-                                            const actionArgs = {
-                                              tplRef: "formFilter",
-                                              action: "resetFields"
-                                            };
-                                            return (({
-                                              tplRef,
-                                              action,
-                                              args
-                                            }) => {
-                                              return $refs?.[tplRef]?.[
-                                                action
-                                              ]?.(...(args ?? []));
-                                            })?.apply(null, [actionArgs]);
-                                          })()
-                                        : undefined;
-                                      if (
-                                        $steps["runActionOnFormFilter"] !=
-                                          null &&
-                                        typeof $steps[
-                                          "runActionOnFormFilter"
-                                        ] === "object" &&
-                                        typeof $steps["runActionOnFormFilter"]
-                                          .then === "function"
-                                      ) {
-                                        $steps["runActionOnFormFilter"] =
-                                          await $steps["runActionOnFormFilter"];
-                                      }
-
-                                      $steps["updateFormFilter2Submited"] = true
-                                        ? (() => {
-                                            const actionArgs = {
-                                              variable: {
-                                                objRoot: $state,
-                                                variablePath: [
-                                                  "formFilter2Submited"
-                                                ]
-                                              },
-                                              operation: 0,
-                                              value: false
-                                            };
-                                            return (({
-                                              variable,
-                                              value,
-                                              startIndex,
-                                              deleteCount
-                                            }) => {
-                                              if (!variable) {
-                                                return;
-                                              }
-                                              const { objRoot, variablePath } =
-                                                variable;
-
-                                              $stateSet(
-                                                objRoot,
-                                                variablePath,
-                                                value
-                                              );
-                                              return value;
-                                            })?.apply(null, [actionArgs]);
-                                          })()
-                                        : undefined;
-                                      if (
-                                        $steps["updateFormFilter2Submited"] !=
-                                          null &&
-                                        typeof $steps[
-                                          "updateFormFilter2Submited"
-                                        ] === "object" &&
-                                        typeof $steps[
-                                          "updateFormFilter2Submited"
-                                        ].then === "function"
-                                      ) {
-                                        $steps["updateFormFilter2Submited"] =
-                                          await $steps[
-                                            "updateFormFilter2Submited"
-                                          ];
-                                      }
-
-                                      $steps["runCode"] = true
-                                        ? (() => {
-                                            const actionArgs = {
-                                              customFunction: async () => {
-                                                return (() => {
-                                                  $state.input3.value = "";
-                                                  $state.input4.value = "";
-                                                  $state.keyWords = "";
-                                                  return ($state.searchLocation =
-                                                    "");
-                                                })();
-                                              }
-                                            };
-                                            return (({ customFunction }) => {
-                                              return customFunction();
-                                            })?.apply(null, [actionArgs]);
-                                          })()
-                                        : undefined;
-                                      if (
-                                        $steps["runCode"] != null &&
-                                        typeof $steps["runCode"] === "object" &&
-                                        typeof $steps["runCode"].then ===
-                                          "function"
-                                      ) {
-                                        $steps["runCode"] = await $steps[
-                                          "runCode"
-                                        ];
-                                      }
-                                    }}
-                                    resetsForm={
-                                      hasVariant(
-                                        globalVariants,
-                                        "screen",
-                                        "mobileOnly"
-                                      )
-                                        ? true
-                                        : true
-                                    }
-                                    start={
-                                      <Vector19Icon
-                                        className={classNames(
-                                          projectcss.all,
-                                          sty.svg__tsTyC
-                                        )}
-                                        role={"img"}
-                                      />
-                                    }
-                                  />
-
-                                  {(() => {
-                                    try {
-                                      return Object.values(
-                                        $state.formFilter.value
-                                      ).some(
-                                        val => val !== "" && val !== undefined
-                                      );
-                                    } catch (e) {
-                                      if (
-                                        e instanceof TypeError ||
-                                        e?.plasmicType ===
-                                          "PlasmicUndefinedDataError"
-                                      ) {
-                                        return true;
-                                      }
-                                      throw e;
-                                    }
-                                  })() ? (
-                                    <Stack__
-                                      as={"button"}
-                                      data-plasmic-name={"resetFormBtn"}
-                                      data-plasmic-override={
-                                        overrides.resetFormBtn
-                                      }
-                                      hasGap={true}
-                                      className={classNames(
-                                        projectcss.all,
-                                        projectcss.button,
-                                        sty.resetFormBtn
-                                      )}
-                                      onClick={async event => {
-                                        const $steps = {};
-
-                                        $steps["runCode"] = true
-                                          ? (() => {
-                                              const actionArgs = {
-                                                customFunction: async () => {
-                                                  return (() => {
-                                                    $state.input3.value = "";
-                                                    $state.input4.value = "";
-                                                    $state.keyWords = "";
-                                                    return ($state.searchLocation =
-                                                      "");
-                                                  })();
-                                                }
-                                              };
-                                              return (({ customFunction }) => {
-                                                return customFunction();
-                                              })?.apply(null, [actionArgs]);
-                                            })()
-                                          : undefined;
-                                        if (
-                                          $steps["runCode"] != null &&
-                                          typeof $steps["runCode"] ===
-                                            "object" &&
-                                          typeof $steps["runCode"].then ===
-                                            "function"
-                                        ) {
-                                          $steps["runCode"] = await $steps[
-                                            "runCode"
-                                          ];
-                                        }
-
-                                        $steps["runActionOnFormFilter"] = true
-                                          ? (() => {
-                                              const actionArgs = {
-                                                tplRef: "formFilter",
-                                                action: "clearFields"
-                                              };
-                                              return (({
-                                                tplRef,
-                                                action,
-                                                args
-                                              }) => {
-                                                return $refs?.[tplRef]?.[
-                                                  action
-                                                ]?.(...(args ?? []));
-                                              })?.apply(null, [actionArgs]);
-                                            })()
-                                          : undefined;
-                                        if (
-                                          $steps["runActionOnFormFilter"] !=
-                                            null &&
-                                          typeof $steps[
-                                            "runActionOnFormFilter"
-                                          ] === "object" &&
-                                          typeof $steps["runActionOnFormFilter"]
-                                            .then === "function"
-                                        ) {
-                                          $steps["runActionOnFormFilter"] =
-                                            await $steps[
-                                              "runActionOnFormFilter"
-                                            ];
-                                        }
-
-                                        $steps["updateFormFilter2Submited"] =
-                                          true
-                                            ? (() => {
-                                                const actionArgs = {
-                                                  variable: {
-                                                    objRoot: $state,
-                                                    variablePath: [
-                                                      "formFilter2Submited"
-                                                    ]
-                                                  },
-                                                  operation: 0,
-                                                  value: false
-                                                };
-                                                return (({
-                                                  variable,
-                                                  value,
-                                                  startIndex,
-                                                  deleteCount
-                                                }) => {
-                                                  if (!variable) {
-                                                    return;
-                                                  }
-                                                  const {
-                                                    objRoot,
-                                                    variablePath
-                                                  } = variable;
-
-                                                  $stateSet(
-                                                    objRoot,
-                                                    variablePath,
-                                                    value
-                                                  );
-                                                  return value;
-                                                })?.apply(null, [actionArgs]);
-                                              })()
-                                            : undefined;
-                                        if (
-                                          $steps["updateFormFilter2Submited"] !=
-                                            null &&
-                                          typeof $steps[
-                                            "updateFormFilter2Submited"
-                                          ] === "object" &&
-                                          typeof $steps[
-                                            "updateFormFilter2Submited"
-                                          ].then === "function"
-                                        ) {
-                                          $steps["updateFormFilter2Submited"] =
-                                            await $steps[
-                                              "updateFormFilter2Submited"
-                                            ];
-                                        }
-                                      }}
-                                      ref={ref => {
-                                        $refs["resetFormBtn"] = ref;
-                                      }}
-                                    >
-                                      <Vector19Icon
-                                        className={classNames(
-                                          projectcss.all,
-                                          sty.svg__qSfLf
-                                        )}
-                                        role={"img"}
-                                      />
-
-                                      <div
-                                        className={classNames(
-                                          projectcss.all,
-                                          projectcss.__wab_text,
-                                          sty.text__lWfpt
-                                        )}
-                                      >
-                                        {"R\u00e9initialiser les filtres"}
-                                      </div>
-                                    </Stack__>
-                                  ) : null}
-                                </Stack__>
-                              </FormWrapper>
-                            );
-                          })()}
-                        </Stack__>
-                        <Stack__
-                          as={"div"}
-                          data-plasmic-name={"mapJobs"}
-                          data-plasmic-override={overrides.mapJobs}
-                          hasGap={true}
-                          className={classNames(projectcss.all, sty.mapJobs)}
-                        >
-                          <div
-                            data-plasmic-name={"joblistandbtn"}
-                            data-plasmic-override={overrides.joblistandbtn}
-                            className={classNames(
-                              projectcss.all,
-                              sty.joblistandbtn
-                            )}
-                          >
-                            <div
-                              data-plasmic-name={"btn"}
-                              data-plasmic-override={overrides.btn}
-                              className={classNames(projectcss.all, sty.btn)}
-                            >
-                              <div
-                                data-plasmic-name={"postes"}
-                                data-plasmic-override={overrides.postes}
-                                className={classNames(
-                                  projectcss.all,
-                                  sty.postes
-                                )}
-                                onClick={async event => {
-                                  const $steps = {};
-
-                                  $steps["updateIsDiv1Visible2"] = true
-                                    ? (() => {
-                                        const actionArgs = {
-                                          variable: {
-                                            objRoot: $state,
-                                            variablePath: ["isDiv1Visible"]
-                                          },
-                                          operation: 4
-                                        };
-                                        return (({
-                                          variable,
-                                          value,
-                                          startIndex,
-                                          deleteCount
-                                        }) => {
-                                          if (!variable) {
-                                            return;
-                                          }
-                                          const { objRoot, variablePath } =
-                                            variable;
-
-                                          const oldValue = $stateGet(
-                                            objRoot,
-                                            variablePath
-                                          );
-                                          $stateSet(
-                                            objRoot,
-                                            variablePath,
-                                            !oldValue
-                                          );
-                                          return !oldValue;
-                                        })?.apply(null, [actionArgs]);
-                                      })()
-                                    : undefined;
-                                  if (
-                                    $steps["updateIsDiv1Visible2"] != null &&
-                                    typeof $steps["updateIsDiv1Visible2"] ===
-                                      "object" &&
-                                    typeof $steps["updateIsDiv1Visible2"]
-                                      .then === "function"
-                                  ) {
-                                    $steps["updateIsDiv1Visible2"] =
-                                      await $steps["updateIsDiv1Visible2"];
-                                  }
-
-                                  $steps["updateMenuOnOff"] = true
-                                    ? (() => {
-                                        const actionArgs = {
-                                          variable: {
-                                            objRoot: $state,
-                                            variablePath: ["menuOnOff"]
-                                          },
-                                          operation: 4
-                                        };
-                                        return (({
-                                          variable,
-                                          value,
-                                          startIndex,
-                                          deleteCount
-                                        }) => {
-                                          if (!variable) {
-                                            return;
-                                          }
-                                          const { objRoot, variablePath } =
-                                            variable;
-
-                                          const oldValue = $stateGet(
-                                            objRoot,
-                                            variablePath
-                                          );
-                                          $stateSet(
-                                            objRoot,
-                                            variablePath,
-                                            !oldValue
-                                          );
-                                          return !oldValue;
-                                        })?.apply(null, [actionArgs]);
-                                      })()
-                                    : undefined;
-                                  if (
-                                    $steps["updateMenuOnOff"] != null &&
-                                    typeof $steps["updateMenuOnOff"] ===
-                                      "object" &&
-                                    typeof $steps["updateMenuOnOff"].then ===
-                                      "function"
-                                  ) {
-                                    $steps["updateMenuOnOff"] = await $steps[
-                                      "updateMenuOnOff"
-                                    ];
-                                  }
-                                }}
-                              >
-                                <div
-                                  className={classNames(
-                                    projectcss.all,
-                                    projectcss.__wab_text,
-                                    sty.text__lUpz4
-                                  )}
-                                >
-                                  {hasVariant(
-                                    globalVariants,
-                                    "screen",
-                                    "mobileOnly"
-                                  ) ? (
-                                    <React.Fragment>
-                                      {(() => {
-                                        try {
-                                          return (() => {
-                                            if ($state.isDiv1Visible == false) {
-                                              return "Afficher la liste des résultats";
-                                            } else if (
-                                              $queries.jobOffers.data.length ===
-                                              0
-                                            ) {
-                                              return "Aucun resultat";
-                                            } else if (
-                                              $queries.jobOffers === 0 &&
-                                              $state.formFilter2Submited
-                                            ) {
-                                              return "Aucun resultat";
-                                            } else {
-                                              return "Masquer la liste des résultats";
-                                            }
-                                          })();
-                                        } catch (e) {
-                                          if (
-                                            e instanceof TypeError ||
-                                            e?.plasmicType ===
-                                              "PlasmicUndefinedDataError"
-                                          ) {
-                                            return "Afficher la liste des r\u00e9sultats";
-                                          }
-                                          throw e;
-                                        }
-                                      })()}
-                                    </React.Fragment>
-                                  ) : (
-                                    <React.Fragment>
-                                      {(() => {
-                                        try {
-                                          return (() => {
-                                            if (
-                                              $state.isDiv1Visible == false &&
-                                              $queries.jobOffers?.data?.length >
-                                                0
-                                            ) {
-                                              return "Afficher la liste des résultats";
-                                            } else if (
-                                              $queries.jobOffers.data.length ===
-                                              0
-                                            ) {
-                                              return "Aucun resultat";
-                                            } else {
-                                              return "Masquer la liste des résultats";
-                                            }
-                                          })();
-                                        } catch (e) {
-                                          if (
-                                            e instanceof TypeError ||
-                                            e?.plasmicType ===
-                                              "PlasmicUndefinedDataError"
-                                          ) {
-                                            return "Afficher la liste des r\u00e9sultats";
-                                          }
-                                          throw e;
-                                        }
-                                      })()}
-                                    </React.Fragment>
-                                  )}
-                                </div>
-                                <div
-                                  data-plasmic-name={"button4"}
-                                  data-plasmic-override={overrides.button4}
-                                  className={classNames(
-                                    projectcss.all,
-                                    sty.button4
-                                  )}
-                                >
-                                  {(
-                                    hasVariant(
-                                      globalVariants,
-                                      "screen",
-                                      "mobileOnly"
-                                    )
-                                      ? (() => {
-                                          try {
-                                            return $state.isDiv1Visible;
-                                          } catch (e) {
-                                            if (
-                                              e instanceof TypeError ||
-                                              e?.plasmicType ===
-                                                "PlasmicUndefinedDataError"
-                                            ) {
-                                              return true;
-                                            }
-                                            throw e;
-                                          }
-                                        })()
-                                      : (() => {
-                                          try {
-                                            return !$state.menuOnOff;
-                                          } catch (e) {
-                                            if (
-                                              e instanceof TypeError ||
-                                              e?.plasmicType ===
-                                                "PlasmicUndefinedDataError"
-                                            ) {
-                                              return true;
-                                            }
-                                            throw e;
-                                          }
-                                        })()
-                                  ) ? (
-                                    <div
-                                      data-plasmic-name={"featuredIcon7"}
-                                      data-plasmic-override={
-                                        overrides.featuredIcon7
-                                      }
-                                      className={classNames(
-                                        projectcss.all,
-                                        sty.featuredIcon7
-                                      )}
-                                      onClick={async event => {
-                                        const $steps = {};
-
-                                        $steps["updateIsDiv1Visible"] = true
-                                          ? (() => {
-                                              const actionArgs = {
-                                                variable: {
-                                                  objRoot: $state,
-                                                  variablePath: [
-                                                    "isDiv1Visible"
-                                                  ]
-                                                },
-                                                operation: 4
-                                              };
-                                              return (({
-                                                variable,
-                                                value,
-                                                startIndex,
-                                                deleteCount
-                                              }) => {
-                                                if (!variable) {
-                                                  return;
-                                                }
-                                                const {
-                                                  objRoot,
-                                                  variablePath
-                                                } = variable;
-
-                                                const oldValue = $stateGet(
-                                                  objRoot,
-                                                  variablePath
-                                                );
-                                                $stateSet(
-                                                  objRoot,
-                                                  variablePath,
-                                                  !oldValue
-                                                );
-                                                return !oldValue;
-                                              })?.apply(null, [actionArgs]);
-                                            })()
-                                          : undefined;
-                                        if (
-                                          $steps["updateIsDiv1Visible"] !=
-                                            null &&
-                                          typeof $steps[
-                                            "updateIsDiv1Visible"
-                                          ] === "object" &&
-                                          typeof $steps["updateIsDiv1Visible"]
-                                            .then === "function"
-                                        ) {
-                                          $steps["updateIsDiv1Visible"] =
-                                            await $steps["updateIsDiv1Visible"];
-                                        }
-
-                                        $steps["updateMenuOnOff"] = true
-                                          ? (() => {
-                                              const actionArgs = {
-                                                variable: {
-                                                  objRoot: $state,
-                                                  variablePath: ["menuOnOff"]
-                                                },
-                                                operation: 4
-                                              };
-                                              return (({
-                                                variable,
-                                                value,
-                                                startIndex,
-                                                deleteCount
-                                              }) => {
-                                                if (!variable) {
-                                                  return;
-                                                }
-                                                const {
-                                                  objRoot,
-                                                  variablePath
-                                                } = variable;
-
-                                                const oldValue = $stateGet(
-                                                  objRoot,
-                                                  variablePath
-                                                );
-                                                $stateSet(
-                                                  objRoot,
-                                                  variablePath,
-                                                  !oldValue
-                                                );
-                                                return !oldValue;
-                                              })?.apply(null, [actionArgs]);
-                                            })()
-                                          : undefined;
-                                        if (
-                                          $steps["updateMenuOnOff"] != null &&
-                                          typeof $steps["updateMenuOnOff"] ===
-                                            "object" &&
-                                          typeof $steps["updateMenuOnOff"]
-                                            .then === "function"
-                                        ) {
-                                          $steps["updateMenuOnOff"] =
-                                            await $steps["updateMenuOnOff"];
-                                        }
-                                      }}
-                                    >
-                                      <Icon8Icon
-                                        className={classNames(
-                                          projectcss.all,
-                                          sty.svg__ndq9R
-                                        )}
-                                        role={"img"}
-                                      />
-                                    </div>
-                                  ) : null}
-                                  {(
-                                    hasVariant(
-                                      globalVariants,
-                                      "screen",
-                                      "mobileOnly"
-                                    )
-                                      ? (() => {
-                                          try {
-                                            return !$state.isDiv1Visible;
-                                          } catch (e) {
-                                            if (
-                                              e instanceof TypeError ||
-                                              e?.plasmicType ===
-                                                "PlasmicUndefinedDataError"
-                                            ) {
-                                              return true;
-                                            }
-                                            throw e;
-                                          }
-                                        })()
-                                      : (() => {
-                                          try {
-                                            return $state.menuOnOff;
-                                          } catch (e) {
-                                            if (
-                                              e instanceof TypeError ||
-                                              e?.plasmicType ===
-                                                "PlasmicUndefinedDataError"
-                                            ) {
-                                              return true;
-                                            }
-                                            throw e;
-                                          }
-                                        })()
-                                  ) ? (
-                                    <div
-                                      data-plasmic-name={"featuredIcon8"}
-                                      data-plasmic-override={
-                                        overrides.featuredIcon8
-                                      }
-                                      className={classNames(
-                                        projectcss.all,
-                                        sty.featuredIcon8
-                                      )}
-                                      onClick={async event => {
-                                        const $steps = {};
-
-                                        $steps["updateIsDiv1Visible"] = true
-                                          ? (() => {
-                                              const actionArgs = {
-                                                variable: {
-                                                  objRoot: $state,
-                                                  variablePath: [
-                                                    "isDiv1Visible"
-                                                  ]
-                                                },
-                                                operation: 4
-                                              };
-                                              return (({
-                                                variable,
-                                                value,
-                                                startIndex,
-                                                deleteCount
-                                              }) => {
-                                                if (!variable) {
-                                                  return;
-                                                }
-                                                const {
-                                                  objRoot,
-                                                  variablePath
-                                                } = variable;
-
-                                                const oldValue = $stateGet(
-                                                  objRoot,
-                                                  variablePath
-                                                );
-                                                $stateSet(
-                                                  objRoot,
-                                                  variablePath,
-                                                  !oldValue
-                                                );
-                                                return !oldValue;
-                                              })?.apply(null, [actionArgs]);
-                                            })()
-                                          : undefined;
-                                        if (
-                                          $steps["updateIsDiv1Visible"] !=
-                                            null &&
-                                          typeof $steps[
-                                            "updateIsDiv1Visible"
-                                          ] === "object" &&
-                                          typeof $steps["updateIsDiv1Visible"]
-                                            .then === "function"
-                                        ) {
-                                          $steps["updateIsDiv1Visible"] =
-                                            await $steps["updateIsDiv1Visible"];
-                                        }
-
-                                        $steps["updateMenuOnOff"] = true
-                                          ? (() => {
-                                              const actionArgs = {
-                                                variable: {
-                                                  objRoot: $state,
-                                                  variablePath: ["menuOnOff"]
-                                                },
-                                                operation: 4
-                                              };
-                                              return (({
-                                                variable,
-                                                value,
-                                                startIndex,
-                                                deleteCount
-                                              }) => {
-                                                if (!variable) {
-                                                  return;
-                                                }
-                                                const {
-                                                  objRoot,
-                                                  variablePath
-                                                } = variable;
-
-                                                const oldValue = $stateGet(
-                                                  objRoot,
-                                                  variablePath
-                                                );
-                                                $stateSet(
-                                                  objRoot,
-                                                  variablePath,
-                                                  !oldValue
-                                                );
-                                                return !oldValue;
-                                              })?.apply(null, [actionArgs]);
-                                            })()
-                                          : undefined;
-                                        if (
-                                          $steps["updateMenuOnOff"] != null &&
-                                          typeof $steps["updateMenuOnOff"] ===
-                                            "object" &&
-                                          typeof $steps["updateMenuOnOff"]
-                                            .then === "function"
-                                        ) {
-                                          $steps["updateMenuOnOff"] =
-                                            await $steps["updateMenuOnOff"];
-                                        }
-                                      }}
-                                    >
-                                      <Icon8Icon
-                                        className={classNames(
-                                          projectcss.all,
-                                          sty.svg__mts9A
-                                        )}
-                                        role={"img"}
-                                      />
-                                    </div>
-                                  ) : null}
-                                </div>
-                              </div>
-                            </div>
-                            {(
-                              hasVariant(globalVariants, "screen", "mobileOnly")
-                                ? (() => {
-                                    try {
-                                      return $state.isDiv1Visible;
-                                    } catch (e) {
-                                      if (
-                                        e instanceof TypeError ||
-                                        e?.plasmicType ===
-                                          "PlasmicUndefinedDataError"
-                                      ) {
-                                        return true;
-                                      }
-                                      throw e;
-                                    }
-                                  })()
-                                : (() => {
-                                    try {
-                                      return $state.isDiv1Visible;
-                                    } catch (e) {
-                                      if (
-                                        e instanceof TypeError ||
-                                        e?.plasmicType ===
-                                          "PlasmicUndefinedDataError"
-                                      ) {
-                                        return false;
-                                      }
-                                      throw e;
-                                    }
-                                  })()
-                            ) ? (
-                              <Stack__
-                                as={"div"}
-                                data-plasmic-name={"jobListContainer"}
-                                data-plasmic-override={
-                                  overrides.jobListContainer
-                                }
-                                hasGap={true}
-                                className={classNames(
-                                  projectcss.all,
-                                  sty.jobListContainer
-                                )}
-                              >
-                                {(() => {
-                                  try {
-                                    return !$queries.jobOffers.isLoading;
-                                  } catch (e) {
-                                    if (
-                                      e instanceof TypeError ||
-                                      e?.plasmicType ===
-                                        "PlasmicUndefinedDataError"
-                                    ) {
-                                      return true;
-                                    }
-                                    throw e;
-                                  }
-                                })()
-                                  ? (_par =>
-                                      !_par
-                                        ? []
-                                        : Array.isArray(_par)
-                                        ? _par
-                                        : [_par])(
-                                      (() => {
-                                        try {
-                                          return $queries.jobOffers.data;
-                                        } catch (e) {
-                                          if (
-                                            e instanceof TypeError ||
-                                            e?.plasmicType ===
-                                              "PlasmicUndefinedDataError"
-                                          ) {
-                                            return [];
-                                          }
-                                          throw e;
-                                        }
-                                      })()
-                                    ).map(
-                                      (__plasmic_item_0, __plasmic_idx_0) => {
-                                        const currentItem = __plasmic_item_0;
-                                        const currentIndex = __plasmic_idx_0;
-                                        return (
-                                          <div
-                                            data-plasmic-name={"jobsOnScroll"}
-                                            data-plasmic-override={
-                                              overrides.jobsOnScroll
-                                            }
-                                            className={classNames(
-                                              projectcss.all,
-                                              sty.jobsOnScroll
-                                            )}
-                                            key={currentIndex}
-                                            onClick={async event => {
-                                              const $steps = {};
-                                            }}
-                                          >
-                                            <div
-                                              data-plasmic-name={"likeButtons"}
-                                              data-plasmic-override={
-                                                overrides.likeButtons
-                                              }
-                                              className={classNames(
-                                                projectcss.all,
-                                                sty.likeButtons
-                                              )}
-                                              onClick={async event => {
-                                                const $steps = {};
-
-                                                $steps["runCode"] = true
-                                                  ? (() => {
-                                                      const actionArgs = {
-                                                        customFunction:
-                                                          async () => {
-                                                            return event?.stopPropagation();
-                                                          }
-                                                      };
-                                                      return (({
-                                                        customFunction
-                                                      }) => {
-                                                        return customFunction();
-                                                      })?.apply(null, [
-                                                        actionArgs
-                                                      ]);
-                                                    })()
-                                                  : undefined;
-                                                if (
-                                                  $steps["runCode"] != null &&
-                                                  typeof $steps["runCode"] ===
-                                                    "object" &&
-                                                  typeof $steps["runCode"]
-                                                    .then === "function"
-                                                ) {
-                                                  $steps["runCode"] =
-                                                    await $steps["runCode"];
-                                                }
-
-                                                $steps["errorMsg"] = true
-                                                  ? (() => {
-                                                      const actionArgs = {
-                                                        variable: {
-                                                          objRoot: $state,
-                                                          variablePath: [
-                                                            "errorMsg"
-                                                          ]
-                                                        },
-                                                        operation: 0,
-                                                        value:
-                                                          $state.messages
-                                                            .favoris
-                                                      };
-                                                      return (({
-                                                        variable,
-                                                        value,
-                                                        startIndex,
-                                                        deleteCount
-                                                      }) => {
-                                                        if (!variable) {
-                                                          return;
-                                                        }
-                                                        const {
-                                                          objRoot,
-                                                          variablePath
-                                                        } = variable;
-
-                                                        $stateSet(
-                                                          objRoot,
-                                                          variablePath,
-                                                          value
-                                                        );
-                                                        return value;
-                                                      })?.apply(null, [
-                                                        actionArgs
-                                                      ]);
-                                                    })()
-                                                  : undefined;
-                                                if (
-                                                  $steps["errorMsg"] != null &&
-                                                  typeof $steps["errorMsg"] ===
-                                                    "object" &&
-                                                  typeof $steps["errorMsg"]
-                                                    .then === "function"
-                                                ) {
-                                                  $steps["errorMsg"] =
-                                                    await $steps["errorMsg"];
-                                                }
-
-                                                $steps["userNotLogged"] =
-                                                  $ctx.SupabaseUser?.user
-                                                    ?.id === undefined
-                                                    ? (() => {
-                                                        const actionArgs = {
-                                                          variable: {
-                                                            objRoot: $state,
-                                                            variablePath: [
-                                                              "verifyUserAuth",
-                                                              "isOpen"
-                                                            ]
-                                                          },
-                                                          operation: 0,
-                                                          value: true
-                                                        };
-                                                        return (({
-                                                          variable,
-                                                          value,
-                                                          startIndex,
-                                                          deleteCount
-                                                        }) => {
-                                                          if (!variable) {
-                                                            return;
-                                                          }
-                                                          const {
-                                                            objRoot,
-                                                            variablePath
-                                                          } = variable;
-
-                                                          $stateSet(
-                                                            objRoot,
-                                                            variablePath,
-                                                            value
-                                                          );
-                                                          return value;
-                                                        })?.apply(null, [
-                                                          actionArgs
-                                                        ]);
-                                                      })()
-                                                    : undefined;
-                                                if (
-                                                  $steps["userNotLogged"] !=
-                                                    null &&
-                                                  typeof $steps[
-                                                    "userNotLogged"
-                                                  ] === "object" &&
-                                                  typeof $steps["userNotLogged"]
-                                                    .then === "function"
-                                                ) {
-                                                  $steps["userNotLogged"] =
-                                                    await $steps[
-                                                      "userNotLogged"
-                                                    ];
-                                                }
-                                              }}
-                                            >
-                                              {(() => {
-                                                try {
-                                                  return !$queries.userLikedJobs.data.some(
-                                                    like =>
-                                                      like.job_id ===
-                                                      currentItem.id
-                                                  );
-                                                } catch (e) {
-                                                  if (
-                                                    e instanceof TypeError ||
-                                                    e?.plasmicType ===
-                                                      "PlasmicUndefinedDataError"
-                                                  ) {
-                                                    return false;
-                                                  }
-                                                  throw e;
-                                                }
-                                              })() ? (
-                                                <HeartStraightStreamlinePhosphorSvgIcon
-                                                  data-plasmic-name={"like2"}
                                                   data-plasmic-override={
-                                                    overrides.like2
+                                                    overrides.likeButtons
                                                   }
                                                   className={classNames(
                                                     projectcss.all,
-                                                    sty.like2
+                                                    sty.likeButtons
                                                   )}
                                                   onClick={async event => {
                                                     const $steps = {};
 
-                                                    $steps["updateDb"] =
-                                                      $ctx.SupabaseUser?.user
-                                                        ?.id &&
-                                                      !$queries.userLikedJobs.data.some(
-                                                        like =>
-                                                          like.job_id ===
-                                                          currentItem.id
-                                                      )
-                                                        ? (() => {
-                                                            const actionArgs = {
-                                                              dataOp: {
-                                                                sourceId:
-                                                                  "kVSSe8ab4TtzwRPnTeEeUp",
-                                                                opId: "82374051-9814-414c-909c-d23851067d30",
-                                                                userArgs: {
-                                                                  variables: [
-                                                                    currentItem.id,
-                                                                    !$state.couleurLike,
-                                                                    $ctx
-                                                                      .SupabaseUser
-                                                                      ?.user?.id
-                                                                  ]
-                                                                },
-                                                                cacheKey: null,
-                                                                invalidatedKeys:
-                                                                  [],
-                                                                roleId: null
-                                                              }
-                                                            };
-                                                            return (async ({
-                                                              dataOp,
-                                                              continueOnError
-                                                            }) => {
-                                                              try {
-                                                                const response =
-                                                                  await executePlasmicDataOp(
-                                                                    dataOp,
-                                                                    {
-                                                                      userAuthToken:
-                                                                        dataSourcesCtx?.userAuthToken,
-                                                                      user: dataSourcesCtx?.user
-                                                                    }
-                                                                  );
-                                                                await plasmicInvalidate(
-                                                                  dataOp.invalidatedKeys
-                                                                );
-                                                                return response;
-                                                              } catch (e) {
-                                                                if (
-                                                                  !continueOnError
-                                                                ) {
-                                                                  throw e;
-                                                                }
-                                                                return e;
-                                                              }
-                                                            })?.apply(null, [
-                                                              actionArgs
-                                                            ]);
-                                                          })()
-                                                        : undefined;
-                                                    if (
-                                                      $steps["updateDb"] !=
-                                                        null &&
-                                                      typeof $steps[
-                                                        "updateDb"
-                                                      ] === "object" &&
-                                                      typeof $steps["updateDb"]
-                                                        .then === "function"
-                                                    ) {
-                                                      $steps["updateDb"] =
-                                                        await $steps[
-                                                          "updateDb"
-                                                        ];
-                                                    }
-
-                                                    $steps["refreshData"] = true
+                                                    $steps["runCode"] = true
                                                       ? (() => {
                                                           const actionArgs = {
-                                                            queryInvalidation: [
-                                                              "a6f75235-f527-45c2-93df-15fcf84a6820",
-                                                              "24ab9e7e-7e19-4ab2-82fc-82df12596da0",
-                                                              "8b5c082f-d99a-4dae-bab9-7c91407a4070"
-                                                            ]
+                                                            customFunction:
+                                                              async () => {
+                                                                return event?.stopPropagation();
+                                                              }
                                                           };
-                                                          return (async ({
-                                                            queryInvalidation
+                                                          return (({
+                                                            customFunction
                                                           }) => {
-                                                            if (
-                                                              !queryInvalidation
-                                                            ) {
-                                                              return;
-                                                            }
-                                                            await plasmicInvalidate(
-                                                              queryInvalidation
-                                                            );
+                                                            return customFunction();
                                                           })?.apply(null, [
                                                             actionArgs
                                                           ]);
                                                         })()
                                                       : undefined;
                                                     if (
-                                                      $steps["refreshData"] !=
+                                                      $steps["runCode"] !=
                                                         null &&
                                                       typeof $steps[
-                                                        "refreshData"
+                                                        "runCode"
                                                       ] === "object" &&
-                                                      typeof $steps[
-                                                        "refreshData"
-                                                      ].then === "function"
-                                                    ) {
-                                                      $steps["refreshData"] =
-                                                        await $steps[
-                                                          "refreshData"
-                                                        ];
-                                                    }
-
-                                                    $steps["showToast"] =
-                                                      $ctx.SupabaseUser?.user
-                                                        ?.id &&
-                                                      !$queries.userLikedJobs.data.some(
-                                                        like =>
-                                                          like.job_id ===
-                                                          currentItem.id
-                                                      )
-                                                        ? (() => {
-                                                            const actionArgs = {
-                                                              args: [
-                                                                "success",
-                                                                (() => {
-                                                                  try {
-                                                                    return `L'annonce "${currentItem.title}" a bien été ajoutée de vos favoris`;
-                                                                  } catch (e) {
-                                                                    if (
-                                                                      e instanceof
-                                                                        TypeError ||
-                                                                      e?.plasmicType ===
-                                                                        "PlasmicUndefinedDataError"
-                                                                    ) {
-                                                                      return undefined;
-                                                                    }
-                                                                    throw e;
-                                                                  }
-                                                                })()
-                                                              ]
-                                                            };
-                                                            return $globalActions[
-                                                              "plasmic-antd5-config-provider.showNotification"
-                                                            ]?.apply(null, [
-                                                              ...actionArgs.args
-                                                            ]);
-                                                          })()
-                                                        : undefined;
-                                                    if (
-                                                      $steps["showToast"] !=
-                                                        null &&
-                                                      typeof $steps[
-                                                        "showToast"
-                                                      ] === "object" &&
-                                                      typeof $steps["showToast"]
+                                                      typeof $steps["runCode"]
                                                         .then === "function"
                                                     ) {
-                                                      $steps["showToast"] =
+                                                      $steps["runCode"] =
+                                                        await $steps["runCode"];
+                                                    }
+
+                                                    $steps["errorMsg"] = true
+                                                      ? (() => {
+                                                          const actionArgs = {
+                                                            variable: {
+                                                              objRoot: $state,
+                                                              variablePath: [
+                                                                "errorMsg"
+                                                              ]
+                                                            },
+                                                            operation: 0,
+                                                            value:
+                                                              $state.messages
+                                                                .favoris
+                                                          };
+                                                          return (({
+                                                            variable,
+                                                            value,
+                                                            startIndex,
+                                                            deleteCount
+                                                          }) => {
+                                                            if (!variable) {
+                                                              return;
+                                                            }
+                                                            const {
+                                                              objRoot,
+                                                              variablePath
+                                                            } = variable;
+
+                                                            $stateSet(
+                                                              objRoot,
+                                                              variablePath,
+                                                              value
+                                                            );
+                                                            return value;
+                                                          })?.apply(null, [
+                                                            actionArgs
+                                                          ]);
+                                                        })()
+                                                      : undefined;
+                                                    if (
+                                                      $steps["errorMsg"] !=
+                                                        null &&
+                                                      typeof $steps[
+                                                        "errorMsg"
+                                                      ] === "object" &&
+                                                      typeof $steps["errorMsg"]
+                                                        .then === "function"
+                                                    ) {
+                                                      $steps["errorMsg"] =
                                                         await $steps[
-                                                          "showToast"
+                                                          "errorMsg"
                                                         ];
                                                     }
 
-                                                    $steps[
-                                                      "updateVerifyUserAuthIsOpen"
-                                                    ] =
+                                                    $steps["userNotLogged"] =
                                                       $ctx.SupabaseUser?.user
-                                                        ?.id == undefined
+                                                        ?.id === undefined
                                                         ? (() => {
                                                             const actionArgs = {
                                                               variable: {
@@ -5089,37 +4961,751 @@ function PlasmicAccueil__RenderFunc(props: {
                                                           })()
                                                         : undefined;
                                                     if (
-                                                      $steps[
-                                                        "updateVerifyUserAuthIsOpen"
-                                                      ] != null &&
+                                                      $steps["userNotLogged"] !=
+                                                        null &&
                                                       typeof $steps[
-                                                        "updateVerifyUserAuthIsOpen"
+                                                        "userNotLogged"
                                                       ] === "object" &&
                                                       typeof $steps[
-                                                        "updateVerifyUserAuthIsOpen"
+                                                        "userNotLogged"
                                                       ].then === "function"
                                                     ) {
-                                                      $steps[
-                                                        "updateVerifyUserAuthIsOpen"
-                                                      ] = await $steps[
-                                                        "updateVerifyUserAuthIsOpen"
-                                                      ];
+                                                      $steps["userNotLogged"] =
+                                                        await $steps[
+                                                          "userNotLogged"
+                                                        ];
                                                     }
+                                                  }}
+                                                >
+                                                  {(() => {
+                                                    try {
+                                                      return !$queries.userLikedJobs.data.some(
+                                                        like =>
+                                                          like.job_id ===
+                                                          currentItem.id
+                                                      );
+                                                    } catch (e) {
+                                                      if (
+                                                        e instanceof
+                                                          TypeError ||
+                                                        e?.plasmicType ===
+                                                          "PlasmicUndefinedDataError"
+                                                      ) {
+                                                        return false;
+                                                      }
+                                                      throw e;
+                                                    }
+                                                  })() ? (
+                                                    <HeartStraightStreamlinePhosphorSvgIcon
+                                                      data-plasmic-name={
+                                                        "like2"
+                                                      }
+                                                      data-plasmic-override={
+                                                        overrides.like2
+                                                      }
+                                                      className={classNames(
+                                                        projectcss.all,
+                                                        sty.like2
+                                                      )}
+                                                      onClick={async event => {
+                                                        const $steps = {};
 
-                                                    $steps["updateErrorMsg"] =
-                                                      true
+                                                        $steps["updateDb"] =
+                                                          $ctx.SupabaseUser
+                                                            ?.user?.id &&
+                                                          !$queries.userLikedJobs.data.some(
+                                                            like =>
+                                                              like.job_id ===
+                                                              currentItem.id
+                                                          )
+                                                            ? (() => {
+                                                                const actionArgs =
+                                                                  {
+                                                                    dataOp: {
+                                                                      sourceId:
+                                                                        "kVSSe8ab4TtzwRPnTeEeUp",
+                                                                      opId: "82374051-9814-414c-909c-d23851067d30",
+                                                                      userArgs:
+                                                                        {
+                                                                          variables:
+                                                                            [
+                                                                              currentItem.id,
+
+                                                                              !$state.couleurLike,
+
+                                                                              $ctx
+                                                                                .SupabaseUser
+                                                                                ?.user
+                                                                                ?.id
+                                                                            ]
+                                                                        },
+                                                                      cacheKey:
+                                                                        null,
+                                                                      invalidatedKeys:
+                                                                        [],
+                                                                      roleId:
+                                                                        null
+                                                                    }
+                                                                  };
+                                                                return (async ({
+                                                                  dataOp,
+                                                                  continueOnError
+                                                                }) => {
+                                                                  try {
+                                                                    const response =
+                                                                      await executePlasmicDataOp(
+                                                                        dataOp,
+                                                                        {
+                                                                          userAuthToken:
+                                                                            dataSourcesCtx?.userAuthToken,
+                                                                          user: dataSourcesCtx?.user
+                                                                        }
+                                                                      );
+                                                                    await plasmicInvalidate(
+                                                                      dataOp.invalidatedKeys
+                                                                    );
+                                                                    return response;
+                                                                  } catch (e) {
+                                                                    if (
+                                                                      !continueOnError
+                                                                    ) {
+                                                                      throw e;
+                                                                    }
+                                                                    return e;
+                                                                  }
+                                                                })?.apply(
+                                                                  null,
+                                                                  [actionArgs]
+                                                                );
+                                                              })()
+                                                            : undefined;
+                                                        if (
+                                                          $steps["updateDb"] !=
+                                                            null &&
+                                                          typeof $steps[
+                                                            "updateDb"
+                                                          ] === "object" &&
+                                                          typeof $steps[
+                                                            "updateDb"
+                                                          ].then === "function"
+                                                        ) {
+                                                          $steps["updateDb"] =
+                                                            await $steps[
+                                                              "updateDb"
+                                                            ];
+                                                        }
+
+                                                        $steps["refreshData"] =
+                                                          true
+                                                            ? (() => {
+                                                                const actionArgs =
+                                                                  {
+                                                                    queryInvalidation:
+                                                                      [
+                                                                        "a6f75235-f527-45c2-93df-15fcf84a6820",
+                                                                        "24ab9e7e-7e19-4ab2-82fc-82df12596da0",
+                                                                        "8b5c082f-d99a-4dae-bab9-7c91407a4070"
+                                                                      ]
+                                                                  };
+                                                                return (async ({
+                                                                  queryInvalidation
+                                                                }) => {
+                                                                  if (
+                                                                    !queryInvalidation
+                                                                  ) {
+                                                                    return;
+                                                                  }
+                                                                  await plasmicInvalidate(
+                                                                    queryInvalidation
+                                                                  );
+                                                                })?.apply(
+                                                                  null,
+                                                                  [actionArgs]
+                                                                );
+                                                              })()
+                                                            : undefined;
+                                                        if (
+                                                          $steps[
+                                                            "refreshData"
+                                                          ] != null &&
+                                                          typeof $steps[
+                                                            "refreshData"
+                                                          ] === "object" &&
+                                                          typeof $steps[
+                                                            "refreshData"
+                                                          ].then === "function"
+                                                        ) {
+                                                          $steps[
+                                                            "refreshData"
+                                                          ] = await $steps[
+                                                            "refreshData"
+                                                          ];
+                                                        }
+
+                                                        $steps["showToast"] =
+                                                          $ctx.SupabaseUser
+                                                            ?.user?.id &&
+                                                          !$queries.userLikedJobs.data.some(
+                                                            like =>
+                                                              like.job_id ===
+                                                              currentItem.id
+                                                          )
+                                                            ? (() => {
+                                                                const actionArgs =
+                                                                  {
+                                                                    args: [
+                                                                      "success",
+                                                                      (() => {
+                                                                        try {
+                                                                          return `L'annonce "${currentItem.title}" a bien été ajoutée de vos favoris`;
+                                                                        } catch (e) {
+                                                                          if (
+                                                                            e instanceof
+                                                                              TypeError ||
+                                                                            e?.plasmicType ===
+                                                                              "PlasmicUndefinedDataError"
+                                                                          ) {
+                                                                            return undefined;
+                                                                          }
+                                                                          throw e;
+                                                                        }
+                                                                      })()
+                                                                    ]
+                                                                  };
+                                                                return $globalActions[
+                                                                  "plasmic-antd5-config-provider.showNotification"
+                                                                ]?.apply(null, [
+                                                                  ...actionArgs.args
+                                                                ]);
+                                                              })()
+                                                            : undefined;
+                                                        if (
+                                                          $steps["showToast"] !=
+                                                            null &&
+                                                          typeof $steps[
+                                                            "showToast"
+                                                          ] === "object" &&
+                                                          typeof $steps[
+                                                            "showToast"
+                                                          ].then === "function"
+                                                        ) {
+                                                          $steps["showToast"] =
+                                                            await $steps[
+                                                              "showToast"
+                                                            ];
+                                                        }
+
+                                                        $steps[
+                                                          "updateVerifyUserAuthIsOpen"
+                                                        ] =
+                                                          $ctx.SupabaseUser
+                                                            ?.user?.id ==
+                                                          undefined
+                                                            ? (() => {
+                                                                const actionArgs =
+                                                                  {
+                                                                    variable: {
+                                                                      objRoot:
+                                                                        $state,
+                                                                      variablePath:
+                                                                        [
+                                                                          "verifyUserAuth",
+                                                                          "isOpen"
+                                                                        ]
+                                                                    },
+                                                                    operation: 0,
+                                                                    value: true
+                                                                  };
+                                                                return (({
+                                                                  variable,
+                                                                  value,
+                                                                  startIndex,
+                                                                  deleteCount
+                                                                }) => {
+                                                                  if (
+                                                                    !variable
+                                                                  ) {
+                                                                    return;
+                                                                  }
+                                                                  const {
+                                                                    objRoot,
+                                                                    variablePath
+                                                                  } = variable;
+
+                                                                  $stateSet(
+                                                                    objRoot,
+                                                                    variablePath,
+                                                                    value
+                                                                  );
+                                                                  return value;
+                                                                })?.apply(
+                                                                  null,
+                                                                  [actionArgs]
+                                                                );
+                                                              })()
+                                                            : undefined;
+                                                        if (
+                                                          $steps[
+                                                            "updateVerifyUserAuthIsOpen"
+                                                          ] != null &&
+                                                          typeof $steps[
+                                                            "updateVerifyUserAuthIsOpen"
+                                                          ] === "object" &&
+                                                          typeof $steps[
+                                                            "updateVerifyUserAuthIsOpen"
+                                                          ].then === "function"
+                                                        ) {
+                                                          $steps[
+                                                            "updateVerifyUserAuthIsOpen"
+                                                          ] = await $steps[
+                                                            "updateVerifyUserAuthIsOpen"
+                                                          ];
+                                                        }
+
+                                                        $steps[
+                                                          "updateErrorMsg"
+                                                        ] = true
+                                                          ? (() => {
+                                                              const actionArgs =
+                                                                {
+                                                                  variable: {
+                                                                    objRoot:
+                                                                      $state,
+                                                                    variablePath:
+                                                                      [
+                                                                        "errorMsg"
+                                                                      ]
+                                                                  },
+                                                                  operation: 0,
+                                                                  value:
+                                                                    $state
+                                                                      .messages
+                                                                      .favoris
+                                                                };
+                                                              return (({
+                                                                variable,
+                                                                value,
+                                                                startIndex,
+                                                                deleteCount
+                                                              }) => {
+                                                                if (!variable) {
+                                                                  return;
+                                                                }
+                                                                const {
+                                                                  objRoot,
+                                                                  variablePath
+                                                                } = variable;
+
+                                                                $stateSet(
+                                                                  objRoot,
+                                                                  variablePath,
+                                                                  value
+                                                                );
+                                                                return value;
+                                                              })?.apply(null, [
+                                                                actionArgs
+                                                              ]);
+                                                            })()
+                                                          : undefined;
+                                                        if (
+                                                          $steps[
+                                                            "updateErrorMsg"
+                                                          ] != null &&
+                                                          typeof $steps[
+                                                            "updateErrorMsg"
+                                                          ] === "object" &&
+                                                          typeof $steps[
+                                                            "updateErrorMsg"
+                                                          ].then === "function"
+                                                        ) {
+                                                          $steps[
+                                                            "updateErrorMsg"
+                                                          ] = await $steps[
+                                                            "updateErrorMsg"
+                                                          ];
+                                                        }
+                                                      }}
+                                                      role={"img"}
+                                                    />
+                                                  ) : null}
+                                                  {(() => {
+                                                    try {
+                                                      return $queries.userLikedJobs.data.some(
+                                                        like =>
+                                                          like.job_id ===
+                                                          currentItem.id
+                                                      );
+                                                    } catch (e) {
+                                                      if (
+                                                        e instanceof
+                                                          TypeError ||
+                                                        e?.plasmicType ===
+                                                          "PlasmicUndefinedDataError"
+                                                      ) {
+                                                        return false;
+                                                      }
+                                                      throw e;
+                                                    }
+                                                  })() ? (
+                                                    <HeartStraightIcon
+                                                      data-plasmic-name={
+                                                        "dislike"
+                                                      }
+                                                      data-plasmic-override={
+                                                        overrides.dislike
+                                                      }
+                                                      className={classNames(
+                                                        projectcss.all,
+                                                        sty.dislike
+                                                      )}
+                                                      onClick={async event => {
+                                                        const $steps = {};
+
+                                                        $steps["updateDb"] =
+                                                          $ctx.SupabaseUser
+                                                            ?.user?.id &&
+                                                          $queries.userLikedJobs.data.some(
+                                                            like =>
+                                                              like.job_id ===
+                                                              currentItem.id
+                                                          )
+                                                            ? (() => {
+                                                                const actionArgs =
+                                                                  {
+                                                                    dataOp: {
+                                                                      sourceId:
+                                                                        "kVSSe8ab4TtzwRPnTeEeUp",
+                                                                      opId: "21389a04-150f-4bd5-bdca-85fbbce35635",
+                                                                      userArgs:
+                                                                        {
+                                                                          conditions:
+                                                                            [
+                                                                              currentItem.id
+                                                                            ]
+                                                                        },
+                                                                      cacheKey:
+                                                                        null,
+                                                                      invalidatedKeys:
+                                                                        [],
+                                                                      roleId:
+                                                                        null
+                                                                    }
+                                                                  };
+                                                                return (async ({
+                                                                  dataOp,
+                                                                  continueOnError
+                                                                }) => {
+                                                                  try {
+                                                                    const response =
+                                                                      await executePlasmicDataOp(
+                                                                        dataOp,
+                                                                        {
+                                                                          userAuthToken:
+                                                                            dataSourcesCtx?.userAuthToken,
+                                                                          user: dataSourcesCtx?.user
+                                                                        }
+                                                                      );
+                                                                    await plasmicInvalidate(
+                                                                      dataOp.invalidatedKeys
+                                                                    );
+                                                                    return response;
+                                                                  } catch (e) {
+                                                                    if (
+                                                                      !continueOnError
+                                                                    ) {
+                                                                      throw e;
+                                                                    }
+                                                                    return e;
+                                                                  }
+                                                                })?.apply(
+                                                                  null,
+                                                                  [actionArgs]
+                                                                );
+                                                              })()
+                                                            : undefined;
+                                                        if (
+                                                          $steps["updateDb"] !=
+                                                            null &&
+                                                          typeof $steps[
+                                                            "updateDb"
+                                                          ] === "object" &&
+                                                          typeof $steps[
+                                                            "updateDb"
+                                                          ].then === "function"
+                                                        ) {
+                                                          $steps["updateDb"] =
+                                                            await $steps[
+                                                              "updateDb"
+                                                            ];
+                                                        }
+
+                                                        $steps["refreshData"] =
+                                                          true
+                                                            ? (() => {
+                                                                const actionArgs =
+                                                                  {
+                                                                    queryInvalidation:
+                                                                      [
+                                                                        "24ab9e7e-7e19-4ab2-82fc-82df12596da0",
+                                                                        "8b5c082f-d99a-4dae-bab9-7c91407a4070",
+                                                                        "a6f75235-f527-45c2-93df-15fcf84a6820"
+                                                                      ]
+                                                                  };
+                                                                return (async ({
+                                                                  queryInvalidation
+                                                                }) => {
+                                                                  if (
+                                                                    !queryInvalidation
+                                                                  ) {
+                                                                    return;
+                                                                  }
+                                                                  await plasmicInvalidate(
+                                                                    queryInvalidation
+                                                                  );
+                                                                })?.apply(
+                                                                  null,
+                                                                  [actionArgs]
+                                                                );
+                                                              })()
+                                                            : undefined;
+                                                        if (
+                                                          $steps[
+                                                            "refreshData"
+                                                          ] != null &&
+                                                          typeof $steps[
+                                                            "refreshData"
+                                                          ] === "object" &&
+                                                          typeof $steps[
+                                                            "refreshData"
+                                                          ].then === "function"
+                                                        ) {
+                                                          $steps[
+                                                            "refreshData"
+                                                          ] = await $steps[
+                                                            "refreshData"
+                                                          ];
+                                                        }
+
+                                                        $steps["showToast"] =
+                                                          true
+                                                            ? (() => {
+                                                                const actionArgs =
+                                                                  {
+                                                                    args: [
+                                                                      "success",
+                                                                      (() => {
+                                                                        try {
+                                                                          return `L'annonce "${currentItem.title}" a bien été retirée de vos favoris`;
+                                                                        } catch (e) {
+                                                                          if (
+                                                                            e instanceof
+                                                                              TypeError ||
+                                                                            e?.plasmicType ===
+                                                                              "PlasmicUndefinedDataError"
+                                                                          ) {
+                                                                            return undefined;
+                                                                          }
+                                                                          throw e;
+                                                                        }
+                                                                      })()
+                                                                    ]
+                                                                  };
+                                                                return $globalActions[
+                                                                  "plasmic-antd5-config-provider.showNotification"
+                                                                ]?.apply(null, [
+                                                                  ...actionArgs.args
+                                                                ]);
+                                                              })()
+                                                            : undefined;
+                                                        if (
+                                                          $steps["showToast"] !=
+                                                            null &&
+                                                          typeof $steps[
+                                                            "showToast"
+                                                          ] === "object" &&
+                                                          typeof $steps[
+                                                            "showToast"
+                                                          ].then === "function"
+                                                        ) {
+                                                          $steps["showToast"] =
+                                                            await $steps[
+                                                              "showToast"
+                                                            ];
+                                                        }
+                                                      }}
+                                                      role={"img"}
+                                                    />
+                                                  ) : null}
+                                                </div>
+                                                {(() => {
+                                                  const child$Props = {
+                                                    availability:
+                                                      generateStateValueProp(
+                                                        $state,
+                                                        [
+                                                          "jobCard20",
+                                                          __plasmic_idx_0,
+                                                          "availability"
+                                                        ]
+                                                      ),
+                                                    campany:
+                                                      generateStateValueProp(
+                                                        $state,
+                                                        [
+                                                          "jobCard20",
+                                                          __plasmic_idx_0,
+                                                          "campany"
+                                                        ]
+                                                      ),
+                                                    city: generateStateValueProp(
+                                                      $state,
+                                                      [
+                                                        "jobCard20",
+                                                        __plasmic_idx_0,
+                                                        "city"
+                                                      ]
+                                                    ),
+                                                    className: classNames(
+                                                      "__wab_instance",
+                                                      sty.jobCard20
+                                                    ),
+                                                    companyLogo:
+                                                      generateStateValueProp(
+                                                        $state,
+                                                        [
+                                                          "jobCard20",
+                                                          __plasmic_idx_0,
+                                                          "companyLogo"
+                                                        ]
+                                                      ),
+                                                    contractType:
+                                                      generateStateValueProp(
+                                                        $state,
+                                                        [
+                                                          "jobCard20",
+                                                          __plasmic_idx_0,
+                                                          "contractType"
+                                                        ]
+                                                      ),
+                                                    isApplied:
+                                                      generateStateValueProp(
+                                                        $state,
+                                                        [
+                                                          "jobCard20",
+                                                          __plasmic_idx_0,
+                                                          "isApplied"
+                                                        ]
+                                                      ),
+                                                    isLastMinute:
+                                                      generateStateValueProp(
+                                                        $state,
+                                                        [
+                                                          "jobCard20",
+                                                          __plasmic_idx_0,
+                                                          "isLastMinute"
+                                                        ]
+                                                      ),
+                                                    isNew:
+                                                      generateStateValueProp(
+                                                        $state,
+                                                        [
+                                                          "jobCard20",
+                                                          __plasmic_idx_0,
+                                                          "isNew"
+                                                        ]
+                                                      ),
+                                                    name: generateStateValueProp(
+                                                      $state,
+                                                      [
+                                                        "jobCard20",
+                                                        __plasmic_idx_0,
+                                                        "name"
+                                                      ]
+                                                    ),
+                                                    onAvailabilityChange:
+                                                      async (
+                                                        ...eventArgs: any
+                                                      ) => {
+                                                        generateStateOnChangeProp(
+                                                          $state,
+                                                          [
+                                                            "jobCard20",
+                                                            __plasmic_idx_0,
+                                                            "availability"
+                                                          ]
+                                                        ).apply(
+                                                          null,
+                                                          eventArgs
+                                                        );
+
+                                                        if (
+                                                          eventArgs.length >
+                                                            1 &&
+                                                          eventArgs[1] &&
+                                                          eventArgs[1]
+                                                            ._plasmic_state_init_
+                                                        ) {
+                                                          return;
+                                                        }
+                                                      },
+                                                    onCampanyChange: async (
+                                                      ...eventArgs: any
+                                                    ) => {
+                                                      generateStateOnChangeProp(
+                                                        $state,
+                                                        [
+                                                          "jobCard20",
+                                                          __plasmic_idx_0,
+                                                          "campany"
+                                                        ]
+                                                      ).apply(null, eventArgs);
+
+                                                      if (
+                                                        eventArgs.length > 1 &&
+                                                        eventArgs[1] &&
+                                                        eventArgs[1]
+                                                          ._plasmic_state_init_
+                                                      ) {
+                                                        return;
+                                                      }
+                                                    },
+                                                    onCityChange: async (
+                                                      ...eventArgs: any
+                                                    ) => {
+                                                      generateStateOnChangeProp(
+                                                        $state,
+                                                        [
+                                                          "jobCard20",
+                                                          __plasmic_idx_0,
+                                                          "city"
+                                                        ]
+                                                      ).apply(null, eventArgs);
+
+                                                      if (
+                                                        eventArgs.length > 1 &&
+                                                        eventArgs[1] &&
+                                                        eventArgs[1]
+                                                          ._plasmic_state_init_
+                                                      ) {
+                                                        return;
+                                                      }
+                                                    },
+                                                    onClick: async event => {
+                                                      const $steps = {};
+
+                                                      $steps[
+                                                        "updateJobObject"
+                                                      ] = true
                                                         ? (() => {
                                                             const actionArgs = {
                                                               variable: {
                                                                 objRoot: $state,
                                                                 variablePath: [
-                                                                  "errorMsg"
+                                                                  "jobObject"
                                                                 ]
                                                               },
                                                               operation: 0,
-                                                              value:
-                                                                $state.messages
-                                                                  .favoris
+                                                              value: currentItem
                                                             };
                                                             return (({
                                                               variable,
@@ -5146,1130 +5732,783 @@ function PlasmicAccueil__RenderFunc(props: {
                                                             ]);
                                                           })()
                                                         : undefined;
-                                                    if (
-                                                      $steps[
-                                                        "updateErrorMsg"
-                                                      ] != null &&
-                                                      typeof $steps[
-                                                        "updateErrorMsg"
-                                                      ] === "object" &&
-                                                      typeof $steps[
-                                                        "updateErrorMsg"
-                                                      ].then === "function"
-                                                    ) {
-                                                      $steps["updateErrorMsg"] =
-                                                        await $steps[
-                                                          "updateErrorMsg"
+                                                      if (
+                                                        $steps[
+                                                          "updateJobObject"
+                                                        ] != null &&
+                                                        typeof $steps[
+                                                          "updateJobObject"
+                                                        ] === "object" &&
+                                                        typeof $steps[
+                                                          "updateJobObject"
+                                                        ].then === "function"
+                                                      ) {
+                                                        $steps[
+                                                          "updateJobObject"
+                                                        ] = await $steps[
+                                                          "updateJobObject"
                                                         ];
-                                                    }
-                                                  }}
-                                                  role={"img"}
-                                                />
-                                              ) : null}
-                                              {(() => {
-                                                try {
-                                                  return $queries.userLikedJobs.data.some(
-                                                    like =>
-                                                      like.job_id ===
-                                                      currentItem.id
-                                                  );
-                                                } catch (e) {
-                                                  if (
-                                                    e instanceof TypeError ||
-                                                    e?.plasmicType ===
-                                                      "PlasmicUndefinedDataError"
-                                                  ) {
-                                                    return false;
-                                                  }
-                                                  throw e;
-                                                }
-                                              })() ? (
-                                                <HeartStraightIcon
-                                                  data-plasmic-name={"dislike"}
-                                                  data-plasmic-override={
-                                                    overrides.dislike
-                                                  }
-                                                  className={classNames(
-                                                    projectcss.all,
-                                                    sty.dislike
-                                                  )}
-                                                  onClick={async event => {
-                                                    const $steps = {};
+                                                      }
 
-                                                    $steps["updateDb"] =
-                                                      $ctx.SupabaseUser?.user
-                                                        ?.id &&
-                                                      $queries.userLikedJobs.data.some(
-                                                        like =>
-                                                          like.job_id ===
-                                                          currentItem.id
-                                                      )
+                                                      $steps[
+                                                        "updateJobDetailsIsOpen"
+                                                      ] = true
                                                         ? (() => {
                                                             const actionArgs = {
-                                                              dataOp: {
-                                                                sourceId:
-                                                                  "kVSSe8ab4TtzwRPnTeEeUp",
-                                                                opId: "21389a04-150f-4bd5-bdca-85fbbce35635",
-                                                                userArgs: {
-                                                                  conditions: [
-                                                                    currentItem.id
-                                                                  ]
-                                                                },
-                                                                cacheKey: null,
-                                                                invalidatedKeys:
-                                                                  [],
-                                                                roleId: null
-                                                              }
+                                                              variable: {
+                                                                objRoot: $state,
+                                                                variablePath: [
+                                                                  "jobDetails",
+                                                                  "isOpen"
+                                                                ]
+                                                              },
+                                                              operation: 0,
+                                                              value: true
                                                             };
-                                                            return (async ({
-                                                              dataOp,
-                                                              continueOnError
+                                                            return (({
+                                                              variable,
+                                                              value,
+                                                              startIndex,
+                                                              deleteCount
                                                             }) => {
-                                                              try {
-                                                                const response =
-                                                                  await executePlasmicDataOp(
-                                                                    dataOp,
-                                                                    {
-                                                                      userAuthToken:
-                                                                        dataSourcesCtx?.userAuthToken,
-                                                                      user: dataSourcesCtx?.user
-                                                                    }
-                                                                  );
-                                                                await plasmicInvalidate(
-                                                                  dataOp.invalidatedKeys
-                                                                );
-                                                                return response;
-                                                              } catch (e) {
-                                                                if (
-                                                                  !continueOnError
-                                                                ) {
-                                                                  throw e;
-                                                                }
-                                                                return e;
+                                                              if (!variable) {
+                                                                return;
                                                               }
+                                                              const {
+                                                                objRoot,
+                                                                variablePath
+                                                              } = variable;
+
+                                                              $stateSet(
+                                                                objRoot,
+                                                                variablePath,
+                                                                value
+                                                              );
+                                                              return value;
                                                             })?.apply(null, [
                                                               actionArgs
                                                             ]);
                                                           })()
                                                         : undefined;
-                                                    if (
-                                                      $steps["updateDb"] !=
-                                                        null &&
-                                                      typeof $steps[
-                                                        "updateDb"
-                                                      ] === "object" &&
-                                                      typeof $steps["updateDb"]
-                                                        .then === "function"
-                                                    ) {
-                                                      $steps["updateDb"] =
-                                                        await $steps[
-                                                          "updateDb"
+                                                      if (
+                                                        $steps[
+                                                          "updateJobDetailsIsOpen"
+                                                        ] != null &&
+                                                        typeof $steps[
+                                                          "updateJobDetailsIsOpen"
+                                                        ] === "object" &&
+                                                        typeof $steps[
+                                                          "updateJobDetailsIsOpen"
+                                                        ].then === "function"
+                                                      ) {
+                                                        $steps[
+                                                          "updateJobDetailsIsOpen"
+                                                        ] = await $steps[
+                                                          "updateJobDetailsIsOpen"
                                                         ];
-                                                    }
+                                                      }
 
-                                                    $steps["refreshData"] = true
-                                                      ? (() => {
-                                                          const actionArgs = {
-                                                            queryInvalidation: [
-                                                              "24ab9e7e-7e19-4ab2-82fc-82df12596da0",
-                                                              "8b5c082f-d99a-4dae-bab9-7c91407a4070",
-                                                              "a6f75235-f527-45c2-93df-15fcf84a6820"
-                                                            ]
-                                                          };
-                                                          return (async ({
-                                                            queryInvalidation
-                                                          }) => {
-                                                            if (
-                                                              !queryInvalidation
-                                                            ) {
-                                                              return;
+                                                      $steps[
+                                                        "updateJobCoordinates"
+                                                      ] = true
+                                                        ? (() => {
+                                                            const actionArgs = {
+                                                              variable: {
+                                                                objRoot: $state,
+                                                                variablePath: [
+                                                                  "gpsCoordinates"
+                                                                ]
+                                                              },
+                                                              operation: 0,
+                                                              value: {
+                                                                latitude:
+                                                                  currentItem.latitude,
+                                                                longitude:
+                                                                  currentItem.longitude
+                                                              }
+                                                            };
+                                                            return (({
+                                                              variable,
+                                                              value,
+                                                              startIndex,
+                                                              deleteCount
+                                                            }) => {
+                                                              if (!variable) {
+                                                                return;
+                                                              }
+                                                              const {
+                                                                objRoot,
+                                                                variablePath
+                                                              } = variable;
+
+                                                              $stateSet(
+                                                                objRoot,
+                                                                variablePath,
+                                                                value
+                                                              );
+                                                              return value;
+                                                            })?.apply(null, [
+                                                              actionArgs
+                                                            ]);
+                                                          })()
+                                                        : undefined;
+                                                      if (
+                                                        $steps[
+                                                          "updateJobCoordinates"
+                                                        ] != null &&
+                                                        typeof $steps[
+                                                          "updateJobCoordinates"
+                                                        ] === "object" &&
+                                                        typeof $steps[
+                                                          "updateJobCoordinates"
+                                                        ].then === "function"
+                                                      ) {
+                                                        $steps[
+                                                          "updateJobCoordinates"
+                                                        ] = await $steps[
+                                                          "updateJobCoordinates"
+                                                        ];
+                                                      }
+                                                    },
+                                                    onCompanyLogoChange: async (
+                                                      ...eventArgs: any
+                                                    ) => {
+                                                      generateStateOnChangeProp(
+                                                        $state,
+                                                        [
+                                                          "jobCard20",
+                                                          __plasmic_idx_0,
+                                                          "companyLogo"
+                                                        ]
+                                                      ).apply(null, eventArgs);
+
+                                                      if (
+                                                        eventArgs.length > 1 &&
+                                                        eventArgs[1] &&
+                                                        eventArgs[1]
+                                                          ._plasmic_state_init_
+                                                      ) {
+                                                        return;
+                                                      }
+                                                    },
+                                                    onContractTypeChange:
+                                                      async (
+                                                        ...eventArgs: any
+                                                      ) => {
+                                                        generateStateOnChangeProp(
+                                                          $state,
+                                                          [
+                                                            "jobCard20",
+                                                            __plasmic_idx_0,
+                                                            "contractType"
+                                                          ]
+                                                        ).apply(
+                                                          null,
+                                                          eventArgs
+                                                        );
+
+                                                        if (
+                                                          eventArgs.length >
+                                                            1 &&
+                                                          eventArgs[1] &&
+                                                          eventArgs[1]
+                                                            ._plasmic_state_init_
+                                                        ) {
+                                                          return;
+                                                        }
+                                                      },
+                                                    onIsAppliedChange: async (
+                                                      ...eventArgs: any
+                                                    ) => {
+                                                      generateStateOnChangeProp(
+                                                        $state,
+                                                        [
+                                                          "jobCard20",
+                                                          __plasmic_idx_0,
+                                                          "isApplied"
+                                                        ]
+                                                      ).apply(null, eventArgs);
+
+                                                      if (
+                                                        eventArgs.length > 1 &&
+                                                        eventArgs[1] &&
+                                                        eventArgs[1]
+                                                          ._plasmic_state_init_
+                                                      ) {
+                                                        return;
+                                                      }
+                                                    },
+                                                    onIsLastMinuteChange:
+                                                      async (
+                                                        ...eventArgs: any
+                                                      ) => {
+                                                        generateStateOnChangeProp(
+                                                          $state,
+                                                          [
+                                                            "jobCard20",
+                                                            __plasmic_idx_0,
+                                                            "isLastMinute"
+                                                          ]
+                                                        ).apply(
+                                                          null,
+                                                          eventArgs
+                                                        );
+
+                                                        if (
+                                                          eventArgs.length >
+                                                            1 &&
+                                                          eventArgs[1] &&
+                                                          eventArgs[1]
+                                                            ._plasmic_state_init_
+                                                        ) {
+                                                          return;
+                                                        }
+                                                      },
+                                                    onIsNewChange: async (
+                                                      ...eventArgs: any
+                                                    ) => {
+                                                      generateStateOnChangeProp(
+                                                        $state,
+                                                        [
+                                                          "jobCard20",
+                                                          __plasmic_idx_0,
+                                                          "isNew"
+                                                        ]
+                                                      ).apply(null, eventArgs);
+
+                                                      if (
+                                                        eventArgs.length > 1 &&
+                                                        eventArgs[1] &&
+                                                        eventArgs[1]
+                                                          ._plasmic_state_init_
+                                                      ) {
+                                                        return;
+                                                      }
+                                                    },
+                                                    onNameChange: async (
+                                                      ...eventArgs: any
+                                                    ) => {
+                                                      generateStateOnChangeProp(
+                                                        $state,
+                                                        [
+                                                          "jobCard20",
+                                                          __plasmic_idx_0,
+                                                          "name"
+                                                        ]
+                                                      ).apply(null, eventArgs);
+
+                                                      if (
+                                                        eventArgs.length > 1 &&
+                                                        eventArgs[1] &&
+                                                        eventArgs[1]
+                                                          ._plasmic_state_init_
+                                                      ) {
+                                                        return;
+                                                      }
+                                                    },
+                                                    onSalaryChange: async (
+                                                      ...eventArgs: any
+                                                    ) => {
+                                                      generateStateOnChangeProp(
+                                                        $state,
+                                                        [
+                                                          "jobCard20",
+                                                          __plasmic_idx_0,
+                                                          "salary"
+                                                        ]
+                                                      ).apply(null, eventArgs);
+
+                                                      if (
+                                                        eventArgs.length > 1 &&
+                                                        eventArgs[1] &&
+                                                        eventArgs[1]
+                                                          ._plasmic_state_init_
+                                                      ) {
+                                                        return;
+                                                      }
+                                                    },
+                                                    onSectorChange2: async (
+                                                      ...eventArgs: any
+                                                    ) => {
+                                                      generateStateOnChangeProp(
+                                                        $state,
+                                                        [
+                                                          "jobCard20",
+                                                          __plasmic_idx_0,
+                                                          "sector"
+                                                        ]
+                                                      ).apply(null, eventArgs);
+
+                                                      if (
+                                                        eventArgs.length > 1 &&
+                                                        eventArgs[1] &&
+                                                        eventArgs[1]
+                                                          ._plasmic_state_init_
+                                                      ) {
+                                                        return;
+                                                      }
+                                                    },
+                                                    onWorkModeChange: async (
+                                                      ...eventArgs: any
+                                                    ) => {
+                                                      generateStateOnChangeProp(
+                                                        $state,
+                                                        [
+                                                          "jobCard20",
+                                                          __plasmic_idx_0,
+                                                          "workMode"
+                                                        ]
+                                                      ).apply(null, eventArgs);
+
+                                                      if (
+                                                        eventArgs.length > 1 &&
+                                                        eventArgs[1] &&
+                                                        eventArgs[1]
+                                                          ._plasmic_state_init_
+                                                      ) {
+                                                        return;
+                                                      }
+                                                    },
+                                                    onWorkingTimeChange: async (
+                                                      ...eventArgs: any
+                                                    ) => {
+                                                      generateStateOnChangeProp(
+                                                        $state,
+                                                        [
+                                                          "jobCard20",
+                                                          __plasmic_idx_0,
+                                                          "workingTime"
+                                                        ]
+                                                      ).apply(null, eventArgs);
+
+                                                      if (
+                                                        eventArgs.length > 1 &&
+                                                        eventArgs[1] &&
+                                                        eventArgs[1]
+                                                          ._plasmic_state_init_
+                                                      ) {
+                                                        return;
+                                                      }
+                                                    },
+                                                    salary:
+                                                      generateStateValueProp(
+                                                        $state,
+                                                        [
+                                                          "jobCard20",
+                                                          __plasmic_idx_0,
+                                                          "salary"
+                                                        ]
+                                                      ),
+                                                    sector:
+                                                      generateStateValueProp(
+                                                        $state,
+                                                        [
+                                                          "jobCard20",
+                                                          __plasmic_idx_0,
+                                                          "sector"
+                                                        ]
+                                                      ),
+                                                    showCompanyLogo: false,
+                                                    workMode:
+                                                      generateStateValueProp(
+                                                        $state,
+                                                        [
+                                                          "jobCard20",
+                                                          __plasmic_idx_0,
+                                                          "workMode"
+                                                        ]
+                                                      ),
+                                                    workingTime:
+                                                      generateStateValueProp(
+                                                        $state,
+                                                        [
+                                                          "jobCard20",
+                                                          __plasmic_idx_0,
+                                                          "workingTime"
+                                                        ]
+                                                      )
+                                                  };
+
+                                                  initializePlasmicStates(
+                                                    $state,
+                                                    [
+                                                      {
+                                                        name: "jobCard20[].name",
+                                                        initFunc: ({
+                                                          $props,
+                                                          $state,
+                                                          $queries
+                                                        }) =>
+                                                          (() => {
+                                                            try {
+                                                              return currentItem.title;
+                                                            } catch (e) {
+                                                              if (
+                                                                e instanceof
+                                                                  TypeError ||
+                                                                e?.plasmicType ===
+                                                                  "PlasmicUndefinedDataError"
+                                                              ) {
+                                                                return undefined;
+                                                              }
+                                                              throw e;
                                                             }
-                                                            await plasmicInvalidate(
-                                                              queryInvalidation
-                                                            );
-                                                          })?.apply(null, [
-                                                            actionArgs
-                                                          ]);
-                                                        })()
-                                                      : undefined;
-                                                    if (
-                                                      $steps["refreshData"] !=
-                                                        null &&
-                                                      typeof $steps[
-                                                        "refreshData"
-                                                      ] === "object" &&
-                                                      typeof $steps[
-                                                        "refreshData"
-                                                      ].then === "function"
-                                                    ) {
-                                                      $steps["refreshData"] =
-                                                        await $steps[
-                                                          "refreshData"
-                                                        ];
-                                                    }
-
-                                                    $steps["showToast"] = true
-                                                      ? (() => {
-                                                          const actionArgs = {
-                                                            args: [
-                                                              "success",
-                                                              (() => {
-                                                                try {
-                                                                  return `L'annonce "${currentItem.title}" a bien été retirée de vos favoris`;
-                                                                } catch (e) {
-                                                                  if (
-                                                                    e instanceof
-                                                                      TypeError ||
-                                                                    e?.plasmicType ===
-                                                                      "PlasmicUndefinedDataError"
-                                                                  ) {
-                                                                    return undefined;
-                                                                  }
-                                                                  throw e;
-                                                                }
-                                                              })()
-                                                            ]
-                                                          };
-                                                          return $globalActions[
-                                                            "plasmic-antd5-config-provider.showNotification"
-                                                          ]?.apply(null, [
-                                                            ...actionArgs.args
-                                                          ]);
-                                                        })()
-                                                      : undefined;
-                                                    if (
-                                                      $steps["showToast"] !=
-                                                        null &&
-                                                      typeof $steps[
-                                                        "showToast"
-                                                      ] === "object" &&
-                                                      typeof $steps["showToast"]
-                                                        .then === "function"
-                                                    ) {
-                                                      $steps["showToast"] =
-                                                        await $steps[
-                                                          "showToast"
-                                                        ];
-                                                    }
-                                                  }}
-                                                  role={"img"}
-                                                />
-                                              ) : null}
-                                            </div>
-                                            {(() => {
-                                              const child$Props = {
-                                                availability:
-                                                  generateStateValueProp(
-                                                    $state,
-                                                    [
-                                                      "jobCard20",
-                                                      __plasmic_idx_0,
-                                                      "availability"
-                                                    ]
-                                                  ),
-                                                campany: generateStateValueProp(
-                                                  $state,
-                                                  [
-                                                    "jobCard20",
-                                                    __plasmic_idx_0,
-                                                    "campany"
-                                                  ]
-                                                ),
-                                                city: generateStateValueProp(
-                                                  $state,
-                                                  [
-                                                    "jobCard20",
-                                                    __plasmic_idx_0,
-                                                    "city"
-                                                  ]
-                                                ),
-                                                className: classNames(
-                                                  "__wab_instance",
-                                                  sty.jobCard20
-                                                ),
-                                                companyLogo:
-                                                  generateStateValueProp(
-                                                    $state,
-                                                    [
-                                                      "jobCard20",
-                                                      __plasmic_idx_0,
-                                                      "companyLogo"
-                                                    ]
-                                                  ),
-                                                contractType:
-                                                  generateStateValueProp(
-                                                    $state,
-                                                    [
-                                                      "jobCard20",
-                                                      __plasmic_idx_0,
-                                                      "contractType"
-                                                    ]
-                                                  ),
-                                                isApplied:
-                                                  generateStateValueProp(
-                                                    $state,
-                                                    [
-                                                      "jobCard20",
-                                                      __plasmic_idx_0,
-                                                      "isApplied"
-                                                    ]
-                                                  ),
-                                                isLastMinute:
-                                                  generateStateValueProp(
-                                                    $state,
-                                                    [
-                                                      "jobCard20",
-                                                      __plasmic_idx_0,
-                                                      "isLastMinute"
-                                                    ]
-                                                  ),
-                                                isNew: generateStateValueProp(
-                                                  $state,
-                                                  [
-                                                    "jobCard20",
-                                                    __plasmic_idx_0,
-                                                    "isNew"
-                                                  ]
-                                                ),
-                                                name: generateStateValueProp(
-                                                  $state,
-                                                  [
-                                                    "jobCard20",
-                                                    __plasmic_idx_0,
-                                                    "name"
-                                                  ]
-                                                ),
-                                                onAvailabilityChange: async (
-                                                  ...eventArgs: any
-                                                ) => {
-                                                  generateStateOnChangeProp(
-                                                    $state,
-                                                    [
-                                                      "jobCard20",
-                                                      __plasmic_idx_0,
-                                                      "availability"
-                                                    ]
-                                                  ).apply(null, eventArgs);
-
-                                                  if (
-                                                    eventArgs.length > 1 &&
-                                                    eventArgs[1] &&
-                                                    eventArgs[1]
-                                                      ._plasmic_state_init_
-                                                  ) {
-                                                    return;
-                                                  }
-                                                },
-                                                onCampanyChange: async (
-                                                  ...eventArgs: any
-                                                ) => {
-                                                  generateStateOnChangeProp(
-                                                    $state,
-                                                    [
-                                                      "jobCard20",
-                                                      __plasmic_idx_0,
-                                                      "campany"
-                                                    ]
-                                                  ).apply(null, eventArgs);
-
-                                                  if (
-                                                    eventArgs.length > 1 &&
-                                                    eventArgs[1] &&
-                                                    eventArgs[1]
-                                                      ._plasmic_state_init_
-                                                  ) {
-                                                    return;
-                                                  }
-                                                },
-                                                onCityChange: async (
-                                                  ...eventArgs: any
-                                                ) => {
-                                                  generateStateOnChangeProp(
-                                                    $state,
-                                                    [
-                                                      "jobCard20",
-                                                      __plasmic_idx_0,
-                                                      "city"
-                                                    ]
-                                                  ).apply(null, eventArgs);
-
-                                                  if (
-                                                    eventArgs.length > 1 &&
-                                                    eventArgs[1] &&
-                                                    eventArgs[1]
-                                                      ._plasmic_state_init_
-                                                  ) {
-                                                    return;
-                                                  }
-                                                },
-                                                onClick: async event => {
-                                                  const $steps = {};
-
-                                                  $steps["updateJobObject"] =
-                                                    true
-                                                      ? (() => {
-                                                          const actionArgs = {
-                                                            variable: {
-                                                              objRoot: $state,
-                                                              variablePath: [
-                                                                "jobObject"
-                                                              ]
-                                                            },
-                                                            operation: 0,
-                                                            value: currentItem
-                                                          };
-                                                          return (({
-                                                            variable,
-                                                            value,
-                                                            startIndex,
-                                                            deleteCount
-                                                          }) => {
-                                                            if (!variable) {
-                                                              return;
+                                                          })()
+                                                      },
+                                                      {
+                                                        name: "jobCard20[].city",
+                                                        initFunc: ({
+                                                          $props,
+                                                          $state,
+                                                          $queries
+                                                        }) =>
+                                                          (() => {
+                                                            try {
+                                                              return (
+                                                                currentItem.location +
+                                                                " (" +
+                                                                currentItem.postal_code.slice(
+                                                                  0,
+                                                                  2
+                                                                ) +
+                                                                ")"
+                                                              );
+                                                            } catch (e) {
+                                                              if (
+                                                                e instanceof
+                                                                  TypeError ||
+                                                                e?.plasmicType ===
+                                                                  "PlasmicUndefinedDataError"
+                                                              ) {
+                                                                return undefined;
+                                                              }
+                                                              throw e;
                                                             }
-                                                            const {
-                                                              objRoot,
-                                                              variablePath
-                                                            } = variable;
-
-                                                            $stateSet(
-                                                              objRoot,
-                                                              variablePath,
-                                                              value
-                                                            );
-                                                            return value;
-                                                          })?.apply(null, [
-                                                            actionArgs
-                                                          ]);
-                                                        })()
-                                                      : undefined;
-                                                  if (
-                                                    $steps["updateJobObject"] !=
-                                                      null &&
-                                                    typeof $steps[
-                                                      "updateJobObject"
-                                                    ] === "object" &&
-                                                    typeof $steps[
-                                                      "updateJobObject"
-                                                    ].then === "function"
-                                                  ) {
-                                                    $steps["updateJobObject"] =
-                                                      await $steps[
-                                                        "updateJobObject"
-                                                      ];
-                                                  }
-
-                                                  $steps[
-                                                    "updateJobDetailsIsOpen"
-                                                  ] = true
-                                                    ? (() => {
-                                                        const actionArgs = {
-                                                          variable: {
-                                                            objRoot: $state,
-                                                            variablePath: [
-                                                              "jobDetails",
-                                                              "isOpen"
-                                                            ]
-                                                          },
-                                                          operation: 0,
-                                                          value: true
-                                                        };
-                                                        return (({
-                                                          variable,
-                                                          value,
-                                                          startIndex,
-                                                          deleteCount
-                                                        }) => {
-                                                          if (!variable) {
-                                                            return;
-                                                          }
-                                                          const {
-                                                            objRoot,
-                                                            variablePath
-                                                          } = variable;
-
-                                                          $stateSet(
-                                                            objRoot,
-                                                            variablePath,
-                                                            value
-                                                          );
-                                                          return value;
-                                                        })?.apply(null, [
-                                                          actionArgs
-                                                        ]);
-                                                      })()
-                                                    : undefined;
-                                                  if (
-                                                    $steps[
-                                                      "updateJobDetailsIsOpen"
-                                                    ] != null &&
-                                                    typeof $steps[
-                                                      "updateJobDetailsIsOpen"
-                                                    ] === "object" &&
-                                                    typeof $steps[
-                                                      "updateJobDetailsIsOpen"
-                                                    ].then === "function"
-                                                  ) {
-                                                    $steps[
-                                                      "updateJobDetailsIsOpen"
-                                                    ] = await $steps[
-                                                      "updateJobDetailsIsOpen"
-                                                    ];
-                                                  }
-
-                                                  $steps[
-                                                    "updateJobCoordinates"
-                                                  ] = true
-                                                    ? (() => {
-                                                        const actionArgs = {
-                                                          variable: {
-                                                            objRoot: $state,
-                                                            variablePath: [
-                                                              "gpsCoordinates"
-                                                            ]
-                                                          },
-                                                          operation: 0,
-                                                          value: {
-                                                            latitude:
-                                                              currentItem.latitude,
-                                                            longitude:
-                                                              currentItem.longitude
-                                                          }
-                                                        };
-                                                        return (({
-                                                          variable,
-                                                          value,
-                                                          startIndex,
-                                                          deleteCount
-                                                        }) => {
-                                                          if (!variable) {
-                                                            return;
-                                                          }
-                                                          const {
-                                                            objRoot,
-                                                            variablePath
-                                                          } = variable;
-
-                                                          $stateSet(
-                                                            objRoot,
-                                                            variablePath,
-                                                            value
-                                                          );
-                                                          return value;
-                                                        })?.apply(null, [
-                                                          actionArgs
-                                                        ]);
-                                                      })()
-                                                    : undefined;
-                                                  if (
-                                                    $steps[
-                                                      "updateJobCoordinates"
-                                                    ] != null &&
-                                                    typeof $steps[
-                                                      "updateJobCoordinates"
-                                                    ] === "object" &&
-                                                    typeof $steps[
-                                                      "updateJobCoordinates"
-                                                    ].then === "function"
-                                                  ) {
-                                                    $steps[
-                                                      "updateJobCoordinates"
-                                                    ] = await $steps[
-                                                      "updateJobCoordinates"
-                                                    ];
-                                                  }
-                                                },
-                                                onCompanyLogoChange: async (
-                                                  ...eventArgs: any
-                                                ) => {
-                                                  generateStateOnChangeProp(
-                                                    $state,
-                                                    [
-                                                      "jobCard20",
-                                                      __plasmic_idx_0,
-                                                      "companyLogo"
-                                                    ]
-                                                  ).apply(null, eventArgs);
-
-                                                  if (
-                                                    eventArgs.length > 1 &&
-                                                    eventArgs[1] &&
-                                                    eventArgs[1]
-                                                      ._plasmic_state_init_
-                                                  ) {
-                                                    return;
-                                                  }
-                                                },
-                                                onContractTypeChange: async (
-                                                  ...eventArgs: any
-                                                ) => {
-                                                  generateStateOnChangeProp(
-                                                    $state,
-                                                    [
-                                                      "jobCard20",
-                                                      __plasmic_idx_0,
-                                                      "contractType"
-                                                    ]
-                                                  ).apply(null, eventArgs);
-
-                                                  if (
-                                                    eventArgs.length > 1 &&
-                                                    eventArgs[1] &&
-                                                    eventArgs[1]
-                                                      ._plasmic_state_init_
-                                                  ) {
-                                                    return;
-                                                  }
-                                                },
-                                                onIsAppliedChange: async (
-                                                  ...eventArgs: any
-                                                ) => {
-                                                  generateStateOnChangeProp(
-                                                    $state,
-                                                    [
-                                                      "jobCard20",
-                                                      __plasmic_idx_0,
-                                                      "isApplied"
-                                                    ]
-                                                  ).apply(null, eventArgs);
-
-                                                  if (
-                                                    eventArgs.length > 1 &&
-                                                    eventArgs[1] &&
-                                                    eventArgs[1]
-                                                      ._plasmic_state_init_
-                                                  ) {
-                                                    return;
-                                                  }
-                                                },
-                                                onIsLastMinuteChange: async (
-                                                  ...eventArgs: any
-                                                ) => {
-                                                  generateStateOnChangeProp(
-                                                    $state,
-                                                    [
-                                                      "jobCard20",
-                                                      __plasmic_idx_0,
-                                                      "isLastMinute"
-                                                    ]
-                                                  ).apply(null, eventArgs);
-
-                                                  if (
-                                                    eventArgs.length > 1 &&
-                                                    eventArgs[1] &&
-                                                    eventArgs[1]
-                                                      ._plasmic_state_init_
-                                                  ) {
-                                                    return;
-                                                  }
-                                                },
-                                                onIsNewChange: async (
-                                                  ...eventArgs: any
-                                                ) => {
-                                                  generateStateOnChangeProp(
-                                                    $state,
-                                                    [
-                                                      "jobCard20",
-                                                      __plasmic_idx_0,
-                                                      "isNew"
-                                                    ]
-                                                  ).apply(null, eventArgs);
-
-                                                  if (
-                                                    eventArgs.length > 1 &&
-                                                    eventArgs[1] &&
-                                                    eventArgs[1]
-                                                      ._plasmic_state_init_
-                                                  ) {
-                                                    return;
-                                                  }
-                                                },
-                                                onNameChange: async (
-                                                  ...eventArgs: any
-                                                ) => {
-                                                  generateStateOnChangeProp(
-                                                    $state,
-                                                    [
-                                                      "jobCard20",
-                                                      __plasmic_idx_0,
-                                                      "name"
-                                                    ]
-                                                  ).apply(null, eventArgs);
-
-                                                  if (
-                                                    eventArgs.length > 1 &&
-                                                    eventArgs[1] &&
-                                                    eventArgs[1]
-                                                      ._plasmic_state_init_
-                                                  ) {
-                                                    return;
-                                                  }
-                                                },
-                                                onSalaryChange: async (
-                                                  ...eventArgs: any
-                                                ) => {
-                                                  generateStateOnChangeProp(
-                                                    $state,
-                                                    [
-                                                      "jobCard20",
-                                                      __plasmic_idx_0,
-                                                      "salary"
-                                                    ]
-                                                  ).apply(null, eventArgs);
-
-                                                  if (
-                                                    eventArgs.length > 1 &&
-                                                    eventArgs[1] &&
-                                                    eventArgs[1]
-                                                      ._plasmic_state_init_
-                                                  ) {
-                                                    return;
-                                                  }
-                                                },
-                                                onSectorChange2: async (
-                                                  ...eventArgs: any
-                                                ) => {
-                                                  generateStateOnChangeProp(
-                                                    $state,
-                                                    [
-                                                      "jobCard20",
-                                                      __plasmic_idx_0,
-                                                      "sector"
-                                                    ]
-                                                  ).apply(null, eventArgs);
-
-                                                  if (
-                                                    eventArgs.length > 1 &&
-                                                    eventArgs[1] &&
-                                                    eventArgs[1]
-                                                      ._plasmic_state_init_
-                                                  ) {
-                                                    return;
-                                                  }
-                                                },
-                                                onWorkModeChange: async (
-                                                  ...eventArgs: any
-                                                ) => {
-                                                  generateStateOnChangeProp(
-                                                    $state,
-                                                    [
-                                                      "jobCard20",
-                                                      __plasmic_idx_0,
-                                                      "workMode"
-                                                    ]
-                                                  ).apply(null, eventArgs);
-
-                                                  if (
-                                                    eventArgs.length > 1 &&
-                                                    eventArgs[1] &&
-                                                    eventArgs[1]
-                                                      ._plasmic_state_init_
-                                                  ) {
-                                                    return;
-                                                  }
-                                                },
-                                                onWorkingTimeChange: async (
-                                                  ...eventArgs: any
-                                                ) => {
-                                                  generateStateOnChangeProp(
-                                                    $state,
-                                                    [
-                                                      "jobCard20",
-                                                      __plasmic_idx_0,
-                                                      "workingTime"
-                                                    ]
-                                                  ).apply(null, eventArgs);
-
-                                                  if (
-                                                    eventArgs.length > 1 &&
-                                                    eventArgs[1] &&
-                                                    eventArgs[1]
-                                                      ._plasmic_state_init_
-                                                  ) {
-                                                    return;
-                                                  }
-                                                },
-                                                salary: generateStateValueProp(
-                                                  $state,
-                                                  [
-                                                    "jobCard20",
-                                                    __plasmic_idx_0,
-                                                    "salary"
-                                                  ]
-                                                ),
-                                                sector: generateStateValueProp(
-                                                  $state,
-                                                  [
-                                                    "jobCard20",
-                                                    __plasmic_idx_0,
-                                                    "sector"
-                                                  ]
-                                                ),
-                                                showCompanyLogo: false,
-                                                workMode:
-                                                  generateStateValueProp(
-                                                    $state,
-                                                    [
-                                                      "jobCard20",
-                                                      __plasmic_idx_0,
-                                                      "workMode"
-                                                    ]
-                                                  ),
-                                                workingTime:
-                                                  generateStateValueProp(
-                                                    $state,
-                                                    [
-                                                      "jobCard20",
-                                                      __plasmic_idx_0,
-                                                      "workingTime"
-                                                    ]
-                                                  )
-                                              };
-
-                                              initializePlasmicStates(
-                                                $state,
-                                                [
-                                                  {
-                                                    name: "jobCard20[].name",
-                                                    initFunc: ({
-                                                      $props,
-                                                      $state,
-                                                      $queries
-                                                    }) =>
-                                                      (() => {
-                                                        try {
-                                                          return currentItem.title;
-                                                        } catch (e) {
-                                                          if (
-                                                            e instanceof
-                                                              TypeError ||
-                                                            e?.plasmicType ===
-                                                              "PlasmicUndefinedDataError"
-                                                          ) {
-                                                            return undefined;
-                                                          }
-                                                          throw e;
-                                                        }
-                                                      })()
-                                                  },
-                                                  {
-                                                    name: "jobCard20[].city",
-                                                    initFunc: ({
-                                                      $props,
-                                                      $state,
-                                                      $queries
-                                                    }) =>
-                                                      (() => {
-                                                        try {
-                                                          return (
-                                                            currentItem.location +
-                                                            " (" +
-                                                            currentItem.postal_code.slice(
-                                                              0,
-                                                              2
-                                                            ) +
-                                                            ")"
-                                                          );
-                                                        } catch (e) {
-                                                          if (
-                                                            e instanceof
-                                                              TypeError ||
-                                                            e?.plasmicType ===
-                                                              "PlasmicUndefinedDataError"
-                                                          ) {
-                                                            return undefined;
-                                                          }
-                                                          throw e;
-                                                        }
-                                                      })()
-                                                  },
-                                                  {
-                                                    name: "jobCard20[].campany",
-                                                    initFunc: ({
-                                                      $props,
-                                                      $state,
-                                                      $queries
-                                                    }) =>
-                                                      (() => {
-                                                        try {
-                                                          return currentItem.company_name;
-                                                        } catch (e) {
-                                                          if (
-                                                            e instanceof
-                                                              TypeError ||
-                                                            e?.plasmicType ===
-                                                              "PlasmicUndefinedDataError"
-                                                          ) {
-                                                            return undefined;
-                                                          }
-                                                          throw e;
-                                                        }
-                                                      })()
-                                                  },
-                                                  {
-                                                    name: "jobCard20[].sector",
-                                                    initFunc: ({
-                                                      $props,
-                                                      $state,
-                                                      $queries
-                                                    }) =>
-                                                      (() => {
-                                                        try {
-                                                          return currentItem.sector_activity;
-                                                        } catch (e) {
-                                                          if (
-                                                            e instanceof
-                                                              TypeError ||
-                                                            e?.plasmicType ===
-                                                              "PlasmicUndefinedDataError"
-                                                          ) {
-                                                            return undefined;
-                                                          }
-                                                          throw e;
-                                                        }
-                                                      })()
-                                                  },
-                                                  {
-                                                    name: "jobCard20[].contractType",
-                                                    initFunc: ({
-                                                      $props,
-                                                      $state,
-                                                      $queries
-                                                    }) =>
-                                                      (() => {
-                                                        try {
-                                                          return currentItem.contract_type;
-                                                        } catch (e) {
-                                                          if (
-                                                            e instanceof
-                                                              TypeError ||
-                                                            e?.plasmicType ===
-                                                              "PlasmicUndefinedDataError"
-                                                          ) {
-                                                            return undefined;
-                                                          }
-                                                          throw e;
-                                                        }
-                                                      })()
-                                                  },
-                                                  {
-                                                    name: "jobCard20[].availability",
-                                                    initFunc: ({
-                                                      $props,
-                                                      $state,
-                                                      $queries
-                                                    }) =>
-                                                      (() => {
-                                                        try {
-                                                          return currentItem.availability_status;
-                                                        } catch (e) {
-                                                          if (
-                                                            e instanceof
-                                                              TypeError ||
-                                                            e?.plasmicType ===
-                                                              "PlasmicUndefinedDataError"
-                                                          ) {
-                                                            return undefined;
-                                                          }
-                                                          throw e;
-                                                        }
-                                                      })()
-                                                  },
-                                                  {
-                                                    name: "jobCard20[].workingTime",
-                                                    initFunc: ({
-                                                      $props,
-                                                      $state,
-                                                      $queries
-                                                    }) =>
-                                                      (() => {
-                                                        try {
-                                                          return currentItem.working_time;
-                                                        } catch (e) {
-                                                          if (
-                                                            e instanceof
-                                                              TypeError ||
-                                                            e?.plasmicType ===
-                                                              "PlasmicUndefinedDataError"
-                                                          ) {
-                                                            return undefined;
-                                                          }
-                                                          throw e;
-                                                        }
-                                                      })()
-                                                  },
-                                                  {
-                                                    name: "jobCard20[].salary",
-                                                    initFunc: ({
-                                                      $props,
-                                                      $state,
-                                                      $queries
-                                                    }) =>
-                                                      (() => {
-                                                        try {
-                                                          return currentItem.salary;
-                                                        } catch (e) {
-                                                          if (
-                                                            e instanceof
-                                                              TypeError ||
-                                                            e?.plasmicType ===
-                                                              "PlasmicUndefinedDataError"
-                                                          ) {
-                                                            return undefined;
-                                                          }
-                                                          throw e;
-                                                        }
-                                                      })()
-                                                  },
-                                                  {
-                                                    name: "jobCard20[].workMode",
-                                                    initFunc: ({
-                                                      $props,
-                                                      $state,
-                                                      $queries
-                                                    }) =>
-                                                      (() => {
-                                                        try {
-                                                          return currentItem.work_mode;
-                                                        } catch (e) {
-                                                          if (
-                                                            e instanceof
-                                                              TypeError ||
-                                                            e?.plasmicType ===
-                                                              "PlasmicUndefinedDataError"
-                                                          ) {
-                                                            return undefined;
-                                                          }
-                                                          throw e;
-                                                        }
-                                                      })()
-                                                  },
-                                                  {
-                                                    name: "jobCard20[].companyLogo",
-                                                    initFunc: ({
-                                                      $props,
-                                                      $state,
-                                                      $queries
-                                                    }) =>
-                                                      (() => {
-                                                        try {
-                                                          return currentItem.logo_file;
-                                                        } catch (e) {
-                                                          if (
-                                                            e instanceof
-                                                              TypeError ||
-                                                            e?.plasmicType ===
-                                                              "PlasmicUndefinedDataError"
-                                                          ) {
-                                                            return undefined;
-                                                          }
-                                                          throw e;
-                                                        }
-                                                      })()
-                                                  },
-                                                  {
-                                                    name: "jobCard20[].isLastMinute",
-                                                    initFunc: ({
-                                                      $props,
-                                                      $state,
-                                                      $queries
-                                                    }) =>
-                                                      (() => {
-                                                        try {
-                                                          return currentItem.is_last_minute;
-                                                        } catch (e) {
-                                                          if (
-                                                            e instanceof
-                                                              TypeError ||
-                                                            e?.plasmicType ===
-                                                              "PlasmicUndefinedDataError"
-                                                          ) {
-                                                            return false;
-                                                          }
-                                                          throw e;
-                                                        }
-                                                      })()
-                                                  },
-                                                  {
-                                                    name: "jobCard20[].isNew",
-                                                    initFunc: ({
-                                                      $props,
-                                                      $state,
-                                                      $queries
-                                                    }) =>
-                                                      (() => {
-                                                        try {
-                                                          return (
-                                                            new Date(
-                                                              currentItem.created_at
-                                                            ).toDateString() ===
-                                                            new Date().toDateString()
-                                                          );
-                                                        } catch (e) {
-                                                          if (
-                                                            e instanceof
-                                                              TypeError ||
-                                                            e?.plasmicType ===
-                                                              "PlasmicUndefinedDataError"
-                                                          ) {
-                                                            return false;
-                                                          }
-                                                          throw e;
-                                                        }
-                                                      })()
-                                                  },
-                                                  {
-                                                    name: "jobCard20[].isApplied",
-                                                    initFunc: ({
-                                                      $props,
-                                                      $state,
-                                                      $queries
-                                                    }) =>
-                                                      (() => {
-                                                        try {
-                                                          return (() => {
-                                                            return $queries.getApplication.data.some(
-                                                              application =>
-                                                                application.job_id ===
-                                                                currentItem.id
-                                                            );
-                                                          })();
-                                                        } catch (e) {
-                                                          if (
-                                                            e instanceof
-                                                              TypeError ||
-                                                            e?.plasmicType ===
-                                                              "PlasmicUndefinedDataError"
-                                                          ) {
-                                                            return false;
-                                                          }
-                                                          throw e;
-                                                        }
-                                                      })()
-                                                  }
-                                                ],
-                                                [__plasmic_idx_0]
-                                              );
-                                              return (
-                                                <JobCard20
-                                                  data-plasmic-name={
-                                                    "jobCard20"
-                                                  }
-                                                  data-plasmic-override={
-                                                    overrides.jobCard20
-                                                  }
-                                                  {...child$Props}
-                                                />
-                                              );
-                                            })()}
-                                          </div>
-                                        );
+                                                          })()
+                                                      },
+                                                      {
+                                                        name: "jobCard20[].campany",
+                                                        initFunc: ({
+                                                          $props,
+                                                          $state,
+                                                          $queries
+                                                        }) =>
+                                                          (() => {
+                                                            try {
+                                                              return currentItem.company_name;
+                                                            } catch (e) {
+                                                              if (
+                                                                e instanceof
+                                                                  TypeError ||
+                                                                e?.plasmicType ===
+                                                                  "PlasmicUndefinedDataError"
+                                                              ) {
+                                                                return undefined;
+                                                              }
+                                                              throw e;
+                                                            }
+                                                          })()
+                                                      },
+                                                      {
+                                                        name: "jobCard20[].sector",
+                                                        initFunc: ({
+                                                          $props,
+                                                          $state,
+                                                          $queries
+                                                        }) =>
+                                                          (() => {
+                                                            try {
+                                                              return currentItem.sector_activity;
+                                                            } catch (e) {
+                                                              if (
+                                                                e instanceof
+                                                                  TypeError ||
+                                                                e?.plasmicType ===
+                                                                  "PlasmicUndefinedDataError"
+                                                              ) {
+                                                                return undefined;
+                                                              }
+                                                              throw e;
+                                                            }
+                                                          })()
+                                                      },
+                                                      {
+                                                        name: "jobCard20[].contractType",
+                                                        initFunc: ({
+                                                          $props,
+                                                          $state,
+                                                          $queries
+                                                        }) =>
+                                                          (() => {
+                                                            try {
+                                                              return currentItem.contract_type;
+                                                            } catch (e) {
+                                                              if (
+                                                                e instanceof
+                                                                  TypeError ||
+                                                                e?.plasmicType ===
+                                                                  "PlasmicUndefinedDataError"
+                                                              ) {
+                                                                return undefined;
+                                                              }
+                                                              throw e;
+                                                            }
+                                                          })()
+                                                      },
+                                                      {
+                                                        name: "jobCard20[].availability",
+                                                        initFunc: ({
+                                                          $props,
+                                                          $state,
+                                                          $queries
+                                                        }) =>
+                                                          (() => {
+                                                            try {
+                                                              return currentItem.availability_status;
+                                                            } catch (e) {
+                                                              if (
+                                                                e instanceof
+                                                                  TypeError ||
+                                                                e?.plasmicType ===
+                                                                  "PlasmicUndefinedDataError"
+                                                              ) {
+                                                                return undefined;
+                                                              }
+                                                              throw e;
+                                                            }
+                                                          })()
+                                                      },
+                                                      {
+                                                        name: "jobCard20[].workingTime",
+                                                        initFunc: ({
+                                                          $props,
+                                                          $state,
+                                                          $queries
+                                                        }) =>
+                                                          (() => {
+                                                            try {
+                                                              return currentItem.working_time;
+                                                            } catch (e) {
+                                                              if (
+                                                                e instanceof
+                                                                  TypeError ||
+                                                                e?.plasmicType ===
+                                                                  "PlasmicUndefinedDataError"
+                                                              ) {
+                                                                return undefined;
+                                                              }
+                                                              throw e;
+                                                            }
+                                                          })()
+                                                      },
+                                                      {
+                                                        name: "jobCard20[].salary",
+                                                        initFunc: ({
+                                                          $props,
+                                                          $state,
+                                                          $queries
+                                                        }) =>
+                                                          (() => {
+                                                            try {
+                                                              return currentItem.salary;
+                                                            } catch (e) {
+                                                              if (
+                                                                e instanceof
+                                                                  TypeError ||
+                                                                e?.plasmicType ===
+                                                                  "PlasmicUndefinedDataError"
+                                                              ) {
+                                                                return undefined;
+                                                              }
+                                                              throw e;
+                                                            }
+                                                          })()
+                                                      },
+                                                      {
+                                                        name: "jobCard20[].workMode",
+                                                        initFunc: ({
+                                                          $props,
+                                                          $state,
+                                                          $queries
+                                                        }) =>
+                                                          (() => {
+                                                            try {
+                                                              return currentItem.work_mode;
+                                                            } catch (e) {
+                                                              if (
+                                                                e instanceof
+                                                                  TypeError ||
+                                                                e?.plasmicType ===
+                                                                  "PlasmicUndefinedDataError"
+                                                              ) {
+                                                                return undefined;
+                                                              }
+                                                              throw e;
+                                                            }
+                                                          })()
+                                                      },
+                                                      {
+                                                        name: "jobCard20[].companyLogo",
+                                                        initFunc: ({
+                                                          $props,
+                                                          $state,
+                                                          $queries
+                                                        }) =>
+                                                          (() => {
+                                                            try {
+                                                              return currentItem.logo_file;
+                                                            } catch (e) {
+                                                              if (
+                                                                e instanceof
+                                                                  TypeError ||
+                                                                e?.plasmicType ===
+                                                                  "PlasmicUndefinedDataError"
+                                                              ) {
+                                                                return undefined;
+                                                              }
+                                                              throw e;
+                                                            }
+                                                          })()
+                                                      },
+                                                      {
+                                                        name: "jobCard20[].isLastMinute",
+                                                        initFunc: ({
+                                                          $props,
+                                                          $state,
+                                                          $queries
+                                                        }) =>
+                                                          (() => {
+                                                            try {
+                                                              return currentItem.is_last_minute;
+                                                            } catch (e) {
+                                                              if (
+                                                                e instanceof
+                                                                  TypeError ||
+                                                                e?.plasmicType ===
+                                                                  "PlasmicUndefinedDataError"
+                                                              ) {
+                                                                return false;
+                                                              }
+                                                              throw e;
+                                                            }
+                                                          })()
+                                                      },
+                                                      {
+                                                        name: "jobCard20[].isNew",
+                                                        initFunc: ({
+                                                          $props,
+                                                          $state,
+                                                          $queries
+                                                        }) =>
+                                                          (() => {
+                                                            try {
+                                                              return (
+                                                                new Date(
+                                                                  currentItem.created_at
+                                                                ).toDateString() ===
+                                                                new Date().toDateString()
+                                                              );
+                                                            } catch (e) {
+                                                              if (
+                                                                e instanceof
+                                                                  TypeError ||
+                                                                e?.plasmicType ===
+                                                                  "PlasmicUndefinedDataError"
+                                                              ) {
+                                                                return false;
+                                                              }
+                                                              throw e;
+                                                            }
+                                                          })()
+                                                      },
+                                                      {
+                                                        name: "jobCard20[].isApplied",
+                                                        initFunc: ({
+                                                          $props,
+                                                          $state,
+                                                          $queries
+                                                        }) =>
+                                                          (() => {
+                                                            try {
+                                                              return (() => {
+                                                                return $queries.getApplication.data.some(
+                                                                  application =>
+                                                                    application.job_id ===
+                                                                    currentItem.id
+                                                                );
+                                                              })();
+                                                            } catch (e) {
+                                                              if (
+                                                                e instanceof
+                                                                  TypeError ||
+                                                                e?.plasmicType ===
+                                                                  "PlasmicUndefinedDataError"
+                                                              ) {
+                                                                return false;
+                                                              }
+                                                              throw e;
+                                                            }
+                                                          })()
+                                                      }
+                                                    ],
+                                                    [__plasmic_idx_0]
+                                                  );
+                                                  return (
+                                                    <JobCard20
+                                                      data-plasmic-name={
+                                                        "jobCard20"
+                                                      }
+                                                      data-plasmic-override={
+                                                        overrides.jobCard20
+                                                      }
+                                                      {...child$Props}
+                                                    />
+                                                  );
+                                                })()}
+                                              </div>
+                                            );
+                                          }
+                                        )
+                                      : null}
+                                    {(() => {
+                                      try {
+                                        return $queries.jobOffers.isLoading;
+                                      } catch (e) {
+                                        if (
+                                          e instanceof TypeError ||
+                                          e?.plasmicType ===
+                                            "PlasmicUndefinedDataError"
+                                        ) {
+                                          return true;
+                                        }
+                                        throw e;
                                       }
-                                    )
-                                  : null}
+                                    })() ? (
+                                      <LoadingComponent
+                                        data-plasmic-name={"loadingComponent"}
+                                        data-plasmic-override={
+                                          overrides.loadingComponent
+                                        }
+                                        className={classNames(
+                                          "__wab_instance",
+                                          sty.loadingComponent
+                                        )}
+                                      />
+                                    ) : null}
+                                  </div>
+                                ) : null}
+                              </div>
+                              <div
+                                data-plasmic-name={"lastMinuteBtn"}
+                                data-plasmic-override={overrides.lastMinuteBtn}
+                                className={classNames(
+                                  projectcss.all,
+                                  sty.lastMinuteBtn
+                                )}
+                              >
                                 {(() => {
                                   try {
-                                    return $queries.jobOffers.isLoading;
+                                    return $state.isLastMinute == false;
                                   } catch (e) {
                                     if (
                                       e instanceof TypeError ||
@@ -6281,442 +6520,409 @@ function PlasmicAccueil__RenderFunc(props: {
                                     throw e;
                                   }
                                 })() ? (
-                                  <LoadingComponent
-                                    data-plasmic-name={"loadingComponent"}
+                                  <button
+                                    data-plasmic-name={"buttonLastMin2"}
                                     data-plasmic-override={
-                                      overrides.loadingComponent
+                                      overrides.buttonLastMin2
                                     }
                                     className={classNames(
-                                      "__wab_instance",
-                                      sty.loadingComponent
+                                      projectcss.all,
+                                      projectcss.button,
+                                      sty.buttonLastMin2
                                     )}
-                                  />
+                                    onClick={async event => {
+                                      const $steps = {};
+
+                                      $steps["updateIsLastMinute"] = true
+                                        ? (() => {
+                                            const actionArgs = {
+                                              variable: {
+                                                objRoot: $state,
+                                                variablePath: ["isLastMinute"]
+                                              },
+                                              operation: 4
+                                            };
+                                            return (({
+                                              variable,
+                                              value,
+                                              startIndex,
+                                              deleteCount
+                                            }) => {
+                                              if (!variable) {
+                                                return;
+                                              }
+                                              const { objRoot, variablePath } =
+                                                variable;
+
+                                              const oldValue = $stateGet(
+                                                objRoot,
+                                                variablePath
+                                              );
+                                              $stateSet(
+                                                objRoot,
+                                                variablePath,
+                                                !oldValue
+                                              );
+                                              return !oldValue;
+                                            })?.apply(null, [actionArgs]);
+                                          })()
+                                        : undefined;
+                                      if (
+                                        $steps["updateIsLastMinute"] != null &&
+                                        typeof $steps["updateIsLastMinute"] ===
+                                          "object" &&
+                                        typeof $steps["updateIsLastMinute"]
+                                          .then === "function"
+                                      ) {
+                                        $steps["updateIsLastMinute"] =
+                                          await $steps["updateIsLastMinute"];
+                                      }
+                                    }}
+                                    ref={ref => {
+                                      $refs["buttonLastMin2"] = ref;
+                                    }}
+                                  >
+                                    <PhClockCountdownFill3Icon
+                                      className={classNames(
+                                        projectcss.all,
+                                        sty.svg___6TKkr
+                                      )}
+                                      role={"img"}
+                                    />
+
+                                    <div
+                                      data-plasmic-name={"text7"}
+                                      data-plasmic-override={overrides.text7}
+                                      className={classNames(
+                                        projectcss.all,
+                                        projectcss.__wab_text,
+                                        sty.text7
+                                      )}
+                                    >
+                                      {"LAST MINUTE"}
+                                    </div>
+                                  </button>
                                 ) : null}
-                              </Stack__>
-                            ) : null}
-                          </div>
-                          <div
-                            data-plasmic-name={"lastMinuteBtn"}
-                            data-plasmic-override={overrides.lastMinuteBtn}
-                            className={classNames(
-                              projectcss.all,
-                              sty.lastMinuteBtn
-                            )}
-                          >
-                            {(() => {
-                              try {
-                                return $state.isLastMinute == false;
-                              } catch (e) {
-                                if (
-                                  e instanceof TypeError ||
-                                  e?.plasmicType === "PlasmicUndefinedDataError"
-                                ) {
-                                  return true;
+                                {(() => {
+                                  try {
+                                    return $state.isLastMinute === true;
+                                  } catch (e) {
+                                    if (
+                                      e instanceof TypeError ||
+                                      e?.plasmicType ===
+                                        "PlasmicUndefinedDataError"
+                                    ) {
+                                      return true;
+                                    }
+                                    throw e;
+                                  }
+                                })() ? (
+                                  <button
+                                    data-plasmic-name={"buttonLastMin3"}
+                                    data-plasmic-override={
+                                      overrides.buttonLastMin3
+                                    }
+                                    className={classNames(
+                                      projectcss.all,
+                                      projectcss.button,
+                                      sty.buttonLastMin3
+                                    )}
+                                    onClick={async event => {
+                                      const $steps = {};
+
+                                      $steps["updateIsLastMinute"] = true
+                                        ? (() => {
+                                            const actionArgs = {
+                                              variable: {
+                                                objRoot: $state,
+                                                variablePath: ["isLastMinute"]
+                                              },
+                                              operation: 4
+                                            };
+                                            return (({
+                                              variable,
+                                              value,
+                                              startIndex,
+                                              deleteCount
+                                            }) => {
+                                              if (!variable) {
+                                                return;
+                                              }
+                                              const { objRoot, variablePath } =
+                                                variable;
+
+                                              const oldValue = $stateGet(
+                                                objRoot,
+                                                variablePath
+                                              );
+                                              $stateSet(
+                                                objRoot,
+                                                variablePath,
+                                                !oldValue
+                                              );
+                                              return !oldValue;
+                                            })?.apply(null, [actionArgs]);
+                                          })()
+                                        : undefined;
+                                      if (
+                                        $steps["updateIsLastMinute"] != null &&
+                                        typeof $steps["updateIsLastMinute"] ===
+                                          "object" &&
+                                        typeof $steps["updateIsLastMinute"]
+                                          .then === "function"
+                                      ) {
+                                        $steps["updateIsLastMinute"] =
+                                          await $steps["updateIsLastMinute"];
+                                      }
+                                    }}
+                                    ref={ref => {
+                                      $refs["buttonLastMin3"] = ref;
+                                    }}
+                                  >
+                                    <PhClockCountdownFill3Icon
+                                      className={classNames(
+                                        projectcss.all,
+                                        sty.svg__numZh
+                                      )}
+                                      role={"img"}
+                                    />
+
+                                    <div
+                                      data-plasmic-name={"text8"}
+                                      data-plasmic-override={overrides.text8}
+                                      className={classNames(
+                                        projectcss.all,
+                                        projectcss.__wab_text,
+                                        sty.text8
+                                      )}
+                                    >
+                                      {"LAST MINUTE"}
+                                    </div>
+                                  </button>
+                                ) : null}
+                              </div>
+                              <div
+                                data-plasmic-name={"mapboxContainer"}
+                                data-plasmic-override={
+                                  overrides.mapboxContainer
                                 }
-                                throw e;
-                              }
-                            })() ? (
-                              <Stack__
-                                as={"button"}
-                                data-plasmic-name={"buttonLastMin2"}
-                                data-plasmic-override={overrides.buttonLastMin2}
-                                hasGap={true}
                                 className={classNames(
                                   projectcss.all,
-                                  projectcss.button,
-                                  sty.buttonLastMin2
+                                  sty.mapboxContainer
                                 )}
-                                onClick={async event => {
-                                  const $steps = {};
-
-                                  $steps["updateIsLastMinute"] = true
-                                    ? (() => {
-                                        const actionArgs = {
-                                          variable: {
-                                            objRoot: $state,
-                                            variablePath: ["isLastMinute"]
-                                          },
-                                          operation: 4
-                                        };
-                                        return (({
-                                          variable,
-                                          value,
-                                          startIndex,
-                                          deleteCount
-                                        }) => {
-                                          if (!variable) {
-                                            return;
-                                          }
-                                          const { objRoot, variablePath } =
-                                            variable;
-
-                                          const oldValue = $stateGet(
-                                            objRoot,
-                                            variablePath
-                                          );
-                                          $stateSet(
-                                            objRoot,
-                                            variablePath,
-                                            !oldValue
-                                          );
-                                          return !oldValue;
-                                        })?.apply(null, [actionArgs]);
-                                      })()
-                                    : undefined;
-                                  if (
-                                    $steps["updateIsLastMinute"] != null &&
-                                    typeof $steps["updateIsLastMinute"] ===
-                                      "object" &&
-                                    typeof $steps["updateIsLastMinute"].then ===
-                                      "function"
-                                  ) {
-                                    $steps["updateIsLastMinute"] = await $steps[
-                                      "updateIsLastMinute"
-                                    ];
-                                  }
-                                }}
-                                ref={ref => {
-                                  $refs["buttonLastMin2"] = ref;
-                                }}
                               >
-                                <PhClockCountdownFill3Icon
+                                <MapBox
+                                  data-plasmic-name={"mapBox"}
+                                  data-plasmic-override={overrides.mapBox}
                                   className={classNames(
-                                    projectcss.all,
-                                    sty.svg___6TKkr
+                                    "__wab_instance",
+                                    sty.mapBox
                                   )}
-                                  role={"img"}
+                                  latitude={(() => {
+                                    try {
+                                      return $state.gpsCoordinates.latitude;
+                                    } catch (e) {
+                                      if (
+                                        e instanceof TypeError ||
+                                        e?.plasmicType ===
+                                          "PlasmicUndefinedDataError"
+                                      ) {
+                                        return 48.8575;
+                                      }
+                                      throw e;
+                                    }
+                                  })()}
+                                  longitude={(() => {
+                                    try {
+                                      return $state.gpsCoordinates.longitude;
+                                    } catch (e) {
+                                      if (
+                                        e instanceof TypeError ||
+                                        e?.plasmicType ===
+                                          "PlasmicUndefinedDataError"
+                                      ) {
+                                        return 2.3514;
+                                      }
+                                      throw e;
+                                    }
+                                  })()}
+                                  mapStyle={
+                                    "mapbox://styles/scroll/cm6gi9ljw003t01s36b0jfl80"
+                                  }
+                                  markers={(() => {
+                                    try {
+                                      return (() => {
+                                        const jobOffers =
+                                          $queries.jobOffers.data ?? [];
+                                        const applications =
+                                          $queries.getApplication.data ?? [];
+                                        const userLikes =
+                                          $queries.userLikedJobs.data ?? [];
+                                        const appliedJobIds = new Set(
+                                          applications.map(app => app.job_id)
+                                        );
+                                        const likedJobIds = new Set(
+                                          userLikes.map(like => like.job_id)
+                                        );
+                                        const enrichedJobOffers = jobOffers.map(
+                                          offer => ({
+                                            ...offer,
+                                            is_applied: appliedJobIds.has(
+                                              offer.id
+                                            ),
+                                            is_liked: likedJobIds.has(offer.id)
+                                          })
+                                        );
+                                        return enrichedJobOffers;
+                                      })();
+                                    } catch (e) {
+                                      if (
+                                        e instanceof TypeError ||
+                                        e?.plasmicType ===
+                                          "PlasmicUndefinedDataError"
+                                      ) {
+                                        return [];
+                                      }
+                                      throw e;
+                                    }
+                                  })()}
+                                  onPopupClick={async markerData => {
+                                    const $steps = {};
+
+                                    $steps["runCode"] = true
+                                      ? (() => {
+                                          const actionArgs = {
+                                            customFunction: async () => {
+                                              return ($state.jobObject =
+                                                markerData);
+                                            }
+                                          };
+                                          return (({ customFunction }) => {
+                                            return customFunction();
+                                          })?.apply(null, [actionArgs]);
+                                        })()
+                                      : undefined;
+                                    if (
+                                      $steps["runCode"] != null &&
+                                      typeof $steps["runCode"] === "object" &&
+                                      typeof $steps["runCode"].then ===
+                                        "function"
+                                    ) {
+                                      $steps["runCode"] = await $steps[
+                                        "runCode"
+                                      ];
+                                    }
+
+                                    $steps["updateJobDetailsIsOpen"] =
+                                      $state.jobObject &&
+                                      Object.keys($state.jobObject).length > 0
+                                        ? (() => {
+                                            const actionArgs = {
+                                              variable: {
+                                                objRoot: $state,
+                                                variablePath: [
+                                                  "jobDetails",
+                                                  "isOpen"
+                                                ]
+                                              },
+                                              operation: 4,
+                                              value: true
+                                            };
+                                            return (({
+                                              variable,
+                                              value,
+                                              startIndex,
+                                              deleteCount
+                                            }) => {
+                                              if (!variable) {
+                                                return;
+                                              }
+                                              const { objRoot, variablePath } =
+                                                variable;
+
+                                              const oldValue = $stateGet(
+                                                objRoot,
+                                                variablePath
+                                              );
+                                              $stateSet(
+                                                objRoot,
+                                                variablePath,
+                                                !oldValue
+                                              );
+                                              return !oldValue;
+                                            })?.apply(null, [actionArgs]);
+                                          })()
+                                        : undefined;
+                                    if (
+                                      $steps["updateJobDetailsIsOpen"] !=
+                                        null &&
+                                      typeof $steps[
+                                        "updateJobDetailsIsOpen"
+                                      ] === "object" &&
+                                      typeof $steps["updateJobDetailsIsOpen"]
+                                        .then === "function"
+                                    ) {
+                                      $steps["updateJobDetailsIsOpen"] =
+                                        await $steps["updateJobDetailsIsOpen"];
+                                    }
+                                  }}
+                                  searchAddress={(() => {
+                                    try {
+                                      return $state.searchLocation;
+                                    } catch (e) {
+                                      if (
+                                        e instanceof TypeError ||
+                                        e?.plasmicType ===
+                                          "PlasmicUndefinedDataError"
+                                      ) {
+                                        return undefined;
+                                      }
+                                      throw e;
+                                    }
+                                  })()}
+                                  showLogoInPopup={true}
+                                  zoom={
+                                    hasVariant(
+                                      globalVariants,
+                                      "screen",
+                                      "mobileOnly"
+                                    )
+                                      ? 12
+                                      : 15
+                                  }
                                 />
-
-                                <div
-                                  data-plasmic-name={"text7"}
-                                  data-plasmic-override={overrides.text7}
-                                  className={classNames(
-                                    projectcss.all,
-                                    projectcss.__wab_text,
-                                    sty.text7
-                                  )}
-                                >
-                                  {"LAST MINUTE"}
-                                </div>
-                              </Stack__>
-                            ) : null}
-                            {(() => {
-                              try {
-                                return $state.isLastMinute === true;
-                              } catch (e) {
-                                if (
-                                  e instanceof TypeError ||
-                                  e?.plasmicType === "PlasmicUndefinedDataError"
-                                ) {
-                                  return true;
-                                }
-                                throw e;
-                              }
-                            })() ? (
-                              <Stack__
-                                as={"button"}
-                                data-plasmic-name={"buttonLastMin3"}
-                                data-plasmic-override={overrides.buttonLastMin3}
-                                hasGap={true}
-                                className={classNames(
-                                  projectcss.all,
-                                  projectcss.button,
-                                  sty.buttonLastMin3
-                                )}
-                                onClick={async event => {
-                                  const $steps = {};
-
-                                  $steps["updateIsLastMinute"] = true
-                                    ? (() => {
-                                        const actionArgs = {
-                                          variable: {
-                                            objRoot: $state,
-                                            variablePath: ["isLastMinute"]
-                                          },
-                                          operation: 4
-                                        };
-                                        return (({
-                                          variable,
-                                          value,
-                                          startIndex,
-                                          deleteCount
-                                        }) => {
-                                          if (!variable) {
-                                            return;
-                                          }
-                                          const { objRoot, variablePath } =
-                                            variable;
-
-                                          const oldValue = $stateGet(
-                                            objRoot,
-                                            variablePath
-                                          );
-                                          $stateSet(
-                                            objRoot,
-                                            variablePath,
-                                            !oldValue
-                                          );
-                                          return !oldValue;
-                                        })?.apply(null, [actionArgs]);
-                                      })()
-                                    : undefined;
-                                  if (
-                                    $steps["updateIsLastMinute"] != null &&
-                                    typeof $steps["updateIsLastMinute"] ===
-                                      "object" &&
-                                    typeof $steps["updateIsLastMinute"].then ===
-                                      "function"
-                                  ) {
-                                    $steps["updateIsLastMinute"] = await $steps[
-                                      "updateIsLastMinute"
-                                    ];
-                                  }
-                                }}
-                                ref={ref => {
-                                  $refs["buttonLastMin3"] = ref;
-                                }}
-                              >
-                                <PhClockCountdownFill3Icon
-                                  className={classNames(
-                                    projectcss.all,
-                                    sty.svg__numZh
-                                  )}
-                                  role={"img"}
-                                />
-
-                                <div
-                                  data-plasmic-name={"text8"}
-                                  data-plasmic-override={overrides.text8}
-                                  className={classNames(
-                                    projectcss.all,
-                                    projectcss.__wab_text,
-                                    sty.text8
-                                  )}
-                                >
-                                  {"LAST MINUTE"}
-                                </div>
-                              </Stack__>
-                            ) : null}
+                              </div>
+                            </div>
                           </div>
-                          <div
-                            data-plasmic-name={"mapboxContainer"}
-                            data-plasmic-override={overrides.mapboxContainer}
-                            className={classNames(
-                              projectcss.all,
-                              sty.mapboxContainer
-                            )}
-                          >
-                            <MapBox
-                              data-plasmic-name={"mapBox"}
-                              data-plasmic-override={overrides.mapBox}
-                              className={classNames(
-                                "__wab_instance",
-                                sty.mapBox
-                              )}
-                              latitude={(() => {
-                                try {
-                                  return $state.gpsCoordinates.latitude;
-                                } catch (e) {
-                                  if (
-                                    e instanceof TypeError ||
-                                    e?.plasmicType ===
-                                      "PlasmicUndefinedDataError"
-                                  ) {
-                                    return 48.8575;
-                                  }
-                                  throw e;
-                                }
-                              })()}
-                              longitude={(() => {
-                                try {
-                                  return $state.gpsCoordinates.longitude;
-                                } catch (e) {
-                                  if (
-                                    e instanceof TypeError ||
-                                    e?.plasmicType ===
-                                      "PlasmicUndefinedDataError"
-                                  ) {
-                                    return 2.3514;
-                                  }
-                                  throw e;
-                                }
-                              })()}
-                              mapStyle={
-                                "mapbox://styles/scroll/cm6gi9ljw003t01s36b0jfl80"
-                              }
-                              markers={(() => {
-                                try {
-                                  return (() => {
-                                    const jobOffers =
-                                      $queries.jobOffers.data ?? [];
-                                    const applications =
-                                      $queries.getApplication.data ?? [];
-                                    const userLikes =
-                                      $queries.userLikedJobs.data ?? [];
-                                    const appliedJobIds = new Set(
-                                      applications.map(app => app.job_id)
-                                    );
-                                    const likedJobIds = new Set(
-                                      userLikes.map(like => like.job_id)
-                                    );
-                                    const enrichedJobOffers = jobOffers.map(
-                                      offer => ({
-                                        ...offer,
-                                        is_applied: appliedJobIds.has(offer.id),
-                                        is_liked: likedJobIds.has(offer.id)
-                                      })
-                                    );
-                                    return enrichedJobOffers;
-                                  })();
-                                } catch (e) {
-                                  if (
-                                    e instanceof TypeError ||
-                                    e?.plasmicType ===
-                                      "PlasmicUndefinedDataError"
-                                  ) {
-                                    return [];
-                                  }
-                                  throw e;
-                                }
-                              })()}
-                              onPopupClick={async markerData => {
-                                const $steps = {};
-
-                                $steps["runCode"] = true
-                                  ? (() => {
-                                      const actionArgs = {
-                                        customFunction: async () => {
-                                          return ($state.jobObject =
-                                            markerData);
-                                        }
-                                      };
-                                      return (({ customFunction }) => {
-                                        return customFunction();
-                                      })?.apply(null, [actionArgs]);
-                                    })()
-                                  : undefined;
-                                if (
-                                  $steps["runCode"] != null &&
-                                  typeof $steps["runCode"] === "object" &&
-                                  typeof $steps["runCode"].then === "function"
-                                ) {
-                                  $steps["runCode"] = await $steps["runCode"];
-                                }
-
-                                $steps["updateJobDetailsIsOpen"] =
-                                  $state.jobObject &&
-                                  Object.keys($state.jobObject).length > 0
-                                    ? (() => {
-                                        const actionArgs = {
-                                          variable: {
-                                            objRoot: $state,
-                                            variablePath: [
-                                              "jobDetails",
-                                              "isOpen"
-                                            ]
-                                          },
-                                          operation: 4,
-                                          value: true
-                                        };
-                                        return (({
-                                          variable,
-                                          value,
-                                          startIndex,
-                                          deleteCount
-                                        }) => {
-                                          if (!variable) {
-                                            return;
-                                          }
-                                          const { objRoot, variablePath } =
-                                            variable;
-
-                                          const oldValue = $stateGet(
-                                            objRoot,
-                                            variablePath
-                                          );
-                                          $stateSet(
-                                            objRoot,
-                                            variablePath,
-                                            !oldValue
-                                          );
-                                          return !oldValue;
-                                        })?.apply(null, [actionArgs]);
-                                      })()
-                                    : undefined;
-                                if (
-                                  $steps["updateJobDetailsIsOpen"] != null &&
-                                  typeof $steps["updateJobDetailsIsOpen"] ===
-                                    "object" &&
-                                  typeof $steps["updateJobDetailsIsOpen"]
-                                    .then === "function"
-                                ) {
-                                  $steps["updateJobDetailsIsOpen"] =
-                                    await $steps["updateJobDetailsIsOpen"];
-                                }
-                              }}
-                              searchAddress={(() => {
-                                try {
-                                  return $state.searchLocation;
-                                } catch (e) {
-                                  if (
-                                    e instanceof TypeError ||
-                                    e?.plasmicType ===
-                                      "PlasmicUndefinedDataError"
-                                  ) {
-                                    return undefined;
-                                  }
-                                  throw e;
-                                }
-                              })()}
-                              showLogoInPopup={true}
-                              zoom={
-                                hasVariant(
-                                  globalVariants,
-                                  "screen",
-                                  "mobileOnly"
-                                )
-                                  ? 12
-                                  : 15
-                              }
-                            />
-                          </div>
-                        </Stack__>
-                      </Stack__>
+                        </div>
+                      </div>
                     </section>
-                    <Stack__
-                      as={"section"}
+                    <section
                       data-plasmic-name={"section2"}
                       data-plasmic-override={overrides.section2}
-                      hasGap={true}
                       className={classNames(projectcss.all, sty.section2)}
                     >
-                      <Stack__
-                        as={"header"}
+                      <header
                         data-plasmic-name={"headingAndSupportingText2"}
                         data-plasmic-override={
                           overrides.headingAndSupportingText2
                         }
-                        hasGap={true}
                         className={classNames(
                           projectcss.all,
                           sty.headingAndSupportingText2
                         )}
                       >
-                        <Stack__
-                          as={"div"}
+                        <div
                           data-plasmic-name={"badgeGroup3"}
                           data-plasmic-override={overrides.badgeGroup3}
-                          hasGap={true}
                           className={classNames(
                             projectcss.all,
                             sty.badgeGroup3
                           )}
                         >
-                          <Stack__
-                            as={"div"}
+                          <div
                             data-plasmic-name={"content8"}
                             data-plasmic-override={overrides.content8}
-                            hasGap={true}
                             className={classNames(projectcss.all, sty.content8)}
                           >
                             <div
@@ -6730,8 +6936,8 @@ function PlasmicAccueil__RenderFunc(props: {
                             >
                               {"Notre solution"}
                             </div>
-                          </Stack__>
-                        </Stack__>
+                          </div>
+                        </div>
                         <h2
                           data-plasmic-name={"heading2"}
                           data-plasmic-override={overrides.heading2}
@@ -6789,12 +6995,10 @@ function PlasmicAccueil__RenderFunc(props: {
                             </React.Fragment>
                           </React.Fragment>
                         </p>
-                      </Stack__>
-                      <Stack__
-                        as={"article"}
+                      </header>
+                      <article
                         data-plasmic-name={"section"}
                         data-plasmic-override={overrides.section}
-                        hasGap={true}
                         className={classNames(projectcss.all, sty.section)}
                       >
                         <SectionCard
@@ -6985,17 +7189,15 @@ function PlasmicAccueil__RenderFunc(props: {
                             "title"
                           ])}
                         />
-                      </Stack__>
-                    </Stack__>
+                      </article>
+                    </section>
                   </main>
                   <Modal
                     data-plasmic-name={"verifyUserAuth"}
                     data-plasmic-override={overrides.verifyUserAuth}
                     className={classNames("__wab_instance", sty.verifyUserAuth)}
                     content={
-                      <Stack__
-                        as={"div"}
-                        hasGap={true}
+                      <div
                         className={classNames(
                           projectcss.all,
                           sty.freeBox___0N4QT
@@ -7081,7 +7283,7 @@ function PlasmicAccueil__RenderFunc(props: {
                             }
                           }}
                         />
-                      </Stack__>
+                      </div>
                     }
                     footer={null}
                     heading={
@@ -7128,25 +7330,19 @@ function PlasmicAccueil__RenderFunc(props: {
                         : true
                     }
                     content={
-                      <Stack__
-                        as={"div"}
+                      <div
                         data-plasmic-name={"jobListing"}
                         data-plasmic-override={overrides.jobListing}
-                        hasGap={true}
                         className={classNames(projectcss.all, sty.jobListing)}
                       >
-                        <Stack__
-                          as={"div"}
+                        <div
                           data-plasmic-name={"jobDetail"}
                           data-plasmic-override={overrides.jobDetail}
-                          hasGap={true}
                           className={classNames(projectcss.all, sty.jobDetail)}
                         >
-                          <Stack__
-                            as={"div"}
+                          <div
                             data-plasmic-name={"frame38"}
                             data-plasmic-override={overrides.frame38}
-                            hasGap={true}
                             className={classNames(projectcss.all, sty.frame38)}
                           >
                             <div
@@ -7175,11 +7371,9 @@ function PlasmicAccueil__RenderFunc(props: {
                                 })()}
                               </React.Fragment>
                             </div>
-                            <Stack__
-                              as={"div"}
+                            <div
                               data-plasmic-name={"likeBtn"}
                               data-plasmic-override={overrides.likeBtn}
-                              hasGap={true}
                               className={classNames(
                                 projectcss.all,
                                 sty.likeBtn
@@ -7362,7 +7556,9 @@ function PlasmicAccueil__RenderFunc(props: {
                                                 userArgs: {
                                                   variables: [
                                                     !$state.couleurLike,
+
                                                     $ctx.SupabaseUser?.user?.id,
+
                                                     $state.jobObject?.id
                                                   ]
                                                 },
@@ -7685,19 +7881,17 @@ function PlasmicAccueil__RenderFunc(props: {
                                   role={"img"}
                                 />
                               ) : null}
-                            </Stack__>
-                          </Stack__>
+                            </div>
+                          </div>
                           <div
                             className={classNames(
                               projectcss.all,
                               sty.freeBox__quAxx
                             )}
                           >
-                            <Stack__
-                              as={"div"}
+                            <div
                               data-plasmic-name={"location"}
                               data-plasmic-override={overrides.location}
-                              hasGap={true}
                               className={classNames(
                                 projectcss.all,
                                 sty.location
@@ -7740,7 +7934,7 @@ function PlasmicAccueil__RenderFunc(props: {
                                   })()}
                                 </React.Fragment>
                               </div>
-                            </Stack__>
+                            </div>
                             <div
                               data-plasmic-name={"publicationDate"}
                               data-plasmic-override={overrides.publicationDate}
@@ -7773,28 +7967,22 @@ function PlasmicAccueil__RenderFunc(props: {
                               </React.Fragment>
                             </div>
                           </div>
-                          <Stack__
-                            as={"div"}
+                          <div
                             data-plasmic-name={"frame46"}
                             data-plasmic-override={overrides.frame46}
-                            hasGap={true}
                             className={classNames(projectcss.all, sty.frame46)}
                           >
-                            <Stack__
-                              as={"div"}
+                            <div
                               data-plasmic-name={"frame47"}
                               data-plasmic-override={overrides.frame47}
-                              hasGap={true}
                               className={classNames(
                                 projectcss.all,
                                 sty.frame47
                               )}
                             >
-                              <Stack__
-                                as={"div"}
+                              <div
                                 data-plasmic-name={"frame48"}
                                 data-plasmic-override={overrides.frame48}
-                                hasGap={true}
                                 className={classNames(
                                   projectcss.all,
                                   sty.frame48
@@ -7834,12 +8022,10 @@ function PlasmicAccueil__RenderFunc(props: {
                                     })()}
                                   </React.Fragment>
                                 </div>
-                              </Stack__>
-                              <Stack__
-                                as={"div"}
+                              </div>
+                              <div
                                 data-plasmic-name={"frame49"}
                                 data-plasmic-override={overrides.frame49}
-                                hasGap={true}
                                 className={classNames(
                                   projectcss.all,
                                   sty.frame49
@@ -7881,12 +8067,10 @@ function PlasmicAccueil__RenderFunc(props: {
                                     })()}
                                   </React.Fragment>
                                 </div>
-                              </Stack__>
-                              <Stack__
-                                as={"div"}
+                              </div>
+                              <div
                                 data-plasmic-name={"frame50"}
                                 data-plasmic-override={overrides.frame50}
-                                hasGap={true}
                                 className={classNames(
                                   projectcss.all,
                                   sty.frame50
@@ -7928,12 +8112,10 @@ function PlasmicAccueil__RenderFunc(props: {
                                     })()}
                                   </React.Fragment>
                                 </div>
-                              </Stack__>
-                              <Stack__
-                                as={"div"}
+                              </div>
+                              <div
                                 data-plasmic-name={"frame51"}
                                 data-plasmic-override={overrides.frame51}
-                                hasGap={true}
                                 className={classNames(
                                   projectcss.all,
                                   sty.frame51
@@ -7976,8 +8158,8 @@ function PlasmicAccueil__RenderFunc(props: {
                                     })()}
                                   </React.Fragment>
                                 </div>
-                              </Stack__>
-                            </Stack__>
+                              </div>
+                            </div>
                             {(() => {
                               try {
                                 return $queries.getApplication.data.some(
@@ -8210,11 +8392,9 @@ function PlasmicAccueil__RenderFunc(props: {
                                 throw e;
                               }
                             })() ? (
-                              <Stack__
-                                as={"div"}
+                              <div
                                 data-plasmic-name={"frame"}
                                 data-plasmic-override={overrides.frame}
-                                hasGap={true}
                                 className={classNames(
                                   projectcss.all,
                                   sty.frame
@@ -8237,17 +8417,15 @@ function PlasmicAccueil__RenderFunc(props: {
                                 >
                                   {"Postul\u00e9"}
                                 </div>
-                              </Stack__>
+                              </div>
                             ) : null}
-                          </Stack__>
-                        </Stack__>
-                        <Stack__
-                          as={"div"}
+                          </div>
+                        </div>
+                        <div
                           data-plasmic-name={"jobDescriptionContainer"}
                           data-plasmic-override={
                             overrides.jobDescriptionContainer
                           }
-                          hasGap={true}
                           className={classNames(
                             projectcss.all,
                             sty.jobDescriptionContainer
@@ -8288,11 +8466,9 @@ function PlasmicAccueil__RenderFunc(props: {
                               })()}
                             </React.Fragment>
                           </div>
-                          <Stack__
-                            as={"div"}
+                          <div
                             data-plasmic-name={"benefits"}
                             data-plasmic-override={overrides.benefits}
-                            hasGap={true}
                             className={classNames(projectcss.all, sty.benefits)}
                           >
                             {(_par =>
@@ -8346,15 +8522,13 @@ function PlasmicAccueil__RenderFunc(props: {
                                 </div>
                               );
                             })}
-                          </Stack__>
-                        </Stack__>
-                        <Stack__
-                          as={"div"}
+                          </div>
+                        </div>
+                        <div
                           data-plasmic-name={"expectedProfileContainer"}
                           data-plasmic-override={
                             overrides.expectedProfileContainer
                           }
-                          hasGap={true}
                           className={classNames(
                             projectcss.all,
                             sty.expectedProfileContainer
@@ -8395,12 +8569,10 @@ function PlasmicAccueil__RenderFunc(props: {
                               })()}
                             </React.Fragment>
                           </div>
-                        </Stack__>
-                        <Stack__
-                          as={"div"}
+                        </div>
+                        <div
                           data-plasmic-name={"companyContainer"}
                           data-plasmic-override={overrides.companyContainer}
-                          hasGap={true}
                           className={classNames(
                             projectcss.all,
                             sty.companyContainer
@@ -8451,9 +8623,7 @@ function PlasmicAccueil__RenderFunc(props: {
                               })()}
                             />
                           </div>
-                          <Stack__
-                            as={"div"}
-                            hasGap={true}
+                          <div
                             className={classNames(
                               projectcss.all,
                               sty.freeBox__iOsT5
@@ -8485,11 +8655,9 @@ function PlasmicAccueil__RenderFunc(props: {
                                 })()}
                               </React.Fragment>
                             </div>
-                            <Stack__
-                              as={"div"}
+                            <div
                               data-plasmic-name={"companyDetail"}
                               data-plasmic-override={overrides.companyDetail}
-                              hasGap={true}
                               className={classNames(
                                 projectcss.all,
                                 sty.companyDetail
@@ -8511,13 +8679,11 @@ function PlasmicAccueil__RenderFunc(props: {
                                   throw e;
                                 }
                               })() ? (
-                                <Stack__
-                                  as={"div"}
+                                <div
                                   data-plasmic-name={"sectorActivity"}
                                   data-plasmic-override={
                                     overrides.sectorActivity
                                   }
-                                  hasGap={true}
                                   className={classNames(
                                     projectcss.all,
                                     sty.sectorActivity
@@ -8560,7 +8726,7 @@ function PlasmicAccueil__RenderFunc(props: {
                                       })()}
                                     </React.Fragment>
                                   </div>
-                                </Stack__>
+                                </div>
                               ) : null}
                               {(() => {
                                 try {
@@ -8576,11 +8742,9 @@ function PlasmicAccueil__RenderFunc(props: {
                                   throw e;
                                 }
                               })() ? (
-                                <Stack__
-                                  as={"div"}
+                                <div
                                   data-plasmic-name={"companySize"}
                                   data-plasmic-override={overrides.companySize}
-                                  hasGap={true}
                                   className={classNames(
                                     projectcss.all,
                                     sty.companySize
@@ -8622,7 +8786,7 @@ function PlasmicAccueil__RenderFunc(props: {
                                       })()}
                                     </React.Fragment>
                                   </div>
-                                </Stack__>
+                                </div>
                               ) : null}
                               {(() => {
                                 try {
@@ -8640,13 +8804,11 @@ function PlasmicAccueil__RenderFunc(props: {
                                   throw e;
                                 }
                               })() ? (
-                                <Stack__
-                                  as={"div"}
+                                <div
                                   data-plasmic-name={"companyLocation"}
                                   data-plasmic-override={
                                     overrides.companyLocation
                                   }
-                                  hasGap={true}
                                   className={classNames(
                                     projectcss.all,
                                     sty.companyLocation
@@ -8685,10 +8847,10 @@ function PlasmicAccueil__RenderFunc(props: {
                                       })()}
                                     </React.Fragment>
                                   </div>
-                                </Stack__>
+                                </div>
                               ) : null}
-                            </Stack__>
-                          </Stack__>
+                            </div>
+                          </div>
                           <div
                             data-plasmic-name={"companyDescription"}
                             data-plasmic-override={overrides.companyDescription}
@@ -8715,8 +8877,8 @@ function PlasmicAccueil__RenderFunc(props: {
                               })()}
                             </React.Fragment>
                           </div>
-                        </Stack__>
-                      </Stack__>
+                        </div>
+                      </div>
                     }
                     footer={null}
                     heading={
@@ -8933,28 +9095,22 @@ function PlasmicAccueil__RenderFunc(props: {
                                 }
                               })()
                         ) ? (
-                          <Stack__
-                            as={"div"}
+                          <div
                             data-plasmic-name={"header2"}
                             data-plasmic-override={overrides.header2}
-                            hasGap={true}
                             className={classNames(projectcss.all, sty.header2)}
                           >
-                            <Stack__
-                              as={"div"}
+                            <div
                               data-plasmic-name={"frame67"}
                               data-plasmic-override={overrides.frame67}
-                              hasGap={true}
                               className={classNames(
                                 projectcss.all,
                                 sty.frame67
                               )}
                             >
-                              <Stack__
-                                as={"div"}
+                              <div
                                 data-plasmic-name={"frame68"}
                                 data-plasmic-override={overrides.frame68}
-                                hasGap={true}
                                 className={classNames(
                                   projectcss.all,
                                   sty.frame68
@@ -8984,11 +9140,9 @@ function PlasmicAccueil__RenderFunc(props: {
                                     })()}
                                   </React.Fragment>
                                 </div>
-                                <Stack__
-                                  as={"div"}
+                                <div
                                   data-plasmic-name={"frame69"}
                                   data-plasmic-override={overrides.frame69}
-                                  hasGap={true}
                                   className={classNames(
                                     projectcss.all,
                                     sty.frame69
@@ -9026,8 +9180,8 @@ function PlasmicAccueil__RenderFunc(props: {
                                       })()}
                                     </React.Fragment>
                                   </div>
-                                </Stack__>
-                              </Stack__>
+                                </div>
+                              </div>
                               <div
                                 className={classNames(
                                   projectcss.all,
@@ -9057,40 +9211,32 @@ function PlasmicAccueil__RenderFunc(props: {
                                   })()}
                                 </React.Fragment>
                               </div>
-                            </Stack__>
-                            <Stack__
-                              as={"div"}
+                            </div>
+                            <div
                               data-plasmic-name={"frame74"}
                               data-plasmic-override={overrides.frame74}
-                              hasGap={true}
                               className={classNames(
                                 projectcss.all,
                                 sty.frame74
                               )}
                             >
-                              <Stack__
-                                as={"div"}
+                              <div
                                 data-plasmic-name={"frame75"}
                                 data-plasmic-override={overrides.frame75}
-                                hasGap={true}
                                 className={classNames(
                                   projectcss.all,
                                   sty.frame75
                                 )}
                               >
-                                <Stack__
-                                  as={"div"}
-                                  hasGap={true}
+                                <div
                                   className={classNames(
                                     projectcss.all,
                                     sty.freeBox__rTyC
                                   )}
                                 >
-                                  <Stack__
-                                    as={"div"}
+                                  <div
                                     data-plasmic-name={"frame76"}
                                     data-plasmic-override={overrides.frame76}
-                                    hasGap={true}
                                     className={classNames(
                                       projectcss.all,
                                       sty.frame76
@@ -9133,12 +9279,10 @@ function PlasmicAccueil__RenderFunc(props: {
                                         })()}
                                       </React.Fragment>
                                     </div>
-                                  </Stack__>
-                                  <Stack__
-                                    as={"div"}
+                                  </div>
+                                  <div
                                     data-plasmic-name={"frame77"}
                                     data-plasmic-override={overrides.frame77}
-                                    hasGap={true}
                                     className={classNames(
                                       projectcss.all,
                                       sty.frame77
@@ -9181,21 +9325,17 @@ function PlasmicAccueil__RenderFunc(props: {
                                         })()}
                                       </React.Fragment>
                                     </div>
-                                  </Stack__>
-                                </Stack__>
-                                <Stack__
-                                  as={"div"}
-                                  hasGap={true}
+                                  </div>
+                                </div>
+                                <div
                                   className={classNames(
                                     projectcss.all,
                                     sty.freeBox__hwxVw
                                   )}
                                 >
-                                  <Stack__
-                                    as={"div"}
+                                  <div
                                     data-plasmic-name={"frame16"}
                                     data-plasmic-override={overrides.frame16}
-                                    hasGap={true}
                                     className={classNames(
                                       projectcss.all,
                                       sty.frame16
@@ -9237,12 +9377,10 @@ function PlasmicAccueil__RenderFunc(props: {
                                         })()}
                                       </React.Fragment>
                                     </div>
-                                  </Stack__>
-                                  <Stack__
-                                    as={"div"}
+                                  </div>
+                                  <div
                                     data-plasmic-name={"frame17"}
                                     data-plasmic-override={overrides.frame17}
-                                    hasGap={true}
                                     className={classNames(
                                       projectcss.all,
                                       sty.frame17
@@ -9285,35 +9423,29 @@ function PlasmicAccueil__RenderFunc(props: {
                                         })()}
                                       </React.Fragment>
                                     </div>
-                                  </Stack__>
-                                </Stack__>
-                              </Stack__>
-                            </Stack__>
-                            <Stack__
-                              as={"div"}
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div
                               data-plasmic-name={"frame18"}
                               data-plasmic-override={overrides.frame18}
-                              hasGap={true}
                               className={classNames(
                                 projectcss.all,
                                 sty.frame18
                               )}
                             >
-                              <Stack__
-                                as={"div"}
+                              <div
                                 data-plasmic-name={"frame78"}
                                 data-plasmic-override={overrides.frame78}
-                                hasGap={true}
                                 className={classNames(
                                   projectcss.all,
                                   sty.frame78
                                 )}
                               >
-                                <Stack__
-                                  as={"div"}
+                                <div
                                   data-plasmic-name={"frame79"}
                                   data-plasmic-override={overrides.frame79}
-                                  hasGap={true}
                                   className={classNames(
                                     projectcss.all,
                                     sty.frame79
@@ -9343,21 +9475,17 @@ function PlasmicAccueil__RenderFunc(props: {
                                       })()}
                                     </React.Fragment>
                                   </div>
-                                  <Stack__
-                                    as={"div"}
+                                  <div
                                     data-plasmic-name={"frame80"}
                                     data-plasmic-override={overrides.frame80}
-                                    hasGap={true}
                                     className={classNames(
                                       projectcss.all,
                                       sty.frame80
                                     )}
                                   >
-                                    <Stack__
-                                      as={"div"}
+                                    <div
                                       data-plasmic-name={"frame81"}
                                       data-plasmic-override={overrides.frame81}
-                                      hasGap={true}
                                       className={classNames(
                                         projectcss.all,
                                         sty.frame81
@@ -9400,7 +9528,7 @@ function PlasmicAccueil__RenderFunc(props: {
                                           })()}
                                         </React.Fragment>
                                       </div>
-                                    </Stack__>
+                                    </div>
                                     {(
                                       hasVariant(
                                         globalVariants,
@@ -9426,13 +9554,11 @@ function PlasmicAccueil__RenderFunc(props: {
                                           })()
                                         : true
                                     ) ? (
-                                      <Stack__
-                                        as={"div"}
+                                      <div
                                         data-plasmic-name={"frame82"}
                                         data-plasmic-override={
                                           overrides.frame82
                                         }
-                                        hasGap={true}
                                         className={classNames(
                                           projectcss.all,
                                           sty.frame82
@@ -9475,25 +9601,21 @@ function PlasmicAccueil__RenderFunc(props: {
                                             })()}
                                           </React.Fragment>
                                         </div>
-                                      </Stack__>
+                                      </div>
                                     ) : null}
-                                    <Stack__
-                                      as={"div"}
+                                    <div
                                       data-plasmic-name={"frame83"}
                                       data-plasmic-override={overrides.frame83}
-                                      hasGap={true}
                                       className={classNames(
                                         projectcss.all,
                                         sty.frame83
                                       )}
                                     >
-                                      <Stack__
-                                        as={"div"}
+                                      <div
                                         data-plasmic-name={"frame84"}
                                         data-plasmic-override={
                                           overrides.frame84
                                         }
-                                        hasGap={true}
                                         className={classNames(
                                           projectcss.all,
                                           sty.frame84
@@ -9532,11 +9654,11 @@ function PlasmicAccueil__RenderFunc(props: {
                                             })()}
                                           </React.Fragment>
                                         </div>
-                                      </Stack__>
-                                    </Stack__>
-                                  </Stack__>
-                                </Stack__>
-                              </Stack__>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
                               {(() => {
                                 try {
                                   return $state.jobObject.logo_file != null;
@@ -9551,11 +9673,9 @@ function PlasmicAccueil__RenderFunc(props: {
                                   throw e;
                                 }
                               })() ? (
-                                <Stack__
-                                  as={"div"}
+                                <div
                                   data-plasmic-name={"frame85"}
                                   data-plasmic-override={overrides.frame85}
-                                  hasGap={true}
                                   className={classNames(
                                     projectcss.all,
                                     sty.frame85
@@ -9586,10 +9706,10 @@ function PlasmicAccueil__RenderFunc(props: {
                                       }
                                     })()}
                                   />
-                                </Stack__>
+                                </div>
                               ) : null}
-                            </Stack__>
-                          </Stack__>
+                            </div>
+                          </div>
                         ) : null}
                         {(() => {
                           const child$Props = {
@@ -9645,6 +9765,7 @@ function PlasmicAccueil__RenderFunc(props: {
                                           userArgs: {
                                             path: [
                                               $ctx.SupabaseUser.user.id,
+
                                               (() => {
                                                 const file =
                                                   $state.upload.files[0];
@@ -9663,9 +9784,11 @@ function PlasmicAccueil__RenderFunc(props: {
                                                 }
                                               })()
                                             ],
+
                                             content: [
                                               $state.upload.files[0].contents
                                             ],
+
                                             contentType: [
                                               $state.upload.files[0].type
                                             ]
@@ -9717,6 +9840,7 @@ function PlasmicAccueil__RenderFunc(props: {
                                           userArgs: {
                                             path: [
                                               $ctx.SupabaseUser.user.id,
+
                                               (() => {
                                                 const file =
                                                   $state.upload3.files[0];
@@ -9735,9 +9859,11 @@ function PlasmicAccueil__RenderFunc(props: {
                                                 }
                                               })()
                                             ],
+
                                             content: [
                                               $state.upload3.files[0].contents
                                             ],
+
                                             contentType: [
                                               $state.upload3.files[0].type
                                             ]
@@ -9789,36 +9915,55 @@ function PlasmicAccueil__RenderFunc(props: {
                                           conditions: [
                                             $ctx.SupabaseUser.user.id
                                           ],
+
                                           variables: [
                                             $steps.cv?.path.split("/")[1] !=
                                             undefined
                                               ? $steps.cv?.path.split("/")[1]
                                               : $queries.currentUser.data[0]
                                                   .cv_file,
+
                                             $steps.ldm?.path.split("/")[1] !=
                                             undefined
                                               ? $steps.ldm?.path.split("/")[1]
                                               : $queries.currentUser.data[0]
                                                   .cover_letter_file,
+
                                             $state.form.value.address,
+
                                             $state.form.value.city,
+
                                             $state.form.value.Country,
+
                                             $state.form.value.first_name,
+
                                             $state.form.value.last_name,
+
                                             $state.form.value.level,
+
                                             $state.form.value.linkedin_url,
+
                                             $state.form.value.phone_number,
+
                                             $state.form.value.postal_code,
+
                                             $state.form.value
                                               .short_presentation,
+
                                             $state.form.value.skill,
+
                                             $state.form.value.transport_modes,
+
                                             new Date().toISOString(),
+
                                             $state.form.value.skills,
+
                                             $state.form.value.transport_mode,
+
                                             $queries.fetchUserCoordinates.data
                                               .response.features[0].geometry
                                               .coordinates[0],
+
                                             $queries.fetchUserCoordinates.data
                                               .response.features[0].geometry
                                               .coordinates[1]
@@ -9879,23 +10024,34 @@ function PlasmicAccueil__RenderFunc(props: {
                                         userArgs: {
                                           variables: [
                                             $state.form.value.address,
+
                                             $state.form.value.city,
+
                                             $steps.ldm != undefined
                                               ? $steps.ldm?.path.split("/")[1]
                                               : $queries.currentUser.data[0]
                                                   .cover_letter_file,
+
                                             $steps.cv != undefined
                                               ? $steps.cv?.path.split("/")[1]
                                               : $queries.currentUser.data[0]
                                                   .cv_file,
+
                                             $state.form.value.level,
+
                                             $state.form.value.linkedin_url,
+
                                             $state.form.value.postal_code,
+
                                             $state.form.value
                                               .short_presentation,
+
                                             $state.form.value.skill,
+
                                             $state.form.value.transport_mode,
+
                                             $ctx.SupabaseUser.user.id,
+
                                             $state.jobObject.id
                                           ]
                                         },
@@ -10220,12 +10376,15 @@ function PlasmicAccueil__RenderFunc(props: {
                                                 userArgs: {
                                                   path: [
                                                     $ctx.SupabaseUser.user.id,
+
                                                     $state.upload2.files[0].name
                                                   ],
+
                                                   content: [
                                                     $state.upload2.files[0]
                                                       .contents
                                                   ],
+
                                                   contentType: [
                                                     $state.upload2.files[0].type
                                                   ]
@@ -10284,6 +10443,7 @@ function PlasmicAccueil__RenderFunc(props: {
                                                   keys: [
                                                     $ctx.SupabaseUser.user.id
                                                   ],
+
                                                   variables: [
                                                     $steps.supabaseUploadFile?.path.split(
                                                       "/"
@@ -10355,9 +10515,7 @@ function PlasmicAccueil__RenderFunc(props: {
                                     }
                                   />
 
-                                  <Stack__
-                                    as={"div"}
-                                    hasGap={true}
+                                  <div
                                     className={classNames(
                                       projectcss.all,
                                       sty.freeBox__xNee9
@@ -10487,6 +10645,7 @@ function PlasmicAccueil__RenderFunc(props: {
                                                     conditions: [
                                                       $ctx.SupabaseUser.user.id
                                                     ],
+
                                                     variables: [null]
                                                   },
                                                   cacheKey: null,
@@ -10556,14 +10715,12 @@ function PlasmicAccueil__RenderFunc(props: {
                                         role={"img"}
                                       />
                                     </div>
-                                  </Stack__>
+                                  </div>
                                 </UploadWrapper>
                               </div>
-                              <Stack__
-                                as={"div"}
+                              <div
                                 data-plasmic-name={"nomPrenom"}
                                 data-plasmic-override={overrides.nomPrenom}
-                                hasGap={true}
                                 className={classNames(
                                   projectcss.all,
                                   sty.nomPrenom
@@ -10665,7 +10822,7 @@ function PlasmicAccueil__RenderFunc(props: {
                                     placeholder={"Nom"}
                                   />
                                 </FormItemWrapper>
-                              </Stack__>
+                              </div>
                               <FormItemWrapper
                                 className={classNames(
                                   "__wab_instance",
@@ -10715,11 +10872,9 @@ function PlasmicAccueil__RenderFunc(props: {
                                   placeholder={"E-mail"}
                                 />
                               </FormItemWrapper>
-                              <Stack__
-                                as={"div"}
+                              <div
                                 data-plasmic-name={"telephone"}
                                 data-plasmic-override={overrides.telephone}
-                                hasGap={true}
                                 className={classNames(
                                   projectcss.all,
                                   sty.telephone
@@ -10804,7 +10959,7 @@ function PlasmicAccueil__RenderFunc(props: {
                                     placeholder={"6060606060"}
                                   />
                                 </FormItemWrapper>
-                              </Stack__>
+                              </div>
                               <FormItemWrapper
                                 className={classNames(
                                   "__wab_instance",
@@ -10863,11 +11018,9 @@ function PlasmicAccueil__RenderFunc(props: {
                                   placeholder={"Rue"}
                                 />
                               </FormItemWrapper>
-                              <Stack__
-                                as={"div"}
+                              <div
                                 data-plasmic-name={"codePosteVille"}
                                 data-plasmic-override={overrides.codePosteVille}
-                                hasGap={true}
                                 className={classNames(
                                   projectcss.all,
                                   sty.codePosteVille
@@ -10992,10 +11145,8 @@ function PlasmicAccueil__RenderFunc(props: {
                                     placeholder={"Ville"}
                                   />
                                 </FormItemWrapper>
-                              </Stack__>
-                              <Stack__
-                                as={"div"}
-                                hasGap={true}
+                              </div>
+                              <div
                                 className={classNames(
                                   projectcss.all,
                                   sty.freeBox__jGum5
@@ -11050,7 +11201,7 @@ function PlasmicAccueil__RenderFunc(props: {
                                   placeholder={"Ville"}
                                   showLabel={false}
                                 />
-                              </Stack__>
+                              </div>
                               <FormItemWrapper
                                 className={classNames(
                                   "__wab_instance",
@@ -11535,11 +11686,9 @@ function PlasmicAccueil__RenderFunc(props: {
                                   showLabel={false}
                                 />
                               </FormItemWrapper>
-                              <Stack__
-                                as={"div"}
+                              <div
                                 data-plasmic-name={"frame13"}
                                 data-plasmic-override={overrides.frame13}
-                                hasGap={true}
                                 className={classNames(
                                   projectcss.all,
                                   sty.frame13
@@ -11683,6 +11832,7 @@ function PlasmicAccueil__RenderFunc(props: {
                                                         $ctx.SupabaseUser.user
                                                           .id
                                                       ],
+
                                                       variables: [null]
                                                     },
                                                     cacheKey: null,
@@ -11747,9 +11897,7 @@ function PlasmicAccueil__RenderFunc(props: {
                                           sty.content5
                                         )}
                                       >
-                                        <Stack__
-                                          as={PlasmicImg__}
-                                          hasGap={true}
+                                        <PlasmicImg__
                                           alt={""}
                                           className={classNames(
                                             sty.img___9WbG6
@@ -11857,9 +12005,7 @@ function PlasmicAccueil__RenderFunc(props: {
                                             sty.content
                                           )}
                                         >
-                                          <Stack__
-                                            as={PlasmicImg__}
-                                            hasGap={true}
+                                          <PlasmicImg__
                                             alt={""}
                                             className={classNames(
                                               sty.img__jgllg
@@ -12046,6 +12192,7 @@ function PlasmicAccueil__RenderFunc(props: {
                                                         $ctx.SupabaseUser.user
                                                           .id
                                                       ],
+
                                                       variables: [null]
                                                     },
                                                     cacheKey: null,
@@ -12110,9 +12257,7 @@ function PlasmicAccueil__RenderFunc(props: {
                                           sty.content6
                                         )}
                                       >
-                                        <Stack__
-                                          as={PlasmicImg__}
-                                          hasGap={true}
+                                        <PlasmicImg__
                                           alt={""}
                                           className={classNames(sty.img__fKfk2)}
                                           displayHeight={"39px"}
@@ -12216,9 +12361,7 @@ function PlasmicAccueil__RenderFunc(props: {
                                             sty.freeBox__qwu7S
                                           )}
                                         >
-                                          <Stack__
-                                            as={PlasmicImg__}
-                                            hasGap={true}
+                                          <PlasmicImg__
                                             alt={""}
                                             className={classNames(
                                               sty.img__vfPdF
@@ -12263,22 +12406,18 @@ function PlasmicAccueil__RenderFunc(props: {
                                     </div>
                                   ) : null}
                                 </div>
-                              </Stack__>
-                              <Stack__
-                                as={"div"}
+                              </div>
+                              <div
                                 data-plasmic-name={"frame92"}
                                 data-plasmic-override={overrides.frame92}
-                                hasGap={true}
                                 className={classNames(
                                   projectcss.all,
                                   sty.frame92
                                 )}
                               >
-                                <Stack__
-                                  as={"div"}
+                                <div
                                   data-plasmic-name={"frame93"}
                                   data-plasmic-override={overrides.frame93}
-                                  hasGap={true}
                                   className={classNames(
                                     projectcss.all,
                                     sty.frame93
@@ -12308,12 +12447,10 @@ function PlasmicAccueil__RenderFunc(props: {
                                     maxSize={5242880}
                                     state={"complete"}
                                   />
-                                </Stack__>
-                                <Stack__
-                                  as={"div"}
+                                </div>
+                                <div
                                   data-plasmic-name={"frame94"}
                                   data-plasmic-override={overrides.frame94}
-                                  hasGap={true}
                                   className={classNames(
                                     projectcss.all,
                                     sty.frame94
@@ -12343,8 +12480,8 @@ function PlasmicAccueil__RenderFunc(props: {
                                     maxSize={7}
                                     state={"complete"}
                                   />
-                                </Stack__>
-                              </Stack__>
+                                </div>
+                              </div>
                               <FormItemWrapper
                                 className={classNames(
                                   "__wab_instance",
@@ -12667,9 +12804,7 @@ function PlasmicAccueil__RenderFunc(props: {
                     className={classNames("__wab_instance", sty.modal)}
                     closeOnBackdropClick={false}
                     content={
-                      <Stack__
-                        as={"div"}
-                        hasGap={true}
+                      <div
                         className={classNames(
                           projectcss.all,
                           sty.freeBox__ksAtE
@@ -12776,11 +12911,9 @@ function PlasmicAccueil__RenderFunc(props: {
                               data-plasmic-override={overrides.formFilter2}
                               {...child$Props}
                             >
-                              <Stack__
-                                as={"div"}
+                              <div
                                 data-plasmic-name={"wrapContent2"}
                                 data-plasmic-override={overrides.wrapContent2}
-                                hasGap={true}
                                 className={classNames(
                                   projectcss.all,
                                   sty.wrapContent2
@@ -13109,9 +13242,7 @@ function PlasmicAccueil__RenderFunc(props: {
                                       }
                                     })()}
                                     placeholder={
-                                      <Stack__
-                                        as={"div"}
-                                        hasGap={true}
+                                      <div
                                         className={classNames(
                                           projectcss.all,
                                           sty.freeBox__xqCqx
@@ -13144,7 +13275,7 @@ function PlasmicAccueil__RenderFunc(props: {
                                         >
                                           {"Secteur"}
                                         </div>
-                                      </Stack__>
+                                      </div>
                                     }
                                     popupScopeClassName={sty["select15__popup"]}
                                     size={
@@ -13228,9 +13359,7 @@ function PlasmicAccueil__RenderFunc(props: {
                                       }
                                     })()}
                                     placeholder={
-                                      <Stack__
-                                        as={"div"}
-                                        hasGap={true}
+                                      <div
                                         className={classNames(
                                           projectcss.all,
                                           sty.freeBox__aacQt
@@ -13265,7 +13394,7 @@ function PlasmicAccueil__RenderFunc(props: {
                                         >
                                           {"Disponibilit\u00e9"}
                                         </div>
-                                      </Stack__>
+                                      </div>
                                     }
                                     popupScopeClassName={sty["select16__popup"]}
                                     size={"large"}
@@ -13338,9 +13467,7 @@ function PlasmicAccueil__RenderFunc(props: {
                                       }
                                     })()}
                                     placeholder={
-                                      <Stack__
-                                        as={"div"}
-                                        hasGap={true}
+                                      <div
                                         className={classNames(
                                           projectcss.all,
                                           sty.freeBox__ug2Ho
@@ -13373,7 +13500,7 @@ function PlasmicAccueil__RenderFunc(props: {
                                         >
                                           {"Type de contrat"}
                                         </div>
-                                      </Stack__>
+                                      </div>
                                     }
                                     popupScopeClassName={sty["select17__popup"]}
                                     size={"large"}
@@ -13446,9 +13573,7 @@ function PlasmicAccueil__RenderFunc(props: {
                                       }
                                     })()}
                                     placeholder={
-                                      <Stack__
-                                        as={"div"}
-                                        hasGap={true}
+                                      <div
                                         className={classNames(
                                           projectcss.all,
                                           sty.freeBox__ykesG
@@ -13481,7 +13606,7 @@ function PlasmicAccueil__RenderFunc(props: {
                                         >
                                           {"Temps de travail"}
                                         </div>
-                                      </Stack__>
+                                      </div>
                                     }
                                     popupScopeClassName={sty["select18__popup"]}
                                     size={"large"}
@@ -13554,9 +13679,7 @@ function PlasmicAccueil__RenderFunc(props: {
                                       }
                                     })()}
                                     placeholder={
-                                      <Stack__
-                                        as={"div"}
-                                        hasGap={true}
+                                      <div
                                         className={classNames(
                                           projectcss.all,
                                           sty.freeBox__ziZzi
@@ -13589,7 +13712,7 @@ function PlasmicAccueil__RenderFunc(props: {
                                         >
                                           {"Mode de travail"}
                                         </div>
-                                      </Stack__>
+                                      </div>
                                     }
                                     popupScopeClassName={sty["select19__popup"]}
                                     showSearch={false}
@@ -13663,9 +13786,7 @@ function PlasmicAccueil__RenderFunc(props: {
                                       }
                                     })()}
                                     placeholder={
-                                      <Stack__
-                                        as={"div"}
-                                        hasGap={true}
+                                      <div
                                         className={classNames(
                                           projectcss.all,
                                           sty.freeBox__wjWt8
@@ -13698,7 +13819,7 @@ function PlasmicAccueil__RenderFunc(props: {
                                         >
                                           {"Salaire"}
                                         </div>
-                                      </Stack__>
+                                      </div>
                                     }
                                     popupScopeClassName={sty["select20__popup"]}
                                     size={"large"}
@@ -13772,9 +13893,7 @@ function PlasmicAccueil__RenderFunc(props: {
                                       }
                                     })()}
                                     placeholder={
-                                      <Stack__
-                                        as={"div"}
-                                        hasGap={true}
+                                      <div
                                         className={classNames(
                                           projectcss.all,
                                           sty.freeBox___1Bb3H
@@ -13807,7 +13926,7 @@ function PlasmicAccueil__RenderFunc(props: {
                                         >
                                           {"Taille entreprise"}
                                         </div>
-                                      </Stack__>
+                                      </div>
                                     }
                                     popupScopeClassName={sty["select21__popup"]}
                                     size={"large"}
@@ -13906,13 +14025,11 @@ function PlasmicAccueil__RenderFunc(props: {
                                     })()}
                                   />
                                 ) : null}
-                                <Stack__
-                                  as={"button"}
+                                <button
                                   data-plasmic-name={"buttonLastMin"}
                                   data-plasmic-override={
                                     overrides.buttonLastMin
                                   }
-                                  hasGap={true}
                                   className={classNames(
                                     projectcss.all,
                                     projectcss.button,
@@ -13989,12 +14106,10 @@ function PlasmicAccueil__RenderFunc(props: {
                                   >
                                     {"LAST MINUTE"}
                                   </div>
-                                </Stack__>
-                                <Stack__
-                                  as={PlasmicLink__}
+                                </button>
+                                <PlasmicLink__
                                   data-plasmic-name={"textLinkBase"}
                                   data-plasmic-override={overrides.textLinkBase}
-                                  hasGap={true}
                                   className={classNames(
                                     projectcss.all,
                                     projectcss.a,
@@ -14038,7 +14153,7 @@ function PlasmicAccueil__RenderFunc(props: {
                                       "Cr\u00e9er une alerte avec ces crit\u00e8res"
                                     }
                                   </div>
-                                </Stack__>
+                                </PlasmicLink__>
                                 <Button
                                   className={classNames(
                                     "__wab_instance",
@@ -14160,11 +14275,11 @@ function PlasmicAccueil__RenderFunc(props: {
                                   }}
                                   submitsForm={false}
                                 />
-                              </Stack__>
+                              </div>
                             </FormWrapper>
                           );
                         })()}
-                      </Stack__>
+                      </div>
                     }
                     footer={
                       <div
@@ -14305,6 +14420,7 @@ const PlasmicDescendants = {
   rechercheJob: [
     "rechercheJob",
     "loadingBoundary",
+    "screen",
     "frame6",
     "frame7",
     "frame8",
@@ -14318,10 +14434,11 @@ const PlasmicDescendants = {
     "link",
     "main",
     "bgImage",
-    "section1",
-    "title",
+    "hero",
+    "heroLeft",
     "badgeGroup",
     "message",
+    "title",
     "trouvezUnJobNaJamaisEteAussiSimple",
     "trouvezUnJobNaJamaisEteAussiSimple2",
     "jobSearchSection",
@@ -14510,6 +14627,7 @@ const PlasmicDescendants = {
   ],
   loadingBoundary: [
     "loadingBoundary",
+    "screen",
     "frame6",
     "frame7",
     "frame8",
@@ -14523,10 +14641,11 @@ const PlasmicDescendants = {
     "link",
     "main",
     "bgImage",
-    "section1",
-    "title",
+    "hero",
+    "heroLeft",
     "badgeGroup",
     "message",
+    "title",
     "trouvezUnJobNaJamaisEteAussiSimple",
     "trouvezUnJobNaJamaisEteAussiSimple2",
     "jobSearchSection",
@@ -14713,6 +14832,7 @@ const PlasmicDescendants = {
     "text6",
     "footer"
   ],
+  screen: ["screen", "frame6", "frame7", "frame8", "frame9"],
   frame6: ["frame6", "frame7", "frame8", "frame9"],
   frame7: ["frame7"],
   frame8: ["frame8"],
@@ -14727,10 +14847,11 @@ const PlasmicDescendants = {
   main: [
     "main",
     "bgImage",
-    "section1",
-    "title",
+    "hero",
+    "heroLeft",
     "badgeGroup",
     "message",
+    "title",
     "trouvezUnJobNaJamaisEteAussiSimple",
     "trouvezUnJobNaJamaisEteAussiSimple2",
     "jobSearchSection",
@@ -14783,11 +14904,12 @@ const PlasmicDescendants = {
     "sectionCard3"
   ],
   bgImage: ["bgImage"],
-  section1: [
-    "section1",
-    "title",
+  hero: [
+    "hero",
+    "heroLeft",
     "badgeGroup",
     "message",
+    "title",
     "trouvezUnJobNaJamaisEteAussiSimple",
     "trouvezUnJobNaJamaisEteAussiSimple2",
     "jobSearchSection",
@@ -14827,15 +14949,57 @@ const PlasmicDescendants = {
     "mapboxContainer",
     "mapBox"
   ],
-  title: [
-    "title",
+  heroLeft: [
+    "heroLeft",
     "badgeGroup",
     "message",
+    "title",
     "trouvezUnJobNaJamaisEteAussiSimple",
-    "trouvezUnJobNaJamaisEteAussiSimple2"
+    "trouvezUnJobNaJamaisEteAussiSimple2",
+    "jobSearchSection",
+    "filters",
+    "formFilter",
+    "wrapContent",
+    "input3",
+    "input4",
+    "select13",
+    "select9",
+    "select8",
+    "select10",
+    "select14",
+    "select12",
+    "button8",
+    "clearBtn",
+    "resetFormBtn",
+    "mapJobs",
+    "joblistandbtn",
+    "btn",
+    "postes",
+    "button4",
+    "featuredIcon7",
+    "featuredIcon8",
+    "jobListContainer",
+    "jobsOnScroll",
+    "likeButtons",
+    "like2",
+    "dislike",
+    "jobCard20",
+    "loadingComponent",
+    "lastMinuteBtn",
+    "buttonLastMin2",
+    "text7",
+    "buttonLastMin3",
+    "text8",
+    "mapboxContainer",
+    "mapBox"
   ],
   badgeGroup: ["badgeGroup", "message"],
   message: ["message"],
+  title: [
+    "title",
+    "trouvezUnJobNaJamaisEteAussiSimple",
+    "trouvezUnJobNaJamaisEteAussiSimple2"
+  ],
   trouvezUnJobNaJamaisEteAussiSimple: ["trouvezUnJobNaJamaisEteAussiSimple"],
   trouvezUnJobNaJamaisEteAussiSimple2: ["trouvezUnJobNaJamaisEteAussiSimple2"],
   jobSearchSection: [
@@ -15703,6 +15867,7 @@ type DescendantsType<T extends NodeNameType> =
 type NodeDefaultElementType = {
   rechercheJob: "div";
   loadingBoundary: typeof LoadingBoundary;
+  screen: "div";
   frame6: "div";
   frame7: "div";
   frame8: "div";
@@ -15716,10 +15881,11 @@ type NodeDefaultElementType = {
   link: "a";
   main: "main";
   bgImage: typeof PlasmicImg__;
-  section1: "section";
-  title: "div";
+  hero: "section";
+  heroLeft: "div";
   badgeGroup: "div";
   message: "div";
+  title: "div";
   trouvezUnJobNaJamaisEteAussiSimple: "h1";
   trouvezUnJobNaJamaisEteAussiSimple2: "p";
   jobSearchSection: "div";
@@ -15968,6 +16134,7 @@ export const PlasmicAccueil = Object.assign(
   {
     // Helper components rendering sub-elements
     loadingBoundary: makeNodeComponent("loadingBoundary"),
+    screen: makeNodeComponent("screen"),
     frame6: makeNodeComponent("frame6"),
     frame7: makeNodeComponent("frame7"),
     frame8: makeNodeComponent("frame8"),
@@ -15981,10 +16148,11 @@ export const PlasmicAccueil = Object.assign(
     link: makeNodeComponent("link"),
     main: makeNodeComponent("main"),
     bgImage: makeNodeComponent("bgImage"),
-    section1: makeNodeComponent("section1"),
-    title: makeNodeComponent("title"),
+    hero: makeNodeComponent("hero"),
+    heroLeft: makeNodeComponent("heroLeft"),
     badgeGroup: makeNodeComponent("badgeGroup"),
     message: makeNodeComponent("message"),
+    title: makeNodeComponent("title"),
     trouvezUnJobNaJamaisEteAussiSimple: makeNodeComponent(
       "trouvezUnJobNaJamaisEteAussiSimple"
     ),

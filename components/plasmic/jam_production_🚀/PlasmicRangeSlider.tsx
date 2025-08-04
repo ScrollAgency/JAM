@@ -266,11 +266,7 @@ function PlasmicRangeSlider__RenderFunc(props: {
       step={args.step}
       value={generateStateValueProp($state, ["ariaRangeSlider", "value"])}
     >
-      <Stack__
-        as={"div"}
-        hasGap={true}
-        className={classNames(projectcss.all, sty.freeBox__q56CG)}
-      >
+      <div className={classNames(projectcss.all, sty.freeBox__q56CG)}>
         {$props.showLabel ? (
           <Label
             data-plasmic-name={"label"}
@@ -329,7 +325,7 @@ function PlasmicRangeSlider__RenderFunc(props: {
             </div>
           </BaseSliderOutput>
         ) : null}
-      </Stack__>
+      </div>
       <div className={classNames(projectcss.all, sty.freeBox__gAE0)}>
         <div
           data-plasmic-name={"background"}

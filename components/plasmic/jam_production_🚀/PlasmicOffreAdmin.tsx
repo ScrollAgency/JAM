@@ -322,11 +322,9 @@ function PlasmicOffreAdmin__RenderFunc(props: {
             role={generateStateValueProp($state, ["sidebar", "role"])}
           />
 
-          <Stack__
-            as={"div"}
+          <div
             data-plasmic-name={"main"}
             data-plasmic-override={overrides.main}
-            hasGap={true}
             className={classNames(projectcss.all, sty.main)}
           >
             <div
@@ -605,28 +603,22 @@ function PlasmicOffreAdmin__RenderFunc(props: {
               data-plasmic-override={overrides.offre}
               className={classNames("__wab_instance", sty.offre)}
               content={
-                <Stack__
-                  as={"div"}
+                <div
                   data-plasmic-name={"jobListing"}
                   data-plasmic-override={overrides.jobListing}
-                  hasGap={true}
                   className={classNames(projectcss.all, sty.jobListing)}
                 >
-                  <Stack__
-                    as={"div"}
+                  <div
                     data-plasmic-name={"jobDetail"}
                     data-plasmic-override={overrides.jobDetail}
-                    hasGap={true}
                     className={classNames(projectcss.all, sty.jobDetail)}
                   >
                     <div
                       className={classNames(projectcss.all, sty.freeBox__oSsmz)}
                     >
-                      <Stack__
-                        as={"div"}
+                      <div
                         data-plasmic-name={"location"}
                         data-plasmic-override={overrides.location}
-                        hasGap={true}
                         className={classNames(projectcss.all, sty.location)}
                       >
                         <PhMapPin2Icon
@@ -657,7 +649,7 @@ function PlasmicOffreAdmin__RenderFunc(props: {
                             })()}
                           </React.Fragment>
                         </div>
-                      </Stack__>
+                      </div>
                       <div
                         className={classNames(
                           projectcss.all,
@@ -682,25 +674,19 @@ function PlasmicOffreAdmin__RenderFunc(props: {
                         </React.Fragment>
                       </div>
                     </div>
-                    <Stack__
-                      as={"div"}
+                    <div
                       data-plasmic-name={"frame46"}
                       data-plasmic-override={overrides.frame46}
-                      hasGap={true}
                       className={classNames(projectcss.all, sty.frame46)}
                     >
-                      <Stack__
-                        as={"div"}
+                      <div
                         data-plasmic-name={"frame47"}
                         data-plasmic-override={overrides.frame47}
-                        hasGap={true}
                         className={classNames(projectcss.all, sty.frame47)}
                       >
-                        <Stack__
-                          as={"div"}
+                        <div
                           data-plasmic-name={"frame48"}
                           data-plasmic-override={overrides.frame48}
-                          hasGap={true}
                           className={classNames(projectcss.all, sty.frame48)}
                         >
                           <PhFileTextIcon
@@ -735,12 +721,10 @@ function PlasmicOffreAdmin__RenderFunc(props: {
                               })()}
                             </React.Fragment>
                           </div>
-                        </Stack__>
-                        <Stack__
-                          as={"div"}
+                        </div>
+                        <div
                           data-plasmic-name={"frame49"}
                           data-plasmic-override={overrides.frame49}
-                          hasGap={true}
                           className={classNames(projectcss.all, sty.frame49)}
                         >
                           <PhClockIcon
@@ -775,12 +759,10 @@ function PlasmicOffreAdmin__RenderFunc(props: {
                               })()}
                             </React.Fragment>
                           </div>
-                        </Stack__>
-                        <Stack__
-                          as={"div"}
+                        </div>
+                        <div
                           data-plasmic-name={"frame50"}
                           data-plasmic-override={overrides.frame50}
-                          hasGap={true}
                           className={classNames(projectcss.all, sty.frame50)}
                         >
                           <PhCoinsLightIcon
@@ -815,12 +797,10 @@ function PlasmicOffreAdmin__RenderFunc(props: {
                               })()}
                             </React.Fragment>
                           </div>
-                        </Stack__>
-                        <Stack__
-                          as={"div"}
+                        </div>
+                        <div
                           data-plasmic-name={"frame51"}
                           data-plasmic-override={overrides.frame51}
-                          hasGap={true}
                           className={classNames(projectcss.all, sty.frame51)}
                         >
                           <PhClockCountdownIcon
@@ -855,15 +835,13 @@ function PlasmicOffreAdmin__RenderFunc(props: {
                               })()}
                             </React.Fragment>
                           </div>
-                        </Stack__>
-                      </Stack__>
-                    </Stack__>
-                  </Stack__>
-                  <Stack__
-                    as={"div"}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div
                     data-plasmic-name={"jobDescriptionContainer"}
                     data-plasmic-override={overrides.jobDescriptionContainer}
-                    hasGap={true}
                     className={classNames(
                       projectcss.all,
                       sty.jobDescriptionContainer
@@ -901,11 +879,9 @@ function PlasmicOffreAdmin__RenderFunc(props: {
                         })()}
                       </React.Fragment>
                     </div>
-                    <Stack__
-                      as={"div"}
+                    <div
                       data-plasmic-name={"benefits"}
                       data-plasmic-override={overrides.benefits}
-                      hasGap={true}
                       className={classNames(projectcss.all, sty.benefits)}
                     >
                       {(_par =>
@@ -942,13 +918,11 @@ function PlasmicOffreAdmin__RenderFunc(props: {
                           </div>
                         );
                       })}
-                    </Stack__>
-                  </Stack__>
-                  <Stack__
-                    as={"div"}
+                    </div>
+                  </div>
+                  <div
                     data-plasmic-name={"expectedProfileContainer"}
                     data-plasmic-override={overrides.expectedProfileContainer}
-                    hasGap={true}
                     className={classNames(
                       projectcss.all,
                       sty.expectedProfileContainer
@@ -986,12 +960,10 @@ function PlasmicOffreAdmin__RenderFunc(props: {
                         })()}
                       </React.Fragment>
                     </div>
-                  </Stack__>
-                  <Stack__
-                    as={"div"}
+                  </div>
+                  <div
                     data-plasmic-name={"companyContainer"}
                     data-plasmic-override={overrides.companyContainer}
-                    hasGap={true}
                     className={classNames(projectcss.all, sty.companyContainer)}
                   >
                     <div
@@ -1009,9 +981,7 @@ function PlasmicOffreAdmin__RenderFunc(props: {
                         {"L\u2019entreprise"}
                       </div>
                     </div>
-                    <Stack__
-                      as={"div"}
-                      hasGap={true}
+                    <div
                       className={classNames(projectcss.all, sty.freeBox__epD7F)}
                     >
                       <div
@@ -1037,7 +1007,7 @@ function PlasmicOffreAdmin__RenderFunc(props: {
                           })()}
                         </React.Fragment>
                       </div>
-                    </Stack__>
+                    </div>
                     <div
                       className={classNames(
                         projectcss.all,
@@ -1061,8 +1031,8 @@ function PlasmicOffreAdmin__RenderFunc(props: {
                         })()}
                       </React.Fragment>
                     </div>
-                  </Stack__>
-                </Stack__>
+                  </div>
+                </div>
               }
               footer={null}
               heading={
@@ -1168,11 +1138,7 @@ function PlasmicOffreAdmin__RenderFunc(props: {
               data-plasmic-override={overrides._delete}
               className={classNames("__wab_instance", sty._delete)}
               content={
-                <Stack__
-                  as={"div"}
-                  hasGap={true}
-                  className={classNames(projectcss.all, sty.freeBox__rnh3F)}
-                >
+                <div className={classNames(projectcss.all, sty.freeBox__rnh3F)}>
                   <ReshotIconAlert7T6Wum8VleSvgIcon
                     className={classNames(projectcss.all, sty.svg__sW7Sg)}
                     role={"img"}
@@ -1394,7 +1360,7 @@ function PlasmicOffreAdmin__RenderFunc(props: {
                       }}
                     />
                   </div>
-                </Stack__>
+                </div>
               }
               footer={null}
               heading={null}
@@ -1417,7 +1383,7 @@ function PlasmicOffreAdmin__RenderFunc(props: {
               showHeader={false}
               trigger={null}
             />
-          </Stack__>
+          </div>
         </div>
       </div>
     </React.Fragment>

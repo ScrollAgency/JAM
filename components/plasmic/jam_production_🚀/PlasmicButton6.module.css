@@ -2,39 +2,25 @@
   display: flex;
   position: relative;
   flex-direction: row;
+  align-items: center;
+  justify-content: center;
   background: #f2efeb;
   cursor: pointer;
   transition-property: background;
   transition-duration: 0.1s;
+  column-gap: 4px;
   -webkit-transition-property: background;
   -webkit-transition-duration: 0.1s;
   border-radius: 4px;
   padding: 12px 20px;
   border-width: 0px;
 }
-.root > :global(.__wab_flex-container) {
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  margin-left: calc(0px - 4px);
-  width: calc(100% + 4px);
-}
-.root > :global(.__wab_flex-container) > *,
-.root > :global(.__wab_flex-container) > :global(.__wab_slot) > *,
-.root > :global(.__wab_flex-container) > picture > img,
-.root > :global(.__wab_flex-container) > :global(.__wab_slot) > picture > img {
-  margin-left: 4px;
-}
 @media (min-width: 0px) and (max-width: 768px) {
   .root {
     padding-right: 13px;
-    padding-left: 13px;
-  }
-}
-@media (min-width: 0px) and (max-width: 768px) {
-  .root > :global(.__wab_flex-container) {
     align-items: center;
     justify-content: flex-start;
+    padding-left: 13px;
   }
 }
 .rootshowStartIcon {

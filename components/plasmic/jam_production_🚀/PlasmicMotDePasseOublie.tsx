@@ -247,18 +247,14 @@ function PlasmicMotDePasseOublie__RenderFunc(props: {
             data-plasmic-override={overrides.passwordForgotten}
             className={classNames(projectcss.all, sty.passwordForgotten)}
           >
-            <Stack__
-              as={"div"}
+            <div
               data-plasmic-name={"imageWrapper"}
               data-plasmic-override={overrides.imageWrapper}
-              hasGap={true}
               className={classNames(projectcss.all, sty.imageWrapper)}
             >
-              <Stack__
-                as={"div"}
+              <div
                 data-plasmic-name={"logoWrapper"}
                 data-plasmic-override={overrides.logoWrapper}
-                hasGap={true}
                 className={classNames(projectcss.all, sty.logoWrapper)}
                 onClick={async event => {
                   const $steps = {};
@@ -301,11 +297,9 @@ function PlasmicMotDePasseOublie__RenderFunc(props: {
                   data-plasmic-override={overrides.baseline}
                   className={classNames(projectcss.all, sty.baseline)}
                 >
-                  <Stack__
-                    as={"div"}
+                  <div
                     data-plasmic-name={"frame"}
                     data-plasmic-override={overrides.frame}
-                    hasGap={true}
                     className={classNames(projectcss.all, sty.frame)}
                   >
                     <div
@@ -317,12 +311,10 @@ function PlasmicMotDePasseOublie__RenderFunc(props: {
                     >
                       {"JOB"}
                     </div>
-                  </Stack__>
-                  <Stack__
-                    as={"div"}
+                  </div>
+                  <div
                     data-plasmic-name={"frame2"}
                     data-plasmic-override={overrides.frame2}
-                    hasGap={true}
                     className={classNames(projectcss.all, sty.frame2)}
                   >
                     <div
@@ -334,12 +326,10 @@ function PlasmicMotDePasseOublie__RenderFunc(props: {
                     >
                       {"AROUND"}
                     </div>
-                  </Stack__>
-                  <Stack__
-                    as={"div"}
+                  </div>
+                  <div
                     data-plasmic-name={"frame3"}
                     data-plasmic-override={overrides.frame3}
-                    hasGap={true}
                     className={classNames(projectcss.all, sty.frame3)}
                   >
                     <div
@@ -351,10 +341,10 @@ function PlasmicMotDePasseOublie__RenderFunc(props: {
                     >
                       {"ME"}
                     </div>
-                  </Stack__>
+                  </div>
                 </div>
-              </Stack__>
-            </Stack__>
+              </div>
+            </div>
             <div
               data-plasmic-name={"freeBox"}
               data-plasmic-override={overrides.freeBox}

@@ -328,11 +328,9 @@ function PlasmicUserAdmin__RenderFunc(props: {
             role={generateStateValueProp($state, ["sidebar", "role"])}
           />
 
-          <Stack__
-            as={"div"}
+          <div
             data-plasmic-name={"main"}
             data-plasmic-override={overrides.main}
-            hasGap={true}
             className={classNames(projectcss.all, sty.main)}
           >
             <SideEffect
@@ -394,16 +392,8 @@ function PlasmicUserAdmin__RenderFunc(props: {
                 <React.Fragment>{""}</React.Fragment>
               </React.Fragment>
             </div>
-            <Stack__
-              as={"div"}
-              hasGap={true}
-              className={classNames(projectcss.all, sty.freeBox__lg6T6)}
-            >
-              <Stack__
-                as={"div"}
-                hasGap={true}
-                className={classNames(projectcss.all, sty.freeBox__vJiyM)}
-              >
+            <div className={classNames(projectcss.all, sty.freeBox__lg6T6)}>
+              <div className={classNames(projectcss.all, sty.freeBox__vJiyM)}>
                 <Button
                   className={classNames("__wab_instance", sty.button__bnOxe)}
                   label={
@@ -585,7 +575,7 @@ function PlasmicUserAdmin__RenderFunc(props: {
                   }}
                   type={"bordered"}
                 />
-              </Stack__>
+              </div>
               {(() => {
                 try {
                   return $state.showCandidat;
@@ -953,17 +943,13 @@ function PlasmicUserAdmin__RenderFunc(props: {
                   />
                 </div>
               ) : null}
-            </Stack__>
+            </div>
             <Modal
               data-plasmic-name={"supprUser"}
               data-plasmic-override={overrides.supprUser}
               className={classNames("__wab_instance", sty.supprUser)}
               content={
-                <Stack__
-                  as={"div"}
-                  hasGap={true}
-                  className={classNames(projectcss.all, sty.freeBox__ibQn9)}
-                >
+                <div className={classNames(projectcss.all, sty.freeBox__ibQn9)}>
                   <ReshotIconAlert7T6Wum8VleSvgIcon
                     data-plasmic-name={"svg"}
                     data-plasmic-override={overrides.svg}
@@ -1163,7 +1149,7 @@ function PlasmicUserAdmin__RenderFunc(props: {
                       }}
                     />
                   </div>
-                </Stack__>
+                </div>
               }
               footer={null}
               heading={null}
@@ -1186,7 +1172,7 @@ function PlasmicUserAdmin__RenderFunc(props: {
               showHeader={false}
               trigger={null}
             />
-          </Stack__>
+          </div>
           <MobileNavbarBottomAdmin
             data-plasmic-name={"mobileNavbarBottomAdmin"}
             data-plasmic-override={overrides.mobileNavbarBottomAdmin}

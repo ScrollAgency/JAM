@@ -188,13 +188,11 @@ function PlasmicLastMinuteToggle__RenderFunc(props: {
   });
 
   return (
-    <Stack__
-      as={"div"}
+    <div
       data-plasmic-name={"lastMinuteToggle"}
       data-plasmic-override={overrides.lastMinuteToggle}
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
-      hasGap={true}
       className={classNames(
         projectcss.all,
         projectcss.root_reset,
@@ -228,11 +226,9 @@ function PlasmicLastMinuteToggle__RenderFunc(props: {
                 throw e;
               }
             })() ? (
-              <Stack__
-                as={"div"}
+              <div
                 data-plasmic-name={"textAndSupportingText"}
                 data-plasmic-override={overrides.textAndSupportingText}
-                hasGap={true}
                 className={classNames(
                   projectcss.all,
                   sty.textAndSupportingText
@@ -271,7 +267,7 @@ function PlasmicLastMinuteToggle__RenderFunc(props: {
                 >
                   {"Actuellement il vous reste 1/4 Last Minute ce mois-ci."}
                 </div>
-              </Stack__>
+              </div>
             ) : null}
             {(() => {
               try {
@@ -286,11 +282,9 @@ function PlasmicLastMinuteToggle__RenderFunc(props: {
                 throw e;
               }
             })() ? (
-              <Stack__
-                as={"div"}
+              <div
                 data-plasmic-name={"textAndSupportingText2"}
                 data-plasmic-override={overrides.textAndSupportingText2}
-                hasGap={true}
                 className={classNames(
                   projectcss.all,
                   sty.textAndSupportingText2
@@ -320,16 +314,14 @@ function PlasmicLastMinuteToggle__RenderFunc(props: {
                     "Chaque mois, votre compte est recharg\u00e9 de 4 cr\u00e9dits Last Minute. Vous pouvez \u00e9galement acheter des cr\u00e9dits suppl\u00e9mentaires dans Abonnements."
                   }
                 </div>
-              </Stack__>
+              </div>
             ) : null}
           </React.Fragment>
         }
         trigger={
-          <Stack__
-            as={"div"}
+          <div
             data-plasmic-name={"freeBox"}
             data-plasmic-override={overrides.freeBox}
-            hasGap={true}
             className={classNames(projectcss.all, sty.freeBox)}
           >
             {(() => {
@@ -474,10 +466,10 @@ function PlasmicLastMinuteToggle__RenderFunc(props: {
               }}
               showLabel={false}
             />
-          </Stack__>
+          </div>
         }
       />
-    </Stack__>
+    </div>
   ) as React.ReactElement | null;
 }
 

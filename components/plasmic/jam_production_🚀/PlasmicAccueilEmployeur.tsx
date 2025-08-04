@@ -65,6 +65,7 @@ import { Accordion } from "@/plasmic-library/accordions/Accordion/Accordion"; //
 import { AccordionItem } from "@/plasmic-library/accordions/Accordion/Accordion"; // plasmic-import: hJN_iqaoFDr8/codeComponent
 import { AccordionTrigger } from "@/plasmic-library/accordions/Accordion/Accordion"; // plasmic-import: HDsLndt6b8B_/codeComponent
 import { AccordionContent } from "@/plasmic-library/accordions/Accordion/Accordion"; // plasmic-import: R7Gyb7E5G-Nm/codeComponent
+import Footer from "../../Footer"; // plasmic-import: ZOpOgPOAiAAY/component
 
 import { useScreenVariants as useScreenVariantshm8Nko4B5BDd } from "./PlasmicGlobalVariant__Screen"; // plasmic-import: HM8Nko4B5BDd/globalVariant
 
@@ -94,9 +95,6 @@ import PictogramIcon from "./icons/PlasmicIcon__Pictogram"; // plasmic-import: K
 import Frame1171275265Icon from "./icons/PlasmicIcon__Frame1171275265"; // plasmic-import: qHTkWFuLGJRP/icon
 import MinusCircleIcon from "./icons/PlasmicIcon__MinusCircle"; // plasmic-import: OHiw_2IBL6V4/icon
 import PlusCircle2Icon from "./icons/PlasmicIcon__PlusCircle2"; // plasmic-import: Bk_iFwJOhfaS/icon
-import SocialIcon8Icon from "./icons/PlasmicIcon__SocialIcon8"; // plasmic-import: 3DnFTsAU7fhi/icon
-import Group10Icon from "./icons/PlasmicIcon__Group10"; // plasmic-import: HejkyNWNVykq/icon
-import Group11Icon from "./icons/PlasmicIcon__Group11"; // plasmic-import: emt9YObPzWF6/icon
 
 createPlasmicElementProxy;
 
@@ -311,27 +309,7 @@ export type PlasmicAccueilEmployeur__OverridesType = {
   frame15?: Flex__<"div">;
   text19?: Flex__<"div">;
   iconWrap3?: Flex__<"div">;
-  footer?: Flex__<"div">;
-  container10?: Flex__<"div">;
-  content20?: Flex__<"div">;
-  column?: Flex__<"div">;
-  logo?: Flex__<"div">;
-  frame16?: Flex__<"div">;
-  frame17?: Flex__<"div">;
-  socials?: Flex__<"div">;
-  facebook?: Flex__<typeof PlasmicImg__>;
-  x?: Flex__<"svg">;
-  insta?: Flex__<"svg">;
-  linkedin?: Flex__<"svg">;
-  footerLinksContainer?: Flex__<"div">;
-  footerLinksColumn?: Flex__<"div">;
-  heading5?: Flex__<"div">;
-  footerLinksColumn2?: Flex__<"div">;
-  heading6?: Flex__<"div">;
-  container11?: Flex__<"div">;
-  divider?: Flex__<"div">;
-  content21?: Flex__<"div">;
-  footerText?: Flex__<"div">;
+  footer?: Flex__<typeof Footer>;
 };
 
 export interface DefaultAccueilEmployeurProps {}
@@ -412,11 +390,9 @@ function PlasmicAccueilEmployeur__RenderFunc(props: {
             data-plasmic-override={overrides.structureLp}
             className={classNames(projectcss.all, sty.structureLp)}
           >
-            <Stack__
-              as={"div"}
+            <div
               data-plasmic-name={"navbar"}
               data-plasmic-override={overrides.navbar}
-              hasGap={true}
               className={classNames(projectcss.all, sty.navbar)}
             >
               <NavigationBar
@@ -497,11 +473,9 @@ function PlasmicAccueilEmployeur__RenderFunc(props: {
                         data-plasmic-override={overrides.frame22}
                         className={classNames(projectcss.all, sty.frame22)}
                       >
-                        <Stack__
-                          as={"div"}
+                        <div
                           data-plasmic-name={"frame23"}
                           data-plasmic-override={overrides.frame23}
-                          hasGap={true}
                           className={classNames(projectcss.all, sty.frame23)}
                         >
                           <div
@@ -513,12 +487,10 @@ function PlasmicAccueilEmployeur__RenderFunc(props: {
                           >
                             {"JOB"}
                           </div>
-                        </Stack__>
-                        <Stack__
-                          as={"div"}
+                        </div>
+                        <div
                           data-plasmic-name={"frame24"}
                           data-plasmic-override={overrides.frame24}
-                          hasGap={true}
                           className={classNames(projectcss.all, sty.frame24)}
                         >
                           <div
@@ -530,12 +502,10 @@ function PlasmicAccueilEmployeur__RenderFunc(props: {
                           >
                             {"AROUND"}
                           </div>
-                        </Stack__>
-                        <Stack__
-                          as={"div"}
+                        </div>
+                        <div
                           data-plasmic-name={"frame25"}
                           data-plasmic-override={overrides.frame25}
-                          hasGap={true}
                           className={classNames(projectcss.all, sty.frame25)}
                         >
                           <div
@@ -547,15 +517,41 @@ function PlasmicAccueilEmployeur__RenderFunc(props: {
                           >
                             {"ME"}
                           </div>
-                        </Stack__>
+                        </div>
                       </div>
                     </div>
-                    <Stack__
-                      as={"div"}
+                    <div
                       data-plasmic-name={"jamLogo2"}
                       data-plasmic-override={overrides.jamLogo2}
-                      hasGap={true}
                       className={classNames(projectcss.all, sty.jamLogo2)}
+                      onClick={async event => {
+                        const $steps = {};
+
+                        $steps["goToAccueil"] = true
+                          ? (() => {
+                              const actionArgs = { destination: `/` };
+                              return (({ destination }) => {
+                                if (
+                                  typeof destination === "string" &&
+                                  destination.startsWith("#")
+                                ) {
+                                  document
+                                    .getElementById(destination.substr(1))
+                                    .scrollIntoView({ behavior: "smooth" });
+                                } else {
+                                  __nextRouter?.push(destination);
+                                }
+                              })?.apply(null, [actionArgs]);
+                            })()
+                          : undefined;
+                        if (
+                          $steps["goToAccueil"] != null &&
+                          typeof $steps["goToAccueil"] === "object" &&
+                          typeof $steps["goToAccueil"].then === "function"
+                        ) {
+                          $steps["goToAccueil"] = await $steps["goToAccueil"];
+                        }
+                      }}
                     >
                       <Vector12Icon
                         className={classNames(projectcss.all, sty.svg__xpbO)}
@@ -613,7 +609,7 @@ function PlasmicAccueilEmployeur__RenderFunc(props: {
                           </div>
                         </div>
                       </div>
-                    </Stack__>
+                    </div>
                   </React.Fragment>
                 }
                 className={classNames("__wab_instance", sty.navigationBar)}
@@ -911,18 +907,14 @@ function PlasmicAccueilEmployeur__RenderFunc(props: {
                 responsiveBreakpoint={768}
               />
 
-              <Stack__
-                as={"header"}
+              <header
                 data-plasmic-name={"header3"}
                 data-plasmic-override={overrides.header3}
-                hasGap={true}
                 className={classNames(projectcss.all, sty.header3)}
               >
-                <Stack__
-                  as={"div"}
+                <div
                   data-plasmic-name={"jamLogo"}
                   data-plasmic-override={overrides.jamLogo}
-                  hasGap={true}
                   className={classNames(projectcss.all, sty.jamLogo)}
                   onClick={async event => {
                     const $steps = {};
@@ -1009,12 +1001,10 @@ function PlasmicAccueilEmployeur__RenderFunc(props: {
                       </div>
                     </div>
                   </div>
-                </Stack__>
-                <Stack__
-                  as={"div"}
+                </div>
+                <div
                   data-plasmic-name={"menuItems2"}
                   data-plasmic-override={overrides.menuItems2}
-                  hasGap={true}
                   className={classNames(projectcss.all, sty.menuItems2)}
                 >
                   <div
@@ -1173,12 +1163,8 @@ function PlasmicAccueilEmployeur__RenderFunc(props: {
                   >
                     {"FAQ"}
                   </div>
-                </Stack__>
-                <Stack__
-                  as={"div"}
-                  hasGap={true}
-                  className={classNames(projectcss.all, sty.freeBox__gSxWr)}
-                >
+                </div>
+                <div className={classNames(projectcss.all, sty.freeBox__gSxWr)}>
                   <Button
                     className={classNames("__wab_instance", sty.button__kfsux)}
                     end={
@@ -1244,9 +1230,9 @@ function PlasmicAccueilEmployeur__RenderFunc(props: {
                       }
                     }}
                   />
-                </Stack__>
-              </Stack__>
-            </Stack__>
+                </div>
+              </header>
+            </div>
             <div className={classNames(projectcss.all, sty.freeBox__fS8Xf)}>
               <div
                 data-plasmic-name={"frame6"}
@@ -1262,59 +1248,45 @@ function PlasmicAccueilEmployeur__RenderFunc(props: {
                   )}
                 />
 
-                <Stack__
-                  as={"div"}
+                <div
                   data-plasmic-name={"frame7"}
                   data-plasmic-override={overrides.frame7}
-                  hasGap={true}
                   className={classNames(projectcss.all, sty.frame7)}
                 >
-                  <Stack__
-                    as={"div"}
+                  <div
                     data-plasmic-name={"hero"}
                     data-plasmic-override={overrides.hero}
-                    hasGap={true}
                     className={classNames(projectcss.all, sty.hero)}
                   >
-                    <Stack__
-                      as={"div"}
+                    <div
                       data-plasmic-name={"headingCta"}
                       data-plasmic-override={overrides.headingCta}
-                      hasGap={true}
                       className={classNames(projectcss.all, sty.headingCta)}
                     >
-                      <Stack__
-                        as={"div"}
+                      <div
                         data-plasmic-name={"headingSubheading"}
                         data-plasmic-override={overrides.headingSubheading}
-                        hasGap={true}
                         className={classNames(
                           projectcss.all,
                           sty.headingSubheading
                         )}
                       >
-                        <Stack__
-                          as={"div"}
+                        <div
                           data-plasmic-name={"headline"}
                           data-plasmic-override={overrides.headline}
-                          hasGap={true}
                           className={classNames(projectcss.all, sty.headline)}
                         >
-                          <Stack__
-                            as={"div"}
+                          <div
                             data-plasmic-name={"badgeGroup"}
                             data-plasmic-override={overrides.badgeGroup}
-                            hasGap={true}
                             className={classNames(
                               projectcss.all,
                               sty.badgeGroup
                             )}
                           >
-                            <Stack__
-                              as={"div"}
+                            <div
                               data-plasmic-name={"content"}
                               data-plasmic-override={overrides.content}
-                              hasGap={true}
                               className={classNames(
                                 projectcss.all,
                                 sty.content
@@ -1331,8 +1303,8 @@ function PlasmicAccueilEmployeur__RenderFunc(props: {
                               >
                                 {"Get ready to find your job"}
                               </div>
-                            </Stack__>
-                          </Stack__>
+                            </div>
+                          </div>
                           <div
                             data-plasmic-name={
                               "trouvezUnCandidatNaJamaisEteAussiSimple"
@@ -1380,7 +1352,7 @@ function PlasmicAccueilEmployeur__RenderFunc(props: {
                               </span>
                             </React.Fragment>
                           </div>
-                        </Stack__>
+                        </div>
                         <div
                           className={classNames(
                             projectcss.all,
@@ -1392,13 +1364,11 @@ function PlasmicAccueilEmployeur__RenderFunc(props: {
                             "Job Around Me est une application con\u00e7ue pour r\u00e9volutionner la recherche d\u2019emploi et le recrutement en s\u2019appuyant sur la g\u00e9olocalisation. "
                           }
                         </div>
-                      </Stack__>
-                    </Stack__>
-                    <Stack__
-                      as={"div"}
+                      </div>
+                    </div>
+                    <div
                       data-plasmic-name={"frame1437254417"}
                       data-plasmic-override={overrides.frame1437254417}
-                      hasGap={true}
                       className={classNames(
                         projectcss.all,
                         sty.frame1437254417
@@ -1461,17 +1431,15 @@ function PlasmicAccueilEmployeur__RenderFunc(props: {
                           }
                         }}
                       />
-                    </Stack__>
+                    </div>
                     {(
                       hasVariant(globalVariants, "screen", "mobileOnly")
                         ? true
                         : false
                     ) ? (
-                      <Stack__
-                        as={"div"}
+                      <div
                         data-plasmic-name={"frame1437254418"}
                         data-plasmic-override={overrides.frame1437254418}
-                        hasGap={true}
                         className={classNames(
                           projectcss.all,
                           sty.frame1437254418
@@ -1541,65 +1509,51 @@ function PlasmicAccueilEmployeur__RenderFunc(props: {
                           className={classNames(projectcss.all, sty.svg__eKbul)}
                           role={"img"}
                         />
-                      </Stack__>
+                      </div>
                     ) : null}
-                  </Stack__>
-                </Stack__>
+                  </div>
+                </div>
               </div>
             </div>
-            <Stack__
-              as={"div"}
+            <div
               data-plasmic-name={"benefices"}
               data-plasmic-override={overrides.benefices}
-              hasGap={true}
               className={classNames(projectcss.all, sty.benefices)}
             >
-              <Stack__
-                as={"div"}
+              <div
                 data-plasmic-name={"container"}
                 data-plasmic-override={overrides.container}
-                hasGap={true}
                 className={classNames(projectcss.all, sty.container)}
               >
-                <Stack__
-                  as={"div"}
+                <div
                   data-plasmic-name={"content2"}
                   data-plasmic-override={overrides.content2}
-                  hasGap={true}
                   className={classNames(projectcss.all, sty.content2)}
                 >
-                  <Stack__
-                    as={"div"}
+                  <div
                     data-plasmic-name={"headingAndSupportingText"}
                     data-plasmic-override={overrides.headingAndSupportingText}
-                    hasGap={true}
                     className={classNames(
                       projectcss.all,
                       sty.headingAndSupportingText
                     )}
                   >
-                    <Stack__
-                      as={"div"}
+                    <div
                       data-plasmic-name={"headingAndBadge"}
                       data-plasmic-override={overrides.headingAndBadge}
-                      hasGap={true}
                       className={classNames(
                         projectcss.all,
                         sty.headingAndBadge
                       )}
                     >
-                      <Stack__
-                        as={"div"}
+                      <div
                         data-plasmic-name={"badgeGroup2"}
                         data-plasmic-override={overrides.badgeGroup2}
-                        hasGap={true}
                         className={classNames(projectcss.all, sty.badgeGroup2)}
                       >
-                        <Stack__
-                          as={"div"}
+                        <div
                           data-plasmic-name={"content3"}
                           data-plasmic-override={overrides.content3}
-                          hasGap={true}
                           className={classNames(projectcss.all, sty.content3)}
                         >
                           <div
@@ -1613,8 +1567,8 @@ function PlasmicAccueilEmployeur__RenderFunc(props: {
                           >
                             {"Notre solution"}
                           </div>
-                        </Stack__>
-                      </Stack__>
+                        </div>
+                      </div>
                       <div
                         data-plasmic-name={"heading"}
                         data-plasmic-override={overrides.heading}
@@ -1626,7 +1580,7 @@ function PlasmicAccueilEmployeur__RenderFunc(props: {
                       >
                         {"Pourquoi chercher sur Job Around Me\u00a0?"}
                       </div>
-                    </Stack__>
+                    </div>
                     <div
                       data-plasmic-name={"supportingText"}
                       data-plasmic-override={overrides.supportingText}
@@ -1640,28 +1594,22 @@ function PlasmicAccueilEmployeur__RenderFunc(props: {
                         "Job Around Me facilite l\u2019emploi local, rapide et flexible, connectant candidats et employeurs efficacement"
                       }
                     </div>
-                  </Stack__>
-                </Stack__>
-              </Stack__>
-              <Stack__
-                as={"div"}
+                  </div>
+                </div>
+              </div>
+              <div
                 data-plasmic-name={"container2"}
                 data-plasmic-override={overrides.container2}
-                hasGap={true}
                 className={classNames(projectcss.all, sty.container2)}
               >
-                <Stack__
-                  as={"div"}
+                <div
                   data-plasmic-name={"content4"}
                   data-plasmic-override={overrides.content4}
-                  hasGap={true}
                   className={classNames(projectcss.all, sty.content4)}
                 >
-                  <Stack__
-                    as={"div"}
+                  <div
                     data-plasmic-name={"featureText"}
                     data-plasmic-override={overrides.featureText}
-                    hasGap={true}
                     className={classNames(projectcss.all, sty.featureText)}
                   >
                     <div
@@ -1674,11 +1622,9 @@ function PlasmicAccueilEmployeur__RenderFunc(props: {
                         role={"img"}
                       />
                     </div>
-                    <Stack__
-                      as={"div"}
+                    <div
                       data-plasmic-name={"textAndSupportingText"}
                       data-plasmic-override={overrides.textAndSupportingText}
-                      hasGap={true}
                       className={classNames(
                         projectcss.all,
                         sty.textAndSupportingText
@@ -1708,13 +1654,11 @@ function PlasmicAccueilEmployeur__RenderFunc(props: {
                           "Publiez vos offres et recrutez des talents \u00e0 proximit\u00e9 pour r\u00e9duire les d\u00e9lais d\u2019embauche."
                         }
                       </div>
-                    </Stack__>
-                  </Stack__>
-                  <Stack__
-                    as={"div"}
+                    </div>
+                  </div>
+                  <div
                     data-plasmic-name={"featureText2"}
                     data-plasmic-override={overrides.featureText2}
-                    hasGap={true}
                     className={classNames(projectcss.all, sty.featureText2)}
                   >
                     <div
@@ -1727,11 +1671,9 @@ function PlasmicAccueilEmployeur__RenderFunc(props: {
                         role={"img"}
                       />
                     </div>
-                    <Stack__
-                      as={"div"}
+                    <div
                       data-plasmic-name={"textAndSupportingText2"}
                       data-plasmic-override={overrides.textAndSupportingText2}
-                      hasGap={true}
                       className={classNames(
                         projectcss.all,
                         sty.textAndSupportingText2
@@ -1763,13 +1705,11 @@ function PlasmicAccueilEmployeur__RenderFunc(props: {
                           "Consultez et s\u00e9lectionnez des candidats correspondant \u00e0 vos crit\u00e8res gr\u00e2ce \u00e0 une base mise \u00e0 jour en continu."
                         }
                       </div>
-                    </Stack__>
-                  </Stack__>
-                  <Stack__
-                    as={"div"}
+                    </div>
+                  </div>
+                  <div
                     data-plasmic-name={"featureText3"}
                     data-plasmic-override={overrides.featureText3}
-                    hasGap={true}
                     className={classNames(projectcss.all, sty.featureText3)}
                   >
                     <div
@@ -1782,11 +1722,9 @@ function PlasmicAccueilEmployeur__RenderFunc(props: {
                         role={"img"}
                       />
                     </div>
-                    <Stack__
-                      as={"div"}
+                    <div
                       data-plasmic-name={"textAndSupportingText3"}
                       data-plasmic-override={overrides.textAndSupportingText3}
-                      hasGap={true}
                       className={classNames(
                         projectcss.all,
                         sty.textAndSupportingText3
@@ -1816,37 +1754,29 @@ function PlasmicAccueilEmployeur__RenderFunc(props: {
                           "Profitez d\u2019une interface intuitive pour publier, suivre et optimiser vos offres en temps r\u00e9el."
                         }
                       </div>
-                    </Stack__>
-                  </Stack__>
-                </Stack__>
-              </Stack__>
-            </Stack__>
-            <Stack__
-              as={"div"}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
               data-plasmic-name={"citation"}
               data-plasmic-override={overrides.citation}
-              hasGap={true}
               className={classNames(projectcss.all, sty.citation)}
             >
-              <Stack__
-                as={"div"}
+              <div
                 data-plasmic-name={"container3"}
                 data-plasmic-override={overrides.container3}
-                hasGap={true}
                 className={classNames(projectcss.all, sty.container3)}
               >
-                <Stack__
-                  as={"div"}
+                <div
                   data-plasmic-name={"content5"}
                   data-plasmic-override={overrides.content5}
-                  hasGap={true}
                   className={classNames(projectcss.all, sty.content5)}
                 >
-                  <Stack__
-                    as={"div"}
+                  <div
                     data-plasmic-name={"quoteAndAttribution"}
                     data-plasmic-override={overrides.quoteAndAttribution}
-                    hasGap={true}
                     className={classNames(
                       projectcss.all,
                       sty.quoteAndAttribution
@@ -1865,11 +1795,9 @@ function PlasmicAccueilEmployeur__RenderFunc(props: {
                         "\u201cGr\u00e2ce \u00e0 Job Around Me, j\u2019ai trouv\u00e9 en quelques jours deux employ\u00e9s motiv\u00e9s habitant tout pr\u00e8s. Simple, rapide et efficace. Je recommande !\u201d"
                       }
                     </div>
-                    <Stack__
-                      as={"div"}
+                    <div
                       data-plasmic-name={"avatarAndText"}
                       data-plasmic-override={overrides.avatarAndText}
-                      hasGap={true}
                       className={classNames(projectcss.all, sty.avatarAndText)}
                     >
                       <PlasmicImg__
@@ -1890,11 +1818,9 @@ function PlasmicAccueilEmployeur__RenderFunc(props: {
                         }}
                       />
 
-                      <Stack__
-                        as={"div"}
+                      <div
                         data-plasmic-name={"textAndSupportingText4"}
                         data-plasmic-override={overrides.textAndSupportingText4}
-                        hasGap={true}
                         className={classNames(
                           projectcss.all,
                           sty.textAndSupportingText4
@@ -1922,57 +1848,46 @@ function PlasmicAccueilEmployeur__RenderFunc(props: {
                         >
                           {"G\u00e9rant"}
                         </div>
-                      </Stack__>
-                    </Stack__>
-                  </Stack__>
-                </Stack__>
-              </Stack__>
-            </Stack__>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
             <div className={classNames(projectcss.all, sty.freeBox__uVYzH)}>
-              <Stack__
-                as={"div"}
+              <div
                 data-plasmic-name={"services"}
                 data-plasmic-override={overrides.services}
-                hasGap={true}
                 className={classNames(projectcss.all, sty.services)}
+                id={"services"}
               >
-                <Stack__
-                  as={"div"}
+                <div
                   data-plasmic-name={"headingCta2"}
                   data-plasmic-override={overrides.headingCta2}
-                  hasGap={true}
                   className={classNames(projectcss.all, sty.headingCta2)}
                 >
-                  <Stack__
-                    as={"div"}
+                  <div
                     data-plasmic-name={"headingSubheading2"}
                     data-plasmic-override={overrides.headingSubheading2}
-                    hasGap={true}
                     className={classNames(
                       projectcss.all,
                       sty.headingSubheading2
                     )}
                     id={"services"}
                   >
-                    <Stack__
-                      as={"div"}
+                    <div
                       data-plasmic-name={"headline2"}
                       data-plasmic-override={overrides.headline2}
-                      hasGap={true}
                       className={classNames(projectcss.all, sty.headline2)}
                     >
-                      <Stack__
-                        as={"div"}
+                      <div
                         data-plasmic-name={"badgeGroup3"}
                         data-plasmic-override={overrides.badgeGroup3}
-                        hasGap={true}
                         className={classNames(projectcss.all, sty.badgeGroup3)}
                       >
-                        <Stack__
-                          as={"div"}
+                        <div
                           data-plasmic-name={"content6"}
                           data-plasmic-override={overrides.content6}
-                          hasGap={true}
                           className={classNames(projectcss.all, sty.content6)}
                         >
                           <div
@@ -1986,8 +1901,8 @@ function PlasmicAccueilEmployeur__RenderFunc(props: {
                           >
                             {"Services"}
                           </div>
-                        </Stack__>
-                      </Stack__>
+                        </div>
+                      </div>
                       <div
                         className={classNames(
                           projectcss.all,
@@ -1997,7 +1912,7 @@ function PlasmicAccueilEmployeur__RenderFunc(props: {
                       >
                         {"Ce que nous proposons"}
                       </div>
-                    </Stack__>
+                    </div>
                     <div
                       className={classNames(
                         projectcss.all,
@@ -2009,34 +1924,26 @@ function PlasmicAccueilEmployeur__RenderFunc(props: {
                         "Avec Job Around Me, nous connectons employeurs et employ\u00e9s dans un esprit de proximit\u00e9, de rapidit\u00e9 et de flexibilit\u00e9 pour r\u00e9pondre aux d\u00e9fis modernes du march\u00e9 de l\u2019emploi."
                       }
                     </div>
-                  </Stack__>
-                </Stack__>
-                <Stack__
-                  as={"div"}
+                  </div>
+                </div>
+                <div
                   data-plasmic-name={"container4"}
                   data-plasmic-override={overrides.container4}
-                  hasGap={true}
                   className={classNames(projectcss.all, sty.container4)}
                 >
-                  <Stack__
-                    as={"div"}
+                  <div
                     data-plasmic-name={"content7"}
                     data-plasmic-override={overrides.content7}
-                    hasGap={true}
                     className={classNames(projectcss.all, sty.content7)}
                   >
-                    <Stack__
-                      as={"div"}
+                    <div
                       data-plasmic-name={"description"}
                       data-plasmic-override={overrides.description}
-                      hasGap={true}
                       className={classNames(projectcss.all, sty.description)}
                     >
-                      <Stack__
-                        as={"div"}
+                      <div
                         data-plasmic-name={"iconAndText"}
                         data-plasmic-override={overrides.iconAndText}
-                        hasGap={true}
                         className={classNames(projectcss.all, sty.iconAndText)}
                       >
                         <div
@@ -2055,13 +1962,11 @@ function PlasmicAccueilEmployeur__RenderFunc(props: {
                             role={"img"}
                           />
                         </div>
-                        <Stack__
-                          as={"div"}
+                        <div
                           data-plasmic-name={"headingAndSupportingText2"}
                           data-plasmic-override={
                             overrides.headingAndSupportingText2
                           }
-                          hasGap={true}
                           className={classNames(
                             projectcss.all,
                             sty.headingAndSupportingText2
@@ -2091,10 +1996,10 @@ function PlasmicAccueilEmployeur__RenderFunc(props: {
                               "Job Around Me s\u2019adresse aussi bien aux jeunes \u00e9tudiants en qu\u00eate de missions ponctuelles qu\u2019aux personnes souhaitant un emploi compl\u00e9mentaire pour arrondir leurs fins de mois. \n\nPour les candidats, l\u2019application facilite l\u2019acc\u00e8s \u00e0 des opportunit\u00e9s proches de chez eux gr\u00e2ce \u00e0 une interface intuitive et des options de filtrage personnalis\u00e9es. "
                             }
                           </div>
-                        </Stack__>
-                      </Stack__>
-                    </Stack__>
-                  </Stack__>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                   <div
                     data-plasmic-name={"content8"}
                     data-plasmic-override={overrides.content8}
@@ -2109,12 +2014,10 @@ function PlasmicAccueilEmployeur__RenderFunc(props: {
                       )}
                     />
                   </div>
-                </Stack__>
-                <Stack__
-                  as={"div"}
+                </div>
+                <div
                   data-plasmic-name={"container5"}
                   data-plasmic-override={overrides.container5}
-                  hasGap={true}
                   className={classNames(projectcss.all, sty.container5)}
                 >
                   <div
@@ -2131,25 +2034,19 @@ function PlasmicAccueilEmployeur__RenderFunc(props: {
                       )}
                     />
                   </div>
-                  <Stack__
-                    as={"div"}
+                  <div
                     data-plasmic-name={"content10"}
                     data-plasmic-override={overrides.content10}
-                    hasGap={true}
                     className={classNames(projectcss.all, sty.content10)}
                   >
-                    <Stack__
-                      as={"div"}
+                    <div
                       data-plasmic-name={"description2"}
                       data-plasmic-override={overrides.description2}
-                      hasGap={true}
                       className={classNames(projectcss.all, sty.description2)}
                     >
-                      <Stack__
-                        as={"div"}
+                      <div
                         data-plasmic-name={"iconAndText2"}
                         data-plasmic-override={overrides.iconAndText2}
-                        hasGap={true}
                         className={classNames(projectcss.all, sty.iconAndText2)}
                       >
                         <div
@@ -2168,13 +2065,11 @@ function PlasmicAccueilEmployeur__RenderFunc(props: {
                             role={"img"}
                           />
                         </div>
-                        <Stack__
-                          as={"div"}
+                        <div
                           data-plasmic-name={"headingAndSupportingText3"}
                           data-plasmic-override={
                             overrides.headingAndSupportingText3
                           }
-                          hasGap={true}
                           className={classNames(
                             projectcss.all,
                             sty.headingAndSupportingText3
@@ -2230,11 +2125,9 @@ function PlasmicAccueilEmployeur__RenderFunc(props: {
                               </React.Fragment>
                             </React.Fragment>
                           </div>
-                        </Stack__>
-                      </Stack__>
-                      <Stack__
-                        as={"div"}
-                        hasGap={true}
+                        </div>
+                      </div>
+                      <div
                         className={classNames(
                           projectcss.all,
                           sty.freeBox__jtKi3
@@ -2292,53 +2185,42 @@ function PlasmicAccueilEmployeur__RenderFunc(props: {
                           className={classNames(projectcss.all, sty.svg__fptHe)}
                           role={"img"}
                         />
-                      </Stack__>
-                    </Stack__>
-                  </Stack__>
-                </Stack__>
-              </Stack__>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-            <Stack__
-              as={"div"}
+            <div
               data-plasmic-name={"services2"}
               data-plasmic-override={overrides.services2}
-              hasGap={true}
               className={classNames(projectcss.all, sty.services2)}
+              id={"offres"}
             >
-              <Stack__
-                as={"div"}
+              <div
                 data-plasmic-name={"headingCta3"}
                 data-plasmic-override={overrides.headingCta3}
-                hasGap={true}
                 className={classNames(projectcss.all, sty.headingCta3)}
               >
-                <Stack__
-                  as={"div"}
+                <div
                   data-plasmic-name={"headingSubheading3"}
                   data-plasmic-override={overrides.headingSubheading3}
-                  hasGap={true}
                   className={classNames(projectcss.all, sty.headingSubheading3)}
                 >
-                  <Stack__
-                    as={"div"}
+                  <div
                     data-plasmic-name={"headline3"}
                     data-plasmic-override={overrides.headline3}
-                    hasGap={true}
                     className={classNames(projectcss.all, sty.headline3)}
                     id={"offres"}
                   >
-                    <Stack__
-                      as={"div"}
+                    <div
                       data-plasmic-name={"badgeGroup4"}
                       data-plasmic-override={overrides.badgeGroup4}
-                      hasGap={true}
                       className={classNames(projectcss.all, sty.badgeGroup4)}
                     >
-                      <Stack__
-                        as={"div"}
+                      <div
                         data-plasmic-name={"content11"}
                         data-plasmic-override={overrides.content11}
-                        hasGap={true}
                         className={classNames(projectcss.all, sty.content11)}
                       >
                         <div
@@ -2352,8 +2234,8 @@ function PlasmicAccueilEmployeur__RenderFunc(props: {
                         >
                           {"Offres"}
                         </div>
-                      </Stack__>
-                    </Stack__>
+                      </div>
+                    </div>
                     <div
                       className={classNames(
                         projectcss.all,
@@ -2365,21 +2247,17 @@ function PlasmicAccueilEmployeur__RenderFunc(props: {
                         "Pr\u00eat \u00e0 trouver le talent qui vous correspond ?"
                       }
                     </div>
-                  </Stack__>
-                </Stack__>
-              </Stack__>
-              <Stack__
-                as={"div"}
+                  </div>
+                </div>
+              </div>
+              <div
                 data-plasmic-name={"container6"}
                 data-plasmic-override={overrides.container6}
-                hasGap={true}
                 className={classNames(projectcss.all, sty.container6)}
               >
-                <Stack__
-                  as={"div"}
+                <div
                   data-plasmic-name={"content12"}
                   data-plasmic-override={overrides.content12}
-                  hasGap={true}
                   className={classNames(projectcss.all, sty.content12)}
                 >
                   <div
@@ -2387,18 +2265,14 @@ function PlasmicAccueilEmployeur__RenderFunc(props: {
                     data-plasmic-override={overrides.pricingTierCard}
                     className={classNames(projectcss.all, sty.pricingTierCard)}
                   >
-                    <Stack__
-                      as={"div"}
+                    <div
                       data-plasmic-name={"header"}
                       data-plasmic-override={overrides.header}
-                      hasGap={true}
                       className={classNames(projectcss.all, sty.header)}
                     >
-                      <Stack__
-                        as={"div"}
+                      <div
                         data-plasmic-name={"frame8"}
                         data-plasmic-override={overrides.frame8}
-                        hasGap={true}
                         className={classNames(projectcss.all, sty.frame8)}
                       >
                         <div
@@ -2418,13 +2292,11 @@ function PlasmicAccueilEmployeur__RenderFunc(props: {
                             {"19,99 \u20ac/mois"}
                           </div>
                         </div>
-                        <Stack__
-                          as={"div"}
+                        <div
                           data-plasmic-name={"headingAndSupportingText4"}
                           data-plasmic-override={
                             overrides.headingAndSupportingText4
                           }
-                          hasGap={true}
                           className={classNames(
                             projectcss.all,
                             sty.headingAndSupportingText4
@@ -2443,28 +2315,22 @@ function PlasmicAccueilEmployeur__RenderFunc(props: {
                               "Solution id\u00e9ale pour un recrutement rapide, flexible et efficace \u00e0 moindre co\u00fbt."
                             }
                           </div>
-                        </Stack__>
-                      </Stack__>
-                    </Stack__>
-                    <Stack__
-                      as={"div"}
+                        </div>
+                      </div>
+                    </div>
+                    <div
                       data-plasmic-name={"content13"}
                       data-plasmic-override={overrides.content13}
-                      hasGap={true}
                       className={classNames(projectcss.all, sty.content13)}
                     >
-                      <Stack__
-                        as={"div"}
+                      <div
                         data-plasmic-name={"checkItems"}
                         data-plasmic-override={overrides.checkItems}
-                        hasGap={true}
                         className={classNames(projectcss.all, sty.checkItems)}
                       >
-                        <Stack__
-                          as={"div"}
+                        <div
                           data-plasmic-name={"checkItemText"}
                           data-plasmic-override={overrides.checkItemText}
-                          hasGap={true}
                           className={classNames(
                             projectcss.all,
                             sty.checkItemText
@@ -2495,12 +2361,10 @@ function PlasmicAccueilEmployeur__RenderFunc(props: {
                               {"Publication de 3 annonces"}
                             </div>
                           </div>
-                        </Stack__>
-                        <Stack__
-                          as={"div"}
+                        </div>
+                        <div
                           data-plasmic-name={"checkItemText2"}
                           data-plasmic-override={overrides.checkItemText2}
-                          hasGap={true}
                           className={classNames(
                             projectcss.all,
                             sty.checkItemText2
@@ -2534,12 +2398,10 @@ function PlasmicAccueilEmployeur__RenderFunc(props: {
                               {"1 annonce urgente incluse"}
                             </div>
                           </div>
-                        </Stack__>
-                        <Stack__
-                          as={"div"}
+                        </div>
+                        <div
                           data-plasmic-name={"checkItemText3"}
                           data-plasmic-override={overrides.checkItemText3}
-                          hasGap={true}
                           className={classNames(
                             projectcss.all,
                             sty.checkItemText3
@@ -2570,8 +2432,8 @@ function PlasmicAccueilEmployeur__RenderFunc(props: {
                               {"Acc\u00e8s \u00e0 une base de candidats"}
                             </div>
                           </div>
-                        </Stack__>
-                      </Stack__>
+                        </div>
+                      </div>
                       <div
                         className={classNames(
                           projectcss.all,
@@ -2640,25 +2502,21 @@ function PlasmicAccueilEmployeur__RenderFunc(props: {
                           type={"bordered"}
                         />
                       </div>
-                    </Stack__>
+                    </div>
                   </div>
                   <div
                     data-plasmic-name={"pricingTierCard2"}
                     data-plasmic-override={overrides.pricingTierCard2}
                     className={classNames(projectcss.all, sty.pricingTierCard2)}
                   >
-                    <Stack__
-                      as={"div"}
+                    <div
                       data-plasmic-name={"header2"}
                       data-plasmic-override={overrides.header2}
-                      hasGap={true}
                       className={classNames(projectcss.all, sty.header2)}
                     >
-                      <Stack__
-                        as={"div"}
+                      <div
                         data-plasmic-name={"frame9"}
                         data-plasmic-override={overrides.frame9}
-                        hasGap={true}
                         className={classNames(projectcss.all, sty.frame9)}
                       >
                         <div
@@ -2699,21 +2557,17 @@ function PlasmicAccueilEmployeur__RenderFunc(props: {
                               {"Most popular!"}
                             </div>
                           ) : null}
-                          <Stack__
-                            as={"div"}
+                          <div
                             data-plasmic-name={"badgeGroup5"}
                             data-plasmic-override={overrides.badgeGroup5}
-                            hasGap={true}
                             className={classNames(
                               projectcss.all,
                               sty.badgeGroup5
                             )}
                           >
-                            <Stack__
-                              as={"div"}
+                            <div
                               data-plasmic-name={"content14"}
                               data-plasmic-override={overrides.content14}
-                              hasGap={true}
                               className={classNames(
                                 projectcss.all,
                                 sty.content14
@@ -2730,16 +2584,14 @@ function PlasmicAccueilEmployeur__RenderFunc(props: {
                               >
                                 {"Le + populaire"}
                               </div>
-                            </Stack__>
-                          </Stack__>
+                            </div>
+                          </div>
                         </div>
-                        <Stack__
-                          as={"div"}
+                        <div
                           data-plasmic-name={"headingAndSupportingText5"}
                           data-plasmic-override={
                             overrides.headingAndSupportingText5
                           }
-                          hasGap={true}
                           className={classNames(
                             projectcss.all,
                             sty.headingAndSupportingText5
@@ -2758,28 +2610,22 @@ function PlasmicAccueilEmployeur__RenderFunc(props: {
                               "Recrutement premium avec visibilit\u00e9 accrue, acc\u00e8s prioritaire et annonces urgentes."
                             }
                           </div>
-                        </Stack__>
-                      </Stack__>
-                    </Stack__>
-                    <Stack__
-                      as={"div"}
+                        </div>
+                      </div>
+                    </div>
+                    <div
                       data-plasmic-name={"content15"}
                       data-plasmic-override={overrides.content15}
-                      hasGap={true}
                       className={classNames(projectcss.all, sty.content15)}
                     >
-                      <Stack__
-                        as={"div"}
+                      <div
                         data-plasmic-name={"checkItems2"}
                         data-plasmic-override={overrides.checkItems2}
-                        hasGap={true}
                         className={classNames(projectcss.all, sty.checkItems2)}
                       >
-                        <Stack__
-                          as={"div"}
+                        <div
                           data-plasmic-name={"checkItemText4"}
                           data-plasmic-override={overrides.checkItemText4}
-                          hasGap={true}
                           className={classNames(
                             projectcss.all,
                             sty.checkItemText4
@@ -2813,12 +2659,10 @@ function PlasmicAccueilEmployeur__RenderFunc(props: {
                               {"Publication de 8 annonces"}
                             </div>
                           </div>
-                        </Stack__>
-                        <Stack__
-                          as={"div"}
+                        </div>
+                        <div
                           data-plasmic-name={"checkItemText5"}
                           data-plasmic-override={overrides.checkItemText5}
-                          hasGap={true}
                           className={classNames(
                             projectcss.all,
                             sty.checkItemText5
@@ -2852,12 +2696,10 @@ function PlasmicAccueilEmployeur__RenderFunc(props: {
                               {"4 annonces urgentes incluses"}
                             </div>
                           </div>
-                        </Stack__>
-                        <Stack__
-                          as={"div"}
+                        </div>
+                        <div
                           data-plasmic-name={"checkItemText6"}
                           data-plasmic-override={overrides.checkItemText6}
-                          hasGap={true}
                           className={classNames(
                             projectcss.all,
                             sty.checkItemText6
@@ -2891,12 +2733,10 @@ function PlasmicAccueilEmployeur__RenderFunc(props: {
                               {"Acc\u00e8s prioritaire aux meilleurs talents"}
                             </div>
                           </div>
-                        </Stack__>
-                        <Stack__
-                          as={"div"}
+                        </div>
+                        <div
                           data-plasmic-name={"checkItemText7"}
                           data-plasmic-override={overrides.checkItemText7}
-                          hasGap={true}
                           className={classNames(
                             projectcss.all,
                             sty.checkItemText7
@@ -2930,12 +2770,10 @@ function PlasmicAccueilEmployeur__RenderFunc(props: {
                               {"Alertes et notifications personnalis\u00e9es"}
                             </div>
                           </div>
-                        </Stack__>
-                        <Stack__
-                          as={"div"}
+                        </div>
+                        <div
                           data-plasmic-name={"checkItemText8"}
                           data-plasmic-override={overrides.checkItemText8}
-                          hasGap={true}
                           className={classNames(
                             projectcss.all,
                             sty.checkItemText8
@@ -2981,8 +2819,8 @@ function PlasmicAccueilEmployeur__RenderFunc(props: {
                               </React.Fragment>
                             </div>
                           </div>
-                        </Stack__>
-                      </Stack__>
+                        </div>
+                      </div>
                       <div
                         className={classNames(
                           projectcss.all,
@@ -3049,70 +2887,56 @@ function PlasmicAccueilEmployeur__RenderFunc(props: {
                           }}
                         />
                       </div>
-                    </Stack__>
+                    </div>
                   </div>
-                </Stack__>
-              </Stack__>
-            </Stack__>
+                </div>
+              </div>
+            </div>
             {false ? (
-              <Stack__
-                as={"div"}
+              <div
                 data-plasmic-name={"benefices2"}
                 data-plasmic-override={overrides.benefices2}
-                hasGap={true}
                 className={classNames(projectcss.all, sty.benefices2)}
               >
-                <Stack__
-                  as={"div"}
+                <div
                   data-plasmic-name={"container7"}
                   data-plasmic-override={overrides.container7}
-                  hasGap={true}
                   className={classNames(projectcss.all, sty.container7)}
                 >
-                  <Stack__
-                    as={"div"}
+                  <div
                     data-plasmic-name={"content16"}
                     data-plasmic-override={overrides.content16}
-                    hasGap={true}
                     className={classNames(projectcss.all, sty.content16)}
                   >
-                    <Stack__
-                      as={"div"}
+                    <div
                       data-plasmic-name={"headingAndSupportingText6"}
                       data-plasmic-override={
                         overrides.headingAndSupportingText6
                       }
-                      hasGap={true}
                       className={classNames(
                         projectcss.all,
                         sty.headingAndSupportingText6
                       )}
                     >
-                      <Stack__
-                        as={"div"}
+                      <div
                         data-plasmic-name={"headingAndBadge2"}
                         data-plasmic-override={overrides.headingAndBadge2}
-                        hasGap={true}
                         className={classNames(
                           projectcss.all,
                           sty.headingAndBadge2
                         )}
                       >
-                        <Stack__
-                          as={"div"}
+                        <div
                           data-plasmic-name={"badgeGroup6"}
                           data-plasmic-override={overrides.badgeGroup6}
-                          hasGap={true}
                           className={classNames(
                             projectcss.all,
                             sty.badgeGroup6
                           )}
                         >
-                          <Stack__
-                            as={"div"}
+                          <div
                             data-plasmic-name={"content17"}
                             data-plasmic-override={overrides.content17}
-                            hasGap={true}
                             className={classNames(
                               projectcss.all,
                               sty.content17
@@ -3129,8 +2953,8 @@ function PlasmicAccueilEmployeur__RenderFunc(props: {
                             >
                               {"A propos"}
                             </div>
-                          </Stack__>
-                        </Stack__>
+                          </div>
+                        </div>
                         <div
                           data-plasmic-name={"heading4"}
                           data-plasmic-override={overrides.heading4}
@@ -3142,7 +2966,7 @@ function PlasmicAccueilEmployeur__RenderFunc(props: {
                         >
                           {"Qui sommes nous ?"}
                         </div>
-                      </Stack__>
+                      </div>
                       <div
                         data-plasmic-name={"supportingText10"}
                         data-plasmic-override={overrides.supportingText10}
@@ -3154,30 +2978,24 @@ function PlasmicAccueilEmployeur__RenderFunc(props: {
                       >
                         {"En savoir plus sur Job Around Me"}
                       </div>
-                    </Stack__>
-                  </Stack__>
-                </Stack__>
-                <Stack__
-                  as={"div"}
+                    </div>
+                  </div>
+                </div>
+                <div
                   data-plasmic-name={"container8"}
                   data-plasmic-override={overrides.container8}
-                  hasGap={true}
                   className={classNames(projectcss.all, sty.container8)}
                 >
-                  <Stack__
-                    as={"div"}
+                  <div
                     data-plasmic-name={"frame10"}
                     data-plasmic-override={overrides.frame10}
-                    hasGap={true}
                     className={classNames(projectcss.all, sty.frame10)}
                   >
-                    <Stack__
-                      as={"div"}
+                    <div
                       data-plasmic-name={"headingAndSupportingText7"}
                       data-plasmic-override={
                         overrides.headingAndSupportingText7
                       }
-                      hasGap={true}
                       className={classNames(
                         projectcss.all,
                         sty.headingAndSupportingText7
@@ -3201,30 +3019,26 @@ function PlasmicAccueilEmployeur__RenderFunc(props: {
                         data-plasmic-override={overrides.button3}
                         className={classNames("__wab_instance", sty.button3)}
                       />
-                    </Stack__>
-                  </Stack__>
+                    </div>
+                  </div>
                   <div
                     data-plasmic-name={"image"}
                     data-plasmic-override={overrides.image}
                     className={classNames(projectcss.all, sty.image)}
                   >
-                    <Stack__
-                      as={"div"}
+                    <div
                       data-plasmic-name={"frame1073713936"}
                       data-plasmic-override={overrides.frame1073713936}
-                      hasGap={true}
                       className={classNames(
                         projectcss.all,
                         sty.frame1073713936
                       )}
                     >
-                      <Stack__
-                        as={Frame1171275265Icon}
-                        hasGap={true}
+                      <Frame1171275265Icon
                         className={classNames(projectcss.all, sty.svg__tkLir)}
                         role={"img"}
                       />
-                    </Stack__>
+                    </div>
                     <div
                       data-plasmic-name={"placeholderImage3"}
                       data-plasmic-override={overrides.placeholderImage3}
@@ -3240,50 +3054,39 @@ function PlasmicAccueilEmployeur__RenderFunc(props: {
                       className={classNames(projectcss.all, sty.iPhone16)}
                     />
                   </div>
-                </Stack__>
-              </Stack__>
+                </div>
+              </div>
             ) : null}
-            <Stack__
-              as={"div"}
+            <div
               data-plasmic-name={"faq"}
               data-plasmic-override={overrides.faq}
-              hasGap={true}
               className={classNames(projectcss.all, sty.faq)}
+              id={"faq"}
             >
-              <Stack__
-                as={"div"}
+              <div
                 data-plasmic-name={"headingCta4"}
                 data-plasmic-override={overrides.headingCta4}
-                hasGap={true}
                 className={classNames(projectcss.all, sty.headingCta4)}
               >
-                <Stack__
-                  as={"div"}
+                <div
                   data-plasmic-name={"headingSubheading4"}
                   data-plasmic-override={overrides.headingSubheading4}
-                  hasGap={true}
                   className={classNames(projectcss.all, sty.headingSubheading4)}
                   id={"faq"}
                 >
-                  <Stack__
-                    as={"div"}
+                  <div
                     data-plasmic-name={"headline4"}
                     data-plasmic-override={overrides.headline4}
-                    hasGap={true}
                     className={classNames(projectcss.all, sty.headline4)}
                   >
-                    <Stack__
-                      as={"div"}
+                    <div
                       data-plasmic-name={"badgeGroup7"}
                       data-plasmic-override={overrides.badgeGroup7}
-                      hasGap={true}
                       className={classNames(projectcss.all, sty.badgeGroup7)}
                     >
-                      <Stack__
-                        as={"div"}
+                      <div
                         data-plasmic-name={"content18"}
                         data-plasmic-override={overrides.content18}
-                        hasGap={true}
                         className={classNames(projectcss.all, sty.content18)}
                       >
                         <div
@@ -3297,8 +3100,8 @@ function PlasmicAccueilEmployeur__RenderFunc(props: {
                         >
                           {"FAQ"}
                         </div>
-                      </Stack__>
-                    </Stack__>
+                      </div>
+                    </div>
                     <div
                       className={classNames(
                         projectcss.all,
@@ -3308,9 +3111,9 @@ function PlasmicAccueilEmployeur__RenderFunc(props: {
                     >
                       {"Des questions?"}
                     </div>
-                  </Stack__>
-                </Stack__>
-              </Stack__>
+                  </div>
+                </div>
+              </div>
               <Accordion
                 data-plasmic-name={"accordion"}
                 data-plasmic-override={overrides.accordion}
@@ -3451,46 +3254,34 @@ function PlasmicAccueilEmployeur__RenderFunc(props: {
                   </AccordionContent>
                 </AccordionItem>
               </Accordion>
-              <Stack__
-                as={"div"}
+              <div
                 data-plasmic-name={"container9"}
                 data-plasmic-override={overrides.container9}
-                hasGap={true}
                 className={classNames(projectcss.all, sty.container9)}
               >
-                <Stack__
-                  as={"div"}
+                <div
                   data-plasmic-name={"content19"}
                   data-plasmic-override={overrides.content19}
-                  hasGap={true}
                   className={classNames(projectcss.all, sty.content19)}
                 >
-                  <Stack__
-                    as={"div"}
+                  <div
                     data-plasmic-name={"frame11"}
                     data-plasmic-override={overrides.frame11}
-                    hasGap={true}
                     className={classNames(projectcss.all, sty.frame11)}
                   >
-                    <Stack__
-                      as={"div"}
+                    <div
                       data-plasmic-name={"frame12"}
                       data-plasmic-override={overrides.frame12}
-                      hasGap={true}
                       className={classNames(projectcss.all, sty.frame12)}
                     >
-                      <Stack__
-                        as={"div"}
+                      <div
                         data-plasmic-name={"faqBloc"}
                         data-plasmic-override={overrides.faqBloc}
-                        hasGap={true}
                         className={classNames(projectcss.all, sty.faqBloc)}
                       >
-                        <Stack__
-                          as={"div"}
+                        <div
                           data-plasmic-name={"question"}
                           data-plasmic-override={overrides.question}
-                          hasGap={true}
                           className={classNames(projectcss.all, sty.question)}
                         >
                           <div
@@ -3525,12 +3316,10 @@ function PlasmicAccueilEmployeur__RenderFunc(props: {
                               role={"img"}
                             />
                           </div>
-                        </Stack__>
-                        <Stack__
-                          as={"div"}
+                        </div>
+                        <div
                           data-plasmic-name={"reponse"}
                           data-plasmic-override={overrides.reponse}
-                          hasGap={true}
                           className={classNames(projectcss.all, sty.reponse)}
                         >
                           <div
@@ -3546,21 +3335,17 @@ function PlasmicAccueilEmployeur__RenderFunc(props: {
                               "Les annonces sont publi\u00e9es instantan\u00e9ment d\u00e8s leur validation, ce qui vous permet de commencer \u00e0 avoir acc\u00e8s \u00e0\u00a0 des candidatures en temps r\u00e9el."
                             }
                           </div>
-                        </Stack__>
-                      </Stack__>
-                    </Stack__>
-                    <Stack__
-                      as={"div"}
+                        </div>
+                      </div>
+                    </div>
+                    <div
                       data-plasmic-name={"faqBloc2"}
                       data-plasmic-override={overrides.faqBloc2}
-                      hasGap={true}
                       className={classNames(projectcss.all, sty.faqBloc2)}
                     >
-                      <Stack__
-                        as={"div"}
+                      <div
                         data-plasmic-name={"question2"}
                         data-plasmic-override={overrides.question2}
-                        hasGap={true}
                         className={classNames(projectcss.all, sty.question2)}
                       >
                         <div
@@ -3595,20 +3380,16 @@ function PlasmicAccueilEmployeur__RenderFunc(props: {
                             role={"img"}
                           />
                         </div>
-                      </Stack__>
-                    </Stack__>
-                    <Stack__
-                      as={"div"}
+                      </div>
+                    </div>
+                    <div
                       data-plasmic-name={"faqBloc3"}
                       data-plasmic-override={overrides.faqBloc3}
-                      hasGap={true}
                       className={classNames(projectcss.all, sty.faqBloc3)}
                     >
-                      <Stack__
-                        as={"div"}
+                      <div
                         data-plasmic-name={"question3"}
                         data-plasmic-override={overrides.question3}
-                        hasGap={true}
                         className={classNames(projectcss.all, sty.question3)}
                       >
                         <div
@@ -3643,563 +3424,18 @@ function PlasmicAccueilEmployeur__RenderFunc(props: {
                             role={"img"}
                           />
                         </div>
-                      </Stack__>
-                    </Stack__>
-                  </Stack__>
-                </Stack__>
-              </Stack__>
-            </Stack__>
-            <Stack__
-              as={"div"}
-              data-plasmic-name={"footer"}
-              data-plasmic-override={overrides.footer}
-              hasGap={true}
-              className={classNames(projectcss.all, sty.footer)}
-            >
-              <Stack__
-                as={"div"}
-                data-plasmic-name={"container10"}
-                data-plasmic-override={overrides.container10}
-                hasGap={true}
-                className={classNames(projectcss.all, sty.container10)}
-              >
-                <Stack__
-                  as={"div"}
-                  data-plasmic-name={"content20"}
-                  data-plasmic-override={overrides.content20}
-                  hasGap={true}
-                  className={classNames(projectcss.all, sty.content20)}
-                >
-                  <Stack__
-                    as={"div"}
-                    data-plasmic-name={"column"}
-                    data-plasmic-override={overrides.column}
-                    hasGap={true}
-                    className={classNames(projectcss.all, sty.column)}
-                  >
-                    <Stack__
-                      as={"div"}
-                      data-plasmic-name={"logo"}
-                      data-plasmic-override={overrides.logo}
-                      hasGap={true}
-                      className={classNames(projectcss.all, sty.logo)}
-                    >
-                      <Stack__
-                        as={"div"}
-                        data-plasmic-name={"frame16"}
-                        data-plasmic-override={overrides.frame16}
-                        hasGap={true}
-                        className={classNames(projectcss.all, sty.frame16)}
-                        onClick={async event => {
-                          const $steps = {};
-
-                          $steps["goToAccueil"] = true
-                            ? (() => {
-                                const actionArgs = { destination: `/` };
-                                return (({ destination }) => {
-                                  if (
-                                    typeof destination === "string" &&
-                                    destination.startsWith("#")
-                                  ) {
-                                    document
-                                      .getElementById(destination.substr(1))
-                                      .scrollIntoView({ behavior: "smooth" });
-                                  } else {
-                                    __nextRouter?.push(destination);
-                                  }
-                                })?.apply(null, [actionArgs]);
-                              })()
-                            : undefined;
-                          if (
-                            $steps["goToAccueil"] != null &&
-                            typeof $steps["goToAccueil"] === "object" &&
-                            typeof $steps["goToAccueil"].then === "function"
-                          ) {
-                            $steps["goToAccueil"] = await $steps["goToAccueil"];
-                          }
-                        }}
-                      >
-                        <PictogramIcon
-                          className={classNames(projectcss.all, sty.svg__ccUrY)}
-                          role={"img"}
-                        />
-
-                        <div
-                          data-plasmic-name={"frame17"}
-                          data-plasmic-override={overrides.frame17}
-                          className={classNames(projectcss.all, sty.frame17)}
-                        >
-                          <div
-                            className={classNames(
-                              projectcss.all,
-                              projectcss.__wab_text,
-                              sty.text__fahv1
-                            )}
-                          >
-                            {"JOB AROUND ME"}
-                          </div>
-                        </div>
-                      </Stack__>
-                    </Stack__>
-                    <Stack__
-                      as={"div"}
-                      data-plasmic-name={"socials"}
-                      data-plasmic-override={overrides.socials}
-                      hasGap={true}
-                      className={classNames(projectcss.all, sty.socials)}
-                    >
-                      <PlasmicImg__
-                        data-plasmic-name={"facebook"}
-                        data-plasmic-override={overrides.facebook}
-                        alt={""}
-                        className={classNames(sty.facebook)}
-                        displayHeight={"24px"}
-                        displayMaxHeight={"none"}
-                        displayMaxWidth={"100%"}
-                        displayMinHeight={"0"}
-                        displayMinWidth={"0"}
-                        displayWidth={"24px"}
-                        loading={"lazy"}
-                        src={{
-                          src: "/plasmic/jam_production_🚀/images/socialIcon7.svg",
-                          fullWidth: 24,
-                          fullHeight: 24,
-                          aspectRatio: undefined
-                        }}
-                      />
-
-                      <SocialIcon8Icon
-                        data-plasmic-name={"x"}
-                        data-plasmic-override={overrides.x}
-                        className={classNames(projectcss.all, sty.x)}
-                        role={"img"}
-                      />
-
-                      <Group10Icon
-                        data-plasmic-name={"insta"}
-                        data-plasmic-override={overrides.insta}
-                        className={classNames(projectcss.all, sty.insta)}
-                        role={"img"}
-                      />
-
-                      <Group11Icon
-                        data-plasmic-name={"linkedin"}
-                        data-plasmic-override={overrides.linkedin}
-                        className={classNames(projectcss.all, sty.linkedin)}
-                        role={"img"}
-                      />
-                    </Stack__>
-                  </Stack__>
-                  <div
-                    data-plasmic-name={"footerLinksContainer"}
-                    data-plasmic-override={overrides.footerLinksContainer}
-                    className={classNames(
-                      projectcss.all,
-                      sty.footerLinksContainer
-                    )}
-                  >
-                    <Stack__
-                      as={"div"}
-                      data-plasmic-name={"footerLinksColumn"}
-                      data-plasmic-override={overrides.footerLinksColumn}
-                      hasGap={true}
-                      className={classNames(
-                        projectcss.all,
-                        sty.footerLinksColumn
-                      )}
-                    >
-                      <div
-                        data-plasmic-name={"heading5"}
-                        data-plasmic-override={overrides.heading5}
-                        className={classNames(
-                          projectcss.all,
-                          projectcss.__wab_text,
-                          sty.heading5
-                        )}
-                      >
-                        {"Info"}
                       </div>
-                      <div
-                        className={classNames(
-                          projectcss.all,
-                          sty.freeBox___0AjLe
-                        )}
-                      >
-                        <div
-                          className={classNames(
-                            projectcss.all,
-                            projectcss.__wab_text,
-                            sty.text__vJjOg
-                          )}
-                          onClick={async event => {
-                            const $steps = {};
-
-                            $steps["goToPage"] = true
-                              ? (() => {
-                                  const actionArgs = {
-                                    destination: (() => {
-                                      try {
-                                        return "/accueil-employeur#services";
-                                      } catch (e) {
-                                        if (
-                                          e instanceof TypeError ||
-                                          e?.plasmicType ===
-                                            "PlasmicUndefinedDataError"
-                                        ) {
-                                          return undefined;
-                                        }
-                                        throw e;
-                                      }
-                                    })()
-                                  };
-                                  return (({ destination }) => {
-                                    if (
-                                      typeof destination === "string" &&
-                                      destination.startsWith("#")
-                                    ) {
-                                      document
-                                        .getElementById(destination.substr(1))
-                                        .scrollIntoView({ behavior: "smooth" });
-                                    } else {
-                                      __nextRouter?.push(destination);
-                                    }
-                                  })?.apply(null, [actionArgs]);
-                                })()
-                              : undefined;
-                            if (
-                              $steps["goToPage"] != null &&
-                              typeof $steps["goToPage"] === "object" &&
-                              typeof $steps["goToPage"].then === "function"
-                            ) {
-                              $steps["goToPage"] = await $steps["goToPage"];
-                            }
-                          }}
-                        >
-                          <React.Fragment>
-                            <span
-                              className={
-                                "plasmic_default__all plasmic_default__span"
-                              }
-                              style={{ color: "#DDDDDD" }}
-                            >
-                              {"Services"}
-                            </span>
-                          </React.Fragment>
-                        </div>
-                        <div
-                          className={classNames(
-                            projectcss.all,
-                            projectcss.__wab_text,
-                            sty.text__mugAc
-                          )}
-                          onClick={async event => {
-                            const $steps = {};
-
-                            $steps["goToPage"] = true
-                              ? (() => {
-                                  const actionArgs = {
-                                    destination: (() => {
-                                      try {
-                                        return "/accueil-employeur#offres";
-                                      } catch (e) {
-                                        if (
-                                          e instanceof TypeError ||
-                                          e?.plasmicType ===
-                                            "PlasmicUndefinedDataError"
-                                        ) {
-                                          return undefined;
-                                        }
-                                        throw e;
-                                      }
-                                    })()
-                                  };
-                                  return (({ destination }) => {
-                                    if (
-                                      typeof destination === "string" &&
-                                      destination.startsWith("#")
-                                    ) {
-                                      document
-                                        .getElementById(destination.substr(1))
-                                        .scrollIntoView({ behavior: "smooth" });
-                                    } else {
-                                      __nextRouter?.push(destination);
-                                    }
-                                  })?.apply(null, [actionArgs]);
-                                })()
-                              : undefined;
-                            if (
-                              $steps["goToPage"] != null &&
-                              typeof $steps["goToPage"] === "object" &&
-                              typeof $steps["goToPage"].then === "function"
-                            ) {
-                              $steps["goToPage"] = await $steps["goToPage"];
-                            }
-                          }}
-                        >
-                          <React.Fragment>
-                            <span
-                              className={
-                                "plasmic_default__all plasmic_default__span"
-                              }
-                              style={{ color: "#DDDDDD" }}
-                            >
-                              {"Offres"}
-                            </span>
-                          </React.Fragment>
-                        </div>
-                        <div
-                          className={classNames(
-                            projectcss.all,
-                            projectcss.__wab_text,
-                            sty.text__qeQ1A
-                          )}
-                          onClick={async event => {
-                            const $steps = {};
-
-                            $steps["goToPage"] = true
-                              ? (() => {
-                                  const actionArgs = {
-                                    destination: (() => {
-                                      try {
-                                        return "/accueil-employeur#faq";
-                                      } catch (e) {
-                                        if (
-                                          e instanceof TypeError ||
-                                          e?.plasmicType ===
-                                            "PlasmicUndefinedDataError"
-                                        ) {
-                                          return undefined;
-                                        }
-                                        throw e;
-                                      }
-                                    })()
-                                  };
-                                  return (({ destination }) => {
-                                    if (
-                                      typeof destination === "string" &&
-                                      destination.startsWith("#")
-                                    ) {
-                                      document
-                                        .getElementById(destination.substr(1))
-                                        .scrollIntoView({ behavior: "smooth" });
-                                    } else {
-                                      __nextRouter?.push(destination);
-                                    }
-                                  })?.apply(null, [actionArgs]);
-                                })()
-                              : undefined;
-                            if (
-                              $steps["goToPage"] != null &&
-                              typeof $steps["goToPage"] === "object" &&
-                              typeof $steps["goToPage"].then === "function"
-                            ) {
-                              $steps["goToPage"] = await $steps["goToPage"];
-                            }
-                          }}
-                        >
-                          <React.Fragment>
-                            <span
-                              className={
-                                "plasmic_default__all plasmic_default__span"
-                              }
-                              style={{ color: "#DDDDDD" }}
-                            >
-                              {"FAQ"}
-                            </span>
-                          </React.Fragment>
-                        </div>
-                      </div>
-                    </Stack__>
-                    <Stack__
-                      as={"div"}
-                      data-plasmic-name={"footerLinksColumn2"}
-                      data-plasmic-override={overrides.footerLinksColumn2}
-                      hasGap={true}
-                      className={classNames(
-                        projectcss.all,
-                        sty.footerLinksColumn2
-                      )}
-                    >
-                      <div
-                        data-plasmic-name={"heading6"}
-                        data-plasmic-override={overrides.heading6}
-                        className={classNames(
-                          projectcss.all,
-                          projectcss.__wab_text,
-                          sty.heading6
-                        )}
-                      >
-                        {"Legal"}
-                      </div>
-                      <div
-                        className={classNames(
-                          projectcss.all,
-                          sty.freeBox___4PE3
-                        )}
-                      >
-                        <div
-                          className={classNames(
-                            projectcss.all,
-                            projectcss.__wab_text,
-                            sty.text__nTinN
-                          )}
-                          onClick={async event => {
-                            const $steps = {};
-
-                            $steps["goToMentionsLegales"] = true
-                              ? (() => {
-                                  const actionArgs = {
-                                    destination: `/mentions-legales`
-                                  };
-                                  return (({ destination }) => {
-                                    if (
-                                      typeof destination === "string" &&
-                                      destination.startsWith("#")
-                                    ) {
-                                      document
-                                        .getElementById(destination.substr(1))
-                                        .scrollIntoView({ behavior: "smooth" });
-                                    } else {
-                                      __nextRouter?.push(destination);
-                                    }
-                                  })?.apply(null, [actionArgs]);
-                                })()
-                              : undefined;
-                            if (
-                              $steps["goToMentionsLegales"] != null &&
-                              typeof $steps["goToMentionsLegales"] ===
-                                "object" &&
-                              typeof $steps["goToMentionsLegales"].then ===
-                                "function"
-                            ) {
-                              $steps["goToMentionsLegales"] = await $steps[
-                                "goToMentionsLegales"
-                              ];
-                            }
-                          }}
-                        >
-                          <React.Fragment>
-                            <span
-                              className={
-                                "plasmic_default__all plasmic_default__span"
-                              }
-                              style={{ color: "#DDDDDD" }}
-                            >
-                              {"Mentions l\u00e9gales"}
-                            </span>
-                          </React.Fragment>
-                        </div>
-                        <div
-                          className={classNames(
-                            projectcss.all,
-                            projectcss.__wab_text,
-                            sty.text__pu0E6
-                          )}
-                        >
-                          <React.Fragment>
-                            <span
-                              className={
-                                "plasmic_default__all plasmic_default__span"
-                              }
-                              style={{ color: "#DDDDDD" }}
-                            >
-                              {"Politique de confidentialit\u00e9"}
-                            </span>
-                          </React.Fragment>
-                        </div>
-                        <div
-                          className={classNames(
-                            projectcss.all,
-                            projectcss.__wab_text,
-                            sty.text__itl6S
-                          )}
-                          onClick={async event => {
-                            const $steps = {};
-
-                            $steps["goToConditionsGeneralesDutilisation"] = true
-                              ? (() => {
-                                  const actionArgs = { destination: `/cgu` };
-                                  return (({ destination }) => {
-                                    if (
-                                      typeof destination === "string" &&
-                                      destination.startsWith("#")
-                                    ) {
-                                      document
-                                        .getElementById(destination.substr(1))
-                                        .scrollIntoView({ behavior: "smooth" });
-                                    } else {
-                                      __nextRouter?.push(destination);
-                                    }
-                                  })?.apply(null, [actionArgs]);
-                                })()
-                              : undefined;
-                            if (
-                              $steps["goToConditionsGeneralesDutilisation"] !=
-                                null &&
-                              typeof $steps[
-                                "goToConditionsGeneralesDutilisation"
-                              ] === "object" &&
-                              typeof $steps[
-                                "goToConditionsGeneralesDutilisation"
-                              ].then === "function"
-                            ) {
-                              $steps["goToConditionsGeneralesDutilisation"] =
-                                await $steps[
-                                  "goToConditionsGeneralesDutilisation"
-                                ];
-                            }
-                          }}
-                        >
-                          <React.Fragment>
-                            <span
-                              className={
-                                "plasmic_default__all plasmic_default__span"
-                              }
-                              style={{ color: "#DDDDDD" }}
-                            >
-                              {"CGU/CGV"}
-                            </span>
-                          </React.Fragment>
-                        </div>
-                      </div>
-                    </Stack__>
-                  </div>
-                </Stack__>
-              </Stack__>
-              <Stack__
-                as={"div"}
-                data-plasmic-name={"container11"}
-                data-plasmic-override={overrides.container11}
-                hasGap={true}
-                className={classNames(projectcss.all, sty.container11)}
-              >
-                <div
-                  data-plasmic-name={"divider"}
-                  data-plasmic-override={overrides.divider}
-                  className={classNames(projectcss.all, sty.divider)}
-                />
-
-                <div
-                  data-plasmic-name={"content21"}
-                  data-plasmic-override={overrides.content21}
-                  className={classNames(projectcss.all, sty.content21)}
-                >
-                  <div
-                    data-plasmic-name={"footerText"}
-                    data-plasmic-override={overrides.footerText}
-                    className={classNames(
-                      projectcss.all,
-                      projectcss.__wab_text,
-                      sty.footerText
-                    )}
-                  >
-                    {
-                      "\u00a9 2024 Job Around Me. Tous droits r\u00e9serv\u00e9s."
-                    }
+                    </div>
                   </div>
                 </div>
-              </Stack__>
-            </Stack__>
+              </div>
+            </div>
+            <Footer
+              data-plasmic-name={"footer"}
+              data-plasmic-override={overrides.footer}
+              className={classNames("__wab_instance", sty.footer)}
+              employeur={true}
+            />
           </div>
         </div>
       </div>
@@ -4409,27 +3645,7 @@ const PlasmicDescendants = {
     "frame15",
     "text19",
     "iconWrap3",
-    "footer",
-    "container10",
-    "content20",
-    "column",
-    "logo",
-    "frame16",
-    "frame17",
-    "socials",
-    "facebook",
-    "x",
-    "insta",
-    "linkedin",
-    "footerLinksContainer",
-    "footerLinksColumn",
-    "heading5",
-    "footerLinksColumn2",
-    "heading6",
-    "container11",
-    "divider",
-    "content21",
-    "footerText"
+    "footer"
   ],
   structureLp: [
     "structureLp",
@@ -4631,27 +3847,7 @@ const PlasmicDescendants = {
     "frame15",
     "text19",
     "iconWrap3",
-    "footer",
-    "container10",
-    "content20",
-    "column",
-    "logo",
-    "frame16",
-    "frame17",
-    "socials",
-    "facebook",
-    "x",
-    "insta",
-    "linkedin",
-    "footerLinksContainer",
-    "footerLinksColumn",
-    "heading5",
-    "footerLinksColumn2",
-    "heading6",
-    "container11",
-    "divider",
-    "content21",
-    "footerText"
+    "footer"
   ],
   navbar: [
     "navbar",
@@ -5737,98 +4933,7 @@ const PlasmicDescendants = {
   frame15: ["frame15", "text19"],
   text19: ["text19"],
   iconWrap3: ["iconWrap3"],
-  footer: [
-    "footer",
-    "container10",
-    "content20",
-    "column",
-    "logo",
-    "frame16",
-    "frame17",
-    "socials",
-    "facebook",
-    "x",
-    "insta",
-    "linkedin",
-    "footerLinksContainer",
-    "footerLinksColumn",
-    "heading5",
-    "footerLinksColumn2",
-    "heading6",
-    "container11",
-    "divider",
-    "content21",
-    "footerText"
-  ],
-  container10: [
-    "container10",
-    "content20",
-    "column",
-    "logo",
-    "frame16",
-    "frame17",
-    "socials",
-    "facebook",
-    "x",
-    "insta",
-    "linkedin",
-    "footerLinksContainer",
-    "footerLinksColumn",
-    "heading5",
-    "footerLinksColumn2",
-    "heading6"
-  ],
-  content20: [
-    "content20",
-    "column",
-    "logo",
-    "frame16",
-    "frame17",
-    "socials",
-    "facebook",
-    "x",
-    "insta",
-    "linkedin",
-    "footerLinksContainer",
-    "footerLinksColumn",
-    "heading5",
-    "footerLinksColumn2",
-    "heading6"
-  ],
-  column: [
-    "column",
-    "logo",
-    "frame16",
-    "frame17",
-    "socials",
-    "facebook",
-    "x",
-    "insta",
-    "linkedin"
-  ],
-  logo: ["logo", "frame16", "frame17"],
-  frame16: ["frame16", "frame17"],
-  frame17: ["frame17"],
-  socials: ["socials", "facebook", "x", "insta", "linkedin"],
-  facebook: ["facebook"],
-  x: ["x"],
-  insta: ["insta"],
-  linkedin: ["linkedin"],
-  footerLinksContainer: [
-    "footerLinksContainer",
-    "footerLinksColumn",
-    "heading5",
-    "footerLinksColumn2",
-    "heading6"
-  ],
-  footerLinksColumn: ["footerLinksColumn", "heading5"],
-  heading5: ["heading5"],
-  footerLinksColumn2: ["footerLinksColumn2", "heading6"],
-  heading6: ["heading6"],
-  container11: ["container11", "divider", "content21", "footerText"],
-  divider: ["divider"],
-  content21: ["content21", "footerText"],
-  footerText: ["footerText"]
+  footer: ["footer"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -6034,27 +5139,7 @@ type NodeDefaultElementType = {
   frame15: "div";
   text19: "div";
   iconWrap3: "div";
-  footer: "div";
-  container10: "div";
-  content20: "div";
-  column: "div";
-  logo: "div";
-  frame16: "div";
-  frame17: "div";
-  socials: "div";
-  facebook: typeof PlasmicImg__;
-  x: "svg";
-  insta: "svg";
-  linkedin: "svg";
-  footerLinksContainer: "div";
-  footerLinksColumn: "div";
-  heading5: "div";
-  footerLinksColumn2: "div";
-  heading6: "div";
-  container11: "div";
-  divider: "div";
-  content21: "div";
-  footerText: "div";
+  footer: typeof Footer;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -6321,26 +5406,6 @@ export const PlasmicAccueilEmployeur = Object.assign(
     text19: makeNodeComponent("text19"),
     iconWrap3: makeNodeComponent("iconWrap3"),
     footer: makeNodeComponent("footer"),
-    container10: makeNodeComponent("container10"),
-    content20: makeNodeComponent("content20"),
-    column: makeNodeComponent("column"),
-    logo: makeNodeComponent("logo"),
-    frame16: makeNodeComponent("frame16"),
-    frame17: makeNodeComponent("frame17"),
-    socials: makeNodeComponent("socials"),
-    facebook: makeNodeComponent("facebook"),
-    x: makeNodeComponent("x"),
-    insta: makeNodeComponent("insta"),
-    linkedin: makeNodeComponent("linkedin"),
-    footerLinksContainer: makeNodeComponent("footerLinksContainer"),
-    footerLinksColumn: makeNodeComponent("footerLinksColumn"),
-    heading5: makeNodeComponent("heading5"),
-    footerLinksColumn2: makeNodeComponent("footerLinksColumn2"),
-    heading6: makeNodeComponent("heading6"),
-    container11: makeNodeComponent("container11"),
-    divider: makeNodeComponent("divider"),
-    content21: makeNodeComponent("content21"),
-    footerText: makeNodeComponent("footerText"),
 
     // Metadata about props expected for PlasmicAccueilEmployeur
     internalVariantProps: PlasmicAccueilEmployeur__VariantProps,

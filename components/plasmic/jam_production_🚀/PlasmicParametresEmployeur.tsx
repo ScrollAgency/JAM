@@ -702,11 +702,9 @@ function PlasmicParametresEmployeur__RenderFunc(props: {
             role={generateStateValueProp($state, ["sidebar", "role"])}
           />
 
-          <Stack__
-            as={"div"}
+          <div
             data-plasmic-name={"main"}
             data-plasmic-override={overrides.main}
-            hasGap={true}
             className={classNames(projectcss.all, sty.main)}
           >
             <div
@@ -720,11 +718,7 @@ function PlasmicParametresEmployeur__RenderFunc(props: {
             >
               {"Mon compte"}
             </div>
-            <Stack__
-              as={"div"}
-              hasGap={true}
-              className={classNames(projectcss.all, sty.freeBox__nnSgO)}
-            >
+            <div className={classNames(projectcss.all, sty.freeBox__nnSgO)}>
               <div className={classNames(projectcss.all, sty.freeBox__jUfvw)}>
                 <div
                   data-plasmic-name={"card4"}
@@ -765,9 +759,12 @@ function PlasmicParametresEmployeur__RenderFunc(props: {
                                   opId: "ceea2a7c-d46f-4302-9b29-ff5e0171699d",
                                   userArgs: {
                                     keys: [$ctx.SupabaseUser.user.id],
+
                                     variables: [
                                       $state.formulaire2.value.first_name,
+
                                       $state.formulaire2.value.last_name,
+
                                       $state.formulaire2.value.phone_number
                                     ]
                                   },
@@ -1057,11 +1054,9 @@ function PlasmicParametresEmployeur__RenderFunc(props: {
                             placeholder={"Email"}
                           />
                         </FormItemWrapper>
-                        <Stack__
-                          as={"div"}
+                        <div
                           data-plasmic-name={"telephone"}
                           data-plasmic-override={overrides.telephone}
-                          hasGap={true}
                           className={classNames(projectcss.all, sty.telephone)}
                         >
                           <FormItemWrapper
@@ -1149,7 +1144,7 @@ function PlasmicParametresEmployeur__RenderFunc(props: {
                               placeholder={"0606060606"}
                             />
                           </FormItemWrapper>
-                        </Stack__>
+                        </div>
                         <Button
                           className={classNames(
                             "__wab_instance",
@@ -1228,11 +1223,9 @@ function PlasmicParametresEmployeur__RenderFunc(props: {
                     );
                   })()}
                 </div>
-                <Stack__
-                  as={"div"}
+                <div
                   data-plasmic-name={"card3"}
                   data-plasmic-override={overrides.card3}
-                  hasGap={true}
                   className={classNames(projectcss.all, sty.card3)}
                 >
                   <ResetPassword
@@ -1325,7 +1318,7 @@ function PlasmicParametresEmployeur__RenderFunc(props: {
                     titleHeading={"h1"}
                     wrapperStyle={"card"}
                   />
-                </Stack__>
+                </div>
               </div>
               <div
                 data-plasmic-name={"informationsPersonnelles"}
@@ -1335,11 +1328,9 @@ function PlasmicParametresEmployeur__RenderFunc(props: {
                   sty.informationsPersonnelles
                 )}
               >
-                <Stack__
-                  as={"div"}
+                <div
                   data-plasmic-name={"frame1437254343"}
                   data-plasmic-override={overrides.frame1437254343}
-                  hasGap={true}
                   className={classNames(projectcss.all, sty.frame1437254343)}
                 >
                   <UploadWrapper
@@ -1367,9 +1358,12 @@ function PlasmicParametresEmployeur__RenderFunc(props: {
                                   userArgs: {
                                     path: [
                                       $ctx.SupabaseUser.user.id,
+
                                       $state.upload2.files[0].name
                                     ],
+
                                     content: [$state.upload2.files[0].contents],
+
                                     contentType: [$state.upload2.files[0].type]
                                   },
                                   cacheKey: null,
@@ -1422,6 +1416,7 @@ function PlasmicParametresEmployeur__RenderFunc(props: {
                                   opId: "ca8056ed-4ec7-4218-bb8b-d4f4da770307",
                                   userArgs: {
                                     keys: [$ctx.SupabaseUser.user.id],
+
                                     variables: [
                                       $steps.supabaseUploadFile?.path.split(
                                         "/"
@@ -1589,6 +1584,7 @@ function PlasmicParametresEmployeur__RenderFunc(props: {
                                   opId: "480b9e74-9c5c-4bcb-91b0-e654609fe8c1",
                                   userArgs: {
                                     conditions: [$ctx.SupabaseUser.user.id],
+
                                     variables: [null]
                                   },
                                   cacheKey: null,
@@ -1643,7 +1639,7 @@ function PlasmicParametresEmployeur__RenderFunc(props: {
                       />
                     </div>
                   </UploadWrapper>
-                </Stack__>
+                </div>
                 {(() => {
                   const child$Props = {
                     className: classNames("__wab_instance", sty.formulaire),
@@ -1678,16 +1674,26 @@ function PlasmicParametresEmployeur__RenderFunc(props: {
                                 opId: "69585a24-0931-463c-a1b7-bb54827e817e",
                                 userArgs: {
                                   conditions: [$ctx.SupabaseUser.user.id],
+
                                   variables: [
                                     $state.formulaire.value.name,
+
                                     $state.formulaire.value.descriptions,
+
                                     $state.formulaire.value.address,
+
                                     $state.formulaire.value.postal_code,
+
                                     $state.formulaire.value.location,
+
                                     $state.formulaire.value.country,
+
                                     $state.formulaire.value.siren,
+
                                     $state.formulaire.value.sector,
+
                                     $state.formulaire.value.team_size,
+
                                     $state.formulaire.value.website
                                   ]
                                 },
@@ -1972,11 +1978,9 @@ function PlasmicParametresEmployeur__RenderFunc(props: {
                           placeholder={"Rue"}
                         />
                       </FormItemWrapper>
-                      <Stack__
-                        as={"div"}
+                      <div
                         data-plasmic-name={"codePosteVille"}
                         data-plasmic-override={overrides.codePosteVille}
-                        hasGap={true}
                         className={classNames(
                           projectcss.all,
                           sty.codePosteVille
@@ -2094,7 +2098,7 @@ function PlasmicParametresEmployeur__RenderFunc(props: {
                             placeholder={"Ville"}
                           />
                         </FormItemWrapper>
-                      </Stack__>
+                      </div>
                       <FormItemWrapper
                         className={classNames(
                           "__wab_instance",
@@ -2578,15 +2582,13 @@ function PlasmicParametresEmployeur__RenderFunc(props: {
                   );
                 })()}
               </div>
-            </Stack__>
+            </div>
             {(
               hasVariant(globalVariants, "screen", "mobileOnly") ? true : false
             ) ? (
-              <Stack__
-                as={"div"}
+              <div
                 data-plasmic-name={"expandTab"}
                 data-plasmic-override={overrides.expandTab}
-                hasGap={true}
                 className={classNames(projectcss.all, sty.expandTab)}
                 onClick={async event => {
                   const $steps = {};
@@ -2624,9 +2626,9 @@ function PlasmicParametresEmployeur__RenderFunc(props: {
                 >
                   {"D\u00e9connexion"}
                 </div>
-              </Stack__>
+              </div>
             ) : null}
-          </Stack__>
+          </div>
           <MobileNavbarBottomCompany
             data-plasmic-name={"mobileNavbarBottomCompany"}
             data-plasmic-override={overrides.mobileNavbarBottomCompany}

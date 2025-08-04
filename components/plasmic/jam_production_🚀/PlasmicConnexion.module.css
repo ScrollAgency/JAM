@@ -63,26 +63,12 @@
   flex-grow: 1;
   overflow: hidden;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
   width: 50%;
   flex-shrink: 1;
   height: 1015px;
-}
-.imageWrapper2 > :global(.__wab_flex-container) {
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin-top: calc(0px - 10px);
-  height: calc(100% + 10px);
-}
-.imageWrapper2 > :global(.__wab_flex-container) > *,
-.imageWrapper2 > :global(.__wab_flex-container) > :global(.__wab_slot) > *,
-.imageWrapper2 > :global(.__wab_flex-container) > picture > img,
-.imageWrapper2
-  > :global(.__wab_flex-container)
-  > :global(.__wab_slot)
-  > picture
-  > img {
-  margin-top: 10px;
+  row-gap: 10px;
 }
 @media (min-width: 0px) and (max-width: 768px) {
   .imageWrapper2 {
@@ -96,30 +82,16 @@
   position: relative;
   overflow: hidden;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
   transition-property: all;
   transition-duration: 1s;
   cursor: pointer;
   overflow-x: hidden;
   overflow-y: hidden;
+  row-gap: 25px;
   -webkit-transition-property: all;
   -webkit-transition-duration: 1s;
-}
-.logoWrapper2 > :global(.__wab_flex-container) {
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin-top: calc(0px - 25px);
-  height: calc(100% + 25px);
-}
-.logoWrapper2 > :global(.__wab_flex-container) > *,
-.logoWrapper2 > :global(.__wab_flex-container) > :global(.__wab_slot) > *,
-.logoWrapper2 > :global(.__wab_flex-container) > picture > img,
-.logoWrapper2
-  > :global(.__wab_flex-container)
-  > :global(.__wab_slot)
-  > picture
-  > img {
-  margin-top: 25px;
 }
 .svg {
   object-fit: cover;
@@ -148,25 +120,11 @@
   position: relative;
   overflow: hidden;
   flex-direction: row;
-  padding-left: 5.580071449279785px;
-  padding-right: 5.580071449279785px;
-}
-.frame4 > :global(.__wab_flex-container) {
-  flex-direction: row;
   align-items: center;
   justify-content: center;
-  margin-left: calc(0px - 3.487544298171997px);
-  width: calc(100% + 3.487544298171997px);
-}
-.frame4 > :global(.__wab_flex-container) > *,
-.frame4 > :global(.__wab_flex-container) > :global(.__wab_slot) > *,
-.frame4 > :global(.__wab_flex-container) > picture > img,
-.frame4
-  > :global(.__wab_flex-container)
-  > :global(.__wab_slot)
-  > picture
-  > img {
-  margin-left: 3.487544298171997px;
+  padding-left: 5.580071449279785px;
+  padding-right: 5.580071449279785px;
+  column-gap: 3.487544298171997px;
 }
 .text__f8Msj {
   display: block;
@@ -185,26 +143,12 @@
   position: relative;
   overflow: hidden;
   flex-direction: row;
-  padding-left: 5.580071449279785px;
-  padding-right: 5.580071449279785px;
-  border-radius: 69.75088500976562px;
-}
-.frame5 > :global(.__wab_flex-container) {
-  flex-direction: row;
   align-items: center;
   justify-content: center;
-  margin-left: calc(0px - 3.487544298171997px);
-  width: calc(100% + 3.487544298171997px);
-}
-.frame5 > :global(.__wab_flex-container) > *,
-.frame5 > :global(.__wab_flex-container) > :global(.__wab_slot) > *,
-.frame5 > :global(.__wab_flex-container) > picture > img,
-.frame5
-  > :global(.__wab_flex-container)
-  > :global(.__wab_slot)
-  > picture
-  > img {
-  margin-left: 3.487544298171997px;
+  padding-left: 5.580071449279785px;
+  padding-right: 5.580071449279785px;
+  column-gap: 3.487544298171997px;
+  border-radius: 69.75088500976562px;
 }
 .text__cheZj {
   display: block;
@@ -223,25 +167,11 @@
   position: relative;
   overflow: hidden;
   flex-direction: row;
-  padding-left: 5.580071449279785px;
-  padding-right: 5.580071449279785px;
-}
-.frame6 > :global(.__wab_flex-container) {
-  flex-direction: row;
   align-items: center;
   justify-content: center;
-  margin-left: calc(0px - 3.487544298171997px);
-  width: calc(100% + 3.487544298171997px);
-}
-.frame6 > :global(.__wab_flex-container) > *,
-.frame6 > :global(.__wab_flex-container) > :global(.__wab_slot) > *,
-.frame6 > :global(.__wab_flex-container) > picture > img,
-.frame6
-  > :global(.__wab_flex-container)
-  > :global(.__wab_slot)
-  > picture
-  > img {
-  margin-left: 3.487544298171997px;
+  padding-left: 5.580071449279785px;
+  padding-right: 5.580071449279785px;
+  column-gap: 3.487544298171997px;
 }
 .text__j34TO {
   display: block;
@@ -259,43 +189,24 @@
   align-self: stretch;
   flex-grow: 1;
   flex-direction: column;
-  flex-shrink: 1;
-  width: 50%;
-  border-radius: 24px;
-  padding: 64px;
-}
-.formWrapper > :global(.__wab_flex-container) {
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-top: calc(0px - 0px);
-  height: calc(100% + 0px);
-}
-.formWrapper > :global(.__wab_flex-container) > *,
-.formWrapper > :global(.__wab_flex-container) > :global(.__wab_slot) > *,
-.formWrapper > :global(.__wab_flex-container) > picture > img,
-.formWrapper
-  > :global(.__wab_flex-container)
-  > :global(.__wab_slot)
-  > picture
-  > img {
-  margin-top: 0px;
+  flex-shrink: 1;
+  width: 50%;
+  row-gap: 0px;
+  border-radius: 24px;
+  padding: 64px;
 }
 @media (min-width: 0px) and (max-width: 768px) {
   .formWrapper {
     width: 100%;
+    align-items: center;
+    justify-content: center;
     flex-grow: 0;
     flex-shrink: 0;
     height: 100vh;
     min-width: 0;
     padding: 8px;
-  }
-}
-@media (min-width: 0px) and (max-width: 768px) {
-  .formWrapper > :global(.__wab_flex-container) {
-    align-items: center;
-    justify-content: center;
-    min-width: 0;
   }
 }
 .loginForm:global(.__wab_instance) {

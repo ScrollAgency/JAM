@@ -180,13 +180,11 @@ function PlasmicNavBarBottBtn__RenderFunc(props: {
   });
 
   return (
-    <Stack__
-      as={PlasmicLink__}
+    <PlasmicLink__
       data-plasmic-name={"frame1437253913"}
       data-plasmic-override={overrides.frame1437253913}
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
-      hasGap={true}
       className={classNames(
         projectcss.all,
         projectcss.a,
@@ -305,7 +303,7 @@ function PlasmicNavBarBottBtn__RenderFunc(props: {
           </div>
         </div>
       </BaseButton>
-    </Stack__>
+    </PlasmicLink__>
   ) as React.ReactElement | null;
 }
 

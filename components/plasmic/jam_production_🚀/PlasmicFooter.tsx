@@ -59,6 +59,9 @@ import {
   useGlobalActions
 } from "@plasmicapp/react-web/lib/host";
 
+import Button from "../../Button"; // plasmic-import: 9ixtKbGKv7x-/component
+import JamSocialAccounts from "../../JamSocialAccounts"; // plasmic-import: 9Q-roeD1QeUd/component
+
 import { useScreenVariants as useScreenVariantshm8Nko4B5BDd } from "./PlasmicGlobalVariant__Screen"; // plasmic-import: HM8Nko4B5BDd/globalVariant
 
 import "@plasmicapp/react-web/lib/plasmic.css";
@@ -70,16 +73,21 @@ import projectcss from "./plasmic.module.css"; // plasmic-import: f7DE9y7qp46fyC
 import sty from "./PlasmicFooter.module.css"; // plasmic-import: ZOpOgPOAiAAY/css
 
 import Vector12Icon from "./icons/PlasmicIcon__Vector12"; // plasmic-import: 5U7jknIbCE_j/icon
-import SocialIcon2Icon from "./icons/PlasmicIcon__SocialIcon2"; // plasmic-import: 85_PHFbzbYbc/icon
-import Group3Icon from "./icons/PlasmicIcon__Group3"; // plasmic-import: uW8IxWz2drGt/icon
-import Group4Icon from "./icons/PlasmicIcon__Group4"; // plasmic-import: jg2ejGQewG0B/icon
+import CircleIcon from "./icons/PlasmicIcon__Circle"; // plasmic-import: je95h6YoQ2jE/icon
+import PictogramIcon from "./icons/PlasmicIcon__Pictogram"; // plasmic-import: KlZQiGxQTluF/icon
 
 createPlasmicElementProxy;
 
-export type PlasmicFooter__VariantMembers = {};
-export type PlasmicFooter__VariantsArgs = {};
+export type PlasmicFooter__VariantMembers = {
+  employeur: "employeur";
+};
+export type PlasmicFooter__VariantsArgs = {
+  employeur?: SingleBooleanChoiceArg<"employeur">;
+};
 type VariantPropType = keyof PlasmicFooter__VariantsArgs;
-export const PlasmicFooter__VariantProps = new Array<VariantPropType>();
+export const PlasmicFooter__VariantProps = new Array<VariantPropType>(
+  "employeur"
+);
 
 export type PlasmicFooter__ArgsType = {};
 type ArgPropType = keyof PlasmicFooter__ArgsType;
@@ -90,21 +98,27 @@ export type PlasmicFooter__OverridesType = {
   container?: Flex__<"div">;
   column?: Flex__<"div">;
   frame6?: Flex__<"div">;
+  svg?: Flex__<"svg">;
   frame7?: Flex__<"div">;
   frame9?: Flex__<"div">;
   frame11?: Flex__<"div">;
   frame12?: Flex__<"div">;
-  socials?: Flex__<"div">;
-  img?: Flex__<typeof PlasmicImg__>;
   footerLinksContainer?: Flex__<"div">;
-  footerLinks2?: Flex__<"div">;
+  button?: Flex__<typeof Button>;
+  footerLinksContainer2?: Flex__<"div">;
+  footerLinksColumn?: Flex__<"div">;
+  heading5?: Flex__<"div">;
+  footerLinksColumn2?: Flex__<"div">;
+  heading6?: Flex__<"div">;
   container2?: Flex__<"div">;
+  footerLinksMobile?: Flex__<"div">;
   divider?: Flex__<"div">;
   content2?: Flex__<"div">;
   footerText?: Flex__<"div">;
 };
 
 export interface DefaultFooterProps {
+  employeur?: SingleBooleanChoiceArg<"employeur">;
   className?: string;
 }
 
@@ -147,18 +161,34 @@ function PlasmicFooter__RenderFunc(props: {
   const refsRef = React.useRef({});
   const $refs = refsRef.current;
 
+  const stateSpecs: Parameters<typeof useDollarState>[0] = React.useMemo(
+    () => [
+      {
+        path: "employeur",
+        type: "private",
+        variableType: "variant",
+        initFunc: ({ $props, $state, $queries, $ctx }) => $props.employeur
+      }
+    ],
+    [$props, $ctx, $refs]
+  );
+  const $state = useDollarState(stateSpecs, {
+    $props,
+    $ctx,
+    $queries: {},
+    $refs
+  });
+
   const globalVariants = ensureGlobalVariants({
     screen: useScreenVariantshm8Nko4B5BDd()
   });
 
   return (
-    <Stack__
-      as={"footer"}
+    <footer
       data-plasmic-name={"footer"}
       data-plasmic-override={overrides.footer}
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
-      hasGap={true}
       className={classNames(
         projectcss.all,
         projectcss.root_reset,
@@ -168,32 +198,35 @@ function PlasmicFooter__RenderFunc(props: {
         plasmic_antd_5_hostless_css.plasmic_tokens,
         plasmic_library_tailwind_3_4_number_tokens_css.plasmic_tokens,
         plasmic_plasmic_rich_components_css.plasmic_tokens,
-        sty.footer
+        sty.footer,
+        { [sty.footeremployeur]: hasVariant($state, "employeur", "employeur") }
       )}
     >
-      <Stack__
-        as={"div"}
+      <div
         data-plasmic-name={"container"}
         data-plasmic-override={overrides.container}
-        hasGap={true}
-        className={classNames(projectcss.all, sty.container)}
+        className={classNames(projectcss.all, sty.container, {
+          [sty.containeremployeur]: hasVariant($state, "employeur", "employeur")
+        })}
       >
-        <Stack__
-          as={"div"}
+        <div
           data-plasmic-name={"column"}
           data-plasmic-override={overrides.column}
-          hasGap={true}
-          className={classNames(projectcss.all, sty.column)}
+          className={classNames(projectcss.all, sty.column, {
+            [sty.columnemployeur]: hasVariant($state, "employeur", "employeur")
+          })}
         >
-          <Stack__
-            as={"div"}
+          <div
             data-plasmic-name={"frame6"}
             data-plasmic-override={overrides.frame6}
-            hasGap={true}
             className={classNames(projectcss.all, sty.frame6)}
           >
             <Vector12Icon
-              className={classNames(projectcss.all, sty.svg__slGgf)}
+              data-plasmic-name={"svg"}
+              data-plasmic-override={overrides.svg}
+              className={classNames(projectcss.all, sty.svg, {
+                [sty.svgemployeur]: hasVariant($state, "employeur", "employeur")
+              })}
               role={"img"}
             />
 
@@ -248,232 +281,491 @@ function PlasmicFooter__RenderFunc(props: {
                 </div>
               </div>
             </div>
-          </Stack__>
-          <Stack__
-            as={"div"}
-            data-plasmic-name={"socials"}
-            data-plasmic-override={overrides.socials}
-            hasGap={true}
-            className={classNames(projectcss.all, sty.socials)}
-          >
-            <PlasmicLink__
-              className={classNames(
-                projectcss.all,
-                projectcss.a,
-                sty.link__sFlIi
-              )}
-              component={Link}
-              platform={"nextjs"}
-            >
-              <PlasmicImg__
-                data-plasmic-name={"img"}
-                data-plasmic-override={overrides.img}
-                alt={""}
-                className={classNames(sty.img)}
-                displayHeight={"24px"}
-                displayMaxHeight={"none"}
-                displayMaxWidth={"100%"}
-                displayMinHeight={"0"}
-                displayMinWidth={"0"}
-                displayWidth={"24px"}
-                loading={"lazy"}
-                src={{
-                  src: "/plasmic/jam_production_🚀/images/socialIcon6.svg",
-                  fullWidth: 24,
-                  fullHeight: 24,
-                  aspectRatio: 1
-                }}
-              />
-            </PlasmicLink__>
-            <PlasmicLink__
-              className={classNames(
-                projectcss.all,
-                projectcss.a,
-                sty.link__fAxoM
-              )}
-              component={Link}
-              platform={"nextjs"}
-            >
-              <SocialIcon2Icon
-                className={classNames(projectcss.all, sty.svg__ipV2V)}
-                role={"img"}
-              />
-            </PlasmicLink__>
-            <PlasmicLink__
-              className={classNames(
-                projectcss.all,
-                projectcss.a,
-                sty.link__msQtb
-              )}
-              component={Link}
-              href={(() => {
-                try {
-                  return "https://www.instagram.com/jobaroundme_official/?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw%3D%3D#";
-                } catch (e) {
-                  if (
-                    e instanceof TypeError ||
-                    e?.plasmicType === "PlasmicUndefinedDataError"
-                  ) {
-                    return undefined;
-                  }
-                  throw e;
-                }
-              })()}
-              platform={"nextjs"}
-              target={"_blank"}
-            >
-              <Group3Icon
-                className={classNames(projectcss.all, sty.svg__pi970)}
-                role={"img"}
-              />
-            </PlasmicLink__>
-            <PlasmicLink__
-              className={classNames(
-                projectcss.all,
-                projectcss.a,
-                sty.link___6Bo2N
-              )}
-              component={Link}
-              platform={"nextjs"}
-            >
-              <Group4Icon
-                className={classNames(projectcss.all, sty.svg__cyZhF)}
-                role={"img"}
-              />
-            </PlasmicLink__>
-          </Stack__>
+          </div>
           <div
             className={classNames(
               projectcss.all,
               projectcss.__wab_text,
-              sty.text___2N5Mx
+              sty.text___2N5Mx,
+              {
+                [sty.textemployeur___2N5MxF93K9]: hasVariant(
+                  $state,
+                  "employeur",
+                  "employeur"
+                )
+              }
             )}
           >
             {"contact@job-around-me.com"}
           </div>
-        </Stack__>
-        <Stack__
-          as={"div"}
+        </div>
+        <div
           data-plasmic-name={"footerLinksContainer"}
           data-plasmic-override={overrides.footerLinksContainer}
-          hasGap={true}
-          className={classNames(projectcss.all, sty.footerLinksContainer)}
+          className={classNames(projectcss.all, sty.footerLinksContainer, {
+            [sty.footerLinksContaineremployeur]: hasVariant(
+              $state,
+              "employeur",
+              "employeur"
+            )
+          })}
         >
-          <Stack__
-            as={"div"}
-            data-plasmic-name={"footerLinks2"}
-            data-plasmic-override={overrides.footerLinks2}
-            hasGap={true}
-            className={classNames(projectcss.all, sty.footerLinks2)}
+          <Button
+            data-plasmic-name={"button"}
+            data-plasmic-override={overrides.button}
+            className={classNames("__wab_instance", sty.button, {
+              [sty.buttonemployeur]: hasVariant(
+                $state,
+                "employeur",
+                "employeur"
+              )
+            })}
+            color={"white"}
+            label={
+              <div
+                className={classNames(
+                  projectcss.all,
+                  projectcss.__wab_text,
+                  sty.text__k1QQv
+                )}
+              >
+                {"Acc\u00e8s employeur"}
+              </div>
+            }
+            onClick={async event => {
+              const $steps = {};
+
+              $steps["goToAccueilEmployeur"] = true
+                ? (() => {
+                    const actionArgs = { destination: `/accueil-employeur` };
+                    return (({ destination }) => {
+                      if (
+                        typeof destination === "string" &&
+                        destination.startsWith("#")
+                      ) {
+                        document
+                          .getElementById(destination.substr(1))
+                          .scrollIntoView({ behavior: "smooth" });
+                      } else {
+                        __nextRouter?.push(destination);
+                      }
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["goToAccueilEmployeur"] != null &&
+                typeof $steps["goToAccueilEmployeur"] === "object" &&
+                typeof $steps["goToAccueilEmployeur"].then === "function"
+              ) {
+                $steps["goToAccueilEmployeur"] = await $steps[
+                  "goToAccueilEmployeur"
+                ];
+              }
+            }}
+            roundedFull={true}
+            size={"extraSmall"}
+          />
+
+          <div
+            data-plasmic-name={"footerLinksContainer2"}
+            data-plasmic-override={overrides.footerLinksContainer2}
+            className={classNames(projectcss.all, sty.footerLinksContainer2, {
+              [sty.footerLinksContainer2employeur]: hasVariant(
+                $state,
+                "employeur",
+                "employeur"
+              )
+            })}
           >
-            <PlasmicLink__
-              className={classNames(
-                projectcss.all,
-                projectcss.a,
-                projectcss.__wab_text,
-                sty.link___8Sb2V
-              )}
-              component={Link}
-              onClick={async event => {
-                const $steps = {};
-
-                $steps["goToMentionsLegales"] = true
-                  ? (() => {
-                      const actionArgs = { destination: `/mentions-legales` };
-                      return (({ destination }) => {
-                        if (
-                          typeof destination === "string" &&
-                          destination.startsWith("#")
-                        ) {
-                          document
-                            .getElementById(destination.substr(1))
-                            .scrollIntoView({ behavior: "smooth" });
-                        } else {
-                          __nextRouter?.push(destination);
-                        }
-                      })?.apply(null, [actionArgs]);
-                    })()
-                  : undefined;
-                if (
-                  $steps["goToMentionsLegales"] != null &&
-                  typeof $steps["goToMentionsLegales"] === "object" &&
-                  typeof $steps["goToMentionsLegales"].then === "function"
-                ) {
-                  $steps["goToMentionsLegales"] = await $steps[
-                    "goToMentionsLegales"
-                  ];
+            <div
+              data-plasmic-name={"footerLinksColumn"}
+              data-plasmic-override={overrides.footerLinksColumn}
+              className={classNames(projectcss.all, sty.footerLinksColumn, {
+                [sty.footerLinksColumnemployeur]: hasVariant(
+                  $state,
+                  "employeur",
+                  "employeur"
+                )
+              })}
+            >
+              <div
+                data-plasmic-name={"heading5"}
+                data-plasmic-override={overrides.heading5}
+                className={classNames(
+                  projectcss.all,
+                  projectcss.__wab_text,
+                  sty.heading5,
+                  {
+                    [sty.heading5employeur]: hasVariant(
+                      $state,
+                      "employeur",
+                      "employeur"
+                    )
+                  }
+                )}
+              >
+                {"Info"}
+              </div>
+              <div className={classNames(projectcss.all, sty.freeBox__d3FZz)}>
+                <PlasmicLink__
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.a,
+                    projectcss.__wab_text,
+                    sty.link__nQqj5,
+                    {
+                      [sty.linkemployeur__nQqj5F93K9]: hasVariant(
+                        $state,
+                        "employeur",
+                        "employeur"
+                      )
+                    }
+                  )}
+                  component={Link}
+                  href={
+                    hasVariant($state, "employeur", "employeur") &&
+                    hasVariant(globalVariants, "screen", "mobileOnly")
+                      ? "/accueil-employeur#services"
+                      : undefined
+                  }
+                  platform={"nextjs"}
+                >
+                  <React.Fragment>
+                    <span
+                      className={"plasmic_default__all plasmic_default__span"}
+                      style={{ color: "#DDDDDD" }}
+                    >
+                      {"Services"}
+                    </span>
+                  </React.Fragment>
+                </PlasmicLink__>
+                <PlasmicLink__
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.a,
+                    projectcss.__wab_text,
+                    sty.link__qCzS,
+                    {
+                      [sty.linkemployeur__qCzSf93K9]: hasVariant(
+                        $state,
+                        "employeur",
+                        "employeur"
+                      )
+                    }
+                  )}
+                  component={Link}
+                  href={
+                    hasVariant($state, "employeur", "employeur") &&
+                    hasVariant(globalVariants, "screen", "mobileOnly")
+                      ? "/accueil-employeur/#offres"
+                      : undefined
+                  }
+                  platform={"nextjs"}
+                >
+                  <React.Fragment>
+                    <span
+                      className={"plasmic_default__all plasmic_default__span"}
+                      style={{ color: "#DDDDDD" }}
+                    >
+                      {"Offres"}
+                    </span>
+                  </React.Fragment>
+                </PlasmicLink__>
+                <PlasmicLink__
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.a,
+                    projectcss.__wab_text,
+                    sty.link__e2AcH,
+                    {
+                      [sty.linkemployeur__e2AcHf93K9]: hasVariant(
+                        $state,
+                        "employeur",
+                        "employeur"
+                      )
+                    }
+                  )}
+                  component={Link}
+                  href={
+                    hasVariant($state, "employeur", "employeur") &&
+                    hasVariant(globalVariants, "screen", "mobileOnly")
+                      ? "/accueil-employeur#faq"
+                      : undefined
+                  }
+                  platform={"nextjs"}
+                >
+                  <React.Fragment>
+                    <span
+                      className={"plasmic_default__all plasmic_default__span"}
+                      style={{ color: "#DDDDDD" }}
+                    >
+                      {"FAQ"}
+                    </span>
+                  </React.Fragment>
+                </PlasmicLink__>
+              </div>
+              <JamSocialAccounts
+                className={classNames(
+                  "__wab_instance",
+                  sty.jamSocialAccounts__rpi9S,
+                  {
+                    [sty.jamSocialAccountsemployeur__rpi9Sf93K9]: hasVariant(
+                      $state,
+                      "employeur",
+                      "employeur"
+                    )
+                  }
+                )}
+              />
+            </div>
+            <div
+              data-plasmic-name={"footerLinksColumn2"}
+              data-plasmic-override={overrides.footerLinksColumn2}
+              className={classNames(projectcss.all, sty.footerLinksColumn2, {
+                [sty.footerLinksColumn2employeur]: hasVariant(
+                  $state,
+                  "employeur",
+                  "employeur"
+                )
+              })}
+            >
+              <div
+                data-plasmic-name={"heading6"}
+                data-plasmic-override={overrides.heading6}
+                className={classNames(
+                  projectcss.all,
+                  projectcss.__wab_text,
+                  sty.heading6,
+                  {
+                    [sty.heading6employeur]: hasVariant(
+                      $state,
+                      "employeur",
+                      "employeur"
+                    )
+                  }
+                )}
+              >
+                {"Legal"}
+              </div>
+              <div className={classNames(projectcss.all, sty.freeBox___8QKcF)}>
+                <PlasmicLink__
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.a,
+                    projectcss.__wab_text,
+                    sty.link___3M5Nc,
+                    {
+                      [sty.linkemployeur___3M5NcF93K9]: hasVariant(
+                        $state,
+                        "employeur",
+                        "employeur"
+                      )
+                    }
+                  )}
+                  component={Link}
+                  href={`/mentions-legales`}
+                  platform={"nextjs"}
+                >
+                  <React.Fragment>
+                    <span
+                      className={"plasmic_default__all plasmic_default__span"}
+                      style={{ color: "#DDDDDD" }}
+                    >
+                      {"Mentions l\u00e9gales"}
+                    </span>
+                  </React.Fragment>
+                </PlasmicLink__>
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__h2DmA,
+                    {
+                      [sty.textemployeur__h2DmAf93K9]: hasVariant(
+                        $state,
+                        "employeur",
+                        "employeur"
+                      )
+                    }
+                  )}
+                >
+                  <React.Fragment>
+                    <span
+                      className={"plasmic_default__all plasmic_default__span"}
+                      style={{ color: "#DDDDDD" }}
+                    >
+                      {"Politique de confidentialit\u00e9"}
+                    </span>
+                  </React.Fragment>
+                </div>
+                <PlasmicLink__
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.a,
+                    projectcss.__wab_text,
+                    sty.link__aeWed,
+                    {
+                      [sty.linkemployeur__aeWedF93K9]: hasVariant(
+                        $state,
+                        "employeur",
+                        "employeur"
+                      )
+                    }
+                  )}
+                  component={Link}
+                  href={`/cgu`}
+                  platform={"nextjs"}
+                >
+                  <React.Fragment>
+                    <span
+                      className={"plasmic_default__all plasmic_default__span"}
+                      style={{ color: "#DDDDDD" }}
+                    >
+                      {"CGU/CGV"}
+                    </span>
+                  </React.Fragment>
+                </PlasmicLink__>
+              </div>
+              <JamSocialAccounts
+                className={classNames(
+                  "__wab_instance",
+                  sty.jamSocialAccounts__bNovp,
+                  {
+                    [sty.jamSocialAccountsemployeur__bNovpF93K9]: hasVariant(
+                      $state,
+                      "employeur",
+                      "employeur"
+                    )
+                  }
+                )}
+                employeur={
+                  hasVariant($state, "employeur", "employeur") &&
+                  hasVariant(globalVariants, "screen", "mobileOnly")
+                    ? true
+                    : hasVariant($state, "employeur", "employeur")
+                    ? true
+                    : undefined
                 }
-              }}
-              platform={"nextjs"}
-            >
-              {"Mentions l\u00e9gales"}
-            </PlasmicLink__>
-            <PlasmicLink__
-              className={classNames(
-                projectcss.all,
-                projectcss.a,
-                projectcss.__wab_text,
-                sty.link___17TXq
-              )}
-              component={Link}
-              platform={"nextjs"}
-            >
-              {"Politique de confidentialit\u00e9"}
-            </PlasmicLink__>
-            <PlasmicLink__
-              className={classNames(
-                projectcss.all,
-                projectcss.a,
-                projectcss.__wab_text,
-                sty.link__nunSr
-              )}
-              component={Link}
-              onClick={async event => {
-                const $steps = {};
-
-                $steps["goToConditionsGeneralesDutilisation"] = true
-                  ? (() => {
-                      const actionArgs = { destination: `/cgu` };
-                      return (({ destination }) => {
-                        if (
-                          typeof destination === "string" &&
-                          destination.startsWith("#")
-                        ) {
-                          document
-                            .getElementById(destination.substr(1))
-                            .scrollIntoView({ behavior: "smooth" });
-                        } else {
-                          __nextRouter?.push(destination);
-                        }
-                      })?.apply(null, [actionArgs]);
-                    })()
-                  : undefined;
-                if (
-                  $steps["goToConditionsGeneralesDutilisation"] != null &&
-                  typeof $steps["goToConditionsGeneralesDutilisation"] ===
-                    "object" &&
-                  typeof $steps["goToConditionsGeneralesDutilisation"].then ===
-                    "function"
-                ) {
-                  $steps["goToConditionsGeneralesDutilisation"] = await $steps[
-                    "goToConditionsGeneralesDutilisation"
-                  ];
-                }
-              }}
-              platform={"nextjs"}
-            >
-              {"CGU"}
-            </PlasmicLink__>
-          </Stack__>
-        </Stack__>
-      </Stack__>
-      <Stack__
-        as={"div"}
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
         data-plasmic-name={"container2"}
         data-plasmic-override={overrides.container2}
-        hasGap={true}
-        className={classNames(projectcss.all, sty.container2)}
+        className={classNames(projectcss.all, sty.container2, {
+          [sty.container2employeur]: hasVariant(
+            $state,
+            "employeur",
+            "employeur"
+          )
+        })}
       >
+        <div
+          data-plasmic-name={"footerLinksMobile"}
+          data-plasmic-override={overrides.footerLinksMobile}
+          className={classNames(projectcss.all, sty.footerLinksMobile, {
+            [sty.footerLinksMobileemployeur]: hasVariant(
+              $state,
+              "employeur",
+              "employeur"
+            )
+          })}
+        >
+          <PlasmicLink__
+            className={classNames(
+              projectcss.all,
+              projectcss.a,
+              projectcss.__wab_text,
+              sty.link__t2B6C,
+              {
+                [sty.linkemployeur__t2B6CF93K9]: hasVariant(
+                  $state,
+                  "employeur",
+                  "employeur"
+                )
+              }
+            )}
+            component={Link}
+            href={`/mentions-legales`}
+            platform={"nextjs"}
+          >
+            {"Mentions l\u00e9gales"}
+          </PlasmicLink__>
+          <PlasmicLink__
+            className={classNames(
+              projectcss.all,
+              projectcss.a,
+              projectcss.__wab_text,
+              sty.link__gcbtg,
+              {
+                [sty.linkemployeur__gcbtgF93K9]: hasVariant(
+                  $state,
+                  "employeur",
+                  "employeur"
+                )
+              }
+            )}
+            component={Link}
+            href={""}
+            platform={"nextjs"}
+          >
+            {"Politique de confidentialit\u00e9"}
+          </PlasmicLink__>
+          <PlasmicLink__
+            className={classNames(
+              projectcss.all,
+              projectcss.a,
+              projectcss.__wab_text,
+              sty.link__hVnQ,
+              {
+                [sty.linkemployeur__hVnQf93K9]: hasVariant(
+                  $state,
+                  "employeur",
+                  "employeur"
+                )
+              }
+            )}
+            component={Link}
+            href={`/cgu`}
+            onClick={async event => {
+              const $steps = {};
+
+              $steps["goToConditionsGeneralesDutilisation"] = true
+                ? (() => {
+                    const actionArgs = { destination: `/cgu` };
+                    return (({ destination }) => {
+                      if (
+                        typeof destination === "string" &&
+                        destination.startsWith("#")
+                      ) {
+                        document
+                          .getElementById(destination.substr(1))
+                          .scrollIntoView({ behavior: "smooth" });
+                      } else {
+                        __nextRouter?.push(destination);
+                      }
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["goToConditionsGeneralesDutilisation"] != null &&
+                typeof $steps["goToConditionsGeneralesDutilisation"] ===
+                  "object" &&
+                typeof $steps["goToConditionsGeneralesDutilisation"].then ===
+                  "function"
+              ) {
+                $steps["goToConditionsGeneralesDutilisation"] = await $steps[
+                  "goToConditionsGeneralesDutilisation"
+                ];
+              }
+            }}
+            platform={"nextjs"}
+          >
+            {"CGU"}
+          </PlasmicLink__>
+        </div>
         <div
           data-plasmic-name={"divider"}
           data-plasmic-override={overrides.divider}
@@ -491,14 +783,21 @@ function PlasmicFooter__RenderFunc(props: {
             className={classNames(
               projectcss.all,
               projectcss.__wab_text,
-              sty.footerText
+              sty.footerText,
+              {
+                [sty.footerTextemployeur]: hasVariant(
+                  $state,
+                  "employeur",
+                  "employeur"
+                )
+              }
             )}
           >
             {"\u00a9 2024 Job Around Me. Site par Agence Scroll."}
           </div>
         </div>
-      </Stack__>
-    </Stack__>
+      </div>
+    </footer>
   ) as React.ReactElement | null;
 }
 
@@ -508,15 +807,20 @@ const PlasmicDescendants = {
     "container",
     "column",
     "frame6",
+    "svg",
     "frame7",
     "frame9",
     "frame11",
     "frame12",
-    "socials",
-    "img",
     "footerLinksContainer",
-    "footerLinks2",
+    "button",
+    "footerLinksContainer2",
+    "footerLinksColumn",
+    "heading5",
+    "footerLinksColumn2",
+    "heading6",
     "container2",
+    "footerLinksMobile",
     "divider",
     "content2",
     "footerText"
@@ -525,35 +829,55 @@ const PlasmicDescendants = {
     "container",
     "column",
     "frame6",
+    "svg",
     "frame7",
     "frame9",
     "frame11",
     "frame12",
-    "socials",
-    "img",
     "footerLinksContainer",
-    "footerLinks2"
+    "button",
+    "footerLinksContainer2",
+    "footerLinksColumn",
+    "heading5",
+    "footerLinksColumn2",
+    "heading6"
   ],
-  column: [
-    "column",
-    "frame6",
-    "frame7",
-    "frame9",
-    "frame11",
-    "frame12",
-    "socials",
-    "img"
-  ],
-  frame6: ["frame6", "frame7", "frame9", "frame11", "frame12"],
+  column: ["column", "frame6", "svg", "frame7", "frame9", "frame11", "frame12"],
+  frame6: ["frame6", "svg", "frame7", "frame9", "frame11", "frame12"],
+  svg: ["svg"],
   frame7: ["frame7", "frame9", "frame11", "frame12"],
   frame9: ["frame9"],
   frame11: ["frame11"],
   frame12: ["frame12"],
-  socials: ["socials", "img"],
-  img: ["img"],
-  footerLinksContainer: ["footerLinksContainer", "footerLinks2"],
-  footerLinks2: ["footerLinks2"],
-  container2: ["container2", "divider", "content2", "footerText"],
+  footerLinksContainer: [
+    "footerLinksContainer",
+    "button",
+    "footerLinksContainer2",
+    "footerLinksColumn",
+    "heading5",
+    "footerLinksColumn2",
+    "heading6"
+  ],
+  button: ["button"],
+  footerLinksContainer2: [
+    "footerLinksContainer2",
+    "footerLinksColumn",
+    "heading5",
+    "footerLinksColumn2",
+    "heading6"
+  ],
+  footerLinksColumn: ["footerLinksColumn", "heading5"],
+  heading5: ["heading5"],
+  footerLinksColumn2: ["footerLinksColumn2", "heading6"],
+  heading6: ["heading6"],
+  container2: [
+    "container2",
+    "footerLinksMobile",
+    "divider",
+    "content2",
+    "footerText"
+  ],
+  footerLinksMobile: ["footerLinksMobile"],
   divider: ["divider"],
   content2: ["content2", "footerText"],
   footerText: ["footerText"]
@@ -566,15 +890,20 @@ type NodeDefaultElementType = {
   container: "div";
   column: "div";
   frame6: "div";
+  svg: "svg";
   frame7: "div";
   frame9: "div";
   frame11: "div";
   frame12: "div";
-  socials: "div";
-  img: typeof PlasmicImg__;
   footerLinksContainer: "div";
-  footerLinks2: "div";
+  button: typeof Button;
+  footerLinksContainer2: "div";
+  footerLinksColumn: "div";
+  heading5: "div";
+  footerLinksColumn2: "div";
+  heading6: "div";
   container2: "div";
+  footerLinksMobile: "div";
   divider: "div";
   content2: "div";
   footerText: "div";
@@ -643,15 +972,20 @@ export const PlasmicFooter = Object.assign(
     container: makeNodeComponent("container"),
     column: makeNodeComponent("column"),
     frame6: makeNodeComponent("frame6"),
+    svg: makeNodeComponent("svg"),
     frame7: makeNodeComponent("frame7"),
     frame9: makeNodeComponent("frame9"),
     frame11: makeNodeComponent("frame11"),
     frame12: makeNodeComponent("frame12"),
-    socials: makeNodeComponent("socials"),
-    img: makeNodeComponent("img"),
     footerLinksContainer: makeNodeComponent("footerLinksContainer"),
-    footerLinks2: makeNodeComponent("footerLinks2"),
+    button: makeNodeComponent("button"),
+    footerLinksContainer2: makeNodeComponent("footerLinksContainer2"),
+    footerLinksColumn: makeNodeComponent("footerLinksColumn"),
+    heading5: makeNodeComponent("heading5"),
+    footerLinksColumn2: makeNodeComponent("footerLinksColumn2"),
+    heading6: makeNodeComponent("heading6"),
     container2: makeNodeComponent("container2"),
+    footerLinksMobile: makeNodeComponent("footerLinksMobile"),
     divider: makeNodeComponent("divider"),
     content2: makeNodeComponent("content2"),
     footerText: makeNodeComponent("footerText"),

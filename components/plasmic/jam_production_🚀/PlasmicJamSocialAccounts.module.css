@@ -1,0 +1,49 @@
+.socials2 {
+  width: auto;
+  height: auto;
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding-left: 0px;
+  padding-right: 0px;
+  column-gap: 16px;
+  position: relative;
+}
+@media (min-width: 0px) and (max-width: 768px) {
+  .socials2 {
+    padding-left: 0px;
+  }
+}
+.socials2employeur {
+  padding-left: 0px;
+}
+@media (min-width: 0px) and (max-width: 768px) {
+  .socials2employeur {
+    justify-content: center;
+    align-items: center;
+    padding-left: 0px;
+  }
+}
+.link {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  align-items: stretch;
+  justify-content: flex-start;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  top: auto;
+  left: auto;
+  min-width: 0;
+}
+.svg {
+  object-fit: cover;
+  max-width: 100%;
+  color: #909090;
+  width: 24px;
+  height: 23.854px;
+  display: block;
+  flex-shrink: 0;
+}

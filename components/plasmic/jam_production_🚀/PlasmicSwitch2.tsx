@@ -248,11 +248,9 @@ function PlasmicSwitch2__RenderFunc(props: {
       }}
       plasmicUpdateVariant={updateVariant}
     >
-      <Stack__
-        as={"div"}
+      <div
         data-plasmic-name={"freeBox"}
         data-plasmic-override={overrides.freeBox}
-        hasGap={true}
         className={classNames(projectcss.all, sty.freeBox)}
       >
         <div
@@ -272,7 +270,7 @@ function PlasmicSwitch2__RenderFunc(props: {
               value: args.label
             })
           : null}
-      </Stack__>
+      </div>
       {$props.showDescription ? (
         <Description
           data-plasmic-name={"description"}

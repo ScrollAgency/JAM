@@ -469,9 +469,7 @@ function PlasmicDeleteAccount2__RenderFunc(props: {
           })}
         />
       ) : null}
-      <Stack__
-        as={"div"}
-        hasGap={true}
+      <div
         className={classNames(projectcss.all, sty.freeBox__b36Ri, {
           [sty.freeBoxcolor_neutral__b36RIxNu5V]: hasVariant(
             $state,
@@ -898,7 +896,7 @@ function PlasmicDeleteAccount2__RenderFunc(props: {
             })
           })}
         </div>
-      </Stack__>
+      </div>
     </BaseButton>
   ) as React.ReactElement | null;
 }

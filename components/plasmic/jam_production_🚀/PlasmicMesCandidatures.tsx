@@ -324,23 +324,13 @@ function PlasmicMesCandidatures__RenderFunc(props: {
             className={classNames("__wab_instance", sty.mobileNavbarTop)}
           />
 
-          <Stack__
-            as={"main"}
+          <main
             data-plasmic-name={"main"}
             data-plasmic-override={overrides.main}
-            hasGap={true}
             className={classNames(projectcss.all, sty.main)}
           >
-            <Stack__
-              as={"div"}
-              hasGap={true}
-              className={classNames(projectcss.all, sty.freeBox__mwkAc)}
-            >
-              <Stack__
-                as={"div"}
-                hasGap={true}
-                className={classNames(projectcss.all, sty.freeBox__am21O)}
-              >
+            <div className={classNames(projectcss.all, sty.freeBox__mwkAc)}>
+              <div className={classNames(projectcss.all, sty.freeBox__am21O)}>
                 <h1
                   data-plasmic-name={"heading2"}
                   data-plasmic-override={overrides.heading2}
@@ -390,7 +380,7 @@ function PlasmicMesCandidatures__RenderFunc(props: {
                     </React.Fragment>
                   </div>
                 </div>
-              </Stack__>
+              </div>
               <Button
                 className={classNames("__wab_instance", sty.button__zGvnp)}
                 end={
@@ -440,12 +430,10 @@ function PlasmicMesCandidatures__RenderFunc(props: {
                   }
                 }}
               />
-            </Stack__>
-            <Stack__
-              as={"div"}
+            </div>
+            <div
               data-plasmic-name={"card2"}
               data-plasmic-override={overrides.card2}
-              hasGap={true}
               className={classNames(projectcss.all, sty.card2)}
             >
               {(() => {
@@ -596,8 +584,10 @@ function PlasmicMesCandidatures__RenderFunc(props: {
                   : (() => {
                       try {
                         return (
-                          $queries.candidaturesGetJobApplicationsByUser.data
-                            .length === 0
+                          !$queries.candidaturesGetJobApplicationsByUser
+                            .isLoading &&
+                          $queries.candidaturesGetJobApplicationsByUser?.data
+                            ?.length === 0
                         );
                       } catch (e) {
                         if (
@@ -610,11 +600,9 @@ function PlasmicMesCandidatures__RenderFunc(props: {
                       }
                     })()
               ) ? (
-                <Stack__
-                  as={"div"}
+                <div
                   data-plasmic-name={"noApplications"}
                   data-plasmic-override={overrides.noApplications}
-                  hasGap={true}
                   className={classNames(projectcss.all, sty.noApplications)}
                 >
                   <div
@@ -627,11 +615,9 @@ function PlasmicMesCandidatures__RenderFunc(props: {
                       role={"img"}
                     />
                   </div>
-                  <Stack__
-                    as={"div"}
+                  <div
                     data-plasmic-name={"textAndSupportingText2"}
                     data-plasmic-override={overrides.textAndSupportingText2}
-                    hasGap={true}
                     className={classNames(
                       projectcss.all,
                       sty.textAndSupportingText2
@@ -711,11 +697,11 @@ function PlasmicMesCandidatures__RenderFunc(props: {
                         }
                       }}
                     />
-                  </Stack__>
-                </Stack__>
+                  </div>
+                </div>
               ) : null}
-            </Stack__>
-          </Stack__>
+            </div>
+          </main>
           <MobileNavbarBottom
             data-plasmic-name={"mobileNavbarBottom"}
             data-plasmic-override={overrides.mobileNavbarBottom}

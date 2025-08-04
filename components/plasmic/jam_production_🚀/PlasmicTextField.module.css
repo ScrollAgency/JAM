@@ -4,8 +4,8 @@
   box-sizing: border-box;
   width: 100%;
   position: relative;
-  min-width: 0;
   row-gap: var(--token-BY_Q0dspL3Z5);
+  min-width: 0;
 }
 .ariaTextField[data-disabled]:global(.__wab_instance) {
   opacity: 0.5;

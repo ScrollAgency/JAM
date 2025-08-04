@@ -256,11 +256,9 @@ function PlasmicInscriptionEmployeur__RenderFunc(props: {
               data-plasmic-override={overrides.imageWrapper2}
               className={classNames(projectcss.all, sty.imageWrapper2)}
             >
-              <Stack__
-                as={"div"}
+              <div
                 data-plasmic-name={"logoWrapper2"}
                 data-plasmic-override={overrides.logoWrapper2}
-                hasGap={true}
                 className={classNames(projectcss.all, sty.logoWrapper2)}
                 onClick={async event => {
                   const $steps = {};
@@ -303,11 +301,9 @@ function PlasmicInscriptionEmployeur__RenderFunc(props: {
                   data-plasmic-override={overrides.baseline2}
                   className={classNames(projectcss.all, sty.baseline2)}
                 >
-                  <Stack__
-                    as={"div"}
+                  <div
                     data-plasmic-name={"frame4"}
                     data-plasmic-override={overrides.frame4}
-                    hasGap={true}
                     className={classNames(projectcss.all, sty.frame4)}
                   >
                     <div
@@ -319,12 +315,10 @@ function PlasmicInscriptionEmployeur__RenderFunc(props: {
                     >
                       {"JOB"}
                     </div>
-                  </Stack__>
-                  <Stack__
-                    as={"div"}
+                  </div>
+                  <div
                     data-plasmic-name={"frame5"}
                     data-plasmic-override={overrides.frame5}
-                    hasGap={true}
                     className={classNames(projectcss.all, sty.frame5)}
                   >
                     <div
@@ -336,12 +330,10 @@ function PlasmicInscriptionEmployeur__RenderFunc(props: {
                     >
                       {"AROUND"}
                     </div>
-                  </Stack__>
-                  <Stack__
-                    as={"div"}
+                  </div>
+                  <div
                     data-plasmic-name={"frame6"}
                     data-plasmic-override={overrides.frame6}
-                    hasGap={true}
                     className={classNames(projectcss.all, sty.frame6)}
                   >
                     <div
@@ -353,15 +345,13 @@ function PlasmicInscriptionEmployeur__RenderFunc(props: {
                     >
                       {"ME"}
                     </div>
-                  </Stack__>
+                  </div>
                 </div>
-              </Stack__>
+              </div>
             </div>
-            <Stack__
-              as={"div"}
+            <div
               data-plasmic-name={"formWrapper2"}
               data-plasmic-override={overrides.formWrapper2}
-              hasGap={true}
               className={classNames(projectcss.all, sty.formWrapper2)}
             >
               {(() => {
@@ -618,11 +608,9 @@ function PlasmicInscriptionEmployeur__RenderFunc(props: {
                 }
               })() ? (
                 <div className={classNames(projectcss.all, sty.freeBox__tcp)}>
-                  <Stack__
-                    as={"div"}
+                  <div
                     data-plasmic-name={"signupSuccess2"}
                     data-plasmic-override={overrides.signupSuccess2}
-                    hasGap={true}
                     className={classNames(projectcss.all, sty.signupSuccess2)}
                   >
                     <CheckIcon
@@ -630,9 +618,7 @@ function PlasmicInscriptionEmployeur__RenderFunc(props: {
                       role={"img"}
                     />
 
-                    <Stack__
-                      as={"div"}
-                      hasGap={true}
+                    <div
                       className={classNames(
                         projectcss.all,
                         sty.freeBox___0Fi33
@@ -660,11 +646,11 @@ function PlasmicInscriptionEmployeur__RenderFunc(props: {
                           "Veuillez v\u00e9rifier vos e-mails pour confirmer votre adresse \net acc\u00e9der \u00e0 Job Around Me."
                         }
                       </div>
-                    </Stack__>
-                  </Stack__>
+                    </div>
+                  </div>
                 </div>
               ) : null}
-            </Stack__>
+            </div>
           </div>
         </div>
       </div>

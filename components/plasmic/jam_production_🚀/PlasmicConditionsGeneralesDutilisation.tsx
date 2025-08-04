@@ -249,11 +249,9 @@ function PlasmicConditionsGeneralesDutilisation__RenderFunc(props: {
             data-plasmic-override={overrides.structureLp}
             className={classNames(projectcss.all, sty.structureLp)}
           >
-            <Stack__
-              as={"div"}
+            <div
               data-plasmic-name={"navbar"}
               data-plasmic-override={overrides.navbar}
-              hasGap={true}
               className={classNames(projectcss.all, sty.navbar)}
             >
               <NavigationBar
@@ -334,11 +332,9 @@ function PlasmicConditionsGeneralesDutilisation__RenderFunc(props: {
                         data-plasmic-override={overrides.frame22}
                         className={classNames(projectcss.all, sty.frame22)}
                       >
-                        <Stack__
-                          as={"div"}
+                        <div
                           data-plasmic-name={"frame23"}
                           data-plasmic-override={overrides.frame23}
-                          hasGap={true}
                           className={classNames(projectcss.all, sty.frame23)}
                         >
                           <div
@@ -350,12 +346,10 @@ function PlasmicConditionsGeneralesDutilisation__RenderFunc(props: {
                           >
                             {"JOB"}
                           </div>
-                        </Stack__>
-                        <Stack__
-                          as={"div"}
+                        </div>
+                        <div
                           data-plasmic-name={"frame24"}
                           data-plasmic-override={overrides.frame24}
-                          hasGap={true}
                           className={classNames(projectcss.all, sty.frame24)}
                         >
                           <div
@@ -367,12 +361,10 @@ function PlasmicConditionsGeneralesDutilisation__RenderFunc(props: {
                           >
                             {"AROUND"}
                           </div>
-                        </Stack__>
-                        <Stack__
-                          as={"div"}
+                        </div>
+                        <div
                           data-plasmic-name={"frame25"}
                           data-plasmic-override={overrides.frame25}
-                          hasGap={true}
                           className={classNames(projectcss.all, sty.frame25)}
                         >
                           <div
@@ -384,14 +376,12 @@ function PlasmicConditionsGeneralesDutilisation__RenderFunc(props: {
                           >
                             {"ME"}
                           </div>
-                        </Stack__>
+                        </div>
                       </div>
                     </div>
-                    <Stack__
-                      as={"div"}
+                    <div
                       data-plasmic-name={"jamLogo2"}
                       data-plasmic-override={overrides.jamLogo2}
-                      hasGap={true}
                       className={classNames(projectcss.all, sty.jamLogo2)}
                     >
                       <Vector12Icon
@@ -450,7 +440,7 @@ function PlasmicConditionsGeneralesDutilisation__RenderFunc(props: {
                           </div>
                         </div>
                       </div>
-                    </Stack__>
+                    </div>
                   </React.Fragment>
                 }
                 className={classNames("__wab_instance", sty.navigationBar)}
@@ -751,18 +741,14 @@ function PlasmicConditionsGeneralesDutilisation__RenderFunc(props: {
                 responsiveBreakpoint={768}
               />
 
-              <Stack__
-                as={"header"}
+              <header
                 data-plasmic-name={"header3"}
                 data-plasmic-override={overrides.header3}
-                hasGap={true}
                 className={classNames(projectcss.all, sty.header3)}
               >
-                <Stack__
-                  as={"div"}
+                <div
                   data-plasmic-name={"jamLogo"}
                   data-plasmic-override={overrides.jamLogo}
-                  hasGap={true}
                   className={classNames(projectcss.all, sty.jamLogo)}
                   onClick={async event => {
                     const $steps = {};
@@ -849,12 +835,10 @@ function PlasmicConditionsGeneralesDutilisation__RenderFunc(props: {
                       </div>
                     </div>
                   </div>
-                </Stack__>
-                <Stack__
-                  as={"div"}
+                </div>
+                <div
                   data-plasmic-name={"menuItems2"}
                   data-plasmic-override={overrides.menuItems2}
-                  hasGap={true}
                   className={classNames(projectcss.all, sty.menuItems2)}
                 >
                   <div
@@ -1013,12 +997,8 @@ function PlasmicConditionsGeneralesDutilisation__RenderFunc(props: {
                   >
                     {"FAQ"}
                   </div>
-                </Stack__>
-                <Stack__
-                  as={"div"}
-                  hasGap={true}
-                  className={classNames(projectcss.all, sty.freeBox___3JCa)}
-                >
+                </div>
+                <div className={classNames(projectcss.all, sty.freeBox___3JCa)}>
                   <Button
                     className={classNames("__wab_instance", sty.button__pbNfH)}
                     end={
@@ -1084,62 +1064,48 @@ function PlasmicConditionsGeneralesDutilisation__RenderFunc(props: {
                       }
                     }}
                   />
-                </Stack__>
-              </Stack__>
-            </Stack__>
-            <Stack__
-              as={"div"}
+                </div>
+              </header>
+            </div>
+            <div
               data-plasmic-name={"benefices"}
               data-plasmic-override={overrides.benefices}
-              hasGap={true}
               className={classNames(projectcss.all, sty.benefices)}
             >
-              <Stack__
-                as={"div"}
+              <div
                 data-plasmic-name={"container"}
                 data-plasmic-override={overrides.container}
-                hasGap={true}
                 className={classNames(projectcss.all, sty.container)}
               >
-                <Stack__
-                  as={"div"}
+                <div
                   data-plasmic-name={"content2"}
                   data-plasmic-override={overrides.content2}
-                  hasGap={true}
                   className={classNames(projectcss.all, sty.content2)}
                 >
-                  <Stack__
-                    as={"div"}
+                  <div
                     data-plasmic-name={"headingAndSupportingText"}
                     data-plasmic-override={overrides.headingAndSupportingText}
-                    hasGap={true}
                     className={classNames(
                       projectcss.all,
                       sty.headingAndSupportingText
                     )}
                   >
-                    <Stack__
-                      as={"div"}
+                    <div
                       data-plasmic-name={"headingAndBadge"}
                       data-plasmic-override={overrides.headingAndBadge}
-                      hasGap={true}
                       className={classNames(
                         projectcss.all,
                         sty.headingAndBadge
                       )}
                     >
-                      <Stack__
-                        as={"div"}
+                      <div
                         data-plasmic-name={"badgeGroup2"}
                         data-plasmic-override={overrides.badgeGroup2}
-                        hasGap={true}
                         className={classNames(projectcss.all, sty.badgeGroup2)}
                       >
-                        <Stack__
-                          as={"div"}
+                        <div
                           data-plasmic-name={"content3"}
                           data-plasmic-override={overrides.content3}
-                          hasGap={true}
                           className={classNames(projectcss.all, sty.content3)}
                         >
                           <div
@@ -1155,8 +1121,8 @@ function PlasmicConditionsGeneralesDutilisation__RenderFunc(props: {
                               "Conditions g\u00e9n\u00e9rales d\u2019utilisation (CGU)"
                             }
                           </div>
-                        </Stack__>
-                      </Stack__>
+                        </div>
+                      </div>
                       <div
                         data-plasmic-name={"heading"}
                         data-plasmic-override={overrides.heading}
@@ -1170,20 +1136,16 @@ function PlasmicConditionsGeneralesDutilisation__RenderFunc(props: {
                           "Conditions g\u00e9n\u00e9rales d\u2019utilisation (CGU) \u2013 Job Around Me"
                         }
                       </div>
-                      <Stack__
-                        as={"div"}
+                      <div
                         data-plasmic-name={"item7"}
                         data-plasmic-override={overrides.item7}
-                        hasGap={true}
                         className={classNames(projectcss.all, sty.item7)}
                       >
-                        <Stack__
-                          as={"div"}
+                        <div
                           data-plasmic-name={"headingAndSupportingText8"}
                           data-plasmic-override={
                             overrides.headingAndSupportingText8
                           }
-                          hasGap={true}
                           className={classNames(
                             projectcss.all,
                             sty.headingAndSupportingText8
@@ -1256,22 +1218,18 @@ function PlasmicConditionsGeneralesDutilisation__RenderFunc(props: {
                               </React.Fragment>
                             )}
                           </div>
-                        </Stack__>
-                      </Stack__>
-                      <Stack__
-                        as={"div"}
+                        </div>
+                      </div>
+                      <div
                         data-plasmic-name={"item8"}
                         data-plasmic-override={overrides.item8}
-                        hasGap={true}
                         className={classNames(projectcss.all, sty.item8)}
                       >
-                        <Stack__
-                          as={"div"}
+                        <div
                           data-plasmic-name={"headingAndSupportingText9"}
                           data-plasmic-override={
                             overrides.headingAndSupportingText9
                           }
-                          hasGap={true}
                           className={classNames(
                             projectcss.all,
                             sty.headingAndSupportingText9
@@ -1310,22 +1268,18 @@ function PlasmicConditionsGeneralesDutilisation__RenderFunc(props: {
                               ? "Job Around Me est \u00e9dit\u00e9 par la soci\u00e9t\u00e9 JobAroundMe S\u00e0rl-S, dont le si\u00e8ge est situ\u00e9 \u00e0 5 rue Nelson Mandela\r\n\r\nL-4035 , immatricul\u00e9e sous le num\u00e9ro B297124."
                               : "Job Around Me est \u00e9dit\u00e9 par la soci\u00e9t\u00e9 JobAroundMe S\u00e0rl-S, dont le si\u00e8ge est situ\u00e9 \u00e0 5 rue Nelson Mandela\r\n\r\nL-4035 , immatricul\u00e9e sous le num\u00e9ro B297124.\n"}
                           </div>
-                        </Stack__>
-                      </Stack__>
-                      <Stack__
-                        as={"div"}
+                        </div>
+                      </div>
+                      <div
                         data-plasmic-name={"item9"}
                         data-plasmic-override={overrides.item9}
-                        hasGap={true}
                         className={classNames(projectcss.all, sty.item9)}
                       >
-                        <Stack__
-                          as={"div"}
+                        <div
                           data-plasmic-name={"headingAndSupportingText10"}
                           data-plasmic-override={
                             overrides.headingAndSupportingText10
                           }
-                          hasGap={true}
                           className={classNames(
                             projectcss.all,
                             sty.headingAndSupportingText10
@@ -1439,22 +1393,18 @@ function PlasmicConditionsGeneralesDutilisation__RenderFunc(props: {
                               <React.Fragment>{""}</React.Fragment>
                             </React.Fragment>
                           </div>
-                        </Stack__>
-                      </Stack__>
-                      <Stack__
-                        as={"div"}
+                        </div>
+                      </div>
+                      <div
                         data-plasmic-name={"item10"}
                         data-plasmic-override={overrides.item10}
-                        hasGap={true}
                         className={classNames(projectcss.all, sty.item10)}
                       >
-                        <Stack__
-                          as={"div"}
+                        <div
                           data-plasmic-name={"headingAndSupportingText11"}
                           data-plasmic-override={
                             overrides.headingAndSupportingText11
                           }
-                          hasGap={true}
                           className={classNames(
                             projectcss.all,
                             sty.headingAndSupportingText11
@@ -1578,22 +1528,18 @@ function PlasmicConditionsGeneralesDutilisation__RenderFunc(props: {
                               <React.Fragment>{""}</React.Fragment>
                             </React.Fragment>
                           </div>
-                        </Stack__>
-                      </Stack__>
-                      <Stack__
-                        as={"div"}
+                        </div>
+                      </div>
+                      <div
                         data-plasmic-name={"item11"}
                         data-plasmic-override={overrides.item11}
-                        hasGap={true}
                         className={classNames(projectcss.all, sty.item11)}
                       >
-                        <Stack__
-                          as={"div"}
+                        <div
                           data-plasmic-name={"headingAndSupportingText12"}
                           data-plasmic-override={
                             overrides.headingAndSupportingText12
                           }
-                          hasGap={true}
                           className={classNames(
                             projectcss.all,
                             sty.headingAndSupportingText12
@@ -1683,22 +1629,18 @@ function PlasmicConditionsGeneralesDutilisation__RenderFunc(props: {
                               <React.Fragment>{""}</React.Fragment>
                             </React.Fragment>
                           </div>
-                        </Stack__>
-                      </Stack__>
-                      <Stack__
-                        as={"div"}
+                        </div>
+                      </div>
+                      <div
                         data-plasmic-name={"item12"}
                         data-plasmic-override={overrides.item12}
-                        hasGap={true}
                         className={classNames(projectcss.all, sty.item12)}
                       >
-                        <Stack__
-                          as={"div"}
+                        <div
                           data-plasmic-name={"headingAndSupportingText13"}
                           data-plasmic-override={
                             overrides.headingAndSupportingText13
                           }
-                          hasGap={true}
                           className={classNames(
                             projectcss.all,
                             sty.headingAndSupportingText13
@@ -1737,22 +1679,18 @@ function PlasmicConditionsGeneralesDutilisation__RenderFunc(props: {
                               "Avec votre consentement, nous utilisons votre position pour vous proposer des offres pr\u00e8s de chez vous. Vous pouvez retirer ce consentement \u00e0 tout moment dans les r\u00e9glages de votre t\u00e9l\u00e9phone."
                             }
                           </div>
-                        </Stack__>
-                      </Stack__>
-                      <Stack__
-                        as={"div"}
+                        </div>
+                      </div>
+                      <div
                         data-plasmic-name={"item13"}
                         data-plasmic-override={overrides.item13}
-                        hasGap={true}
                         className={classNames(projectcss.all, sty.item13)}
                       >
-                        <Stack__
-                          as={"div"}
+                        <div
                           data-plasmic-name={"headingAndSupportingText14"}
                           data-plasmic-override={
                             overrides.headingAndSupportingText14
                           }
-                          hasGap={true}
                           className={classNames(
                             projectcss.all,
                             sty.headingAndSupportingText14
@@ -1832,22 +1770,18 @@ function PlasmicConditionsGeneralesDutilisation__RenderFunc(props: {
                               </React.Fragment>
                             </React.Fragment>
                           </div>
-                        </Stack__>
-                      </Stack__>
-                      <Stack__
-                        as={"div"}
+                        </div>
+                      </div>
+                      <div
                         data-plasmic-name={"item14"}
                         data-plasmic-override={overrides.item14}
-                        hasGap={true}
                         className={classNames(projectcss.all, sty.item14)}
                       >
-                        <Stack__
-                          as={"div"}
+                        <div
                           data-plasmic-name={"headingAndSupportingText15"}
                           data-plasmic-override={
                             overrides.headingAndSupportingText15
                           }
-                          hasGap={true}
                           className={classNames(
                             projectcss.all,
                             sty.headingAndSupportingText15
@@ -2094,22 +2028,18 @@ function PlasmicConditionsGeneralesDutilisation__RenderFunc(props: {
                               </React.Fragment>
                             )}
                           </div>
-                        </Stack__>
-                      </Stack__>
-                      <Stack__
-                        as={"div"}
+                        </div>
+                      </div>
+                      <div
                         data-plasmic-name={"item15"}
                         data-plasmic-override={overrides.item15}
-                        hasGap={true}
                         className={classNames(projectcss.all, sty.item15)}
                       >
-                        <Stack__
-                          as={"div"}
+                        <div
                           data-plasmic-name={"headingAndSupportingText16"}
                           data-plasmic-override={
                             overrides.headingAndSupportingText16
                           }
-                          hasGap={true}
                           className={classNames(
                             projectcss.all,
                             sty.headingAndSupportingText16
@@ -2148,22 +2078,18 @@ function PlasmicConditionsGeneralesDutilisation__RenderFunc(props: {
                               "Nous mettons en \u0153uvre toutes les mesures techniques et organisationnelles appropri\u00e9es pour prot\u00e9ger vos donn\u00e9es contre tout acc\u00e8s non autoris\u00e9, perte ou alt\u00e9ration."
                             }
                           </div>
-                        </Stack__>
-                      </Stack__>
-                      <Stack__
-                        as={"div"}
+                        </div>
+                      </div>
+                      <div
                         data-plasmic-name={"item16"}
                         data-plasmic-override={overrides.item16}
-                        hasGap={true}
                         className={classNames(projectcss.all, sty.item16)}
                       >
-                        <Stack__
-                          as={"div"}
+                        <div
                           data-plasmic-name={"headingAndSupportingText17"}
                           data-plasmic-override={
                             overrides.headingAndSupportingText17
                           }
-                          hasGap={true}
                           className={classNames(
                             projectcss.all,
                             sty.headingAndSupportingText17
@@ -2202,22 +2128,18 @@ function PlasmicConditionsGeneralesDutilisation__RenderFunc(props: {
                               "Cette politique peut \u00eatre mise \u00e0 jour. Nous vous informerons en cas de modification importante."
                             }
                           </div>
-                        </Stack__>
-                      </Stack__>
-                      <Stack__
-                        as={"div"}
+                        </div>
+                      </div>
+                      <div
                         data-plasmic-name={"item17"}
                         data-plasmic-override={overrides.item17}
-                        hasGap={true}
                         className={classNames(projectcss.all, sty.item17)}
                       >
-                        <Stack__
-                          as={"div"}
+                        <div
                           data-plasmic-name={"headingAndSupportingText18"}
                           data-plasmic-override={
                             overrides.headingAndSupportingText18
                           }
-                          hasGap={true}
                           className={classNames(
                             projectcss.all,
                             sty.headingAndSupportingText18
@@ -2360,13 +2282,13 @@ function PlasmicConditionsGeneralesDutilisation__RenderFunc(props: {
                               </React.Fragment>
                             )}
                           </div>
-                        </Stack__>
-                      </Stack__>
-                    </Stack__>
-                  </Stack__>
-                </Stack__>
-              </Stack__>
-            </Stack__>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
             <Footer
               data-plasmic-name={"footer"}
               data-plasmic-override={overrides.footer}

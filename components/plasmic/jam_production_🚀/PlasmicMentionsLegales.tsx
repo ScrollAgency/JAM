@@ -272,11 +272,9 @@ function PlasmicMentionsLegales__RenderFunc(props: {
             data-plasmic-override={overrides.structureLp}
             className={classNames(projectcss.all, sty.structureLp)}
           >
-            <Stack__
-              as={"div"}
+            <div
               data-plasmic-name={"navbar"}
               data-plasmic-override={overrides.navbar}
-              hasGap={true}
               className={classNames(projectcss.all, sty.navbar)}
             >
               <NavigationBar
@@ -357,11 +355,9 @@ function PlasmicMentionsLegales__RenderFunc(props: {
                         data-plasmic-override={overrides.frame22}
                         className={classNames(projectcss.all, sty.frame22)}
                       >
-                        <Stack__
-                          as={"div"}
+                        <div
                           data-plasmic-name={"frame23"}
                           data-plasmic-override={overrides.frame23}
-                          hasGap={true}
                           className={classNames(projectcss.all, sty.frame23)}
                         >
                           <div
@@ -373,12 +369,10 @@ function PlasmicMentionsLegales__RenderFunc(props: {
                           >
                             {"JOB"}
                           </div>
-                        </Stack__>
-                        <Stack__
-                          as={"div"}
+                        </div>
+                        <div
                           data-plasmic-name={"frame24"}
                           data-plasmic-override={overrides.frame24}
-                          hasGap={true}
                           className={classNames(projectcss.all, sty.frame24)}
                         >
                           <div
@@ -390,12 +384,10 @@ function PlasmicMentionsLegales__RenderFunc(props: {
                           >
                             {"AROUND"}
                           </div>
-                        </Stack__>
-                        <Stack__
-                          as={"div"}
+                        </div>
+                        <div
                           data-plasmic-name={"frame25"}
                           data-plasmic-override={overrides.frame25}
-                          hasGap={true}
                           className={classNames(projectcss.all, sty.frame25)}
                         >
                           <div
@@ -407,14 +399,12 @@ function PlasmicMentionsLegales__RenderFunc(props: {
                           >
                             {"ME"}
                           </div>
-                        </Stack__>
+                        </div>
                       </div>
                     </div>
-                    <Stack__
-                      as={"div"}
+                    <div
                       data-plasmic-name={"jamLogo2"}
                       data-plasmic-override={overrides.jamLogo2}
-                      hasGap={true}
                       className={classNames(projectcss.all, sty.jamLogo2)}
                     >
                       <Vector12Icon
@@ -473,7 +463,7 @@ function PlasmicMentionsLegales__RenderFunc(props: {
                           </div>
                         </div>
                       </div>
-                    </Stack__>
+                    </div>
                   </React.Fragment>
                 }
                 className={classNames("__wab_instance", sty.navigationBar)}
@@ -774,18 +764,14 @@ function PlasmicMentionsLegales__RenderFunc(props: {
                 responsiveBreakpoint={768}
               />
 
-              <Stack__
-                as={"header"}
+              <header
                 data-plasmic-name={"header3"}
                 data-plasmic-override={overrides.header3}
-                hasGap={true}
                 className={classNames(projectcss.all, sty.header3)}
               >
-                <Stack__
-                  as={"div"}
+                <div
                   data-plasmic-name={"jamLogo"}
                   data-plasmic-override={overrides.jamLogo}
-                  hasGap={true}
                   className={classNames(projectcss.all, sty.jamLogo)}
                   onClick={async event => {
                     const $steps = {};
@@ -872,12 +858,10 @@ function PlasmicMentionsLegales__RenderFunc(props: {
                       </div>
                     </div>
                   </div>
-                </Stack__>
-                <Stack__
-                  as={"div"}
+                </div>
+                <div
                   data-plasmic-name={"menuItems2"}
                   data-plasmic-override={overrides.menuItems2}
-                  hasGap={true}
                   className={classNames(projectcss.all, sty.menuItems2)}
                 >
                   <div
@@ -1036,12 +1020,8 @@ function PlasmicMentionsLegales__RenderFunc(props: {
                   >
                     {"FAQ"}
                   </div>
-                </Stack__>
-                <Stack__
-                  as={"div"}
-                  hasGap={true}
-                  className={classNames(projectcss.all, sty.freeBox__iepX)}
-                >
+                </div>
+                <div className={classNames(projectcss.all, sty.freeBox__iepX)}>
                   <Button
                     className={classNames("__wab_instance", sty.button__jcJj2)}
                     end={
@@ -1107,62 +1087,48 @@ function PlasmicMentionsLegales__RenderFunc(props: {
                       }
                     }}
                   />
-                </Stack__>
-              </Stack__>
-            </Stack__>
-            <Stack__
-              as={"div"}
+                </div>
+              </header>
+            </div>
+            <div
               data-plasmic-name={"benefices"}
               data-plasmic-override={overrides.benefices}
-              hasGap={true}
               className={classNames(projectcss.all, sty.benefices)}
             >
-              <Stack__
-                as={"div"}
+              <div
                 data-plasmic-name={"container"}
                 data-plasmic-override={overrides.container}
-                hasGap={true}
                 className={classNames(projectcss.all, sty.container)}
               >
-                <Stack__
-                  as={"div"}
+                <div
                   data-plasmic-name={"content2"}
                   data-plasmic-override={overrides.content2}
-                  hasGap={true}
                   className={classNames(projectcss.all, sty.content2)}
                 >
-                  <Stack__
-                    as={"div"}
+                  <div
                     data-plasmic-name={"headingAndSupportingText"}
                     data-plasmic-override={overrides.headingAndSupportingText}
-                    hasGap={true}
                     className={classNames(
                       projectcss.all,
                       sty.headingAndSupportingText
                     )}
                   >
-                    <Stack__
-                      as={"div"}
+                    <div
                       data-plasmic-name={"headingAndBadge"}
                       data-plasmic-override={overrides.headingAndBadge}
-                      hasGap={true}
                       className={classNames(
                         projectcss.all,
                         sty.headingAndBadge
                       )}
                     >
-                      <Stack__
-                        as={"div"}
+                      <div
                         data-plasmic-name={"badgeGroup2"}
                         data-plasmic-override={overrides.badgeGroup2}
-                        hasGap={true}
                         className={classNames(projectcss.all, sty.badgeGroup2)}
                       >
-                        <Stack__
-                          as={"div"}
+                        <div
                           data-plasmic-name={"content3"}
                           data-plasmic-override={overrides.content3}
-                          hasGap={true}
                           className={classNames(projectcss.all, sty.content3)}
                         >
                           <div
@@ -1176,8 +1142,8 @@ function PlasmicMentionsLegales__RenderFunc(props: {
                           >
                             {"Mentions l\u00e9gales"}
                           </div>
-                        </Stack__>
-                      </Stack__>
+                        </div>
+                      </div>
                       <div
                         data-plasmic-name={"heading"}
                         data-plasmic-override={overrides.heading}
@@ -1189,20 +1155,16 @@ function PlasmicMentionsLegales__RenderFunc(props: {
                       >
                         {"Mentions l\u00e9gales \u2013 Job Around Me"}
                       </div>
-                      <Stack__
-                        as={"div"}
+                      <div
                         data-plasmic-name={"item"}
                         data-plasmic-override={overrides.item}
-                        hasGap={true}
                         className={classNames(projectcss.all, sty.item)}
                       >
-                        <Stack__
-                          as={"div"}
+                        <div
                           data-plasmic-name={"headingAndSupportingText2"}
                           data-plasmic-override={
                             overrides.headingAndSupportingText2
                           }
-                          hasGap={true}
                           className={classNames(
                             projectcss.all,
                             sty.headingAndSupportingText2
@@ -1341,22 +1303,18 @@ function PlasmicMentionsLegales__RenderFunc(props: {
                               <React.Fragment>{""}</React.Fragment>
                             </React.Fragment>
                           </div>
-                        </Stack__>
-                      </Stack__>
-                      <Stack__
-                        as={"div"}
+                        </div>
+                      </div>
+                      <div
                         data-plasmic-name={"item2"}
                         data-plasmic-override={overrides.item2}
-                        hasGap={true}
                         className={classNames(projectcss.all, sty.item2)}
                       >
-                        <Stack__
-                          as={"div"}
+                        <div
                           data-plasmic-name={"headingAndSupportingText3"}
                           data-plasmic-override={
                             overrides.headingAndSupportingText3
                           }
-                          hasGap={true}
                           className={classNames(
                             projectcss.all,
                             sty.headingAndSupportingText3
@@ -1395,22 +1353,18 @@ function PlasmicMentionsLegales__RenderFunc(props: {
                               "JobAroundMe est une plateforme de mise en relation entre employeurs et candidats, permettant aux utilisateurs de trouver rapidement des offres d\u2019emploi g\u00e9olocalis\u00e9es. L\u2019application facilite les opportunit\u00e9s d\u2019emploi de proximit\u00e9, incluant les missions urgentes de longue et courte dur\u00e9e."
                             }
                           </div>
-                        </Stack__>
-                      </Stack__>
-                      <Stack__
-                        as={"div"}
+                        </div>
+                      </div>
+                      <div
                         data-plasmic-name={"item3"}
                         data-plasmic-override={overrides.item3}
-                        hasGap={true}
                         className={classNames(projectcss.all, sty.item3)}
                       >
-                        <Stack__
-                          as={"div"}
+                        <div
                           data-plasmic-name={"headingAndSupportingText4"}
                           data-plasmic-override={
                             overrides.headingAndSupportingText4
                           }
-                          hasGap={true}
                           className={classNames(
                             projectcss.all,
                             sty.headingAndSupportingText4
@@ -1502,22 +1456,18 @@ function PlasmicMentionsLegales__RenderFunc(props: {
                               <React.Fragment>{""}</React.Fragment>
                             </React.Fragment>
                           </div>
-                        </Stack__>
-                      </Stack__>
-                      <Stack__
-                        as={"div"}
+                        </div>
+                      </div>
+                      <div
                         data-plasmic-name={"item4"}
                         data-plasmic-override={overrides.item4}
-                        hasGap={true}
                         className={classNames(projectcss.all, sty.item4)}
                       >
-                        <Stack__
-                          as={"div"}
+                        <div
                           data-plasmic-name={"headingAndSupportingText5"}
                           data-plasmic-override={
                             overrides.headingAndSupportingText5
                           }
-                          hasGap={true}
                           className={classNames(
                             projectcss.all,
                             sty.headingAndSupportingText5
@@ -1556,22 +1506,18 @@ function PlasmicMentionsLegales__RenderFunc(props: {
                               "Tous les contenus pr\u00e9sents sur l\u2019application Job Around Me (textes, images, logos, charte graphique, fonctionnalit\u00e9s, etc.) sont prot\u00e9g\u00e9s par le droit de la propri\u00e9t\u00e9 intellectuelle. Toute reproduction, repr\u00e9sentation ou diffusion, totale ou partielle, sans autorisation \u00e9crite, est interdite."
                             }
                           </div>
-                        </Stack__>
-                      </Stack__>
-                      <Stack__
-                        as={"div"}
+                        </div>
+                      </div>
+                      <div
                         data-plasmic-name={"item5"}
                         data-plasmic-override={overrides.item5}
-                        hasGap={true}
                         className={classNames(projectcss.all, sty.item5)}
                       >
-                        <Stack__
-                          as={"div"}
+                        <div
                           data-plasmic-name={"headingAndSupportingText6"}
                           data-plasmic-override={
                             overrides.headingAndSupportingText6
                           }
-                          hasGap={true}
                           className={classNames(
                             projectcss.all,
                             sty.headingAndSupportingText6
@@ -1610,22 +1556,18 @@ function PlasmicMentionsLegales__RenderFunc(props: {
                               "Job Around Me met tout en \u0153uvre pour garantir l\u2019exactitude et la mise \u00e0 jour des informations diffus\u00e9es sur l\u2019application. Toutefois, la responsabilit\u00e9 de l\u2019\u00e9diteur ne saurait \u00eatre engag\u00e9e en cas d\u2019erreur, d\u2019inexactitude ou d\u2019omission.\r\n\r\nLes offres d\u2019emploi sont publi\u00e9es sous la responsabilit\u00e9 exclusive des employeurs. JobAroundMe n\u2019agit pas en tant qu\u2019employeur et ne garantit ni l\u2019aboutissement des candidatures, ni la v\u00e9racit\u00e9 des informations fournies par les utilisateurs.\n"
                             }
                           </div>
-                        </Stack__>
-                      </Stack__>
-                      <Stack__
-                        as={"div"}
+                        </div>
+                      </div>
+                      <div
                         data-plasmic-name={"item6"}
                         data-plasmic-override={overrides.item6}
-                        hasGap={true}
                         className={classNames(projectcss.all, sty.item6)}
                       >
-                        <Stack__
-                          as={"div"}
+                        <div
                           data-plasmic-name={"headingAndSupportingText7"}
                           data-plasmic-override={
                             overrides.headingAndSupportingText7
                           }
-                          hasGap={true}
                           className={classNames(
                             projectcss.all,
                             sty.headingAndSupportingText7
@@ -1664,22 +1606,18 @@ function PlasmicMentionsLegales__RenderFunc(props: {
                               "JobAroundMe collecte et traite des donn\u00e9es personnelles conform\u00e9ment au RGPD.\r\n\r\nLes utilisateurs disposent d\u2019un droit d\u2019acc\u00e8s, de rectification et de suppression de leurs donn\u00e9es en \u00e9crivant \u00e0 : [contact@job-around-me.com](mailto:contact@job-around-me.com)\r\n\r\nPour plus d\u2019informations, veuillez consulter notre [Politique de confidentialit\u00e9].\n"
                             }
                           </div>
-                        </Stack__>
-                      </Stack__>
-                      <Stack__
-                        as={"div"}
+                        </div>
+                      </div>
+                      <div
                         data-plasmic-name={"item7"}
                         data-plasmic-override={overrides.item7}
-                        hasGap={true}
                         className={classNames(projectcss.all, sty.item7)}
                       >
-                        <Stack__
-                          as={"div"}
+                        <div
                           data-plasmic-name={"headingAndSupportingText8"}
                           data-plasmic-override={
                             overrides.headingAndSupportingText8
                           }
-                          hasGap={true}
                           className={classNames(
                             projectcss.all,
                             sty.headingAndSupportingText8
@@ -1720,22 +1658,18 @@ function PlasmicMentionsLegales__RenderFunc(props: {
                               "L\u2019utilisation de l\u2019application JobAroundMe est soumise \u00e0 l\u2019acceptation de nos Conditions G\u00e9n\u00e9rales d\u2019Utilisation, accessibles depuis l\u2019application et le site web\r  Politique de confidentialit\u00e9 \u2013 JobAroundMe\r\n\r\nDerni\u00e8re mise \u00e0 jour : 19/06/2025\n\n\r\n\r\nChez JobAroundMe, la protection de vos donn\u00e9es personnelles est une priorit\u00e9. Cette politique explique quelles donn\u00e9es nous collectons, comment nous les utilisons, et quels sont vos droits.\n"
                             }
                           </div>
-                        </Stack__>
-                      </Stack__>
-                      <Stack__
-                        as={"div"}
+                        </div>
+                      </div>
+                      <div
                         data-plasmic-name={"item8"}
                         data-plasmic-override={overrides.item8}
-                        hasGap={true}
                         className={classNames(projectcss.all, sty.item8)}
                       >
-                        <Stack__
-                          as={"div"}
+                        <div
                           data-plasmic-name={"headingAndSupportingText9"}
                           data-plasmic-override={
                             overrides.headingAndSupportingText9
                           }
-                          hasGap={true}
                           className={classNames(
                             projectcss.all,
                             sty.headingAndSupportingText9
@@ -1774,22 +1708,18 @@ function PlasmicMentionsLegales__RenderFunc(props: {
                               "JobAroundMe est \u00e9dit\u00e9 par la soci\u00e9t\u00e9 JobAroundMe S\u00e0rl-S, dont le si\u00e8ge est situ\u00e9 \u00e0 5 rue Nelson Mandela\r\n\r\nL-4035 , immatricul\u00e9e sous le num\u00e9ro B297124."
                             }
                           </div>
-                        </Stack__>
-                      </Stack__>
-                      <Stack__
-                        as={"div"}
+                        </div>
+                      </div>
+                      <div
                         data-plasmic-name={"item9"}
                         data-plasmic-override={overrides.item9}
-                        hasGap={true}
                         className={classNames(projectcss.all, sty.item9)}
                       >
-                        <Stack__
-                          as={"div"}
+                        <div
                           data-plasmic-name={"headingAndSupportingText10"}
                           data-plasmic-override={
                             overrides.headingAndSupportingText10
                           }
-                          hasGap={true}
                           className={classNames(
                             projectcss.all,
                             sty.headingAndSupportingText10
@@ -1903,22 +1833,18 @@ function PlasmicMentionsLegales__RenderFunc(props: {
                               <React.Fragment>{""}</React.Fragment>
                             </React.Fragment>
                           </div>
-                        </Stack__>
-                      </Stack__>
-                      <Stack__
-                        as={"div"}
+                        </div>
+                      </div>
+                      <div
                         data-plasmic-name={"item10"}
                         data-plasmic-override={overrides.item10}
-                        hasGap={true}
                         className={classNames(projectcss.all, sty.item10)}
                       >
-                        <Stack__
-                          as={"div"}
+                        <div
                           data-plasmic-name={"headingAndSupportingText11"}
                           data-plasmic-override={
                             overrides.headingAndSupportingText11
                           }
-                          hasGap={true}
                           className={classNames(
                             projectcss.all,
                             sty.headingAndSupportingText11
@@ -2042,22 +1968,18 @@ function PlasmicMentionsLegales__RenderFunc(props: {
                               <React.Fragment>{""}</React.Fragment>
                             </React.Fragment>
                           </div>
-                        </Stack__>
-                      </Stack__>
-                      <Stack__
-                        as={"div"}
+                        </div>
+                      </div>
+                      <div
                         data-plasmic-name={"item11"}
                         data-plasmic-override={overrides.item11}
-                        hasGap={true}
                         className={classNames(projectcss.all, sty.item11)}
                       >
-                        <Stack__
-                          as={"div"}
+                        <div
                           data-plasmic-name={"headingAndSupportingText12"}
                           data-plasmic-override={
                             overrides.headingAndSupportingText12
                           }
-                          hasGap={true}
                           className={classNames(
                             projectcss.all,
                             sty.headingAndSupportingText12
@@ -2147,22 +2069,18 @@ function PlasmicMentionsLegales__RenderFunc(props: {
                               <React.Fragment>{""}</React.Fragment>
                             </React.Fragment>
                           </div>
-                        </Stack__>
-                      </Stack__>
-                      <Stack__
-                        as={"div"}
+                        </div>
+                      </div>
+                      <div
                         data-plasmic-name={"item12"}
                         data-plasmic-override={overrides.item12}
-                        hasGap={true}
                         className={classNames(projectcss.all, sty.item12)}
                       >
-                        <Stack__
-                          as={"div"}
+                        <div
                           data-plasmic-name={"headingAndSupportingText13"}
                           data-plasmic-override={
                             overrides.headingAndSupportingText13
                           }
-                          hasGap={true}
                           className={classNames(
                             projectcss.all,
                             sty.headingAndSupportingText13
@@ -2201,22 +2119,18 @@ function PlasmicMentionsLegales__RenderFunc(props: {
                               "Avec votre consentement, nous utilisons votre position pour vous proposer des offres pr\u00e8s de chez vous. Vous pouvez retirer ce consentement \u00e0 tout moment dans les r\u00e9glages de votre t\u00e9l\u00e9phone."
                             }
                           </div>
-                        </Stack__>
-                      </Stack__>
-                      <Stack__
-                        as={"div"}
+                        </div>
+                      </div>
+                      <div
                         data-plasmic-name={"item13"}
                         data-plasmic-override={overrides.item13}
-                        hasGap={true}
                         className={classNames(projectcss.all, sty.item13)}
                       >
-                        <Stack__
-                          as={"div"}
+                        <div
                           data-plasmic-name={"headingAndSupportingText14"}
                           data-plasmic-override={
                             overrides.headingAndSupportingText14
                           }
-                          hasGap={true}
                           className={classNames(
                             projectcss.all,
                             sty.headingAndSupportingText14
@@ -2296,22 +2210,18 @@ function PlasmicMentionsLegales__RenderFunc(props: {
                               </React.Fragment>
                             </React.Fragment>
                           </div>
-                        </Stack__>
-                      </Stack__>
-                      <Stack__
-                        as={"div"}
+                        </div>
+                      </div>
+                      <div
                         data-plasmic-name={"item14"}
                         data-plasmic-override={overrides.item14}
-                        hasGap={true}
                         className={classNames(projectcss.all, sty.item14)}
                       >
-                        <Stack__
-                          as={"div"}
+                        <div
                           data-plasmic-name={"headingAndSupportingText15"}
                           data-plasmic-override={
                             overrides.headingAndSupportingText15
                           }
-                          hasGap={true}
                           className={classNames(
                             projectcss.all,
                             sty.headingAndSupportingText15
@@ -2421,22 +2331,18 @@ function PlasmicMentionsLegales__RenderFunc(props: {
                               </React.Fragment>
                             </React.Fragment>
                           </div>
-                        </Stack__>
-                      </Stack__>
-                      <Stack__
-                        as={"div"}
+                        </div>
+                      </div>
+                      <div
                         data-plasmic-name={"item15"}
                         data-plasmic-override={overrides.item15}
-                        hasGap={true}
                         className={classNames(projectcss.all, sty.item15)}
                       >
-                        <Stack__
-                          as={"div"}
+                        <div
                           data-plasmic-name={"headingAndSupportingText16"}
                           data-plasmic-override={
                             overrides.headingAndSupportingText16
                           }
-                          hasGap={true}
                           className={classNames(
                             projectcss.all,
                             sty.headingAndSupportingText16
@@ -2475,22 +2381,18 @@ function PlasmicMentionsLegales__RenderFunc(props: {
                               "Nous mettons en \u0153uvre toutes les mesures techniques et organisationnelles appropri\u00e9es pour prot\u00e9ger vos donn\u00e9es contre tout acc\u00e8s non autoris\u00e9, perte ou alt\u00e9ration."
                             }
                           </div>
-                        </Stack__>
-                      </Stack__>
-                      <Stack__
-                        as={"div"}
+                        </div>
+                      </div>
+                      <div
                         data-plasmic-name={"item16"}
                         data-plasmic-override={overrides.item16}
-                        hasGap={true}
                         className={classNames(projectcss.all, sty.item16)}
                       >
-                        <Stack__
-                          as={"div"}
+                        <div
                           data-plasmic-name={"headingAndSupportingText17"}
                           data-plasmic-override={
                             overrides.headingAndSupportingText17
                           }
-                          hasGap={true}
                           className={classNames(
                             projectcss.all,
                             sty.headingAndSupportingText17
@@ -2529,22 +2431,18 @@ function PlasmicMentionsLegales__RenderFunc(props: {
                               "Cette politique peut \u00eatre mise \u00e0 jour. Nous vous informerons en cas de modification importante."
                             }
                           </div>
-                        </Stack__>
-                      </Stack__>
-                      <Stack__
-                        as={"div"}
+                        </div>
+                      </div>
+                      <div
                         data-plasmic-name={"item17"}
                         data-plasmic-override={overrides.item17}
-                        hasGap={true}
                         className={classNames(projectcss.all, sty.item17)}
                       >
-                        <Stack__
-                          as={"div"}
+                        <div
                           data-plasmic-name={"headingAndSupportingText18"}
                           data-plasmic-override={
                             overrides.headingAndSupportingText18
                           }
-                          hasGap={true}
                           className={classNames(
                             projectcss.all,
                             sty.headingAndSupportingText18
@@ -2611,13 +2509,13 @@ function PlasmicMentionsLegales__RenderFunc(props: {
                               <React.Fragment>{""}</React.Fragment>
                             </React.Fragment>
                           </div>
-                        </Stack__>
-                      </Stack__>
-                    </Stack__>
-                  </Stack__>
-                </Stack__>
-              </Stack__>
-            </Stack__>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
             <Footer
               data-plasmic-name={"footer"}
               data-plasmic-override={overrides.footer}

@@ -464,13 +464,11 @@ function PlasmicJobCard__RenderFunc(props: {
   });
 
   return (
-    <Stack__
-      as={"div"}
+    <div
       data-plasmic-name={"root"}
       data-plasmic-override={overrides.root}
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
-      hasGap={true}
       className={classNames(
         projectcss.all,
         projectcss.root_reset,
@@ -483,23 +481,11 @@ function PlasmicJobCard__RenderFunc(props: {
         sty.root
       )}
     >
-      <Stack__
-        as={"div"}
-        hasGap={true}
-        className={classNames(projectcss.all, sty.freeBox__kD3Dt)}
-      >
+      <div className={classNames(projectcss.all, sty.freeBox__kD3Dt)}>
         <div className={classNames(projectcss.all, sty.freeBox__lvPyQ)}>
-          <Stack__
-            as={"div"}
-            hasGap={true}
-            className={classNames(projectcss.all, sty.freeBox__q1Yn)}
-          >
+          <div className={classNames(projectcss.all, sty.freeBox__q1Yn)}>
             <div className={classNames(projectcss.all, sty.freeBox__q2DmR)}>
-              <Stack__
-                as={"div"}
-                hasGap={true}
-                className={classNames(projectcss.all, sty.freeBox__weg0R)}
-              >
+              <div className={classNames(projectcss.all, sty.freeBox__weg0R)}>
                 <div
                   className={classNames(
                     projectcss.all,
@@ -523,9 +509,7 @@ function PlasmicJobCard__RenderFunc(props: {
                     })()}
                   </React.Fragment>
                 </div>
-                <Stack__
-                  as={"div"}
-                  hasGap={true}
+                <div
                   className={classNames(projectcss.all, sty.freeBox__fiDw)}
                   style={(() => {
                     try {
@@ -601,13 +585,9 @@ function PlasmicJobCard__RenderFunc(props: {
                       })()}
                     </React.Fragment>
                   </div>
-                </Stack__>
-              </Stack__>
-              <Stack__
-                as={"div"}
-                hasGap={true}
-                className={classNames(projectcss.all, sty.freeBox___58Ggo)}
-              >
+                </div>
+              </div>
+              <div className={classNames(projectcss.all, sty.freeBox___58Ggo)}>
                 <IconPhMapPinIcon
                   className={classNames(projectcss.all, sty.svg__ttEu)}
                   role={"img"}
@@ -666,18 +646,10 @@ function PlasmicJobCard__RenderFunc(props: {
                     })()}
                   </React.Fragment>
                 </div>
-              </Stack__>
+              </div>
             </div>
-            <Stack__
-              as={"div"}
-              hasGap={true}
-              className={classNames(projectcss.all, sty.freeBox__pARq8)}
-            >
-              <Stack__
-                as={"div"}
-                hasGap={true}
-                className={classNames(projectcss.all, sty.freeBox___1T0Xi)}
-              >
+            <div className={classNames(projectcss.all, sty.freeBox__pARq8)}>
+              <div className={classNames(projectcss.all, sty.freeBox___1T0Xi)}>
                 <div
                   className={classNames(projectcss.all, sty.freeBox__mEwuY)}
                   onClick={args.onClickBoost}
@@ -912,7 +884,7 @@ function PlasmicJobCard__RenderFunc(props: {
                     aspectRatio: 1
                   }}
                 />
-              </Stack__>
+              </div>
               <div className={classNames(projectcss.all, sty.freeBox__hRwTf)}>
                 <PhTrashIcon
                   className={classNames(projectcss.all, sty.svg__nDFv4)}
@@ -926,21 +898,17 @@ function PlasmicJobCard__RenderFunc(props: {
                   role={"img"}
                 />
               </div>
-            </Stack__>
-          </Stack__>
+            </div>
+          </div>
         </div>
-        <Stack__
-          as={"div"}
+        <div
           data-plasmic-name={"frame1437254218"}
           data-plasmic-override={overrides.frame1437254218}
-          hasGap={true}
           className={classNames(projectcss.all, sty.frame1437254218)}
         >
-          <Stack__
-            as={"div"}
+          <div
             data-plasmic-name={"badgeBase"}
             data-plasmic-override={overrides.badgeBase}
-            hasGap={true}
             className={classNames(projectcss.all, sty.badgeBase)}
           >
             <PhBriefcaseIcon
@@ -973,12 +941,10 @@ function PlasmicJobCard__RenderFunc(props: {
                 })()}
               </React.Fragment>
             </div>
-          </Stack__>
-          <Stack__
-            as={"div"}
+          </div>
+          <div
             data-plasmic-name={"badgeBase2"}
             data-plasmic-override={overrides.badgeBase2}
-            hasGap={true}
             className={classNames(projectcss.all, sty.badgeBase2)}
           >
             <PhFileText2Icon
@@ -1011,12 +977,10 @@ function PlasmicJobCard__RenderFunc(props: {
                 })()}
               </React.Fragment>
             </div>
-          </Stack__>
-          <Stack__
-            as={"div"}
+          </div>
+          <div
             data-plasmic-name={"badgeBase3"}
             data-plasmic-override={overrides.badgeBase3}
-            hasGap={true}
             className={classNames(projectcss.all, sty.badgeBase3)}
           >
             <PhClockCountdown2Icon
@@ -1049,12 +1013,10 @@ function PlasmicJobCard__RenderFunc(props: {
                 })()}
               </React.Fragment>
             </div>
-          </Stack__>
-          <Stack__
-            as={"div"}
+          </div>
+          <div
             data-plasmic-name={"badgeBase4"}
             data-plasmic-override={overrides.badgeBase4}
-            hasGap={true}
             className={classNames(projectcss.all, sty.badgeBase4)}
           >
             <PhClock2Icon
@@ -1087,12 +1049,10 @@ function PlasmicJobCard__RenderFunc(props: {
                 })()}
               </React.Fragment>
             </div>
-          </Stack__>
-          <Stack__
-            as={"div"}
+          </div>
+          <div
             data-plasmic-name={"badgeBase5"}
             data-plasmic-override={overrides.badgeBase5}
-            hasGap={true}
             className={classNames(projectcss.all, sty.badgeBase5)}
           >
             <PhCoinsLight2Icon
@@ -1125,12 +1085,10 @@ function PlasmicJobCard__RenderFunc(props: {
                 })()}
               </React.Fragment>
             </div>
-          </Stack__>
-          <Stack__
-            as={"div"}
+          </div>
+          <div
             data-plasmic-name={"badgeBase6"}
             data-plasmic-override={overrides.badgeBase6}
-            hasGap={true}
             className={classNames(projectcss.all, sty.badgeBase6)}
           >
             <PlasmicImg__
@@ -1176,14 +1134,10 @@ function PlasmicJobCard__RenderFunc(props: {
                 })()}
               </React.Fragment>
             </div>
-          </Stack__>
-        </Stack__>
-      </Stack__>
-      <Stack__
-        as={"div"}
-        hasGap={true}
-        className={classNames(projectcss.all, sty.freeBox__lDrQm)}
-      >
+          </div>
+        </div>
+      </div>
+      <div className={classNames(projectcss.all, sty.freeBox__lDrQm)}>
         <Button
           data-plasmic-name={"button"}
           data-plasmic-override={overrides.button}
@@ -1345,8 +1299,8 @@ function PlasmicJobCard__RenderFunc(props: {
             }}
           />
         ) : null}
-      </Stack__>
-    </Stack__>
+      </div>
+    </div>
   ) as React.ReactElement | null;
 }
 

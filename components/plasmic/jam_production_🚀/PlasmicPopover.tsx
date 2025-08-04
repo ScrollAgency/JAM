@@ -237,11 +237,7 @@ function PlasmicPopover__RenderFunc(props: {
           >
             {renderPlasmicSlot({
               defaultContents: (
-                <Stack__
-                  as={"div"}
-                  hasGap={true}
-                  className={classNames(projectcss.all, sty.freeBox__gUq4W)}
-                >
+                <div className={classNames(projectcss.all, sty.freeBox__gUq4W)}>
                   <div
                     className={classNames(
                       projectcss.all,
@@ -271,7 +267,7 @@ function PlasmicPopover__RenderFunc(props: {
                       "Use it in a `Aria Dialog Trigger` component to trigger it on a button click."
                     }
                   </div>
-                </Stack__>
+                </div>
               ),
               value: args.content
             })}

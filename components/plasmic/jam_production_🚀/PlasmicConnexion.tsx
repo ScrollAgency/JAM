@@ -262,18 +262,14 @@ function PlasmicConnexion__RenderFunc(props: {
             data-plasmic-override={overrides.signIn}
             className={classNames(projectcss.all, sty.signIn)}
           >
-            <Stack__
-              as={"div"}
+            <div
               data-plasmic-name={"imageWrapper2"}
               data-plasmic-override={overrides.imageWrapper2}
-              hasGap={true}
               className={classNames(projectcss.all, sty.imageWrapper2)}
             >
-              <Stack__
-                as={"div"}
+              <div
                 data-plasmic-name={"logoWrapper2"}
                 data-plasmic-override={overrides.logoWrapper2}
-                hasGap={true}
                 className={classNames(projectcss.all, sty.logoWrapper2)}
                 onClick={async event => {
                   const $steps = {};
@@ -316,11 +312,9 @@ function PlasmicConnexion__RenderFunc(props: {
                   data-plasmic-override={overrides.baseline2}
                   className={classNames(projectcss.all, sty.baseline2)}
                 >
-                  <Stack__
-                    as={"div"}
+                  <div
                     data-plasmic-name={"frame4"}
                     data-plasmic-override={overrides.frame4}
-                    hasGap={true}
                     className={classNames(projectcss.all, sty.frame4)}
                   >
                     <div
@@ -332,12 +326,10 @@ function PlasmicConnexion__RenderFunc(props: {
                     >
                       {"JOB"}
                     </div>
-                  </Stack__>
-                  <Stack__
-                    as={"div"}
+                  </div>
+                  <div
                     data-plasmic-name={"frame5"}
                     data-plasmic-override={overrides.frame5}
-                    hasGap={true}
                     className={classNames(projectcss.all, sty.frame5)}
                   >
                     <div
@@ -349,12 +341,10 @@ function PlasmicConnexion__RenderFunc(props: {
                     >
                       {"AROUND"}
                     </div>
-                  </Stack__>
-                  <Stack__
-                    as={"div"}
+                  </div>
+                  <div
                     data-plasmic-name={"frame6"}
                     data-plasmic-override={overrides.frame6}
-                    hasGap={true}
                     className={classNames(projectcss.all, sty.frame6)}
                   >
                     <div
@@ -366,15 +356,13 @@ function PlasmicConnexion__RenderFunc(props: {
                     >
                       {"ME"}
                     </div>
-                  </Stack__>
+                  </div>
                 </div>
-              </Stack__>
-            </Stack__>
-            <Stack__
-              as={"div"}
+              </div>
+            </div>
+            <div
               data-plasmic-name={"formWrapper"}
               data-plasmic-override={overrides.formWrapper}
-              hasGap={true}
               className={classNames(projectcss.all, sty.formWrapper)}
             >
               <Login
@@ -511,7 +499,7 @@ function PlasmicConnexion__RenderFunc(props: {
                 titleHeading={"h1"}
                 wrapperStyle={"card"}
               />
-            </Stack__>
+            </div>
           </div>
           <PageLoader
             data-plasmic-name={"pageLoader"}

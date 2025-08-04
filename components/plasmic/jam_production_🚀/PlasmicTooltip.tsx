@@ -236,11 +236,9 @@ function PlasmicTooltip__RenderFunc(props: {
             dark={true}
           />
 
-          <Stack__
-            as={"div"}
+          <div
             data-plasmic-name={"freeBox"}
             data-plasmic-override={overrides.freeBox}
-            hasGap={true}
             className={classNames(projectcss.all, sty.freeBox)}
           >
             {renderPlasmicSlot({
@@ -269,7 +267,7 @@ function PlasmicTooltip__RenderFunc(props: {
               value: args.content,
               className: classNames(sty.slotTargetContent)
             })}
-          </Stack__>
+          </div>
         </React.Fragment>
       }
       trigger={args.triggerAction}

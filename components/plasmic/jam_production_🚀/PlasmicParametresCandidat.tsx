@@ -734,7 +734,9 @@ function PlasmicParametresCandidat__RenderFunc(props: {
         userArgs: {
           params: [
             $state.formulaire.value.postal_code ?? "75000",
+
             $state.formulaire.value.country ?? "France",
+
             $state.formulaire.value.city ?? "Paris"
           ]
         },
@@ -832,11 +834,9 @@ function PlasmicParametresCandidat__RenderFunc(props: {
               role={generateStateValueProp($state, ["sidebar", "role"])}
             />
 
-            <Stack__
-              as={"main"}
+            <main
               data-plasmic-name={"main"}
               data-plasmic-override={overrides.main}
-              hasGap={true}
               className={classNames(projectcss.all, sty.main)}
             >
               <h1
@@ -851,11 +851,9 @@ function PlasmicParametresCandidat__RenderFunc(props: {
               >
                 {"Param\u00e8tres de compte"}
               </h1>
-              <Stack__
-                as={"div"}
+              <div
                 data-plasmic-name={"container"}
                 data-plasmic-override={overrides.container}
-                hasGap={true}
                 className={classNames(projectcss.all, sty.container)}
               >
                 <div
@@ -866,11 +864,9 @@ function PlasmicParametresCandidat__RenderFunc(props: {
                     sty.informationsPersonnelles
                   )}
                 >
-                  <Stack__
-                    as={"div"}
+                  <div
                     data-plasmic-name={"frame1437254343"}
                     data-plasmic-override={overrides.frame1437254343}
-                    hasGap={true}
                     className={classNames(projectcss.all, sty.frame1437254343)}
                   >
                     <UploadWrapper
@@ -901,11 +897,14 @@ function PlasmicParametresCandidat__RenderFunc(props: {
                                     userArgs: {
                                       path: [
                                         $ctx.SupabaseUser.user.id,
+
                                         $state.upload2.files[0].name
                                       ],
+
                                       content: [
                                         $state.upload2.files[0].contents
                                       ],
+
                                       contentType: [
                                         $state.upload2.files[0].type
                                       ]
@@ -957,6 +956,7 @@ function PlasmicParametresCandidat__RenderFunc(props: {
                                     opId: "ca8056ed-4ec7-4218-bb8b-d4f4da770307",
                                     userArgs: {
                                       keys: [$ctx.SupabaseUser.user.id],
+
                                       variables: [
                                         $steps.supabaseUploadFile?.path.split(
                                           "/"
@@ -1120,6 +1120,7 @@ function PlasmicParametresCandidat__RenderFunc(props: {
                                     opId: "00154d6f-41ac-4e44-8d5a-da12df8e7c56",
                                     userArgs: {
                                       variables: [null],
+
                                       conditions: [$ctx.SupabaseUser.user.id]
                                     },
                                     cacheKey: null,
@@ -1174,11 +1175,9 @@ function PlasmicParametresCandidat__RenderFunc(props: {
                         />
                       </div>
                     </UploadWrapper>
-                    <Stack__
-                      as={"div"}
+                    <div
                       data-plasmic-name={"tableCell"}
                       data-plasmic-override={overrides.tableCell}
-                      hasGap={true}
                       className={classNames(projectcss.all, sty.tableCell)}
                     >
                       <Switch
@@ -1245,8 +1244,10 @@ function PlasmicParametresCandidat__RenderFunc(props: {
                                       opId: "d9daea55-b1a9-4e05-aa41-e2d6803f96d8",
                                       userArgs: {
                                         keys: [$ctx.SupabaseUser.user.id],
+
                                         variables: [
                                           $state._switch.isSelected,
+
                                           (active_search_until = $state._switch
                                             .isSelected
                                             ? new Date(Date.now() + 172800000)
@@ -1294,12 +1295,10 @@ function PlasmicParametresCandidat__RenderFunc(props: {
                           }).apply(null, eventArgs);
                         }}
                       />
-                    </Stack__>
-                    <Stack__
-                      as={"div"}
+                    </div>
+                    <div
                       data-plasmic-name={"textInputBase6"}
                       data-plasmic-override={overrides.textInputBase6}
-                      hasGap={true}
                       className={classNames(projectcss.all, sty.textInputBase6)}
                     >
                       <div
@@ -1315,8 +1314,8 @@ function PlasmicParametresCandidat__RenderFunc(props: {
                           'Votre statut "En recherche active" sera d\u00e9sactiv\u00e9 apr\u00e8s 48h. R\u00e9activez-le si vous \u00eates toujours en recherche active.'
                         }
                       </div>
-                    </Stack__>
-                  </Stack__>
+                    </div>
+                  </div>
                   {(() => {
                     const child$Props = {
                       className: classNames("__wab_instance", sty.formulaire),
@@ -1351,31 +1350,47 @@ function PlasmicParametresCandidat__RenderFunc(props: {
                                   opId: "95866b48-3695-471e-94b6-e2a448369b0b",
                                   userArgs: {
                                     keys: [$ctx.SupabaseUser.user.id],
+
                                     variables: [
                                       $queries.fetchUserCoordinates.data
                                         .response.features[0].geometry
                                         .coordinates[1],
+
                                       $queries.fetchUserCoordinates.data
                                         .response.features[0].geometry
                                         .coordinates[0],
+
                                       $state.formulaire.value.address,
+
                                       $state.formulaire.value.city,
+
                                       $state.formulaire.value.country,
+
                                       $state.formulaire.value.email,
+
                                       $state.formulaire.value.first_name,
+
                                       $ctx.SupabaseUser.user.id,
+
                                       $state.formulaire.value.last_name,
+
                                       $state.formulaire.value.level,
+
                                       $state.formulaire.value.linkedin_url,
+
                                       $state.formulaire.value
                                         .short_presentation,
+
                                       JSON.stringify(
                                         $state.formulaire.value.skill
                                       ),
+
                                       JSON.stringify(
                                         $state.formulaire.value.transport_mode
                                       ),
+
                                       $state.formulaire.value.phone_number,
+
                                       $state.formulaire.value.postal_code
                                     ]
                                   },
@@ -1475,11 +1490,9 @@ function PlasmicParametresCandidat__RenderFunc(props: {
                         data-plasmic-override={overrides.formulaire}
                         {...child$Props}
                       >
-                        <Stack__
-                          as={"div"}
+                        <div
                           data-plasmic-name={"prenomNom"}
                           data-plasmic-override={overrides.prenomNom}
-                          hasGap={true}
                           className={classNames(projectcss.all, sty.prenomNom)}
                         >
                           <FormItemWrapper
@@ -1595,7 +1608,7 @@ function PlasmicParametresCandidat__RenderFunc(props: {
                               placeholder={"Nom"}
                             />
                           </FormItemWrapper>
-                        </Stack__>
+                        </div>
                         <FormItemWrapper
                           className={classNames(
                             "__wab_instance",
@@ -1653,11 +1666,9 @@ function PlasmicParametresCandidat__RenderFunc(props: {
                             placeholder={"Email"}
                           />
                         </FormItemWrapper>
-                        <Stack__
-                          as={"div"}
+                        <div
                           data-plasmic-name={"telephone"}
                           data-plasmic-override={overrides.telephone}
-                          hasGap={true}
                           className={classNames(projectcss.all, sty.telephone)}
                         >
                           <FormItemWrapper
@@ -1745,7 +1756,7 @@ function PlasmicParametresCandidat__RenderFunc(props: {
                               placeholder={"0606060606"}
                             />
                           </FormItemWrapper>
-                        </Stack__>
+                        </div>
                         <FormItemWrapper
                           className={classNames(
                             "__wab_instance",
@@ -1799,11 +1810,9 @@ function PlasmicParametresCandidat__RenderFunc(props: {
                             placeholder={"Rue"}
                           />
                         </FormItemWrapper>
-                        <Stack__
-                          as={"div"}
+                        <div
                           data-plasmic-name={"codePosteVille"}
                           data-plasmic-override={overrides.codePosteVille}
-                          hasGap={true}
                           className={classNames(
                             projectcss.all,
                             sty.codePosteVille
@@ -1905,7 +1914,7 @@ function PlasmicParametresCandidat__RenderFunc(props: {
                               placeholder={"Ville"}
                             />
                           </FormItemWrapper>
-                        </Stack__>
+                        </div>
                         <FormItemWrapper
                           className={classNames(
                             "__wab_instance",
@@ -2111,9 +2120,7 @@ function PlasmicParametresCandidat__RenderFunc(props: {
                               }
                             })()}
                             placeholder={
-                              <Stack__
-                                as={"div"}
-                                hasGap={true}
+                              <div
                                 className={classNames(
                                   projectcss.all,
                                   sty.freeBox__i5V8N
@@ -2128,7 +2135,7 @@ function PlasmicParametresCandidat__RenderFunc(props: {
                                 >
                                   {"Moyens de transport"}
                                 </div>
-                              </Stack__>
+                              </div>
                             }
                             popupScopeClassName={
                               sty["modeOfTransportSelect__popup"]
@@ -2301,9 +2308,7 @@ function PlasmicParametresCandidat__RenderFunc(props: {
                               }
                             })()}
                             placeholder={
-                              <Stack__
-                                as={"div"}
-                                hasGap={true}
+                              <div
                                 className={classNames(
                                   projectcss.all,
                                   sty.freeBox__fubWb
@@ -2326,7 +2331,7 @@ function PlasmicParametresCandidat__RenderFunc(props: {
                                 >
                                   {"Ajouter"}
                                 </div>
-                              </Stack__>
+                              </div>
                             }
                             popupScopeClassName={sty["select3__popup"]}
                             showSearch={false}
@@ -2615,28 +2620,22 @@ function PlasmicParametresCandidat__RenderFunc(props: {
                     );
                   })()}
                 </div>
-                <Stack__
-                  as={"div"}
+                <div
                   data-plasmic-name={"cvModificationDuMdp"}
                   data-plasmic-override={overrides.cvModificationDuMdp}
-                  hasGap={true}
                   className={classNames(
                     projectcss.all,
                     sty.cvModificationDuMdp
                   )}
                 >
-                  <Stack__
-                    as={"div"}
+                  <div
                     data-plasmic-name={"uploadCvLdm"}
                     data-plasmic-override={overrides.uploadCvLdm}
-                    hasGap={true}
                     className={classNames(projectcss.all, sty.uploadCvLdm)}
                   >
-                    <Stack__
-                      as={"div"}
+                    <div
                       data-plasmic-name={"frame10"}
                       data-plasmic-override={overrides.frame10}
-                      hasGap={true}
                       className={classNames(projectcss.all, sty.frame10)}
                     >
                       <div
@@ -2790,6 +2789,7 @@ function PlasmicParametresCandidat__RenderFunc(props: {
                                           userArgs: {
                                             path: [
                                               $ctx.SupabaseUser.user.id,
+
                                               (() => {
                                                 const file =
                                                   $state.upload.files[0];
@@ -2808,12 +2808,15 @@ function PlasmicParametresCandidat__RenderFunc(props: {
                                                 }
                                               })()
                                             ],
+
                                             content: [
                                               $state.upload.files[0].contents
                                             ],
+
                                             contentType: [
                                               $state.upload.files[0].type
                                             ],
+
                                             upsert: [true]
                                           },
                                           cacheKey: null,
@@ -2866,10 +2869,12 @@ function PlasmicParametresCandidat__RenderFunc(props: {
                                             opId: "1d316c45-4c3c-4fdb-88bb-e87b178387e4",
                                             userArgs: {
                                               keys: [$ctx.SupabaseUser.user.id],
+
                                               variables: [
                                                 $steps.supabaseUploadFile?.path.split(
                                                   "/"
                                                 )[1],
+
                                                 (() => {})()
                                               ]
                                             },
@@ -2936,9 +2941,7 @@ function PlasmicParametresCandidat__RenderFunc(props: {
                                   sty.freeBox__mrjhl
                                 )}
                               >
-                                <Stack__
-                                  as={PlasmicImg__}
-                                  hasGap={true}
+                                <PlasmicImg__
                                   alt={""}
                                   className={classNames(sty.img__liyK)}
                                   displayHeight={"25px"}
@@ -3087,6 +3090,7 @@ function PlasmicParametresCandidat__RenderFunc(props: {
                                           conditions: [
                                             $ctx.SupabaseUser.user.id
                                           ],
+
                                           variables: [null]
                                         },
                                         cacheKey: null,
@@ -3185,9 +3189,7 @@ function PlasmicParametresCandidat__RenderFunc(props: {
                                 sty.freeBox__cmIex
                               )}
                             >
-                              <Stack__
-                                as={PlasmicImg__}
-                                hasGap={true}
+                              <PlasmicImg__
                                 alt={""}
                                 className={classNames(sty.img__jin6E)}
                                 displayHeight={"25px"}
@@ -3232,12 +3234,10 @@ function PlasmicParametresCandidat__RenderFunc(props: {
                           </div>
                         </div>
                       ) : null}
-                    </Stack__>
-                    <Stack__
-                      as={"div"}
+                    </div>
+                    <div
                       data-plasmic-name={"frame11"}
                       data-plasmic-override={overrides.frame11}
-                      hasGap={true}
                       className={classNames(projectcss.all, sty.frame11)}
                     >
                       <div
@@ -3394,6 +3394,7 @@ function PlasmicParametresCandidat__RenderFunc(props: {
                                           userArgs: {
                                             path: [
                                               $ctx.SupabaseUser.user.id,
+
                                               (() => {
                                                 const file =
                                                   $state.upload3.files[0];
@@ -3412,12 +3413,15 @@ function PlasmicParametresCandidat__RenderFunc(props: {
                                                 }
                                               })()
                                             ],
+
                                             content: [
                                               $state.upload3.files[0].contents
                                             ],
+
                                             contentType: [
                                               $state.upload3.files[0].type
                                             ],
+
                                             upsert: [true]
                                           },
                                           cacheKey: null,
@@ -3470,8 +3474,10 @@ function PlasmicParametresCandidat__RenderFunc(props: {
                                             opId: "1d316c45-4c3c-4fdb-88bb-e87b178387e4",
                                             userArgs: {
                                               keys: [$ctx.SupabaseUser.user.id],
+
                                               variables: [
                                                 (() => {})(),
+
                                                 $steps.supabaseUploadFile?.path.split(
                                                   "/"
                                                 )[1]
@@ -3538,9 +3544,7 @@ function PlasmicParametresCandidat__RenderFunc(props: {
                                   sty.freeBox__oWGo
                                 )}
                               >
-                                <Stack__
-                                  as={PlasmicImg__}
-                                  hasGap={true}
+                                <PlasmicImg__
                                   alt={""}
                                   className={classNames(sty.img__hAnWf)}
                                   displayHeight={"25px"}
@@ -3692,6 +3696,7 @@ function PlasmicParametresCandidat__RenderFunc(props: {
                                           conditions: [
                                             $ctx.SupabaseUser.user.id
                                           ],
+
                                           variables: [null]
                                         },
                                         cacheKey: null,
@@ -3751,9 +3756,7 @@ function PlasmicParametresCandidat__RenderFunc(props: {
                                 sty.freeBox__ksiuw
                               )}
                             >
-                              <Stack__
-                                as={PlasmicImg__}
-                                hasGap={true}
+                              <PlasmicImg__
                                 alt={""}
                                 className={classNames(sty.img__zf67Z)}
                                 displayHeight={"25px"}
@@ -3799,8 +3802,8 @@ function PlasmicParametresCandidat__RenderFunc(props: {
                           </div>
                         </div>
                       ) : null}
-                    </Stack__>
-                  </Stack__>
+                    </div>
+                  </div>
                   <div
                     data-plasmic-name={"reinitialisationDuMdp"}
                     data-plasmic-override={overrides.reinitialisationDuMdp}
@@ -3809,11 +3812,9 @@ function PlasmicParametresCandidat__RenderFunc(props: {
                       sty.reinitialisationDuMdp
                     )}
                   >
-                    <Stack__
-                      as={"div"}
+                    <div
                       data-plasmic-name={"card3"}
                       data-plasmic-override={overrides.card3}
-                      hasGap={true}
                       className={classNames(projectcss.all, sty.card3)}
                     >
                       <ResetPassword
@@ -4045,11 +4046,9 @@ function PlasmicParametresCandidat__RenderFunc(props: {
                           </FormWrapper>
                         );
                       })()}
-                      <Stack__
-                        as={"div"}
+                      <div
                         data-plasmic-name={"card4"}
                         data-plasmic-override={overrides.card4}
-                        hasGap={true}
                         className={classNames(projectcss.all, sty.card4)}
                       >
                         <DeleteAccount2
@@ -4123,19 +4122,17 @@ function PlasmicParametresCandidat__RenderFunc(props: {
                             />
                           }
                         />
-                      </Stack__>
-                    </Stack__>
+                      </div>
+                    </div>
                   </div>
-                </Stack__>
-              </Stack__>
+                </div>
+              </div>
               <Modal
                 data-plasmic-name={"supprCompte"}
                 data-plasmic-override={overrides.supprCompte}
                 className={classNames("__wab_instance", sty.supprCompte)}
                 content={
-                  <Stack__
-                    as={"div"}
-                    hasGap={true}
+                  <div
                     className={classNames(projectcss.all, sty.freeBox__cgtlR)}
                   >
                     <ReshotIconAlert7T6Wum8VleSvgIcon
@@ -4151,6 +4148,7 @@ function PlasmicParametresCandidat__RenderFunc(props: {
                                   opId: "e205d484-80c7-4de7-b5c0-7d0135a1a283",
                                   userArgs: {
                                     conditions: [$ctx.SupabaseUser.user.id],
+
                                     variables: [null]
                                   },
                                   cacheKey: null,
@@ -4377,7 +4375,7 @@ function PlasmicParametresCandidat__RenderFunc(props: {
                         }}
                       />
                     </div>
-                  </Stack__>
+                  </div>
                 }
                 footer={null}
                 heading={null}
@@ -4413,11 +4411,9 @@ function PlasmicParametresCandidat__RenderFunc(props: {
                   ? true
                   : false
               ) ? (
-                <Stack__
-                  as={"div"}
+                <div
                   data-plasmic-name={"expandTab"}
                   data-plasmic-override={overrides.expandTab}
-                  hasGap={true}
                   className={classNames(projectcss.all, sty.expandTab)}
                   onClick={async event => {
                     const $steps = {};
@@ -4455,9 +4451,9 @@ function PlasmicParametresCandidat__RenderFunc(props: {
                   >
                     {"D\u00e9connexion"}
                   </div>
-                </Stack__>
+                </div>
               ) : null}
-            </Stack__>
+            </main>
             <MobileNavbarBottom
               data-plasmic-name={"mobileNavbarBottom"}
               data-plasmic-override={overrides.mobileNavbarBottom}

@@ -732,18 +732,27 @@ function PlasmicOnboarding__RenderFunc(props: {
                           userArgs: {
                             variables: [
                               $state.customerId,
+
                               $state.priceId,
+
                               $state.stripeSessionId,
+
                               $state.stripeStatus,
+
                               $state.stripeSubscriptionId,
+
                               $ctx.SupabaseUser.user.id,
+
                               $state.productId,
+
                               $state.productId === "prod_S81KBWHPyJa53z"
                                 ? 0
                                 : 2,
+
                               $state.productId === "prod_S81KBWHPyJa53z"
                                 ? 3
                                 : 8,
+
                               $state.productId === "prod_S81KBWHPyJa53z" ? 1 : 4
                             ]
                           },
@@ -862,11 +871,7 @@ function PlasmicOnboarding__RenderFunc(props: {
               })()}
             />
 
-            <Stack__
-              as={"div"}
-              hasGap={true}
-              className={classNames(projectcss.all, sty.freeBox__p3Qtn)}
-            >
+            <div className={classNames(projectcss.all, sty.freeBox__p3Qtn)}>
               <div className={classNames(projectcss.all, sty.freeBox__gzAcB)}>
                 <Icon10Icon
                   className={classNames(projectcss.all, sty.svg__vledv)}
@@ -1078,9 +1083,7 @@ function PlasmicOnboarding__RenderFunc(props: {
 
                   return (
                     <FormWrapper {...child$Props}>
-                      <Stack__
-                        as={"div"}
-                        hasGap={true}
+                      <div
                         className={classNames(
                           projectcss.all,
                           sty.freeBox___4D4Py
@@ -1116,11 +1119,14 @@ function PlasmicOnboarding__RenderFunc(props: {
                                       userArgs: {
                                         path: [
                                           $ctx.SupabaseUser.user.id,
+
                                           $state.upload2.files[0].name
                                         ],
+
                                         content: [
                                           $state.upload2.files[0].contents
                                         ],
+
                                         contentType: [
                                           $state.upload2.files[0].type
                                         ]
@@ -1174,6 +1180,7 @@ function PlasmicOnboarding__RenderFunc(props: {
                                       opId: "ca8056ed-4ec7-4218-bb8b-d4f4da770307",
                                       userArgs: {
                                         keys: [$ctx.SupabaseUser.user.id],
+
                                         variables: [
                                           $steps.supabaseUploadFile?.path.split(
                                             "/"
@@ -1340,6 +1347,7 @@ function PlasmicOnboarding__RenderFunc(props: {
                                         opId: "00154d6f-41ac-4e44-8d5a-da12df8e7c56",
                                         userArgs: {
                                           variables: [null],
+
                                           conditions: [
                                             $ctx.SupabaseUser.user.id
                                           ]
@@ -1404,7 +1412,7 @@ function PlasmicOnboarding__RenderFunc(props: {
                             />
                           </div>
                         </UploadWrapper>
-                      </Stack__>
+                      </div>
                       <FormItemWrapper
                         className={classNames(
                           "__wab_instance",
@@ -1495,9 +1503,7 @@ function PlasmicOnboarding__RenderFunc(props: {
                           placeholder={"Rue"}
                         />
                       </FormItemWrapper>
-                      <Stack__
-                        as={"div"}
-                        hasGap={true}
+                      <div
                         className={classNames(
                           projectcss.all,
                           sty.freeBox__aBsfI
@@ -1555,7 +1561,7 @@ function PlasmicOnboarding__RenderFunc(props: {
                             placeholder={"Ville"}
                           />
                         </FormItemWrapper>
-                      </Stack__>
+                      </div>
                       <FormItemWrapper
                         className={classNames(
                           "__wab_instance",
@@ -1659,9 +1665,7 @@ function PlasmicOnboarding__RenderFunc(props: {
                           placeholder={"Num\u00e9ro de SIREN"}
                         />
                       </FormItemWrapper>
-                      <Stack__
-                        as={"div"}
-                        hasGap={true}
+                      <div
                         className={classNames(
                           projectcss.all,
                           sty.freeBox__f1M0V
@@ -1752,7 +1756,7 @@ function PlasmicOnboarding__RenderFunc(props: {
                             popupScopeClassName={sty["select__sxffw__popup"]}
                           />
                         </FormItemWrapper>
-                      </Stack__>
+                      </div>
                       <FormItemWrapper
                         className={classNames(
                           "__wab_instance",
@@ -1779,9 +1783,7 @@ function PlasmicOnboarding__RenderFunc(props: {
                           placeholder={"https://"}
                         />
                       </FormItemWrapper>
-                      <Stack__
-                        as={"div"}
-                        hasGap={true}
+                      <div
                         className={classNames(
                           projectcss.all,
                           sty.freeBox__lsHX
@@ -1825,14 +1827,18 @@ function PlasmicOnboarding__RenderFunc(props: {
                                         userArgs: {
                                           path: [
                                             $ctx.SupabaseUser.user.id,
+
                                             $state.upload.files[0].name
                                           ],
+
                                           content: [
                                             $state.upload.files[0].contents
                                           ],
+
                                           contentType: [
                                             $state.upload.files[0].type
                                           ],
+
                                           upsert: [true]
                                         },
                                         cacheKey: null,
@@ -1886,10 +1892,12 @@ function PlasmicOnboarding__RenderFunc(props: {
                                         opId: "1d316c45-4c3c-4fdb-88bb-e87b178387e4",
                                         userArgs: {
                                           keys: [$ctx.SupabaseUser.user.id],
+
                                           variables: [
                                             $steps.supabaseUploadFile?.path.split(
                                               "/"
                                             )[1],
+
                                             (() => {})()
                                           ]
                                         },
@@ -1944,9 +1952,7 @@ function PlasmicOnboarding__RenderFunc(props: {
                                 sty.freeBox__gfyzL
                               )}
                             >
-                              <Stack__
-                                as={PlasmicImg__}
-                                hasGap={true}
+                              <PlasmicImg__
                                 alt={""}
                                 className={classNames(sty.img__kw0X)}
                                 displayHeight={"39px"}
@@ -2023,14 +2029,18 @@ function PlasmicOnboarding__RenderFunc(props: {
                                         userArgs: {
                                           path: [
                                             $ctx.SupabaseUser.user.id,
+
                                             $state.upload3.files[0].name
                                           ],
+
                                           content: [
                                             $state.upload3.files[0].contents
                                           ],
+
                                           contentType: [
                                             $state.upload3.files[0].type
                                           ],
+
                                           upsert: [true]
                                         },
                                         cacheKey: null,
@@ -2084,10 +2094,12 @@ function PlasmicOnboarding__RenderFunc(props: {
                                         opId: "1d316c45-4c3c-4fdb-88bb-e87b178387e4",
                                         userArgs: {
                                           keys: [$ctx.SupabaseUser.user.id],
+
                                           variables: [
                                             $steps.supabaseUploadFile?.path.split(
                                               "/"
                                             )[1],
+
                                             (() => {})()
                                           ]
                                         },
@@ -2142,9 +2154,7 @@ function PlasmicOnboarding__RenderFunc(props: {
                                 sty.freeBox__nhjbP
                               )}
                             >
-                              <Stack__
-                                as={PlasmicImg__}
-                                hasGap={true}
+                              <PlasmicImg__
                                 alt={""}
                                 className={classNames(sty.img__slg9T)}
                                 displayHeight={"39px"}
@@ -2183,7 +2193,7 @@ function PlasmicOnboarding__RenderFunc(props: {
                             </div>
                           </UploadWrapper>
                         </FormItemWrapper>
-                      </Stack__>
+                      </div>
                       <div
                         className={classNames(
                           projectcss.all,
@@ -2267,11 +2277,7 @@ function PlasmicOnboarding__RenderFunc(props: {
                   );
                 })()}
               </div>
-              <Stack__
-                as={"div"}
-                hasGap={true}
-                className={classNames(projectcss.all, sty.freeBox__w1Je2)}
-              >
+              <div className={classNames(projectcss.all, sty.freeBox__w1Je2)}>
                 {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
                   (() => {
                     try {
@@ -2403,12 +2409,8 @@ function PlasmicOnboarding__RenderFunc(props: {
                     </div>
                   );
                 })}
-              </Stack__>
-              <Stack__
-                as={"div"}
-                hasGap={true}
-                className={classNames(projectcss.all, sty.freeBox__df2Vv)}
-              >
+              </div>
+              <div className={classNames(projectcss.all, sty.freeBox__df2Vv)}>
                 <Button
                   className={classNames("__wab_instance", sty.button__orIfP)}
                   end={
@@ -2504,6 +2506,7 @@ function PlasmicOnboarding__RenderFunc(props: {
                                   $queries.stripeProductsList.data.response.data.find(
                                     product => product.id === $state.productId
                                   ).default_price.id,
+
                                   $ctx.SupabaseUser.user.email
                                 ]
                               },
@@ -2585,12 +2588,8 @@ function PlasmicOnboarding__RenderFunc(props: {
                   }}
                   submitsForm={true}
                 />
-              </Stack__>
-              <Stack__
-                as={"div"}
-                hasGap={true}
-                className={classNames(projectcss.all, sty.freeBox__sPyBj)}
-              >
+              </div>
+              <div className={classNames(projectcss.all, sty.freeBox__sPyBj)}>
                 <div className={classNames(projectcss.all, sty.freeBox__mBMuV)}>
                   <Icon12Icon
                     className={classNames(projectcss.all, sty.svg__zj7Ts)}
@@ -2605,6 +2604,7 @@ function PlasmicOnboarding__RenderFunc(props: {
                                 opId: "e205d484-80c7-4de7-b5c0-7d0135a1a283",
                                 userArgs: {
                                   conditions: [$ctx.SupabaseUser.user.id],
+
                                   variables: [null]
                                 },
                                 cacheKey: null,
@@ -2678,7 +2678,7 @@ function PlasmicOnboarding__RenderFunc(props: {
                     }
                   />
                 </div>
-              </Stack__>
+              </div>
               <AlertManager
                 alerts={["Paiement annul\u00e9"]}
                 className={
@@ -2746,7 +2746,7 @@ function PlasmicOnboarding__RenderFunc(props: {
                   }
                 })()}
               />
-            </Stack__>
+            </div>
           </React.Fragment>
         ),
         value: args.children

@@ -157,13 +157,11 @@ function PlasmicAlertCard__RenderFunc(props: {
   const $refs = refsRef.current;
 
   return (
-    <Stack__
-      as={"div"}
+    <div
       data-plasmic-name={"root"}
       data-plasmic-override={overrides.root}
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
-      hasGap={true}
       className={classNames(
         projectcss.all,
         projectcss.root_reset,
@@ -176,11 +174,7 @@ function PlasmicAlertCard__RenderFunc(props: {
         sty.root
       )}
     >
-      <Stack__
-        as={"div"}
-        hasGap={true}
-        className={classNames(projectcss.all, sty.freeBox__fzEIh)}
-      >
+      <div className={classNames(projectcss.all, sty.freeBox__fzEIh)}>
         <div className={classNames(projectcss.all, sty.freeBox___83SLy)}>
           <div className={classNames(projectcss.all, sty.freeBox__msr2K)}>
             <h2
@@ -209,11 +203,9 @@ function PlasmicAlertCard__RenderFunc(props: {
                 })()}
               </React.Fragment>
             </h2>
-            <Stack__
-              as={"div"}
+            <div
               data-plasmic-name={"ville"}
               data-plasmic-override={overrides.ville}
-              hasGap={true}
               className={classNames(projectcss.all, sty.ville)}
             >
               <Vector20Icon
@@ -245,13 +237,11 @@ function PlasmicAlertCard__RenderFunc(props: {
                   })()}
                 </React.Fragment>
               </p>
-            </Stack__>
+            </div>
           </div>
-          <Stack__
-            as={"div"}
+          <div
             data-plasmic-name={"deleteEdit"}
             data-plasmic-override={overrides.deleteEdit}
-            hasGap={true}
             className={classNames(projectcss.all, sty.deleteEdit)}
           >
             <PhTrashIcon
@@ -265,13 +255,11 @@ function PlasmicAlertCard__RenderFunc(props: {
               onClick={args.onClickEdit}
               role={"img"}
             />
-          </Stack__>
+          </div>
         </div>
-        <Stack__
-          as={"div"}
+        <div
           data-plasmic-name={"tags"}
           data-plasmic-override={overrides.tags}
-          hasGap={true}
           className={classNames(projectcss.all, sty.tags)}
         >
           {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
@@ -292,9 +280,7 @@ function PlasmicAlertCard__RenderFunc(props: {
             const currentItem = __plasmic_item_0;
             const currentIndex = __plasmic_idx_0;
             return (
-              <Stack__
-                as={"div"}
-                hasGap={true}
+              <div
                 className={classNames(projectcss.all, sty.freeBox__ywP6)}
                 key={currentIndex}
               >
@@ -342,7 +328,7 @@ function PlasmicAlertCard__RenderFunc(props: {
                     })()}
                   </React.Fragment>
                 </p>
-              </Stack__>
+              </div>
             );
           })}
           {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
@@ -363,9 +349,7 @@ function PlasmicAlertCard__RenderFunc(props: {
             const currentItem = __plasmic_item_0;
             const currentIndex = __plasmic_idx_0;
             return (
-              <Stack__
-                as={"div"}
-                hasGap={true}
+              <div
                 className={classNames(projectcss.all, sty.freeBox__wZofj)}
                 key={currentIndex}
               >
@@ -398,7 +382,7 @@ function PlasmicAlertCard__RenderFunc(props: {
                     })()}
                   </React.Fragment>
                 </p>
-              </Stack__>
+              </div>
             );
           })}
           {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
@@ -419,9 +403,7 @@ function PlasmicAlertCard__RenderFunc(props: {
             const currentItem = __plasmic_item_0;
             const currentIndex = __plasmic_idx_0;
             return (
-              <Stack__
-                as={"div"}
-                hasGap={true}
+              <div
                 className={classNames(projectcss.all, sty.freeBox__kvPir)}
                 key={currentIndex}
               >
@@ -454,11 +436,11 @@ function PlasmicAlertCard__RenderFunc(props: {
                     })()}
                   </React.Fragment>
                 </p>
-              </Stack__>
+              </div>
             );
           })}
-        </Stack__>
-      </Stack__>
+        </div>
+      </div>
       <Button
         data-plasmic-name={"button"}
         data-plasmic-override={overrides.button}
@@ -539,7 +521,7 @@ function PlasmicAlertCard__RenderFunc(props: {
         }}
         type={"bordered"}
       />
-    </Stack__>
+    </div>
   ) as React.ReactElement | null;
 }
 

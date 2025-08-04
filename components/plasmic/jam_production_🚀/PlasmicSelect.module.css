@@ -3,8 +3,8 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  min-width: 0;
   row-gap: var(--token-BY_Q0dspL3Z5);
+  min-width: 0;
   border-style: none;
 }
 .ariaSelect[data-disabled]:global(.__wab_instance) {

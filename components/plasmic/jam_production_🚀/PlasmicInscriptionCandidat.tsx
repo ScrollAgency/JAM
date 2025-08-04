@@ -266,11 +266,9 @@ function PlasmicInscriptionCandidat__RenderFunc(props: {
               data-plasmic-override={overrides.imageWrapper}
               className={classNames(projectcss.all, sty.imageWrapper)}
             >
-              <Stack__
-                as={"div"}
+              <div
                 data-plasmic-name={"logoWrapper"}
                 data-plasmic-override={overrides.logoWrapper}
-                hasGap={true}
                 className={classNames(projectcss.all, sty.logoWrapper)}
                 onClick={async event => {
                   const $steps = {};
@@ -311,11 +309,9 @@ function PlasmicInscriptionCandidat__RenderFunc(props: {
                   data-plasmic-override={overrides.baseline}
                   className={classNames(projectcss.all, sty.baseline)}
                 >
-                  <Stack__
-                    as={"div"}
+                  <div
                     data-plasmic-name={"frame"}
                     data-plasmic-override={overrides.frame}
-                    hasGap={true}
                     className={classNames(projectcss.all, sty.frame)}
                   >
                     <div
@@ -327,12 +323,10 @@ function PlasmicInscriptionCandidat__RenderFunc(props: {
                     >
                       {"JOB"}
                     </div>
-                  </Stack__>
-                  <Stack__
-                    as={"div"}
+                  </div>
+                  <div
                     data-plasmic-name={"frame2"}
                     data-plasmic-override={overrides.frame2}
-                    hasGap={true}
                     className={classNames(projectcss.all, sty.frame2)}
                   >
                     <div
@@ -344,12 +338,10 @@ function PlasmicInscriptionCandidat__RenderFunc(props: {
                     >
                       {"AROUND"}
                     </div>
-                  </Stack__>
-                  <Stack__
-                    as={"div"}
+                  </div>
+                  <div
                     data-plasmic-name={"frame3"}
                     data-plasmic-override={overrides.frame3}
-                    hasGap={true}
                     className={classNames(projectcss.all, sty.frame3)}
                   >
                     <div
@@ -361,15 +353,13 @@ function PlasmicInscriptionCandidat__RenderFunc(props: {
                     >
                       {"ME"}
                     </div>
-                  </Stack__>
+                  </div>
                 </div>
-              </Stack__>
+              </div>
             </div>
-            <Stack__
-              as={"div"}
+            <div
               data-plasmic-name={"formWrapper"}
               data-plasmic-override={overrides.formWrapper}
-              hasGap={true}
               className={classNames(projectcss.all, sty.formWrapper)}
             >
               {(() => {
@@ -385,11 +375,9 @@ function PlasmicInscriptionCandidat__RenderFunc(props: {
                   throw e;
                 }
               })() ? (
-                <Stack__
-                  as={"div"}
+                <div
                   data-plasmic-name={"signupSuccess"}
                   data-plasmic-override={overrides.signupSuccess}
-                  hasGap={true}
                   className={classNames(projectcss.all, sty.signupSuccess)}
                 >
                   <CheckIcon
@@ -397,11 +385,9 @@ function PlasmicInscriptionCandidat__RenderFunc(props: {
                     role={"img"}
                   />
 
-                  <Stack__
-                    as={"div"}
+                  <div
                     data-plasmic-name={"freeBox"}
                     data-plasmic-override={overrides.freeBox}
-                    hasGap={true}
                     className={classNames(projectcss.all, sty.freeBox)}
                   >
                     <div
@@ -426,8 +412,8 @@ function PlasmicInscriptionCandidat__RenderFunc(props: {
                         "Veuillez v\u00e9rifier vos e-mails pour confirmer votre adresse \net acc\u00e9der \u00e0 Job Around Me."
                       }
                     </div>
-                  </Stack__>
-                </Stack__>
+                  </div>
+                </div>
               ) : null}
               {(() => {
                 try {
@@ -721,7 +707,7 @@ function PlasmicInscriptionCandidat__RenderFunc(props: {
                   />
                 </div>
               ) : null}
-            </Stack__>
+            </div>
           </div>
         </div>
       </div>

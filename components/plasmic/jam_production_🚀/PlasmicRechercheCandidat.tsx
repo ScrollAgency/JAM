@@ -375,13 +375,21 @@ function PlasmicRechercheCandidat__RenderFunc(props: {
         userArgs: {
           query: [
             $state.cityTab,
+
             $state.cityTab,
+
             $state.cityTab,
+
             $state.keyWordsTab,
+
             $state.keyWordsTab,
+
             $state.keyWordsTab,
+
             $state.keyWordsTab,
+
             $state.cityTab,
+
             $state.keyWordsTab
           ]
         },
@@ -486,11 +494,9 @@ function PlasmicRechercheCandidat__RenderFunc(props: {
             role={generateStateValueProp($state, ["sidebar", "role"])}
           />
 
-          <Stack__
-            as={"main"}
+          <main
             data-plasmic-name={"main"}
             data-plasmic-override={overrides.main}
-            hasGap={true}
             className={classNames(projectcss.all, sty.main)}
           >
             <h1
@@ -723,9 +729,7 @@ function PlasmicRechercheCandidat__RenderFunc(props: {
                       })()}
                     </div>
                   </FormItemWrapper>
-                  <Stack__
-                    as={"div"}
-                    hasGap={true}
+                  <div
                     className={classNames(projectcss.all, sty.freeBox__dyXi)}
                   >
                     <FormItemWrapper
@@ -818,7 +822,7 @@ function PlasmicRechercheCandidat__RenderFunc(props: {
                         })()}
                       </div>
                     </FormItemWrapper>
-                  </Stack__>
+                  </div>
                   <Button
                     data-plasmic-name={"button"}
                     data-plasmic-override={overrides.button}
@@ -848,18 +852,14 @@ function PlasmicRechercheCandidat__RenderFunc(props: {
                 </FormWrapper>
               );
             })()}
-            <Stack__
-              as={"div"}
+            <div
               data-plasmic-name={"results"}
               data-plasmic-override={overrides.results}
-              hasGap={true}
               className={classNames(projectcss.all, sty.results)}
             >
-              <Stack__
-                as={"div"}
+              <div
                 data-plasmic-name={"resultsDetails"}
                 data-plasmic-override={overrides.resultsDetails}
-                hasGap={true}
                 className={classNames(projectcss.all, sty.resultsDetails)}
               >
                 <div
@@ -907,11 +907,9 @@ function PlasmicRechercheCandidat__RenderFunc(props: {
                   const currentItem = __plasmic_item_0;
                   const currentIndex = __plasmic_idx_0;
                   return (
-                    <Stack__
-                      as={"div"}
+                    <div
                       data-plasmic-name={"keyWords"}
                       data-plasmic-override={overrides.keyWords}
-                      hasGap={true}
                       className={classNames(projectcss.all, sty.keyWords)}
                       key={currentIndex}
                     >
@@ -1007,7 +1005,7 @@ function PlasmicRechercheCandidat__RenderFunc(props: {
                         }}
                         role={"img"}
                       />
-                    </Stack__>
+                    </div>
                   );
                 })}
                 {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
@@ -1028,11 +1026,9 @@ function PlasmicRechercheCandidat__RenderFunc(props: {
                   const currentItem = __plasmic_item_0;
                   const currentIndex = __plasmic_idx_0;
                   return (
-                    <Stack__
-                      as={"div"}
+                    <div
                       data-plasmic-name={"cities"}
                       data-plasmic-override={overrides.cities}
-                      hasGap={true}
                       className={classNames(projectcss.all, sty.cities)}
                       key={currentIndex}
                     >
@@ -1091,10 +1087,10 @@ function PlasmicRechercheCandidat__RenderFunc(props: {
                         }}
                         role={"img"}
                       />
-                    </Stack__>
+                    </div>
                   );
                 })}
-              </Stack__>
+              </div>
               {(() => {
                 try {
                   return $queries.getCandidates.isLoading;
@@ -1131,11 +1127,9 @@ function PlasmicRechercheCandidat__RenderFunc(props: {
                   throw e;
                 }
               })() ? (
-                <Stack__
-                  as={"div"}
+                <div
                   data-plasmic-name={"cards"}
                   data-plasmic-override={overrides.cards}
-                  hasGap={true}
                   className={classNames(projectcss.all, sty.cards)}
                 >
                   {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
@@ -1162,11 +1156,9 @@ function PlasmicRechercheCandidat__RenderFunc(props: {
                         className={classNames(projectcss.all, sty.card)}
                         key={currentIndex}
                       >
-                        <Stack__
-                          as={"div"}
+                        <div
                           data-plasmic-name={"cardHeader"}
                           data-plasmic-override={overrides.cardHeader}
-                          hasGap={true}
                           className={classNames(projectcss.all, sty.cardHeader)}
                         >
                           {(() => {
@@ -1264,11 +1256,9 @@ function PlasmicRechercheCandidat__RenderFunc(props: {
                               />
                             );
                           })()}
-                          <Stack__
-                            as={"div"}
+                          <div
                             data-plasmic-name={"userInfo"}
                             data-plasmic-override={overrides.userInfo}
-                            hasGap={true}
                             className={classNames(projectcss.all, sty.userInfo)}
                           >
                             <p
@@ -1312,11 +1302,9 @@ function PlasmicRechercheCandidat__RenderFunc(props: {
                                 sty.contatcInfo
                               )}
                             >
-                              <Stack__
-                                as={"div"}
+                              <div
                                 data-plasmic-name={"loaction"}
                                 data-plasmic-override={overrides.loaction}
-                                hasGap={true}
                                 className={classNames(
                                   projectcss.all,
                                   sty.loaction
@@ -1357,12 +1345,10 @@ function PlasmicRechercheCandidat__RenderFunc(props: {
                                     })()}
                                   </React.Fragment>
                                 </p>
-                              </Stack__>
-                              <Stack__
-                                as={"div"}
+                              </div>
+                              <div
                                 data-plasmic-name={"phoneNumber"}
                                 data-plasmic-override={overrides.phoneNumber}
-                                hasGap={true}
                                 className={classNames(
                                   projectcss.all,
                                   sty.phoneNumber
@@ -1401,12 +1387,10 @@ function PlasmicRechercheCandidat__RenderFunc(props: {
                                     })()}
                                   </React.Fragment>
                                 </p>
-                              </Stack__>
-                              <Stack__
-                                as={"div"}
+                              </div>
+                              <div
                                 data-plasmic-name={"email"}
                                 data-plasmic-override={overrides.email}
-                                hasGap={true}
                                 className={classNames(
                                   projectcss.all,
                                   sty.email
@@ -1445,22 +1429,18 @@ function PlasmicRechercheCandidat__RenderFunc(props: {
                                     })()}
                                   </React.Fragment>
                                 </p>
-                              </Stack__>
+                              </div>
                             </div>
-                          </Stack__>
-                        </Stack__>
-                        <Stack__
-                          as={"div"}
+                          </div>
+                        </div>
+                        <div
                           data-plasmic-name={"mainInfos"}
                           data-plasmic-override={overrides.mainInfos}
-                          hasGap={true}
                           className={classNames(projectcss.all, sty.mainInfos)}
                         >
-                          <Stack__
-                            as={"div"}
+                          <div
                             data-plasmic-name={"documents"}
                             data-plasmic-override={overrides.documents}
-                            hasGap={true}
                             className={classNames(
                               projectcss.all,
                               sty.documents
@@ -1838,12 +1818,10 @@ function PlasmicRechercheCandidat__RenderFunc(props: {
                                 type={"bordered"}
                               />
                             ) : null}
-                          </Stack__>
-                          <Stack__
-                            as={"div"}
+                          </div>
+                          <div
                             data-plasmic-name={"presentation"}
                             data-plasmic-override={overrides.presentation}
-                            hasGap={true}
                             className={classNames(
                               projectcss.all,
                               sty.presentation
@@ -1886,12 +1864,10 @@ function PlasmicRechercheCandidat__RenderFunc(props: {
                                 })()}
                               </React.Fragment>
                             </p>
-                          </Stack__>
-                          <Stack__
-                            as={"div"}
+                          </div>
+                          <div
                             data-plasmic-name={"skills"}
                             data-plasmic-override={overrides.skills}
-                            hasGap={true}
                             className={classNames(projectcss.all, sty.skills)}
                           >
                             <p
@@ -1906,11 +1882,9 @@ function PlasmicRechercheCandidat__RenderFunc(props: {
                             >
                               {"Comp\u00e9tences"}
                             </p>
-                            <Stack__
-                              as={"div"}
+                            <div
                               data-plasmic-name={"frame1437254218"}
                               data-plasmic-override={overrides.frame1437254218}
-                              hasGap={true}
                               className={classNames(
                                 projectcss.all,
                                 sty.frame1437254218
@@ -1978,13 +1952,11 @@ function PlasmicRechercheCandidat__RenderFunc(props: {
                                   </div>
                                 );
                               })}
-                            </Stack__>
-                          </Stack__>
-                          <Stack__
-                            as={"div"}
+                            </div>
+                          </div>
+                          <div
                             data-plasmic-name={"frame1437254392"}
                             data-plasmic-override={overrides.frame1437254392}
-                            hasGap={true}
                             className={classNames(
                               projectcss.all,
                               sty.frame1437254392
@@ -2010,13 +1982,11 @@ function PlasmicRechercheCandidat__RenderFunc(props: {
                                 sty.frame1437254413
                               )}
                             >
-                              <Stack__
-                                as={"div"}
+                              <div
                                 data-plasmic-name={"frame1437254408"}
                                 data-plasmic-override={
                                   overrides.frame1437254408
                                 }
-                                hasGap={true}
                                 className={classNames(
                                   projectcss.all,
                                   sty.frame1437254408
@@ -2032,11 +2002,9 @@ function PlasmicRechercheCandidat__RenderFunc(props: {
                                 >
                                   {"Ponctualit\u00e9"}
                                 </p>
-                                <Stack__
-                                  as={"div"}
+                                <div
                                   data-plasmic-name={"tableCell"}
                                   data-plasmic-override={overrides.tableCell}
-                                  hasGap={true}
                                   className={classNames(
                                     projectcss.all,
                                     sty.tableCell
@@ -2106,15 +2074,13 @@ function PlasmicRechercheCandidat__RenderFunc(props: {
                                       {"Pas encore not\u00e9"}
                                     </div>
                                   ) : null}
-                                </Stack__>
-                              </Stack__>
-                              <Stack__
-                                as={"div"}
+                                </div>
+                              </div>
+                              <div
                                 data-plasmic-name={"frame1437254409"}
                                 data-plasmic-override={
                                   overrides.frame1437254409
                                 }
-                                hasGap={true}
                                 className={classNames(
                                   projectcss.all,
                                   sty.frame1437254409
@@ -2130,11 +2096,9 @@ function PlasmicRechercheCandidat__RenderFunc(props: {
                                 >
                                   {"Respect"}
                                 </p>
-                                <Stack__
-                                  as={"div"}
+                                <div
                                   data-plasmic-name={"tableCell2"}
                                   data-plasmic-override={overrides.tableCell2}
-                                  hasGap={true}
                                   className={classNames(
                                     projectcss.all,
                                     sty.tableCell2
@@ -2204,8 +2168,8 @@ function PlasmicRechercheCandidat__RenderFunc(props: {
                                       {"Pas encore not\u00e9"}
                                     </div>
                                   ) : null}
-                                </Stack__>
-                              </Stack__>
+                                </div>
+                              </div>
                               <div
                                 data-plasmic-name={"frame1437254418"}
                                 data-plasmic-override={
@@ -2226,11 +2190,9 @@ function PlasmicRechercheCandidat__RenderFunc(props: {
                                 >
                                   {"Prestation"}
                                 </p>
-                                <Stack__
-                                  as={"div"}
+                                <div
                                   data-plasmic-name={"tableCell3"}
                                   data-plasmic-override={overrides.tableCell3}
-                                  hasGap={true}
                                   className={classNames(
                                     projectcss.all,
                                     sty.tableCell3
@@ -2300,15 +2262,15 @@ function PlasmicRechercheCandidat__RenderFunc(props: {
                                       {"Pas encore not\u00e9"}
                                     </div>
                                   ) : null}
-                                </Stack__>
+                                </div>
                               </div>
                             </div>
-                          </Stack__>
-                        </Stack__>
+                          </div>
+                        </div>
                       </div>
                     );
                   })}
-                </Stack__>
+                </div>
               ) : null}
               {(() => {
                 try {
@@ -2325,18 +2287,14 @@ function PlasmicRechercheCandidat__RenderFunc(props: {
                   throw e;
                 }
               })() ? (
-                <Stack__
-                  as={"div"}
+                <div
                   data-plasmic-name={"searchNotPerformed"}
                   data-plasmic-override={overrides.searchNotPerformed}
-                  hasGap={true}
                   className={classNames(projectcss.all, sty.searchNotPerformed)}
                 >
-                  <Stack__
-                    as={"div"}
+                  <div
                     data-plasmic-name={"content"}
                     data-plasmic-override={overrides.content}
-                    hasGap={true}
                     className={classNames(projectcss.all, sty.content)}
                   >
                     <div
@@ -2349,11 +2307,9 @@ function PlasmicRechercheCandidat__RenderFunc(props: {
                         role={"img"}
                       />
                     </div>
-                    <Stack__
-                      as={"div"}
+                    <div
                       data-plasmic-name={"textAndSupportingText"}
                       data-plasmic-override={overrides.textAndSupportingText}
-                      hasGap={true}
                       className={classNames(
                         projectcss.all,
                         sty.textAndSupportingText
@@ -2385,9 +2341,9 @@ function PlasmicRechercheCandidat__RenderFunc(props: {
                           "Renseignez quelques crit\u00e8res et trouvez un collaborateur qui correspond \u00e0 vos attentes."
                         }
                       </div>
-                    </Stack__>
-                  </Stack__>
-                </Stack__>
+                    </div>
+                  </div>
+                </div>
               ) : null}
               {(() => {
                 try {
@@ -2407,18 +2363,14 @@ function PlasmicRechercheCandidat__RenderFunc(props: {
                   throw e;
                 }
               })() ? (
-                <Stack__
-                  as={"div"}
+                <div
                   data-plasmic-name={"noResultsFound"}
                   data-plasmic-override={overrides.noResultsFound}
-                  hasGap={true}
                   className={classNames(projectcss.all, sty.noResultsFound)}
                 >
-                  <Stack__
-                    as={"div"}
+                  <div
                     data-plasmic-name={"content2"}
                     data-plasmic-override={overrides.content2}
-                    hasGap={true}
                     className={classNames(projectcss.all, sty.content2)}
                   >
                     <div
@@ -2431,11 +2383,9 @@ function PlasmicRechercheCandidat__RenderFunc(props: {
                         role={"img"}
                       />
                     </div>
-                    <Stack__
-                      as={"div"}
+                    <div
                       data-plasmic-name={"textAndSupportingText2"}
                       data-plasmic-override={overrides.textAndSupportingText2}
-                      hasGap={true}
                       className={classNames(
                         projectcss.all,
                         sty.textAndSupportingText2
@@ -2467,12 +2417,12 @@ function PlasmicRechercheCandidat__RenderFunc(props: {
                           "Modifiez vos crit\u00e8res et trouvez un collaborateur qui correspond \u00e0 vos attentes."
                         }
                       </div>
-                    </Stack__>
-                  </Stack__>
-                </Stack__>
+                    </div>
+                  </div>
+                </div>
               ) : null}
-            </Stack__>
-          </Stack__>
+            </div>
+          </main>
           <Modal
             data-plasmic-name={"cvModal"}
             data-plasmic-override={overrides.cvModal}

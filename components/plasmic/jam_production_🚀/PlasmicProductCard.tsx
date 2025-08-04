@@ -397,9 +397,7 @@ function PlasmicProductCard__RenderFunc(props: {
           const currentItem = __plasmic_item_0;
           const currentIndex = __plasmic_idx_0;
           return (
-            <Stack__
-              as={"div"}
-              hasGap={true}
+            <div
               className={classNames(projectcss.all, sty.freeBox__kDDti, {
                 [sty.freeBoxroundedBorder__kDDtii5E7R]: hasVariant(
                   $state,
@@ -523,7 +521,7 @@ function PlasmicProductCard__RenderFunc(props: {
                   />
                 ) : null}
               </div>
-            </Stack__>
+            </div>
           );
         })}
       </div>

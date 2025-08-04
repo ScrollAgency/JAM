@@ -144,13 +144,11 @@ function PlasmicMobileNavbarTop__RenderFunc(props: {
   });
 
   return (
-    <Stack__
-      as={"header"}
+    <header
       data-plasmic-name={"mobileNavbar"}
       data-plasmic-override={overrides.mobileNavbar}
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
-      hasGap={true}
       className={classNames(
         projectcss.all,
         projectcss.root_reset,
@@ -215,11 +213,9 @@ function PlasmicMobileNavbarTop__RenderFunc(props: {
           {"JOB ARROUND ME"}
         </div>
       </div>
-      <Stack__
-        as={"div"}
+      <div
         data-plasmic-name={"clocheRecherche"}
         data-plasmic-override={overrides.clocheRecherche}
-        hasGap={true}
         className={classNames(projectcss.all, sty.clocheRecherche)}
       >
         <PhBellFillIcon
@@ -257,11 +253,9 @@ function PlasmicMobileNavbarTop__RenderFunc(props: {
           role={"img"}
         />
 
-        <Stack__
-          as={"div"}
+        <div
           data-plasmic-name={"boutonDeRecherche"}
           data-plasmic-override={overrides.boutonDeRecherche}
-          hasGap={true}
           className={classNames(projectcss.all, sty.boutonDeRecherche)}
           onClick={async event => {
             const $steps = {};
@@ -298,9 +292,9 @@ function PlasmicMobileNavbarTop__RenderFunc(props: {
             className={classNames(projectcss.all, sty.svg)}
             role={"img"}
           />
-        </Stack__>
-      </Stack__>
-    </Stack__>
+        </div>
+      </div>
+    </header>
   ) as React.ReactElement | null;
 }
 

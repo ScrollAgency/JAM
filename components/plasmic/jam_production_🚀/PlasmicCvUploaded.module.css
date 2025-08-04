@@ -36,29 +36,14 @@
   max-width: 100%;
   align-self: center;
   flex-direction: column;
-  margin-top: 19px;
-  min-width: 0;
-  padding: 0px;
-}
-.content7 > :global(.__wab_flex-container) {
-  flex-direction: column;
   justify-content: flex-start;
   align-items: center;
   flex-wrap: nowrap;
+  margin-top: 19px;
   align-content: stretch;
+  row-gap: 8px;
   min-width: 0;
-  margin-top: calc(0px - 8px);
-  height: calc(100% + 8px);
-}
-.content7 > :global(.__wab_flex-container) > *,
-.content7 > :global(.__wab_flex-container) > :global(.__wab_slot) > *,
-.content7 > :global(.__wab_flex-container) > picture > img,
-.content7
-  > :global(.__wab_flex-container)
-  > :global(.__wab_slot)
-  > picture
-  > img {
-  margin-top: 8px;
+  padding: 0px;
 }
 .freeBox {
   display: flex;
@@ -83,32 +68,9 @@
   height: 25px;
   display: flex;
   flex-direction: column;
-  flex-shrink: 0;
-  border-radius: 99px;
-  padding: 8px;
-}
-.img > :global(.__wab_flex-container) {
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-top: calc(0px - 10px);
-  height: calc(100% + 10px);
-}
-.img > :global(.__wab_flex-container) > *,
-.img > :global(.__wab_flex-container) > :global(.__wab_slot) > *,
-.img > :global(.__wab_flex-container) > picture > img,
-.img > :global(.__wab_flex-container) > :global(.__wab_slot) > picture > img {
-  margin-top: 10px;
-}
-.img {
-  object-fit: cover;
-  max-width: 100%;
-  width: 25px;
-  height: 25px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  row-gap: 10px;
   flex-shrink: 0;
   border-radius: 99px;
   padding: 8px;

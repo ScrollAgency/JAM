@@ -174,13 +174,11 @@ function PlasmicProgressBar__RenderFunc(props: {
   });
 
   return (
-    <Stack__
-      as={"div"}
+    <div
       data-plasmic-name={"progressBar"}
       data-plasmic-override={overrides.progressBar}
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
-      hasGap={true}
       className={classNames(
         projectcss.all,
         projectcss.root_reset,
@@ -224,7 +222,7 @@ function PlasmicProgressBar__RenderFunc(props: {
           [sty.bar3step3]: hasVariant($state, "step3", "step3")
         })}
       />
-    </Stack__>
+    </div>
   ) as React.ReactElement | null;
 }
 

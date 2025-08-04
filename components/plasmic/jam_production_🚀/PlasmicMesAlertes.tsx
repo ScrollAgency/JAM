@@ -444,11 +444,9 @@ function PlasmicMesAlertes__RenderFunc(props: {
             className={classNames("__wab_instance", sty.mobileNavbarTop)}
           />
 
-          <Stack__
-            as={"main"}
+          <main
             data-plasmic-name={"main"}
             data-plasmic-override={overrides.main}
-            hasGap={true}
             className={classNames(projectcss.all, sty.main)}
           >
             <div className={classNames(projectcss.all, sty.freeBox__kohVn)}>
@@ -573,11 +571,9 @@ function PlasmicMesAlertes__RenderFunc(props: {
                 />
               ) : null}
             </div>
-            <Stack__
-              as={"div"}
+            <div
               data-plasmic-name={"alerts"}
               data-plasmic-override={overrides.alerts}
-              hasGap={true}
               className={classNames(projectcss.all, sty.alerts)}
             >
               {(() => {
@@ -623,8 +619,8 @@ function PlasmicMesAlertes__RenderFunc(props: {
                   : (() => {
                       try {
                         return (
-                          $queries.getAlerts.isLoading == false &&
-                          $queries.getAlerts.data.length == 0
+                          !$queries.getAlerts.isLoading &&
+                          $queries.getAlerts?.data?.length == 0
                         );
                       } catch (e) {
                         if (
@@ -637,11 +633,9 @@ function PlasmicMesAlertes__RenderFunc(props: {
                       }
                     })()
               ) ? (
-                <Stack__
-                  as={"div"}
+                <div
                   data-plasmic-name={"noAnnonce"}
                   data-plasmic-override={overrides.noAnnonce}
-                  hasGap={true}
                   className={classNames(projectcss.all, sty.noAnnonce)}
                   onLoad={async event => {
                     const $steps = {};
@@ -662,11 +656,9 @@ function PlasmicMesAlertes__RenderFunc(props: {
                       role={"img"}
                     />
                   </div>
-                  <Stack__
-                    as={"div"}
+                  <div
                     data-plasmic-name={"textAndSupportingText2"}
                     data-plasmic-override={overrides.textAndSupportingText2}
-                    hasGap={true}
                     className={classNames(
                       projectcss.all,
                       sty.textAndSupportingText2
@@ -794,8 +786,8 @@ function PlasmicMesAlertes__RenderFunc(props: {
                         }
                       }}
                     />
-                  </Stack__>
-                </Stack__>
+                  </div>
+                </div>
               ) : null}
               {(() => {
                 try {
@@ -992,8 +984,8 @@ function PlasmicMesAlertes__RenderFunc(props: {
                     );
                   })
                 : null}
-            </Stack__>
-          </Stack__>
+            </div>
+          </main>
           {(() => {
             try {
               return $state.isModalOpen;
@@ -1012,11 +1004,9 @@ function PlasmicMesAlertes__RenderFunc(props: {
               data-plasmic-override={overrides.alertModal}
               className={classNames(projectcss.all, sty.alertModal)}
             >
-              <Stack__
-                as={"div"}
+              <div
                 data-plasmic-name={"body"}
                 data-plasmic-override={overrides.body}
-                hasGap={true}
                 className={classNames(projectcss.all, sty.body)}
               >
                 <Vector26Icon
@@ -1133,6 +1123,7 @@ function PlasmicMesAlertes__RenderFunc(props: {
                                 userArgs: {
                                   variables: [
                                     $state.form.value,
+
                                     $ctx.SupabaseUser.user.id
                                   ]
                                 },
@@ -1183,8 +1174,10 @@ function PlasmicMesAlertes__RenderFunc(props: {
                                   opId: "1136a77c-6f83-4fbf-9d8d-8e8d51da6282",
                                   userArgs: {
                                     keys: [$state.currentAlert.id],
+
                                     variables: [
                                       $state?.form.value,
+
                                       $state.currentAlert?.user_id
                                     ]
                                   },
@@ -1568,9 +1561,7 @@ function PlasmicMesAlertes__RenderFunc(props: {
                             }
                           })()}
                           placeholder={
-                            <Stack__
-                              as={"div"}
-                              hasGap={true}
+                            <div
                               className={classNames(
                                 projectcss.all,
                                 sty.freeBox__lbmq
@@ -1593,7 +1584,7 @@ function PlasmicMesAlertes__RenderFunc(props: {
                               >
                                 {"Temps de travail"}
                               </div>
-                            </Stack__>
+                            </div>
                           }
                           popupScopeClassName={sty["select__popup"]}
                           value={generateStateValueProp($state, [
@@ -1676,9 +1667,7 @@ function PlasmicMesAlertes__RenderFunc(props: {
                             }
                           })()}
                           placeholder={
-                            <Stack__
-                              as={"div"}
-                              hasGap={true}
+                            <div
                               className={classNames(
                                 projectcss.all,
                                 sty.freeBox__m20Pl
@@ -1701,7 +1690,7 @@ function PlasmicMesAlertes__RenderFunc(props: {
                               >
                                 {"Type de contrat"}
                               </div>
-                            </Stack__>
+                            </div>
                           }
                           popupScopeClassName={sty["select4__popup"]}
                           value={generateStateValueProp($state, [
@@ -1784,9 +1773,7 @@ function PlasmicMesAlertes__RenderFunc(props: {
                             }
                           })()}
                           placeholder={
-                            <Stack__
-                              as={"div"}
-                              hasGap={true}
+                            <div
                               className={classNames(
                                 projectcss.all,
                                 sty.freeBox___0ZRE
@@ -1809,7 +1796,7 @@ function PlasmicMesAlertes__RenderFunc(props: {
                               >
                                 {"Salaire minimum"}
                               </div>
-                            </Stack__>
+                            </div>
                           }
                           popupScopeClassName={sty["select2__popup"]}
                           value={generateStateValueProp($state, [
@@ -2005,9 +1992,7 @@ function PlasmicMesAlertes__RenderFunc(props: {
                     throw e;
                   }
                 })() ? (
-                  <Stack__
-                    as={"button"}
-                    hasGap={true}
+                  <button
                     className={classNames(
                       projectcss.all,
                       projectcss.button,
@@ -2068,9 +2053,9 @@ function PlasmicMesAlertes__RenderFunc(props: {
                     >
                       {"Supprimer l'alerte"}
                     </div>
-                  </Stack__>
+                  </button>
                 ) : null}
-              </Stack__>
+              </div>
             </div>
           ) : null}
           <MobileNavbarBottom
@@ -2213,18 +2198,14 @@ function PlasmicMesAlertes__RenderFunc(props: {
             data-plasmic-override={overrides.deleteAlert}
             className={classNames("__wab_instance", sty.deleteAlert)}
             content={
-              <Stack__
-                as={"div"}
+              <div
                 data-plasmic-name={"modal3"}
                 data-plasmic-override={overrides.modal3}
-                hasGap={true}
                 className={classNames(projectcss.all, sty.modal3)}
               >
-                <Stack__
-                  as={"div"}
+                <div
                   data-plasmic-name={"content"}
                   data-plasmic-override={overrides.content}
-                  hasGap={true}
                   className={classNames(projectcss.all, sty.content)}
                 >
                   <div
@@ -2237,11 +2218,9 @@ function PlasmicMesAlertes__RenderFunc(props: {
                       role={"img"}
                     />
                   </div>
-                  <Stack__
-                    as={"div"}
+                  <div
                     data-plasmic-name={"textAndSupportingText"}
                     data-plasmic-override={overrides.textAndSupportingText}
-                    hasGap={true}
                     className={classNames(
                       projectcss.all,
                       sty.textAndSupportingText
@@ -2271,13 +2250,11 @@ function PlasmicMesAlertes__RenderFunc(props: {
                         "\u00cates-vous s\u00fbr de vouloir supprimer cette alerte ? \nCette action est irr\u00e9versible."
                       }
                     </div>
-                  </Stack__>
-                </Stack__>
-                <Stack__
-                  as={"div"}
+                  </div>
+                </div>
+                <div
                   data-plasmic-name={"frame1437254298"}
                   data-plasmic-override={overrides.frame1437254298}
-                  hasGap={true}
                   className={classNames(projectcss.all, sty.frame1437254298)}
                 >
                   <Button
@@ -2443,8 +2420,8 @@ function PlasmicMesAlertes__RenderFunc(props: {
                       }
                     }}
                   />
-                </Stack__>
-              </Stack__>
+                </div>
+              </div>
             }
             heading={
               <h3

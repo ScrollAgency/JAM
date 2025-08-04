@@ -417,6 +417,7 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
         opId: "c91b3dad-0831-48c9-8dd7-50555a9ed2f8",
         userArgs: {
           path: ["monthly_recharges"],
+
           params: [$queries.getUserStripeInfos.data[0].customer_id]
         },
         cacheKey: `plasmic.$.c91b3dad-0831-48c9-8dd7-50555a9ed2f8.$.`,
@@ -835,6 +836,7 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                         opId: "5db431b2-902f-44b6-a6b7-6e0b3f6d881b",
                         userArgs: {
                           path: ["get-session"],
+
                           params: [$state.sessionId]
                         },
                         cacheKey: null,
@@ -1026,11 +1028,9 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
             })()}
           />
 
-          <Stack__
-            as={"div"}
+          <div
             data-plasmic-name={"main"}
             data-plasmic-override={overrides.main}
-            hasGap={true}
             className={classNames(projectcss.all, sty.main)}
           >
             <div
@@ -1048,9 +1048,7 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
               const child$Props = {
                 className: classNames("__wab_instance", sty.modalCreditsAlerts),
                 content: (
-                  <Stack__
-                    as={"div"}
-                    hasGap={true}
+                  <div
                     className={classNames(projectcss.all, sty.freeBox__osJ4U)}
                   >
                     <div
@@ -1063,11 +1061,9 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                         role={"img"}
                       />
                     </div>
-                    <Stack__
-                      as={"div"}
+                    <div
                       data-plasmic-name={"messageText"}
                       data-plasmic-override={overrides.messageText}
-                      hasGap={true}
                       className={classNames(projectcss.all, sty.messageText)}
                     >
                       {(() => {
@@ -1141,8 +1137,8 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                           }
                         </div>
                       ) : null}
-                    </Stack__>
-                  </Stack__>
+                    </div>
+                  </div>
                 ),
                 footer: (() => {
                   try {
@@ -1345,11 +1341,9 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                 />
               );
             })()}
-            <Stack__
-              as={"div"}
+            <div
               data-plasmic-name={"card2"}
               data-plasmic-override={overrides.card2}
-              hasGap={true}
               className={classNames(projectcss.all, sty.card2)}
             >
               {(() => {
@@ -1438,11 +1432,9 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                   throw e;
                 }
               })() ? (
-                <Stack__
-                  as={"div"}
+                <div
                   data-plasmic-name={"blockSubscription"}
                   data-plasmic-override={overrides.blockSubscription}
-                  hasGap={true}
                   className={classNames(projectcss.all, sty.blockSubscription)}
                 >
                   <div
@@ -1463,11 +1455,9 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                       </span>
                     </React.Fragment>
                   </div>
-                  <Stack__
-                    as={"div"}
+                  <div
                     data-plasmic-name={"subscription"}
                     data-plasmic-override={overrides.subscription}
-                    hasGap={true}
                     className={classNames(projectcss.all, sty.subscription)}
                   >
                     {(_par =>
@@ -1494,11 +1484,9 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                       const currentItem = __plasmic_item_0;
                       const currentIndex = __plasmic_idx_0;
                       return (
-                        <Stack__
-                          as={"div"}
+                        <div
                           data-plasmic-name={"items"}
                           data-plasmic-override={overrides.items}
-                          hasGap={true}
                           className={classNames(projectcss.all, sty.items)}
                           key={currentIndex}
                         >
@@ -1580,15 +1568,13 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                               }
                             })()}
                           />
-                        </Stack__>
+                        </div>
                       );
                     })}
-                  </Stack__>
-                  <Stack__
-                    as={"div"}
+                  </div>
+                  <div
                     data-plasmic-name={"actions"}
                     data-plasmic-override={overrides.actions}
-                    hasGap={true}
                     className={classNames(projectcss.all, sty.actions)}
                   >
                     {(() => {
@@ -2232,6 +2218,7 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                                               product.id ===
                                               $state.selectedProduct
                                           ).default_price.id,
+
                                           (() => {
                                             const currentUrl =
                                               window.location.href;
@@ -2251,6 +2238,7 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                                               "/parametres-abonnement?payementstatus=success&session_id={CHECKOUT_SESSION_ID}"
                                             );
                                           })(),
+
                                           (() => {
                                             const currentUrl =
                                               window.location.href;
@@ -2270,6 +2258,7 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                                               "/parametres-abonnement?payementstatus=failed&stripe=cancel"
                                             );
                                           })(),
+
                                           $ctx.SupabaseUser.user.email
                                         ]
                                       },
@@ -2468,24 +2457,20 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                         </StripeCheckoutButton>
                       </div>
                     ) : null}
-                  </Stack__>
-                </Stack__>
+                  </div>
+                </div>
               ) : null}
-              <Stack__
-                as={"div"}
+              <div
                 data-plasmic-name={"subscriptionDetailsHistory"}
                 data-plasmic-override={overrides.subscriptionDetailsHistory}
-                hasGap={true}
                 className={classNames(
                   projectcss.all,
                   sty.subscriptionDetailsHistory
                 )}
               >
-                <Stack__
-                  as={"div"}
+                <div
                   data-plasmic-name={"details"}
                   data-plasmic-override={overrides.details}
-                  hasGap={true}
                   className={classNames(projectcss.all, sty.details)}
                 >
                   <div
@@ -2510,9 +2495,7 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                     className={classNames(projectcss.all, sty.hr)}
                   />
 
-                  <Stack__
-                    as={"div"}
-                    hasGap={true}
+                  <div
                     className={classNames(projectcss.all, sty.freeBox__w61Pj)}
                   >
                     <div
@@ -2562,7 +2545,7 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                         })()}
                       </React.Fragment>
                     </div>
-                  </Stack__>
+                  </div>
                   <div
                     data-plasmic-name={"hr3"}
                     data-plasmic-override={overrides.hr3}
@@ -2572,9 +2555,7 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                   <div
                     className={classNames(projectcss.all, sty.freeBox__u7Q4A)}
                   >
-                    <Stack__
-                      as={"div"}
-                      hasGap={true}
+                    <div
                       className={classNames(projectcss.all, sty.freeBox__liHWj)}
                     >
                       <div
@@ -2595,11 +2576,9 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                           </span>
                         </React.Fragment>
                       </div>
-                      <Stack__
-                        as={"div"}
+                      <div
                         data-plasmic-name={"rechargeList"}
                         data-plasmic-override={overrides.rechargeList}
-                        hasGap={true}
                         className={classNames(projectcss.all, sty.rechargeList)}
                       >
                         <div
@@ -2853,15 +2832,13 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                             </div>
                           ) : null}
                         </div>
-                      </Stack__>
-                    </Stack__>
+                      </div>
+                    </div>
                   </div>
-                </Stack__>
-                <Stack__
-                  as={"div"}
+                </div>
+                <div
                   data-plasmic-name={"history"}
                   data-plasmic-override={overrides.history}
-                  hasGap={true}
                   className={classNames(projectcss.all, sty.history)}
                 >
                   <div
@@ -2924,11 +2901,9 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                               {"Titre du document"}
                             </div>
                           </div>
-                          <Stack__
-                            as={"div"}
+                          <div
                             data-plasmic-name={"dateIcon"}
                             data-plasmic-override={overrides.dateIcon}
-                            hasGap={true}
                             className={classNames(projectcss.all, sty.dateIcon)}
                           >
                             <div
@@ -2947,12 +2922,10 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                               )}
                               role={"img"}
                             />
-                          </Stack__>
-                          <Stack__
-                            as={"div"}
+                          </div>
+                          <div
                             data-plasmic-name={"amountIcon"}
                             data-plasmic-override={overrides.amountIcon}
-                            hasGap={true}
                             className={classNames(
                               projectcss.all,
                               sty.amountIcon
@@ -2983,7 +2956,7 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                               )}
                               role={"img"}
                             />
-                          </Stack__>
+                          </div>
                           <div
                             className={classNames(
                               projectcss.all,
@@ -3239,13 +3212,11 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                       ) : null}
                     </div>
                   </div>
-                </Stack__>
-              </Stack__>
-              <Stack__
-                as={"div"}
+                </div>
+              </div>
+              <div
                 data-plasmic-name={"recharges"}
                 data-plasmic-override={overrides.recharges}
-                hasGap={true}
                 className={classNames(projectcss.all, sty.recharges)}
               >
                 <div
@@ -3267,9 +3238,7 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                     data-plasmic-override={overrides.classic}
                     className={classNames(projectcss.all, sty.classic)}
                   >
-                    <Stack__
-                      as={"div"}
-                      hasGap={true}
+                    <div
                       className={classNames(projectcss.all, sty.freeBox__gRUi)}
                     >
                       <IconPhBriefcaseIcon
@@ -3295,10 +3264,8 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                           </span>
                         </React.Fragment>
                       </div>
-                    </Stack__>
-                    <Stack__
-                      as={"div"}
-                      hasGap={true}
+                    </div>
+                    <div
                       className={classNames(projectcss.all, sty.freeBox__avve6)}
                     >
                       <div
@@ -3377,16 +3344,14 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                           })()}
                         </React.Fragment>
                       </div>
-                    </Stack__>
+                    </div>
                   </div>
                   <div
                     data-plasmic-name={"lastminust"}
                     data-plasmic-override={overrides.lastminust}
                     className={classNames(projectcss.all, sty.lastminust)}
                   >
-                    <Stack__
-                      as={"div"}
-                      hasGap={true}
+                    <div
                       className={classNames(projectcss.all, sty.freeBox__v9RUt)}
                     >
                       <PhClockCountdownFillIcon
@@ -3412,10 +3377,8 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                           </span>
                         </React.Fragment>
                       </div>
-                    </Stack__>
-                    <Stack__
-                      as={"div"}
-                      hasGap={true}
+                    </div>
+                    <div
                       className={classNames(
                         projectcss.all,
                         sty.freeBox___2ZFz5
@@ -3497,16 +3460,14 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                           })()}
                         </React.Fragment>
                       </div>
-                    </Stack__>
+                    </div>
                   </div>
                   <div
                     data-plasmic-name={"boost"}
                     data-plasmic-override={overrides.boost}
                     className={classNames(projectcss.all, sty.boost)}
                   >
-                    <Stack__
-                      as={"div"}
-                      hasGap={true}
+                    <div
                       className={classNames(projectcss.all, sty.freeBox__niJhV)}
                     >
                       <Icon15Icon
@@ -3532,10 +3493,8 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                           </span>
                         </React.Fragment>
                       </div>
-                    </Stack__>
-                    <Stack__
-                      as={"div"}
-                      hasGap={true}
+                    </div>
+                    <div
                       className={classNames(projectcss.all, sty.freeBox__ie1Iu)}
                     >
                       <div
@@ -3614,14 +3573,10 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                           })()}
                         </React.Fragment>
                       </div>
-                    </Stack__>
+                    </div>
                   </div>
                 </div>
-                <Stack__
-                  as={"div"}
-                  hasGap={true}
-                  className={classNames(projectcss.all, sty.freeBox__vHjNk)}
-                >
+                <div className={classNames(projectcss.all, sty.freeBox__vHjNk)}>
                   <div
                     className={classNames(
                       projectcss.all,
@@ -3658,7 +3613,7 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                     }}
                     placeholder={"CODEPROMO"}
                   />
-                </Stack__>
+                </div>
                 <div
                   data-plasmic-name={"totalAmount"}
                   data-plasmic-override={overrides.totalAmount}
@@ -3846,7 +3801,7 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                     />
                   </StripeCheckoutButton>
                 </div>
-              </Stack__>
+              </div>
               <SmartLoader
                 data-plasmic-name={"stripeCheckout"}
                 data-plasmic-override={overrides.stripeCheckout}
@@ -4297,13 +4252,20 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                             userArgs: {
                               variables: [
                                 $state.stripeCustomerId,
+
                                 $state.priceId,
+
                                 $state.productId,
+
                                 $state.stripeSessionId,
+
                                 $state.stripeStatus,
+
                                 $state.stripeSubscriptionId,
+
                                 $ctx.SupabaseUser.user.id
                               ],
+
                               conditions: [$ctx.SupabaseUser.user.id]
                             },
                             cacheKey: null,
@@ -4429,8 +4391,8 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                   }
                 })()}
               />
-            </Stack__>
-          </Stack__>
+            </div>
+          </div>
         </div>
       </div>
     </React.Fragment>

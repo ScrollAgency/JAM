@@ -153,13 +153,11 @@ function PlasmicMobileNavbarBottomAdmin__RenderFunc(props: {
 
   return (
     (hasVariant(globalVariants, "screen", "mobileOnly") ? true : false) ? (
-      <Stack__
-        as={"nav"}
+      <nav
         data-plasmic-name={"mobileNavbarBottom"}
         data-plasmic-override={overrides.mobileNavbarBottom}
         data-plasmic-root={true}
         data-plasmic-for-node={forNode}
-        hasGap={true}
         className={classNames(
           projectcss.all,
           projectcss.root_reset,
@@ -398,11 +396,9 @@ function PlasmicMobileNavbarBottomAdmin__RenderFunc(props: {
           }
         />
 
-        <Stack__
-          as={PlasmicLink__}
+        <PlasmicLink__
           data-plasmic-name={"frame1437253914"}
           data-plasmic-override={overrides.frame1437253914}
-          hasGap={true}
           className={classNames(
             projectcss.all,
             projectcss.a,
@@ -432,12 +428,10 @@ function PlasmicMobileNavbarBottomAdmin__RenderFunc(props: {
           >
             {"ANNONCES"}
           </div>
-        </Stack__>
-        <Stack__
-          as={PlasmicLink__}
+        </PlasmicLink__>
+        <PlasmicLink__
           data-plasmic-name={"frame1437253915"}
           data-plasmic-override={overrides.frame1437253915}
-          hasGap={true}
           className={classNames(
             projectcss.all,
             projectcss.a,
@@ -467,12 +461,10 @@ function PlasmicMobileNavbarBottomAdmin__RenderFunc(props: {
           >
             {"ALERTES"}
           </div>
-        </Stack__>
-        <Stack__
-          as={PlasmicLink__}
+        </PlasmicLink__>
+        <PlasmicLink__
           data-plasmic-name={"frame1437253916"}
           data-plasmic-override={overrides.frame1437253916}
-          hasGap={true}
           className={classNames(
             projectcss.all,
             projectcss.a,
@@ -502,8 +494,8 @@ function PlasmicMobileNavbarBottomAdmin__RenderFunc(props: {
           >
             {"PARAM\u00c8TRES"}
           </div>
-        </Stack__>
-      </Stack__>
+        </PlasmicLink__>
+      </nav>
     ) : null
   ) as React.ReactElement | null;
 }

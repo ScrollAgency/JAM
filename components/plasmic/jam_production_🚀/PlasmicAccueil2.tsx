@@ -1571,9 +1571,11 @@ function PlasmicAccueil2__RenderFunc(props: {
             $state.form?.value?.postal_code ||
               $queries.currentUser?.data[0]?.postal_code ||
               "75000",
+
             $state.form?.value?.address ||
               $queries.currentUser?.data[0]?.address ||
               "",
+
             $state.form?.value?.city ||
               $queries.currentUser?.data[0]?.city ||
               "paris"
@@ -1591,20 +1593,35 @@ function PlasmicAccueil2__RenderFunc(props: {
         userArgs: {
           query: [
             $state.contractType,
+
             $state.contractType.length == 0,
+
             $state.salary,
+
             $state.salary.length == 0,
+
             $state.availabilityStatus,
+
             $state.availabilityStatus.length == 0,
+
             $state.workingTime,
+
             $state.workingTime.length == 0,
+
             $state.workMode,
+
             $state.workMode.length == 0,
+
             $state.sectorActivity2,
+
             $state.sectorActivity2 == "",
+
             $state.keyWords,
+
             $state.keyWords,
+
             $state.searchLocation,
+
             $state.isLastMinute
           ]
         },
@@ -1667,9 +1684,7 @@ function PlasmicAccueil2__RenderFunc(props: {
             loadingState={
               <DataCtxReader__>
                 {$ctx => (
-                  <Stack__
-                    as={"div"}
-                    hasGap={true}
+                  <div
                     className={classNames(projectcss.all, sty.freeBox__zgPx0)}
                   >
                     <PlasmicImg__
@@ -1741,7 +1756,7 @@ function PlasmicAccueil2__RenderFunc(props: {
                         </div>
                       </div>
                     </div>
-                  </Stack__>
+                  </div>
                 )}
               </DataCtxReader__>
             }
@@ -1759,25 +1774,19 @@ function PlasmicAccueil2__RenderFunc(props: {
                         : true
                     }
                     content={
-                      <Stack__
-                        as={"div"}
+                      <div
                         data-plasmic-name={"jobListing"}
                         data-plasmic-override={overrides.jobListing}
-                        hasGap={true}
                         className={classNames(projectcss.all, sty.jobListing)}
                       >
-                        <Stack__
-                          as={"div"}
+                        <div
                           data-plasmic-name={"jobDetail"}
                           data-plasmic-override={overrides.jobDetail}
-                          hasGap={true}
                           className={classNames(projectcss.all, sty.jobDetail)}
                         >
-                          <Stack__
-                            as={"div"}
+                          <div
                             data-plasmic-name={"frame38"}
                             data-plasmic-override={overrides.frame38}
-                            hasGap={true}
                             className={classNames(projectcss.all, sty.frame38)}
                           >
                             <div
@@ -1806,11 +1815,9 @@ function PlasmicAccueil2__RenderFunc(props: {
                                 })()}
                               </React.Fragment>
                             </div>
-                            <Stack__
-                              as={"div"}
+                            <div
                               data-plasmic-name={"likeBtn"}
                               data-plasmic-override={overrides.likeBtn}
-                              hasGap={true}
                               className={classNames(
                                 projectcss.all,
                                 sty.likeBtn
@@ -1993,7 +2000,9 @@ function PlasmicAccueil2__RenderFunc(props: {
                                                 userArgs: {
                                                   variables: [
                                                     !$state.couleurLike,
+
                                                     $ctx.SupabaseUser?.user?.id,
+
                                                     $state.jobObject?.id
                                                   ]
                                                 },
@@ -2316,19 +2325,17 @@ function PlasmicAccueil2__RenderFunc(props: {
                                   role={"img"}
                                 />
                               ) : null}
-                            </Stack__>
-                          </Stack__>
+                            </div>
+                          </div>
                           <div
                             className={classNames(
                               projectcss.all,
                               sty.freeBox__zJuoQ
                             )}
                           >
-                            <Stack__
-                              as={"div"}
+                            <div
                               data-plasmic-name={"location"}
                               data-plasmic-override={overrides.location}
-                              hasGap={true}
                               className={classNames(
                                 projectcss.all,
                                 sty.location
@@ -2371,7 +2378,7 @@ function PlasmicAccueil2__RenderFunc(props: {
                                   })()}
                                 </React.Fragment>
                               </div>
-                            </Stack__>
+                            </div>
                             <div
                               data-plasmic-name={"publicationDate"}
                               data-plasmic-override={overrides.publicationDate}
@@ -2404,28 +2411,22 @@ function PlasmicAccueil2__RenderFunc(props: {
                               </React.Fragment>
                             </div>
                           </div>
-                          <Stack__
-                            as={"div"}
+                          <div
                             data-plasmic-name={"frame46"}
                             data-plasmic-override={overrides.frame46}
-                            hasGap={true}
                             className={classNames(projectcss.all, sty.frame46)}
                           >
-                            <Stack__
-                              as={"div"}
+                            <div
                               data-plasmic-name={"frame47"}
                               data-plasmic-override={overrides.frame47}
-                              hasGap={true}
                               className={classNames(
                                 projectcss.all,
                                 sty.frame47
                               )}
                             >
-                              <Stack__
-                                as={"div"}
+                              <div
                                 data-plasmic-name={"frame48"}
                                 data-plasmic-override={overrides.frame48}
-                                hasGap={true}
                                 className={classNames(
                                   projectcss.all,
                                   sty.frame48
@@ -2465,12 +2466,10 @@ function PlasmicAccueil2__RenderFunc(props: {
                                     })()}
                                   </React.Fragment>
                                 </div>
-                              </Stack__>
-                              <Stack__
-                                as={"div"}
+                              </div>
+                              <div
                                 data-plasmic-name={"frame49"}
                                 data-plasmic-override={overrides.frame49}
-                                hasGap={true}
                                 className={classNames(
                                   projectcss.all,
                                   sty.frame49
@@ -2512,12 +2511,10 @@ function PlasmicAccueil2__RenderFunc(props: {
                                     })()}
                                   </React.Fragment>
                                 </div>
-                              </Stack__>
-                              <Stack__
-                                as={"div"}
+                              </div>
+                              <div
                                 data-plasmic-name={"frame50"}
                                 data-plasmic-override={overrides.frame50}
-                                hasGap={true}
                                 className={classNames(
                                   projectcss.all,
                                   sty.frame50
@@ -2559,12 +2556,10 @@ function PlasmicAccueil2__RenderFunc(props: {
                                     })()}
                                   </React.Fragment>
                                 </div>
-                              </Stack__>
-                              <Stack__
-                                as={"div"}
+                              </div>
+                              <div
                                 data-plasmic-name={"frame51"}
                                 data-plasmic-override={overrides.frame51}
-                                hasGap={true}
                                 className={classNames(
                                   projectcss.all,
                                   sty.frame51
@@ -2607,8 +2602,8 @@ function PlasmicAccueil2__RenderFunc(props: {
                                     })()}
                                   </React.Fragment>
                                 </div>
-                              </Stack__>
-                            </Stack__>
+                              </div>
+                            </div>
                             {(() => {
                               try {
                                 return $queries.getApplication.data.some(
@@ -2841,11 +2836,9 @@ function PlasmicAccueil2__RenderFunc(props: {
                                 throw e;
                               }
                             })() ? (
-                              <Stack__
-                                as={"div"}
+                              <div
                                 data-plasmic-name={"frame"}
                                 data-plasmic-override={overrides.frame}
-                                hasGap={true}
                                 className={classNames(
                                   projectcss.all,
                                   sty.frame
@@ -2868,17 +2861,15 @@ function PlasmicAccueil2__RenderFunc(props: {
                                 >
                                   {"Postul\u00e9"}
                                 </div>
-                              </Stack__>
+                              </div>
                             ) : null}
-                          </Stack__>
-                        </Stack__>
-                        <Stack__
-                          as={"div"}
+                          </div>
+                        </div>
+                        <div
                           data-plasmic-name={"jobDescriptionContainer"}
                           data-plasmic-override={
                             overrides.jobDescriptionContainer
                           }
-                          hasGap={true}
                           className={classNames(
                             projectcss.all,
                             sty.jobDescriptionContainer
@@ -2919,11 +2910,9 @@ function PlasmicAccueil2__RenderFunc(props: {
                               })()}
                             </React.Fragment>
                           </div>
-                          <Stack__
-                            as={"div"}
+                          <div
                             data-plasmic-name={"benefits"}
                             data-plasmic-override={overrides.benefits}
-                            hasGap={true}
                             className={classNames(projectcss.all, sty.benefits)}
                           >
                             {(_par =>
@@ -2977,15 +2966,13 @@ function PlasmicAccueil2__RenderFunc(props: {
                                 </div>
                               );
                             })}
-                          </Stack__>
-                        </Stack__>
-                        <Stack__
-                          as={"div"}
+                          </div>
+                        </div>
+                        <div
                           data-plasmic-name={"expectedProfileContainer"}
                           data-plasmic-override={
                             overrides.expectedProfileContainer
                           }
-                          hasGap={true}
                           className={classNames(
                             projectcss.all,
                             sty.expectedProfileContainer
@@ -3026,12 +3013,10 @@ function PlasmicAccueil2__RenderFunc(props: {
                               })()}
                             </React.Fragment>
                           </div>
-                        </Stack__>
-                        <Stack__
-                          as={"div"}
+                        </div>
+                        <div
                           data-plasmic-name={"companyContainer"}
                           data-plasmic-override={overrides.companyContainer}
-                          hasGap={true}
                           className={classNames(
                             projectcss.all,
                             sty.companyContainer
@@ -3082,9 +3067,7 @@ function PlasmicAccueil2__RenderFunc(props: {
                               })()}
                             />
                           </div>
-                          <Stack__
-                            as={"div"}
-                            hasGap={true}
+                          <div
                             className={classNames(
                               projectcss.all,
                               sty.freeBox__vfTFl
@@ -3116,11 +3099,9 @@ function PlasmicAccueil2__RenderFunc(props: {
                                 })()}
                               </React.Fragment>
                             </div>
-                            <Stack__
-                              as={"div"}
+                            <div
                               data-plasmic-name={"companyDetail"}
                               data-plasmic-override={overrides.companyDetail}
-                              hasGap={true}
                               className={classNames(
                                 projectcss.all,
                                 sty.companyDetail
@@ -3142,13 +3123,11 @@ function PlasmicAccueil2__RenderFunc(props: {
                                   throw e;
                                 }
                               })() ? (
-                                <Stack__
-                                  as={"div"}
+                                <div
                                   data-plasmic-name={"sectorActivity"}
                                   data-plasmic-override={
                                     overrides.sectorActivity
                                   }
-                                  hasGap={true}
                                   className={classNames(
                                     projectcss.all,
                                     sty.sectorActivity
@@ -3191,7 +3170,7 @@ function PlasmicAccueil2__RenderFunc(props: {
                                       })()}
                                     </React.Fragment>
                                   </div>
-                                </Stack__>
+                                </div>
                               ) : null}
                               {(() => {
                                 try {
@@ -3207,11 +3186,9 @@ function PlasmicAccueil2__RenderFunc(props: {
                                   throw e;
                                 }
                               })() ? (
-                                <Stack__
-                                  as={"div"}
+                                <div
                                   data-plasmic-name={"companySize"}
                                   data-plasmic-override={overrides.companySize}
-                                  hasGap={true}
                                   className={classNames(
                                     projectcss.all,
                                     sty.companySize
@@ -3253,7 +3230,7 @@ function PlasmicAccueil2__RenderFunc(props: {
                                       })()}
                                     </React.Fragment>
                                   </div>
-                                </Stack__>
+                                </div>
                               ) : null}
                               {(() => {
                                 try {
@@ -3271,13 +3248,11 @@ function PlasmicAccueil2__RenderFunc(props: {
                                   throw e;
                                 }
                               })() ? (
-                                <Stack__
-                                  as={"div"}
+                                <div
                                   data-plasmic-name={"companyLocation"}
                                   data-plasmic-override={
                                     overrides.companyLocation
                                   }
-                                  hasGap={true}
                                   className={classNames(
                                     projectcss.all,
                                     sty.companyLocation
@@ -3316,10 +3291,10 @@ function PlasmicAccueil2__RenderFunc(props: {
                                       })()}
                                     </React.Fragment>
                                   </div>
-                                </Stack__>
+                                </div>
                               ) : null}
-                            </Stack__>
-                          </Stack__>
+                            </div>
+                          </div>
                           <div
                             data-plasmic-name={"companyDescription"}
                             data-plasmic-override={overrides.companyDescription}
@@ -3346,8 +3321,8 @@ function PlasmicAccueil2__RenderFunc(props: {
                               })()}
                             </React.Fragment>
                           </div>
-                        </Stack__>
-                      </Stack__>
+                        </div>
+                      </div>
                     }
                     footer={null}
                     heading={
@@ -3564,28 +3539,22 @@ function PlasmicAccueil2__RenderFunc(props: {
                                 }
                               })()
                         ) ? (
-                          <Stack__
-                            as={"div"}
+                          <div
                             data-plasmic-name={"header2"}
                             data-plasmic-override={overrides.header2}
-                            hasGap={true}
                             className={classNames(projectcss.all, sty.header2)}
                           >
-                            <Stack__
-                              as={"div"}
+                            <div
                               data-plasmic-name={"frame67"}
                               data-plasmic-override={overrides.frame67}
-                              hasGap={true}
                               className={classNames(
                                 projectcss.all,
                                 sty.frame67
                               )}
                             >
-                              <Stack__
-                                as={"div"}
+                              <div
                                 data-plasmic-name={"frame68"}
                                 data-plasmic-override={overrides.frame68}
-                                hasGap={true}
                                 className={classNames(
                                   projectcss.all,
                                   sty.frame68
@@ -3615,11 +3584,9 @@ function PlasmicAccueil2__RenderFunc(props: {
                                     })()}
                                   </React.Fragment>
                                 </div>
-                                <Stack__
-                                  as={"div"}
+                                <div
                                   data-plasmic-name={"frame69"}
                                   data-plasmic-override={overrides.frame69}
-                                  hasGap={true}
                                   className={classNames(
                                     projectcss.all,
                                     sty.frame69
@@ -3657,8 +3624,8 @@ function PlasmicAccueil2__RenderFunc(props: {
                                       })()}
                                     </React.Fragment>
                                   </div>
-                                </Stack__>
-                              </Stack__>
+                                </div>
+                              </div>
                               <div
                                 className={classNames(
                                   projectcss.all,
@@ -3688,40 +3655,32 @@ function PlasmicAccueil2__RenderFunc(props: {
                                   })()}
                                 </React.Fragment>
                               </div>
-                            </Stack__>
-                            <Stack__
-                              as={"div"}
+                            </div>
+                            <div
                               data-plasmic-name={"frame74"}
                               data-plasmic-override={overrides.frame74}
-                              hasGap={true}
                               className={classNames(
                                 projectcss.all,
                                 sty.frame74
                               )}
                             >
-                              <Stack__
-                                as={"div"}
+                              <div
                                 data-plasmic-name={"frame75"}
                                 data-plasmic-override={overrides.frame75}
-                                hasGap={true}
                                 className={classNames(
                                   projectcss.all,
                                   sty.frame75
                                 )}
                               >
-                                <Stack__
-                                  as={"div"}
-                                  hasGap={true}
+                                <div
                                   className={classNames(
                                     projectcss.all,
                                     sty.freeBox__sLooZ
                                   )}
                                 >
-                                  <Stack__
-                                    as={"div"}
+                                  <div
                                     data-plasmic-name={"frame76"}
                                     data-plasmic-override={overrides.frame76}
-                                    hasGap={true}
                                     className={classNames(
                                       projectcss.all,
                                       sty.frame76
@@ -3764,12 +3723,10 @@ function PlasmicAccueil2__RenderFunc(props: {
                                         })()}
                                       </React.Fragment>
                                     </div>
-                                  </Stack__>
-                                  <Stack__
-                                    as={"div"}
+                                  </div>
+                                  <div
                                     data-plasmic-name={"frame77"}
                                     data-plasmic-override={overrides.frame77}
-                                    hasGap={true}
                                     className={classNames(
                                       projectcss.all,
                                       sty.frame77
@@ -3812,21 +3769,17 @@ function PlasmicAccueil2__RenderFunc(props: {
                                         })()}
                                       </React.Fragment>
                                     </div>
-                                  </Stack__>
-                                </Stack__>
-                                <Stack__
-                                  as={"div"}
-                                  hasGap={true}
+                                  </div>
+                                </div>
+                                <div
                                   className={classNames(
                                     projectcss.all,
                                     sty.freeBox__tmFfz
                                   )}
                                 >
-                                  <Stack__
-                                    as={"div"}
+                                  <div
                                     data-plasmic-name={"frame16"}
                                     data-plasmic-override={overrides.frame16}
-                                    hasGap={true}
                                     className={classNames(
                                       projectcss.all,
                                       sty.frame16
@@ -3868,12 +3821,10 @@ function PlasmicAccueil2__RenderFunc(props: {
                                         })()}
                                       </React.Fragment>
                                     </div>
-                                  </Stack__>
-                                  <Stack__
-                                    as={"div"}
+                                  </div>
+                                  <div
                                     data-plasmic-name={"frame17"}
                                     data-plasmic-override={overrides.frame17}
-                                    hasGap={true}
                                     className={classNames(
                                       projectcss.all,
                                       sty.frame17
@@ -3916,35 +3867,29 @@ function PlasmicAccueil2__RenderFunc(props: {
                                         })()}
                                       </React.Fragment>
                                     </div>
-                                  </Stack__>
-                                </Stack__>
-                              </Stack__>
-                            </Stack__>
-                            <Stack__
-                              as={"div"}
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div
                               data-plasmic-name={"frame18"}
                               data-plasmic-override={overrides.frame18}
-                              hasGap={true}
                               className={classNames(
                                 projectcss.all,
                                 sty.frame18
                               )}
                             >
-                              <Stack__
-                                as={"div"}
+                              <div
                                 data-plasmic-name={"frame78"}
                                 data-plasmic-override={overrides.frame78}
-                                hasGap={true}
                                 className={classNames(
                                   projectcss.all,
                                   sty.frame78
                                 )}
                               >
-                                <Stack__
-                                  as={"div"}
+                                <div
                                   data-plasmic-name={"frame79"}
                                   data-plasmic-override={overrides.frame79}
-                                  hasGap={true}
                                   className={classNames(
                                     projectcss.all,
                                     sty.frame79
@@ -3974,21 +3919,17 @@ function PlasmicAccueil2__RenderFunc(props: {
                                       })()}
                                     </React.Fragment>
                                   </div>
-                                  <Stack__
-                                    as={"div"}
+                                  <div
                                     data-plasmic-name={"frame80"}
                                     data-plasmic-override={overrides.frame80}
-                                    hasGap={true}
                                     className={classNames(
                                       projectcss.all,
                                       sty.frame80
                                     )}
                                   >
-                                    <Stack__
-                                      as={"div"}
+                                    <div
                                       data-plasmic-name={"frame81"}
                                       data-plasmic-override={overrides.frame81}
-                                      hasGap={true}
                                       className={classNames(
                                         projectcss.all,
                                         sty.frame81
@@ -4031,7 +3972,7 @@ function PlasmicAccueil2__RenderFunc(props: {
                                           })()}
                                         </React.Fragment>
                                       </div>
-                                    </Stack__>
+                                    </div>
                                     {(
                                       hasVariant(
                                         globalVariants,
@@ -4057,13 +3998,11 @@ function PlasmicAccueil2__RenderFunc(props: {
                                           })()
                                         : true
                                     ) ? (
-                                      <Stack__
-                                        as={"div"}
+                                      <div
                                         data-plasmic-name={"frame82"}
                                         data-plasmic-override={
                                           overrides.frame82
                                         }
-                                        hasGap={true}
                                         className={classNames(
                                           projectcss.all,
                                           sty.frame82
@@ -4106,25 +4045,21 @@ function PlasmicAccueil2__RenderFunc(props: {
                                             })()}
                                           </React.Fragment>
                                         </div>
-                                      </Stack__>
+                                      </div>
                                     ) : null}
-                                    <Stack__
-                                      as={"div"}
+                                    <div
                                       data-plasmic-name={"frame83"}
                                       data-plasmic-override={overrides.frame83}
-                                      hasGap={true}
                                       className={classNames(
                                         projectcss.all,
                                         sty.frame83
                                       )}
                                     >
-                                      <Stack__
-                                        as={"div"}
+                                      <div
                                         data-plasmic-name={"frame84"}
                                         data-plasmic-override={
                                           overrides.frame84
                                         }
-                                        hasGap={true}
                                         className={classNames(
                                           projectcss.all,
                                           sty.frame84
@@ -4163,11 +4098,11 @@ function PlasmicAccueil2__RenderFunc(props: {
                                             })()}
                                           </React.Fragment>
                                         </div>
-                                      </Stack__>
-                                    </Stack__>
-                                  </Stack__>
-                                </Stack__>
-                              </Stack__>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
                               {(() => {
                                 try {
                                   return $state.jobObject.logo_file != null;
@@ -4182,11 +4117,9 @@ function PlasmicAccueil2__RenderFunc(props: {
                                   throw e;
                                 }
                               })() ? (
-                                <Stack__
-                                  as={"div"}
+                                <div
                                   data-plasmic-name={"frame85"}
                                   data-plasmic-override={overrides.frame85}
-                                  hasGap={true}
                                   className={classNames(
                                     projectcss.all,
                                     sty.frame85
@@ -4217,10 +4150,10 @@ function PlasmicAccueil2__RenderFunc(props: {
                                       }
                                     })()}
                                   />
-                                </Stack__>
+                                </div>
                               ) : null}
-                            </Stack__>
-                          </Stack__>
+                            </div>
+                          </div>
                         ) : null}
                         {(() => {
                           const child$Props = {
@@ -4276,6 +4209,7 @@ function PlasmicAccueil2__RenderFunc(props: {
                                           userArgs: {
                                             path: [
                                               $ctx.SupabaseUser.user.id,
+
                                               (() => {
                                                 const file =
                                                   $state.upload.files[0];
@@ -4294,9 +4228,11 @@ function PlasmicAccueil2__RenderFunc(props: {
                                                 }
                                               })()
                                             ],
+
                                             content: [
                                               $state.upload.files[0].contents
                                             ],
+
                                             contentType: [
                                               $state.upload.files[0].type
                                             ]
@@ -4348,6 +4284,7 @@ function PlasmicAccueil2__RenderFunc(props: {
                                           userArgs: {
                                             path: [
                                               $ctx.SupabaseUser.user.id,
+
                                               (() => {
                                                 const file =
                                                   $state.upload3.files[0];
@@ -4366,9 +4303,11 @@ function PlasmicAccueil2__RenderFunc(props: {
                                                 }
                                               })()
                                             ],
+
                                             content: [
                                               $state.upload3.files[0].contents
                                             ],
+
                                             contentType: [
                                               $state.upload3.files[0].type
                                             ]
@@ -4420,36 +4359,55 @@ function PlasmicAccueil2__RenderFunc(props: {
                                           conditions: [
                                             $ctx.SupabaseUser.user.id
                                           ],
+
                                           variables: [
                                             $steps.cv?.path.split("/")[1] !=
                                             undefined
                                               ? $steps.cv?.path.split("/")[1]
                                               : $queries.currentUser.data[0]
                                                   .cv_file,
+
                                             $steps.ldm?.path.split("/")[1] !=
                                             undefined
                                               ? $steps.ldm?.path.split("/")[1]
                                               : $queries.currentUser.data[0]
                                                   .cover_letter_file,
+
                                             $state.form.value.address,
+
                                             $state.form.value.city,
+
                                             $state.form.value.Country,
+
                                             $state.form.value.first_name,
+
                                             $state.form.value.last_name,
+
                                             $state.form.value.level,
+
                                             $state.form.value.linkedin_url,
+
                                             $state.form.value.phone_number,
+
                                             $state.form.value.postal_code,
+
                                             $state.form.value
                                               .short_presentation,
+
                                             $state.form.value.skill,
+
                                             $state.form.value.transport_modes,
+
                                             new Date().toISOString(),
+
                                             $state.form.value.skills,
+
                                             $state.form.value.transport_mode,
+
                                             $queries.fetchUserCoordinates.data
                                               .response.features[0].geometry
                                               .coordinates[0],
+
                                             $queries.fetchUserCoordinates.data
                                               .response.features[0].geometry
                                               .coordinates[1]
@@ -4510,23 +4468,34 @@ function PlasmicAccueil2__RenderFunc(props: {
                                         userArgs: {
                                           variables: [
                                             $state.form.value.address,
+
                                             $state.form.value.city,
+
                                             $steps.ldm != undefined
                                               ? $steps.ldm?.path.split("/")[1]
                                               : $queries.currentUser.data[0]
                                                   .cover_letter_file,
+
                                             $steps.cv != undefined
                                               ? $steps.cv?.path.split("/")[1]
                                               : $queries.currentUser.data[0]
                                                   .cv_file,
+
                                             $state.form.value.level,
+
                                             $state.form.value.linkedin_url,
+
                                             $state.form.value.postal_code,
+
                                             $state.form.value
                                               .short_presentation,
+
                                             $state.form.value.skill,
+
                                             $state.form.value.transport_mode,
+
                                             $ctx.SupabaseUser.user.id,
+
                                             $state.jobObject.id
                                           ]
                                         },
@@ -4851,12 +4820,15 @@ function PlasmicAccueil2__RenderFunc(props: {
                                                 userArgs: {
                                                   path: [
                                                     $ctx.SupabaseUser.user.id,
+
                                                     $state.upload2.files[0].name
                                                   ],
+
                                                   content: [
                                                     $state.upload2.files[0]
                                                       .contents
                                                   ],
+
                                                   contentType: [
                                                     $state.upload2.files[0].type
                                                   ]
@@ -4915,6 +4887,7 @@ function PlasmicAccueil2__RenderFunc(props: {
                                                   keys: [
                                                     $ctx.SupabaseUser.user.id
                                                   ],
+
                                                   variables: [
                                                     $steps.supabaseUploadFile?.path.split(
                                                       "/"
@@ -4986,9 +4959,7 @@ function PlasmicAccueil2__RenderFunc(props: {
                                     }
                                   />
 
-                                  <Stack__
-                                    as={"div"}
-                                    hasGap={true}
+                                  <div
                                     className={classNames(
                                       projectcss.all,
                                       sty.freeBox__m6EHu
@@ -5118,6 +5089,7 @@ function PlasmicAccueil2__RenderFunc(props: {
                                                     conditions: [
                                                       $ctx.SupabaseUser.user.id
                                                     ],
+
                                                     variables: [null]
                                                   },
                                                   cacheKey: null,
@@ -5187,14 +5159,12 @@ function PlasmicAccueil2__RenderFunc(props: {
                                         role={"img"}
                                       />
                                     </div>
-                                  </Stack__>
+                                  </div>
                                 </UploadWrapper>
                               </div>
-                              <Stack__
-                                as={"div"}
+                              <div
                                 data-plasmic-name={"nomPrenom"}
                                 data-plasmic-override={overrides.nomPrenom}
-                                hasGap={true}
                                 className={classNames(
                                   projectcss.all,
                                   sty.nomPrenom
@@ -5296,7 +5266,7 @@ function PlasmicAccueil2__RenderFunc(props: {
                                     placeholder={"Nom"}
                                   />
                                 </FormItemWrapper>
-                              </Stack__>
+                              </div>
                               <FormItemWrapper
                                 className={classNames(
                                   "__wab_instance",
@@ -5346,11 +5316,9 @@ function PlasmicAccueil2__RenderFunc(props: {
                                   placeholder={"E-mail"}
                                 />
                               </FormItemWrapper>
-                              <Stack__
-                                as={"div"}
+                              <div
                                 data-plasmic-name={"telephone"}
                                 data-plasmic-override={overrides.telephone}
-                                hasGap={true}
                                 className={classNames(
                                   projectcss.all,
                                   sty.telephone
@@ -5435,7 +5403,7 @@ function PlasmicAccueil2__RenderFunc(props: {
                                     placeholder={"6060606060"}
                                   />
                                 </FormItemWrapper>
-                              </Stack__>
+                              </div>
                               <FormItemWrapper
                                 className={classNames(
                                   "__wab_instance",
@@ -5494,11 +5462,9 @@ function PlasmicAccueil2__RenderFunc(props: {
                                   placeholder={"Rue"}
                                 />
                               </FormItemWrapper>
-                              <Stack__
-                                as={"div"}
+                              <div
                                 data-plasmic-name={"codePosteVille"}
                                 data-plasmic-override={overrides.codePosteVille}
-                                hasGap={true}
                                 className={classNames(
                                   projectcss.all,
                                   sty.codePosteVille
@@ -5623,10 +5589,8 @@ function PlasmicAccueil2__RenderFunc(props: {
                                     placeholder={"Ville"}
                                   />
                                 </FormItemWrapper>
-                              </Stack__>
-                              <Stack__
-                                as={"div"}
-                                hasGap={true}
+                              </div>
+                              <div
                                 className={classNames(
                                   projectcss.all,
                                   sty.freeBox___0IGg1
@@ -5681,7 +5645,7 @@ function PlasmicAccueil2__RenderFunc(props: {
                                   placeholder={"Ville"}
                                   showLabel={false}
                                 />
-                              </Stack__>
+                              </div>
                               <FormItemWrapper
                                 className={classNames(
                                   "__wab_instance",
@@ -6166,11 +6130,9 @@ function PlasmicAccueil2__RenderFunc(props: {
                                   showLabel={false}
                                 />
                               </FormItemWrapper>
-                              <Stack__
-                                as={"div"}
+                              <div
                                 data-plasmic-name={"frame13"}
                                 data-plasmic-override={overrides.frame13}
-                                hasGap={true}
                                 className={classNames(
                                   projectcss.all,
                                   sty.frame13
@@ -6314,6 +6276,7 @@ function PlasmicAccueil2__RenderFunc(props: {
                                                         $ctx.SupabaseUser.user
                                                           .id
                                                       ],
+
                                                       variables: [null]
                                                     },
                                                     cacheKey: null,
@@ -6378,9 +6341,7 @@ function PlasmicAccueil2__RenderFunc(props: {
                                           sty.content5
                                         )}
                                       >
-                                        <Stack__
-                                          as={PlasmicImg__}
-                                          hasGap={true}
+                                        <PlasmicImg__
                                           alt={""}
                                           className={classNames(sty.img__hv5Q1)}
                                           displayHeight={"39px"}
@@ -6486,9 +6447,7 @@ function PlasmicAccueil2__RenderFunc(props: {
                                             sty.content
                                           )}
                                         >
-                                          <Stack__
-                                            as={PlasmicImg__}
-                                            hasGap={true}
+                                          <PlasmicImg__
                                             alt={""}
                                             className={classNames(
                                               sty.img__bArmU
@@ -6675,6 +6634,7 @@ function PlasmicAccueil2__RenderFunc(props: {
                                                         $ctx.SupabaseUser.user
                                                           .id
                                                       ],
+
                                                       variables: [null]
                                                     },
                                                     cacheKey: null,
@@ -6739,9 +6699,7 @@ function PlasmicAccueil2__RenderFunc(props: {
                                           sty.content6
                                         )}
                                       >
-                                        <Stack__
-                                          as={PlasmicImg__}
-                                          hasGap={true}
+                                        <PlasmicImg__
                                           alt={""}
                                           className={classNames(sty.img__cbofI)}
                                           displayHeight={"39px"}
@@ -6845,9 +6803,7 @@ function PlasmicAccueil2__RenderFunc(props: {
                                             sty.freeBox__unEfQ
                                           )}
                                         >
-                                          <Stack__
-                                            as={PlasmicImg__}
-                                            hasGap={true}
+                                          <PlasmicImg__
                                             alt={""}
                                             className={classNames(
                                               sty.img__wpNpC
@@ -6892,22 +6848,18 @@ function PlasmicAccueil2__RenderFunc(props: {
                                     </div>
                                   ) : null}
                                 </div>
-                              </Stack__>
-                              <Stack__
-                                as={"div"}
+                              </div>
+                              <div
                                 data-plasmic-name={"frame92"}
                                 data-plasmic-override={overrides.frame92}
-                                hasGap={true}
                                 className={classNames(
                                   projectcss.all,
                                   sty.frame92
                                 )}
                               >
-                                <Stack__
-                                  as={"div"}
+                                <div
                                   data-plasmic-name={"frame93"}
                                   data-plasmic-override={overrides.frame93}
-                                  hasGap={true}
                                   className={classNames(
                                     projectcss.all,
                                     sty.frame93
@@ -6937,12 +6889,10 @@ function PlasmicAccueil2__RenderFunc(props: {
                                     maxSize={5242880}
                                     state={"complete"}
                                   />
-                                </Stack__>
-                                <Stack__
-                                  as={"div"}
+                                </div>
+                                <div
                                   data-plasmic-name={"frame94"}
                                   data-plasmic-override={overrides.frame94}
-                                  hasGap={true}
                                   className={classNames(
                                     projectcss.all,
                                     sty.frame94
@@ -6972,8 +6922,8 @@ function PlasmicAccueil2__RenderFunc(props: {
                                     maxSize={7}
                                     state={"complete"}
                                   />
-                                </Stack__>
-                              </Stack__>
+                                </div>
+                              </div>
                               <FormItemWrapper
                                 className={classNames(
                                   "__wab_instance",
@@ -7295,9 +7245,7 @@ function PlasmicAccueil2__RenderFunc(props: {
                     data-plasmic-override={overrides.verifyUserAuth}
                     className={classNames("__wab_instance", sty.verifyUserAuth)}
                     content={
-                      <Stack__
-                        as={"div"}
-                        hasGap={true}
+                      <div
                         className={classNames(
                           projectcss.all,
                           sty.freeBox__swxyc
@@ -7383,7 +7331,7 @@ function PlasmicAccueil2__RenderFunc(props: {
                             }
                           }}
                         />
-                      </Stack__>
+                      </div>
                     }
                     footer={null}
                     heading={
@@ -7426,9 +7374,7 @@ function PlasmicAccueil2__RenderFunc(props: {
                     className={classNames("__wab_instance", sty.modal)}
                     closeOnBackdropClick={false}
                     content={
-                      <Stack__
-                        as={"div"}
-                        hasGap={true}
+                      <div
                         className={classNames(
                           projectcss.all,
                           sty.freeBox___3UUc1
@@ -7535,11 +7481,9 @@ function PlasmicAccueil2__RenderFunc(props: {
                               data-plasmic-override={overrides.formFilter2}
                               {...child$Props}
                             >
-                              <Stack__
-                                as={"div"}
+                              <div
                                 data-plasmic-name={"wrapContent2"}
                                 data-plasmic-override={overrides.wrapContent2}
-                                hasGap={true}
                                 className={classNames(
                                   projectcss.all,
                                   sty.wrapContent2
@@ -7868,9 +7812,7 @@ function PlasmicAccueil2__RenderFunc(props: {
                                       }
                                     })()}
                                     placeholder={
-                                      <Stack__
-                                        as={"div"}
-                                        hasGap={true}
+                                      <div
                                         className={classNames(
                                           projectcss.all,
                                           sty.freeBox__aiBzG
@@ -7903,7 +7845,7 @@ function PlasmicAccueil2__RenderFunc(props: {
                                         >
                                           {"Secteur"}
                                         </div>
-                                      </Stack__>
+                                      </div>
                                     }
                                     popupScopeClassName={sty["select15__popup"]}
                                     size={
@@ -7987,9 +7929,7 @@ function PlasmicAccueil2__RenderFunc(props: {
                                       }
                                     })()}
                                     placeholder={
-                                      <Stack__
-                                        as={"div"}
-                                        hasGap={true}
+                                      <div
                                         className={classNames(
                                           projectcss.all,
                                           sty.freeBox__kPzv
@@ -8022,7 +7962,7 @@ function PlasmicAccueil2__RenderFunc(props: {
                                         >
                                           {"Disponibilit\u00e9"}
                                         </div>
-                                      </Stack__>
+                                      </div>
                                     }
                                     popupScopeClassName={sty["select16__popup"]}
                                     size={"large"}
@@ -8095,9 +8035,7 @@ function PlasmicAccueil2__RenderFunc(props: {
                                       }
                                     })()}
                                     placeholder={
-                                      <Stack__
-                                        as={"div"}
-                                        hasGap={true}
+                                      <div
                                         className={classNames(
                                           projectcss.all,
                                           sty.freeBox__rX4Yy
@@ -8130,7 +8068,7 @@ function PlasmicAccueil2__RenderFunc(props: {
                                         >
                                           {"Type de contrat"}
                                         </div>
-                                      </Stack__>
+                                      </div>
                                     }
                                     popupScopeClassName={sty["select17__popup"]}
                                     size={"large"}
@@ -8203,9 +8141,7 @@ function PlasmicAccueil2__RenderFunc(props: {
                                       }
                                     })()}
                                     placeholder={
-                                      <Stack__
-                                        as={"div"}
-                                        hasGap={true}
+                                      <div
                                         className={classNames(
                                           projectcss.all,
                                           sty.freeBox__pQhJ4
@@ -8238,7 +8174,7 @@ function PlasmicAccueil2__RenderFunc(props: {
                                         >
                                           {"Temps de travail"}
                                         </div>
-                                      </Stack__>
+                                      </div>
                                     }
                                     popupScopeClassName={sty["select18__popup"]}
                                     size={"large"}
@@ -8311,9 +8247,7 @@ function PlasmicAccueil2__RenderFunc(props: {
                                       }
                                     })()}
                                     placeholder={
-                                      <Stack__
-                                        as={"div"}
-                                        hasGap={true}
+                                      <div
                                         className={classNames(
                                           projectcss.all,
                                           sty.freeBox__nPsfS
@@ -8346,7 +8280,7 @@ function PlasmicAccueil2__RenderFunc(props: {
                                         >
                                           {"Mode de travail"}
                                         </div>
-                                      </Stack__>
+                                      </div>
                                     }
                                     popupScopeClassName={sty["select19__popup"]}
                                     showSearch={false}
@@ -8420,9 +8354,7 @@ function PlasmicAccueil2__RenderFunc(props: {
                                       }
                                     })()}
                                     placeholder={
-                                      <Stack__
-                                        as={"div"}
-                                        hasGap={true}
+                                      <div
                                         className={classNames(
                                           projectcss.all,
                                           sty.freeBox__nHGqO
@@ -8455,7 +8387,7 @@ function PlasmicAccueil2__RenderFunc(props: {
                                         >
                                           {"Salaire"}
                                         </div>
-                                      </Stack__>
+                                      </div>
                                     }
                                     popupScopeClassName={sty["select20__popup"]}
                                     size={"large"}
@@ -8529,9 +8461,7 @@ function PlasmicAccueil2__RenderFunc(props: {
                                       }
                                     })()}
                                     placeholder={
-                                      <Stack__
-                                        as={"div"}
-                                        hasGap={true}
+                                      <div
                                         className={classNames(
                                           projectcss.all,
                                           sty.freeBox__rxyhd
@@ -8564,7 +8494,7 @@ function PlasmicAccueil2__RenderFunc(props: {
                                         >
                                           {"Taille entreprise"}
                                         </div>
-                                      </Stack__>
+                                      </div>
                                     }
                                     popupScopeClassName={sty["select21__popup"]}
                                     size={"large"}
@@ -8663,13 +8593,11 @@ function PlasmicAccueil2__RenderFunc(props: {
                                     })()}
                                   />
                                 ) : null}
-                                <Stack__
-                                  as={"button"}
+                                <button
                                   data-plasmic-name={"buttonLastMin"}
                                   data-plasmic-override={
                                     overrides.buttonLastMin
                                   }
-                                  hasGap={true}
                                   className={classNames(
                                     projectcss.all,
                                     projectcss.button,
@@ -8746,12 +8674,10 @@ function PlasmicAccueil2__RenderFunc(props: {
                                   >
                                     {"LAST MINUTE"}
                                   </div>
-                                </Stack__>
-                                <Stack__
-                                  as={PlasmicLink__}
+                                </button>
+                                <PlasmicLink__
                                   data-plasmic-name={"textLinkBase"}
                                   data-plasmic-override={overrides.textLinkBase}
-                                  hasGap={true}
                                   className={classNames(
                                     projectcss.all,
                                     projectcss.a,
@@ -8795,7 +8721,7 @@ function PlasmicAccueil2__RenderFunc(props: {
                                       "Cr\u00e9er une alerte avec ces crit\u00e8res"
                                     }
                                   </div>
-                                </Stack__>
+                                </PlasmicLink__>
                                 <Button
                                   className={classNames(
                                     "__wab_instance",
@@ -8917,11 +8843,11 @@ function PlasmicAccueil2__RenderFunc(props: {
                                   }}
                                   submitsForm={false}
                                 />
-                              </Stack__>
+                              </div>
                             </FormWrapper>
                           );
                         })()}
-                      </Stack__>
+                      </div>
                     }
                     footer={
                       <div
@@ -9043,18 +8969,14 @@ function PlasmicAccueil2__RenderFunc(props: {
                     }
                   />
 
-                  <Stack__
-                    as={"header"}
+                  <header
                     data-plasmic-name={"header"}
                     data-plasmic-override={overrides.header}
-                    hasGap={true}
                     className={classNames(projectcss.all, sty.header)}
                   >
-                    <Stack__
-                      as={"div"}
+                    <div
                       data-plasmic-name={"jamLogo"}
                       data-plasmic-override={overrides.jamLogo}
-                      hasGap={true}
                       className={classNames(projectcss.all, sty.jamLogo)}
                       onClick={async event => {
                         const $steps = {};
@@ -9141,10 +9063,8 @@ function PlasmicAccueil2__RenderFunc(props: {
                           </div>
                         </div>
                       </div>
-                    </Stack__>
-                    <Stack__
-                      as={"div"}
-                      hasGap={true}
+                    </div>
+                    <div
                       className={classNames(projectcss.all, sty.freeBox__i6Qc8)}
                     >
                       <PlasmicLink__
@@ -9561,8 +9481,8 @@ function PlasmicAccueil2__RenderFunc(props: {
                           }}
                         />
                       ) : null}
-                    </Stack__>
-                  </Stack__>
+                    </div>
+                  </header>
                   <main
                     data-plasmic-name={"main"}
                     data-plasmic-override={overrides.main}
@@ -9596,26 +9516,20 @@ function PlasmicAccueil2__RenderFunc(props: {
                       data-plasmic-override={overrides.section1}
                       className={classNames(projectcss.all, sty.section1)}
                     >
-                      <Stack__
-                        as={"div"}
+                      <div
                         data-plasmic-name={"title"}
                         data-plasmic-override={overrides.title}
-                        hasGap={true}
                         className={classNames(projectcss.all, sty.title)}
                       >
-                        <Stack__
-                          as={"div"}
-                          hasGap={true}
+                        <div
                           className={classNames(
                             projectcss.all,
                             sty.freeBox__imHbH
                           )}
                         >
-                          <Stack__
-                            as={"div"}
+                          <div
                             data-plasmic-name={"badgeGroup"}
                             data-plasmic-override={overrides.badgeGroup}
-                            hasGap={true}
                             className={classNames(
                               projectcss.all,
                               sty.badgeGroup
@@ -9632,7 +9546,7 @@ function PlasmicAccueil2__RenderFunc(props: {
                             >
                               {"Get ready to find a job"}
                             </div>
-                          </Stack__>
+                          </div>
                           <h1
                             data-plasmic-name={
                               "trouvezUnJobNaJamaisEteAussiSimple"
@@ -9664,7 +9578,7 @@ function PlasmicAccueil2__RenderFunc(props: {
                               </span>
                             </React.Fragment>
                           </h1>
-                        </Stack__>
+                        </div>
                         <p
                           data-plasmic-name={
                             "trouvezUnJobNaJamaisEteAussiSimple2"
@@ -9692,22 +9606,18 @@ function PlasmicAccueil2__RenderFunc(props: {
                             </span>
                           </React.Fragment>
                         </p>
-                      </Stack__>
-                      <Stack__
-                        as={"div"}
+                      </div>
+                      <div
                         data-plasmic-name={"jobSearchSection"}
                         data-plasmic-override={overrides.jobSearchSection}
-                        hasGap={true}
                         className={classNames(
                           projectcss.all,
                           sty.jobSearchSection
                         )}
                       >
-                        <Stack__
-                          as={"div"}
+                        <div
                           data-plasmic-name={"filters"}
                           data-plasmic-override={overrides.filters}
-                          hasGap={true}
                           className={classNames(projectcss.all, sty.filters)}
                         >
                           {(() => {
@@ -9780,11 +9690,9 @@ function PlasmicAccueil2__RenderFunc(props: {
                                 data-plasmic-override={overrides.formFilter}
                                 {...child$Props}
                               >
-                                <Stack__
-                                  as={"div"}
+                                <div
                                   data-plasmic-name={"wrapContent"}
                                   data-plasmic-override={overrides.wrapContent}
-                                  hasGap={true}
                                   className={classNames(
                                     projectcss.all,
                                     sty.wrapContent
@@ -10221,9 +10129,7 @@ function PlasmicAccueil2__RenderFunc(props: {
                                         }
                                       })()}
                                       placeholder={
-                                        <Stack__
-                                          as={"div"}
-                                          hasGap={true}
+                                        <div
                                           className={classNames(
                                             projectcss.all,
                                             sty.freeBox___61Ght
@@ -10258,7 +10164,7 @@ function PlasmicAccueil2__RenderFunc(props: {
                                           >
                                             {"Secteur d'activit\u00e9"}
                                           </div>
-                                        </Stack__>
+                                        </div>
                                       }
                                       popupScopeClassName={
                                         sty["select13__popup"]
@@ -10334,9 +10240,7 @@ function PlasmicAccueil2__RenderFunc(props: {
                                         }
                                       })()}
                                       placeholder={
-                                        <Stack__
-                                          as={"div"}
-                                          hasGap={true}
+                                        <div
                                           className={classNames(
                                             projectcss.all,
                                             sty.freeBox___3W9Cg
@@ -10371,7 +10275,7 @@ function PlasmicAccueil2__RenderFunc(props: {
                                           >
                                             {"Disponibilit\u00e9"}
                                           </div>
-                                        </Stack__>
+                                        </div>
                                       }
                                       popupScopeClassName={
                                         sty["select9__popup"]
@@ -10466,9 +10370,7 @@ function PlasmicAccueil2__RenderFunc(props: {
                                         }
                                       })()}
                                       placeholder={
-                                        <Stack__
-                                          as={"div"}
-                                          hasGap={true}
+                                        <div
                                           className={classNames(
                                             projectcss.all,
                                             sty.freeBox__bTOl
@@ -10503,7 +10405,7 @@ function PlasmicAccueil2__RenderFunc(props: {
                                           >
                                             {"Type de contrat"}
                                           </div>
-                                        </Stack__>
+                                        </div>
                                       }
                                       popupScopeClassName={
                                         sty["select8__popup"]
@@ -10594,9 +10496,7 @@ function PlasmicAccueil2__RenderFunc(props: {
                                         }
                                       })()}
                                       placeholder={
-                                        <Stack__
-                                          as={"div"}
-                                          hasGap={true}
+                                        <div
                                           className={classNames(
                                             projectcss.all,
                                             sty.freeBox__d4F1C
@@ -10619,7 +10519,7 @@ function PlasmicAccueil2__RenderFunc(props: {
                                           >
                                             {"Temps de travail"}
                                           </div>
-                                        </Stack__>
+                                        </div>
                                       }
                                       popupScopeClassName={
                                         sty["select10__popup"]
@@ -10692,9 +10592,7 @@ function PlasmicAccueil2__RenderFunc(props: {
                                         }
                                       })()}
                                       placeholder={
-                                        <Stack__
-                                          as={"div"}
-                                          hasGap={true}
+                                        <div
                                           className={classNames(
                                             projectcss.all,
                                             sty.freeBox__oFst
@@ -10729,7 +10627,7 @@ function PlasmicAccueil2__RenderFunc(props: {
                                           >
                                             {"Mode de travail"}
                                           </div>
-                                        </Stack__>
+                                        </div>
                                       }
                                       popupScopeClassName={
                                         sty["select14__popup"]
@@ -10866,9 +10764,7 @@ function PlasmicAccueil2__RenderFunc(props: {
                                         }
                                       })()}
                                       placeholder={
-                                        <Stack__
-                                          as={"div"}
-                                          hasGap={true}
+                                        <div
                                           className={classNames(
                                             projectcss.all,
                                             sty.freeBox__io6Iv
@@ -10903,7 +10799,7 @@ function PlasmicAccueil2__RenderFunc(props: {
                                           >
                                             {"Salaire"}
                                           </div>
-                                        </Stack__>
+                                        </div>
                                       }
                                       popupScopeClassName={
                                         sty["select12__popup"]
@@ -11215,13 +11111,11 @@ function PlasmicAccueil2__RenderFunc(props: {
                                       throw e;
                                     }
                                   })() ? (
-                                    <Stack__
-                                      as={"button"}
+                                    <button
                                       data-plasmic-name={"resetFormBtn"}
                                       data-plasmic-override={
                                         overrides.resetFormBtn
                                       }
-                                      hasGap={true}
                                       className={classNames(
                                         projectcss.all,
                                         projectcss.button,
@@ -11365,18 +11259,16 @@ function PlasmicAccueil2__RenderFunc(props: {
                                       >
                                         {"R\u00e9initialiser les filtres"}
                                       </div>
-                                    </Stack__>
+                                    </button>
                                   ) : null}
-                                </Stack__>
+                                </div>
                               </FormWrapper>
                             );
                           })()}
-                        </Stack__>
-                        <Stack__
-                          as={"div"}
+                        </div>
+                        <div
                           data-plasmic-name={"mapJobs"}
                           data-plasmic-override={overrides.mapJobs}
-                          hasGap={true}
                           className={classNames(projectcss.all, sty.mapJobs)}
                         >
                           <div
@@ -11924,13 +11816,11 @@ function PlasmicAccueil2__RenderFunc(props: {
                                     }
                                   })()
                             ) ? (
-                              <Stack__
-                                as={"div"}
+                              <div
                                 data-plasmic-name={"jobListContainer"}
                                 data-plasmic-override={
                                   overrides.jobListContainer
                                 }
-                                hasGap={true}
                                 className={classNames(
                                   projectcss.all,
                                   sty.jobListContainer
@@ -12152,7 +12042,9 @@ function PlasmicAccueil2__RenderFunc(props: {
                                                           userArgs: {
                                                             variables: [
                                                               currentItem.id,
+
                                                               !$state.couleurLike,
+
                                                               $ctx.SupabaseUser
                                                                 ?.user?.id
                                                             ]
@@ -13390,7 +13282,7 @@ function PlasmicAccueil2__RenderFunc(props: {
                                     </div>
                                   );
                                 })}
-                              </Stack__>
+                              </div>
                             ) : null}
                           </div>
                           <div
@@ -13414,11 +13306,9 @@ function PlasmicAccueil2__RenderFunc(props: {
                                 throw e;
                               }
                             })() ? (
-                              <Stack__
-                                as={"button"}
+                              <button
                                 data-plasmic-name={"buttonLastMin2"}
                                 data-plasmic-override={overrides.buttonLastMin2}
-                                hasGap={true}
                                 className={classNames(
                                   projectcss.all,
                                   projectcss.button,
@@ -13496,7 +13386,7 @@ function PlasmicAccueil2__RenderFunc(props: {
                                 >
                                   {"LAST MINUTE"}
                                 </div>
-                              </Stack__>
+                              </button>
                             ) : null}
                             {(() => {
                               try {
@@ -13511,11 +13401,9 @@ function PlasmicAccueil2__RenderFunc(props: {
                                 throw e;
                               }
                             })() ? (
-                              <Stack__
-                                as={"button"}
+                              <button
                                 data-plasmic-name={"buttonLastMin3"}
                                 data-plasmic-override={overrides.buttonLastMin3}
-                                hasGap={true}
                                 className={classNames(
                                   projectcss.all,
                                   projectcss.button,
@@ -13593,7 +13481,7 @@ function PlasmicAccueil2__RenderFunc(props: {
                                 >
                                   {"LAST MINUTE"}
                                 </div>
-                              </Stack__>
+                              </button>
                             ) : null}
                           </div>
                           <div
@@ -13778,8 +13666,8 @@ function PlasmicAccueil2__RenderFunc(props: {
                               }
                             />
                           </div>
-                        </Stack__>
-                      </Stack__>
+                        </div>
+                      </div>
                       <div
                         data-plasmic-name={"loading"}
                         data-plasmic-override={overrides.loading}
@@ -13804,40 +13692,32 @@ function PlasmicAccueil2__RenderFunc(props: {
                         />
                       </div>
                     </section>
-                    <Stack__
-                      as={"section"}
+                    <section
                       data-plasmic-name={"section2"}
                       data-plasmic-override={overrides.section2}
-                      hasGap={true}
                       className={classNames(projectcss.all, sty.section2)}
                     >
-                      <Stack__
-                        as={"header"}
+                      <header
                         data-plasmic-name={"headingAndSupportingText2"}
                         data-plasmic-override={
                           overrides.headingAndSupportingText2
                         }
-                        hasGap={true}
                         className={classNames(
                           projectcss.all,
                           sty.headingAndSupportingText2
                         )}
                       >
-                        <Stack__
-                          as={"div"}
+                        <div
                           data-plasmic-name={"badgeGroup3"}
                           data-plasmic-override={overrides.badgeGroup3}
-                          hasGap={true}
                           className={classNames(
                             projectcss.all,
                             sty.badgeGroup3
                           )}
                         >
-                          <Stack__
-                            as={"div"}
+                          <div
                             data-plasmic-name={"content8"}
                             data-plasmic-override={overrides.content8}
-                            hasGap={true}
                             className={classNames(projectcss.all, sty.content8)}
                           >
                             <div
@@ -13851,8 +13731,8 @@ function PlasmicAccueil2__RenderFunc(props: {
                             >
                               {"Notre solution"}
                             </div>
-                          </Stack__>
-                        </Stack__>
+                          </div>
+                        </div>
                         <h2
                           data-plasmic-name={"heading2"}
                           data-plasmic-override={overrides.heading2}
@@ -13910,12 +13790,10 @@ function PlasmicAccueil2__RenderFunc(props: {
                             </React.Fragment>
                           </React.Fragment>
                         </p>
-                      </Stack__>
-                      <Stack__
-                        as={"article"}
+                      </header>
+                      <article
                         data-plasmic-name={"section"}
                         data-plasmic-override={overrides.section}
-                        hasGap={true}
                         className={classNames(projectcss.all, sty.section)}
                       >
                         <SectionCard
@@ -14106,8 +13984,8 @@ function PlasmicAccueil2__RenderFunc(props: {
                             "title"
                           ])}
                         />
-                      </Stack__>
-                    </Stack__>
+                      </article>
+                    </section>
                   </main>
                   <Footer
                     data-plasmic-name={"footer"}
