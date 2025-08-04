@@ -348,6 +348,30 @@
   position: relative;
   padding-bottom: 32px;
 }
+.loadingBoundary:global(.__wab_instance) {
+  max-width: 100%;
+  object-fit: cover;
+}
+.freeBox__mhbqa {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  min-width: 0;
+  padding: 8px;
+}
+.svg__bCefe {
+  object-fit: cover;
+  max-width: 100%;
+  width: 40px;
+  height: 40px;
+  color: #535353;
+  flex-shrink: 0;
+}
 .formulaire:global(.__wab_instance) {
   display: flex;
   flex-direction: column;

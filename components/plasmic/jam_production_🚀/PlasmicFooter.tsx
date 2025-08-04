@@ -103,6 +103,7 @@ export type PlasmicFooter__OverridesType = {
   frame9?: Flex__<"div">;
   frame11?: Flex__<"div">;
   frame12?: Flex__<"div">;
+  button2?: Flex__<typeof Button>;
   footerLinksContainer?: Flex__<"div">;
   button?: Flex__<typeof Button>;
   footerLinksContainer2?: Flex__<"div">;
@@ -298,6 +299,70 @@ function PlasmicFooter__RenderFunc(props: {
           >
             {"contact@job-around-me.com"}
           </div>
+          {(hasVariant($state, "employeur", "employeur") ? true : false) ? (
+            <Button
+              data-plasmic-name={"button2"}
+              data-plasmic-override={overrides.button2}
+              className={classNames("__wab_instance", sty.button2, {
+                [sty.button2employeur]: hasVariant(
+                  $state,
+                  "employeur",
+                  "employeur"
+                )
+              })}
+              color={"white"}
+              label={
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__zcrny,
+                    {
+                      [sty.textemployeur__zcrnyF93K9]: hasVariant(
+                        $state,
+                        "employeur",
+                        "employeur"
+                      )
+                    }
+                  )}
+                >
+                  {hasVariant($state, "employeur", "employeur")
+                    ? "Acc\u00e8s CANDIDAT"
+                    : "Acc\u00e8s employeur"}
+                </div>
+              }
+              onClick={async event => {
+                const $steps = {};
+
+                $steps["goToAccueil"] = true
+                  ? (() => {
+                      const actionArgs = { destination: `/` };
+                      return (({ destination }) => {
+                        if (
+                          typeof destination === "string" &&
+                          destination.startsWith("#")
+                        ) {
+                          document
+                            .getElementById(destination.substr(1))
+                            .scrollIntoView({ behavior: "smooth" });
+                        } else {
+                          __nextRouter?.push(destination);
+                        }
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["goToAccueil"] != null &&
+                  typeof $steps["goToAccueil"] === "object" &&
+                  typeof $steps["goToAccueil"].then === "function"
+                ) {
+                  $steps["goToAccueil"] = await $steps["goToAccueil"];
+                }
+              }}
+              roundedFull={true}
+              size={"extraSmall"}
+            />
+          ) : null}
         </div>
         <div
           data-plasmic-name={"footerLinksContainer"}
@@ -812,6 +877,7 @@ const PlasmicDescendants = {
     "frame9",
     "frame11",
     "frame12",
+    "button2",
     "footerLinksContainer",
     "button",
     "footerLinksContainer2",
@@ -834,6 +900,7 @@ const PlasmicDescendants = {
     "frame9",
     "frame11",
     "frame12",
+    "button2",
     "footerLinksContainer",
     "button",
     "footerLinksContainer2",
@@ -842,13 +909,23 @@ const PlasmicDescendants = {
     "footerLinksColumn2",
     "heading6"
   ],
-  column: ["column", "frame6", "svg", "frame7", "frame9", "frame11", "frame12"],
+  column: [
+    "column",
+    "frame6",
+    "svg",
+    "frame7",
+    "frame9",
+    "frame11",
+    "frame12",
+    "button2"
+  ],
   frame6: ["frame6", "svg", "frame7", "frame9", "frame11", "frame12"],
   svg: ["svg"],
   frame7: ["frame7", "frame9", "frame11", "frame12"],
   frame9: ["frame9"],
   frame11: ["frame11"],
   frame12: ["frame12"],
+  button2: ["button2"],
   footerLinksContainer: [
     "footerLinksContainer",
     "button",
@@ -895,6 +972,7 @@ type NodeDefaultElementType = {
   frame9: "div";
   frame11: "div";
   frame12: "div";
+  button2: typeof Button;
   footerLinksContainer: "div";
   button: typeof Button;
   footerLinksContainer2: "div";
@@ -977,6 +1055,7 @@ export const PlasmicFooter = Object.assign(
     frame9: makeNodeComponent("frame9"),
     frame11: makeNodeComponent("frame11"),
     frame12: makeNodeComponent("frame12"),
+    button2: makeNodeComponent("button2"),
     footerLinksContainer: makeNodeComponent("footerLinksContainer"),
     button: makeNodeComponent("button"),
     footerLinksContainer2: makeNodeComponent("footerLinksContainer2"),

@@ -253,7 +253,10 @@ function PlasmicSelect__RenderFunc(props: {
         plasmic_library_tailwind_3_4_number_tokens_css.plasmic_tokens,
         plasmic_plasmic_rich_components_css.plasmic_tokens,
         sty.ariaSelect,
-        { [sty.ariaSelecttype_soft]: hasVariant($state, "type", "soft") }
+        {
+          [sty.ariaSelecttype_plain]: hasVariant($state, "type", "plain"),
+          [sty.ariaSelecttype_soft]: hasVariant($state, "type", "soft")
+        }
       )}
       defaultSelectedKey={args.initialSelectedValue}
       isDisabled={args.disabled}
@@ -292,6 +295,7 @@ function PlasmicSelect__RenderFunc(props: {
         data-plasmic-name={"ariaButton"}
         data-plasmic-override={overrides.ariaButton}
         className={classNames("__wab_instance", sty.ariaButton, {
+          [sty.ariaButtontype_plain]: hasVariant($state, "type", "plain"),
           [sty.ariaButtontype_soft]: hasVariant($state, "type", "soft")
         })}
       >

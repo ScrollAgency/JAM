@@ -168,6 +168,41 @@
   font-size: var(--token-aRuWp9ICGc-Q);
   font-family: "DM Sans", sans-serif;
 }
+.button2:global(.__wab_instance):global(.__wab_instance) {
+  width: 176px;
+  height: 40px;
+  flex-shrink: 0;
+}
+.button2employeur:global(.__wab_instance):global(.__wab_instance) {
+  flex-shrink: 0;
+  display: flex;
+}
+@media (min-width: 0px) and (max-width: 768px) {
+  .button2employeur:global(.__wab_instance):global(.__wab_instance) {
+    flex-shrink: 0;
+  }
+}
+.svg__aiPkp {
+  position: relative;
+  color: var(--token-OIYWLyLPYWym);
+  height: 1em;
+}
+.text__zcrny {
+  white-space: pre;
+  color: var(--token-nuB3vbLUeNHj);
+  font-family: "DM Sans", sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+}
+.textemployeur__zcrnyF93K9 {
+  height: auto;
+}
+.svg__nUHbg {
+  position: relative;
+  color: var(--token-OIYWLyLPYWym);
+  margin-right: 0px;
+  height: 1em;
+}
 .footerLinksContainer {
   width: auto;
   height: auto;
