@@ -104,7 +104,6 @@ export type PlasmicInscriptionCandidat__OverridesType = {
   frame3?: Flex__<"div">;
   formWrapper?: Flex__<"div">;
   signupSuccess?: Flex__<"div">;
-  freeBox?: Flex__<"div">;
   signupLoading?: Flex__<"div">;
   signUp3?: Flex__<typeof SignUp>;
   img?: Flex__<typeof PlasmicImg__>;
@@ -370,47 +369,47 @@ function PlasmicInscriptionCandidat__RenderFunc(props: {
                     e instanceof TypeError ||
                     e?.plasmicType === "PlasmicUndefinedDataError"
                   ) {
-                    return true;
+                    return false;
                   }
                   throw e;
                 }
               })() ? (
-                <div
-                  data-plasmic-name={"signupSuccess"}
-                  data-plasmic-override={overrides.signupSuccess}
-                  className={classNames(projectcss.all, sty.signupSuccess)}
-                >
-                  <CheckIcon
-                    className={classNames(projectcss.all, sty.svg__aqJ6X)}
-                    role={"img"}
-                  />
-
+                <div className={classNames(projectcss.all, sty.freeBox__qfZrK)}>
                   <div
-                    data-plasmic-name={"freeBox"}
-                    data-plasmic-override={overrides.freeBox}
-                    className={classNames(projectcss.all, sty.freeBox)}
+                    data-plasmic-name={"signupSuccess"}
+                    data-plasmic-override={overrides.signupSuccess}
+                    className={classNames(projectcss.all, sty.signupSuccess)}
                   >
+                    <CheckIcon
+                      className={classNames(projectcss.all, sty.svg__aqJ6X)}
+                      role={"img"}
+                    />
+
                     <div
-                      className={classNames(
-                        projectcss.all,
-                        projectcss.__wab_text,
-                        sty.text__d9Eu9
-                      )}
+                      className={classNames(projectcss.all, sty.freeBox__kg5Lx)}
                     >
-                      {
-                        "Votre compte a \u00e9t\u00e9 cr\u00e9\u00e9 avec succ\u00e8s"
-                      }
-                    </div>
-                    <div
-                      className={classNames(
-                        projectcss.all,
-                        projectcss.__wab_text,
-                        sty.text__rGiQ
-                      )}
-                    >
-                      {
-                        "Veuillez v\u00e9rifier vos e-mails pour confirmer votre adresse \net acc\u00e9der \u00e0 Job Around Me."
-                      }
+                      <div
+                        className={classNames(
+                          projectcss.all,
+                          projectcss.__wab_text,
+                          sty.text__d9Eu9
+                        )}
+                      >
+                        {
+                          "Votre compte a \u00e9t\u00e9 cr\u00e9\u00e9 avec succ\u00e8s"
+                        }
+                      </div>
+                      <div
+                        className={classNames(
+                          projectcss.all,
+                          projectcss.__wab_text,
+                          sty.text__rGiQ
+                        )}
+                      >
+                        {
+                          "Veuillez v\u00e9rifier vos e-mails pour confirmer votre adresse \net acc\u00e9der \u00e0 Job Around Me."
+                        }
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -727,7 +726,6 @@ const PlasmicDescendants = {
     "frame3",
     "formWrapper",
     "signupSuccess",
-    "freeBox",
     "signupLoading",
     "signUp3",
     "img"
@@ -742,7 +740,6 @@ const PlasmicDescendants = {
     "frame3",
     "formWrapper",
     "signupSuccess",
-    "freeBox",
     "signupLoading",
     "signUp3",
     "img"
@@ -763,13 +760,11 @@ const PlasmicDescendants = {
   formWrapper: [
     "formWrapper",
     "signupSuccess",
-    "freeBox",
     "signupLoading",
     "signUp3",
     "img"
   ],
-  signupSuccess: ["signupSuccess", "freeBox"],
-  freeBox: ["freeBox"],
+  signupSuccess: ["signupSuccess"],
   signupLoading: ["signupLoading", "signUp3", "img"],
   signUp3: ["signUp3", "img"],
   img: ["img"]
@@ -788,7 +783,6 @@ type NodeDefaultElementType = {
   frame3: "div";
   formWrapper: "div";
   signupSuccess: "div";
-  freeBox: "div";
   signupLoading: "div";
   signUp3: typeof SignUp;
   img: typeof PlasmicImg__;
@@ -863,7 +857,6 @@ export const PlasmicInscriptionCandidat = Object.assign(
     frame3: makeNodeComponent("frame3"),
     formWrapper: makeNodeComponent("formWrapper"),
     signupSuccess: makeNodeComponent("signupSuccess"),
-    freeBox: makeNodeComponent("freeBox"),
     signupLoading: makeNodeComponent("signupLoading"),
     signUp3: makeNodeComponent("signUp3"),
     img: makeNodeComponent("img"),

@@ -1779,20 +1779,6 @@
           "componentType": "component"
         },
         {
-          "id": "pWEFDraHCJcf",
-          "name": "OffreEmployeur",
-          "type": "managed",
-          "projectId": "f7DE9y7qp46fyCw5nuY8f9",
-          "renderModuleFilePath": "plasmic/jam_production_🚀/PlasmicOffreEmployeur.tsx",
-          "importSpec": {
-            "modulePath": "../pages/offre-employeur.tsx"
-          },
-          "cssFilePath": "plasmic/jam_production_🚀/PlasmicOffreEmployeur.module.css",
-          "scheme": "blackbox",
-          "componentType": "page",
-          "path": "/offre-employeur"
-        },
-        {
           "id": "RXqL3kdDrXwo",
           "name": "Sidebar2",
           "type": "managed",
@@ -2273,20 +2259,6 @@
           "componentType": "component"
         },
         {
-          "id": "tkmqAedvjHOe",
-          "name": "Accueil2",
-          "type": "managed",
-          "projectId": "f7DE9y7qp46fyCw5nuY8f9",
-          "renderModuleFilePath": "plasmic/jam_production_🚀/PlasmicAccueil2.tsx",
-          "importSpec": {
-            "modulePath": "../pages/new-page.tsx"
-          },
-          "cssFilePath": "plasmic/jam_production_🚀/PlasmicAccueil2.module.css",
-          "scheme": "blackbox",
-          "componentType": "page",
-          "path": "/new-page"
-        },
-        {
           "id": "9Q-roeD1QeUd",
           "name": "JamSocialAccounts",
           "type": "managed",
@@ -2298,6 +2270,20 @@
           "cssFilePath": "plasmic/jam_production_🚀/PlasmicJamSocialAccounts.module.css",
           "scheme": "blackbox",
           "componentType": "component"
+        },
+        {
+          "id": "EockUDddtlJ7",
+          "name": "OffreEmployeur",
+          "type": "managed",
+          "projectId": "f7DE9y7qp46fyCw5nuY8f9",
+          "renderModuleFilePath": "plasmic/jam_production_🚀/PlasmicOffreEmployeur.tsx",
+          "importSpec": {
+            "modulePath": "../pages/offre-employeur.tsx"
+          },
+          "cssFilePath": "plasmic/jam_production_🚀/PlasmicOffreEmployeur.module.css",
+          "scheme": "blackbox",
+          "componentType": "page",
+          "path": "/offre-employeur"
         }
       ],
       "icons": [

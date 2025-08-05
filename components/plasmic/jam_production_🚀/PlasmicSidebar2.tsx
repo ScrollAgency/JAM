@@ -342,13 +342,12 @@ function PlasmicSidebar2__RenderFunc(props: {
                 {"MES OFFRES"}
               </div>
             }
-            linkTo={`/offre-employeur`}
             onClick={async event => {
               const $steps = {};
 
               $steps["goToOffreEmployeur"] = true
                 ? (() => {
-                    const actionArgs = { destination: `/offre-employeur` };
+                    const actionArgs = {};
                     return (({ destination }) => {
                       if (
                         typeof destination === "string" &&

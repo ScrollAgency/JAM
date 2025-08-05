@@ -64,6 +64,7 @@
     align-items: flex-start;
     justify-content: flex-start;
     height: 100%;
+    width: auto;
     min-height: 0;
     padding: 95px 20px 96px;
   }

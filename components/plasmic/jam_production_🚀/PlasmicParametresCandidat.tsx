@@ -100,7 +100,7 @@ import sty from "./PlasmicParametresCandidat.module.css"; // plasmic-import: urN
 
 import PhPencilSimpleIcon from "./icons/PlasmicIcon__PhPencilSimple"; // plasmic-import: 7xHLZEkolpKE/icon
 import PhTrashIcon from "./icons/PlasmicIcon__PhTrash"; // plasmic-import: juO39VElEpcx/icon
-import Dot2Icon from "./icons/PlasmicIcon__Dot2"; // plasmic-import: SjT4EkFD3Aoh/icon
+import Loader4FillSvgrepoComSvgIcon from "./icons/PlasmicIcon__Loader4FillSvgrepoComSvg"; // plasmic-import: pSQ8_3_KJpQd/icon
 import ChevronDown2Icon from "./icons/PlasmicIcon__ChevronDown2"; // plasmic-import: ImRzoqJkNumw/icon
 import PlusIcon from "./icons/PlasmicIcon__Plus"; // plasmic-import: I5WL24ilJ3LK/icon
 import ChevronDownIcon from "./icons/PlasmicIcon__ChevronDown"; // plasmic-import: yud1FH0Ox1FR/icon
@@ -1331,11 +1331,11 @@ function PlasmicParametresCandidat__RenderFunc(props: {
                               sty.freeBox__mhbqa
                             )}
                           >
-                            <Dot2Icon
+                            <Loader4FillSvgrepoComSvgIcon
                               className={classNames(
                                 projectcss.all,
                                 sty.svg__bCefe,
-                                "pulse-animation"
+                                "spinner"
                               )}
                               role={"img"}
                             />

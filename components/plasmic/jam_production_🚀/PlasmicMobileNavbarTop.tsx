@@ -213,87 +213,94 @@ function PlasmicMobileNavbarTop__RenderFunc(props: {
           {"JOB ARROUND ME"}
         </div>
       </div>
-      <div
-        data-plasmic-name={"clocheRecherche"}
-        data-plasmic-override={overrides.clocheRecherche}
-        className={classNames(projectcss.all, sty.clocheRecherche)}
-      >
-        <PhBellFillIcon
-          data-plasmic-name={"cloche"}
-          data-plasmic-override={overrides.cloche}
-          className={classNames(projectcss.all, sty.cloche)}
-          onClick={async event => {
-            const $steps = {};
-
-            $steps["goToMesAlertes"] = true
-              ? (() => {
-                  const actionArgs = { destination: `/alertes` };
-                  return (({ destination }) => {
-                    if (
-                      typeof destination === "string" &&
-                      destination.startsWith("#")
-                    ) {
-                      document
-                        .getElementById(destination.substr(1))
-                        .scrollIntoView({ behavior: "smooth" });
-                    } else {
-                      __nextRouter?.push(destination);
-                    }
-                  })?.apply(null, [actionArgs]);
-                })()
-              : undefined;
-            if (
-              $steps["goToMesAlertes"] != null &&
-              typeof $steps["goToMesAlertes"] === "object" &&
-              typeof $steps["goToMesAlertes"].then === "function"
-            ) {
-              $steps["goToMesAlertes"] = await $steps["goToMesAlertes"];
-            }
-          }}
-          role={"img"}
-        />
-
+      {false ? (
         <div
-          data-plasmic-name={"boutonDeRecherche"}
-          data-plasmic-override={overrides.boutonDeRecherche}
-          className={classNames(projectcss.all, sty.boutonDeRecherche)}
-          onClick={async event => {
-            const $steps = {};
-
-            $steps["goToAccueil"] = true
-              ? (() => {
-                  const actionArgs = { destination: `/` };
-                  return (({ destination }) => {
-                    if (
-                      typeof destination === "string" &&
-                      destination.startsWith("#")
-                    ) {
-                      document
-                        .getElementById(destination.substr(1))
-                        .scrollIntoView({ behavior: "smooth" });
-                    } else {
-                      __nextRouter?.push(destination);
-                    }
-                  })?.apply(null, [actionArgs]);
-                })()
-              : undefined;
-            if (
-              $steps["goToAccueil"] != null &&
-              typeof $steps["goToAccueil"] === "object" &&
-              typeof $steps["goToAccueil"].then === "function"
-            ) {
-              $steps["goToAccueil"] = await $steps["goToAccueil"];
-            }
-          }}
+          data-plasmic-name={"clocheRecherche"}
+          data-plasmic-override={overrides.clocheRecherche}
+          className={classNames(projectcss.all, sty.clocheRecherche)}
         >
-          <MagnifyingGlass2Icon
-            data-plasmic-name={"svg"}
-            data-plasmic-override={overrides.svg}
-            className={classNames(projectcss.all, sty.svg)}
-            role={"img"}
-          />
+          {(
+            hasVariant(globalVariants, "screen", "mobileOnly") ? true : false
+          ) ? (
+            <PhBellFillIcon
+              data-plasmic-name={"cloche"}
+              data-plasmic-override={overrides.cloche}
+              className={classNames(projectcss.all, sty.cloche)}
+              onClick={async event => {
+                const $steps = {};
+
+                $steps["goToMesAlertes"] = true
+                  ? (() => {
+                      const actionArgs = { destination: `/alertes` };
+                      return (({ destination }) => {
+                        if (
+                          typeof destination === "string" &&
+                          destination.startsWith("#")
+                        ) {
+                          document
+                            .getElementById(destination.substr(1))
+                            .scrollIntoView({ behavior: "smooth" });
+                        } else {
+                          __nextRouter?.push(destination);
+                        }
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["goToMesAlertes"] != null &&
+                  typeof $steps["goToMesAlertes"] === "object" &&
+                  typeof $steps["goToMesAlertes"].then === "function"
+                ) {
+                  $steps["goToMesAlertes"] = await $steps["goToMesAlertes"];
+                }
+              }}
+              role={"img"}
+            />
+          ) : null}
+          {false ? (
+            <div
+              data-plasmic-name={"boutonDeRecherche"}
+              data-plasmic-override={overrides.boutonDeRecherche}
+              className={classNames(projectcss.all, sty.boutonDeRecherche)}
+              onClick={async event => {
+                const $steps = {};
+
+                $steps["goToAccueil"] = true
+                  ? (() => {
+                      const actionArgs = { destination: `/` };
+                      return (({ destination }) => {
+                        if (
+                          typeof destination === "string" &&
+                          destination.startsWith("#")
+                        ) {
+                          document
+                            .getElementById(destination.substr(1))
+                            .scrollIntoView({ behavior: "smooth" });
+                        } else {
+                          __nextRouter?.push(destination);
+                        }
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["goToAccueil"] != null &&
+                  typeof $steps["goToAccueil"] === "object" &&
+                  typeof $steps["goToAccueil"].then === "function"
+                ) {
+                  $steps["goToAccueil"] = await $steps["goToAccueil"];
+                }
+              }}
+            >
+              <MagnifyingGlass2Icon
+                data-plasmic-name={"svg"}
+                data-plasmic-override={overrides.svg}
+                className={classNames(projectcss.all, sty.svg)}
+                role={"img"}
+              />
+            </div>
+          ) : null}
         </div>
-      </div>
+      ) : null}
     </header>
   ) as React.ReactElement | null;
 }

@@ -1996,9 +1996,7 @@ function PlasmicAccueil__RenderFunc(props: {
                               $ctx.SupabaseUser.user.user_metadata.role ==
                                 "Company"
                                 ? (() => {
-                                    const actionArgs = {
-                                      destination: `/offre-employeur`
-                                    };
+                                    const actionArgs = {};
                                     return (({ destination }) => {
                                       if (
                                         typeof destination === "string" &&
@@ -2221,7 +2219,7 @@ function PlasmicAccueil__RenderFunc(props: {
                                 "Company"
                                 ? (() => {
                                     const actionArgs = {
-                                      destination: `/offre-employeur`
+                                      destination: `/parametres-employeur`
                                     };
                                     return (({ destination }) => {
                                       if (
@@ -4822,118 +4820,91 @@ function PlasmicAccueil__RenderFunc(props: {
                                                   const $steps = {};
                                                 }}
                                               >
-                                                <div
-                                                  data-plasmic-name={
-                                                    "likeButtons"
-                                                  }
-                                                  data-plasmic-override={
-                                                    overrides.likeButtons
-                                                  }
-                                                  className={classNames(
-                                                    projectcss.all,
-                                                    sty.likeButtons
-                                                  )}
-                                                  onClick={async event => {
-                                                    const $steps = {};
-
-                                                    $steps["runCode"] = true
-                                                      ? (() => {
-                                                          const actionArgs = {
-                                                            customFunction:
-                                                              async () => {
-                                                                return event?.stopPropagation();
-                                                              }
-                                                          };
-                                                          return (({
-                                                            customFunction
-                                                          }) => {
-                                                            return customFunction();
-                                                          })?.apply(null, [
-                                                            actionArgs
-                                                          ]);
-                                                        })()
-                                                      : undefined;
+                                                {(() => {
+                                                  try {
+                                                    return (() => {
+                                                      if (
+                                                        !!$ctx.SupabaseUser
+                                                          .user &&
+                                                        $ctx.SupabaseUser.user
+                                                          .user_metadata
+                                                          .role === "Company"
+                                                      ) {
+                                                        return false;
+                                                      } else {
+                                                        return true;
+                                                      }
+                                                    })();
+                                                  } catch (e) {
                                                     if (
-                                                      $steps["runCode"] !=
-                                                        null &&
-                                                      typeof $steps[
-                                                        "runCode"
-                                                      ] === "object" &&
-                                                      typeof $steps["runCode"]
-                                                        .then === "function"
+                                                      e instanceof TypeError ||
+                                                      e?.plasmicType ===
+                                                        "PlasmicUndefinedDataError"
                                                     ) {
-                                                      $steps["runCode"] =
-                                                        await $steps["runCode"];
+                                                      return true;
                                                     }
-
-                                                    $steps["errorMsg"] = true
-                                                      ? (() => {
-                                                          const actionArgs = {
-                                                            variable: {
-                                                              objRoot: $state,
-                                                              variablePath: [
-                                                                "errorMsg"
-                                                              ]
-                                                            },
-                                                            operation: 0,
-                                                            value:
-                                                              $state.messages
-                                                                .favoris
-                                                          };
-                                                          return (({
-                                                            variable,
-                                                            value,
-                                                            startIndex,
-                                                            deleteCount
-                                                          }) => {
-                                                            if (!variable) {
-                                                              return;
-                                                            }
-                                                            const {
-                                                              objRoot,
-                                                              variablePath
-                                                            } = variable;
-
-                                                            $stateSet(
-                                                              objRoot,
-                                                              variablePath,
-                                                              value
-                                                            );
-                                                            return value;
-                                                          })?.apply(null, [
-                                                            actionArgs
-                                                          ]);
-                                                        })()
-                                                      : undefined;
-                                                    if (
-                                                      $steps["errorMsg"] !=
-                                                        null &&
-                                                      typeof $steps[
-                                                        "errorMsg"
-                                                      ] === "object" &&
-                                                      typeof $steps["errorMsg"]
-                                                        .then === "function"
-                                                    ) {
-                                                      $steps["errorMsg"] =
-                                                        await $steps[
-                                                          "errorMsg"
-                                                        ];
+                                                    throw e;
+                                                  }
+                                                })() ? (
+                                                  <div
+                                                    data-plasmic-name={
+                                                      "likeButtons"
                                                     }
+                                                    data-plasmic-override={
+                                                      overrides.likeButtons
+                                                    }
+                                                    className={classNames(
+                                                      projectcss.all,
+                                                      sty.likeButtons
+                                                    )}
+                                                    onClick={async event => {
+                                                      const $steps = {};
 
-                                                    $steps["userNotLogged"] =
-                                                      $ctx.SupabaseUser?.user
-                                                        ?.id === undefined
+                                                      $steps["runCode"] = true
+                                                        ? (() => {
+                                                            const actionArgs = {
+                                                              customFunction:
+                                                                async () => {
+                                                                  return event?.stopPropagation();
+                                                                }
+                                                            };
+                                                            return (({
+                                                              customFunction
+                                                            }) => {
+                                                              return customFunction();
+                                                            })?.apply(null, [
+                                                              actionArgs
+                                                            ]);
+                                                          })()
+                                                        : undefined;
+                                                      if (
+                                                        $steps["runCode"] !=
+                                                          null &&
+                                                        typeof $steps[
+                                                          "runCode"
+                                                        ] === "object" &&
+                                                        typeof $steps["runCode"]
+                                                          .then === "function"
+                                                      ) {
+                                                        $steps["runCode"] =
+                                                          await $steps[
+                                                            "runCode"
+                                                          ];
+                                                      }
+
+                                                      $steps["errorMsg"] = true
                                                         ? (() => {
                                                             const actionArgs = {
                                                               variable: {
                                                                 objRoot: $state,
                                                                 variablePath: [
-                                                                  "verifyUserAuth",
-                                                                  "isOpen"
+                                                                  "errorMsg"
                                                                 ]
                                                               },
                                                               operation: 0,
-                                                              value: true
+                                                              value:
+                                                                $state.messages
+                                                                  .favoris
                                                             };
                                                             return (({
                                                               variable,
@@ -4960,143 +4931,207 @@ function PlasmicAccueil__RenderFunc(props: {
                                                             ]);
                                                           })()
                                                         : undefined;
-                                                    if (
-                                                      $steps["userNotLogged"] !=
-                                                        null &&
-                                                      typeof $steps[
-                                                        "userNotLogged"
-                                                      ] === "object" &&
-                                                      typeof $steps[
-                                                        "userNotLogged"
-                                                      ].then === "function"
-                                                    ) {
+                                                      if (
+                                                        $steps["errorMsg"] !=
+                                                          null &&
+                                                        typeof $steps[
+                                                          "errorMsg"
+                                                        ] === "object" &&
+                                                        typeof $steps[
+                                                          "errorMsg"
+                                                        ].then === "function"
+                                                      ) {
+                                                        $steps["errorMsg"] =
+                                                          await $steps[
+                                                            "errorMsg"
+                                                          ];
+                                                      }
+
                                                       $steps["userNotLogged"] =
-                                                        await $steps[
+                                                        $ctx.SupabaseUser?.user
+                                                          ?.id === undefined
+                                                          ? (() => {
+                                                              const actionArgs =
+                                                                {
+                                                                  variable: {
+                                                                    objRoot:
+                                                                      $state,
+                                                                    variablePath:
+                                                                      [
+                                                                        "verifyUserAuth",
+                                                                        "isOpen"
+                                                                      ]
+                                                                  },
+                                                                  operation: 0,
+                                                                  value: true
+                                                                };
+                                                              return (({
+                                                                variable,
+                                                                value,
+                                                                startIndex,
+                                                                deleteCount
+                                                              }) => {
+                                                                if (!variable) {
+                                                                  return;
+                                                                }
+                                                                const {
+                                                                  objRoot,
+                                                                  variablePath
+                                                                } = variable;
+
+                                                                $stateSet(
+                                                                  objRoot,
+                                                                  variablePath,
+                                                                  value
+                                                                );
+                                                                return value;
+                                                              })?.apply(null, [
+                                                                actionArgs
+                                                              ]);
+                                                            })()
+                                                          : undefined;
+                                                      if (
+                                                        $steps[
+                                                          "userNotLogged"
+                                                        ] != null &&
+                                                        typeof $steps[
+                                                          "userNotLogged"
+                                                        ] === "object" &&
+                                                        typeof $steps[
+                                                          "userNotLogged"
+                                                        ].then === "function"
+                                                      ) {
+                                                        $steps[
+                                                          "userNotLogged"
+                                                        ] = await $steps[
                                                           "userNotLogged"
                                                         ];
-                                                    }
-                                                  }}
-                                                >
-                                                  {(() => {
-                                                    try {
-                                                      return !$queries.userLikedJobs.data.some(
-                                                        like =>
-                                                          like.job_id ===
-                                                          currentItem.id
-                                                      );
-                                                    } catch (e) {
-                                                      if (
-                                                        e instanceof
-                                                          TypeError ||
-                                                        e?.plasmicType ===
-                                                          "PlasmicUndefinedDataError"
-                                                      ) {
-                                                        return false;
                                                       }
-                                                      throw e;
-                                                    }
-                                                  })() ? (
-                                                    <HeartStraightStreamlinePhosphorSvgIcon
-                                                      data-plasmic-name={
-                                                        "like2"
-                                                      }
-                                                      data-plasmic-override={
-                                                        overrides.like2
-                                                      }
-                                                      className={classNames(
-                                                        projectcss.all,
-                                                        sty.like2
-                                                      )}
-                                                      onClick={async event => {
-                                                        const $steps = {};
-
-                                                        $steps["updateDb"] =
-                                                          $ctx.SupabaseUser
-                                                            ?.user?.id &&
-                                                          !$queries.userLikedJobs.data.some(
-                                                            like =>
-                                                              like.job_id ===
-                                                              currentItem.id
-                                                          )
-                                                            ? (() => {
-                                                                const actionArgs =
-                                                                  {
-                                                                    dataOp: {
-                                                                      sourceId:
-                                                                        "kVSSe8ab4TtzwRPnTeEeUp",
-                                                                      opId: "82374051-9814-414c-909c-d23851067d30",
-                                                                      userArgs:
-                                                                        {
-                                                                          variables:
-                                                                            [
-                                                                              currentItem.id,
-
-                                                                              !$state.couleurLike,
-
-                                                                              $ctx
-                                                                                .SupabaseUser
-                                                                                ?.user
-                                                                                ?.id
-                                                                            ]
-                                                                        },
-                                                                      cacheKey:
-                                                                        null,
-                                                                      invalidatedKeys:
-                                                                        [],
-                                                                      roleId:
-                                                                        null
-                                                                    }
-                                                                  };
-                                                                return (async ({
-                                                                  dataOp,
-                                                                  continueOnError
-                                                                }) => {
-                                                                  try {
-                                                                    const response =
-                                                                      await executePlasmicDataOp(
-                                                                        dataOp,
-                                                                        {
-                                                                          userAuthToken:
-                                                                            dataSourcesCtx?.userAuthToken,
-                                                                          user: dataSourcesCtx?.user
-                                                                        }
-                                                                      );
-                                                                    await plasmicInvalidate(
-                                                                      dataOp.invalidatedKeys
-                                                                    );
-                                                                    return response;
-                                                                  } catch (e) {
-                                                                    if (
-                                                                      !continueOnError
-                                                                    ) {
-                                                                      throw e;
-                                                                    }
-                                                                    return e;
-                                                                  }
-                                                                })?.apply(
-                                                                  null,
-                                                                  [actionArgs]
-                                                                );
-                                                              })()
-                                                            : undefined;
+                                                    }}
+                                                  >
+                                                    {(() => {
+                                                      try {
+                                                        return !$queries.userLikedJobs.data.some(
+                                                          like =>
+                                                            like.job_id ===
+                                                            currentItem.id
+                                                        );
+                                                      } catch (e) {
                                                         if (
-                                                          $steps["updateDb"] !=
-                                                            null &&
-                                                          typeof $steps[
-                                                            "updateDb"
-                                                          ] === "object" &&
-                                                          typeof $steps[
-                                                            "updateDb"
-                                                          ].then === "function"
+                                                          e instanceof
+                                                            TypeError ||
+                                                          e?.plasmicType ===
+                                                            "PlasmicUndefinedDataError"
                                                         ) {
-                                                          $steps["updateDb"] =
-                                                            await $steps[
-                                                              "updateDb"
-                                                            ];
+                                                          return false;
                                                         }
+                                                        throw e;
+                                                      }
+                                                    })() ? (
+                                                      <HeartStraightStreamlinePhosphorSvgIcon
+                                                        data-plasmic-name={
+                                                          "like2"
+                                                        }
+                                                        data-plasmic-override={
+                                                          overrides.like2
+                                                        }
+                                                        className={classNames(
+                                                          projectcss.all,
+                                                          sty.like2
+                                                        )}
+                                                        onClick={async event => {
+                                                          const $steps = {};
 
-                                                        $steps["refreshData"] =
-                                                          true
+                                                          $steps["updateDb"] =
+                                                            $ctx.SupabaseUser
+                                                              ?.user?.id &&
+                                                            !$queries.userLikedJobs.data.some(
+                                                              like =>
+                                                                like.job_id ===
+                                                                currentItem.id
+                                                            )
+                                                              ? (() => {
+                                                                  const actionArgs =
+                                                                    {
+                                                                      dataOp: {
+                                                                        sourceId:
+                                                                          "kVSSe8ab4TtzwRPnTeEeUp",
+                                                                        opId: "82374051-9814-414c-909c-d23851067d30",
+                                                                        userArgs:
+                                                                          {
+                                                                            variables:
+                                                                              [
+                                                                                currentItem.id,
+
+                                                                                !$state.couleurLike,
+
+                                                                                $ctx
+                                                                                  .SupabaseUser
+                                                                                  ?.user
+                                                                                  ?.id
+                                                                              ]
+                                                                          },
+                                                                        cacheKey:
+                                                                          null,
+                                                                        invalidatedKeys:
+                                                                          [],
+                                                                        roleId:
+                                                                          null
+                                                                      }
+                                                                    };
+                                                                  return (async ({
+                                                                    dataOp,
+                                                                    continueOnError
+                                                                  }) => {
+                                                                    try {
+                                                                      const response =
+                                                                        await executePlasmicDataOp(
+                                                                          dataOp,
+                                                                          {
+                                                                            userAuthToken:
+                                                                              dataSourcesCtx?.userAuthToken,
+                                                                            user: dataSourcesCtx?.user
+                                                                          }
+                                                                        );
+                                                                      await plasmicInvalidate(
+                                                                        dataOp.invalidatedKeys
+                                                                      );
+                                                                      return response;
+                                                                    } catch (e) {
+                                                                      if (
+                                                                        !continueOnError
+                                                                      ) {
+                                                                        throw e;
+                                                                      }
+                                                                      return e;
+                                                                    }
+                                                                  })?.apply(
+                                                                    null,
+                                                                    [actionArgs]
+                                                                  );
+                                                                })()
+                                                              : undefined;
+                                                          if (
+                                                            $steps[
+                                                              "updateDb"
+                                                            ] != null &&
+                                                            typeof $steps[
+                                                              "updateDb"
+                                                            ] === "object" &&
+                                                            typeof $steps[
+                                                              "updateDb"
+                                                            ].then ===
+                                                              "function"
+                                                          ) {
+                                                            $steps["updateDb"] =
+                                                              await $steps[
+                                                                "updateDb"
+                                                              ];
+                                                          }
+
+                                                          $steps[
+                                                            "refreshData"
+                                                          ] = true
                                                             ? (() => {
                                                                 const actionArgs =
                                                                   {
@@ -5124,83 +5159,158 @@ function PlasmicAccueil__RenderFunc(props: {
                                                                 );
                                                               })()
                                                             : undefined;
-                                                        if (
-                                                          $steps[
-                                                            "refreshData"
-                                                          ] != null &&
-                                                          typeof $steps[
-                                                            "refreshData"
-                                                          ] === "object" &&
-                                                          typeof $steps[
-                                                            "refreshData"
-                                                          ].then === "function"
-                                                        ) {
-                                                          $steps[
-                                                            "refreshData"
-                                                          ] = await $steps[
-                                                            "refreshData"
-                                                          ];
-                                                        }
+                                                          if (
+                                                            $steps[
+                                                              "refreshData"
+                                                            ] != null &&
+                                                            typeof $steps[
+                                                              "refreshData"
+                                                            ] === "object" &&
+                                                            typeof $steps[
+                                                              "refreshData"
+                                                            ].then ===
+                                                              "function"
+                                                          ) {
+                                                            $steps[
+                                                              "refreshData"
+                                                            ] = await $steps[
+                                                              "refreshData"
+                                                            ];
+                                                          }
 
-                                                        $steps["showToast"] =
-                                                          $ctx.SupabaseUser
-                                                            ?.user?.id &&
-                                                          !$queries.userLikedJobs.data.some(
-                                                            like =>
-                                                              like.job_id ===
-                                                              currentItem.id
-                                                          )
-                                                            ? (() => {
-                                                                const actionArgs =
-                                                                  {
-                                                                    args: [
-                                                                      "success",
-                                                                      (() => {
-                                                                        try {
-                                                                          return `L'annonce "${currentItem.title}" a bien été ajoutée de vos favoris`;
-                                                                        } catch (e) {
-                                                                          if (
-                                                                            e instanceof
-                                                                              TypeError ||
-                                                                            e?.plasmicType ===
-                                                                              "PlasmicUndefinedDataError"
-                                                                          ) {
-                                                                            return undefined;
-                                                                          }
-                                                                          throw e;
-                                                                        }
-                                                                      })()
-                                                                    ]
-                                                                  };
-                                                                return $globalActions[
-                                                                  "plasmic-antd5-config-provider.showNotification"
-                                                                ]?.apply(null, [
-                                                                  ...actionArgs.args
-                                                                ]);
-                                                              })()
-                                                            : undefined;
-                                                        if (
-                                                          $steps["showToast"] !=
-                                                            null &&
-                                                          typeof $steps[
-                                                            "showToast"
-                                                          ] === "object" &&
-                                                          typeof $steps[
-                                                            "showToast"
-                                                          ].then === "function"
-                                                        ) {
                                                           $steps["showToast"] =
-                                                            await $steps[
+                                                            $ctx.SupabaseUser
+                                                              ?.user?.id &&
+                                                            !$queries.userLikedJobs.data.some(
+                                                              like =>
+                                                                like.job_id ===
+                                                                currentItem.id
+                                                            )
+                                                              ? (() => {
+                                                                  const actionArgs =
+                                                                    {
+                                                                      args: [
+                                                                        "success",
+                                                                        (() => {
+                                                                          try {
+                                                                            return `L'annonce "${currentItem.title}" a bien été ajoutée de vos favoris`;
+                                                                          } catch (e) {
+                                                                            if (
+                                                                              e instanceof
+                                                                                TypeError ||
+                                                                              e?.plasmicType ===
+                                                                                "PlasmicUndefinedDataError"
+                                                                            ) {
+                                                                              return undefined;
+                                                                            }
+                                                                            throw e;
+                                                                          }
+                                                                        })()
+                                                                      ]
+                                                                    };
+                                                                  return $globalActions[
+                                                                    "plasmic-antd5-config-provider.showNotification"
+                                                                  ]?.apply(
+                                                                    null,
+                                                                    [
+                                                                      ...actionArgs.args
+                                                                    ]
+                                                                  );
+                                                                })()
+                                                              : undefined;
+                                                          if (
+                                                            $steps[
+                                                              "showToast"
+                                                            ] != null &&
+                                                            typeof $steps[
+                                                              "showToast"
+                                                            ] === "object" &&
+                                                            typeof $steps[
+                                                              "showToast"
+                                                            ].then ===
+                                                              "function"
+                                                          ) {
+                                                            $steps[
+                                                              "showToast"
+                                                            ] = await $steps[
                                                               "showToast"
                                                             ];
-                                                        }
+                                                          }
 
-                                                        $steps[
-                                                          "updateVerifyUserAuthIsOpen"
-                                                        ] =
-                                                          $ctx.SupabaseUser
-                                                            ?.user?.id ==
-                                                          undefined
+                                                          $steps[
+                                                            "updateVerifyUserAuthIsOpen"
+                                                          ] =
+                                                            $ctx.SupabaseUser
+                                                              ?.user?.id ==
+                                                            undefined
+                                                              ? (() => {
+                                                                  const actionArgs =
+                                                                    {
+                                                                      variable:
+                                                                        {
+                                                                          objRoot:
+                                                                            $state,
+                                                                          variablePath:
+                                                                            [
+                                                                              "verifyUserAuth",
+                                                                              "isOpen"
+                                                                            ]
+                                                                        },
+                                                                      operation: 0,
+                                                                      value:
+                                                                        true
+                                                                    };
+                                                                  return (({
+                                                                    variable,
+                                                                    value,
+                                                                    startIndex,
+                                                                    deleteCount
+                                                                  }) => {
+                                                                    if (
+                                                                      !variable
+                                                                    ) {
+                                                                      return;
+                                                                    }
+                                                                    const {
+                                                                      objRoot,
+                                                                      variablePath
+                                                                    } =
+                                                                      variable;
+
+                                                                    $stateSet(
+                                                                      objRoot,
+                                                                      variablePath,
+                                                                      value
+                                                                    );
+                                                                    return value;
+                                                                  })?.apply(
+                                                                    null,
+                                                                    [actionArgs]
+                                                                  );
+                                                                })()
+                                                              : undefined;
+                                                          if (
+                                                            $steps[
+                                                              "updateVerifyUserAuthIsOpen"
+                                                            ] != null &&
+                                                            typeof $steps[
+                                                              "updateVerifyUserAuthIsOpen"
+                                                            ] === "object" &&
+                                                            typeof $steps[
+                                                              "updateVerifyUserAuthIsOpen"
+                                                            ].then ===
+                                                              "function"
+                                                          ) {
+                                                            $steps[
+                                                              "updateVerifyUserAuthIsOpen"
+                                                            ] = await $steps[
+                                                              "updateVerifyUserAuthIsOpen"
+                                                            ];
+                                                          }
+
+                                                          $steps[
+                                                            "updateErrorMsg"
+                                                          ] = true
                                                             ? (() => {
                                                                 const actionArgs =
                                                                   {
@@ -5209,12 +5319,14 @@ function PlasmicAccueil__RenderFunc(props: {
                                                                         $state,
                                                                       variablePath:
                                                                         [
-                                                                          "verifyUserAuth",
-                                                                          "isOpen"
+                                                                          "errorMsg"
                                                                         ]
                                                                     },
                                                                     operation: 0,
-                                                                    value: true
+                                                                    value:
+                                                                      $state
+                                                                        .messages
+                                                                        .favoris
                                                                   };
                                                                 return (({
                                                                   variable,
@@ -5244,203 +5356,144 @@ function PlasmicAccueil__RenderFunc(props: {
                                                                 );
                                                               })()
                                                             : undefined;
-                                                        if (
-                                                          $steps[
-                                                            "updateVerifyUserAuthIsOpen"
-                                                          ] != null &&
-                                                          typeof $steps[
-                                                            "updateVerifyUserAuthIsOpen"
-                                                          ] === "object" &&
-                                                          typeof $steps[
-                                                            "updateVerifyUserAuthIsOpen"
-                                                          ].then === "function"
-                                                        ) {
-                                                          $steps[
-                                                            "updateVerifyUserAuthIsOpen"
-                                                          ] = await $steps[
-                                                            "updateVerifyUserAuthIsOpen"
-                                                          ];
-                                                        }
-
-                                                        $steps[
-                                                          "updateErrorMsg"
-                                                        ] = true
-                                                          ? (() => {
-                                                              const actionArgs =
-                                                                {
-                                                                  variable: {
-                                                                    objRoot:
-                                                                      $state,
-                                                                    variablePath:
-                                                                      [
-                                                                        "errorMsg"
-                                                                      ]
-                                                                  },
-                                                                  operation: 0,
-                                                                  value:
-                                                                    $state
-                                                                      .messages
-                                                                      .favoris
-                                                                };
-                                                              return (({
-                                                                variable,
-                                                                value,
-                                                                startIndex,
-                                                                deleteCount
-                                                              }) => {
-                                                                if (!variable) {
-                                                                  return;
-                                                                }
-                                                                const {
-                                                                  objRoot,
-                                                                  variablePath
-                                                                } = variable;
-
-                                                                $stateSet(
-                                                                  objRoot,
-                                                                  variablePath,
-                                                                  value
-                                                                );
-                                                                return value;
-                                                              })?.apply(null, [
-                                                                actionArgs
-                                                              ]);
-                                                            })()
-                                                          : undefined;
-                                                        if (
-                                                          $steps[
-                                                            "updateErrorMsg"
-                                                          ] != null &&
-                                                          typeof $steps[
-                                                            "updateErrorMsg"
-                                                          ] === "object" &&
-                                                          typeof $steps[
-                                                            "updateErrorMsg"
-                                                          ].then === "function"
-                                                        ) {
-                                                          $steps[
-                                                            "updateErrorMsg"
-                                                          ] = await $steps[
-                                                            "updateErrorMsg"
-                                                          ];
-                                                        }
-                                                      }}
-                                                      role={"img"}
-                                                    />
-                                                  ) : null}
-                                                  {(() => {
-                                                    try {
-                                                      return $queries.userLikedJobs.data.some(
-                                                        like =>
-                                                          like.job_id ===
-                                                          currentItem.id
-                                                      );
-                                                    } catch (e) {
-                                                      if (
-                                                        e instanceof
-                                                          TypeError ||
-                                                        e?.plasmicType ===
-                                                          "PlasmicUndefinedDataError"
-                                                      ) {
-                                                        return false;
-                                                      }
-                                                      throw e;
-                                                    }
-                                                  })() ? (
-                                                    <HeartStraightIcon
-                                                      data-plasmic-name={
-                                                        "dislike"
-                                                      }
-                                                      data-plasmic-override={
-                                                        overrides.dislike
-                                                      }
-                                                      className={classNames(
-                                                        projectcss.all,
-                                                        sty.dislike
-                                                      )}
-                                                      onClick={async event => {
-                                                        const $steps = {};
-
-                                                        $steps["updateDb"] =
-                                                          $ctx.SupabaseUser
-                                                            ?.user?.id &&
-                                                          $queries.userLikedJobs.data.some(
-                                                            like =>
-                                                              like.job_id ===
-                                                              currentItem.id
-                                                          )
-                                                            ? (() => {
-                                                                const actionArgs =
-                                                                  {
-                                                                    dataOp: {
-                                                                      sourceId:
-                                                                        "kVSSe8ab4TtzwRPnTeEeUp",
-                                                                      opId: "21389a04-150f-4bd5-bdca-85fbbce35635",
-                                                                      userArgs:
-                                                                        {
-                                                                          conditions:
-                                                                            [
-                                                                              currentItem.id
-                                                                            ]
-                                                                        },
-                                                                      cacheKey:
-                                                                        null,
-                                                                      invalidatedKeys:
-                                                                        [],
-                                                                      roleId:
-                                                                        null
-                                                                    }
-                                                                  };
-                                                                return (async ({
-                                                                  dataOp,
-                                                                  continueOnError
-                                                                }) => {
-                                                                  try {
-                                                                    const response =
-                                                                      await executePlasmicDataOp(
-                                                                        dataOp,
-                                                                        {
-                                                                          userAuthToken:
-                                                                            dataSourcesCtx?.userAuthToken,
-                                                                          user: dataSourcesCtx?.user
-                                                                        }
-                                                                      );
-                                                                    await plasmicInvalidate(
-                                                                      dataOp.invalidatedKeys
-                                                                    );
-                                                                    return response;
-                                                                  } catch (e) {
-                                                                    if (
-                                                                      !continueOnError
-                                                                    ) {
-                                                                      throw e;
-                                                                    }
-                                                                    return e;
-                                                                  }
-                                                                })?.apply(
-                                                                  null,
-                                                                  [actionArgs]
-                                                                );
-                                                              })()
-                                                            : undefined;
-                                                        if (
-                                                          $steps["updateDb"] !=
-                                                            null &&
-                                                          typeof $steps[
-                                                            "updateDb"
-                                                          ] === "object" &&
-                                                          typeof $steps[
-                                                            "updateDb"
-                                                          ].then === "function"
-                                                        ) {
-                                                          $steps["updateDb"] =
-                                                            await $steps[
-                                                              "updateDb"
+                                                          if (
+                                                            $steps[
+                                                              "updateErrorMsg"
+                                                            ] != null &&
+                                                            typeof $steps[
+                                                              "updateErrorMsg"
+                                                            ] === "object" &&
+                                                            typeof $steps[
+                                                              "updateErrorMsg"
+                                                            ].then ===
+                                                              "function"
+                                                          ) {
+                                                            $steps[
+                                                              "updateErrorMsg"
+                                                            ] = await $steps[
+                                                              "updateErrorMsg"
                                                             ];
+                                                          }
+                                                        }}
+                                                        role={"img"}
+                                                      />
+                                                    ) : null}
+                                                    {(() => {
+                                                      try {
+                                                        return $queries.userLikedJobs.data.some(
+                                                          like =>
+                                                            like.job_id ===
+                                                            currentItem.id
+                                                        );
+                                                      } catch (e) {
+                                                        if (
+                                                          e instanceof
+                                                            TypeError ||
+                                                          e?.plasmicType ===
+                                                            "PlasmicUndefinedDataError"
+                                                        ) {
+                                                          return false;
                                                         }
+                                                        throw e;
+                                                      }
+                                                    })() ? (
+                                                      <HeartStraightIcon
+                                                        data-plasmic-name={
+                                                          "dislike"
+                                                        }
+                                                        data-plasmic-override={
+                                                          overrides.dislike
+                                                        }
+                                                        className={classNames(
+                                                          projectcss.all,
+                                                          sty.dislike
+                                                        )}
+                                                        onClick={async event => {
+                                                          const $steps = {};
 
-                                                        $steps["refreshData"] =
-                                                          true
+                                                          $steps["updateDb"] =
+                                                            $ctx.SupabaseUser
+                                                              ?.user?.id &&
+                                                            $queries.userLikedJobs.data.some(
+                                                              like =>
+                                                                like.job_id ===
+                                                                currentItem.id
+                                                            )
+                                                              ? (() => {
+                                                                  const actionArgs =
+                                                                    {
+                                                                      dataOp: {
+                                                                        sourceId:
+                                                                          "kVSSe8ab4TtzwRPnTeEeUp",
+                                                                        opId: "21389a04-150f-4bd5-bdca-85fbbce35635",
+                                                                        userArgs:
+                                                                          {
+                                                                            conditions:
+                                                                              [
+                                                                                currentItem.id
+                                                                              ]
+                                                                          },
+                                                                        cacheKey:
+                                                                          null,
+                                                                        invalidatedKeys:
+                                                                          [],
+                                                                        roleId:
+                                                                          null
+                                                                      }
+                                                                    };
+                                                                  return (async ({
+                                                                    dataOp,
+                                                                    continueOnError
+                                                                  }) => {
+                                                                    try {
+                                                                      const response =
+                                                                        await executePlasmicDataOp(
+                                                                          dataOp,
+                                                                          {
+                                                                            userAuthToken:
+                                                                              dataSourcesCtx?.userAuthToken,
+                                                                            user: dataSourcesCtx?.user
+                                                                          }
+                                                                        );
+                                                                      await plasmicInvalidate(
+                                                                        dataOp.invalidatedKeys
+                                                                      );
+                                                                      return response;
+                                                                    } catch (e) {
+                                                                      if (
+                                                                        !continueOnError
+                                                                      ) {
+                                                                        throw e;
+                                                                      }
+                                                                      return e;
+                                                                    }
+                                                                  })?.apply(
+                                                                    null,
+                                                                    [actionArgs]
+                                                                  );
+                                                                })()
+                                                              : undefined;
+                                                          if (
+                                                            $steps[
+                                                              "updateDb"
+                                                            ] != null &&
+                                                            typeof $steps[
+                                                              "updateDb"
+                                                            ] === "object" &&
+                                                            typeof $steps[
+                                                              "updateDb"
+                                                            ].then ===
+                                                              "function"
+                                                          ) {
+                                                            $steps["updateDb"] =
+                                                              await $steps[
+                                                                "updateDb"
+                                                              ];
+                                                          }
+
+                                                          $steps[
+                                                            "refreshData"
+                                                          ] = true
                                                             ? (() => {
                                                                 const actionArgs =
                                                                   {
@@ -5468,75 +5521,83 @@ function PlasmicAccueil__RenderFunc(props: {
                                                                 );
                                                               })()
                                                             : undefined;
-                                                        if (
-                                                          $steps[
-                                                            "refreshData"
-                                                          ] != null &&
-                                                          typeof $steps[
-                                                            "refreshData"
-                                                          ] === "object" &&
-                                                          typeof $steps[
-                                                            "refreshData"
-                                                          ].then === "function"
-                                                        ) {
-                                                          $steps[
-                                                            "refreshData"
-                                                          ] = await $steps[
-                                                            "refreshData"
-                                                          ];
-                                                        }
+                                                          if (
+                                                            $steps[
+                                                              "refreshData"
+                                                            ] != null &&
+                                                            typeof $steps[
+                                                              "refreshData"
+                                                            ] === "object" &&
+                                                            typeof $steps[
+                                                              "refreshData"
+                                                            ].then ===
+                                                              "function"
+                                                          ) {
+                                                            $steps[
+                                                              "refreshData"
+                                                            ] = await $steps[
+                                                              "refreshData"
+                                                            ];
+                                                          }
 
-                                                        $steps["showToast"] =
-                                                          true
-                                                            ? (() => {
-                                                                const actionArgs =
-                                                                  {
-                                                                    args: [
-                                                                      "success",
-                                                                      (() => {
-                                                                        try {
-                                                                          return `L'annonce "${currentItem.title}" a bien été retirée de vos favoris`;
-                                                                        } catch (e) {
-                                                                          if (
-                                                                            e instanceof
-                                                                              TypeError ||
-                                                                            e?.plasmicType ===
-                                                                              "PlasmicUndefinedDataError"
-                                                                          ) {
-                                                                            return undefined;
-                                                                          }
-                                                                          throw e;
-                                                                        }
-                                                                      })()
-                                                                    ]
-                                                                  };
-                                                                return $globalActions[
-                                                                  "plasmic-antd5-config-provider.showNotification"
-                                                                ]?.apply(null, [
-                                                                  ...actionArgs.args
-                                                                ]);
-                                                              })()
-                                                            : undefined;
-                                                        if (
-                                                          $steps["showToast"] !=
-                                                            null &&
-                                                          typeof $steps[
-                                                            "showToast"
-                                                          ] === "object" &&
-                                                          typeof $steps[
-                                                            "showToast"
-                                                          ].then === "function"
-                                                        ) {
                                                           $steps["showToast"] =
-                                                            await $steps[
+                                                            true
+                                                              ? (() => {
+                                                                  const actionArgs =
+                                                                    {
+                                                                      args: [
+                                                                        "success",
+                                                                        (() => {
+                                                                          try {
+                                                                            return `L'annonce "${currentItem.title}" a bien été retirée de vos favoris`;
+                                                                          } catch (e) {
+                                                                            if (
+                                                                              e instanceof
+                                                                                TypeError ||
+                                                                              e?.plasmicType ===
+                                                                                "PlasmicUndefinedDataError"
+                                                                            ) {
+                                                                              return undefined;
+                                                                            }
+                                                                            throw e;
+                                                                          }
+                                                                        })()
+                                                                      ]
+                                                                    };
+                                                                  return $globalActions[
+                                                                    "plasmic-antd5-config-provider.showNotification"
+                                                                  ]?.apply(
+                                                                    null,
+                                                                    [
+                                                                      ...actionArgs.args
+                                                                    ]
+                                                                  );
+                                                                })()
+                                                              : undefined;
+                                                          if (
+                                                            $steps[
+                                                              "showToast"
+                                                            ] != null &&
+                                                            typeof $steps[
+                                                              "showToast"
+                                                            ] === "object" &&
+                                                            typeof $steps[
+                                                              "showToast"
+                                                            ].then ===
+                                                              "function"
+                                                          ) {
+                                                            $steps[
+                                                              "showToast"
+                                                            ] = await $steps[
                                                               "showToast"
                                                             ];
-                                                        }
-                                                      }}
-                                                      role={"img"}
-                                                    />
-                                                  ) : null}
-                                                </div>
+                                                          }
+                                                        }}
+                                                        role={"img"}
+                                                      />
+                                                    ) : null}
+                                                  </div>
+                                                ) : null}
                                                 {(() => {
                                                   const child$Props = {
                                                     availability:
@@ -7371,258 +7432,524 @@ function PlasmicAccueil__RenderFunc(props: {
                                 })()}
                               </React.Fragment>
                             </div>
-                            <div
-                              data-plasmic-name={"likeBtn"}
-                              data-plasmic-override={overrides.likeBtn}
-                              className={classNames(
-                                projectcss.all,
-                                sty.likeBtn
-                              )}
-                              onClick={async event => {
-                                const $steps = {};
+                            {(
+                              hasVariant(globalVariants, "screen", "mobileOnly")
+                                ? true
+                                : (() => {
+                                    try {
+                                      return (() => {
+                                        if (
+                                          !!$ctx.SupabaseUser.user &&
+                                          $ctx.SupabaseUser.user.user_metadata
+                                            .role === "Company"
+                                        ) {
+                                          return false;
+                                        } else {
+                                          return true;
+                                        }
+                                      })();
+                                    } catch (e) {
+                                      if (
+                                        e instanceof TypeError ||
+                                        e?.plasmicType ===
+                                          "PlasmicUndefinedDataError"
+                                      ) {
+                                        return true;
+                                      }
+                                      throw e;
+                                    }
+                                  })()
+                            ) ? (
+                              <div
+                                data-plasmic-name={"likeBtn"}
+                                data-plasmic-override={overrides.likeBtn}
+                                className={classNames(
+                                  projectcss.all,
+                                  sty.likeBtn
+                                )}
+                                onClick={async event => {
+                                  const $steps = {};
 
-                                $steps["errorMsg"] =
-                                  $ctx.SupabaseUser?.user?.id === undefined
-                                    ? (() => {
-                                        const actionArgs = {
-                                          variable: {
-                                            objRoot: $state,
-                                            variablePath: ["errorMsg"]
-                                          },
-                                          operation: 0,
-                                          value: $state.messages.favoris
-                                        };
-                                        return (({
-                                          variable,
-                                          value,
-                                          startIndex,
-                                          deleteCount
-                                        }) => {
-                                          if (!variable) {
-                                            return;
-                                          }
-                                          const { objRoot, variablePath } =
-                                            variable;
+                                  $steps["errorMsg"] =
+                                    $ctx.SupabaseUser?.user?.id === undefined
+                                      ? (() => {
+                                          const actionArgs = {
+                                            variable: {
+                                              objRoot: $state,
+                                              variablePath: ["errorMsg"]
+                                            },
+                                            operation: 0,
+                                            value: $state.messages.favoris
+                                          };
+                                          return (({
+                                            variable,
+                                            value,
+                                            startIndex,
+                                            deleteCount
+                                          }) => {
+                                            if (!variable) {
+                                              return;
+                                            }
+                                            const { objRoot, variablePath } =
+                                              variable;
 
-                                          $stateSet(
-                                            objRoot,
-                                            variablePath,
-                                            value
-                                          );
-                                          return value;
-                                        })?.apply(null, [actionArgs]);
-                                      })()
-                                    : undefined;
-                                if (
-                                  $steps["errorMsg"] != null &&
-                                  typeof $steps["errorMsg"] === "object" &&
-                                  typeof $steps["errorMsg"].then === "function"
-                                ) {
-                                  $steps["errorMsg"] = await $steps["errorMsg"];
-                                }
-
-                                $steps["closeModal"] =
-                                  $ctx.SupabaseUser?.user?.id === undefined
-                                    ? (() => {
-                                        const actionArgs = {
-                                          variable: {
-                                            objRoot: $state,
-                                            variablePath: [
-                                              "jobDetails",
-                                              "isOpen"
-                                            ]
-                                          },
-                                          operation: 0,
-                                          value: false
-                                        };
-                                        return (({
-                                          variable,
-                                          value,
-                                          startIndex,
-                                          deleteCount
-                                        }) => {
-                                          if (!variable) {
-                                            return;
-                                          }
-                                          const { objRoot, variablePath } =
-                                            variable;
-
-                                          $stateSet(
-                                            objRoot,
-                                            variablePath,
-                                            value
-                                          );
-                                          return value;
-                                        })?.apply(null, [actionArgs]);
-                                      })()
-                                    : undefined;
-                                if (
-                                  $steps["closeModal"] != null &&
-                                  typeof $steps["closeModal"] === "object" &&
-                                  typeof $steps["closeModal"].then ===
-                                    "function"
-                                ) {
-                                  $steps["closeModal"] = await $steps[
-                                    "closeModal"
-                                  ];
-                                }
-
-                                $steps["userNotLogged"] =
-                                  $ctx.SupabaseUser?.user?.id === undefined
-                                    ? (() => {
-                                        const actionArgs = {
-                                          variable: {
-                                            objRoot: $state,
-                                            variablePath: [
-                                              "verifyUserAuth",
-                                              "isOpen"
-                                            ]
-                                          },
-                                          operation: 0,
-                                          value: true
-                                        };
-                                        return (({
-                                          variable,
-                                          value,
-                                          startIndex,
-                                          deleteCount
-                                        }) => {
-                                          if (!variable) {
-                                            return;
-                                          }
-                                          const { objRoot, variablePath } =
-                                            variable;
-
-                                          $stateSet(
-                                            objRoot,
-                                            variablePath,
-                                            value
-                                          );
-                                          return value;
-                                        })?.apply(null, [actionArgs]);
-                                      })()
-                                    : undefined;
-                                if (
-                                  $steps["userNotLogged"] != null &&
-                                  typeof $steps["userNotLogged"] === "object" &&
-                                  typeof $steps["userNotLogged"].then ===
-                                    "function"
-                                ) {
-                                  $steps["userNotLogged"] = await $steps[
-                                    "userNotLogged"
-                                  ];
-                                }
-                              }}
-                            >
-                              {(() => {
-                                try {
-                                  return !$queries.userLikedJobs.data.some(
-                                    like => like.job_id === $state.jobObject.id
-                                  );
-                                } catch (e) {
+                                            $stateSet(
+                                              objRoot,
+                                              variablePath,
+                                              value
+                                            );
+                                            return value;
+                                          })?.apply(null, [actionArgs]);
+                                        })()
+                                      : undefined;
                                   if (
-                                    e instanceof TypeError ||
-                                    e?.plasmicType ===
-                                      "PlasmicUndefinedDataError"
+                                    $steps["errorMsg"] != null &&
+                                    typeof $steps["errorMsg"] === "object" &&
+                                    typeof $steps["errorMsg"].then ===
+                                      "function"
                                   ) {
-                                    return false;
+                                    $steps["errorMsg"] = await $steps[
+                                      "errorMsg"
+                                    ];
                                   }
-                                  throw e;
-                                }
-                              })() ? (
-                                <LikeIconIcon
-                                  data-plasmic-name={"like"}
-                                  data-plasmic-override={overrides.like}
-                                  className={classNames(
-                                    projectcss.all,
-                                    sty.like
-                                  )}
-                                  onClick={async event => {
-                                    const $steps = {};
 
-                                    $steps["postgresUpdateMany"] =
-                                      $ctx.SupabaseUser?.user?.id !=
-                                        undefined &&
-                                      !$queries.userLikedJobs.data.some(
-                                        like =>
-                                          like.job_id === $state.jobObject.id
-                                      )
-                                        ? (() => {
-                                            const actionArgs = {
-                                              dataOp: {
-                                                sourceId:
-                                                  "kVSSe8ab4TtzwRPnTeEeUp",
-                                                opId: "9227d6f1-2755-4824-9d71-68d2b8ad2fa6",
-                                                userArgs: {
-                                                  variables: [
-                                                    !$state.couleurLike,
+                                  $steps["closeModal"] =
+                                    $ctx.SupabaseUser?.user?.id === undefined
+                                      ? (() => {
+                                          const actionArgs = {
+                                            variable: {
+                                              objRoot: $state,
+                                              variablePath: [
+                                                "jobDetails",
+                                                "isOpen"
+                                              ]
+                                            },
+                                            operation: 0,
+                                            value: false
+                                          };
+                                          return (({
+                                            variable,
+                                            value,
+                                            startIndex,
+                                            deleteCount
+                                          }) => {
+                                            if (!variable) {
+                                              return;
+                                            }
+                                            const { objRoot, variablePath } =
+                                              variable;
 
-                                                    $ctx.SupabaseUser?.user?.id,
+                                            $stateSet(
+                                              objRoot,
+                                              variablePath,
+                                              value
+                                            );
+                                            return value;
+                                          })?.apply(null, [actionArgs]);
+                                        })()
+                                      : undefined;
+                                  if (
+                                    $steps["closeModal"] != null &&
+                                    typeof $steps["closeModal"] === "object" &&
+                                    typeof $steps["closeModal"].then ===
+                                      "function"
+                                  ) {
+                                    $steps["closeModal"] = await $steps[
+                                      "closeModal"
+                                    ];
+                                  }
 
-                                                    $state.jobObject?.id
+                                  $steps["userNotLogged"] =
+                                    $ctx.SupabaseUser?.user?.id === undefined
+                                      ? (() => {
+                                          const actionArgs = {
+                                            variable: {
+                                              objRoot: $state,
+                                              variablePath: [
+                                                "verifyUserAuth",
+                                                "isOpen"
+                                              ]
+                                            },
+                                            operation: 0,
+                                            value: true
+                                          };
+                                          return (({
+                                            variable,
+                                            value,
+                                            startIndex,
+                                            deleteCount
+                                          }) => {
+                                            if (!variable) {
+                                              return;
+                                            }
+                                            const { objRoot, variablePath } =
+                                              variable;
+
+                                            $stateSet(
+                                              objRoot,
+                                              variablePath,
+                                              value
+                                            );
+                                            return value;
+                                          })?.apply(null, [actionArgs]);
+                                        })()
+                                      : undefined;
+                                  if (
+                                    $steps["userNotLogged"] != null &&
+                                    typeof $steps["userNotLogged"] ===
+                                      "object" &&
+                                    typeof $steps["userNotLogged"].then ===
+                                      "function"
+                                  ) {
+                                    $steps["userNotLogged"] = await $steps[
+                                      "userNotLogged"
+                                    ];
+                                  }
+                                }}
+                              >
+                                {(() => {
+                                  try {
+                                    return !$queries.userLikedJobs.data.some(
+                                      like =>
+                                        like.job_id === $state.jobObject.id
+                                    );
+                                  } catch (e) {
+                                    if (
+                                      e instanceof TypeError ||
+                                      e?.plasmicType ===
+                                        "PlasmicUndefinedDataError"
+                                    ) {
+                                      return false;
+                                    }
+                                    throw e;
+                                  }
+                                })() ? (
+                                  <LikeIconIcon
+                                    data-plasmic-name={"like"}
+                                    data-plasmic-override={overrides.like}
+                                    className={classNames(
+                                      projectcss.all,
+                                      sty.like
+                                    )}
+                                    onClick={async event => {
+                                      const $steps = {};
+
+                                      $steps["postgresUpdateMany"] =
+                                        $ctx.SupabaseUser?.user?.id !=
+                                          undefined &&
+                                        !$queries.userLikedJobs.data.some(
+                                          like =>
+                                            like.job_id === $state.jobObject.id
+                                        )
+                                          ? (() => {
+                                              const actionArgs = {
+                                                dataOp: {
+                                                  sourceId:
+                                                    "kVSSe8ab4TtzwRPnTeEeUp",
+                                                  opId: "9227d6f1-2755-4824-9d71-68d2b8ad2fa6",
+                                                  userArgs: {
+                                                    variables: [
+                                                      !$state.couleurLike,
+
+                                                      $ctx.SupabaseUser?.user
+                                                        ?.id,
+
+                                                      $state.jobObject?.id
+                                                    ]
+                                                  },
+                                                  cacheKey: null,
+                                                  invalidatedKeys: [
+                                                    "24ab9e7e-7e19-4ab2-82fc-82df12596da0",
+                                                    "8b5c082f-d99a-4dae-bab9-7c91407a4070",
+                                                    "a6f75235-f527-45c2-93df-15fcf84a6820"
+                                                  ],
+                                                  roleId: null
+                                                }
+                                              };
+                                              return (async ({
+                                                dataOp,
+                                                continueOnError
+                                              }) => {
+                                                try {
+                                                  const response =
+                                                    await executePlasmicDataOp(
+                                                      dataOp,
+                                                      {
+                                                        userAuthToken:
+                                                          dataSourcesCtx?.userAuthToken,
+                                                        user: dataSourcesCtx?.user
+                                                      }
+                                                    );
+                                                  await plasmicInvalidate(
+                                                    dataOp.invalidatedKeys
+                                                  );
+                                                  return response;
+                                                } catch (e) {
+                                                  if (!continueOnError) {
+                                                    throw e;
+                                                  }
+                                                  return e;
+                                                }
+                                              })?.apply(null, [actionArgs]);
+                                            })()
+                                          : undefined;
+                                      if (
+                                        $steps["postgresUpdateMany"] != null &&
+                                        typeof $steps["postgresUpdateMany"] ===
+                                          "object" &&
+                                        typeof $steps["postgresUpdateMany"]
+                                          .then === "function"
+                                      ) {
+                                        $steps["postgresUpdateMany"] =
+                                          await $steps["postgresUpdateMany"];
+                                      }
+
+                                      $steps["invokeGlobalAction"] =
+                                        $ctx.SupabaseUser?.user?.id !=
+                                          undefined &&
+                                        !$queries.userLikedJobs.data.some(
+                                          like =>
+                                            like.job_id === $state.jobObject.id
+                                        )
+                                          ? (() => {
+                                              const actionArgs = {
+                                                args: [
+                                                  "success",
+                                                  (() => {
+                                                    try {
+                                                      return "l'annonce ${$state.jobObject.title} a bien été ajoutée à vos favoris";
+                                                    } catch (e) {
+                                                      if (
+                                                        e instanceof
+                                                          TypeError ||
+                                                        e?.plasmicType ===
+                                                          "PlasmicUndefinedDataError"
+                                                      ) {
+                                                        return undefined;
+                                                      }
+                                                      throw e;
+                                                    }
+                                                  })()
+                                                ]
+                                              };
+                                              return $globalActions[
+                                                "plasmic-antd5-config-provider.showNotification"
+                                              ]?.apply(null, [
+                                                ...actionArgs.args
+                                              ]);
+                                            })()
+                                          : undefined;
+                                      if (
+                                        $steps["invokeGlobalAction"] != null &&
+                                        typeof $steps["invokeGlobalAction"] ===
+                                          "object" &&
+                                        typeof $steps["invokeGlobalAction"]
+                                          .then === "function"
+                                      ) {
+                                        $steps["invokeGlobalAction"] =
+                                          await $steps["invokeGlobalAction"];
+                                      }
+
+                                      $steps["updateVerifyUserAuthIsOpen"] =
+                                        $ctx.SupabaseUser?.user?.id == undefined
+                                          ? (() => {
+                                              const actionArgs = {
+                                                variable: {
+                                                  objRoot: $state,
+                                                  variablePath: [
+                                                    "verifyUserAuth",
+                                                    "isOpen"
                                                   ]
                                                 },
-                                                cacheKey: null,
-                                                invalidatedKeys: [
-                                                  "24ab9e7e-7e19-4ab2-82fc-82df12596da0",
-                                                  "8b5c082f-d99a-4dae-bab9-7c91407a4070",
-                                                  "a6f75235-f527-45c2-93df-15fcf84a6820"
-                                                ],
-                                                roleId: null
-                                              }
-                                            };
-                                            return (async ({
-                                              dataOp,
-                                              continueOnError
-                                            }) => {
-                                              try {
-                                                const response =
-                                                  await executePlasmicDataOp(
-                                                    dataOp,
-                                                    {
-                                                      userAuthToken:
-                                                        dataSourcesCtx?.userAuthToken,
-                                                      user: dataSourcesCtx?.user
-                                                    }
-                                                  );
-                                                await plasmicInvalidate(
-                                                  dataOp.invalidatedKeys
-                                                );
-                                                return response;
-                                              } catch (e) {
-                                                if (!continueOnError) {
-                                                  throw e;
+                                                operation: 0,
+                                                value: true
+                                              };
+                                              return (({
+                                                variable,
+                                                value,
+                                                startIndex,
+                                                deleteCount
+                                              }) => {
+                                                if (!variable) {
+                                                  return;
                                                 }
-                                                return e;
-                                              }
-                                            })?.apply(null, [actionArgs]);
-                                          })()
-                                        : undefined;
-                                    if (
-                                      $steps["postgresUpdateMany"] != null &&
-                                      typeof $steps["postgresUpdateMany"] ===
-                                        "object" &&
-                                      typeof $steps["postgresUpdateMany"]
-                                        .then === "function"
-                                    ) {
-                                      $steps["postgresUpdateMany"] =
-                                        await $steps["postgresUpdateMany"];
-                                    }
+                                                const {
+                                                  objRoot,
+                                                  variablePath
+                                                } = variable;
 
-                                    $steps["invokeGlobalAction"] =
-                                      $ctx.SupabaseUser?.user?.id !=
-                                        undefined &&
-                                      !$queries.userLikedJobs.data.some(
-                                        like =>
-                                          like.job_id === $state.jobObject.id
-                                      )
+                                                $stateSet(
+                                                  objRoot,
+                                                  variablePath,
+                                                  value
+                                                );
+                                                return value;
+                                              })?.apply(null, [actionArgs]);
+                                            })()
+                                          : undefined;
+                                      if (
+                                        $steps["updateVerifyUserAuthIsOpen"] !=
+                                          null &&
+                                        typeof $steps[
+                                          "updateVerifyUserAuthIsOpen"
+                                        ] === "object" &&
+                                        typeof $steps[
+                                          "updateVerifyUserAuthIsOpen"
+                                        ].then === "function"
+                                      ) {
+                                        $steps["updateVerifyUserAuthIsOpen"] =
+                                          await $steps[
+                                            "updateVerifyUserAuthIsOpen"
+                                          ];
+                                      }
+
+                                      $steps["updateErrorMsg"] =
+                                        $ctx.SupabaseUser?.user?.id == undefined
+                                          ? (() => {
+                                              const actionArgs = {
+                                                variable: {
+                                                  objRoot: $state,
+                                                  variablePath: ["errorMsg"]
+                                                },
+                                                operation: 0,
+                                                value: $state.messages.favoris
+                                              };
+                                              return (({
+                                                variable,
+                                                value,
+                                                startIndex,
+                                                deleteCount
+                                              }) => {
+                                                if (!variable) {
+                                                  return;
+                                                }
+                                                const {
+                                                  objRoot,
+                                                  variablePath
+                                                } = variable;
+
+                                                $stateSet(
+                                                  objRoot,
+                                                  variablePath,
+                                                  value
+                                                );
+                                                return value;
+                                              })?.apply(null, [actionArgs]);
+                                            })()
+                                          : undefined;
+                                      if (
+                                        $steps["updateErrorMsg"] != null &&
+                                        typeof $steps["updateErrorMsg"] ===
+                                          "object" &&
+                                        typeof $steps["updateErrorMsg"].then ===
+                                          "function"
+                                      ) {
+                                        $steps["updateErrorMsg"] = await $steps[
+                                          "updateErrorMsg"
+                                        ];
+                                      }
+                                    }}
+                                    role={"img"}
+                                  />
+                                ) : null}
+                                {(() => {
+                                  try {
+                                    return $queries.userLikedJobs.data.some(
+                                      like =>
+                                        like.job_id === $state.jobObject.id
+                                    );
+                                  } catch (e) {
+                                    if (
+                                      e instanceof TypeError ||
+                                      e?.plasmicType ===
+                                        "PlasmicUndefinedDataError"
+                                    ) {
+                                      return false;
+                                    }
+                                    throw e;
+                                  }
+                                })() ? (
+                                  <HeartStraightIcon
+                                    data-plasmic-name={"dislike3"}
+                                    data-plasmic-override={overrides.dislike3}
+                                    className={classNames(
+                                      projectcss.all,
+                                      sty.dislike3
+                                    )}
+                                    onClick={async event => {
+                                      const $steps = {};
+
+                                      $steps["postgresUpdateMany"] =
+                                        $queries.userLikedJobs.data.some(
+                                          like =>
+                                            like.job_id === $state.jobObject.id
+                                        )
+                                          ? (() => {
+                                              const actionArgs = {
+                                                dataOp: {
+                                                  sourceId:
+                                                    "kVSSe8ab4TtzwRPnTeEeUp",
+                                                  opId: "21389a04-150f-4bd5-bdca-85fbbce35635",
+                                                  userArgs: {
+                                                    conditions: [
+                                                      $state.jobObject.id
+                                                    ]
+                                                  },
+                                                  cacheKey: null,
+                                                  invalidatedKeys: [
+                                                    "24ab9e7e-7e19-4ab2-82fc-82df12596da0",
+                                                    "8b5c082f-d99a-4dae-bab9-7c91407a4070",
+                                                    "a6f75235-f527-45c2-93df-15fcf84a6820"
+                                                  ],
+                                                  roleId: null
+                                                }
+                                              };
+                                              return (async ({
+                                                dataOp,
+                                                continueOnError
+                                              }) => {
+                                                try {
+                                                  const response =
+                                                    await executePlasmicDataOp(
+                                                      dataOp,
+                                                      {
+                                                        userAuthToken:
+                                                          dataSourcesCtx?.userAuthToken,
+                                                        user: dataSourcesCtx?.user
+                                                      }
+                                                    );
+                                                  await plasmicInvalidate(
+                                                    dataOp.invalidatedKeys
+                                                  );
+                                                  return response;
+                                                } catch (e) {
+                                                  if (!continueOnError) {
+                                                    throw e;
+                                                  }
+                                                  return e;
+                                                }
+                                              })?.apply(null, [actionArgs]);
+                                            })()
+                                          : undefined;
+                                      if (
+                                        $steps["postgresUpdateMany"] != null &&
+                                        typeof $steps["postgresUpdateMany"] ===
+                                          "object" &&
+                                        typeof $steps["postgresUpdateMany"]
+                                          .then === "function"
+                                      ) {
+                                        $steps["postgresUpdateMany"] =
+                                          await $steps["postgresUpdateMany"];
+                                      }
+
+                                      $steps["invokeGlobalAction"] = true
                                         ? (() => {
                                             const actionArgs = {
                                               args: [
                                                 "success",
                                                 (() => {
                                                   try {
-                                                    return "l'annonce ${$state.jobObject.title} a bien été ajoutée à vos favoris";
+                                                    return "l'annonce ${$state.jobObject.title} a bien été retirée à vos favoris";
                                                   } catch (e) {
                                                     if (
                                                       e instanceof TypeError ||
@@ -7643,245 +7970,22 @@ function PlasmicAccueil__RenderFunc(props: {
                                             ]);
                                           })()
                                         : undefined;
-                                    if (
-                                      $steps["invokeGlobalAction"] != null &&
-                                      typeof $steps["invokeGlobalAction"] ===
-                                        "object" &&
-                                      typeof $steps["invokeGlobalAction"]
-                                        .then === "function"
-                                    ) {
-                                      $steps["invokeGlobalAction"] =
-                                        await $steps["invokeGlobalAction"];
-                                    }
-
-                                    $steps["updateVerifyUserAuthIsOpen"] =
-                                      $ctx.SupabaseUser?.user?.id == undefined
-                                        ? (() => {
-                                            const actionArgs = {
-                                              variable: {
-                                                objRoot: $state,
-                                                variablePath: [
-                                                  "verifyUserAuth",
-                                                  "isOpen"
-                                                ]
-                                              },
-                                              operation: 0,
-                                              value: true
-                                            };
-                                            return (({
-                                              variable,
-                                              value,
-                                              startIndex,
-                                              deleteCount
-                                            }) => {
-                                              if (!variable) {
-                                                return;
-                                              }
-                                              const { objRoot, variablePath } =
-                                                variable;
-
-                                              $stateSet(
-                                                objRoot,
-                                                variablePath,
-                                                value
-                                              );
-                                              return value;
-                                            })?.apply(null, [actionArgs]);
-                                          })()
-                                        : undefined;
-                                    if (
-                                      $steps["updateVerifyUserAuthIsOpen"] !=
-                                        null &&
-                                      typeof $steps[
-                                        "updateVerifyUserAuthIsOpen"
-                                      ] === "object" &&
-                                      typeof $steps[
-                                        "updateVerifyUserAuthIsOpen"
-                                      ].then === "function"
-                                    ) {
-                                      $steps["updateVerifyUserAuthIsOpen"] =
-                                        await $steps[
-                                          "updateVerifyUserAuthIsOpen"
-                                        ];
-                                    }
-
-                                    $steps["updateErrorMsg"] =
-                                      $ctx.SupabaseUser?.user?.id == undefined
-                                        ? (() => {
-                                            const actionArgs = {
-                                              variable: {
-                                                objRoot: $state,
-                                                variablePath: ["errorMsg"]
-                                              },
-                                              operation: 0,
-                                              value: $state.messages.favoris
-                                            };
-                                            return (({
-                                              variable,
-                                              value,
-                                              startIndex,
-                                              deleteCount
-                                            }) => {
-                                              if (!variable) {
-                                                return;
-                                              }
-                                              const { objRoot, variablePath } =
-                                                variable;
-
-                                              $stateSet(
-                                                objRoot,
-                                                variablePath,
-                                                value
-                                              );
-                                              return value;
-                                            })?.apply(null, [actionArgs]);
-                                          })()
-                                        : undefined;
-                                    if (
-                                      $steps["updateErrorMsg"] != null &&
-                                      typeof $steps["updateErrorMsg"] ===
-                                        "object" &&
-                                      typeof $steps["updateErrorMsg"].then ===
-                                        "function"
-                                    ) {
-                                      $steps["updateErrorMsg"] = await $steps[
-                                        "updateErrorMsg"
-                                      ];
-                                    }
-                                  }}
-                                  role={"img"}
-                                />
-                              ) : null}
-                              {(() => {
-                                try {
-                                  return $queries.userLikedJobs.data.some(
-                                    like => like.job_id === $state.jobObject.id
-                                  );
-                                } catch (e) {
-                                  if (
-                                    e instanceof TypeError ||
-                                    e?.plasmicType ===
-                                      "PlasmicUndefinedDataError"
-                                  ) {
-                                    return false;
-                                  }
-                                  throw e;
-                                }
-                              })() ? (
-                                <HeartStraightIcon
-                                  data-plasmic-name={"dislike3"}
-                                  data-plasmic-override={overrides.dislike3}
-                                  className={classNames(
-                                    projectcss.all,
-                                    sty.dislike3
-                                  )}
-                                  onClick={async event => {
-                                    const $steps = {};
-
-                                    $steps["postgresUpdateMany"] =
-                                      $queries.userLikedJobs.data.some(
-                                        like =>
-                                          like.job_id === $state.jobObject.id
-                                      )
-                                        ? (() => {
-                                            const actionArgs = {
-                                              dataOp: {
-                                                sourceId:
-                                                  "kVSSe8ab4TtzwRPnTeEeUp",
-                                                opId: "21389a04-150f-4bd5-bdca-85fbbce35635",
-                                                userArgs: {
-                                                  conditions: [
-                                                    $state.jobObject.id
-                                                  ]
-                                                },
-                                                cacheKey: null,
-                                                invalidatedKeys: [
-                                                  "24ab9e7e-7e19-4ab2-82fc-82df12596da0",
-                                                  "8b5c082f-d99a-4dae-bab9-7c91407a4070",
-                                                  "a6f75235-f527-45c2-93df-15fcf84a6820"
-                                                ],
-                                                roleId: null
-                                              }
-                                            };
-                                            return (async ({
-                                              dataOp,
-                                              continueOnError
-                                            }) => {
-                                              try {
-                                                const response =
-                                                  await executePlasmicDataOp(
-                                                    dataOp,
-                                                    {
-                                                      userAuthToken:
-                                                        dataSourcesCtx?.userAuthToken,
-                                                      user: dataSourcesCtx?.user
-                                                    }
-                                                  );
-                                                await plasmicInvalidate(
-                                                  dataOp.invalidatedKeys
-                                                );
-                                                return response;
-                                              } catch (e) {
-                                                if (!continueOnError) {
-                                                  throw e;
-                                                }
-                                                return e;
-                                              }
-                                            })?.apply(null, [actionArgs]);
-                                          })()
-                                        : undefined;
-                                    if (
-                                      $steps["postgresUpdateMany"] != null &&
-                                      typeof $steps["postgresUpdateMany"] ===
-                                        "object" &&
-                                      typeof $steps["postgresUpdateMany"]
-                                        .then === "function"
-                                    ) {
-                                      $steps["postgresUpdateMany"] =
-                                        await $steps["postgresUpdateMany"];
-                                    }
-
-                                    $steps["invokeGlobalAction"] = true
-                                      ? (() => {
-                                          const actionArgs = {
-                                            args: [
-                                              "success",
-                                              (() => {
-                                                try {
-                                                  return "l'annonce ${$state.jobObject.title} a bien été retirée à vos favoris";
-                                                } catch (e) {
-                                                  if (
-                                                    e instanceof TypeError ||
-                                                    e?.plasmicType ===
-                                                      "PlasmicUndefinedDataError"
-                                                  ) {
-                                                    return undefined;
-                                                  }
-                                                  throw e;
-                                                }
-                                              })()
-                                            ]
-                                          };
-                                          return $globalActions[
-                                            "plasmic-antd5-config-provider.showNotification"
-                                          ]?.apply(null, [...actionArgs.args]);
-                                        })()
-                                      : undefined;
-                                    if (
-                                      $steps["invokeGlobalAction"] != null &&
-                                      typeof $steps["invokeGlobalAction"] ===
-                                        "object" &&
-                                      typeof $steps["invokeGlobalAction"]
-                                        .then === "function"
-                                    ) {
-                                      $steps["invokeGlobalAction"] =
-                                        await $steps["invokeGlobalAction"];
-                                    }
-                                  }}
-                                  role={"img"}
-                                />
-                              ) : null}
-                            </div>
+                                      if (
+                                        $steps["invokeGlobalAction"] != null &&
+                                        typeof $steps["invokeGlobalAction"] ===
+                                          "object" &&
+                                        typeof $steps["invokeGlobalAction"]
+                                          .then === "function"
+                                      ) {
+                                        $steps["invokeGlobalAction"] =
+                                          await $steps["invokeGlobalAction"];
+                                      }
+                                    }}
+                                    role={"img"}
+                                  />
+                                ) : null}
+                              </div>
+                            ) : null}
                           </div>
                           <div
                             className={classNames(
@@ -8162,12 +8266,23 @@ function PlasmicAccueil__RenderFunc(props: {
                             </div>
                             {(() => {
                               try {
-                                return $queries.getApplication.data.some(
-                                  application =>
-                                    application.job_id == $state.jobObject.id
-                                )
-                                  ? false
-                                  : true;
+                                return (() => {
+                                  if (
+                                    !!$ctx.SupabaseUser.user &&
+                                    $ctx.SupabaseUser.user.user_metadata
+                                      .role === "Company"
+                                  ) {
+                                    return false;
+                                  } else {
+                                    return $queries.getApplication.data.some(
+                                      application =>
+                                        application.job_id ==
+                                        $state.jobObject.id
+                                    )
+                                      ? false
+                                      : true;
+                                  }
+                                })();
                               } catch (e) {
                                 if (
                                   e instanceof TypeError ||

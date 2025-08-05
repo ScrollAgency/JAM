@@ -722,7 +722,7 @@ function PlasmicCandidaturesEmployeur__RenderFunc(props: {
 
                   $steps["goToOffreEmployeur"] = true
                     ? (() => {
-                        const actionArgs = { destination: `/offre-employeur` };
+                        const actionArgs = {};
                         return (({ destination }) => {
                           if (
                             typeof destination === "string" &&

@@ -3,7 +3,7 @@
 import * as React from "react";
 import { PageParamsProvider as PageParamsProvider__ } from "@plasmicapp/react-web/lib/host";
 import GlobalContextsProvider from "../components/plasmic/jam_production_\uD83D\uDE80/PlasmicGlobalContextsProvider";
-
+import { UnnamedGlobalGroupOfVariantsContextProvider } from "../components/plasmic/jam_production_\uD83D\uDE80/PlasmicGlobalVariant__UnnamedGlobalGroupOfVariants";
 import { PlasmicOffreEmployeur } from "../components/plasmic/jam_production_\uD83D\uDE80/PlasmicOffreEmployeur";
 import { useRouter } from "next/router";
 
@@ -26,15 +26,17 @@ function OffreEmployeur() {
   // (https://nextjs.org/docs/advanced-features/custom-app).
 
   return (
-    <GlobalContextsProvider>
-      <PageParamsProvider__
-        route={useRouter()?.pathname}
-        params={useRouter()?.query}
-        query={useRouter()?.query}
-      >
-        <PlasmicOffreEmployeur />
-      </PageParamsProvider__>
-    </GlobalContextsProvider>
+    <UnnamedGlobalGroupOfVariantsContextProvider value={undefined}>
+      <GlobalContextsProvider>
+        <PageParamsProvider__
+          route={useRouter()?.pathname}
+          params={useRouter()?.query}
+          query={useRouter()?.query}
+        >
+          <PlasmicOffreEmployeur />
+        </PageParamsProvider__>
+      </GlobalContextsProvider>
+    </UnnamedGlobalGroupOfVariantsContextProvider>
   );
 }
 
