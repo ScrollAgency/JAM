@@ -8,6 +8,8 @@ const allowedOrigins = [
   process.env.NEXT_PUBLIC_STAGING_PROJECT_URL || '',
   "https://jam-staging.agence-scroll.com",
   "https://jam.agence-scroll.com/",
+  "https://job-around-me.com/",
+  "https://www.job-around-me.com/",
 ].filter(Boolean);
 
 export async function corsPolicy(

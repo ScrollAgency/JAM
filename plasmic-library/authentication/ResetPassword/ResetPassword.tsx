@@ -2,6 +2,9 @@ import type * as React from "react";
 import { forwardRef, useCallback, useEffect, useState } from "react";
 import type { HTMLElementRefOf } from "@plasmicapp/react-web";
 import Link from "next/link";
+
+import { supabase } from "@/lib/supabaseClient";
+
 import { presets } from "@/styles/presets";
 import AlertManager, { type AlertType, type AlertMessage } from "@/plasmic-library/alerts/AlertManager/AlertManager";
 import { EyeIcon, ViewIcon } from "@/plasmic-library/icons/icons";
@@ -118,6 +121,25 @@ function ResetPassword_(
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [alerts, setAlerts] = useState<AlertMessage[]>([]);
+
+  useEffect(() => {
+    const exchangeSession = async () => {
+      const url = window.location.href;
+
+      const { error } = await supabase.auth.exchangeCodeForSession(url);
+      if (error) {
+        console.error("Erreur d'échange du code :", error.message);
+        addAlert("error", errorMessages.resetTokenInvalid);
+      } else {
+        console.log("Code échangé avec succès.");
+      }
+    };
+
+    // Exécute uniquement si l'URL contient type=recovery & code=xyz
+    if (window.location.href.includes("type=recovery") && window.location.href.includes("code=")) {
+      exchangeSession();
+    }
+  }, []);
 
   const defaultErrorMessages = {
     weakPassword: "Le mot de passe est trop faible. Utilisez au moins 8 caractères avec des lettres, chiffres et symboles.",
