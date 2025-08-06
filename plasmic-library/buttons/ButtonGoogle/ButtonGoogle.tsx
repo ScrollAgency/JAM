@@ -3,7 +3,7 @@ import { type ButtonHTMLAttributes, forwardRef, useImperativeHandle, useRef } fr
 import { cn } from "@/lib/utils";
 import { cva } from "class-variance-authority";
 import Image from "next/image";
-import { supabase } from "@/lib/supabase";
+import { createClient } from "@/utils/supabase/components";
 import { presets } from "@/styles/presets";
 
 type HTMLButtonProps = Pick<ButtonHTMLAttributes<HTMLButtonElement>, "onClick" | "disabled">;
@@ -24,6 +24,8 @@ interface ButtonProps extends HTMLButtonProps {
 export interface ButtonActions {
     click(): void;
 }
+
+const supabase = createClient();
 
 const AuthButton = forwardRef<ButtonActions, ButtonProps>(
     (
