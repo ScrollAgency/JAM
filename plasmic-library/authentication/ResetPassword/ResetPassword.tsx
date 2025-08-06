@@ -2,14 +2,9 @@ import type * as React from "react";
 import { forwardRef, useCallback, useEffect, useState } from "react";
 import type { HTMLElementRefOf } from "@plasmicapp/react-web";
 import Link from "next/link";
-
-import { supabase } from "@/lib/supabaseClient";
-
 import { presets } from "@/styles/presets";
-import AlertManager, { type AlertType, type AlertMessage } from "@/plasmic-library/alerts/AlertManager/AlertManager";
+import AlertManager, { type AlertType, type AlertMessage } from "@/plasmic-library/ui/AlertManager/AlertManager";
 import { EyeIcon, ViewIcon } from "@/plasmic-library/icons/icons";
-
-import styles from './ResetPassword.module.css';
 
 export interface ResetPasswordProps {
   // Wrapper
@@ -121,25 +116,6 @@ function ResetPassword_(
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [alerts, setAlerts] = useState<AlertMessage[]>([]);
-
-  useEffect(() => {
-    const exchangeSession = async () => {
-      const url = window.location.href;
-
-      const { error } = await supabase.auth.exchangeCodeForSession(url);
-      if (error) {
-        console.error("Erreur d'échange du code :", error.message);
-        addAlert("error", errorMessages.resetTokenInvalid);
-      } else {
-        console.log("Code échangé avec succès.");
-      }
-    };
-
-    // Exécute uniquement si l'URL contient type=recovery & code=xyz
-    if (window.location.href.includes("type=recovery") && window.location.href.includes("code=")) {
-      exchangeSession();
-    }
-  }, []);
 
   const defaultErrorMessages = {
     weakPassword: "Le mot de passe est trop faible. Utilisez au moins 8 caractères avec des lettres, chiffres et symboles.",
@@ -277,10 +253,9 @@ function ResetPassword_(
   return (
     <div
       ref={ref}
-      className={styles[`wrapper-${wrapperStyle}`]}
       style={presets.wrappers[wrapperStyle] as React.CSSProperties}
     >
-      <Title style={headingStyle}>{title}</Title>
+      <Title style={headingStyle as React.CSSProperties}>{title}</Title>
 
       {showAlerts && <AlertManager
         alerts={alerts}
@@ -291,7 +266,7 @@ function ResetPassword_(
 
       <form
         onSubmit={handleSubmit}
-        style={{ display: "flex", flexDirection: "column", rowGap: presets.form.rowGap }}
+        style={presets.form as React.CSSProperties}
       >
         <div style={{ rowGap: presets.inputField.rowGap }}>
           <label style={presets.formLabel as React.CSSProperties} htmlFor="passwordInput">{passwordLabel}</label>
@@ -374,7 +349,6 @@ function ResetPassword_(
       <Link href="/login">
         <button
           type="button"
-          className={styles[`button-${cancelButtonStyle}`]}
           style={presets.buttons[cancelButtonStyle] as React.CSSProperties}
         >
           {cancelButtonText}
