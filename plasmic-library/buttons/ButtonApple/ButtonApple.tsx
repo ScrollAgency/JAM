@@ -1,6 +1,6 @@
 import type React from "react";
 import { type ButtonHTMLAttributes, forwardRef, useImperativeHandle, useRef, } from "react"
-import { supabase } from "@/lib/supabase";
+import { createClient } from "@/utils/supabase/components";
 import { cn } from "@/lib/utils";
 import { cva } from "class-variance-authority";
 import Image from "next/image";
@@ -24,6 +24,8 @@ interface ButtonProps extends HTMLButtonProps {
 export interface ButtonActions {
     click(): void;
 }
+
+const supabase = createClient();
 
 const ButtonApple = forwardRef<ButtonActions, ButtonProps>(
     (
