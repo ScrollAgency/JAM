@@ -10,12 +10,26 @@ export default function OAuthCallbackPage() {
 
     const supabase = createClient()
 
-    supabase.auth.getUser().then(({ data, error }) => {
-      if (error || !data?.user) {
+    supabase.auth.getSession().then(async ({ data, error }) => {
+      if (error || !data?.session) {
         router.replace('/auth/login')
-      } else {
-        router.replace('/')
+        return
       }
+
+      // 🔄 Sync session côté serveur (cookies HTTP-only)
+      try {
+        await fetch('/api/auth/set-server-session', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data.session),
+        })
+      } catch (err) {
+        console.error('Erreur lors de la synchronisation de la session :', err)
+      }
+
+      router.replace('/')
     })
   }, [router])
 
