@@ -18,7 +18,7 @@ export default function OAuthCallbackPage() {
 
       // 🔄 Sync session côté serveur (cookies HTTP-only)
       try {
-        await fetch('/api/auth/set-server-session', {
+        await fetch('/api/supabase/set-server-session', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
