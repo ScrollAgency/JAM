@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { supabase } from "@/lib/supabase";
+import { createClient } from "@/utils/supabase/components";
 import { motion } from 'framer-motion';
 
 interface JobApplication {
@@ -15,6 +15,8 @@ interface UserTableProps {
     applications: JobApplication[];
     className?: string;
 }
+
+const supabase = createClient();
 
 const getImageUrl = (bucket: string, path: string) => {
     return supabase.storage.from(bucket).getPublicUrl(path).data.publicUrl;
