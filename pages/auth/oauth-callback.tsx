@@ -10,27 +10,41 @@ export default function OAuthCallbackPage() {
 
     const supabase = createClient()
 
-    supabase.auth.getSession().then(async ({ data, error }) => {
-      if (error || !data?.session) {
+    const syncSessionAndRedirect = async () => {
+      const { data: sessionData, error: sessionError } = await supabase.auth.getSession()
+
+      if (sessionError || !sessionData?.session) {
         router.replace('/auth/login')
         return
       }
 
-      // 🔄 Sync session côté serveur (cookies HTTP-only)
+      // 🔄 Synchroniser la session côté serveur
       try {
-        await fetch('/api/supabase/set-server-session', {
+        const response = await fetch('/api/supabase/set-server-session', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify(data.session),
+          body: JSON.stringify(sessionData.session),
         })
+
+        if (!response.ok) {
+          console.error('Échec de la synchro serveur :', await response.text())
+        }
       } catch (err) {
-        console.error('Erreur lors de la synchronisation de la session :', err)
+        console.error('Erreur lors de la synchro :', err)
       }
 
-      router.replace('/')
-    })
+      // ✅ Vérifie maintenant que le user existe bien
+      const { data: userData, error: userError } = await supabase.auth.getUser()
+      if (userError || !userData?.user) {
+        router.replace('/auth/login')
+      } else {
+        router.replace('/')
+      }
+    }
+
+    syncSessionAndRedirect()
   }, [router])
 
   return <div>⏳ Vérification de l'authentification...</div>
