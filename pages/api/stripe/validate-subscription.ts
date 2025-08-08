@@ -31,7 +31,8 @@ async function getSubscriptionData(session_id: string) {
   const price = subscription.items.data[0].price;
   const priceId = price.id;
   const productId = typeof price.product === "string" ? price.product : price.product.id;
-
+  console.log("SUPABASE_SERVICE_ROLE_KEY", process.env.SUPABASE_SERVICE_ROLE_KEY);
+  console.log("NEXT_PUBLIC_SUPABASE_ANON_KEY", process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY);
   console.log("Email avant requête supabase : ", userEmail)
   // Récupérer le user_id depuis Supabase via email
   const { data: user, error: userError } = await supabaseServer
