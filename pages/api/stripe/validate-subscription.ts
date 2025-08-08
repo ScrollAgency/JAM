@@ -8,7 +8,20 @@ async function getSubscriptionData(session_id: string) {
   const session = await stripe.checkout.sessions.retrieve(session_id);
   const subscriptionId = session.subscription as string;
   const customerId = session.customer as string;
-  const userEmail = session.customer_email;
+
+  let userEmail = session.customer_email;
+  if (!userEmail) {
+    const customer = await stripe.customers.retrieve(customerId);
+    if ("email" in customer && customer.email) {
+      userEmail = customer.email;
+    } else {
+      throw new Error("Email client introuvable ou client supprimé");
+    }
+  }
+  if (!userEmail) {
+    throw new Error("Email client introuvable");
+  }
+
 
   if (!customerId || !subscriptionId || !userEmail) {
     throw new Error("Données manquantes dans la session Stripe");
