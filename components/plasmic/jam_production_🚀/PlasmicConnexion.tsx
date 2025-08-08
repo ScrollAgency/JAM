@@ -485,9 +485,7 @@ function PlasmicConnexion__RenderFunc(props: {
                 passwordLabel={"Mot de passe"}
                 placeholderEmail={"Entrez votre email"}
                 placeholderPassword={"Entrez votre mot de passe"}
-                redirectTo={
-                  "https://jam-staging.agence-scroll.com/auth/oauth-callback"
-                }
+                redirectTo={"https://job-around-me.com/auth/oauth-callback"}
                 showAppleButton={false}
                 showBottomSignupLink={true}
                 showCreateAccount={false}

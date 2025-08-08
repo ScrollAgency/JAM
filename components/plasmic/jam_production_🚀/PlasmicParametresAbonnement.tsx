@@ -115,8 +115,8 @@ export const PlasmicParametresAbonnement__ArgProps = new Array<ArgPropType>();
 export type PlasmicParametresAbonnement__OverridesType = {
   root?: Flex__<"div">;
   sidebar?: Flex__<typeof Sidebar>;
+  actionSubscriptionSuccess?: Flex__<typeof PageLoader>;
   actionCreditSuccess?: Flex__<typeof PageLoader>;
-  actionCreditSuccessDepreciated?: Flex__<typeof PageLoader>;
   main?: Flex__<"div">;
   heading?: Flex__<"div">;
   modalCreditsAlerts?: Flex__<typeof Modal>;
@@ -260,6 +260,8 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
               return (
                 ($ctx.query.credit === "success" &&
                   $ctx.query.sessionId !== "") ||
+                ($ctx.query.subscription === "success" &&
+                  $ctx.query.sessionId !== "") ||
                 $ctx.query.paiement === "ok"
               );
             } catch (e) {
@@ -320,7 +322,8 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
         path: "stripeSessionId",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => ``
+        initFunc: ({ $props, $state, $queries, $ctx }) =>
+          "cs_test_a1y2XqCLnIWjNIvXqBWWSG9RcdPOKYwbfrNHv9fwbjZwkAYWLfiwmcIOWo"
       },
       {
         path: "priceId",
@@ -504,9 +507,12 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
           />
 
           <PageLoader
-            data-plasmic-name={"actionCreditSuccess"}
-            data-plasmic-override={overrides.actionCreditSuccess}
-            className={classNames("__wab_instance", sty.actionCreditSuccess)}
+            data-plasmic-name={"actionSubscriptionSuccess"}
+            data-plasmic-override={overrides.actionSubscriptionSuccess}
+            className={classNames(
+              "__wab_instance",
+              sty.actionSubscriptionSuccess
+            )}
             onMount={async () => {
               const $steps = {};
 
@@ -549,7 +555,7 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                         variablePath: ["sessionId"]
                       },
                       operation: 0,
-                      value: $queries.getUserStripeInfos.data[0].session_id
+                      value: $ctx.query.session_id
                     };
                     return (({ variable, value, startIndex, deleteCount }) => {
                       if (!variable) {
@@ -570,51 +576,14 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                 $steps["updateSessionId"] = await $steps["updateSessionId"];
               }
 
-              $steps["httpGet"] = true
+              $steps["apiStripeValidateSubscription"] = true
                 ? (() => {
                     const actionArgs = {
                       dataOp: {
                         sourceId: "9Q77QfSZHRES57WTLJmYrY",
-                        opId: "6ebe234d-f726-4b8b-999b-01ab68cb6649",
-                        userArgs: {},
-                        cacheKey: null,
-                        invalidatedKeys: null,
-                        roleId: null
-                      }
-                    };
-                    return (async ({ dataOp, continueOnError }) => {
-                      try {
-                        const response = await executePlasmicDataOp(dataOp, {
-                          userAuthToken: dataSourcesCtx?.userAuthToken,
-                          user: dataSourcesCtx?.user
-                        });
-                        await plasmicInvalidate(dataOp.invalidatedKeys);
-                        return response;
-                      } catch (e) {
-                        if (!continueOnError) {
-                          throw e;
-                        }
-                        return e;
-                      }
-                    })?.apply(null, [actionArgs]);
-                  })()
-                : undefined;
-              if (
-                $steps["httpGet"] != null &&
-                typeof $steps["httpGet"] === "object" &&
-                typeof $steps["httpGet"].then === "function"
-              ) {
-                $steps["httpGet"] = await $steps["httpGet"];
-              }
-
-              $steps["httpGet2"] = true
-                ? (() => {
-                    const actionArgs = {
-                      dataOp: {
-                        sourceId: "9Q77QfSZHRES57WTLJmYrY",
-                        opId: "13d12d4b-5a53-4196-a4bf-852be730ee37",
+                        opId: "c9b3d9bd-f9b6-4aa3-8422-039749cde3cf",
                         userArgs: {
-                          params: [$state.sessionId]
+                          params: [$state.sessionId, "update"]
                         },
                         cacheKey: null,
                         invalidatedKeys: null,
@@ -639,75 +608,14 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                   })()
                 : undefined;
               if (
-                $steps["httpGet2"] != null &&
-                typeof $steps["httpGet2"] === "object" &&
-                typeof $steps["httpGet2"].then === "function"
+                $steps["apiStripeValidateSubscription"] != null &&
+                typeof $steps["apiStripeValidateSubscription"] === "object" &&
+                typeof $steps["apiStripeValidateSubscription"].then ===
+                  "function"
               ) {
-                $steps["httpGet2"] = await $steps["httpGet2"];
-              }
-
-              $steps["httpPost"] = true
-                ? (() => {
-                    const actionArgs = {
-                      dataOp: {
-                        sourceId: "9Q77QfSZHRES57WTLJmYrY",
-                        opId: "38ce68d2-2584-4f4b-be73-1ea4b935efc9",
-                        userArgs: {
-                          body: [
-                            {
-                              sessionId: $state.sessionId,
-                              customerId:
-                                $steps.getSessionInfos.data.response.session
-                                  .client_reference_id,
-                              customerEmail:
-                                $steps.getSessionInfos.data.response.session
-                                  .customer_details.email,
-                              receiptUrl:
-                                $steps.getPaymentIntent.data.response
-                                  .receiptUrl,
-                              receiptTitle:
-                                $steps.getPaymentIntent.data.response
-                                  .receiptTitle,
-                              amount:
-                                $steps.getPaymentIntent.data.response.amount,
-                              products:
-                                $steps.getSessionInfos.data.response.session.line_items.data.map(
-                                  item => ({
-                                    product_id: item.price.product,
-                                    quantity: item.quantity
-                                  })
-                                )
-                            }
-                          ]
-                        },
-                        cacheKey: null,
-                        invalidatedKeys: ["plasmic_refresh_all"],
-                        roleId: null
-                      }
-                    };
-                    return (async ({ dataOp, continueOnError }) => {
-                      try {
-                        const response = await executePlasmicDataOp(dataOp, {
-                          userAuthToken: dataSourcesCtx?.userAuthToken,
-                          user: dataSourcesCtx?.user
-                        });
-                        await plasmicInvalidate(dataOp.invalidatedKeys);
-                        return response;
-                      } catch (e) {
-                        if (!continueOnError) {
-                          throw e;
-                        }
-                        return e;
-                      }
-                    })?.apply(null, [actionArgs]);
-                  })()
-                : undefined;
-              if (
-                $steps["httpPost"] != null &&
-                typeof $steps["httpPost"] === "object" &&
-                typeof $steps["httpPost"].then === "function"
-              ) {
-                $steps["httpPost"] = await $steps["httpPost"];
+                $steps["apiStripeValidateSubscription"] = await $steps[
+                  "apiStripeValidateSubscription"
+                ];
               }
 
               $steps["goToParametresAbonnementPaiementOk"] = true
@@ -744,7 +652,8 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
             shouldRun={(() => {
               try {
                 return (
-                  $ctx.query.credit === "success" && !$state.paiementValidated
+                  $ctx.query.subscription === "success" &&
+                  !$state.paiementValidated
                 );
               } catch (e) {
                 if (
@@ -759,12 +668,9 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
           />
 
           <PageLoader
-            data-plasmic-name={"actionCreditSuccessDepreciated"}
-            data-plasmic-override={overrides.actionCreditSuccessDepreciated}
-            className={classNames(
-              "__wab_instance",
-              sty.actionCreditSuccessDepreciated
-            )}
+            data-plasmic-name={"actionCreditSuccess"}
+            data-plasmic-override={overrides.actionCreditSuccess}
+            className={classNames("__wab_instance", sty.actionCreditSuccess)}
             onMount={async () => {
               const $steps = {};
 
@@ -1042,7 +948,21 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                 sty.heading
               )}
             >
-              {"Mon abonnement"}
+              <React.Fragment>
+                {(() => {
+                  try {
+                    return undefined;
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return "Mon abonnement";
+                    }
+                    throw e;
+                  }
+                })()}
+              </React.Fragment>
             </div>
             {(() => {
               const child$Props = {
@@ -1315,6 +1235,8 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                           return (
                             ($ctx.query.credit === "success" &&
                               $ctx.query.sessionId !== "") ||
+                            ($ctx.query.subscription === "success" &&
+                              $ctx.query.sessionId !== "") ||
                             $ctx.query.paiement === "ok"
                           );
                         } catch (e) {
@@ -1579,7 +1501,9 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                       try {
                         return (
                           $queries.getUserStripeInfos.data[0].status ===
-                          "active"
+                            "complete" ||
+                          $queries.getUserStripeInfos.data[0].status ===
+                            "active"
                         );
                       } catch (e) {
                         if (
@@ -1718,7 +1642,7 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                           onSuccess={async () => {
                             const $steps = {};
 
-                            $steps["successNotificartion"] = true
+                            $steps["successNotification"] = true
                               ? (() => {
                                   const actionArgs = {
                                     args: [
@@ -1734,14 +1658,14 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                                 })()
                               : undefined;
                             if (
-                              $steps["successNotificartion"] != null &&
-                              typeof $steps["successNotificartion"] ===
+                              $steps["successNotification"] != null &&
+                              typeof $steps["successNotification"] ===
                                 "object" &&
-                              typeof $steps["successNotificartion"].then ===
+                              typeof $steps["successNotification"].then ===
                                 "function"
                             ) {
-                              $steps["successNotificartion"] = await $steps[
-                                "successNotificartion"
+                              $steps["successNotification"] = await $steps[
+                                "successNotification"
                               ];
                             }
 
@@ -1858,6 +1782,7 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                               "__wab_instance",
                               sty.button__x62Ba
                             )}
+                            disabled={false}
                             end={
                               <GroupIcon
                                 className={classNames(
@@ -1887,8 +1812,8 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                     {(() => {
                       try {
                         return (
-                          $queries.getUserStripeInfos.data[0].status ===
-                          "active"
+                          $queries.getUserStripeInfos.data[0].status !==
+                          "complete"
                         );
                       } catch (e) {
                         if (
@@ -1942,7 +1867,19 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                               type={"bordered"}
                             />
                           }
-                          cancelUrl={``}
+                          cancelUrl={(() => {
+                            try {
+                              return "/parametres-abonnement?subscription=cancel";
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return undefined;
+                              }
+                              throw e;
+                            }
+                          })()}
                           className={classNames(
                             "__wab_instance",
                             sty.changeSubscription
@@ -1973,6 +1910,31 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                                   {"confirmer"}
                                 </div>
                               }
+                              onClick={async event => {
+                                const $steps = {};
+
+                                $steps["invokeGlobalAction"] = false
+                                  ? (() => {
+                                      const actionArgs = {
+                                        args: ["success", '""']
+                                      };
+                                      return $globalActions[
+                                        "plasmic-antd5-config-provider.showNotification"
+                                      ]?.apply(null, [...actionArgs.args]);
+                                    })()
+                                  : undefined;
+                                if (
+                                  $steps["invokeGlobalAction"] != null &&
+                                  typeof $steps["invokeGlobalAction"] ===
+                                    "object" &&
+                                  typeof $steps["invokeGlobalAction"].then ===
+                                    "function"
+                                ) {
+                                  $steps["invokeGlobalAction"] = await $steps[
+                                    "invokeGlobalAction"
+                                  ];
+                                }
+                              }}
                             />
                           }
                           confirmDescription={(() => {
@@ -2016,9 +1978,22 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                               />
                             </div>
                           }
-                          confirmTitle={
-                            "Voulez-vous résilier votre abonnement ?"
-                          }
+                          confirmTitle={(() => {
+                            try {
+                              return (
+                                // Voulez-vous résilier votre abonnement ?
+                                "Souhaitez-vous changer de formule ?"
+                              );
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return undefined;
+                              }
+                              throw e;
+                            }
+                          })()}
                           customerEmail={(() => {
                             try {
                               return $ctx.SupabaseUser.user.email;
@@ -2110,15 +2085,59 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                             }
                           })()}
                           showConfirmationModal={true}
-                          stripeAction={"update"}
-                          successUrl={``}
+                          stripeAction={(() => {
+                            try {
+                              return (() => {
+                                return $queries.getUserStripeInfos.data[0]
+                                  .status === "cancel"
+                                  ? "create"
+                                  : "update";
+                              })();
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return "update";
+                              }
+                              throw e;
+                            }
+                          })()}
+                          successUrl={(() => {
+                            try {
+                              return "/parametres-abonnement?subscription=success&session_id={CHECKOUT_SESSION_ID}";
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return undefined;
+                              }
+                              throw e;
+                            }
+                          })()}
                         >
                           <Button
                             className={classNames(
                               "__wab_instance",
                               sty.button__b144E
                             )}
-                            disabled={false}
+                            disabled={(() => {
+                              try {
+                                return (
+                                  $queries.getUserStripeInfos.data[0]
+                                    .product_id === $state.selectedProduct
+                                );
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return false;
+                                }
+                                throw e;
+                              }
+                            })()}
                             end={
                               <GroupIcon
                                 className={classNames(
@@ -2137,7 +2156,25 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                                   sty.text__hhTTt
                                 )}
                               >
-                                {"changer d'abonnement"}
+                                <React.Fragment>
+                                  {(() => {
+                                    try {
+                                      return $queries.getUserStripeInfos.data[0]
+                                        .status === "cancel"
+                                        ? "Souscrire"
+                                        : "Changer d'abonnement";
+                                    } catch (e) {
+                                      if (
+                                        e instanceof TypeError ||
+                                        e?.plasmicType ===
+                                          "PlasmicUndefinedDataError"
+                                      ) {
+                                        return "changer d'abonnement";
+                                      }
+                                      throw e;
+                                    }
+                                  })()}
+                                </React.Fragment>
                               </div>
                             }
                           />
@@ -2147,10 +2184,9 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                     {(() => {
                       try {
                         return (
-                          $queries.getUserStripeInfos.data[0].status ===
-                            "complete" ||
-                          $queries.getUserStripeInfos.data[0].status ===
-                            "cancel"
+                          // $queries.getUserStripeInfos.data[0].status !== "complete" ||
+                          // $queries.getUserStripeInfos.data[0].status === "cancel"
+                          false
                         );
                       } catch (e) {
                         if (
@@ -4401,8 +4437,8 @@ const PlasmicDescendants = {
   root: [
     "root",
     "sidebar",
+    "actionSubscriptionSuccess",
     "actionCreditSuccess",
-    "actionCreditSuccessDepreciated",
     "main",
     "heading",
     "modalCreditsAlerts",
@@ -4458,8 +4494,8 @@ const PlasmicDescendants = {
     "stripeCheckout"
   ],
   sidebar: ["sidebar"],
+  actionSubscriptionSuccess: ["actionSubscriptionSuccess"],
   actionCreditSuccess: ["actionCreditSuccess"],
-  actionCreditSuccessDepreciated: ["actionCreditSuccessDepreciated"],
   main: [
     "main",
     "heading",
@@ -4730,8 +4766,8 @@ type DescendantsType<T extends NodeNameType> =
 type NodeDefaultElementType = {
   root: "div";
   sidebar: typeof Sidebar;
+  actionSubscriptionSuccess: typeof PageLoader;
   actionCreditSuccess: typeof PageLoader;
-  actionCreditSuccessDepreciated: typeof PageLoader;
   main: "div";
   heading: "div";
   modalCreditsAlerts: typeof Modal;
@@ -4848,10 +4884,8 @@ export const PlasmicParametresAbonnement = Object.assign(
   {
     // Helper components rendering sub-elements
     sidebar: makeNodeComponent("sidebar"),
+    actionSubscriptionSuccess: makeNodeComponent("actionSubscriptionSuccess"),
     actionCreditSuccess: makeNodeComponent("actionCreditSuccess"),
-    actionCreditSuccessDepreciated: makeNodeComponent(
-      "actionCreditSuccessDepreciated"
-    ),
     main: makeNodeComponent("main"),
     heading: makeNodeComponent("heading"),
     modalCreditsAlerts: makeNodeComponent("modalCreditsAlerts"),

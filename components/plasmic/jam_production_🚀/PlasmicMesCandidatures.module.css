@@ -253,6 +253,7 @@
   top: auto;
   width: 100%;
   row-gap: 16px;
+  background: #ffffff;
   min-width: 0;
   min-height: 0;
   padding: 64px;

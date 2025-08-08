@@ -612,7 +612,9 @@ function PlasmicInscriptionCandidat__RenderFunc(props: {
                                       to: `${$state.signUp3.email}`,
                                       template: "welcomeCandidat",
                                       subject: "Bienvenue {{name}} !",
-                                      params: { name: "Marius" }
+                                      params: {
+                                        name: `${$state.signUp3.firstName}`
+                                      }
                                     }
                                   ]
                                 },
@@ -668,9 +670,7 @@ function PlasmicInscriptionCandidat__RenderFunc(props: {
                     placeholderPhone={"060606060606"}
                     privacyPolicyText={"politique de confidentialit\u00e9"}
                     redirectAfterSignUp={``}
-                    redirectTo={
-                      "https://jam-staging.agence-scroll.com/auth/oauth-callback"
-                    }
+                    redirectTo={"https://job-around-me.com/auth/oauth-callback"}
                     showAlerts={true}
                     showLabels={true}
                     showLoginLink={true}

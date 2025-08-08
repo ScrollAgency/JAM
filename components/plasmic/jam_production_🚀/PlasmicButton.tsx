@@ -189,6 +189,7 @@ function PlasmicButton__RenderFunc(props: {
     () =>
       Object.assign(
         {
+          disabled: false,
           linkTo: "",
           openLinkInNewTab: false
         },

@@ -1471,7 +1471,7 @@ function PlasmicAccueil__RenderFunc(props: {
         roleId: null
       };
     }),
-    currentUser: usePlasmicDataOp(() => {
+    getCurrentUser: usePlasmicDataOp(() => {
       return {
         sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
         opId: "9c25c922-f186-4ed9-850f-6ded6b307e4e",
@@ -1519,9 +1519,9 @@ function PlasmicAccueil__RenderFunc(props: {
         opId: "8be05618-e3eb-4b37-889a-c18c2902bc93",
         userArgs: {
           path: [
-            $queries.currentUser?.data[0]?.id +
+            $queries.getCurrentUser?.data[0]?.id +
               "/" +
-              $queries.currentUser?.data[0]?.profile_photo
+              $queries.getCurrentUser?.data[0]?.profile_photo
           ]
         },
         cacheKey: `plasmic.$.8be05618-e3eb-4b37-889a-c18c2902bc93.$.`,
@@ -1570,15 +1570,15 @@ function PlasmicAccueil__RenderFunc(props: {
         userArgs: {
           params: [
             $state.form?.value?.postal_code ||
-              $queries.currentUser?.data[0]?.postal_code ||
+              $queries.getCurrentUser?.data[0]?.postal_code ||
               "75000",
 
             $state.form?.value?.address ||
-              $queries.currentUser?.data[0]?.address ||
+              $queries.getCurrentUser?.data[0]?.address ||
               "",
 
             $state.form?.value?.city ||
-              $queries.currentUser?.data[0]?.city ||
+              $queries.getCurrentUser?.data[0]?.city ||
               "paris"
           ]
         },
@@ -1928,9 +1928,7 @@ function PlasmicAccueil__RenderFunc(props: {
                           onClick={async event => {
                             const $steps = {};
 
-                            $steps["goToLogin"] = (() => {
-                              return !!!$ctx.SupabaseUser.user;
-                            })()
+                            $steps["goToLogin"] = !!!$ctx.SupabaseUser.user
                               ? (() => {
                                   const actionArgs = { destination: `/login` };
                                   return (({ destination }) => {
@@ -2064,9 +2062,7 @@ function PlasmicAccueil__RenderFunc(props: {
                       ) : null}
                       {(() => {
                         try {
-                          return (() => {
-                            return !!!$ctx.SupabaseUser.user;
-                          })();
+                          return !!!$ctx.SupabaseUser.user;
                         } catch (e) {
                           if (
                             e instanceof TypeError ||
@@ -9853,7 +9849,7 @@ function PlasmicAccueil__RenderFunc(props: {
                             ],
                             initialValues: (() => {
                               try {
-                                return $queries.currentUser.data[0];
+                                return $queries.getCurrentUser.data[0];
                               } catch (e) {
                                 if (
                                   e instanceof TypeError ||
@@ -10035,13 +10031,13 @@ function PlasmicAccueil__RenderFunc(props: {
                                             $steps.cv?.path.split("/")[1] !=
                                             undefined
                                               ? $steps.cv?.path.split("/")[1]
-                                              : $queries.currentUser.data[0]
+                                              : $queries.getCurrentUser.data[0]
                                                   .cv_file,
 
                                             $steps.ldm?.path.split("/")[1] !=
                                             undefined
                                               ? $steps.ldm?.path.split("/")[1]
-                                              : $queries.currentUser.data[0]
+                                              : $queries.getCurrentUser.data[0]
                                                   .cover_letter_file,
 
                                             $state.form.value.address,
@@ -10144,12 +10140,12 @@ function PlasmicAccueil__RenderFunc(props: {
 
                                             $steps.ldm != undefined
                                               ? $steps.ldm?.path.split("/")[1]
-                                              : $queries.currentUser.data[0]
+                                              : $queries.getCurrentUser.data[0]
                                                   .cover_letter_file,
 
                                             $steps.cv != undefined
                                               ? $steps.cv?.path.split("/")[1]
-                                              : $queries.currentUser.data[0]
+                                              : $queries.getCurrentUser.data[0]
                                                   .cv_file,
 
                                             $state.form.value.level,
@@ -10268,46 +10264,6 @@ function PlasmicAccueil__RenderFunc(props: {
                                 $steps["succesMsg"] = await $steps["succesMsg"];
                               }
 
-                              $steps["closeModal"] = true
-                                ? (() => {
-                                    const actionArgs = {
-                                      variable: {
-                                        objRoot: $state,
-                                        variablePath: [
-                                          "signUpApplication",
-                                          "isOpen"
-                                        ]
-                                      },
-                                      operation: 0,
-                                      value: false
-                                    };
-                                    return (({
-                                      variable,
-                                      value,
-                                      startIndex,
-                                      deleteCount
-                                    }) => {
-                                      if (!variable) {
-                                        return;
-                                      }
-                                      const { objRoot, variablePath } =
-                                        variable;
-
-                                      $stateSet(objRoot, variablePath, value);
-                                      return value;
-                                    })?.apply(null, [actionArgs]);
-                                  })()
-                                : undefined;
-                              if (
-                                $steps["closeModal"] != null &&
-                                typeof $steps["closeModal"] === "object" &&
-                                typeof $steps["closeModal"].then === "function"
-                              ) {
-                                $steps["closeModal"] = await $steps[
-                                  "closeModal"
-                                ];
-                              }
-
                               $steps["sendEmailToEmployer"] = (
                                 $queries.getApplication.data.some(
                                   application =>
@@ -10335,12 +10291,12 @@ function PlasmicAccueil__RenderFunc(props: {
                                                 jobTitle:
                                                   $state.jobObject.title,
                                                 candidateName:
-                                                  $queries.currentUser.data[0]
-                                                    .first_name +
+                                                  $queries.getCurrentUser
+                                                    .data[0].first_name +
                                                   " " +
-                                                  $queries.currentUser.data[0]
-                                                    .last_name,
-                                                applicationUrl: `https://jam-staging.agence-scroll.com/candidatures-employeur/${$state.jobObject.id}`
+                                                  $queries.getCurrentUser
+                                                    .data[0].last_name,
+                                                applicationUrl: `https://job-around-me.com/candidatures-employeur/${$state.jobObject.id}`
                                               }
                                             }
                                           ]
@@ -10383,6 +10339,114 @@ function PlasmicAccueil__RenderFunc(props: {
                               ) {
                                 $steps["sendEmailToEmployer"] = await $steps[
                                   "sendEmailToEmployer"
+                                ];
+                              }
+
+                              $steps["sendEmailToCandidat"] = true
+                                ? (() => {
+                                    const actionArgs = {
+                                      dataOp: {
+                                        sourceId: "5T6gSzGCrEfYgV9rAkCoaD",
+                                        opId: "fcf17976-4f7f-44b3-8083-e1bf6bb812dd",
+                                        userArgs: {
+                                          body: [
+                                            {
+                                              to: `${$state.form.value?.email}`,
+                                              template: "applicationSubmitted",
+                                              subject:
+                                                "Ta candidature a bien été envoyée ✅",
+                                              params: {
+                                                firstName:
+                                                  $state.form.value?.first_name,
+                                                jobTitle:
+                                                  $state.jobObject?.title,
+                                                companyName:
+                                                  $state.jobObject
+                                                    ?.company_name,
+                                                applicationUrl:
+                                                  "https://job-around-me.com/candidatures"
+                                              }
+                                            }
+                                          ]
+                                        },
+                                        cacheKey: null,
+                                        invalidatedKeys: [],
+                                        roleId: null
+                                      }
+                                    };
+                                    return (async ({
+                                      dataOp,
+                                      continueOnError
+                                    }) => {
+                                      try {
+                                        const response =
+                                          await executePlasmicDataOp(dataOp, {
+                                            userAuthToken:
+                                              dataSourcesCtx?.userAuthToken,
+                                            user: dataSourcesCtx?.user
+                                          });
+                                        await plasmicInvalidate(
+                                          dataOp.invalidatedKeys
+                                        );
+                                        return response;
+                                      } catch (e) {
+                                        if (!continueOnError) {
+                                          throw e;
+                                        }
+                                        return e;
+                                      }
+                                    })?.apply(null, [actionArgs]);
+                                  })()
+                                : undefined;
+                              if (
+                                $steps["sendEmailToCandidat"] != null &&
+                                typeof $steps["sendEmailToCandidat"] ===
+                                  "object" &&
+                                typeof $steps["sendEmailToCandidat"].then ===
+                                  "function"
+                              ) {
+                                $steps["sendEmailToCandidat"] = await $steps[
+                                  "sendEmailToCandidat"
+                                ];
+                              }
+
+                              $steps["closeModal"] = true
+                                ? (() => {
+                                    const actionArgs = {
+                                      variable: {
+                                        objRoot: $state,
+                                        variablePath: [
+                                          "signUpApplication",
+                                          "isOpen"
+                                        ]
+                                      },
+                                      operation: 0,
+                                      value: false
+                                    };
+                                    return (({
+                                      variable,
+                                      value,
+                                      startIndex,
+                                      deleteCount
+                                    }) => {
+                                      if (!variable) {
+                                        return;
+                                      }
+                                      const { objRoot, variablePath } =
+                                        variable;
+
+                                      $stateSet(objRoot, variablePath, value);
+                                      return value;
+                                    })?.apply(null, [actionArgs]);
+                                  })()
+                                : undefined;
+                              if (
+                                $steps["closeModal"] != null &&
+                                typeof $steps["closeModal"] === "object" &&
+                                typeof $steps["closeModal"].then === "function"
+                              ) {
+                                $steps["closeModal"] = await $steps[
+                                  "closeModal"
                                 ];
                               }
                             },
@@ -10859,7 +10923,7 @@ function PlasmicAccueil__RenderFunc(props: {
                                     )}
                                     defaultValue={(() => {
                                       try {
-                                        return $queries.currentUser.data[0]
+                                        return $queries.getCurrentUser.data[0]
                                           .first_name;
                                       } catch (e) {
                                         if (
@@ -10907,7 +10971,7 @@ function PlasmicAccueil__RenderFunc(props: {
                                     )}
                                     defaultValue={(() => {
                                       try {
-                                        return $queries.currentUser.data[0]
+                                        return $queries.getCurrentUser.data[0]
                                           .last_name;
                                       } catch (e) {
                                         if (
@@ -10956,7 +11020,8 @@ function PlasmicAccueil__RenderFunc(props: {
                                   )}
                                   defaultValue={(() => {
                                     try {
-                                      return $queries.currentUser.data[0].email;
+                                      return $queries.getCurrentUser.data[0]
+                                        .email;
                                     } catch (e) {
                                       if (
                                         e instanceof TypeError ||
@@ -11043,7 +11108,7 @@ function PlasmicAccueil__RenderFunc(props: {
                                     )}
                                     defaultValue={(() => {
                                       try {
-                                        return $queries.currentUser.data[0]
+                                        return $queries.getCurrentUser.data[0]
                                           .phone_number;
                                       } catch (e) {
                                         if (
@@ -11103,7 +11168,7 @@ function PlasmicAccueil__RenderFunc(props: {
                                   )}
                                   defaultValue={(() => {
                                     try {
-                                      return $queries.currentUser.data[0]
+                                      return $queries.getCurrentUser.data[0]
                                         .address;
                                     } catch (e) {
                                       if (
@@ -11171,7 +11236,7 @@ function PlasmicAccueil__RenderFunc(props: {
                                     )}
                                     defaultValue={(() => {
                                       try {
-                                        return $queries.currentUser.data[0]
+                                        return $queries.getCurrentUser.data[0]
                                           .postal_code;
                                       } catch (e) {
                                         if (
@@ -11230,7 +11295,7 @@ function PlasmicAccueil__RenderFunc(props: {
                                     )}
                                     defaultValue={(() => {
                                       try {
-                                        return $queries.currentUser.data[0]
+                                        return $queries.getCurrentUser.data[0]
                                           .city;
                                       } catch (e) {
                                         if (
@@ -11430,7 +11495,7 @@ function PlasmicAccueil__RenderFunc(props: {
                                 initialValue={(() => {
                                   try {
                                     return (
-                                      $queries.currentUser.data[0]
+                                      $queries.getCurrentUser.data[0]
                                         .transport_mode || undefined
                                     );
                                   } catch (e) {
@@ -11588,7 +11653,7 @@ function PlasmicAccueil__RenderFunc(props: {
                                 initialValue={(() => {
                                   try {
                                     return (
-                                      $queries.currentUser.data[0].skill ||
+                                      $queries.getCurrentUser.data[0].skill ||
                                       undefined
                                     );
                                   } catch (e) {
@@ -11698,7 +11763,7 @@ function PlasmicAccueil__RenderFunc(props: {
                                   sty.formField___0N6P1
                                 )}
                                 initialValue={
-                                  $queries.currentUser?.data[0]?.level
+                                  $queries.getCurrentUser?.data[0]?.level
                                 }
                                 label={"Niveau d'exp\u00e9rience"}
                                 name={"level"}
@@ -11712,7 +11777,8 @@ function PlasmicAccueil__RenderFunc(props: {
                                   )}
                                   initialSelectedValue={(() => {
                                     try {
-                                      return $queries.currentUser.data[0].level;
+                                      return $queries.getCurrentUser.data[0]
+                                        .level;
                                     } catch (e) {
                                       if (
                                         e instanceof TypeError ||
@@ -11831,8 +11897,8 @@ function PlasmicAccueil__RenderFunc(props: {
                                   {(() => {
                                     try {
                                       return (
-                                        $queries.currentUser.data[0].cv_file !==
-                                        null
+                                        $queries.getCurrentUser.data[0]
+                                          .cv_file !== null
                                       );
                                     } catch (e) {
                                       if (
@@ -12042,7 +12108,7 @@ function PlasmicAccueil__RenderFunc(props: {
                                           <React.Fragment>
                                             {(() => {
                                               try {
-                                                return $queries.currentUser
+                                                return $queries.getCurrentUser
                                                   .data[0].cv_file;
                                               } catch (e) {
                                                 if (
@@ -12063,8 +12129,8 @@ function PlasmicAccueil__RenderFunc(props: {
                                   {(() => {
                                     try {
                                       return (
-                                        $queries.currentUser.data[0].cv_file ===
-                                        null
+                                        $queries.getCurrentUser.data[0]
+                                          .cv_file === null
                                       );
                                     } catch (e) {
                                       if (
@@ -12187,7 +12253,7 @@ function PlasmicAccueil__RenderFunc(props: {
                                   {(() => {
                                     try {
                                       return (
-                                        $queries.currentUser.data[0]
+                                        $queries.getCurrentUser.data[0]
                                           .cover_letter_file !== null
                                       );
                                     } catch (e) {
@@ -12400,7 +12466,7 @@ function PlasmicAccueil__RenderFunc(props: {
                                           <React.Fragment>
                                             {(() => {
                                               try {
-                                                return $queries.currentUser
+                                                return $queries.getCurrentUser
                                                   .data[0].cover_letter_file;
                                               } catch (e) {
                                                 if (
@@ -12421,7 +12487,7 @@ function PlasmicAccueil__RenderFunc(props: {
                                   {(() => {
                                     try {
                                       return (
-                                        $queries.currentUser.data[0]
+                                        $queries.getCurrentUser.data[0]
                                           .cover_letter_file === null
                                       );
                                     } catch (e) {
@@ -12614,7 +12680,7 @@ function PlasmicAccueil__RenderFunc(props: {
                                   )}
                                   defaultValue={(() => {
                                     try {
-                                      return $queries.currentUser.data[0]
+                                      return $queries.getCurrentUser.data[0]
                                         .linkedin_url;
                                     } catch (e) {
                                       if (

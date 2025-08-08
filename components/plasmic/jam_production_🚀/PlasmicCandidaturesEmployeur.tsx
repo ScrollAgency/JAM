@@ -2718,6 +2718,63 @@ function PlasmicCandidaturesEmployeur__RenderFunc(props: {
                       $steps["updateDb"] = await $steps["updateDb"];
                     }
 
+                    $steps["sendMail"] = true
+                      ? (() => {
+                          const actionArgs = {
+                            dataOp: {
+                              sourceId: "5T6gSzGCrEfYgV9rAkCoaD",
+                              opId: "ac3aeb59-a5a8-4309-9807-433a1356e04e",
+                              userArgs: {
+                                body: [
+                                  {
+                                    to: `${$state.dataObjByCandidateId[0].email}`,
+                                    template: "candidateSelected",
+                                    subject:
+                                      "Bonne nouvelle ! Tu as été retenue \uD83C\uDF89",
+                                    params: {
+                                      firstName: `${$state.dataObjByCandidateId[0].nom_du_candidat}`,
+                                      jobTitle: `${$state.dataObjByCandidateId[0].titre_du_poste}`,
+                                      companyName: `${$state.dataObjByCandidateId[0].nom_entreprise}`,
+                                      offersUrl: "https://job-around-me.com/"
+                                    }
+                                  }
+                                ]
+                              },
+                              cacheKey: null,
+                              invalidatedKeys: [
+                                "40ceca61-c508-458b-a499-2597a94b9650"
+                              ],
+                              roleId: null
+                            }
+                          };
+                          return (async ({ dataOp, continueOnError }) => {
+                            try {
+                              const response = await executePlasmicDataOp(
+                                dataOp,
+                                {
+                                  userAuthToken: dataSourcesCtx?.userAuthToken,
+                                  user: dataSourcesCtx?.user
+                                }
+                              );
+                              await plasmicInvalidate(dataOp.invalidatedKeys);
+                              return response;
+                            } catch (e) {
+                              if (!continueOnError) {
+                                throw e;
+                              }
+                              return e;
+                            }
+                          })?.apply(null, [actionArgs]);
+                        })()
+                      : undefined;
+                    if (
+                      $steps["sendMail"] != null &&
+                      typeof $steps["sendMail"] === "object" &&
+                      typeof $steps["sendMail"].then === "function"
+                    ) {
+                      $steps["sendMail"] = await $steps["sendMail"];
+                    }
+
                     $steps["closeModal"] = true
                       ? (() => {
                           const actionArgs = {
@@ -2750,62 +2807,6 @@ function PlasmicCandidaturesEmployeur__RenderFunc(props: {
                       typeof $steps["closeModal"].then === "function"
                     ) {
                       $steps["closeModal"] = await $steps["closeModal"];
-                    }
-
-                    $steps["httpPost"] = true
-                      ? (() => {
-                          const actionArgs = {
-                            dataOp: {
-                              sourceId: "5T6gSzGCrEfYgV9rAkCoaD",
-                              opId: "ac3aeb59-a5a8-4309-9807-433a1356e04e",
-                              userArgs: {
-                                body: [
-                                  {
-                                    to: `${$state.dataObjByCandidateId[0].email}`,
-                                    template: "candidateSelected",
-                                    subject:
-                                      "Bonne nouvelle ! Tu as été retenue 🎉",
-                                    params: {
-                                      firstName: `${$state.dataObjByCandidateId[0].nom_du_candidat}`,
-                                      jobTitle: `${$state.dataObjByCandidateId[0].titre_du_poste}`,
-                                      companyName: `${$state.dataObjByCandidateId[0].nom_entreprise}`,
-                                      offersUrl:
-                                        "https://jam-staging.agence-scroll.com/"
-                                    }
-                                  }
-                                ]
-                              },
-                              cacheKey: null,
-                              invalidatedKeys: [],
-                              roleId: null
-                            }
-                          };
-                          return (async ({ dataOp, continueOnError }) => {
-                            try {
-                              const response = await executePlasmicDataOp(
-                                dataOp,
-                                {
-                                  userAuthToken: dataSourcesCtx?.userAuthToken,
-                                  user: dataSourcesCtx?.user
-                                }
-                              );
-                              await plasmicInvalidate(dataOp.invalidatedKeys);
-                              return response;
-                            } catch (e) {
-                              if (!continueOnError) {
-                                throw e;
-                              }
-                              return e;
-                            }
-                          })?.apply(null, [actionArgs]);
-                        })()
-                      : undefined;
-                    if (
-                      $steps["httpPost"] != null &&
-                      typeof $steps["httpPost"] === "object" &&
-                      typeof $steps["httpPost"].then === "function"
-                    ) {
-                      $steps["httpPost"] = await $steps["httpPost"];
                     }
                   }}
                 />
@@ -3243,14 +3244,15 @@ function PlasmicCandidaturesEmployeur__RenderFunc(props: {
                                         firstName: `${$state.dataObjByCandidateId[0].nom_du_candidat}`,
                                         jobTitle: `${$state.dataObjByCandidateId[0].titre_du_poste}`,
                                         companyName: `${$state.dataObjByCandidateId[0].nom_entreprise}`,
-                                        offersUrl:
-                                          "https://jam-staging.agence-scroll.com/"
+                                        offersUrl: "https://job-around-me.com/"
                                       }
                                     }
                                   ]
                                 },
                                 cacheKey: null,
-                                invalidatedKeys: ["plasmic_refresh_all"],
+                                invalidatedKeys: [
+                                  "40ceca61-c508-458b-a499-2597a94b9650"
+                                ],
                                 roleId: null
                               }
                             };

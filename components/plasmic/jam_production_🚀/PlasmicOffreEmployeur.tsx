@@ -16624,44 +16624,6 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                                   $steps["updateDb"] = await $steps["updateDb"];
                                 }
 
-                                $steps["closeModal"] = true
-                                  ? (() => {
-                                      const actionArgs = {
-                                        variable: {
-                                          objRoot: $state,
-                                          variablePath: ["showModal"]
-                                        },
-                                        operation: 0,
-                                        value: false
-                                      };
-                                      return (({
-                                        variable,
-                                        value,
-                                        startIndex,
-                                        deleteCount
-                                      }) => {
-                                        if (!variable) {
-                                          return;
-                                        }
-                                        const { objRoot, variablePath } =
-                                          variable;
-
-                                        $stateSet(objRoot, variablePath, value);
-                                        return value;
-                                      })?.apply(null, [actionArgs]);
-                                    })()
-                                  : undefined;
-                                if (
-                                  $steps["closeModal"] != null &&
-                                  typeof $steps["closeModal"] === "object" &&
-                                  typeof $steps["closeModal"].then ===
-                                    "function"
-                                ) {
-                                  $steps["closeModal"] = await $steps[
-                                    "closeModal"
-                                  ];
-                                }
-
                                 $steps["sendEmailToEmployer"] = true
                                   ? (() => {
                                       const actionArgs = {
@@ -16700,19 +16662,19 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                                                   }
                                                 }
                                                 const emailPayload = {
-                                                  to: $queries.getUser.data[0]
-                                                    .email,
+                                                  to: $queries.getUser?.data[0]
+                                                    ?.email,
                                                   template:
                                                     "employerSubscription",
                                                   subject:
                                                     "Bienvenue dans ton nouvel abonnement \uD83C\uDF89",
                                                   params: {
                                                     name:
-                                                      $queries.getUser.data[0]
-                                                        .first_name +
+                                                      $queries.getUser?.data[0]
+                                                        ?.first_name +
                                                       " " +
-                                                      $queries.getUser.data[0]
-                                                        .last_name,
+                                                      $queries.getUser?.data[0]
+                                                        ?.last_name,
                                                     subscriptionName: product
                                                       ? product.name
                                                       : "Abonnement",
@@ -16720,7 +16682,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                                                     benefit2: benefits[1] || "",
                                                     benefit3: benefits[2] || "",
                                                     manageUrl:
-                                                      "https://jam-staging.agence-scroll.com/parametres-abonnement"
+                                                      "https://job-around-me.com/parametres-abonnement"
                                                   }
                                                 };
                                                 return emailPayload;
@@ -16765,6 +16727,44 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                                 ) {
                                   $steps["sendEmailToEmployer"] = await $steps[
                                     "sendEmailToEmployer"
+                                  ];
+                                }
+
+                                $steps["closeModal"] = true
+                                  ? (() => {
+                                      const actionArgs = {
+                                        variable: {
+                                          objRoot: $state,
+                                          variablePath: ["showModal"]
+                                        },
+                                        operation: 0,
+                                        value: false
+                                      };
+                                      return (({
+                                        variable,
+                                        value,
+                                        startIndex,
+                                        deleteCount
+                                      }) => {
+                                        if (!variable) {
+                                          return;
+                                        }
+                                        const { objRoot, variablePath } =
+                                          variable;
+
+                                        $stateSet(objRoot, variablePath, value);
+                                        return value;
+                                      })?.apply(null, [actionArgs]);
+                                    })()
+                                  : undefined;
+                                if (
+                                  $steps["closeModal"] != null &&
+                                  typeof $steps["closeModal"] === "object" &&
+                                  typeof $steps["closeModal"].then ===
+                                    "function"
+                                ) {
+                                  $steps["closeModal"] = await $steps[
+                                    "closeModal"
                                   ];
                                 }
                               }}

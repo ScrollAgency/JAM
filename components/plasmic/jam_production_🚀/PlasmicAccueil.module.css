@@ -1934,7 +1934,7 @@
   align-items: center;
   min-width: 100%;
   flex-shrink: 0;
-  flex-grow: 1;
+  flex-grow: 0;
   min-height: 0;
   padding: 0px;
 }

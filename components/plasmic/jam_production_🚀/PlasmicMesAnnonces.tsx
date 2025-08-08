@@ -3804,7 +3804,7 @@ function PlasmicMesAnnonces__RenderFunc(props: {
                                           $queries.getUser.data[0].first_name +
                                           " " +
                                           $queries.getUser.data[0].last_name,
-                                        applicationUrl: `https://jam-staging.agence-scroll.com/candidatures-employeur/${$state.currentJobObject.id}`
+                                        applicationUrl: `https://job-around-me.com/candidatures-employeur/${$state.currentJobObject.id}`
                                       }
                                     }
                                   ]
@@ -3842,6 +3842,68 @@ function PlasmicMesAnnonces__RenderFunc(props: {
                       ) {
                         $steps["sendEmailToEmployer"] = await $steps[
                           "sendEmailToEmployer"
+                        ];
+                      }
+
+                      $steps["sendEmailToCandidat"] = true
+                        ? (() => {
+                            const actionArgs = {
+                              dataOp: {
+                                sourceId: "5T6gSzGCrEfYgV9rAkCoaD",
+                                opId: "ac3aeb59-a5a8-4309-9807-433a1356e04e",
+                                userArgs: {
+                                  body: [
+                                    {
+                                      to: `${$state.form.value?.email}`,
+                                      template: "applicationSubmitted",
+                                      subject:
+                                        "Ta candidature a bien été envoyée ✅",
+                                      params: {
+                                        firstName:
+                                          $state.form.value?.first_name,
+                                        jobTitle:
+                                          $state.currentJobObject?.title,
+                                        companyName:
+                                          $state.currentJobObject.company_name,
+                                        applicationUrl:
+                                          "https://job-around-me.com/candidatures"
+                                      }
+                                    }
+                                  ]
+                                },
+                                cacheKey: null,
+                                invalidatedKeys: [],
+                                roleId: null
+                              }
+                            };
+                            return (async ({ dataOp, continueOnError }) => {
+                              try {
+                                const response = await executePlasmicDataOp(
+                                  dataOp,
+                                  {
+                                    userAuthToken:
+                                      dataSourcesCtx?.userAuthToken,
+                                    user: dataSourcesCtx?.user
+                                  }
+                                );
+                                await plasmicInvalidate(dataOp.invalidatedKeys);
+                                return response;
+                              } catch (e) {
+                                if (!continueOnError) {
+                                  throw e;
+                                }
+                                return e;
+                              }
+                            })?.apply(null, [actionArgs]);
+                          })()
+                        : undefined;
+                      if (
+                        $steps["sendEmailToCandidat"] != null &&
+                        typeof $steps["sendEmailToCandidat"] === "object" &&
+                        typeof $steps["sendEmailToCandidat"].then === "function"
+                      ) {
+                        $steps["sendEmailToCandidat"] = await $steps[
+                          "sendEmailToCandidat"
                         ];
                       }
                     },
