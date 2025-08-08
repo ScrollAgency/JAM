@@ -29,8 +29,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           line_items: [{ price: priceId, quantity: 1 }],
           client_reference_id: customerId,
           customer_email: customerEmail,
-          success_url: successUrl,
-          cancel_url: cancelUrl,
+          success_url: `${req.headers.origin}/${successUrl}`,
+          cancel_url: `${req.headers.origin}/${cancelUrl}`,
         });
 
         return res.status(200).json({ sessionId: session.id });
