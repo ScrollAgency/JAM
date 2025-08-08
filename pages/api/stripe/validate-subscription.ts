@@ -5,22 +5,13 @@ import { supabaseServer } from "../../../lib/supabaseServer";
 
 async function getSubscriptionData(session_id: string) {
 
-  // test temporaire dans ton handler ou au début de getSubscriptionData
-const { data: adminTest, error: adminError } = await supabaseServer.auth.admin.listUsers({ page: 1, perPage: 1 });
-
-console.log("Admin access test:", { adminTest, adminError });
-
-console.log("isServiceRole:", supabaseServer.auth.signInWithPassword === undefined);
-
-
   // Récupérer la session checkout Stripe
   const session = await stripe.checkout.sessions.retrieve(session_id);
   const subscriptionId = session.subscription as string;
   const customerId = session.customer as string;
 
   let userEmail = session.customer_email;
-  console.log("Email from session : ", userEmail)
-  console.log("Customer id from session : ", customerId)
+
   if (!userEmail) {
     const customer = await stripe.customers.retrieve(customerId);
     if ("email" in customer && customer.email) {
@@ -29,7 +20,7 @@ console.log("isServiceRole:", supabaseServer.auth.signInWithPassword === undefin
       throw new Error("Email client introuvable ou client supprimé");
     }
   }
-  console.log("Email from supabase ? : ", userEmail)
+
   if (!customerId || !subscriptionId || !userEmail) {
     throw new Error("Données manquantes dans la session Stripe");
   }
@@ -40,12 +31,6 @@ console.log("isServiceRole:", supabaseServer.auth.signInWithPassword === undefin
   const price = subscription.items.data[0].price;
   const priceId = price.id;
   const productId = typeof price.product === "string" ? price.product : price.product.id;
-  console.log("SUPABASE_SERVICE_ROLE_KEY", process.env.SUPABASE_SERVICE_ROLE_KEY);
-  console.log("NEXT_PUBLIC_SUPABASE_ANON_KEY", process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY);
-  console.log("Email avant requête supabase : ", userEmail)
-
-  const { data: pgRole, error: roleError } = await supabaseServer.rpc("current_user_role");
-  console.log("Rôle Postgres actif :", pgRole, roleError);
 
   // Récupérer le user_id depuis Supabase via email
   const { data: user, error: userError } = await supabaseServer
@@ -55,8 +40,6 @@ console.log("isServiceRole:", supabaseServer.auth.signInWithPassword === undefin
     .eq("email", userEmail)
     .single();
 
-  console.log("userError:", userError);
-  console.log("user:", user);
   if (userError || !user) {
     throw new Error("Utilisateur non trouvé dans Supabase");
   }
