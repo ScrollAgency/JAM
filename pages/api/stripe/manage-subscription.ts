@@ -24,14 +24,22 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           return res.status(400).json({ error: "Paramètres requis manquants pour 'create'" });
         }
 
-        const session = await stripe.checkout.sessions.create({
+        const sessionPayload: any = {
           mode: "subscription",
           line_items: [{ price: priceId, quantity: 1 }],
-          client_reference_id: customerId,
-          customer_email: customerEmail,
           success_url: `${req.headers.origin}/${successUrl}`,
           cancel_url: `${req.headers.origin}/${cancelUrl}`,
-        });
+        };
+
+        if (customerId) {
+          sessionPayload.customer = customerId;
+        } else if (customerEmail) {
+          sessionPayload.customer_email = customerEmail;
+        } else {
+          return res.status(400).json({ error: "customerId ou customerEmail requis pour 'create'" });
+        }
+
+        const session = await stripe.checkout.sessions.create(sessionPayload);
 
         return res.status(200).json({ sessionId: session.id });
       }
