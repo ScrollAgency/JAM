@@ -1,51 +1,37 @@
 import { useEffect } from 'react'
 import { useRouter } from 'next/router'
-import { createClient } from '@/utils/supabase/components'
+//import { createClient } from '@/utils/supabase/components'
 
 export default function OAuthCallbackPage() {
   const router = useRouter()
 
   useEffect(() => {
-    if (!router.isReady) return
+    if (!router.isReady) return;
 
-    const supabase = createClient()
+    // const supabase = createClient();
 
-    const syncSessionAndRedirect = async () => {
-      const { data: sessionData, error: sessionError } = await supabase.auth.getSession()
+    // supabase.auth.getSession().then(async ({ data, error }) => {
+    //   if (error || !data?.session) {
+    //     router.replace('/auth/login');
+    //     return;
+    //   }
 
-      if (sessionError || !sessionData?.session) {
-        router.replace('/auth/login')
-        return
-      }
+    //   try {
+    //     await fetch('/api/supabase/set-server-session', {
+    //       method: 'POST',
+    //       headers: {
+    //         'Content-Type': 'application/json',
+    //       },
+    //       body: JSON.stringify(data.session),
+    //     });
+    //   } catch (err) {
+    //     console.error('Erreur lors de la synchronisation de la session :', err);
+    //   }
 
-      // 🔄 Synchroniser la session côté serveur
-      try {
-        const response = await fetch('/api/supabase/set-server-session', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(sessionData.session),
-        })
+    //   router.replace('/');
+    // });
+  }, [router.isReady]);
 
-        if (!response.ok) {
-          console.error('Échec de la synchro serveur :', await response.text())
-        }
-      } catch (err) {
-        console.error('Erreur lors de la synchro :', err)
-      }
-
-      // ✅ Vérifie maintenant que le user existe bien
-      const { data: userData, error: userError } = await supabase.auth.getUser()
-      if (userError || !userData?.user) {
-        router.replace('/auth/login')
-      } else {
-        router.replace('/')
-      }
-    }
-
-    syncSessionAndRedirect()
-  }, [router])
 
   return <div>⏳ Vérification de l'authentification...</div>
 }
