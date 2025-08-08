@@ -43,6 +43,10 @@ console.log("isServiceRole:", supabaseServer.auth.signInWithPassword === undefin
   console.log("SUPABASE_SERVICE_ROLE_KEY", process.env.SUPABASE_SERVICE_ROLE_KEY);
   console.log("NEXT_PUBLIC_SUPABASE_ANON_KEY", process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY);
   console.log("Email avant requête supabase : ", userEmail)
+
+  const { data: pgRole, error: roleError } = await supabaseServer.rpc("current_user_role");
+  console.log("Rôle Postgres actif :", pgRole, roleError);
+
   // Récupérer le user_id depuis Supabase via email
   const { data: user, error: userError } = await supabaseServer
     .schema("public")
