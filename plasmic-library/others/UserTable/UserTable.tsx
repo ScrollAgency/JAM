@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { createClient } from "@/utils/supabase/components";
+//import { createClient } from "@/utils/supabase/components";
 import { motion } from 'framer-motion';
 
 interface JobApplication {
@@ -16,11 +16,11 @@ interface UserTableProps {
     className?: string;
 }
 
-const supabase = createClient();
+//const supabase = createClient();
 
-const getImageUrl = (bucket: string, path: string) => {
-    return supabase.storage.from(bucket).getPublicUrl(path).data.publicUrl;
-};
+// const getImageUrl = (bucket: string, path: string) => {
+//     return supabase.storage.from(bucket).getPublicUrl(path).data.publicUrl;
+// };
 
 const formatDate = (dateString: string) => {
     const date = new Date(dateString);
