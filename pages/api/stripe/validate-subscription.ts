@@ -18,10 +18,6 @@ async function getSubscriptionData(session_id: string) {
       throw new Error("Email client introuvable ou client supprimé");
     }
   }
-  if (!userEmail) {
-    throw new Error("Email client introuvable");
-  }
-
 
   if (!customerId || !subscriptionId || !userEmail) {
     throw new Error("Données manquantes dans la session Stripe");
@@ -36,7 +32,7 @@ async function getSubscriptionData(session_id: string) {
 
   // Récupérer le user_id depuis Supabase via email
   const { data: user, error: userError } = await supabaseServer
-    .from("users")
+    .from("user")
     .select("id")
     .eq("email", userEmail)
     .single();
