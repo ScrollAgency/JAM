@@ -32,6 +32,7 @@ async function getSubscriptionData(session_id: string) {
   const priceId = price.id;
   const productId = typeof price.product === "string" ? price.product : price.product.id;
 
+  console.log("Email avant requête supabase : ", userEmail)
   // Récupérer le user_id depuis Supabase via email
   const { data: user, error: userError } = await supabaseServer
     .from("user")
@@ -39,6 +40,8 @@ async function getSubscriptionData(session_id: string) {
     .eq("email", userEmail)
     .single();
 
+  console.log("userError:", userError);
+  console.log("user:", user);
   if (userError || !user) {
     throw new Error("Utilisateur non trouvé dans Supabase");
   }
