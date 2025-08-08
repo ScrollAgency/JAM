@@ -10,6 +10,8 @@ async function getSubscriptionData(session_id: string) {
   const customerId = session.customer as string;
 
   let userEmail = session.customer_email;
+  console.log("Email from session : ", userEmail)
+  console.log("Customer id from session : ", customerId)
   if (!userEmail) {
     const customer = await stripe.customers.retrieve(customerId);
     if ("email" in customer && customer.email) {
@@ -18,7 +20,7 @@ async function getSubscriptionData(session_id: string) {
       throw new Error("Email client introuvable ou client supprimé");
     }
   }
-
+  console.log("Email from supabase ? : ", userEmail)
   if (!customerId || !subscriptionId || !userEmail) {
     throw new Error("Données manquantes dans la session Stripe");
   }
