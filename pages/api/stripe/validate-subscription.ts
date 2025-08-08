@@ -10,6 +10,9 @@ const { data: adminTest, error: adminError } = await supabaseServer.auth.admin.l
 
 console.log("Admin access test:", { adminTest, adminError });
 
+console.log("isServiceRole:", supabaseServer.auth.signInWithPassword === undefined);
+
+
   // Récupérer la session checkout Stripe
   const session = await stripe.checkout.sessions.retrieve(session_id);
   const subscriptionId = session.subscription as string;
@@ -42,6 +45,7 @@ console.log("Admin access test:", { adminTest, adminError });
   console.log("Email avant requête supabase : ", userEmail)
   // Récupérer le user_id depuis Supabase via email
   const { data: user, error: userError } = await supabaseServer
+    .schema("public")
     .from("user")
     .select("id")
     .eq("email", userEmail)
