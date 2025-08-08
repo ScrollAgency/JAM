@@ -4,6 +4,12 @@ import { corsPolicy } from "../../../lib/middleware/corsPolicy";
 import { supabaseServer } from "../../../lib/supabaseServer";
 
 async function getSubscriptionData(session_id: string) {
+
+  // test temporaire dans ton handler ou au début de getSubscriptionData
+const { data: adminTest, error: adminError } = await supabaseServer.auth.admin.listUsers({ page: 1, perPage: 1 });
+
+console.log("Admin access test:", { adminTest, adminError });
+
   // Récupérer la session checkout Stripe
   const session = await stripe.checkout.sessions.retrieve(session_id);
   const subscriptionId = session.subscription as string;
