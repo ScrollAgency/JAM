@@ -3,7 +3,7 @@ import { type ButtonHTMLAttributes, forwardRef, useImperativeHandle, useRef } fr
 import { cn } from "@/lib/utils";
 import { cva } from "class-variance-authority";
 import Image from "next/image";
-//import { createClient } from "@/utils/supabase/components";
+import { createClient } from "@/utils/supabase/components";
 import { presets } from "@/styles/presets";
 
 type HTMLButtonProps = Pick<ButtonHTMLAttributes<HTMLButtonElement>, "onClick" | "disabled">;
@@ -26,7 +26,7 @@ export interface ButtonActions {
 }
 
 const isPlasmicStudio = typeof window !== "undefined" && window.location.href.includes("plasmic.app");
-//const supabase = createClient();
+const supabase = createClient();
 
 const AuthButton = forwardRef<ButtonActions, ButtonProps>(
     (
@@ -57,22 +57,22 @@ const AuthButton = forwardRef<ButtonActions, ButtonProps>(
         const handleClick = async (event: React.MouseEvent<HTMLButtonElement>) => {
             if (authProvider === "google") {
                 event.preventDefault();
-                // try {
-                // const { data, error } = await supabase.auth.signInWithOAuth({
-                //     provider: "google",
-                //     options: {
-                //     redirectTo,
-                //     },
-                // });
+                try {
+                const { data, error } = await supabase.auth.signInWithOAuth({
+                    provider: "google",
+                    options: {
+                    redirectTo,
+                    },
+                });
 
-                // if (error) {
-                //     console.error("Login error:", error.message);
-                // } else {
-                //     console.log("Login successful:", data);
-                // }
-                // } catch (err) {
-                // console.error("Unexpected error:", err);
-                // }
+                if (error) {
+                    console.error("Login error:", error.message);
+                } else {
+                    console.log("Login successful:", data);
+                }
+                } catch (err) {
+                console.error("Unexpected error:", err);
+                }
             } else if (onClick) {
                 onClick(event);
             }
@@ -117,7 +117,7 @@ const AuthButton = forwardRef<ButtonActions, ButtonProps>(
             }
         );
 
-
+        
         return (
             <button
                 ref={buttonRef}
