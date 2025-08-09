@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { useRouter } from 'next/router'
-//import { createClient } from '@/utils/supabase/components'
+import { createClient } from '@/lib/supabaseBrowserClient'
 
 export default function OAuthCallbackPage() {
   const router = useRouter()
@@ -8,28 +8,28 @@ export default function OAuthCallbackPage() {
   useEffect(() => {
     if (!router.isReady) return;
 
-    // const supabase = createClient();
+    const supabase = createClient();
 
-    // supabase.auth.getSession().then(async ({ data, error }) => {
-    //   if (error || !data?.session) {
-    //     router.replace('/auth/login');
-    //     return;
-    //   }
+    supabase.auth.getSession().then(async ({ data, error }) => {
+      if (error || !data?.session) {
+        router.replace('/auth/login');
+        return;
+      }
 
-    //   try {
-    //     await fetch('/api/supabase/set-server-session', {
-    //       method: 'POST',
-    //       headers: {
-    //         'Content-Type': 'application/json',
-    //       },
-    //       body: JSON.stringify(data.session),
-    //     });
-    //   } catch (err) {
-    //     console.error('Erreur lors de la synchronisation de la session :', err);
-    //   }
+      try {
+        await fetch('/api/supabase/set-server-session', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data.session),
+        });
+      } catch (err) {
+        console.error('Erreur lors de la synchronisation de la session :', err);
+      }
 
-    //   router.replace('/');
-    // });
+      router.replace('/');
+    });
   }, [router.isReady]);
 
 
