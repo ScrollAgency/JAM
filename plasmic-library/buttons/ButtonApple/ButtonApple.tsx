@@ -1,6 +1,6 @@
 import type React from "react";
 import { type ButtonHTMLAttributes, forwardRef, useImperativeHandle, useRef, } from "react"
-//import { createClient } from "@/utils/supabase/components";
+//import { createClient } from "@/lib/supabaseBrowserClient";
 import { cn } from "@/lib/utils";
 import { cva } from "class-variance-authority";
 import Image from "next/image";
