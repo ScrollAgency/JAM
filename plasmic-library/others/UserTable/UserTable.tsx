@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-//import { createClient } from "@/utils/supabase/components";
+//import { createClient } from "@/lib/supabaseBrowserClient";
 import { motion } from 'framer-motion';
 
 interface JobApplication {

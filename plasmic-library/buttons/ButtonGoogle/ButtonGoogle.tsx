@@ -3,7 +3,7 @@ import { type ButtonHTMLAttributes, forwardRef, useImperativeHandle, useRef } fr
 import { cn } from "@/lib/utils";
 import { cva } from "class-variance-authority";
 import Image from "next/image";
-import { createClient } from "@/utils/supabase/components";
+import { createClient } from "@/lib/supabaseBrowserClient";
 import { presets } from "@/styles/presets";
 
 type HTMLButtonProps = Pick<ButtonHTMLAttributes<HTMLButtonElement>, "onClick" | "disabled">;
