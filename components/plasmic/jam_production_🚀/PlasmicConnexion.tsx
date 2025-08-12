@@ -489,7 +489,7 @@ function PlasmicConnexion__RenderFunc(props: {
                 showAppleButton={false}
                 showBottomSignupLink={true}
                 showCreateAccount={false}
-                showGoogleButton={false}
+                showGoogleButton={true}
                 showPasswordToggle={true}
                 signUpLinkText={"Pas encore de compte ? INSCRIPTION"}
                 submitButtonText={"CONNEXION"}
