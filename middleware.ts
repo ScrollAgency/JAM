@@ -59,8 +59,10 @@ export async function middleware(request: NextRequest) {
               const cookieOptions = {
                 path: '/',
                 httpOnly: true,
-                secure: process.env.NODE_ENV === 'production',
-                sameSite: process.env.NODE_ENV === 'production' ? 'Lax' : 'None',
+                // secure: process.env.NODE_ENV === 'production',
+                // sameSite: process.env.NODE_ENV === 'production' ? 'Lax' : 'None',
+                secure: true,
+                sameSite: 'Lax',
                 maxAge: 60 * 60,
                 ...options,
               }
