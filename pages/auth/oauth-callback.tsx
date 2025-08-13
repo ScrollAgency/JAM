@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { useRouter } from 'next/router'
-import { createClient } from '@/lib/supabaseBrowserClient'
+import { createClient } from '@/utils/supabase/components'
 
 export default function OAuthCallbackPage() {
   const router = useRouter()
