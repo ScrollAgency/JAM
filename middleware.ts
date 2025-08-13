@@ -22,10 +22,12 @@ const publicRoutes = [
 
   '/auth/oauth-callback',
   '/auth/auth-code-error',
+  '/auth/after-login-ok',
 
   '/first-install',
   '/plasmic-library',
   '/libellule',
+  
   '/api/save-data',
   '/api/lib-ellule/update',
   '/api/lib-ellule/files',
@@ -59,8 +61,10 @@ export async function middleware(request: NextRequest) {
               const cookieOptions = {
                 path: '/',
                 httpOnly: true,
-                secure: process.env.NODE_ENV === 'production',
-                sameSite: process.env.NODE_ENV === 'production' ? 'Lax' : 'None',
+                // secure: process.env.NODE_ENV === 'production',
+                // sameSite: process.env.NODE_ENV === 'production' ? 'Lax' : 'None',
+                secure: true,
+                sameSite: 'Lax',
                 maxAge: 60 * 60,
                 ...options,
               }
