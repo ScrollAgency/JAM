@@ -21,8 +21,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             const cookieOptions = {
               path: '/',
               httpOnly: true,
-              secure: process.env.NODE_ENV === 'production',
-              sameSite: process.env.NODE_ENV === 'production' ? 'Lax' : 'None',
+              // secure: process.env.NODE_ENV === 'production',
+              // sameSite: process.env.NODE_ENV === 'production' ? 'Lax' : 'None',
+              secure: true,
+              sameSite:'Lax',
               maxAge: 60 * 60,
               ...options,
             }
