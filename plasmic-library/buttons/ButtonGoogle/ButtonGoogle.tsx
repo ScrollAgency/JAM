@@ -25,7 +25,7 @@ export interface ButtonActions {
     click(): void;
 }
 
-const isPlasmicStudio = typeof window !== "undefined" && window.location.href.includes("plasmic.app");
+//const isPlasmicStudio = typeof window !== "undefined" && window.location.href.includes("plasmic.app");
 const supabase = createClient();
 
 const AuthButton = forwardRef<ButtonActions, ButtonProps>(

@@ -22,10 +22,12 @@ const publicRoutes = [
 
   '/auth/oauth-callback',
   '/auth/auth-code-error',
+  '/auth/after-login-ok',
 
   '/first-install',
   '/plasmic-library',
   '/libellule',
+  
   '/api/save-data',
   '/api/lib-ellule/update',
   '/api/lib-ellule/files',
