@@ -378,10 +378,10 @@ function PlasmicRegisterGoogleValidation__RenderFunc(props: {
                       ];
                     }
 
-                    $steps["goToInscriptionCandidat"] = true
+                    $steps["goToParametresCandidat"] = true
                       ? (() => {
                           const actionArgs = {
-                            destination: `/register-candidat`
+                            destination: `/parametres-candidat`
                           };
                           return (({ destination }) => {
                             if (
@@ -398,13 +398,13 @@ function PlasmicRegisterGoogleValidation__RenderFunc(props: {
                         })()
                       : undefined;
                     if (
-                      $steps["goToInscriptionCandidat"] != null &&
-                      typeof $steps["goToInscriptionCandidat"] === "object" &&
-                      typeof $steps["goToInscriptionCandidat"].then ===
+                      $steps["goToParametresCandidat"] != null &&
+                      typeof $steps["goToParametresCandidat"] === "object" &&
+                      typeof $steps["goToParametresCandidat"].then ===
                         "function"
                     ) {
-                      $steps["goToInscriptionCandidat"] = await $steps[
-                        "goToInscriptionCandidat"
+                      $steps["goToParametresCandidat"] = await $steps[
+                        "goToParametresCandidat"
                       ];
                     }
                   }}
@@ -482,10 +482,10 @@ function PlasmicRegisterGoogleValidation__RenderFunc(props: {
                       $steps["httpPost"] = await $steps["httpPost"];
                     }
 
-                    $steps["goToInscriptionEmployeur"] = true
+                    $steps["goToParametresEmployeur"] = true
                       ? (() => {
                           const actionArgs = {
-                            destination: `/register-company`
+                            destination: `/parametres-employeur`
                           };
                           return (({ destination }) => {
                             if (
@@ -502,13 +502,13 @@ function PlasmicRegisterGoogleValidation__RenderFunc(props: {
                         })()
                       : undefined;
                     if (
-                      $steps["goToInscriptionEmployeur"] != null &&
-                      typeof $steps["goToInscriptionEmployeur"] === "object" &&
-                      typeof $steps["goToInscriptionEmployeur"].then ===
+                      $steps["goToParametresEmployeur"] != null &&
+                      typeof $steps["goToParametresEmployeur"] === "object" &&
+                      typeof $steps["goToParametresEmployeur"].then ===
                         "function"
                     ) {
-                      $steps["goToInscriptionEmployeur"] = await $steps[
-                        "goToInscriptionEmployeur"
+                      $steps["goToParametresEmployeur"] = await $steps[
+                        "goToParametresEmployeur"
                       ];
                     }
                   }}

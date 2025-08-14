@@ -3527,19 +3527,19 @@
           "checksum": "f6912d016cc8dd27b2ce1844bad3bfb8"
         },
         {
-          "assetId": "f7DE9y7qp46fyCw5nuY8f9",
-          "type": "projectCss",
-          "checksum": "af7f7c609eeb83bf7981b08ef0863f17"
-        },
-        {
           "type": "renderModule",
           "assetId": "G-VPSgrlJgFQ",
-          "checksum": "abd17c8af9e39b67ffd9a77b4fa7216f"
+          "checksum": "ab21170ac83e79c56aedc6a4bd163f4e"
         },
         {
           "type": "cssRules",
           "assetId": "G-VPSgrlJgFQ",
-          "checksum": "abd17c8af9e39b67ffd9a77b4fa7216f"
+          "checksum": "ab21170ac83e79c56aedc6a4bd163f4e"
+        },
+        {
+          "assetId": "f7DE9y7qp46fyCw5nuY8f9",
+          "type": "projectCss",
+          "checksum": "af7f7c609eeb83bf7981b08ef0863f17"
         }
       ],
       "codegenVersion": "0.0.1"
