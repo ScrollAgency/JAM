@@ -200,7 +200,7 @@
   .header {
     height: auto;
     width: 100%;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
     display: flex;
     flex-direction: row;
@@ -363,6 +363,9 @@
   .freeBox__cWnZj {
     justify-content: flex-end;
     align-items: center;
+    column-gap: 0px;
+    padding-left: 0px;
+    row-gap: 0px;
   }
 }
 .link {

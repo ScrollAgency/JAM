@@ -2173,6 +2173,42 @@ function PlasmicAccueil__RenderFunc(props: {
                           onClick={async event => {
                             const $steps = {};
 
+                            $steps["goToGegisterValidation"] =
+                              !!$ctx.SupabaseUser.user &&
+                              $ctx.SupabaseUser.user.user_metadata.role ===
+                                "google"
+                                ? (() => {
+                                    const actionArgs = {
+                                      destination: `/register-validation`
+                                    };
+                                    return (({ destination }) => {
+                                      if (
+                                        typeof destination === "string" &&
+                                        destination.startsWith("#")
+                                      ) {
+                                        document
+                                          .getElementById(destination.substr(1))
+                                          .scrollIntoView({
+                                            behavior: "smooth"
+                                          });
+                                      } else {
+                                        __nextRouter?.push(destination);
+                                      }
+                                    })?.apply(null, [actionArgs]);
+                                  })()
+                                : undefined;
+                            if (
+                              $steps["goToGegisterValidation"] != null &&
+                              typeof $steps["goToGegisterValidation"] ===
+                                "object" &&
+                              typeof $steps["goToGegisterValidation"].then ===
+                                "function"
+                            ) {
+                              $steps["goToGegisterValidation"] = await $steps[
+                                "goToGegisterValidation"
+                              ];
+                            }
+
                             $steps["goToCandidateSettings"] =
                               !!$ctx.SupabaseUser.user &&
                               $ctx.SupabaseUser.user.user_metadata.role ===

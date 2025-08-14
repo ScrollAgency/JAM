@@ -2271,6 +2271,20 @@
           "scheme": "blackbox",
           "componentType": "page",
           "path": "/offre-employeur"
+        },
+        {
+          "id": "G-VPSgrlJgFQ",
+          "name": "RegisterGoogleValidation",
+          "type": "managed",
+          "projectId": "f7DE9y7qp46fyCw5nuY8f9",
+          "renderModuleFilePath": "plasmic/jam_production_🚀/PlasmicRegisterGoogleValidation.tsx",
+          "importSpec": {
+            "modulePath": "../pages/register-validation.tsx"
+          },
+          "cssFilePath": "plasmic/jam_production_🚀/PlasmicRegisterGoogleValidation.module.css",
+          "scheme": "blackbox",
+          "componentType": "page",
+          "path": "/register-validation"
         }
       ],
       "icons": [

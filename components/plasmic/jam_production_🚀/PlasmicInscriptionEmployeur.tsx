@@ -560,7 +560,7 @@ function PlasmicInscriptionEmployeur__RenderFunc(props: {
                     showAlerts={true}
                     showLabels={true}
                     showLoginLink={true}
-                    showOAuthButtons={false}
+                    showOAuthButtons={true}
                     showPasswordToggle={true}
                     showPhoneInput={true}
                     submitButtonIcon={
