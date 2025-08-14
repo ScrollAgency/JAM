@@ -256,11 +256,6 @@
   align-items: flex-start;
   justify-content: flex-start;
 }
-@media (min-width: 0px) and (max-width: 768px) {
-  .frame2 {
-    display: none;
-  }
-}
 .frame3 {
   width: auto;
   height: auto;
