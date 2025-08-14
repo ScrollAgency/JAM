@@ -79,7 +79,7 @@ separatorHr: {
   },
 separatorText: {
     margin: "0 8px", 
-    ontSize: "14px", 
+    fontSize: "14px", 
     color: "#666",
   },
 linkSignupBottom: {
