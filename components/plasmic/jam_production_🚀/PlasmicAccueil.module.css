@@ -210,11 +210,11 @@
     right: auto;
     margin-bottom: 0px;
     justify-self: flex-start;
-    column-gap: 8px;
+    column-gap: 18px;
     row-gap: 0px;
     grid-column-start: 1 !important;
     grid-column-end: -1 !important;
-    padding: 5px 20px 15px;
+    padding: 5px 11px 15px;
   }
 }
 .jamLogo {
@@ -231,6 +231,8 @@
 @media (min-width: 0px) and (max-width: 768px) {
   .jamLogo {
     align-self: flex-start;
+    column-gap: 1px;
+    row-gap: 0px;
   }
 }
 .svg___5Qs48 {
@@ -246,6 +248,13 @@
   left: auto;
   top: auto;
   flex-shrink: 0;
+}
+@media (min-width: 0px) and (max-width: 768px) {
+  .svg___5Qs48 {
+    width: 42px;
+    height: 42px;
+    flex-shrink: 0;
+  }
 }
 .frame2 {
   width: auto;
@@ -278,6 +287,11 @@
   color: rgba(255, 255, 255, 1);
   position: relative;
 }
+@media (min-width: 0px) and (max-width: 768px) {
+  .text__vpFC {
+    font-size: 17px;
+  }
+}
 .frame4 {
   width: auto;
   height: auto;
@@ -301,6 +315,11 @@
   color: rgba(255, 255, 255, 1);
   position: relative;
 }
+@media (min-width: 0px) and (max-width: 768px) {
+  .text__sawvN {
+    font-size: 17px;
+  }
+}
 .frame5 {
   width: auto;
   height: auto;
@@ -323,6 +342,11 @@
   color: rgba(255, 255, 255, 1);
   position: relative;
 }
+@media (min-width: 0px) and (max-width: 768px) {
+  .text__rxVy {
+    font-size: 17px;
+  }
+}
 .freeBox__cWnZj {
   display: flex;
   flex-direction: row;
@@ -334,6 +358,12 @@
   max-width: 100%;
   column-gap: 16px;
   padding: 8px;
+}
+@media (min-width: 0px) and (max-width: 768px) {
+  .freeBox__cWnZj {
+    justify-content: flex-end;
+    align-items: center;
+  }
 }
 .link {
   font-weight: 400;
