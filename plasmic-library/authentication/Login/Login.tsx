@@ -354,7 +354,7 @@ function Login_(
 
       {showBottomSignupLink && (
         <div style={presets.linkSignupBottom}>
-          <Link href="/signup" style={presets.linkSignupBottomText}>{signUpLinkText}</Link>
+          <Link href="/register" style={presets.linkSignupBottomText}>{signUpLinkText}</Link>
         </div>
       )}
     </div>
