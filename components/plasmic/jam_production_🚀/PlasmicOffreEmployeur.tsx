@@ -5468,6 +5468,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                             sty.button__zCNdp
                           )}
                           color={"white"}
+                          disabled={true}
                           end={
                             <GroupIcon
                               className={classNames(
@@ -5647,7 +5648,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                               $steps["closeModal"] = await $steps["closeModal"];
                             }
                           }}
-                          resetsForm={true}
+                          resetsForm={false}
                           submitsForm={false}
                           type={"bordered"}
                         />
