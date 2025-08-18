@@ -47,5 +47,49 @@ export default function OAuthCallbackPage() {
   // }, [router.isReady]);
 
 
-  return <div>⏳ Vérification de l'authentification...</div>
+  return (
+  <div
+    style={{
+      minHeight: "100vh",
+      background: "#000",
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      justifyContent: "center",
+    }}
+  >
+    <img
+      src="/favicon.ico"
+      alt="Logo"
+      style={{ width: 64, height: 64, marginBottom: 32 }}
+    />
+    <div style={{ color: "#fff", fontSize: 24, letterSpacing: 2, fontWeight: "bold", textAlign: "center" }}>
+      AUTHENTIFICATION
+      <span className="dot-anim" style={{ display: "inline-block", marginLeft: 8 }}></span>
+    </div>
+    <style jsx>{`
+      .dot-anim:after {
+        content: '';
+        display: inline-block;
+        width: 1em;
+        text-align: left;
+        animation: dots 1.2s steps(3, end) infinite;
+      }
+      @keyframes dots {
+        0%, 20% {
+          content: '';
+        }
+        40% {
+          content: '.';
+        }
+        60% {
+          content: '..';
+        }
+        80%, 100% {
+          content: '...';
+        }
+      }
+    `}</style>
+  </div>
+)
 }
