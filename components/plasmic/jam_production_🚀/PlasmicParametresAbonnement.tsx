@@ -1816,8 +1816,9 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                     {(() => {
                       try {
                         return (
+                          //$queries.getUserStripeInfos.data[0].status !== "complete"
                           $queries.getUserStripeInfos.data[0].status !==
-                          "complete"
+                          "cancel"
                         );
                       } catch (e) {
                         if (
@@ -2189,8 +2190,9 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                       try {
                         return (
                           // $queries.getUserStripeInfos.data[0].status !== "complete" ||
-                          // $queries.getUserStripeInfos.data[0].status === "cancel"
-                          false
+                          $queries.getUserStripeInfos.data[0].status ===
+                          "cancel"
+                          //false
                         );
                       } catch (e) {
                         if (
