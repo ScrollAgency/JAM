@@ -1815,11 +1815,14 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                     ) : null}
                     {(() => {
                       try {
-                        return (
-                          //$queries.getUserStripeInfos.data[0].status !== "complete"
-                          $queries.getUserStripeInfos.data[0].status !==
-                          "cancel"
-                        );
+                        return (() => {
+                          $state.selectedProduct ===
+                            $queries.getUserStripeInfos.data[0].product_id;
+                          return (
+                            $queries.getUserStripeInfos.data[0].status !==
+                            "cancel"
+                          );
+                        })();
                       } catch (e) {
                         if (
                           e instanceof TypeError ||
