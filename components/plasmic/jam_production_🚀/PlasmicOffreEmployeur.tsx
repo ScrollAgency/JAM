@@ -33,6 +33,7 @@ import {
   classNames,
   createPlasmicElementProxy,
   deriveRenderOpts,
+  ensureGlobalVariants,
   generateOnMutateForSpec,
   generateStateOnChangeProp,
   generateStateOnChangePropForCodeComponents,
@@ -97,14 +98,14 @@ import { SmartLoader } from "../../others/SmartLoader/SmartLoader"; // plasmic-i
 import MobileNavbarBottomCompany from "../../MobileNavbarBottomCompany"; // plasmic-import: gAnwjyfMiBe9/component
 import { InputComboSelect } from "../../forms/InputComboSelect/InputComboSelect"; // plasmic-import: KwvhXarw-EVS/codeComponent
 import { Fetcher } from "@plasmicapp/react-web/lib/data-sources";
-import { _useGlobalVariants } from "./plasmic"; // plasmic-import: f7DE9y7qp46fyCw5nuY8f9/projectModule
-import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: f7DE9y7qp46fyCw5nuY8f9/styleTokensProvider
-import { _useStyleTokens as useStyleTokens_antd_5_hostless } from ""; // plasmic-import: ohDidvG9XsCeFumugENU3J/styleTokensProvider
-import { _useStyleTokens as useStyleTokens_library_tailwind_3_4_number_tokens } from ""; // plasmic-import: 4vjRXvnb4XuY6J15w9oRcQ/styleTokensProvider
-import { _useStyleTokens as useStyleTokens_plasmic_rich_components } from ""; // plasmic-import: jkU633o1Cz7HrJdwdxhVHk/styleTokensProvider
+
+import { useScreenVariants as useScreenVariantshm8Nko4B5BDd } from "./PlasmicGlobalVariant__Screen"; // plasmic-import: HM8Nko4B5BDd/globalVariant
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
+import plasmic_antd_5_hostless_css from "../antd_5_hostless/plasmic.module.css"; // plasmic-import: ohDidvG9XsCeFumugENU3J/projectcss
+import plasmic_library_tailwind_3_4_number_tokens_css from "../library_tailwind_3_4_number_tokens/plasmic.module.css"; // plasmic-import: 4vjRXvnb4XuY6J15w9oRcQ/projectcss
+import plasmic_plasmic_rich_components_css from "../plasmic_rich_components/plasmic.module.css"; // plasmic-import: jkU633o1Cz7HrJdwdxhVHk/projectcss
 import projectcss from "./plasmic.module.css"; // plasmic-import: f7DE9y7qp46fyCw5nuY8f9/projectcss
 import sty from "./PlasmicOffreEmployeur.module.css"; // plasmic-import: EockUDddtlJ7/css
 
@@ -1795,14 +1796,9 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
     $queries = new$Queries;
   }
 
-  const globalVariants = _useGlobalVariants();
-  const styleTokensClassNames = _useStyleTokens();
-  const styleTokensClassNames_antd_5_hostless =
-    useStyleTokens_antd_5_hostless();
-  const styleTokensClassNames_library_tailwind_3_4_number_tokens =
-    useStyleTokens_library_tailwind_3_4_number_tokens();
-  const styleTokensClassNames_plasmic_rich_components =
-    useStyleTokens_plasmic_rich_components();
+  const globalVariants = ensureGlobalVariants({
+    screen: useScreenVariantshm8Nko4B5BDd()
+  });
 
   return (
     <React.Fragment>
@@ -1838,10 +1834,10 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
             projectcss.root_reset,
             projectcss.plasmic_default_styles,
             projectcss.plasmic_mixins,
-            styleTokensClassNames,
-            styleTokensClassNames_antd_5_hostless,
-            styleTokensClassNames_library_tailwind_3_4_number_tokens,
-            styleTokensClassNames_plasmic_rich_components,
+            projectcss.plasmic_tokens,
+            plasmic_antd_5_hostless_css.plasmic_tokens,
+            plasmic_library_tailwind_3_4_number_tokens_css.plasmic_tokens,
+            plasmic_plasmic_rich_components_css.plasmic_tokens,
             sty.espaceEmployeur,
             ``
           )}
@@ -4939,10 +4935,10 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                               projectcss.root_reset,
                               projectcss.plasmic_default_styles,
                               projectcss.plasmic_mixins,
-                              styleTokensClassNames,
-                              styleTokensClassNames_antd_5_hostless,
-                              styleTokensClassNames_library_tailwind_3_4_number_tokens,
-                              styleTokensClassNames_plasmic_rich_components
+                              projectcss.plasmic_tokens,
+                              plasmic_antd_5_hostless_css.plasmic_tokens,
+                              plasmic_library_tailwind_3_4_number_tokens_css.plasmic_tokens,
+                              plasmic_plasmic_rich_components_css.plasmic_tokens
                             )}
                             mode={"multiple"}
                             onChange={async (...eventArgs: any) => {
@@ -5648,7 +5644,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                               $steps["closeModal"] = await $steps["closeModal"];
                             }
                           }}
-                          resetsForm={false}
+                          resetsForm={true}
                           submitsForm={false}
                           type={"bordered"}
                         />
@@ -5681,6 +5677,32 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                           }
                           onClick={async event => {
                             const $steps = {};
+
+                            $steps["closeModal"] = true
+                              ? (() => {
+                                  const actionArgs = {
+                                    customFunction: async () => {
+                                      return (() => {
+                                        $state.createJob.isOpen = false;
+                                        $state.lastMinuteToggle.switch2IsSelected =
+                                          false;
+                                        return ($state.lastMinuteToggle2.switch2IsSelected =
+                                          false);
+                                      })();
+                                    }
+                                  };
+                                  return (({ customFunction }) => {
+                                    return customFunction();
+                                  })?.apply(null, [actionArgs]);
+                                })()
+                              : undefined;
+                            if (
+                              $steps["closeModal"] != null &&
+                              typeof $steps["closeModal"] === "object" &&
+                              typeof $steps["closeModal"].then === "function"
+                            ) {
+                              $steps["closeModal"] = await $steps["closeModal"];
+                            }
 
                             $steps["runCode"] = true
                               ? (() => {
@@ -5842,6 +5864,31 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                               ];
                             }
 
+                            $steps["showNotification"] =
+                              $steps.runCode === true
+                                ? (() => {
+                                    const actionArgs = {
+                                      args: [
+                                        "success",
+                                        "Votre offre est publi\u00e9e et visible des candidats"
+                                      ]
+                                    };
+                                    return $globalActions[
+                                      "plasmic-antd5-config-provider.showNotification"
+                                    ]?.apply(null, [...actionArgs.args]);
+                                  })()
+                                : undefined;
+                            if (
+                              $steps["showNotification"] != null &&
+                              typeof $steps["showNotification"] === "object" &&
+                              typeof $steps["showNotification"].then ===
+                                "function"
+                            ) {
+                              $steps["showNotification"] = await $steps[
+                                "showNotification"
+                              ];
+                            }
+
                             $steps["updateStripe"] =
                               $steps.runCode === true
                                 ? (() => {
@@ -5956,58 +6003,6 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                               $steps["updateStripe"] = await $steps[
                                 "updateStripe"
                               ];
-                            }
-
-                            $steps["invokeGlobalAction"] =
-                              $steps.runCode === true
-                                ? (() => {
-                                    const actionArgs = {
-                                      args: [
-                                        "success",
-                                        "Votre offre est publi\u00e9e et visible des candidats"
-                                      ]
-                                    };
-                                    return $globalActions[
-                                      "plasmic-antd5-config-provider.showNotification"
-                                    ]?.apply(null, [...actionArgs.args]);
-                                  })()
-                                : undefined;
-                            if (
-                              $steps["invokeGlobalAction"] != null &&
-                              typeof $steps["invokeGlobalAction"] ===
-                                "object" &&
-                              typeof $steps["invokeGlobalAction"].then ===
-                                "function"
-                            ) {
-                              $steps["invokeGlobalAction"] = await $steps[
-                                "invokeGlobalAction"
-                              ];
-                            }
-
-                            $steps["closeModal"] = true
-                              ? (() => {
-                                  const actionArgs = {
-                                    customFunction: async () => {
-                                      return (() => {
-                                        $state.createJob.isOpen = false;
-                                        $state.lastMinuteToggle.switch2IsSelected =
-                                          false;
-                                        return ($state.lastMinuteToggle2.switch2IsSelected =
-                                          false);
-                                      })();
-                                    }
-                                  };
-                                  return (({ customFunction }) => {
-                                    return customFunction();
-                                  })?.apply(null, [actionArgs]);
-                                })()
-                              : undefined;
-                            if (
-                              $steps["closeModal"] != null &&
-                              typeof $steps["closeModal"] === "object" &&
-                              typeof $steps["closeModal"].then === "function"
-                            ) {
-                              $steps["closeModal"] = await $steps["closeModal"];
                             }
                           }}
                           resetsForm={true}
@@ -7366,10 +7361,10 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                             projectcss.root_reset,
                             projectcss.plasmic_default_styles,
                             projectcss.plasmic_mixins,
-                            styleTokensClassNames,
-                            styleTokensClassNames_antd_5_hostless,
-                            styleTokensClassNames_library_tailwind_3_4_number_tokens,
-                            styleTokensClassNames_plasmic_rich_components
+                            projectcss.plasmic_tokens,
+                            plasmic_antd_5_hostless_css.plasmic_tokens,
+                            plasmic_library_tailwind_3_4_number_tokens_css.plasmic_tokens,
+                            plasmic_plasmic_rich_components_css.plasmic_tokens
                           )}
                           mode={"multiple"}
                           onChange={async (...eventArgs: any) => {
@@ -8162,7 +8157,155 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                           onClick={async event => {
                             const $steps = {};
 
-                            $steps["runCode"] = true
+                            $steps["closeModal"] = true
+                              ? (() => {
+                                  const actionArgs = {
+                                    variable: {
+                                      objRoot: $state,
+                                      variablePath: ["editJob", "isOpen"]
+                                    },
+                                    operation: 0,
+                                    value: false
+                                  };
+                                  return (({
+                                    variable,
+                                    value,
+                                    startIndex,
+                                    deleteCount
+                                  }) => {
+                                    if (!variable) {
+                                      return;
+                                    }
+                                    const { objRoot, variablePath } = variable;
+
+                                    $stateSet(objRoot, variablePath, value);
+                                    return value;
+                                  })?.apply(null, [actionArgs]);
+                                })()
+                              : undefined;
+                            if (
+                              $steps["closeModal"] != null &&
+                              typeof $steps["closeModal"] === "object" &&
+                              typeof $steps["closeModal"].then === "function"
+                            ) {
+                              $steps["closeModal"] = await $steps["closeModal"];
+                            }
+
+                            $steps["updateJobInfos"] = true
+                              ? (() => {
+                                  const actionArgs = {
+                                    dataOp: {
+                                      sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
+                                      opId: "5eea695a-3fb1-4308-a778-894638e90d68",
+                                      userArgs: {
+                                        keys: [$state.currentJobObject.id],
+
+                                        variables: [
+                                          $state.formUpdate.value.address,
+
+                                          $state.formUpdate.value.benefits,
+
+                                          $state.currentJobObject.company_id,
+
+                                          $state.formUpdate.value.country,
+
+                                          $state.formUpdate.value.description,
+
+                                          $state.formUpdate.value.location,
+
+                                          $state.formUpdate.value.postal_code,
+
+                                          $state.formUpdate.value.requirements,
+
+                                          $state.formUpdate.value.salary,
+
+                                          $state.formUpdate.value.title,
+
+                                          $state.formUpdate.value.end_date,
+
+                                          $state.formUpdate.value.start_date,
+
+                                          $state.formUpdate.value
+                                            .availability_status,
+
+                                          $state.formUpdate.value.contract_type,
+
+                                          $state.formUpdate.value
+                                            .sector_activity,
+
+                                          $state.formUpdate.value.work_mode,
+
+                                          $state.formUpdate.value.working_time,
+
+                                          $state.lastMinuteToggle2
+                                            .switch2IsSelected
+                                        ]
+                                      },
+                                      cacheKey: null,
+                                      invalidatedKeys: ["plasmic_refresh_all"],
+                                      roleId: null
+                                    }
+                                  };
+                                  return (async ({
+                                    dataOp,
+                                    continueOnError
+                                  }) => {
+                                    try {
+                                      const response =
+                                        await executePlasmicDataOp(dataOp, {
+                                          userAuthToken:
+                                            dataSourcesCtx?.userAuthToken,
+                                          user: dataSourcesCtx?.user
+                                        });
+                                      await plasmicInvalidate(
+                                        dataOp.invalidatedKeys
+                                      );
+                                      return response;
+                                    } catch (e) {
+                                      if (!continueOnError) {
+                                        throw e;
+                                      }
+                                      return e;
+                                    }
+                                  })?.apply(null, [actionArgs]);
+                                })()
+                              : undefined;
+                            if (
+                              $steps["updateJobInfos"] != null &&
+                              typeof $steps["updateJobInfos"] === "object" &&
+                              typeof $steps["updateJobInfos"].then ===
+                                "function"
+                            ) {
+                              $steps["updateJobInfos"] = await $steps[
+                                "updateJobInfos"
+                              ];
+                            }
+
+                            $steps["showNotification"] = true
+                              ? (() => {
+                                  const actionArgs = {
+                                    args: [
+                                      "success",
+                                      "Votre annonce \u00e0 \u00e9t\u00e9 modifi\u00e9e avec succ\u00e8s !"
+                                    ]
+                                  };
+                                  return $globalActions[
+                                    "plasmic-antd5-config-provider.showNotification"
+                                  ]?.apply(null, [...actionArgs.args]);
+                                })()
+                              : undefined;
+                            if (
+                              $steps["showNotification"] != null &&
+                              typeof $steps["showNotification"] === "object" &&
+                              typeof $steps["showNotification"].then ===
+                                "function"
+                            ) {
+                              $steps["showNotification"] = await $steps[
+                                "showNotification"
+                              ];
+                            }
+
+                            $steps["runCode"] = false
                               ? (() => {
                                   const actionArgs = {
                                     customFunction: async () => {
@@ -8206,103 +8349,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                               $steps["runCode"] = await $steps["runCode"];
                             }
 
-                            $steps["updateJobInfos"] =
-                              $steps.runCode === true
-                                ? (() => {
-                                    const actionArgs = {
-                                      dataOp: {
-                                        sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
-                                        opId: "5eea695a-3fb1-4308-a778-894638e90d68",
-                                        userArgs: {
-                                          keys: [$state.currentJobObject.id],
-
-                                          variables: [
-                                            $state.formUpdate.value.address,
-
-                                            $state.formUpdate.value.benefits,
-
-                                            $state.currentJobObject.company_id,
-
-                                            $state.formUpdate.value.country,
-
-                                            $state.formUpdate.value.description,
-
-                                            $state.formUpdate.value.location,
-
-                                            $state.formUpdate.value.postal_code,
-
-                                            $state.formUpdate.value
-                                              .requirements,
-
-                                            $state.formUpdate.value.salary,
-
-                                            $state.formUpdate.value.title,
-
-                                            $state.formUpdate.value.end_date,
-
-                                            $state.formUpdate.value.start_date,
-
-                                            $state.formUpdate.value
-                                              .availability_status,
-
-                                            $state.formUpdate.value
-                                              .contract_type,
-
-                                            $state.formUpdate.value
-                                              .sector_activity,
-
-                                            $state.formUpdate.value.work_mode,
-
-                                            $state.formUpdate.value
-                                              .working_time,
-
-                                            $state.lastMinuteToggle2
-                                              .switch2IsSelected
-                                          ]
-                                        },
-                                        cacheKey: null,
-                                        invalidatedKeys: [
-                                          "plasmic_refresh_all"
-                                        ],
-                                        roleId: null
-                                      }
-                                    };
-                                    return (async ({
-                                      dataOp,
-                                      continueOnError
-                                    }) => {
-                                      try {
-                                        const response =
-                                          await executePlasmicDataOp(dataOp, {
-                                            userAuthToken:
-                                              dataSourcesCtx?.userAuthToken,
-                                            user: dataSourcesCtx?.user
-                                          });
-                                        await plasmicInvalidate(
-                                          dataOp.invalidatedKeys
-                                        );
-                                        return response;
-                                      } catch (e) {
-                                        if (!continueOnError) {
-                                          throw e;
-                                        }
-                                        return e;
-                                      }
-                                    })?.apply(null, [actionArgs]);
-                                  })()
-                                : undefined;
-                            if (
-                              $steps["updateJobInfos"] != null &&
-                              typeof $steps["updateJobInfos"] === "object" &&
-                              typeof $steps["updateJobInfos"].then ===
-                                "function"
-                            ) {
-                              $steps["updateJobInfos"] = await $steps[
-                                "updateJobInfos"
-                              ];
-                            }
-
-                            $steps["debitLastMinuteRecharge"] = true
+                            $steps["debitLastMinuteRecharge"] = false
                               ? (() => {
                                   const actionArgs = {
                                     dataOp: {
@@ -8408,81 +8455,6 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                             ) {
                               $steps["debitLastMinuteRecharge"] = await $steps[
                                 "debitLastMinuteRecharge"
-                              ];
-                            }
-
-                            $steps["closeEditModal"] = true
-                              ? (() => {
-                                  const actionArgs = {
-                                    variable: {
-                                      objRoot: $state,
-                                      variablePath: ["editJob", "isOpen"]
-                                    },
-                                    operation: 0,
-                                    value: false
-                                  };
-                                  return (({
-                                    variable,
-                                    value,
-                                    startIndex,
-                                    deleteCount
-                                  }) => {
-                                    if (!variable) {
-                                      return;
-                                    }
-                                    const { objRoot, variablePath } = variable;
-
-                                    $stateSet(objRoot, variablePath, value);
-                                    return value;
-                                  })?.apply(null, [actionArgs]);
-                                })()
-                              : undefined;
-                            if (
-                              $steps["closeEditModal"] != null &&
-                              typeof $steps["closeEditModal"] === "object" &&
-                              typeof $steps["closeEditModal"].then ===
-                                "function"
-                            ) {
-                              $steps["closeEditModal"] = await $steps[
-                                "closeEditModal"
-                              ];
-                            }
-
-                            $steps["useIntegration"] = false
-                              ? (() => {
-                                  const actionArgs = {};
-                                  return (async ({
-                                    dataOp,
-                                    continueOnError
-                                  }) => {
-                                    try {
-                                      const response =
-                                        await executePlasmicDataOp(dataOp, {
-                                          userAuthToken:
-                                            dataSourcesCtx?.userAuthToken,
-                                          user: dataSourcesCtx?.user
-                                        });
-                                      await plasmicInvalidate(
-                                        dataOp.invalidatedKeys
-                                      );
-                                      return response;
-                                    } catch (e) {
-                                      if (!continueOnError) {
-                                        throw e;
-                                      }
-                                      return e;
-                                    }
-                                  })?.apply(null, [actionArgs]);
-                                })()
-                              : undefined;
-                            if (
-                              $steps["useIntegration"] != null &&
-                              typeof $steps["useIntegration"] === "object" &&
-                              typeof $steps["useIntegration"].then ===
-                                "function"
-                            ) {
-                              $steps["useIntegration"] = await $steps[
-                                "useIntegration"
                               ];
                             }
                           }}
@@ -10925,10 +10897,10 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                               projectcss.root_reset,
                               projectcss.plasmic_default_styles,
                               projectcss.plasmic_mixins,
-                              styleTokensClassNames,
-                              styleTokensClassNames_antd_5_hostless,
-                              styleTokensClassNames_library_tailwind_3_4_number_tokens,
-                              styleTokensClassNames_plasmic_rich_components
+                              projectcss.plasmic_tokens,
+                              plasmic_antd_5_hostless_css.plasmic_tokens,
+                              plasmic_library_tailwind_3_4_number_tokens_css.plasmic_tokens,
+                              plasmic_plasmic_rich_components_css.plasmic_tokens
                             )}
                             onChange={async (...eventArgs: any) => {
                               generateStateOnChangeProp($state, [
@@ -11000,10 +10972,10 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                               projectcss.root_reset,
                               projectcss.plasmic_default_styles,
                               projectcss.plasmic_mixins,
-                              styleTokensClassNames,
-                              styleTokensClassNames_antd_5_hostless,
-                              styleTokensClassNames_library_tailwind_3_4_number_tokens,
-                              styleTokensClassNames_plasmic_rich_components
+                              projectcss.plasmic_tokens,
+                              plasmic_antd_5_hostless_css.plasmic_tokens,
+                              plasmic_library_tailwind_3_4_number_tokens_css.plasmic_tokens,
+                              plasmic_plasmic_rich_components_css.plasmic_tokens
                             )}
                             onChange={async (...eventArgs: any) => {
                               generateStateOnChangeProp($state, [
@@ -13208,10 +13180,10 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                                         projectcss.root_reset,
                                         projectcss.plasmic_default_styles,
                                         projectcss.plasmic_mixins,
-                                        styleTokensClassNames,
-                                        styleTokensClassNames_antd_5_hostless,
-                                        styleTokensClassNames_library_tailwind_3_4_number_tokens,
-                                        styleTokensClassNames_plasmic_rich_components
+                                        projectcss.plasmic_tokens,
+                                        plasmic_antd_5_hostless_css.plasmic_tokens,
+                                        plasmic_library_tailwind_3_4_number_tokens_css.plasmic_tokens,
+                                        plasmic_plasmic_rich_components_css.plasmic_tokens
                                       )}
                                       onChange={async (...eventArgs: any) => {
                                         generateStateOnChangeProp($state, [
@@ -13280,10 +13252,10 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                                         projectcss.root_reset,
                                         projectcss.plasmic_default_styles,
                                         projectcss.plasmic_mixins,
-                                        styleTokensClassNames,
-                                        styleTokensClassNames_antd_5_hostless,
-                                        styleTokensClassNames_library_tailwind_3_4_number_tokens,
-                                        styleTokensClassNames_plasmic_rich_components
+                                        projectcss.plasmic_tokens,
+                                        plasmic_antd_5_hostless_css.plasmic_tokens,
+                                        plasmic_library_tailwind_3_4_number_tokens_css.plasmic_tokens,
+                                        plasmic_plasmic_rich_components_css.plasmic_tokens
                                       )}
                                       onChange={async (...eventArgs: any) => {
                                         generateStateOnChangeProp($state, [
