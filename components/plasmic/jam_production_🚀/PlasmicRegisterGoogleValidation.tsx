@@ -390,7 +390,7 @@ function PlasmicRegisterGoogleValidation__RenderFunc(props: {
                       $steps["updateRole"] = await $steps["updateRole"];
                     }
 
-                    $steps["welcomeMail"] = true
+                    $steps["welcomeMail"] = false
                       ? (() => {
                           const actionArgs = {
                             dataOp: {
