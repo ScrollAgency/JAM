@@ -33,7 +33,6 @@ import {
   classNames,
   createPlasmicElementProxy,
   deriveRenderOpts,
-  ensureGlobalVariants,
   generateOnMutateForSpec,
   generateStateOnChangeProp,
   generateStateOnChangePropForCodeComponents,
@@ -67,12 +66,14 @@ import {
 
 import { AntdSelect } from "@plasmicpkgs/antd5/skinny/registerSelect";
 import { Fetcher } from "@plasmicapp/react-web/lib/data-sources";
+import { _useGlobalVariants } from "./plasmic"; // plasmic-import: f7DE9y7qp46fyCw5nuY8f9/projectModule
+import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: f7DE9y7qp46fyCw5nuY8f9/styleTokensProvider
+import { _useStyleTokens as useStyleTokens_antd_5_hostless } from ""; // plasmic-import: ohDidvG9XsCeFumugENU3J/styleTokensProvider
+import { _useStyleTokens as useStyleTokens_library_tailwind_3_4_number_tokens } from ""; // plasmic-import: 4vjRXvnb4XuY6J15w9oRcQ/styleTokensProvider
+import { _useStyleTokens as useStyleTokens_plasmic_rich_components } from ""; // plasmic-import: jkU633o1Cz7HrJdwdxhVHk/styleTokensProvider
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
-import plasmic_antd_5_hostless_css from "../antd_5_hostless/plasmic.module.css"; // plasmic-import: ohDidvG9XsCeFumugENU3J/projectcss
-import plasmic_library_tailwind_3_4_number_tokens_css from "../library_tailwind_3_4_number_tokens/plasmic.module.css"; // plasmic-import: 4vjRXvnb4XuY6J15w9oRcQ/projectcss
-import plasmic_plasmic_rich_components_css from "../plasmic_rich_components/plasmic.module.css"; // plasmic-import: jkU633o1Cz7HrJdwdxhVHk/projectcss
 import projectcss from "./plasmic.module.css"; // plasmic-import: f7DE9y7qp46fyCw5nuY8f9/projectcss
 import sty from "./PlasmicSelectAlert.module.css"; // plasmic-import: QEIfjMxvx0-i/css
 
@@ -191,6 +192,14 @@ function PlasmicSelectAlert__RenderFunc(props: {
     $queries = new$Queries;
   }
 
+  const styleTokensClassNames = _useStyleTokens();
+  const styleTokensClassNames_antd_5_hostless =
+    useStyleTokens_antd_5_hostless();
+  const styleTokensClassNames_library_tailwind_3_4_number_tokens =
+    useStyleTokens_library_tailwind_3_4_number_tokens();
+  const styleTokensClassNames_plasmic_rich_components =
+    useStyleTokens_plasmic_rich_components();
+
   return (
     <div
       data-plasmic-name={"root"}
@@ -202,10 +211,10 @@ function PlasmicSelectAlert__RenderFunc(props: {
         projectcss.root_reset,
         projectcss.plasmic_default_styles,
         projectcss.plasmic_mixins,
-        projectcss.plasmic_tokens,
-        plasmic_antd_5_hostless_css.plasmic_tokens,
-        plasmic_library_tailwind_3_4_number_tokens_css.plasmic_tokens,
-        plasmic_plasmic_rich_components_css.plasmic_tokens,
+        styleTokensClassNames,
+        styleTokensClassNames_antd_5_hostless,
+        styleTokensClassNames_library_tailwind_3_4_number_tokens,
+        styleTokensClassNames_plasmic_rich_components,
         sty.root
       )}
     >
@@ -220,10 +229,10 @@ function PlasmicSelectAlert__RenderFunc(props: {
           projectcss.root_reset,
           projectcss.plasmic_default_styles,
           projectcss.plasmic_mixins,
-          projectcss.plasmic_tokens,
-          plasmic_antd_5_hostless_css.plasmic_tokens,
-          plasmic_library_tailwind_3_4_number_tokens_css.plasmic_tokens,
-          plasmic_plasmic_rich_components_css.plasmic_tokens
+          styleTokensClassNames,
+          styleTokensClassNames_antd_5_hostless,
+          styleTokensClassNames_library_tailwind_3_4_number_tokens,
+          styleTokensClassNames_plasmic_rich_components
         )}
         dropdownMatchSelectWidth={false}
         mode={"multiple"}

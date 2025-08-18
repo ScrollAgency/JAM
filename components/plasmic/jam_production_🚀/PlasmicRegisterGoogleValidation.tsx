@@ -33,7 +33,6 @@ import {
   classNames,
   createPlasmicElementProxy,
   deriveRenderOpts,
-  ensureGlobalVariants,
   generateOnMutateForSpec,
   generateStateOnChangeProp,
   generateStateOnChangePropForCodeComponents,
@@ -66,13 +65,14 @@ import {
   usePlasmicInvalidate
 } from "@plasmicapp/react-web/lib/data-sources";
 
-import { useScreenVariants as useScreenVariantshm8Nko4B5BDd } from "./PlasmicGlobalVariant__Screen"; // plasmic-import: HM8Nko4B5BDd/globalVariant
+import { _useGlobalVariants } from "./plasmic"; // plasmic-import: f7DE9y7qp46fyCw5nuY8f9/projectModule
+import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: f7DE9y7qp46fyCw5nuY8f9/styleTokensProvider
+import { _useStyleTokens as useStyleTokens_antd_5_hostless } from ""; // plasmic-import: ohDidvG9XsCeFumugENU3J/styleTokensProvider
+import { _useStyleTokens as useStyleTokens_library_tailwind_3_4_number_tokens } from ""; // plasmic-import: 4vjRXvnb4XuY6J15w9oRcQ/styleTokensProvider
+import { _useStyleTokens as useStyleTokens_plasmic_rich_components } from ""; // plasmic-import: jkU633o1Cz7HrJdwdxhVHk/styleTokensProvider
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
-import plasmic_antd_5_hostless_css from "../antd_5_hostless/plasmic.module.css"; // plasmic-import: ohDidvG9XsCeFumugENU3J/projectcss
-import plasmic_library_tailwind_3_4_number_tokens_css from "../library_tailwind_3_4_number_tokens/plasmic.module.css"; // plasmic-import: 4vjRXvnb4XuY6J15w9oRcQ/projectcss
-import plasmic_plasmic_rich_components_css from "../plasmic_rich_components/plasmic.module.css"; // plasmic-import: jkU633o1Cz7HrJdwdxhVHk/projectcss
 import projectcss from "./plasmic.module.css"; // plasmic-import: f7DE9y7qp46fyCw5nuY8f9/projectcss
 import sty from "./PlasmicRegisterGoogleValidation.module.css"; // plasmic-import: G-VPSgrlJgFQ/css
 
@@ -155,9 +155,14 @@ function PlasmicRegisterGoogleValidation__RenderFunc(props: {
   const dataSourcesCtx = usePlasmicDataSourceContext();
   const plasmicInvalidate = usePlasmicInvalidate();
 
-  const globalVariants = ensureGlobalVariants({
-    screen: useScreenVariantshm8Nko4B5BDd()
-  });
+  const globalVariants = _useGlobalVariants();
+  const styleTokensClassNames = _useStyleTokens();
+  const styleTokensClassNames_antd_5_hostless =
+    useStyleTokens_antd_5_hostless();
+  const styleTokensClassNames_library_tailwind_3_4_number_tokens =
+    useStyleTokens_library_tailwind_3_4_number_tokens();
+  const styleTokensClassNames_plasmic_rich_components =
+    useStyleTokens_plasmic_rich_components();
 
   return (
     <React.Fragment>
@@ -180,10 +185,10 @@ function PlasmicRegisterGoogleValidation__RenderFunc(props: {
             projectcss.root_reset,
             projectcss.plasmic_default_styles,
             projectcss.plasmic_mixins,
-            projectcss.plasmic_tokens,
-            plasmic_antd_5_hostless_css.plasmic_tokens,
-            plasmic_library_tailwind_3_4_number_tokens_css.plasmic_tokens,
-            plasmic_plasmic_rich_components_css.plasmic_tokens,
+            styleTokensClassNames,
+            styleTokensClassNames_antd_5_hostless,
+            styleTokensClassNames_library_tailwind_3_4_number_tokens,
+            styleTokensClassNames_plasmic_rich_components,
             sty.root
           )}
         >
@@ -309,6 +314,15 @@ function PlasmicRegisterGoogleValidation__RenderFunc(props: {
                     sty.heading
                   )}
                 >
+                  {"Votre inscription est en cours"}
+                </div>
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__i5Tw0
+                  )}
+                >
                   {"Vous \u00eates"}
                 </div>
               </div>
@@ -329,7 +343,7 @@ function PlasmicRegisterGoogleValidation__RenderFunc(props: {
                   onClick={async event => {
                     const $steps = {};
 
-                    $steps["goToInscription2"] = true
+                    $steps["updateRole"] = true
                       ? (() => {
                           const actionArgs = {
                             dataOp: {
@@ -339,7 +353,7 @@ function PlasmicRegisterGoogleValidation__RenderFunc(props: {
                                 body: [
                                   {
                                     userId: $ctx.SupabaseUser.user?.id,
-                                    role: "Candidat"
+                                    role: "User"
                                   }
                                 ]
                               },
@@ -369,13 +383,62 @@ function PlasmicRegisterGoogleValidation__RenderFunc(props: {
                         })()
                       : undefined;
                     if (
-                      $steps["goToInscription2"] != null &&
-                      typeof $steps["goToInscription2"] === "object" &&
-                      typeof $steps["goToInscription2"].then === "function"
+                      $steps["updateRole"] != null &&
+                      typeof $steps["updateRole"] === "object" &&
+                      typeof $steps["updateRole"].then === "function"
                     ) {
-                      $steps["goToInscription2"] = await $steps[
-                        "goToInscription2"
-                      ];
+                      $steps["updateRole"] = await $steps["updateRole"];
+                    }
+
+                    $steps["welcomeMail"] = true
+                      ? (() => {
+                          const actionArgs = {
+                            dataOp: {
+                              sourceId: "5T6gSzGCrEfYgV9rAkCoaD",
+                              opId: "794daa1a-97ba-4079-8f3e-f23db61377b4",
+                              userArgs: {
+                                body: [
+                                  {
+                                    to: `${$ctx.SupabaseUser.user?.email}`,
+                                    template: "welcomeCandidat",
+                                    subject: "Bienvenue {{name}} !",
+                                    params: {
+                                      name: `${$ctx.SupabaseUser.user?.firstName}`
+                                    }
+                                  }
+                                ]
+                              },
+                              cacheKey: null,
+                              invalidatedKeys: ["plasmic_refresh_all"],
+                              roleId: null
+                            }
+                          };
+                          return (async ({ dataOp, continueOnError }) => {
+                            try {
+                              const response = await executePlasmicDataOp(
+                                dataOp,
+                                {
+                                  userAuthToken: dataSourcesCtx?.userAuthToken,
+                                  user: dataSourcesCtx?.user
+                                }
+                              );
+                              await plasmicInvalidate(dataOp.invalidatedKeys);
+                              return response;
+                            } catch (e) {
+                              if (!continueOnError) {
+                                throw e;
+                              }
+                              return e;
+                            }
+                          })?.apply(null, [actionArgs]);
+                        })()
+                      : undefined;
+                    if (
+                      $steps["welcomeMail"] != null &&
+                      typeof $steps["welcomeMail"] === "object" &&
+                      typeof $steps["welcomeMail"].then === "function"
+                    ) {
+                      $steps["welcomeMail"] = await $steps["welcomeMail"];
                     }
 
                     $steps["goToParametresCandidat"] = true
@@ -435,7 +498,7 @@ function PlasmicRegisterGoogleValidation__RenderFunc(props: {
                   onClick={async event => {
                     const $steps = {};
 
-                    $steps["httpPost"] = true
+                    $steps["updateRole"] = true
                       ? (() => {
                           const actionArgs = {
                             dataOp: {
@@ -475,17 +538,57 @@ function PlasmicRegisterGoogleValidation__RenderFunc(props: {
                         })()
                       : undefined;
                     if (
-                      $steps["httpPost"] != null &&
-                      typeof $steps["httpPost"] === "object" &&
-                      typeof $steps["httpPost"].then === "function"
+                      $steps["updateRole"] != null &&
+                      typeof $steps["updateRole"] === "object" &&
+                      typeof $steps["updateRole"].then === "function"
                     ) {
-                      $steps["httpPost"] = await $steps["httpPost"];
+                      $steps["updateRole"] = await $steps["updateRole"];
                     }
 
-                    $steps["goToParametresEmployeur"] = true
+                    $steps["welcomeMail"] = false
                       ? (() => {
                           const actionArgs = {
-                            destination: `/parametres-employeur`
+                            dataOp: {
+                              sourceId: "5T6gSzGCrEfYgV9rAkCoaD",
+                              opId: "03e979d9-eab0-4428-b3c6-004fa4cebea6",
+                              userArgs: {},
+                              cacheKey: null,
+                              invalidatedKeys: ["plasmic_refresh_all"],
+                              roleId: null
+                            }
+                          };
+                          return (async ({ dataOp, continueOnError }) => {
+                            try {
+                              const response = await executePlasmicDataOp(
+                                dataOp,
+                                {
+                                  userAuthToken: dataSourcesCtx?.userAuthToken,
+                                  user: dataSourcesCtx?.user
+                                }
+                              );
+                              await plasmicInvalidate(dataOp.invalidatedKeys);
+                              return response;
+                            } catch (e) {
+                              if (!continueOnError) {
+                                throw e;
+                              }
+                              return e;
+                            }
+                          })?.apply(null, [actionArgs]);
+                        })()
+                      : undefined;
+                    if (
+                      $steps["welcomeMail"] != null &&
+                      typeof $steps["welcomeMail"] === "object" &&
+                      typeof $steps["welcomeMail"].then === "function"
+                    ) {
+                      $steps["welcomeMail"] = await $steps["welcomeMail"];
+                    }
+
+                    $steps["goToOffreEmployeur"] = true
+                      ? (() => {
+                          const actionArgs = {
+                            destination: `/offre-employeur`
                           };
                           return (({ destination }) => {
                             if (
@@ -502,13 +605,12 @@ function PlasmicRegisterGoogleValidation__RenderFunc(props: {
                         })()
                       : undefined;
                     if (
-                      $steps["goToParametresEmployeur"] != null &&
-                      typeof $steps["goToParametresEmployeur"] === "object" &&
-                      typeof $steps["goToParametresEmployeur"].then ===
-                        "function"
+                      $steps["goToOffreEmployeur"] != null &&
+                      typeof $steps["goToOffreEmployeur"] === "object" &&
+                      typeof $steps["goToOffreEmployeur"].then === "function"
                     ) {
-                      $steps["goToParametresEmployeur"] = await $steps[
-                        "goToParametresEmployeur"
+                      $steps["goToOffreEmployeur"] = await $steps[
+                        "goToOffreEmployeur"
                       ];
                     }
                   }}

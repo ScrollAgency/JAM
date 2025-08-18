@@ -33,7 +33,6 @@ import {
   classNames,
   createPlasmicElementProxy,
   deriveRenderOpts,
-  ensureGlobalVariants,
   generateOnMutateForSpec,
   generateStateOnChangeProp,
   generateStateOnChangePropForCodeComponents,
@@ -91,19 +90,16 @@ import TextAreaInput from "../../TextAreaInput"; // plasmic-import: nVAUbPc6gpoz
 import { FileUploader } from "../../others/FileUploader/FileUploader"; // plasmic-import: RpVDoPZzyXH3/codeComponent
 import { Login } from "../../../plasmic-library/authentication/Login"; // plasmic-import: DTfpuarR8FPx/codeComponent
 import Footer from "../../Footer"; // plasmic-import: ZOpOgPOAiAAY/component
+import { PageLoader } from "../../others/PageLoader/PageLoader"; // plasmic-import: FHDrnDhA4DZe/codeComponent
 import { Fetcher } from "@plasmicapp/react-web/lib/data-sources";
-
-import {
-  UnnamedGlobalGroupOfVariantsValue,
-  useUnnamedGlobalGroupOfVariants
-} from "./PlasmicGlobalVariant__UnnamedGlobalGroupOfVariants"; // plasmic-import: XIKLz2YbSl05/globalVariant
-import { useScreenVariants as useScreenVariantshm8Nko4B5BDd } from "./PlasmicGlobalVariant__Screen"; // plasmic-import: HM8Nko4B5BDd/globalVariant
+import { _useGlobalVariants } from "./plasmic"; // plasmic-import: f7DE9y7qp46fyCw5nuY8f9/projectModule
+import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: f7DE9y7qp46fyCw5nuY8f9/styleTokensProvider
+import { _useStyleTokens as useStyleTokens_antd_5_hostless } from ""; // plasmic-import: ohDidvG9XsCeFumugENU3J/styleTokensProvider
+import { _useStyleTokens as useStyleTokens_library_tailwind_3_4_number_tokens } from ""; // plasmic-import: 4vjRXvnb4XuY6J15w9oRcQ/styleTokensProvider
+import { _useStyleTokens as useStyleTokens_plasmic_rich_components } from ""; // plasmic-import: jkU633o1Cz7HrJdwdxhVHk/styleTokensProvider
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
-import plasmic_antd_5_hostless_css from "../antd_5_hostless/plasmic.module.css"; // plasmic-import: ohDidvG9XsCeFumugENU3J/projectcss
-import plasmic_library_tailwind_3_4_number_tokens_css from "../library_tailwind_3_4_number_tokens/plasmic.module.css"; // plasmic-import: 4vjRXvnb4XuY6J15w9oRcQ/projectcss
-import plasmic_plasmic_rich_components_css from "../plasmic_rich_components/plasmic.module.css"; // plasmic-import: jkU633o1Cz7HrJdwdxhVHk/projectcss
 import projectcss from "./plasmic.module.css"; // plasmic-import: f7DE9y7qp46fyCw5nuY8f9/projectcss
 import sty from "./PlasmicAccueil.module.css"; // plasmic-import: x8mEiwhu6Vco/css
 
@@ -172,7 +168,7 @@ export type PlasmicAccueil__OverridesType = {
   trouvezUnJobNaJamaisEteAussiSimple?: Flex__<"h1">;
   trouvezUnJobNaJamaisEteAussiSimple2?: Flex__<"p">;
   jobSearchSection?: Flex__<"div">;
-  filters?: Flex__<"div">;
+  filtersDesk?: Flex__<"div">;
   formFilter?: Flex__<typeof FormWrapper>;
   wrapContent?: Flex__<"div">;
   input3?: Flex__<typeof AntdInput>;
@@ -184,7 +180,6 @@ export type PlasmicAccueil__OverridesType = {
   select14?: Flex__<typeof AntdSelect>;
   select12?: Flex__<typeof AntdSelect>;
   button8?: Flex__<typeof Button>;
-  clearBtn?: Flex__<typeof ClearBtn>;
   resetFormBtn?: Flex__<"button">;
   mapJobs?: Flex__<"div">;
   joblistandbtn?: Flex__<"div">;
@@ -200,6 +195,19 @@ export type PlasmicAccueil__OverridesType = {
   dislike?: Flex__<"svg">;
   jobCard20?: Flex__<typeof JobCard20>;
   loadingComponent?: Flex__<typeof LoadingComponent>;
+  filtersMobile?: Flex__<"div">;
+  formFilter3?: Flex__<typeof FormWrapper>;
+  wrapContent3?: Flex__<"div">;
+  input7?: Flex__<typeof AntdInput>;
+  input8?: Flex__<typeof AntdInput>;
+  select22?: Flex__<typeof AntdSelect>;
+  select11?: Flex__<typeof AntdSelect>;
+  select23?: Flex__<typeof AntdSelect>;
+  select24?: Flex__<typeof AntdSelect>;
+  select25?: Flex__<typeof AntdSelect>;
+  select26?: Flex__<typeof AntdSelect>;
+  button9?: Flex__<typeof Button>;
+  resetFormBtn2?: Flex__<"button">;
   lastMinuteBtn?: Flex__<"div">;
   buttonLastMin2?: Flex__<"button">;
   text7?: Flex__<"div">;
@@ -354,6 +362,7 @@ export type PlasmicAccueil__OverridesType = {
   textLinkBase?: Flex__<"a"> & Partial<LinkProps>;
   text6?: Flex__<"div">;
   footer?: Flex__<typeof Footer>;
+  pageLoader?: Flex__<typeof PageLoader>;
 };
 
 export interface DefaultAccueilProps {}
@@ -1445,6 +1454,102 @@ function PlasmicAccueil__RenderFunc(props: {
               throw e;
             }
           })()
+      },
+      {
+        path: "formFilter3.value",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "formFilter3",
+        onMutate: generateOnMutateForSpec("value", FormWrapper_Helpers)
+      },
+      {
+        path: "formFilter3.isSubmitting",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $ctx }) => false,
+
+        refName: "formFilter3",
+        onMutate: generateOnMutateForSpec("isSubmitting", FormWrapper_Helpers)
+      },
+      {
+        path: "input7.value",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $ctx }) =>
+          (() => {
+            try {
+              return $ctx.query.name || "";
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return undefined;
+              }
+              throw e;
+            }
+          })(),
+
+        onMutate: generateOnMutateForSpec("value", AntdInput_Helpers)
+      },
+      {
+        path: "input8.value",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $ctx }) =>
+          (() => {
+            try {
+              return $ctx.query.city || "";
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return undefined;
+              }
+              throw e;
+            }
+          })(),
+
+        onMutate: generateOnMutateForSpec("value", AntdInput_Helpers)
+      },
+      {
+        path: "select22.value",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+      },
+      {
+        path: "select11.value",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+      },
+      {
+        path: "select23.value",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+      },
+      {
+        path: "select24.value",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+      },
+      {
+        path: "select25.value",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+      },
+      {
+        path: "select26.value",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
       }
     ],
     [$props, $ctx, $refs]
@@ -1638,10 +1743,14 @@ function PlasmicAccueil__RenderFunc(props: {
     $queries = new$Queries;
   }
 
-  const globalVariants = ensureGlobalVariants({
-    unnamedGlobalGroupOfVariants: useUnnamedGlobalGroupOfVariants(),
-    screen: useScreenVariantshm8Nko4B5BDd()
-  });
+  const globalVariants = _useGlobalVariants();
+  const styleTokensClassNames = _useStyleTokens();
+  const styleTokensClassNames_antd_5_hostless =
+    useStyleTokens_antd_5_hostless();
+  const styleTokensClassNames_library_tailwind_3_4_number_tokens =
+    useStyleTokens_library_tailwind_3_4_number_tokens();
+  const styleTokensClassNames_plasmic_rich_components =
+    useStyleTokens_plasmic_rich_components();
 
   return (
     <React.Fragment>
@@ -1664,10 +1773,10 @@ function PlasmicAccueil__RenderFunc(props: {
             projectcss.root_reset,
             projectcss.plasmic_default_styles,
             projectcss.plasmic_mixins,
-            projectcss.plasmic_tokens,
-            plasmic_antd_5_hostless_css.plasmic_tokens,
-            plasmic_library_tailwind_3_4_number_tokens_css.plasmic_tokens,
-            plasmic_plasmic_rich_components_css.plasmic_tokens,
+            styleTokensClassNames,
+            styleTokensClassNames_antd_5_hostless,
+            styleTokensClassNames_library_tailwind_3_4_number_tokens,
+            styleTokensClassNames_plasmic_rich_components,
             sty.rechercheJob,
             {
               [sty.rechercheJobglobal_unnamedGlobalGroupOfVariants_unnamedVariant]:
@@ -2079,7 +2188,16 @@ function PlasmicAccueil__RenderFunc(props: {
                             sty.button__nl8Ey
                           )}
                           end={
-                            <GroupIcon
+                            <PlasmicIcon__
+                              PlasmicIconType={
+                                hasVariant(
+                                  globalVariants,
+                                  "screen",
+                                  "mobileOnly"
+                                )
+                                  ? UserIcon
+                                  : GroupIcon
+                              }
                               className={classNames(
                                 projectcss.all,
                                 sty.svg__skm8V
@@ -2099,36 +2217,7 @@ function PlasmicAccueil__RenderFunc(props: {
                               {"Connexion"}
                             </div>
                           }
-                          onClick={async event => {
-                            const $steps = {};
-
-                            $steps["goToConnexion"] = true
-                              ? (() => {
-                                  const actionArgs = { destination: `/login` };
-                                  return (({ destination }) => {
-                                    if (
-                                      typeof destination === "string" &&
-                                      destination.startsWith("#")
-                                    ) {
-                                      document
-                                        .getElementById(destination.substr(1))
-                                        .scrollIntoView({ behavior: "smooth" });
-                                    } else {
-                                      __nextRouter?.push(destination);
-                                    }
-                                  })?.apply(null, [actionArgs]);
-                                })()
-                              : undefined;
-                            if (
-                              $steps["goToConnexion"] != null &&
-                              typeof $steps["goToConnexion"] === "object" &&
-                              typeof $steps["goToConnexion"].then === "function"
-                            ) {
-                              $steps["goToConnexion"] = await $steps[
-                                "goToConnexion"
-                              ];
-                            }
-                          }}
+                          linkTo={`/login`}
                         />
                       ) : null}
                       {(() => {
@@ -2173,7 +2262,7 @@ function PlasmicAccueil__RenderFunc(props: {
                           onClick={async event => {
                             const $steps = {};
 
-                            $steps["goToGegisterValidation"] =
+                            $steps["goToRegisterValidation"] =
                               !!$ctx.SupabaseUser.user &&
                               $ctx.SupabaseUser.user.user_metadata.role ===
                                 "google"
@@ -2198,14 +2287,14 @@ function PlasmicAccueil__RenderFunc(props: {
                                   })()
                                 : undefined;
                             if (
-                              $steps["goToGegisterValidation"] != null &&
-                              typeof $steps["goToGegisterValidation"] ===
+                              $steps["goToRegisterValidation"] != null &&
+                              typeof $steps["goToRegisterValidation"] ===
                                 "object" &&
-                              typeof $steps["goToGegisterValidation"].then ===
+                              typeof $steps["goToRegisterValidation"].then ===
                                 "function"
                             ) {
-                              $steps["goToGegisterValidation"] = await $steps[
-                                "goToGegisterValidation"
+                              $steps["goToRegisterValidation"] = await $steps[
+                                "goToRegisterValidation"
                               ];
                             }
 
@@ -2464,11 +2553,11 @@ function PlasmicAccueil__RenderFunc(props: {
                             )}
                           >
                             <div
-                              data-plasmic-name={"filters"}
-                              data-plasmic-override={overrides.filters}
+                              data-plasmic-name={"filtersDesk"}
+                              data-plasmic-override={overrides.filtersDesk}
                               className={classNames(
                                 projectcss.all,
-                                sty.filters
+                                sty.filtersDesk
                               )}
                             >
                               {(() => {
@@ -2956,10 +3045,10 @@ function PlasmicAccueil__RenderFunc(props: {
                                             projectcss.root_reset,
                                             projectcss.plasmic_default_styles,
                                             projectcss.plasmic_mixins,
-                                            projectcss.plasmic_tokens,
-                                            plasmic_antd_5_hostless_css.plasmic_tokens,
-                                            plasmic_library_tailwind_3_4_number_tokens_css.plasmic_tokens,
-                                            plasmic_plasmic_rich_components_css.plasmic_tokens
+                                            styleTokensClassNames,
+                                            styleTokensClassNames_antd_5_hostless,
+                                            styleTokensClassNames_library_tailwind_3_4_number_tokens,
+                                            styleTokensClassNames_plasmic_rich_components
                                           )}
                                           dropdownMatchSelectWidth={true}
                                           mode={"single"}
@@ -3072,10 +3161,10 @@ function PlasmicAccueil__RenderFunc(props: {
                                             projectcss.root_reset,
                                             projectcss.plasmic_default_styles,
                                             projectcss.plasmic_mixins,
-                                            projectcss.plasmic_tokens,
-                                            plasmic_antd_5_hostless_css.plasmic_tokens,
-                                            plasmic_library_tailwind_3_4_number_tokens_css.plasmic_tokens,
-                                            plasmic_plasmic_rich_components_css.plasmic_tokens
+                                            styleTokensClassNames,
+                                            styleTokensClassNames_antd_5_hostless,
+                                            styleTokensClassNames_library_tailwind_3_4_number_tokens,
+                                            styleTokensClassNames_plasmic_rich_components
                                           )}
                                           mode={"multiple"}
                                           onChange={async (
@@ -3207,10 +3296,10 @@ function PlasmicAccueil__RenderFunc(props: {
                                             projectcss.root_reset,
                                             projectcss.plasmic_default_styles,
                                             projectcss.plasmic_mixins,
-                                            projectcss.plasmic_tokens,
-                                            plasmic_antd_5_hostless_css.plasmic_tokens,
-                                            plasmic_library_tailwind_3_4_number_tokens_css.plasmic_tokens,
-                                            plasmic_plasmic_rich_components_css.plasmic_tokens
+                                            styleTokensClassNames,
+                                            styleTokensClassNames_antd_5_hostless,
+                                            styleTokensClassNames_library_tailwind_3_4_number_tokens,
+                                            styleTokensClassNames_plasmic_rich_components
                                           )}
                                           dropdownMatchSelectWidth={false}
                                           mode={"multiple"}
@@ -3341,10 +3430,10 @@ function PlasmicAccueil__RenderFunc(props: {
                                             projectcss.root_reset,
                                             projectcss.plasmic_default_styles,
                                             projectcss.plasmic_mixins,
-                                            projectcss.plasmic_tokens,
-                                            plasmic_antd_5_hostless_css.plasmic_tokens,
-                                            plasmic_library_tailwind_3_4_number_tokens_css.plasmic_tokens,
-                                            plasmic_plasmic_rich_components_css.plasmic_tokens
+                                            styleTokensClassNames,
+                                            styleTokensClassNames_antd_5_hostless,
+                                            styleTokensClassNames_library_tailwind_3_4_number_tokens,
+                                            styleTokensClassNames_plasmic_rich_components
                                           )}
                                           mode={"multiple"}
                                           onChange={async (
@@ -3442,10 +3531,10 @@ function PlasmicAccueil__RenderFunc(props: {
                                             projectcss.root_reset,
                                             projectcss.plasmic_default_styles,
                                             projectcss.plasmic_mixins,
-                                            projectcss.plasmic_tokens,
-                                            plasmic_antd_5_hostless_css.plasmic_tokens,
-                                            plasmic_library_tailwind_3_4_number_tokens_css.plasmic_tokens,
-                                            plasmic_plasmic_rich_components_css.plasmic_tokens
+                                            styleTokensClassNames,
+                                            styleTokensClassNames_antd_5_hostless,
+                                            styleTokensClassNames_library_tailwind_3_4_number_tokens,
+                                            styleTokensClassNames_plasmic_rich_components
                                           )}
                                           mode={"multiple"}
                                           onChange={async (
@@ -3573,10 +3662,10 @@ function PlasmicAccueil__RenderFunc(props: {
                                             projectcss.root_reset,
                                             projectcss.plasmic_default_styles,
                                             projectcss.plasmic_mixins,
-                                            projectcss.plasmic_tokens,
-                                            plasmic_antd_5_hostless_css.plasmic_tokens,
-                                            plasmic_library_tailwind_3_4_number_tokens_css.plasmic_tokens,
-                                            plasmic_plasmic_rich_components_css.plasmic_tokens
+                                            styleTokensClassNames,
+                                            styleTokensClassNames_antd_5_hostless,
+                                            styleTokensClassNames_library_tailwind_3_4_number_tokens,
+                                            styleTokensClassNames_plasmic_rich_components
                                           )}
                                           mode={"multiple"}
                                           onChange={async (
@@ -3855,13 +3944,9 @@ function PlasmicAccueil__RenderFunc(props: {
                                       />
 
                                       <ClearBtn
-                                        data-plasmic-name={"clearBtn"}
-                                        data-plasmic-override={
-                                          overrides.clearBtn
-                                        }
                                         className={classNames(
                                           "__wab_instance",
-                                          sty.clearBtn
+                                          sty.clearBtn__clXUb
                                         )}
                                         color={"transparent"}
                                         iconStart={true}
@@ -6591,6 +6676,1822 @@ function PlasmicAccueil__RenderFunc(props: {
                                   </div>
                                 ) : null}
                               </div>
+                              {(
+                                hasVariant(
+                                  globalVariants,
+                                  "screen",
+                                  "mobileOnly"
+                                )
+                                  ? true
+                                  : false
+                              ) ? (
+                                <div
+                                  data-plasmic-name={"filtersMobile"}
+                                  data-plasmic-override={
+                                    overrides.filtersMobile
+                                  }
+                                  className={classNames(
+                                    projectcss.all,
+                                    sty.filtersMobile
+                                  )}
+                                >
+                                  {(() => {
+                                    const child$Props = {
+                                      className: classNames(
+                                        "__wab_instance",
+                                        sty.formFilter3
+                                      ),
+                                      extendedOnValuesChange: async (
+                                        ...eventArgs: any
+                                      ) => {
+                                        generateStateOnChangePropForCodeComponents(
+                                          $state,
+                                          "value",
+                                          ["formFilter3", "value"],
+                                          FormWrapper_Helpers
+                                        ).apply(null, eventArgs);
+                                      },
+                                      formItems: [
+                                        {
+                                          label: "Name",
+                                          name: "name",
+                                          inputType: "Text"
+                                        },
+                                        {
+                                          label: "Message",
+                                          name: "message",
+                                          inputType: "Text Area"
+                                        }
+                                      ],
+                                      labelCol: {
+                                        span: 8,
+                                        horizontalOnly: true
+                                      },
+                                      layout: "vertical",
+                                      mode: "advanced",
+                                      onIsSubmittingChange: async (
+                                        ...eventArgs: any
+                                      ) => {
+                                        generateStateOnChangePropForCodeComponents(
+                                          $state,
+                                          "isSubmitting",
+                                          ["formFilter3", "isSubmitting"],
+                                          FormWrapper_Helpers
+                                        ).apply(null, eventArgs);
+                                      },
+                                      ref: ref => {
+                                        $refs["formFilter3"] = ref;
+                                      },
+                                      submitSlot: null,
+                                      wrapperCol: {
+                                        span: 16,
+                                        horizontalOnly: true
+                                      }
+                                    };
+                                    initializeCodeComponentStates(
+                                      $state,
+                                      [
+                                        {
+                                          name: "value",
+                                          plasmicStateName: "formFilter3.value"
+                                        },
+                                        {
+                                          name: "isSubmitting",
+                                          plasmicStateName:
+                                            "formFilter3.isSubmitting"
+                                        }
+                                      ],
+                                      [],
+                                      FormWrapper_Helpers ?? {},
+                                      child$Props
+                                    );
+
+                                    return (
+                                      <FormWrapper
+                                        data-plasmic-name={"formFilter3"}
+                                        data-plasmic-override={
+                                          overrides.formFilter3
+                                        }
+                                        {...child$Props}
+                                      >
+                                        <div
+                                          data-plasmic-name={"wrapContent3"}
+                                          data-plasmic-override={
+                                            overrides.wrapContent3
+                                          }
+                                          className={classNames(
+                                            projectcss.all,
+                                            sty.wrapContent3
+                                          )}
+                                        >
+                                          <FormItemWrapper
+                                            className={classNames(
+                                              "__wab_instance",
+                                              sty.formField__uSodu
+                                            )}
+                                            initialValue={""}
+                                            label={
+                                              <div
+                                                className={classNames(
+                                                  projectcss.all,
+                                                  projectcss.__wab_text,
+                                                  sty.text__ns6G
+                                                )}
+                                              >
+                                                {"Label"}
+                                              </div>
+                                            }
+                                            name={"key_words"}
+                                            noLabel={true}
+                                          >
+                                            <div
+                                              className={classNames(
+                                                projectcss.all,
+                                                sty.freeBox__sBeLu
+                                              )}
+                                            >
+                                              {(() => {
+                                                const child$Props = {
+                                                  allowClear: true,
+                                                  className: classNames(
+                                                    "__wab_instance",
+                                                    sty.input7
+                                                  ),
+                                                  onChange: async (
+                                                    ...eventArgs: any
+                                                  ) => {
+                                                    generateStateOnChangePropForCodeComponents(
+                                                      $state,
+                                                      "value",
+                                                      ["input7", "value"],
+                                                      AntdInput_Helpers
+                                                    ).apply(null, eventArgs);
+
+                                                    (async event => {
+                                                      const $steps = {};
+
+                                                      $steps["updateKeyWords"] =
+                                                        true
+                                                          ? (() => {
+                                                              const actionArgs =
+                                                                {
+                                                                  variable: {
+                                                                    objRoot:
+                                                                      $state,
+                                                                    variablePath:
+                                                                      [
+                                                                        "keyWords"
+                                                                      ]
+                                                                  },
+                                                                  operation: 0,
+                                                                  value:
+                                                                    $state
+                                                                      .input7
+                                                                      .value
+                                                                };
+                                                              return (({
+                                                                variable,
+                                                                value,
+                                                                startIndex,
+                                                                deleteCount
+                                                              }) => {
+                                                                if (!variable) {
+                                                                  return;
+                                                                }
+                                                                const {
+                                                                  objRoot,
+                                                                  variablePath
+                                                                } = variable;
+
+                                                                $stateSet(
+                                                                  objRoot,
+                                                                  variablePath,
+                                                                  value
+                                                                );
+                                                                return value;
+                                                              })?.apply(null, [
+                                                                actionArgs
+                                                              ]);
+                                                            })()
+                                                          : undefined;
+                                                      if (
+                                                        $steps[
+                                                          "updateKeyWords"
+                                                        ] != null &&
+                                                        typeof $steps[
+                                                          "updateKeyWords"
+                                                        ] === "object" &&
+                                                        typeof $steps[
+                                                          "updateKeyWords"
+                                                        ].then === "function"
+                                                      ) {
+                                                        $steps[
+                                                          "updateKeyWords"
+                                                        ] = await $steps[
+                                                          "updateKeyWords"
+                                                        ];
+                                                      }
+                                                    }).apply(null, eventArgs);
+                                                  },
+                                                  placeholder:
+                                                    "Mot-cl\u00e9, job, entreprise",
+                                                  prefix: (
+                                                    <PlasmicImg__
+                                                      alt={""}
+                                                      className={classNames(
+                                                        sty.img__dLUb8
+                                                      )}
+                                                      displayHeight={"20px"}
+                                                      displayMaxHeight={"none"}
+                                                      displayMaxWidth={"none"}
+                                                      displayMinHeight={"0"}
+                                                      displayMinWidth={"0"}
+                                                      displayWidth={"20px"}
+                                                      loading={"lazy"}
+                                                      src={{
+                                                        src: "/plasmic/jam_production_🚀/images/image10.svg",
+                                                        fullWidth: 21,
+                                                        fullHeight: 20,
+                                                        aspectRatio: 1.05
+                                                      }}
+                                                    />
+                                                  ),
+
+                                                  size: "large",
+                                                  value: generateStateValueProp(
+                                                    $state,
+                                                    ["input7", "value"]
+                                                  )
+                                                };
+                                                initializeCodeComponentStates(
+                                                  $state,
+                                                  [
+                                                    {
+                                                      name: "value",
+                                                      plasmicStateName:
+                                                        "input7.value"
+                                                    }
+                                                  ],
+                                                  [],
+                                                  AntdInput_Helpers ?? {},
+                                                  child$Props
+                                                );
+                                                initializePlasmicStates(
+                                                  $state,
+                                                  [
+                                                    {
+                                                      name: "input7.value",
+                                                      initFunc: ({
+                                                        $props,
+                                                        $state,
+                                                        $queries
+                                                      }) =>
+                                                        (() => {
+                                                          try {
+                                                            return (
+                                                              $ctx.query.name ||
+                                                              ""
+                                                            );
+                                                          } catch (e) {
+                                                            if (
+                                                              e instanceof
+                                                                TypeError ||
+                                                              e?.plasmicType ===
+                                                                "PlasmicUndefinedDataError"
+                                                            ) {
+                                                              return undefined;
+                                                            }
+                                                            throw e;
+                                                          }
+                                                        })()
+                                                    }
+                                                  ],
+                                                  []
+                                                );
+                                                return (
+                                                  <AntdInput
+                                                    data-plasmic-name={"input7"}
+                                                    data-plasmic-override={
+                                                      overrides.input7
+                                                    }
+                                                    {...child$Props}
+                                                  />
+                                                );
+                                              })()}
+                                            </div>
+                                          </FormItemWrapper>
+                                          <FormItemWrapper
+                                            className={classNames(
+                                              "__wab_instance",
+                                              sty.formField__e188D
+                                            )}
+                                            initialValue={""}
+                                            label={
+                                              <div
+                                                className={classNames(
+                                                  projectcss.all,
+                                                  projectcss.__wab_text,
+                                                  sty.text__mjjJt
+                                                )}
+                                              >
+                                                {"Label"}
+                                              </div>
+                                            }
+                                            name={"location"}
+                                            noLabel={true}
+                                          >
+                                            <div
+                                              className={classNames(
+                                                projectcss.all,
+                                                sty.freeBox__nIavD
+                                              )}
+                                            >
+                                              {(() => {
+                                                const child$Props = {
+                                                  allowClear: true,
+                                                  className: classNames(
+                                                    "__wab_instance",
+                                                    sty.input8
+                                                  ),
+                                                  onChange: async (
+                                                    ...eventArgs: any
+                                                  ) => {
+                                                    generateStateOnChangePropForCodeComponents(
+                                                      $state,
+                                                      "value",
+                                                      ["input8", "value"],
+                                                      AntdInput_Helpers
+                                                    ).apply(null, eventArgs);
+
+                                                    (async event => {
+                                                      const $steps = {};
+
+                                                      $steps[
+                                                        "updateSearchLocation"
+                                                      ] = true
+                                                        ? (() => {
+                                                            const actionArgs = {
+                                                              variable: {
+                                                                objRoot: $state,
+                                                                variablePath: [
+                                                                  "searchLocation"
+                                                                ]
+                                                              },
+                                                              operation: 0,
+                                                              value:
+                                                                $state.input8
+                                                                  .value
+                                                            };
+                                                            return (({
+                                                              variable,
+                                                              value,
+                                                              startIndex,
+                                                              deleteCount
+                                                            }) => {
+                                                              if (!variable) {
+                                                                return;
+                                                              }
+                                                              const {
+                                                                objRoot,
+                                                                variablePath
+                                                              } = variable;
+
+                                                              $stateSet(
+                                                                objRoot,
+                                                                variablePath,
+                                                                value
+                                                              );
+                                                              return value;
+                                                            })?.apply(null, [
+                                                              actionArgs
+                                                            ]);
+                                                          })()
+                                                        : undefined;
+                                                      if (
+                                                        $steps[
+                                                          "updateSearchLocation"
+                                                        ] != null &&
+                                                        typeof $steps[
+                                                          "updateSearchLocation"
+                                                        ] === "object" &&
+                                                        typeof $steps[
+                                                          "updateSearchLocation"
+                                                        ].then === "function"
+                                                      ) {
+                                                        $steps[
+                                                          "updateSearchLocation"
+                                                        ] = await $steps[
+                                                          "updateSearchLocation"
+                                                        ];
+                                                      }
+                                                    }).apply(null, eventArgs);
+                                                  },
+                                                  placeholder: "Localisation",
+                                                  prefix: (
+                                                    <PlasmicImg__
+                                                      alt={""}
+                                                      className={classNames(
+                                                        sty.img__refgq
+                                                      )}
+                                                      displayHeight={"18px"}
+                                                      displayMaxHeight={"none"}
+                                                      displayMaxWidth={"100%"}
+                                                      displayMinHeight={"0"}
+                                                      displayMinWidth={"0"}
+                                                      displayWidth={"18px"}
+                                                      loading={"lazy"}
+                                                      src={{
+                                                        src: "/plasmic/jam_production_🚀/images/locationPinSvgrepoComSvg.svg",
+                                                        fullWidth: 800,
+                                                        fullHeight: 800,
+                                                        aspectRatio: undefined
+                                                      }}
+                                                    />
+                                                  ),
+
+                                                  size: "large",
+                                                  value: generateStateValueProp(
+                                                    $state,
+                                                    ["input8", "value"]
+                                                  )
+                                                };
+                                                initializeCodeComponentStates(
+                                                  $state,
+                                                  [
+                                                    {
+                                                      name: "value",
+                                                      plasmicStateName:
+                                                        "input8.value"
+                                                    }
+                                                  ],
+                                                  [],
+                                                  AntdInput_Helpers ?? {},
+                                                  child$Props
+                                                );
+                                                initializePlasmicStates(
+                                                  $state,
+                                                  [
+                                                    {
+                                                      name: "input8.value",
+                                                      initFunc: ({
+                                                        $props,
+                                                        $state,
+                                                        $queries
+                                                      }) =>
+                                                        (() => {
+                                                          try {
+                                                            return (
+                                                              $ctx.query.city ||
+                                                              ""
+                                                            );
+                                                          } catch (e) {
+                                                            if (
+                                                              e instanceof
+                                                                TypeError ||
+                                                              e?.plasmicType ===
+                                                                "PlasmicUndefinedDataError"
+                                                            ) {
+                                                              return undefined;
+                                                            }
+                                                            throw e;
+                                                          }
+                                                        })()
+                                                    }
+                                                  ],
+                                                  []
+                                                );
+                                                return (
+                                                  <AntdInput
+                                                    data-plasmic-name={"input8"}
+                                                    data-plasmic-override={
+                                                      overrides.input8
+                                                    }
+                                                    {...child$Props}
+                                                  />
+                                                );
+                                              })()}
+                                            </div>
+                                          </FormItemWrapper>
+                                          <FormItemWrapper
+                                            className={classNames(
+                                              "__wab_instance",
+                                              sty.formField___6Xah6
+                                            )}
+                                            label={"Name"}
+                                            name={"sector_activity"}
+                                            noLabel={true}
+                                          >
+                                            <AntdSelect
+                                              data-plasmic-name={"select22"}
+                                              data-plasmic-override={
+                                                overrides.select22
+                                              }
+                                              allowClear={true}
+                                              autoFocus={false}
+                                              bordered={false}
+                                              className={classNames(
+                                                "__wab_instance",
+                                                sty.select22
+                                              )}
+                                              defaultStylesClassName={classNames(
+                                                projectcss.root_reset,
+                                                projectcss.plasmic_default_styles,
+                                                projectcss.plasmic_mixins,
+                                                styleTokensClassNames,
+                                                styleTokensClassNames_antd_5_hostless,
+                                                styleTokensClassNames_library_tailwind_3_4_number_tokens,
+                                                styleTokensClassNames_plasmic_rich_components
+                                              )}
+                                              dropdownMatchSelectWidth={true}
+                                              mode={"single"}
+                                              onChange={async (
+                                                ...eventArgs: any
+                                              ) => {
+                                                generateStateOnChangeProp(
+                                                  $state,
+                                                  ["select22", "value"]
+                                                ).apply(null, eventArgs);
+                                              }}
+                                              optionClassName={classNames({
+                                                [sty["pcls_MaADHDWmW8BZ"]]: true
+                                              })}
+                                              options={(() => {
+                                                try {
+                                                  return $queries.getCriteria.data
+                                                    .filter(
+                                                      item =>
+                                                        item.type ===
+                                                        "sector_activity"
+                                                    )
+                                                    .map(item => ({
+                                                      value: item.name,
+                                                      label: item.name
+                                                    }));
+                                                } catch (e) {
+                                                  if (
+                                                    e instanceof TypeError ||
+                                                    e?.plasmicType ===
+                                                      "PlasmicUndefinedDataError"
+                                                  ) {
+                                                    return [];
+                                                  }
+                                                  throw e;
+                                                }
+                                              })()}
+                                              placeholder={
+                                                <div
+                                                  className={classNames(
+                                                    projectcss.all,
+                                                    sty.freeBox__csD2K
+                                                  )}
+                                                >
+                                                  <PlasmicImg__
+                                                    alt={""}
+                                                    className={classNames(
+                                                      sty.img__w8HOm
+                                                    )}
+                                                    displayHeight={"18px"}
+                                                    displayMaxHeight={"none"}
+                                                    displayMaxWidth={"100%"}
+                                                    displayMinHeight={"0"}
+                                                    displayMinWidth={"0"}
+                                                    displayWidth={"18px"}
+                                                    loading={"lazy"}
+                                                    src={{
+                                                      src: "/plasmic/jam_production_🚀/images/image2.svg",
+                                                      fullWidth: 20,
+                                                      fullHeight: 20,
+                                                      aspectRatio: 1
+                                                    }}
+                                                  />
+
+                                                  <div
+                                                    className={classNames(
+                                                      projectcss.all,
+                                                      projectcss.__wab_text,
+                                                      sty.text__mzf0
+                                                    )}
+                                                  >
+                                                    {"Secteur d'activit\u00e9"}
+                                                  </div>
+                                                </div>
+                                              }
+                                              popupScopeClassName={
+                                                sty["select22__popup"]
+                                              }
+                                              showSearch={true}
+                                              size={"large"}
+                                              useChildren={false}
+                                              value={generateStateValueProp(
+                                                $state,
+                                                ["select22", "value"]
+                                              )}
+                                            />
+                                          </FormItemWrapper>
+                                          <FormItemWrapper
+                                            className={classNames(
+                                              "__wab_instance",
+                                              sty.formField__hsJdM
+                                            )}
+                                            label={"Name"}
+                                            name={"availability_status"}
+                                            noLabel={true}
+                                            preserve={false}
+                                          >
+                                            <AntdSelect
+                                              data-plasmic-name={"select11"}
+                                              data-plasmic-override={
+                                                overrides.select11
+                                              }
+                                              allowClear={true}
+                                              bordered={false}
+                                              className={classNames(
+                                                "__wab_instance",
+                                                sty.select11
+                                              )}
+                                              defaultStylesClassName={classNames(
+                                                projectcss.root_reset,
+                                                projectcss.plasmic_default_styles,
+                                                projectcss.plasmic_mixins,
+                                                styleTokensClassNames,
+                                                styleTokensClassNames_antd_5_hostless,
+                                                styleTokensClassNames_library_tailwind_3_4_number_tokens,
+                                                styleTokensClassNames_plasmic_rich_components
+                                              )}
+                                              mode={"multiple"}
+                                              onChange={async (
+                                                ...eventArgs: any
+                                              ) => {
+                                                generateStateOnChangeProp(
+                                                  $state,
+                                                  ["select11", "value"]
+                                                ).apply(null, eventArgs);
+                                              }}
+                                              optionClassName={classNames({
+                                                [sty["pcls_DR9zV_P4kC7B"]]: true
+                                              })}
+                                              options={(() => {
+                                                try {
+                                                  return $queries.getCriteria.data
+                                                    .filter(
+                                                      item =>
+                                                        item.type ===
+                                                        "availability_status"
+                                                    )
+                                                    .map(item => ({
+                                                      value: item.name,
+                                                      label: item.name
+                                                    }));
+                                                } catch (e) {
+                                                  if (
+                                                    e instanceof TypeError ||
+                                                    e?.plasmicType ===
+                                                      "PlasmicUndefinedDataError"
+                                                  ) {
+                                                    return [];
+                                                  }
+                                                  throw e;
+                                                }
+                                              })()}
+                                              placeholder={
+                                                <div
+                                                  className={classNames(
+                                                    projectcss.all,
+                                                    sty.freeBox__gcvMp
+                                                  )}
+                                                >
+                                                  <PlasmicImg__
+                                                    alt={""}
+                                                    className={classNames(
+                                                      sty.img__m1Rtt
+                                                    )}
+                                                    displayHeight={"18px"}
+                                                    displayMaxHeight={"none"}
+                                                    displayMaxWidth={"100%"}
+                                                    displayMinHeight={"0"}
+                                                    displayMinWidth={"0"}
+                                                    displayWidth={"18px"}
+                                                    loading={"lazy"}
+                                                    src={{
+                                                      src: "/plasmic/jam_production_🚀/images/image3.svg",
+                                                      fullWidth: 20,
+                                                      fullHeight: 20,
+                                                      aspectRatio: 1
+                                                    }}
+                                                  />
+
+                                                  <div
+                                                    className={classNames(
+                                                      projectcss.all,
+                                                      projectcss.__wab_text,
+                                                      sty.text__qLzy0
+                                                    )}
+                                                  >
+                                                    {"Disponibilit\u00e9"}
+                                                  </div>
+                                                </div>
+                                              }
+                                              popupScopeClassName={
+                                                sty["select11__popup"]
+                                              }
+                                              showSearch={true}
+                                              size={"large"}
+                                              value={generateStateValueProp(
+                                                $state,
+                                                ["select11", "value"]
+                                              )}
+                                            />
+                                          </FormItemWrapper>
+                                          <FormItemWrapper
+                                            className={classNames(
+                                              "__wab_instance",
+                                              sty.formField___8FJoB
+                                            )}
+                                            hidden={false}
+                                            initialValue={(() => {
+                                              try {
+                                                return $ctx.query
+                                                  ?.contract_types == ""
+                                                  ? undefined
+                                                  : $ctx.query?.contract_types?.split(
+                                                      ","
+                                                    );
+                                              } catch (e) {
+                                                if (
+                                                  e instanceof TypeError ||
+                                                  e?.plasmicType ===
+                                                    "PlasmicUndefinedDataError"
+                                                ) {
+                                                  return undefined;
+                                                }
+                                                throw e;
+                                              }
+                                            })()}
+                                            label={"Name"}
+                                            name={"contract_type"}
+                                            noLabel={true}
+                                            preserve={false}
+                                            shouldUpdate={false}
+                                          >
+                                            <AntdSelect
+                                              data-plasmic-name={"select23"}
+                                              data-plasmic-override={
+                                                overrides.select23
+                                              }
+                                              allowClear={true}
+                                              bordered={false}
+                                              className={classNames(
+                                                "__wab_instance",
+                                                sty.select23
+                                              )}
+                                              defaultStylesClassName={classNames(
+                                                projectcss.root_reset,
+                                                projectcss.plasmic_default_styles,
+                                                projectcss.plasmic_mixins,
+                                                styleTokensClassNames,
+                                                styleTokensClassNames_antd_5_hostless,
+                                                styleTokensClassNames_library_tailwind_3_4_number_tokens,
+                                                styleTokensClassNames_plasmic_rich_components
+                                              )}
+                                              dropdownMatchSelectWidth={false}
+                                              mode={"multiple"}
+                                              onChange={async (
+                                                ...eventArgs: any
+                                              ) => {
+                                                generateStateOnChangeProp(
+                                                  $state,
+                                                  ["select23", "value"]
+                                                ).apply(null, eventArgs);
+                                              }}
+                                              optionClassName={classNames({
+                                                [sty["pcls_VrCgV0PlZ2Hd"]]: true
+                                              })}
+                                              options={(() => {
+                                                try {
+                                                  return $queries.getCriteria.data
+                                                    .filter(
+                                                      item =>
+                                                        item.type ===
+                                                        "contract_type"
+                                                    )
+                                                    .map(item => ({
+                                                      value: item.name,
+                                                      label: item.name
+                                                    }));
+                                                } catch (e) {
+                                                  if (
+                                                    e instanceof TypeError ||
+                                                    e?.plasmicType ===
+                                                      "PlasmicUndefinedDataError"
+                                                  ) {
+                                                    return [];
+                                                  }
+                                                  throw e;
+                                                }
+                                              })()}
+                                              placeholder={
+                                                <div
+                                                  className={classNames(
+                                                    projectcss.all,
+                                                    sty.freeBox__byr95
+                                                  )}
+                                                >
+                                                  <PlasmicImg__
+                                                    alt={""}
+                                                    className={classNames(
+                                                      sty.img__skFuh
+                                                    )}
+                                                    displayHeight={"18px"}
+                                                    displayMaxHeight={"none"}
+                                                    displayMaxWidth={"100%"}
+                                                    displayMinHeight={"0"}
+                                                    displayMinWidth={"0"}
+                                                    displayWidth={"18px"}
+                                                    loading={"lazy"}
+                                                    src={{
+                                                      src: "/plasmic/jam_production_🚀/images/image7.svg",
+                                                      fullWidth: 20,
+                                                      fullHeight: 20,
+                                                      aspectRatio: 1
+                                                    }}
+                                                  />
+
+                                                  <div
+                                                    className={classNames(
+                                                      projectcss.all,
+                                                      projectcss.__wab_text,
+                                                      sty.text___9XsPk
+                                                    )}
+                                                  >
+                                                    {"Type de contrat"}
+                                                  </div>
+                                                </div>
+                                              }
+                                              popupScopeClassName={
+                                                sty["select23__popup"]
+                                              }
+                                              showSearch={true}
+                                              size={"large"}
+                                              suffixIcon={null}
+                                              value={generateStateValueProp(
+                                                $state,
+                                                ["select23", "value"]
+                                              )}
+                                            />
+                                          </FormItemWrapper>
+                                          <FormItemWrapper
+                                            className={classNames(
+                                              "__wab_instance",
+                                              sty.formField__bIhx
+                                            )}
+                                            initialValue={(() => {
+                                              try {
+                                                return $ctx.query?.work_times ==
+                                                  ""
+                                                  ? undefined
+                                                  : $ctx.query?.work_times?.split(
+                                                      ","
+                                                    );
+                                              } catch (e) {
+                                                if (
+                                                  e instanceof TypeError ||
+                                                  e?.plasmicType ===
+                                                    "PlasmicUndefinedDataError"
+                                                ) {
+                                                  return undefined;
+                                                }
+                                                throw e;
+                                              }
+                                            })()}
+                                            label={"Name"}
+                                            name={"working_time"}
+                                            noLabel={true}
+                                          >
+                                            <AntdSelect
+                                              data-plasmic-name={"select24"}
+                                              data-plasmic-override={
+                                                overrides.select24
+                                              }
+                                              allowClear={true}
+                                              bordered={false}
+                                              className={classNames(
+                                                "__wab_instance",
+                                                sty.select24
+                                              )}
+                                              defaultOpen={false}
+                                              defaultStylesClassName={classNames(
+                                                projectcss.root_reset,
+                                                projectcss.plasmic_default_styles,
+                                                projectcss.plasmic_mixins,
+                                                styleTokensClassNames,
+                                                styleTokensClassNames_antd_5_hostless,
+                                                styleTokensClassNames_library_tailwind_3_4_number_tokens,
+                                                styleTokensClassNames_plasmic_rich_components
+                                              )}
+                                              mode={"multiple"}
+                                              onChange={async (
+                                                ...eventArgs: any
+                                              ) => {
+                                                generateStateOnChangeProp(
+                                                  $state,
+                                                  ["select24", "value"]
+                                                ).apply(null, eventArgs);
+                                              }}
+                                              optionClassName={classNames({
+                                                [sty["pcls_W8wioOuI_jEe"]]: true
+                                              })}
+                                              options={(() => {
+                                                try {
+                                                  return $queries.getCriteria.data
+                                                    .filter(
+                                                      item =>
+                                                        item.type ===
+                                                        "working_time"
+                                                    )
+                                                    .map(item => ({
+                                                      value: item.name,
+                                                      label: item.name
+                                                    }));
+                                                } catch (e) {
+                                                  if (
+                                                    e instanceof TypeError ||
+                                                    e?.plasmicType ===
+                                                      "PlasmicUndefinedDataError"
+                                                  ) {
+                                                    return [];
+                                                  }
+                                                  throw e;
+                                                }
+                                              })()}
+                                              placeholder={
+                                                <div
+                                                  className={classNames(
+                                                    projectcss.all,
+                                                    sty.freeBox__dz7S9
+                                                  )}
+                                                >
+                                                  <Vector22Icon
+                                                    className={classNames(
+                                                      projectcss.all,
+                                                      sty.svg___7T9Qh
+                                                    )}
+                                                    role={"img"}
+                                                  />
+
+                                                  <div
+                                                    className={classNames(
+                                                      projectcss.all,
+                                                      projectcss.__wab_text,
+                                                      sty.text__mhcPf
+                                                    )}
+                                                  >
+                                                    {"Temps de travail"}
+                                                  </div>
+                                                </div>
+                                              }
+                                              popupScopeClassName={
+                                                sty["select24__popup"]
+                                              }
+                                              showSearch={true}
+                                              size={"large"}
+                                              value={generateStateValueProp(
+                                                $state,
+                                                ["select24", "value"]
+                                              )}
+                                            />
+                                          </FormItemWrapper>
+                                          <FormItemWrapper
+                                            className={classNames(
+                                              "__wab_instance",
+                                              sty.formField__n5NnI
+                                            )}
+                                            label={"Name"}
+                                            name={"work_mode"}
+                                            noLabel={true}
+                                          >
+                                            <AntdSelect
+                                              data-plasmic-name={"select25"}
+                                              data-plasmic-override={
+                                                overrides.select25
+                                              }
+                                              allowClear={true}
+                                              autoFocus={false}
+                                              bordered={false}
+                                              className={classNames(
+                                                "__wab_instance",
+                                                sty.select25
+                                              )}
+                                              defaultStylesClassName={classNames(
+                                                projectcss.root_reset,
+                                                projectcss.plasmic_default_styles,
+                                                projectcss.plasmic_mixins,
+                                                styleTokensClassNames,
+                                                styleTokensClassNames_antd_5_hostless,
+                                                styleTokensClassNames_library_tailwind_3_4_number_tokens,
+                                                styleTokensClassNames_plasmic_rich_components
+                                              )}
+                                              mode={"multiple"}
+                                              onChange={async (
+                                                ...eventArgs: any
+                                              ) => {
+                                                generateStateOnChangeProp(
+                                                  $state,
+                                                  ["select25", "value"]
+                                                ).apply(null, eventArgs);
+                                              }}
+                                              optionClassName={classNames({
+                                                [sty["pcls_ptEdEpoLsJe-"]]: true
+                                              })}
+                                              options={(() => {
+                                                try {
+                                                  return $queries.getCriteria.data
+                                                    .filter(
+                                                      item =>
+                                                        item.type ===
+                                                        "work_mode"
+                                                    )
+                                                    .map(item => ({
+                                                      value: item.name,
+                                                      label: item.name
+                                                    }));
+                                                } catch (e) {
+                                                  if (
+                                                    e instanceof TypeError ||
+                                                    e?.plasmicType ===
+                                                      "PlasmicUndefinedDataError"
+                                                  ) {
+                                                    return [];
+                                                  }
+                                                  throw e;
+                                                }
+                                              })()}
+                                              placeholder={
+                                                <div
+                                                  className={classNames(
+                                                    projectcss.all,
+                                                    sty.freeBox__dkJW
+                                                  )}
+                                                >
+                                                  <PlasmicImg__
+                                                    alt={""}
+                                                    className={classNames(
+                                                      sty.img__eiVg8
+                                                    )}
+                                                    displayHeight={"18px"}
+                                                    displayMaxHeight={"none"}
+                                                    displayMaxWidth={"100%"}
+                                                    displayMinHeight={"0"}
+                                                    displayMinWidth={"0"}
+                                                    displayWidth={"18px"}
+                                                    loading={"lazy"}
+                                                    src={{
+                                                      src: "/plasmic/jam_production_🚀/images/image6.svg",
+                                                      fullWidth: 20,
+                                                      fullHeight: 20,
+                                                      aspectRatio: 1
+                                                    }}
+                                                  />
+
+                                                  <div
+                                                    className={classNames(
+                                                      projectcss.all,
+                                                      projectcss.__wab_text,
+                                                      sty.text___3J32
+                                                    )}
+                                                  >
+                                                    {"Mode de travail"}
+                                                  </div>
+                                                </div>
+                                              }
+                                              popupScopeClassName={
+                                                sty["select25__popup"]
+                                              }
+                                              showSearch={true}
+                                              size={"large"}
+                                              value={generateStateValueProp(
+                                                $state,
+                                                ["select25", "value"]
+                                              )}
+                                            />
+                                          </FormItemWrapper>
+                                          <FormItemWrapper
+                                            className={classNames(
+                                              "__wab_instance",
+                                              sty.formField___8Obfq
+                                            )}
+                                            initialValue={(() => {
+                                              try {
+                                                return $ctx.query?.min_salary ==
+                                                  ""
+                                                  ? undefined
+                                                  : $ctx.query?.min_salary?.split(
+                                                      ","
+                                                    );
+                                              } catch (e) {
+                                                if (
+                                                  e instanceof TypeError ||
+                                                  e?.plasmicType ===
+                                                    "PlasmicUndefinedDataError"
+                                                ) {
+                                                  return undefined;
+                                                }
+                                                throw e;
+                                              }
+                                            })()}
+                                            label={"Name"}
+                                            name={"salary"}
+                                            noLabel={true}
+                                          >
+                                            <AntdSelect
+                                              data-plasmic-name={"select26"}
+                                              data-plasmic-override={
+                                                overrides.select26
+                                              }
+                                              allowClear={true}
+                                              autoFocus={false}
+                                              bordered={false}
+                                              className={classNames(
+                                                "__wab_instance",
+                                                sty.select26
+                                              )}
+                                              defaultStylesClassName={classNames(
+                                                projectcss.root_reset,
+                                                projectcss.plasmic_default_styles,
+                                                projectcss.plasmic_mixins,
+                                                styleTokensClassNames,
+                                                styleTokensClassNames_antd_5_hostless,
+                                                styleTokensClassNames_library_tailwind_3_4_number_tokens,
+                                                styleTokensClassNames_plasmic_rich_components
+                                              )}
+                                              mode={"multiple"}
+                                              onChange={async (
+                                                ...eventArgs: any
+                                              ) => {
+                                                generateStateOnChangeProp(
+                                                  $state,
+                                                  ["select26", "value"]
+                                                ).apply(null, eventArgs);
+
+                                                (async (value, option) => {
+                                                  const $steps = {};
+
+                                                  $steps["updateSalary"] = true
+                                                    ? (() => {
+                                                        const actionArgs = {
+                                                          variable: {
+                                                            objRoot: $state,
+                                                            variablePath: [
+                                                              "salary"
+                                                            ]
+                                                          },
+                                                          operation: 0,
+                                                          value:
+                                                            $state.select26
+                                                              .value
+                                                        };
+                                                        return (({
+                                                          variable,
+                                                          value,
+                                                          startIndex,
+                                                          deleteCount
+                                                        }) => {
+                                                          if (!variable) {
+                                                            return;
+                                                          }
+                                                          const {
+                                                            objRoot,
+                                                            variablePath
+                                                          } = variable;
+
+                                                          $stateSet(
+                                                            objRoot,
+                                                            variablePath,
+                                                            value
+                                                          );
+                                                          return value;
+                                                        })?.apply(null, [
+                                                          actionArgs
+                                                        ]);
+                                                      })()
+                                                    : undefined;
+                                                  if (
+                                                    $steps["updateSalary"] !=
+                                                      null &&
+                                                    typeof $steps[
+                                                      "updateSalary"
+                                                    ] === "object" &&
+                                                    typeof $steps[
+                                                      "updateSalary"
+                                                    ].then === "function"
+                                                  ) {
+                                                    $steps["updateSalary"] =
+                                                      await $steps[
+                                                        "updateSalary"
+                                                      ];
+                                                  }
+                                                }).apply(null, eventArgs);
+                                              }}
+                                              optionClassName={classNames({
+                                                [sty["pcls_VqilFIq1a5U3"]]: true
+                                              })}
+                                              options={(() => {
+                                                try {
+                                                  return $queries.getCriteria.data
+                                                    .filter(
+                                                      item =>
+                                                        item.type === "salary"
+                                                    )
+                                                    .map(item => ({
+                                                      value: item.name,
+                                                      label: item.name
+                                                    }));
+                                                } catch (e) {
+                                                  if (
+                                                    e instanceof TypeError ||
+                                                    e?.plasmicType ===
+                                                      "PlasmicUndefinedDataError"
+                                                  ) {
+                                                    return [];
+                                                  }
+                                                  throw e;
+                                                }
+                                              })()}
+                                              placeholder={
+                                                <div
+                                                  className={classNames(
+                                                    projectcss.all,
+                                                    sty.freeBox__viYop
+                                                  )}
+                                                >
+                                                  <PlasmicImg__
+                                                    alt={""}
+                                                    className={classNames(
+                                                      sty.img__xImp8
+                                                    )}
+                                                    displayHeight={"18px"}
+                                                    displayMaxHeight={"none"}
+                                                    displayMaxWidth={"100%"}
+                                                    displayMinHeight={"0"}
+                                                    displayMinWidth={"0"}
+                                                    displayWidth={"18px"}
+                                                    loading={"lazy"}
+                                                    src={{
+                                                      src: "/plasmic/jam_production_🚀/images/image5.svg",
+                                                      fullWidth: 20,
+                                                      fullHeight: 20,
+                                                      aspectRatio: 1
+                                                    }}
+                                                  />
+
+                                                  <div
+                                                    className={classNames(
+                                                      projectcss.all,
+                                                      projectcss.__wab_text,
+                                                      sty.text__lcRpz
+                                                    )}
+                                                  >
+                                                    {"Salaire"}
+                                                  </div>
+                                                </div>
+                                              }
+                                              popupScopeClassName={
+                                                sty["select26__popup"]
+                                              }
+                                              showSearch={true}
+                                              size={"large"}
+                                              useChildren={false}
+                                              value={generateStateValueProp(
+                                                $state,
+                                                ["select26", "value"]
+                                              )}
+                                            />
+                                          </FormItemWrapper>
+                                          <Button
+                                            data-plasmic-name={"button9"}
+                                            data-plasmic-override={
+                                              overrides.button9
+                                            }
+                                            className={classNames(
+                                              "__wab_instance",
+                                              sty.button9
+                                            )}
+                                            color={"white"}
+                                            iconStart={true}
+                                            label={
+                                              <div
+                                                className={classNames(
+                                                  projectcss.all,
+                                                  projectcss.__wab_text,
+                                                  sty.text___8BIjB
+                                                )}
+                                              >
+                                                {"CRITERES"}
+                                              </div>
+                                            }
+                                            onClick={async event => {
+                                              const $steps = {};
+
+                                              $steps["updateModalIsOpen"] = true
+                                                ? (() => {
+                                                    const actionArgs = {
+                                                      variable: {
+                                                        objRoot: $state,
+                                                        variablePath: [
+                                                          "modal",
+                                                          "isOpen"
+                                                        ]
+                                                      },
+                                                      operation: 0,
+                                                      value: true
+                                                    };
+                                                    return (({
+                                                      variable,
+                                                      value,
+                                                      startIndex,
+                                                      deleteCount
+                                                    }) => {
+                                                      if (!variable) {
+                                                        return;
+                                                      }
+                                                      const {
+                                                        objRoot,
+                                                        variablePath
+                                                      } = variable;
+
+                                                      $stateSet(
+                                                        objRoot,
+                                                        variablePath,
+                                                        value
+                                                      );
+                                                      return value;
+                                                    })?.apply(null, [
+                                                      actionArgs
+                                                    ]);
+                                                  })()
+                                                : undefined;
+                                              if (
+                                                $steps["updateModalIsOpen"] !=
+                                                  null &&
+                                                typeof $steps[
+                                                  "updateModalIsOpen"
+                                                ] === "object" &&
+                                                typeof $steps[
+                                                  "updateModalIsOpen"
+                                                ].then === "function"
+                                              ) {
+                                                $steps["updateModalIsOpen"] =
+                                                  await $steps[
+                                                    "updateModalIsOpen"
+                                                  ];
+                                              }
+
+                                              $steps[
+                                                "updateFormFilter2Submited"
+                                              ] = true
+                                                ? (() => {
+                                                    const actionArgs = {
+                                                      variable: {
+                                                        objRoot: $state,
+                                                        variablePath: [
+                                                          "formFilter2Submited"
+                                                        ]
+                                                      },
+                                                      operation: 0,
+                                                      value: false
+                                                    };
+                                                    return (({
+                                                      variable,
+                                                      value,
+                                                      startIndex,
+                                                      deleteCount
+                                                    }) => {
+                                                      if (!variable) {
+                                                        return;
+                                                      }
+                                                      const {
+                                                        objRoot,
+                                                        variablePath
+                                                      } = variable;
+
+                                                      $stateSet(
+                                                        objRoot,
+                                                        variablePath,
+                                                        value
+                                                      );
+                                                      return value;
+                                                    })?.apply(null, [
+                                                      actionArgs
+                                                    ]);
+                                                  })()
+                                                : undefined;
+                                              if (
+                                                $steps[
+                                                  "updateFormFilter2Submited"
+                                                ] != null &&
+                                                typeof $steps[
+                                                  "updateFormFilter2Submited"
+                                                ] === "object" &&
+                                                typeof $steps[
+                                                  "updateFormFilter2Submited"
+                                                ].then === "function"
+                                              ) {
+                                                $steps[
+                                                  "updateFormFilter2Submited"
+                                                ] = await $steps[
+                                                  "updateFormFilter2Submited"
+                                                ];
+                                              }
+                                            }}
+                                            size={"large"}
+                                            start={
+                                              <Vector18Icon
+                                                className={classNames(
+                                                  projectcss.all,
+                                                  sty.svg___6L2Zq
+                                                )}
+                                                role={"img"}
+                                              />
+                                            }
+                                          />
+
+                                          <ClearBtn
+                                            className={classNames(
+                                              "__wab_instance",
+                                              sty.clearBtn__wfAg0
+                                            )}
+                                            color={"transparent"}
+                                            iconStart={true}
+                                            label={
+                                              <div
+                                                className={classNames(
+                                                  projectcss.all,
+                                                  projectcss.__wab_text,
+                                                  sty.text___2XlTz
+                                                )}
+                                              >
+                                                {
+                                                  "R\u00e9initialiser les filtres"
+                                                }
+                                              </div>
+                                            }
+                                            onClick={async event => {
+                                              const $steps = {};
+
+                                              $steps["runActionOnFormFilter"] =
+                                                true
+                                                  ? (() => {
+                                                      const actionArgs = {
+                                                        tplRef: "formFilter",
+                                                        action: "resetFields"
+                                                      };
+                                                      return (({
+                                                        tplRef,
+                                                        action,
+                                                        args
+                                                      }) => {
+                                                        return $refs?.[
+                                                          tplRef
+                                                        ]?.[action]?.(
+                                                          ...(args ?? [])
+                                                        );
+                                                      })?.apply(null, [
+                                                        actionArgs
+                                                      ]);
+                                                    })()
+                                                  : undefined;
+                                              if (
+                                                $steps[
+                                                  "runActionOnFormFilter"
+                                                ] != null &&
+                                                typeof $steps[
+                                                  "runActionOnFormFilter"
+                                                ] === "object" &&
+                                                typeof $steps[
+                                                  "runActionOnFormFilter"
+                                                ].then === "function"
+                                              ) {
+                                                $steps[
+                                                  "runActionOnFormFilter"
+                                                ] = await $steps[
+                                                  "runActionOnFormFilter"
+                                                ];
+                                              }
+
+                                              $steps[
+                                                "updateFormFilter2Submited"
+                                              ] = true
+                                                ? (() => {
+                                                    const actionArgs = {
+                                                      variable: {
+                                                        objRoot: $state,
+                                                        variablePath: [
+                                                          "formFilter2Submited"
+                                                        ]
+                                                      },
+                                                      operation: 0,
+                                                      value: false
+                                                    };
+                                                    return (({
+                                                      variable,
+                                                      value,
+                                                      startIndex,
+                                                      deleteCount
+                                                    }) => {
+                                                      if (!variable) {
+                                                        return;
+                                                      }
+                                                      const {
+                                                        objRoot,
+                                                        variablePath
+                                                      } = variable;
+
+                                                      $stateSet(
+                                                        objRoot,
+                                                        variablePath,
+                                                        value
+                                                      );
+                                                      return value;
+                                                    })?.apply(null, [
+                                                      actionArgs
+                                                    ]);
+                                                  })()
+                                                : undefined;
+                                              if (
+                                                $steps[
+                                                  "updateFormFilter2Submited"
+                                                ] != null &&
+                                                typeof $steps[
+                                                  "updateFormFilter2Submited"
+                                                ] === "object" &&
+                                                typeof $steps[
+                                                  "updateFormFilter2Submited"
+                                                ].then === "function"
+                                              ) {
+                                                $steps[
+                                                  "updateFormFilter2Submited"
+                                                ] = await $steps[
+                                                  "updateFormFilter2Submited"
+                                                ];
+                                              }
+
+                                              $steps["runCode"] = true
+                                                ? (() => {
+                                                    const actionArgs = {
+                                                      customFunction:
+                                                        async () => {
+                                                          return (() => {
+                                                            $state.input7.value =
+                                                              "";
+                                                            $state.input8.value =
+                                                              "";
+                                                            $state.keyWords =
+                                                              "";
+                                                            return ($state.searchLocation =
+                                                              "");
+                                                          })();
+                                                        }
+                                                    };
+                                                    return (({
+                                                      customFunction
+                                                    }) => {
+                                                      return customFunction();
+                                                    })?.apply(null, [
+                                                      actionArgs
+                                                    ]);
+                                                  })()
+                                                : undefined;
+                                              if (
+                                                $steps["runCode"] != null &&
+                                                typeof $steps["runCode"] ===
+                                                  "object" &&
+                                                typeof $steps["runCode"]
+                                                  .then === "function"
+                                              ) {
+                                                $steps["runCode"] =
+                                                  await $steps["runCode"];
+                                              }
+                                            }}
+                                            resetsForm={
+                                              hasVariant(
+                                                globalVariants,
+                                                "screen",
+                                                "mobileOnly"
+                                              )
+                                                ? true
+                                                : true
+                                            }
+                                            start={
+                                              <Vector19Icon
+                                                className={classNames(
+                                                  projectcss.all,
+                                                  sty.svg__jdgJi
+                                                )}
+                                                role={"img"}
+                                              />
+                                            }
+                                          />
+
+                                          {(() => {
+                                            try {
+                                              return Object.values(
+                                                $state.formFilter3.value
+                                              ).some(
+                                                val =>
+                                                  val !== "" &&
+                                                  val !== undefined
+                                              );
+                                            } catch (e) {
+                                              if (
+                                                e instanceof TypeError ||
+                                                e?.plasmicType ===
+                                                  "PlasmicUndefinedDataError"
+                                              ) {
+                                                return true;
+                                              }
+                                              throw e;
+                                            }
+                                          })() ? (
+                                            <button
+                                              data-plasmic-name={
+                                                "resetFormBtn2"
+                                              }
+                                              data-plasmic-override={
+                                                overrides.resetFormBtn2
+                                              }
+                                              className={classNames(
+                                                projectcss.all,
+                                                projectcss.button,
+                                                sty.resetFormBtn2
+                                              )}
+                                              onClick={async event => {
+                                                const $steps = {};
+
+                                                $steps["runCode"] = true
+                                                  ? (() => {
+                                                      const actionArgs = {
+                                                        customFunction:
+                                                          async () => {
+                                                            return (() => {
+                                                              $state.input7.value =
+                                                                "";
+                                                              $state.input8.value =
+                                                                "";
+                                                              $state.keyWords =
+                                                                "";
+                                                              return ($state.searchLocation =
+                                                                "");
+                                                            })();
+                                                          }
+                                                      };
+                                                      return (({
+                                                        customFunction
+                                                      }) => {
+                                                        return customFunction();
+                                                      })?.apply(null, [
+                                                        actionArgs
+                                                      ]);
+                                                    })()
+                                                  : undefined;
+                                                if (
+                                                  $steps["runCode"] != null &&
+                                                  typeof $steps["runCode"] ===
+                                                    "object" &&
+                                                  typeof $steps["runCode"]
+                                                    .then === "function"
+                                                ) {
+                                                  $steps["runCode"] =
+                                                    await $steps["runCode"];
+                                                }
+
+                                                $steps[
+                                                  "runActionOnFormFilter"
+                                                ] = true
+                                                  ? (() => {
+                                                      const actionArgs = {
+                                                        tplRef: "formFilter",
+                                                        action: "clearFields"
+                                                      };
+                                                      return (({
+                                                        tplRef,
+                                                        action,
+                                                        args
+                                                      }) => {
+                                                        return $refs?.[
+                                                          tplRef
+                                                        ]?.[action]?.(
+                                                          ...(args ?? [])
+                                                        );
+                                                      })?.apply(null, [
+                                                        actionArgs
+                                                      ]);
+                                                    })()
+                                                  : undefined;
+                                                if (
+                                                  $steps[
+                                                    "runActionOnFormFilter"
+                                                  ] != null &&
+                                                  typeof $steps[
+                                                    "runActionOnFormFilter"
+                                                  ] === "object" &&
+                                                  typeof $steps[
+                                                    "runActionOnFormFilter"
+                                                  ].then === "function"
+                                                ) {
+                                                  $steps[
+                                                    "runActionOnFormFilter"
+                                                  ] = await $steps[
+                                                    "runActionOnFormFilter"
+                                                  ];
+                                                }
+
+                                                $steps[
+                                                  "updateFormFilter2Submited"
+                                                ] = true
+                                                  ? (() => {
+                                                      const actionArgs = {
+                                                        variable: {
+                                                          objRoot: $state,
+                                                          variablePath: [
+                                                            "formFilter2Submited"
+                                                          ]
+                                                        },
+                                                        operation: 0,
+                                                        value: false
+                                                      };
+                                                      return (({
+                                                        variable,
+                                                        value,
+                                                        startIndex,
+                                                        deleteCount
+                                                      }) => {
+                                                        if (!variable) {
+                                                          return;
+                                                        }
+                                                        const {
+                                                          objRoot,
+                                                          variablePath
+                                                        } = variable;
+
+                                                        $stateSet(
+                                                          objRoot,
+                                                          variablePath,
+                                                          value
+                                                        );
+                                                        return value;
+                                                      })?.apply(null, [
+                                                        actionArgs
+                                                      ]);
+                                                    })()
+                                                  : undefined;
+                                                if (
+                                                  $steps[
+                                                    "updateFormFilter2Submited"
+                                                  ] != null &&
+                                                  typeof $steps[
+                                                    "updateFormFilter2Submited"
+                                                  ] === "object" &&
+                                                  typeof $steps[
+                                                    "updateFormFilter2Submited"
+                                                  ].then === "function"
+                                                ) {
+                                                  $steps[
+                                                    "updateFormFilter2Submited"
+                                                  ] = await $steps[
+                                                    "updateFormFilter2Submited"
+                                                  ];
+                                                }
+                                              }}
+                                              ref={ref => {
+                                                $refs["resetFormBtn2"] = ref;
+                                              }}
+                                            >
+                                              <Vector19Icon
+                                                className={classNames(
+                                                  projectcss.all,
+                                                  sty.svg__wfJu
+                                                )}
+                                                role={"img"}
+                                              />
+
+                                              <div
+                                                className={classNames(
+                                                  projectcss.all,
+                                                  projectcss.__wab_text,
+                                                  sty.text___4U3V
+                                                )}
+                                              >
+                                                {
+                                                  "R\u00e9initialiser les filtres"
+                                                }
+                                              </div>
+                                            </button>
+                                          ) : null}
+                                        </div>
+                                      </FormWrapper>
+                                    );
+                                  })()}
+                                </div>
+                              ) : null}
                               <div
                                 data-plasmic-name={"lastMinuteBtn"}
                                 data-plasmic-override={overrides.lastMinuteBtn}
@@ -11560,10 +13461,10 @@ function PlasmicAccueil__RenderFunc(props: {
                                     projectcss.root_reset,
                                     projectcss.plasmic_default_styles,
                                     projectcss.plasmic_mixins,
-                                    projectcss.plasmic_tokens,
-                                    plasmic_antd_5_hostless_css.plasmic_tokens,
-                                    plasmic_library_tailwind_3_4_number_tokens_css.plasmic_tokens,
-                                    plasmic_plasmic_rich_components_css.plasmic_tokens
+                                    styleTokensClassNames,
+                                    styleTokensClassNames_antd_5_hostless,
+                                    styleTokensClassNames_library_tailwind_3_4_number_tokens,
+                                    styleTokensClassNames_plasmic_rich_components
                                   )}
                                   mode={"multiple"}
                                   onChange={async (...eventArgs: any) => {
@@ -11726,10 +13627,10 @@ function PlasmicAccueil__RenderFunc(props: {
                                     projectcss.root_reset,
                                     projectcss.plasmic_default_styles,
                                     projectcss.plasmic_mixins,
-                                    projectcss.plasmic_tokens,
-                                    plasmic_antd_5_hostless_css.plasmic_tokens,
-                                    plasmic_library_tailwind_3_4_number_tokens_css.plasmic_tokens,
-                                    plasmic_plasmic_rich_components_css.plasmic_tokens
+                                    styleTokensClassNames,
+                                    styleTokensClassNames_antd_5_hostless,
+                                    styleTokensClassNames_library_tailwind_3_4_number_tokens,
+                                    styleTokensClassNames_plasmic_rich_components
                                   )}
                                   mode={"multiple"}
                                   onChange={async (...eventArgs: any) => {
@@ -13408,10 +15309,10 @@ function PlasmicAccueil__RenderFunc(props: {
                                       projectcss.root_reset,
                                       projectcss.plasmic_default_styles,
                                       projectcss.plasmic_mixins,
-                                      projectcss.plasmic_tokens,
-                                      plasmic_antd_5_hostless_css.plasmic_tokens,
-                                      plasmic_library_tailwind_3_4_number_tokens_css.plasmic_tokens,
-                                      plasmic_plasmic_rich_components_css.plasmic_tokens
+                                      styleTokensClassNames,
+                                      styleTokensClassNames_antd_5_hostless,
+                                      styleTokensClassNames_library_tailwind_3_4_number_tokens,
+                                      styleTokensClassNames_plasmic_rich_components
                                     )}
                                     dropdownMatchSelectWidth={
                                       hasVariant(
@@ -13533,10 +15434,10 @@ function PlasmicAccueil__RenderFunc(props: {
                                       projectcss.root_reset,
                                       projectcss.plasmic_default_styles,
                                       projectcss.plasmic_mixins,
-                                      projectcss.plasmic_tokens,
-                                      plasmic_antd_5_hostless_css.plasmic_tokens,
-                                      plasmic_library_tailwind_3_4_number_tokens_css.plasmic_tokens,
-                                      plasmic_plasmic_rich_components_css.plasmic_tokens
+                                      styleTokensClassNames,
+                                      styleTokensClassNames_antd_5_hostless,
+                                      styleTokensClassNames_library_tailwind_3_4_number_tokens,
+                                      styleTokensClassNames_plasmic_rich_components
                                     )}
                                     mode={"multiple"}
                                     onChange={async (...eventArgs: any) => {
@@ -13645,10 +15546,10 @@ function PlasmicAccueil__RenderFunc(props: {
                                       projectcss.root_reset,
                                       projectcss.plasmic_default_styles,
                                       projectcss.plasmic_mixins,
-                                      projectcss.plasmic_tokens,
-                                      plasmic_antd_5_hostless_css.plasmic_tokens,
-                                      plasmic_library_tailwind_3_4_number_tokens_css.plasmic_tokens,
-                                      plasmic_plasmic_rich_components_css.plasmic_tokens
+                                      styleTokensClassNames,
+                                      styleTokensClassNames_antd_5_hostless,
+                                      styleTokensClassNames_library_tailwind_3_4_number_tokens,
+                                      styleTokensClassNames_plasmic_rich_components
                                     )}
                                     dropdownMatchSelectWidth={false}
                                     mode={"multiple"}
@@ -13749,10 +15650,10 @@ function PlasmicAccueil__RenderFunc(props: {
                                       projectcss.root_reset,
                                       projectcss.plasmic_default_styles,
                                       projectcss.plasmic_mixins,
-                                      projectcss.plasmic_tokens,
-                                      plasmic_antd_5_hostless_css.plasmic_tokens,
-                                      plasmic_library_tailwind_3_4_number_tokens_css.plasmic_tokens,
-                                      plasmic_plasmic_rich_components_css.plasmic_tokens
+                                      styleTokensClassNames,
+                                      styleTokensClassNames_antd_5_hostless,
+                                      styleTokensClassNames_library_tailwind_3_4_number_tokens,
+                                      styleTokensClassNames_plasmic_rich_components
                                     )}
                                     mode={"multiple"}
                                     onChange={async (...eventArgs: any) => {
@@ -13855,10 +15756,10 @@ function PlasmicAccueil__RenderFunc(props: {
                                       projectcss.root_reset,
                                       projectcss.plasmic_default_styles,
                                       projectcss.plasmic_mixins,
-                                      projectcss.plasmic_tokens,
-                                      plasmic_antd_5_hostless_css.plasmic_tokens,
-                                      plasmic_library_tailwind_3_4_number_tokens_css.plasmic_tokens,
-                                      plasmic_plasmic_rich_components_css.plasmic_tokens
+                                      styleTokensClassNames,
+                                      styleTokensClassNames_antd_5_hostless,
+                                      styleTokensClassNames_library_tailwind_3_4_number_tokens,
+                                      styleTokensClassNames_plasmic_rich_components
                                     )}
                                     mode={"multiple"}
                                     onChange={async (...eventArgs: any) => {
@@ -13962,10 +15863,10 @@ function PlasmicAccueil__RenderFunc(props: {
                                       projectcss.root_reset,
                                       projectcss.plasmic_default_styles,
                                       projectcss.plasmic_mixins,
-                                      projectcss.plasmic_tokens,
-                                      plasmic_antd_5_hostless_css.plasmic_tokens,
-                                      plasmic_library_tailwind_3_4_number_tokens_css.plasmic_tokens,
-                                      plasmic_plasmic_rich_components_css.plasmic_tokens
+                                      styleTokensClassNames,
+                                      styleTokensClassNames_antd_5_hostless,
+                                      styleTokensClassNames_library_tailwind_3_4_number_tokens,
+                                      styleTokensClassNames_plasmic_rich_components
                                     )}
                                     mode={"multiple"}
                                     onChange={async (...eventArgs: any) => {
@@ -14069,10 +15970,10 @@ function PlasmicAccueil__RenderFunc(props: {
                                       projectcss.root_reset,
                                       projectcss.plasmic_default_styles,
                                       projectcss.plasmic_mixins,
-                                      projectcss.plasmic_tokens,
-                                      plasmic_antd_5_hostless_css.plasmic_tokens,
-                                      plasmic_library_tailwind_3_4_number_tokens_css.plasmic_tokens,
-                                      plasmic_plasmic_rich_components_css.plasmic_tokens
+                                      styleTokensClassNames,
+                                      styleTokensClassNames_antd_5_hostless,
+                                      styleTokensClassNames_library_tailwind_3_4_number_tokens,
+                                      styleTokensClassNames_plasmic_rich_components
                                     )}
                                     mode={"multiple"}
                                     onChange={async (...eventArgs: any) => {
@@ -14627,6 +16528,55 @@ function PlasmicAccueil__RenderFunc(props: {
               )}
             </DataCtxReader__>
           </LoadingBoundary>
+          <PageLoader
+            data-plasmic-name={"pageLoader"}
+            data-plasmic-override={overrides.pageLoader}
+            className={classNames("__wab_instance", sty.pageLoader)}
+            onMount={async () => {
+              const $steps = {};
+
+              $steps["goToRegisterGoogleValidation"] = true
+                ? (() => {
+                    const actionArgs = { destination: `/register-validation` };
+                    return (({ destination }) => {
+                      if (
+                        typeof destination === "string" &&
+                        destination.startsWith("#")
+                      ) {
+                        document
+                          .getElementById(destination.substr(1))
+                          .scrollIntoView({ behavior: "smooth" });
+                      } else {
+                        __nextRouter?.push(destination);
+                      }
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["goToRegisterGoogleValidation"] != null &&
+                typeof $steps["goToRegisterGoogleValidation"] === "object" &&
+                typeof $steps["goToRegisterGoogleValidation"].then ===
+                  "function"
+              ) {
+                $steps["goToRegisterGoogleValidation"] = await $steps[
+                  "goToRegisterGoogleValidation"
+                ];
+              }
+            }}
+            shouldRun={(() => {
+              try {
+                return $ctx.SupabaseUser.user?.user_metadata.role === "google";
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return true;
+                }
+                throw e;
+              }
+            })()}
+          />
         </div>
       </div>
     </React.Fragment>
@@ -14659,7 +16609,7 @@ const PlasmicDescendants = {
     "trouvezUnJobNaJamaisEteAussiSimple",
     "trouvezUnJobNaJamaisEteAussiSimple2",
     "jobSearchSection",
-    "filters",
+    "filtersDesk",
     "formFilter",
     "wrapContent",
     "input3",
@@ -14671,7 +16621,6 @@ const PlasmicDescendants = {
     "select14",
     "select12",
     "button8",
-    "clearBtn",
     "resetFormBtn",
     "mapJobs",
     "joblistandbtn",
@@ -14687,6 +16636,19 @@ const PlasmicDescendants = {
     "dislike",
     "jobCard20",
     "loadingComponent",
+    "filtersMobile",
+    "formFilter3",
+    "wrapContent3",
+    "input7",
+    "input8",
+    "select22",
+    "select11",
+    "select23",
+    "select24",
+    "select25",
+    "select26",
+    "button9",
+    "resetFormBtn2",
     "lastMinuteBtn",
     "buttonLastMin2",
     "text7",
@@ -14840,7 +16802,8 @@ const PlasmicDescendants = {
     "text5",
     "textLinkBase",
     "text6",
-    "footer"
+    "footer",
+    "pageLoader"
   ],
   loadingBoundary: [
     "loadingBoundary",
@@ -14866,7 +16829,7 @@ const PlasmicDescendants = {
     "trouvezUnJobNaJamaisEteAussiSimple",
     "trouvezUnJobNaJamaisEteAussiSimple2",
     "jobSearchSection",
-    "filters",
+    "filtersDesk",
     "formFilter",
     "wrapContent",
     "input3",
@@ -14878,7 +16841,6 @@ const PlasmicDescendants = {
     "select14",
     "select12",
     "button8",
-    "clearBtn",
     "resetFormBtn",
     "mapJobs",
     "joblistandbtn",
@@ -14894,6 +16856,19 @@ const PlasmicDescendants = {
     "dislike",
     "jobCard20",
     "loadingComponent",
+    "filtersMobile",
+    "formFilter3",
+    "wrapContent3",
+    "input7",
+    "input8",
+    "select22",
+    "select11",
+    "select23",
+    "select24",
+    "select25",
+    "select26",
+    "button9",
+    "resetFormBtn2",
     "lastMinuteBtn",
     "buttonLastMin2",
     "text7",
@@ -15072,7 +17047,7 @@ const PlasmicDescendants = {
     "trouvezUnJobNaJamaisEteAussiSimple",
     "trouvezUnJobNaJamaisEteAussiSimple2",
     "jobSearchSection",
-    "filters",
+    "filtersDesk",
     "formFilter",
     "wrapContent",
     "input3",
@@ -15084,7 +17059,6 @@ const PlasmicDescendants = {
     "select14",
     "select12",
     "button8",
-    "clearBtn",
     "resetFormBtn",
     "mapJobs",
     "joblistandbtn",
@@ -15100,6 +17074,19 @@ const PlasmicDescendants = {
     "dislike",
     "jobCard20",
     "loadingComponent",
+    "filtersMobile",
+    "formFilter3",
+    "wrapContent3",
+    "input7",
+    "input8",
+    "select22",
+    "select11",
+    "select23",
+    "select24",
+    "select25",
+    "select26",
+    "button9",
+    "resetFormBtn2",
     "lastMinuteBtn",
     "buttonLastMin2",
     "text7",
@@ -15130,7 +17117,7 @@ const PlasmicDescendants = {
     "trouvezUnJobNaJamaisEteAussiSimple",
     "trouvezUnJobNaJamaisEteAussiSimple2",
     "jobSearchSection",
-    "filters",
+    "filtersDesk",
     "formFilter",
     "wrapContent",
     "input3",
@@ -15142,7 +17129,6 @@ const PlasmicDescendants = {
     "select14",
     "select12",
     "button8",
-    "clearBtn",
     "resetFormBtn",
     "mapJobs",
     "joblistandbtn",
@@ -15158,6 +17144,19 @@ const PlasmicDescendants = {
     "dislike",
     "jobCard20",
     "loadingComponent",
+    "filtersMobile",
+    "formFilter3",
+    "wrapContent3",
+    "input7",
+    "input8",
+    "select22",
+    "select11",
+    "select23",
+    "select24",
+    "select25",
+    "select26",
+    "button9",
+    "resetFormBtn2",
     "lastMinuteBtn",
     "buttonLastMin2",
     "text7",
@@ -15174,7 +17173,7 @@ const PlasmicDescendants = {
     "trouvezUnJobNaJamaisEteAussiSimple",
     "trouvezUnJobNaJamaisEteAussiSimple2",
     "jobSearchSection",
-    "filters",
+    "filtersDesk",
     "formFilter",
     "wrapContent",
     "input3",
@@ -15186,7 +17185,6 @@ const PlasmicDescendants = {
     "select14",
     "select12",
     "button8",
-    "clearBtn",
     "resetFormBtn",
     "mapJobs",
     "joblistandbtn",
@@ -15202,6 +17200,19 @@ const PlasmicDescendants = {
     "dislike",
     "jobCard20",
     "loadingComponent",
+    "filtersMobile",
+    "formFilter3",
+    "wrapContent3",
+    "input7",
+    "input8",
+    "select22",
+    "select11",
+    "select23",
+    "select24",
+    "select25",
+    "select26",
+    "button9",
+    "resetFormBtn2",
     "lastMinuteBtn",
     "buttonLastMin2",
     "text7",
@@ -15221,7 +17232,7 @@ const PlasmicDescendants = {
   trouvezUnJobNaJamaisEteAussiSimple2: ["trouvezUnJobNaJamaisEteAussiSimple2"],
   jobSearchSection: [
     "jobSearchSection",
-    "filters",
+    "filtersDesk",
     "formFilter",
     "wrapContent",
     "input3",
@@ -15233,7 +17244,6 @@ const PlasmicDescendants = {
     "select14",
     "select12",
     "button8",
-    "clearBtn",
     "resetFormBtn",
     "mapJobs",
     "joblistandbtn",
@@ -15249,6 +17259,19 @@ const PlasmicDescendants = {
     "dislike",
     "jobCard20",
     "loadingComponent",
+    "filtersMobile",
+    "formFilter3",
+    "wrapContent3",
+    "input7",
+    "input8",
+    "select22",
+    "select11",
+    "select23",
+    "select24",
+    "select25",
+    "select26",
+    "button9",
+    "resetFormBtn2",
     "lastMinuteBtn",
     "buttonLastMin2",
     "text7",
@@ -15257,8 +17280,8 @@ const PlasmicDescendants = {
     "mapboxContainer",
     "mapBox"
   ],
-  filters: [
-    "filters",
+  filtersDesk: [
+    "filtersDesk",
     "formFilter",
     "wrapContent",
     "input3",
@@ -15270,7 +17293,6 @@ const PlasmicDescendants = {
     "select14",
     "select12",
     "button8",
-    "clearBtn",
     "resetFormBtn"
   ],
   formFilter: [
@@ -15285,7 +17307,6 @@ const PlasmicDescendants = {
     "select14",
     "select12",
     "button8",
-    "clearBtn",
     "resetFormBtn"
   ],
   wrapContent: [
@@ -15299,7 +17320,6 @@ const PlasmicDescendants = {
     "select14",
     "select12",
     "button8",
-    "clearBtn",
     "resetFormBtn"
   ],
   input3: ["input3"],
@@ -15311,7 +17331,6 @@ const PlasmicDescendants = {
   select14: ["select14"],
   select12: ["select12"],
   button8: ["button8"],
-  clearBtn: ["clearBtn"],
   resetFormBtn: ["resetFormBtn"],
   mapJobs: [
     "mapJobs",
@@ -15328,6 +17347,19 @@ const PlasmicDescendants = {
     "dislike",
     "jobCard20",
     "loadingComponent",
+    "filtersMobile",
+    "formFilter3",
+    "wrapContent3",
+    "input7",
+    "input8",
+    "select22",
+    "select11",
+    "select23",
+    "select24",
+    "select25",
+    "select26",
+    "button9",
+    "resetFormBtn2",
     "lastMinuteBtn",
     "buttonLastMin2",
     "text7",
@@ -15377,6 +17409,58 @@ const PlasmicDescendants = {
   dislike: ["dislike"],
   jobCard20: ["jobCard20"],
   loadingComponent: ["loadingComponent"],
+  filtersMobile: [
+    "filtersMobile",
+    "formFilter3",
+    "wrapContent3",
+    "input7",
+    "input8",
+    "select22",
+    "select11",
+    "select23",
+    "select24",
+    "select25",
+    "select26",
+    "button9",
+    "resetFormBtn2"
+  ],
+  formFilter3: [
+    "formFilter3",
+    "wrapContent3",
+    "input7",
+    "input8",
+    "select22",
+    "select11",
+    "select23",
+    "select24",
+    "select25",
+    "select26",
+    "button9",
+    "resetFormBtn2"
+  ],
+  wrapContent3: [
+    "wrapContent3",
+    "input7",
+    "input8",
+    "select22",
+    "select11",
+    "select23",
+    "select24",
+    "select25",
+    "select26",
+    "button9",
+    "resetFormBtn2"
+  ],
+  input7: ["input7"],
+  input8: ["input8"],
+  select22: ["select22"],
+  select11: ["select11"],
+  select23: ["select23"],
+  select24: ["select24"],
+  select25: ["select25"],
+  select26: ["select26"],
+  button9: ["button9"],
+  resetFormBtn2: ["resetFormBtn2"],
   lastMinuteBtn: [
     "lastMinuteBtn",
     "buttonLastMin2",
@@ -16076,7 +18160,8 @@ const PlasmicDescendants = {
   text5: ["text5"],
   textLinkBase: ["textLinkBase", "text6"],
   text6: ["text6"],
-  footer: ["footer"]
+  footer: ["footer"],
+  pageLoader: ["pageLoader"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -16106,7 +18191,7 @@ type NodeDefaultElementType = {
   trouvezUnJobNaJamaisEteAussiSimple: "h1";
   trouvezUnJobNaJamaisEteAussiSimple2: "p";
   jobSearchSection: "div";
-  filters: "div";
+  filtersDesk: "div";
   formFilter: typeof FormWrapper;
   wrapContent: "div";
   input3: typeof AntdInput;
@@ -16118,7 +18203,6 @@ type NodeDefaultElementType = {
   select14: typeof AntdSelect;
   select12: typeof AntdSelect;
   button8: typeof Button;
-  clearBtn: typeof ClearBtn;
   resetFormBtn: "button";
   mapJobs: "div";
   joblistandbtn: "div";
@@ -16134,6 +18218,19 @@ type NodeDefaultElementType = {
   dislike: "svg";
   jobCard20: typeof JobCard20;
   loadingComponent: typeof LoadingComponent;
+  filtersMobile: "div";
+  formFilter3: typeof FormWrapper;
+  wrapContent3: "div";
+  input7: typeof AntdInput;
+  input8: typeof AntdInput;
+  select22: typeof AntdSelect;
+  select11: typeof AntdSelect;
+  select23: typeof AntdSelect;
+  select24: typeof AntdSelect;
+  select25: typeof AntdSelect;
+  select26: typeof AntdSelect;
+  button9: typeof Button;
+  resetFormBtn2: "button";
   lastMinuteBtn: "div";
   buttonLastMin2: "button";
   text7: "div";
@@ -16288,6 +18385,7 @@ type NodeDefaultElementType = {
   textLinkBase: "a";
   text6: "div";
   footer: typeof Footer;
+  pageLoader: typeof PageLoader;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -16377,7 +18475,7 @@ export const PlasmicAccueil = Object.assign(
       "trouvezUnJobNaJamaisEteAussiSimple2"
     ),
     jobSearchSection: makeNodeComponent("jobSearchSection"),
-    filters: makeNodeComponent("filters"),
+    filtersDesk: makeNodeComponent("filtersDesk"),
     formFilter: makeNodeComponent("formFilter"),
     wrapContent: makeNodeComponent("wrapContent"),
     input3: makeNodeComponent("input3"),
@@ -16389,7 +18487,6 @@ export const PlasmicAccueil = Object.assign(
     select14: makeNodeComponent("select14"),
     select12: makeNodeComponent("select12"),
     button8: makeNodeComponent("button8"),
-    clearBtn: makeNodeComponent("clearBtn"),
     resetFormBtn: makeNodeComponent("resetFormBtn"),
     mapJobs: makeNodeComponent("mapJobs"),
     joblistandbtn: makeNodeComponent("joblistandbtn"),
@@ -16405,6 +18502,19 @@ export const PlasmicAccueil = Object.assign(
     dislike: makeNodeComponent("dislike"),
     jobCard20: makeNodeComponent("jobCard20"),
     loadingComponent: makeNodeComponent("loadingComponent"),
+    filtersMobile: makeNodeComponent("filtersMobile"),
+    formFilter3: makeNodeComponent("formFilter3"),
+    wrapContent3: makeNodeComponent("wrapContent3"),
+    input7: makeNodeComponent("input7"),
+    input8: makeNodeComponent("input8"),
+    select22: makeNodeComponent("select22"),
+    select11: makeNodeComponent("select11"),
+    select23: makeNodeComponent("select23"),
+    select24: makeNodeComponent("select24"),
+    select25: makeNodeComponent("select25"),
+    select26: makeNodeComponent("select26"),
+    button9: makeNodeComponent("button9"),
+    resetFormBtn2: makeNodeComponent("resetFormBtn2"),
     lastMinuteBtn: makeNodeComponent("lastMinuteBtn"),
     buttonLastMin2: makeNodeComponent("buttonLastMin2"),
     text7: makeNodeComponent("text7"),
@@ -16559,6 +18669,7 @@ export const PlasmicAccueil = Object.assign(
     textLinkBase: makeNodeComponent("textLinkBase"),
     text6: makeNodeComponent("text6"),
     footer: makeNodeComponent("footer"),
+    pageLoader: makeNodeComponent("pageLoader"),
 
     // Metadata about props expected for PlasmicAccueil
     internalVariantProps: PlasmicAccueil__VariantProps,

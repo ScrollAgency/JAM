@@ -188,20 +188,41 @@
   display: flex;
   position: relative;
   align-self: stretch;
-  flex-direction: row;
+  flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
 }
 .heading {
   display: block;
   flex-grow: 1;
-  font-size: 48px;
+  font-size: 40px;
   font-family: "DM Sans", sans-serif;
   font-weight: 600;
   letter-spacing: 0em;
   line-height: 1.2000000476837158;
   color: rgba(5, 5, 5, 1);
   position: relative;
+}
+.text__i5Tw0 {
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  font-family: "Inter", sans-serif;
+  font-size: 24px;
+  font-weight: 400;
+  font-style: normal;
+  color: #535353;
+  text-align: left;
+  text-transform: none;
+  line-height: 1.5;
+  letter-spacing: normal;
+  white-space: pre-wrap;
+  user-select: text;
+  text-decoration-line: none;
+  text-overflow: clip;
+  padding-top: 24px;
+  min-width: 0;
 }
 .wrapper {
   height: auto;

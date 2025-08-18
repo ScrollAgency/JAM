@@ -41,7 +41,9 @@
           "componentImportPath": "@plasmicpkgs/plasmic-basic-components"
         }
       ],
-      "customFunctions": []
+      "customFunctions": [],
+      "styleTokensProviderFilePath": "",
+      "projectModuleFilePath": ""
     },
     {
       "projectId": "t8YkhWMcnmjNxpEvnBYxFF",
@@ -56,7 +58,9 @@
       "globalContextsFilePath": "",
       "splitsProviderFilePath": "",
       "codeComponents": [],
-      "customFunctions": []
+      "customFunctions": [],
+      "styleTokensProviderFilePath": "",
+      "projectModuleFilePath": ""
     },
     {
       "projectId": "i3z63WaCLuRiSZRBwZC8d1",
@@ -78,7 +82,9 @@
           "componentImportPath": "@plasmicpkgs/commerce-shopify"
         }
       ],
-      "customFunctions": []
+      "customFunctions": [],
+      "styleTokensProviderFilePath": "",
+      "projectModuleFilePath": ""
     },
     {
       "projectId": "xp1p7dmg329XVLHyuEUxD2",
@@ -196,7 +202,9 @@
           "componentImportPath": "@plasmicpkgs/commerce"
         }
       ],
-      "customFunctions": []
+      "customFunctions": [],
+      "styleTokensProviderFilePath": "",
+      "projectModuleFilePath": ""
     },
     {
       "projectId": "jkU633o1Cz7HrJdwdxhVHk",
@@ -250,7 +258,9 @@
           }
         }
       ],
-      "customFunctions": []
+      "customFunctions": [],
+      "styleTokensProviderFilePath": "",
+      "projectModuleFilePath": ""
     },
     {
       "projectId": "r3ASNrnyvLLLAtDvzUioQ",
@@ -276,7 +286,9 @@
           }
         }
       ],
-      "customFunctions": []
+      "customFunctions": [],
+      "styleTokensProviderFilePath": "",
+      "projectModuleFilePath": ""
     },
     {
       "projectId": "58GpZjZCWTaJ8AUhpCwt2K",
@@ -298,7 +310,9 @@
           "componentImportPath": "@plasmicpkgs/react-awesome-reveal"
         }
       ],
-      "customFunctions": []
+      "customFunctions": [],
+      "styleTokensProviderFilePath": "",
+      "projectModuleFilePath": ""
     },
     {
       "projectId": "szjgMQpPpxhmkjnaBvZQJG",
@@ -320,7 +334,9 @@
           "componentImportPath": "@plasmicpkgs/react-parallax-tilt"
         }
       ],
-      "customFunctions": []
+      "customFunctions": [],
+      "styleTokensProviderFilePath": "",
+      "projectModuleFilePath": ""
     },
     {
       "projectId": "gLnoj82AzKVVT7qXiqAbHD",
@@ -386,7 +402,9 @@
           "componentImportPath": "@plasmicpkgs/plasmic-tabs"
         }
       ],
-      "customFunctions": []
+      "customFunctions": [],
+      "styleTokensProviderFilePath": "",
+      "projectModuleFilePath": ""
     },
     {
       "projectId": "caTPwKxj5ZrD9LQ7DMdK4Z",
@@ -444,7 +462,9 @@
           "componentImportPath": "@plasmicpkgs/plasmic-basic-components"
         }
       ],
-      "customFunctions": []
+      "customFunctions": [],
+      "styleTokensProviderFilePath": "",
+      "projectModuleFilePath": ""
     },
     {
       "projectId": "YUiM7yqBWAqsh8KSnrdj7",
@@ -472,7 +492,9 @@
           "componentImportPath": "@plasmicpkgs/plasmic-query"
         }
       ],
-      "customFunctions": []
+      "customFunctions": [],
+      "styleTokensProviderFilePath": "",
+      "projectModuleFilePath": ""
     },
     {
       "projectId": "4vjRXvnb4XuY6J15w9oRcQ",
@@ -501,7 +523,9 @@
         }
       ],
       "customFunctions": [],
-      "jsBundleThemes": []
+      "jsBundleThemes": [],
+      "styleTokensProviderFilePath": "",
+      "projectModuleFilePath": ""
     },
     {
       "projectId": "gmeH6XgPaBtkt51HunAo4g",
@@ -709,7 +733,9 @@
           "componentImportPath": "@plasmicpkgs/react-aria/skinny/registerDialog"
         }
       ],
-      "customFunctions": []
+      "customFunctions": [],
+      "styleTokensProviderFilePath": "",
+      "projectModuleFilePath": ""
     },
     {
       "projectId": "ohDidvG9XsCeFumugENU3J",
@@ -1109,7 +1135,9 @@
           "componentImportPath": "@plasmicpkgs/antd5/skinny/registerBreadcrumb"
         }
       ],
-      "customFunctions": []
+      "customFunctions": [],
+      "styleTokensProviderFilePath": "",
+      "projectModuleFilePath": ""
     },
     {
       "projectId": "f7DE9y7qp46fyCw5nuY8f9",
@@ -5035,7 +5063,9 @@
           "componentImportPath": "@/plasmic-library/accordions/Accordion/Accordion"
         }
       ],
-      "customFunctions": []
+      "customFunctions": [],
+      "styleTokensProviderFilePath": "plasmic/jam_production_🚀/PlasmicStyleTokensProvider.tsx",
+      "projectModuleFilePath": "plasmic/jam_production_🚀/plasmic.tsx"
     },
     {
       "projectId": "kS7YGZfVr6mU43XDQjXELc",
@@ -5057,7 +5087,9 @@
           "componentImportPath": "@plasmicpkgs/react-chartjs-2"
         }
       ],
-      "customFunctions": []
+      "customFunctions": [],
+      "styleTokensProviderFilePath": "",
+      "projectModuleFilePath": ""
     },
     {
       "projectId": "7nJ7UcFmq9UzB6eXfC5z4a",
@@ -5079,7 +5111,9 @@
           "componentImportPath": "@plasmicpkgs/plasmic-nav"
         }
       ],
-      "customFunctions": []
+      "customFunctions": [],
+      "styleTokensProviderFilePath": "",
+      "projectModuleFilePath": ""
     },
     {
       "projectId": "8PtdGodUbexNYgkuyBUcWu",
@@ -5101,7 +5135,9 @@
           "componentImportPath": "@plasmicpkgs/plasmic-embed-css"
         }
       ],
-      "customFunctions": []
+      "customFunctions": [],
+      "styleTokensProviderFilePath": "",
+      "projectModuleFilePath": ""
     },
     {
       "projectId": "hjKYmYi6HMwK6TRyk7ew5R",
@@ -5159,7 +5195,9 @@
           "componentImportPath": "@plasmicpkgs/plasmic-cms"
         }
       ],
-      "customFunctions": []
+      "customFunctions": [],
+      "styleTokensProviderFilePath": "",
+      "projectModuleFilePath": ""
     }
   ],
   "globalVariants": {
@@ -5188,6 +5226,6 @@
   "nextjsConfig": {
     "pagesDir": "../pages"
   },
-  "cliVersion": "0.1.341",
-  "$schema": "https://unpkg.com/@plasmicapp/cli@0.1.341/dist/plasmic.schema.json"
+  "cliVersion": "0.1.342",
+  "$schema": "https://unpkg.com/@plasmicapp/cli@0.1.342/dist/plasmic.schema.json"
 }

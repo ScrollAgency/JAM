@@ -33,7 +33,6 @@ import {
   classNames,
   createPlasmicElementProxy,
   deriveRenderOpts,
-  ensureGlobalVariants,
   generateOnMutateForSpec,
   generateStateOnChangeProp,
   generateStateOnChangePropForCodeComponents,
@@ -59,13 +58,14 @@ import {
   useGlobalActions
 } from "@plasmicapp/react-web/lib/host";
 
-import { useScreenVariants as useScreenVariantshm8Nko4B5BDd } from "./PlasmicGlobalVariant__Screen"; // plasmic-import: HM8Nko4B5BDd/globalVariant
+import { _useGlobalVariants } from "./plasmic"; // plasmic-import: f7DE9y7qp46fyCw5nuY8f9/projectModule
+import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: f7DE9y7qp46fyCw5nuY8f9/styleTokensProvider
+import { _useStyleTokens as useStyleTokens_antd_5_hostless } from ""; // plasmic-import: ohDidvG9XsCeFumugENU3J/styleTokensProvider
+import { _useStyleTokens as useStyleTokens_library_tailwind_3_4_number_tokens } from ""; // plasmic-import: 4vjRXvnb4XuY6J15w9oRcQ/styleTokensProvider
+import { _useStyleTokens as useStyleTokens_plasmic_rich_components } from ""; // plasmic-import: jkU633o1Cz7HrJdwdxhVHk/styleTokensProvider
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
-import plasmic_antd_5_hostless_css from "../antd_5_hostless/plasmic.module.css"; // plasmic-import: ohDidvG9XsCeFumugENU3J/projectcss
-import plasmic_library_tailwind_3_4_number_tokens_css from "../library_tailwind_3_4_number_tokens/plasmic.module.css"; // plasmic-import: 4vjRXvnb4XuY6J15w9oRcQ/projectcss
-import plasmic_plasmic_rich_components_css from "../plasmic_rich_components/plasmic.module.css"; // plasmic-import: jkU633o1Cz7HrJdwdxhVHk/projectcss
 import projectcss from "./plasmic.module.css"; // plasmic-import: f7DE9y7qp46fyCw5nuY8f9/projectcss
 import sty from "./PlasmicRegister.module.css"; // plasmic-import: E45M1sTSQfF9/css
 
@@ -143,9 +143,14 @@ function PlasmicRegister__RenderFunc(props: {
   const refsRef = React.useRef({});
   const $refs = refsRef.current;
 
-  const globalVariants = ensureGlobalVariants({
-    screen: useScreenVariantshm8Nko4B5BDd()
-  });
+  const globalVariants = _useGlobalVariants();
+  const styleTokensClassNames = _useStyleTokens();
+  const styleTokensClassNames_antd_5_hostless =
+    useStyleTokens_antd_5_hostless();
+  const styleTokensClassNames_library_tailwind_3_4_number_tokens =
+    useStyleTokens_library_tailwind_3_4_number_tokens();
+  const styleTokensClassNames_plasmic_rich_components =
+    useStyleTokens_plasmic_rich_components();
 
   return (
     <React.Fragment>
@@ -168,10 +173,10 @@ function PlasmicRegister__RenderFunc(props: {
             projectcss.root_reset,
             projectcss.plasmic_default_styles,
             projectcss.plasmic_mixins,
-            projectcss.plasmic_tokens,
-            plasmic_antd_5_hostless_css.plasmic_tokens,
-            plasmic_library_tailwind_3_4_number_tokens_css.plasmic_tokens,
-            plasmic_plasmic_rich_components_css.plasmic_tokens,
+            styleTokensClassNames,
+            styleTokensClassNames_antd_5_hostless,
+            styleTokensClassNames_library_tailwind_3_4_number_tokens,
+            styleTokensClassNames_plasmic_rich_components,
             sty.root
           )}
         >
@@ -317,7 +322,7 @@ function PlasmicRegister__RenderFunc(props: {
                   onClick={async event => {
                     const $steps = {};
 
-                    $steps["goToInscription2"] = true
+                    $steps["goToRegisterCandidat"] = true
                       ? (() => {
                           const actionArgs = {
                             destination: `/register-candidat`
@@ -337,12 +342,12 @@ function PlasmicRegister__RenderFunc(props: {
                         })()
                       : undefined;
                     if (
-                      $steps["goToInscription2"] != null &&
-                      typeof $steps["goToInscription2"] === "object" &&
-                      typeof $steps["goToInscription2"].then === "function"
+                      $steps["goToRegisterCandidat"] != null &&
+                      typeof $steps["goToRegisterCandidat"] === "object" &&
+                      typeof $steps["goToRegisterCandidat"].then === "function"
                     ) {
-                      $steps["goToInscription2"] = await $steps[
-                        "goToInscription2"
+                      $steps["goToRegisterCandidat"] = await $steps[
+                        "goToRegisterCandidat"
                       ];
                     }
                   }}
@@ -373,7 +378,7 @@ function PlasmicRegister__RenderFunc(props: {
                   onClick={async event => {
                     const $steps = {};
 
-                    $steps["runCode"] = true
+                    $steps["goToRegisterCompany"] = true
                       ? (() => {
                           const actionArgs = {
                             customFunction: async () => {
@@ -386,11 +391,13 @@ function PlasmicRegister__RenderFunc(props: {
                         })()
                       : undefined;
                     if (
-                      $steps["runCode"] != null &&
-                      typeof $steps["runCode"] === "object" &&
-                      typeof $steps["runCode"].then === "function"
+                      $steps["goToRegisterCompany"] != null &&
+                      typeof $steps["goToRegisterCompany"] === "object" &&
+                      typeof $steps["goToRegisterCompany"].then === "function"
                     ) {
-                      $steps["runCode"] = await $steps["runCode"];
+                      $steps["goToRegisterCompany"] = await $steps[
+                        "goToRegisterCompany"
+                      ];
                     }
                   }}
                   ref={ref => {
