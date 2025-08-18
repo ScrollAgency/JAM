@@ -345,7 +345,7 @@ function Login_(
           <div style={presets.separator as React.CSSProperties}>
             <div style={presets.separatorHr as React.CSSProperties} />
               <span style={presets.separatorText as React.CSSProperties}>{oAuthSeparatorText}</span>
-            <div style={presets.separatorHr as React.CSSProperties} />
+           {/* <div style={presets.separatorHr as React.CSSProperties} />*/}
           </div>
         )}
 
