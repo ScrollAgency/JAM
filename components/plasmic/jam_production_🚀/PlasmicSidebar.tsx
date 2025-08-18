@@ -825,7 +825,7 @@ function PlasmicSidebar__RenderFunc(props: {
 
                 $steps["goToOffreEmployeur"] = true
                   ? (() => {
-                      const actionArgs = {};
+                      const actionArgs = { destination: `/offre-employeur` };
                       return (({ destination }) => {
                         if (
                           typeof destination === "string" &&
