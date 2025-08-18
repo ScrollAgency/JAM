@@ -1817,7 +1817,7 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                       try {
                         return (
                           $state.selectedProduct ===
-                            $queries.getUserStripeInfos.data[0].product_id ||
+                            $queries.getUserStripeInfos.data[0].product_id &&
                           //$queries.getUserStripeInfos.data[0].status !== "complete"
                           $queries.getUserStripeInfos.data[0].status !==
                             "cancel"
