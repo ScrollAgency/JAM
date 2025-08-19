@@ -1580,8 +1580,16 @@ function PlasmicParametresCandidat__RenderFunc(props: {
                                     )}
                                     defaultValue={(() => {
                                       try {
-                                        return $queries.currentUser?.data[0]
-                                          ?.first_name;
+                                        return (() => {
+                                          const googleFirstName =
+                                            $ctx.SupabaseUser.user?.user_metadata?.name?.split(
+                                              " "
+                                            )[0] ?? null;
+                                          const firstName =
+                                            $queries.currentUser?.data?.[0]
+                                              ?.first_name ?? googleFirstName;
+                                          return firstName;
+                                        })();
                                       } catch (e) {
                                         if (
                                           e instanceof TypeError ||
@@ -1647,8 +1655,16 @@ function PlasmicParametresCandidat__RenderFunc(props: {
                                     )}
                                     defaultValue={(() => {
                                       try {
-                                        return $queries.currentUser.data[0]
-                                          .last_name;
+                                        return (() => {
+                                          const googleLastName =
+                                            $ctx.SupabaseUser.user?.user_metadata?.name?.split(
+                                              " "
+                                            )[1] ?? null;
+                                          const lastName =
+                                            $queries.currentUser?.data?.[0]
+                                              ?.last_name ?? googleLastName;
+                                          return lastName;
+                                        })();
                                       } catch (e) {
                                         if (
                                           e instanceof TypeError ||
