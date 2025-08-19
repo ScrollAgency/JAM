@@ -262,7 +262,7 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                   $ctx.query.sessionId !== "") ||
                 ($ctx.query.subscription === "success" &&
                   $ctx.query.sessionId !== "") ||
-                $ctx.query.paiement === "ok"
+                ($ctx.query.paiement === "ok" && $state.modalCreditsAlerts)
               );
             } catch (e) {
               if (
@@ -918,6 +918,62 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
               ) {
                 $steps["goToPage"] = await $steps["goToPage"];
               }
+
+              $steps["updateProductId"] = true
+                ? (() => {
+                    const actionArgs = {
+                      variable: {
+                        objRoot: $state,
+                        variablePath: ["productId"]
+                      },
+                      operation: 0
+                    };
+                    return (({ variable, value, startIndex, deleteCount }) => {
+                      if (!variable) {
+                        return;
+                      }
+                      const { objRoot, variablePath } = variable;
+
+                      $stateSet(objRoot, variablePath, value);
+                      return value;
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["updateProductId"] != null &&
+                typeof $steps["updateProductId"] === "object" &&
+                typeof $steps["updateProductId"].then === "function"
+              ) {
+                $steps["updateProductId"] = await $steps["updateProductId"];
+              }
+
+              $steps["updateProductId2"] = true
+                ? (() => {
+                    const actionArgs = {
+                      variable: {
+                        objRoot: $state,
+                        variablePath: ["productId"]
+                      },
+                      operation: 0
+                    };
+                    return (({ variable, value, startIndex, deleteCount }) => {
+                      if (!variable) {
+                        return;
+                      }
+                      const { objRoot, variablePath } = variable;
+
+                      $stateSet(objRoot, variablePath, value);
+                      return value;
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["updateProductId2"] != null &&
+                typeof $steps["updateProductId2"] === "object" &&
+                typeof $steps["updateProductId2"].then === "function"
+              ) {
+                $steps["updateProductId2"] = await $steps["updateProductId2"];
+              }
             }}
             shouldRun={(() => {
               try {
@@ -1108,7 +1164,9 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
 
                         $steps["goToOffreEmployeur"] = true
                           ? (() => {
-                              const actionArgs = {};
+                              const actionArgs = {
+                                destination: `/offre-employeur`
+                              };
                               return (({ destination }) => {
                                 if (
                                   typeof destination === "string" &&
@@ -1195,6 +1253,28 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                             "updateIsModalCreditOpen"
                           ];
                         }
+
+                        $steps["resetVariables"] = true
+                          ? (() => {
+                              const actionArgs = {
+                                customFunction: async () => {
+                                  return $ctx.query.paiement === "";
+                                }
+                              };
+                              return (({ customFunction }) => {
+                                return customFunction();
+                              })?.apply(null, [actionArgs]);
+                            })()
+                          : undefined;
+                        if (
+                          $steps["resetVariables"] != null &&
+                          typeof $steps["resetVariables"] === "object" &&
+                          typeof $steps["resetVariables"].then === "function"
+                        ) {
+                          $steps["resetVariables"] = await $steps[
+                            "resetVariables"
+                          ];
+                        }
                       }}
                       src={{
                         src: "/plasmic/jam_production_🚀/images/close.svg",
@@ -1239,7 +1319,8 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                               $ctx.query.sessionId !== "") ||
                             ($ctx.query.subscription === "success" &&
                               $ctx.query.sessionId !== "") ||
-                            $ctx.query.paiement === "ok"
+                            ($ctx.query.paiement === "ok" &&
+                              $state.modalCreditsAlerts)
                           );
                         } catch (e) {
                           if (
