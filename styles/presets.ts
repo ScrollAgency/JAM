@@ -1,6 +1,7 @@
 import { blob } from "stream/consumers";
 import { tokens } from "./tokens-jam";
 import { AlignCenter } from "lucide-react";
+import { px } from "framer-motion";
 
 export const getTokenValue = (name: string) => tokens.find((token) => token.name === name)?.value || name;
 
@@ -248,6 +249,7 @@ linkSignupBottomText: {
     flexDirection: "row",
     gap: "8px",
     width: "100%",
+    marginTop: "12px",
     marginBottom: "8px",
   },
   nameInputGroup: {
@@ -385,8 +387,8 @@ linkSignupBottomText: {
   passwordHint: {
     fontSize: "13px",
     color: "black",
-    marginTop: "4px",
-    marginBottom: "4px",
+    marginTop: "0px",
+    marginBottom: "24px",
   },
 
   requiredField: {
@@ -410,7 +412,7 @@ linkSignupBottomText: {
   strengthBars: {
     display: "flex",
     gap: "4px",
-    paddingTop: "16px",
+    marginTop: "-8px",
     paddingBottom: "16px",
   },
 
