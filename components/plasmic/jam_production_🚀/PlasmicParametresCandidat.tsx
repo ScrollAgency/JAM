@@ -3976,11 +3976,9 @@ function PlasmicParametresCandidat__RenderFunc(props: {
                           "confirmPassword"
                         ])}
                         confirmPasswordLabel={
-                          "R\u00e9p\u00e9tez le mot de passe*"
+                          "R\u00e9p\u00e9tez le nouveau mot de passe*"
                         }
-                        confirmPasswordPlaceholder={
-                          "Confirmez votre mot de passe"
-                        }
+                        confirmPasswordPlaceholder={"********"}
                         eyeIconColor={"#666"}
                         inputStyle={"simple"}
                         maxAlerts={3}
@@ -4040,14 +4038,13 @@ function PlasmicParametresCandidat__RenderFunc(props: {
                           "resetPassword",
                           "password"
                         ])}
-                        passwordLabel={"Nouveau mot de passe*"}
-                        passwordPlaceholder={
-                          "Entrez votre nouveau mot de passe"
-                        }
+                        passwordLabel={"Modifier mot de passe*"}
+                        passwordPlaceholder={"*******"}
                         resetSuccessMessage={
                           "Votre mot de passe a été réinitialisé avec succès!"
                         }
                         showAlerts={true}
+                        showCancelButton={false}
                         showPasswordStrength={true}
                         showPasswordToggle={true}
                         submitButtonStyle={"primary"}

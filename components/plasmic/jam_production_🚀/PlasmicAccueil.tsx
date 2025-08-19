@@ -367,7 +367,7 @@ export type PlasmicAccueil__OverridesType = {
   textLinkBase?: Flex__<"a"> & Partial<LinkProps>;
   text6?: Flex__<"div">;
   footer?: Flex__<typeof Footer>;
-  pageLoader?: Flex__<typeof PageLoader>;
+  updateRoleForGoogleRegistration?: Flex__<typeof PageLoader>;
 };
 
 export interface DefaultAccueilProps {}
@@ -16543,9 +16543,12 @@ function PlasmicAccueil__RenderFunc(props: {
             </DataCtxReader__>
           </LoadingBoundary>
           <PageLoader
-            data-plasmic-name={"pageLoader"}
-            data-plasmic-override={overrides.pageLoader}
-            className={classNames("__wab_instance", sty.pageLoader)}
+            data-plasmic-name={"updateRoleForGoogleRegistration"}
+            data-plasmic-override={overrides.updateRoleForGoogleRegistration}
+            className={classNames(
+              "__wab_instance",
+              sty.updateRoleForGoogleRegistration
+            )}
             onMount={async () => {
               const $steps = {};
 
@@ -16817,7 +16820,7 @@ const PlasmicDescendants = {
     "textLinkBase",
     "text6",
     "footer",
-    "pageLoader"
+    "updateRoleForGoogleRegistration"
   ],
   loadingBoundary: [
     "loadingBoundary",
@@ -18175,7 +18178,7 @@ const PlasmicDescendants = {
   textLinkBase: ["textLinkBase", "text6"],
   text6: ["text6"],
   footer: ["footer"],
-  pageLoader: ["pageLoader"]
+  updateRoleForGoogleRegistration: ["updateRoleForGoogleRegistration"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -18399,7 +18402,7 @@ type NodeDefaultElementType = {
   textLinkBase: "a";
   text6: "div";
   footer: typeof Footer;
-  pageLoader: typeof PageLoader;
+  updateRoleForGoogleRegistration: typeof PageLoader;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -18683,7 +18686,9 @@ export const PlasmicAccueil = Object.assign(
     textLinkBase: makeNodeComponent("textLinkBase"),
     text6: makeNodeComponent("text6"),
     footer: makeNodeComponent("footer"),
-    pageLoader: makeNodeComponent("pageLoader"),
+    updateRoleForGoogleRegistration: makeNodeComponent(
+      "updateRoleForGoogleRegistration"
+    ),
 
     // Metadata about props expected for PlasmicAccueil
     internalVariantProps: PlasmicAccueil__VariantProps,

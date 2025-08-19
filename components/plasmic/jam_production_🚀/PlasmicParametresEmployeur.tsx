@@ -1412,6 +1412,7 @@ function PlasmicParametresEmployeur__RenderFunc(props: {
                       "Votre mot de passe a été réinitialisé avec succès!"
                     }
                     showAlerts={true}
+                    showCancelButton={true}
                     showPasswordStrength={true}
                     showPasswordToggle={true}
                     submitButtonStyle={
