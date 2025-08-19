@@ -880,7 +880,7 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                 $steps["savePurchase"] = await $steps["savePurchase"];
               }
 
-              $steps["goToPage"] = true
+              $steps["goToPagePaymentOk"] = true
                 ? (() => {
                     const actionArgs = {
                       destination: (() => {
@@ -912,11 +912,11 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                   })()
                 : undefined;
               if (
-                $steps["goToPage"] != null &&
-                typeof $steps["goToPage"] === "object" &&
-                typeof $steps["goToPage"].then === "function"
+                $steps["goToPagePaymentOk"] != null &&
+                typeof $steps["goToPagePaymentOk"] === "object" &&
+                typeof $steps["goToPagePaymentOk"].then === "function"
               ) {
-                $steps["goToPage"] = await $steps["goToPage"];
+                $steps["goToPagePaymentOk"] = await $steps["goToPagePaymentOk"];
               }
 
               $steps["updateProductId"] = true
@@ -947,14 +947,15 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                 $steps["updateProductId"] = await $steps["updateProductId"];
               }
 
-              $steps["updateProductId2"] = true
+              $steps["openModalCreditAlert"] = true
                 ? (() => {
                     const actionArgs = {
                       variable: {
                         objRoot: $state,
-                        variablePath: ["productId"]
+                        variablePath: ["modalCreditsAlerts", "isOpen"]
                       },
-                      operation: 0
+                      operation: 0,
+                      value: true
                     };
                     return (({ variable, value, startIndex, deleteCount }) => {
                       if (!variable) {
@@ -968,11 +969,13 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                   })()
                 : undefined;
               if (
-                $steps["updateProductId2"] != null &&
-                typeof $steps["updateProductId2"] === "object" &&
-                typeof $steps["updateProductId2"].then === "function"
+                $steps["openModalCreditAlert"] != null &&
+                typeof $steps["openModalCreditAlert"] === "object" &&
+                typeof $steps["openModalCreditAlert"].then === "function"
               ) {
-                $steps["updateProductId2"] = await $steps["updateProductId2"];
+                $steps["openModalCreditAlert"] = await $steps[
+                  "openModalCreditAlert"
+                ];
               }
             }}
             shouldRun={(() => {
@@ -1257,12 +1260,26 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                         $steps["resetVariables"] = true
                           ? (() => {
                               const actionArgs = {
-                                customFunction: async () => {
-                                  return $ctx.query.paiement === "";
-                                }
+                                variable: {
+                                  objRoot: $state,
+                                  variablePath: ["modalCreditsAlerts", "isOpen"]
+                                },
+                                operation: 0,
+                                value: false
                               };
-                              return (({ customFunction }) => {
-                                return customFunction();
+                              return (({
+                                variable,
+                                value,
+                                startIndex,
+                                deleteCount
+                              }) => {
+                                if (!variable) {
+                                  return;
+                                }
+                                const { objRoot, variablePath } = variable;
+
+                                $stateSet(objRoot, variablePath, value);
+                                return value;
                               })?.apply(null, [actionArgs]);
                             })()
                           : undefined;
