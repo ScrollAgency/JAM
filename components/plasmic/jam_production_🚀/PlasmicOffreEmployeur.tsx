@@ -97,6 +97,7 @@ import ProductCard from "../../ProductCard"; // plasmic-import: XNMQC2V0FBMZ/com
 import { SmartLoader } from "../../others/SmartLoader/SmartLoader"; // plasmic-import: YAp2GWWLB3S2/codeComponent
 import MobileNavbarBottomCompany from "../../MobileNavbarBottomCompany"; // plasmic-import: gAnwjyfMiBe9/component
 import { InputComboSelect } from "../../forms/InputComboSelect/InputComboSelect"; // plasmic-import: KwvhXarw-EVS/codeComponent
+import { StripeCheckoutButton } from "../../forms/StripeCheckoutButton/StripeCheckoutButton"; // plasmic-import: HaGLE8b9jujz/codeComponent
 import { Fetcher } from "@plasmicapp/react-web/lib/data-sources";
 
 import { useScreenVariants as useScreenVariantshm8Nko4B5BDd } from "./PlasmicGlobalVariant__Screen"; // plasmic-import: HM8Nko4B5BDd/globalVariant
@@ -334,6 +335,7 @@ export type PlasmicOffreEmployeur__OverridesType = {
   totalAmount?: Flex__<"div">;
   total?: Flex__<"div">;
   amount?: Flex__<"div">;
+  stripeCheckoutButton?: Flex__<typeof StripeCheckoutButton>;
 };
 
 export interface DefaultOffreEmployeurProps {}
@@ -1750,7 +1752,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
         sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
         opId: "1284f981-03a5-4aae-9f90-4a9eb18e1c6b",
         userArgs: {
-          filters: [$ctx.SupabaseUser.user.id]
+          filters: [$ctx.SupabaseUser.user?.id]
         },
         cacheKey: `plasmic.$.1284f981-03a5-4aae-9f90-4a9eb18e1c6b.$.`,
         invalidatedKeys: null,
@@ -18601,27 +18603,121 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                   </div>
                 </div>
                 <div className={classNames(projectcss.all, sty.freeBox__sgS1B)}>
-                  <Button
-                    className={classNames("__wab_instance", sty.button___6Ee)}
-                    end={
-                      <GroupIcon
-                        className={classNames(projectcss.all, sty.svg__gNbSa)}
-                        role={"img"}
-                      />
-                    }
-                    iconEnd={true}
-                    label={
-                      <div
-                        className={classNames(
-                          projectcss.all,
-                          projectcss.__wab_text,
-                          sty.text__h3PS
-                        )}
-                      >
-                        {"acheter les cr\u00e9dits"}
-                      </div>
-                    }
-                  />
+                  <StripeCheckoutButton
+                    data-plasmic-name={"stripeCheckoutButton"}
+                    data-plasmic-override={overrides.stripeCheckoutButton}
+                    cancelUrl={(() => {
+                      try {
+                        return "parametres-abonnement?credit=cancel";
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return undefined;
+                        }
+                        throw e;
+                      }
+                    })()}
+                    className={classNames(
+                      "__wab_instance",
+                      sty.stripeCheckoutButton
+                    )}
+                    clientReferenceId={(() => {
+                      try {
+                        return $queries.offreStripeUserInfos.data[0]
+                          .customer_id;
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return undefined;
+                        }
+                        throw e;
+                      }
+                    })()}
+                    customerEmail={(() => {
+                      try {
+                        return $ctx.SupabaseUser.user?.email;
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return undefined;
+                        }
+                        throw e;
+                      }
+                    })()}
+                    items={(() => {
+                      try {
+                        return [
+                          {
+                            price:
+                              $queries.stripeProductsList.data.response.data[2]
+                                .default_price.id,
+                            quantity: $state.inputComboSelect.value
+                          },
+                          {
+                            price:
+                              $queries.stripeProductsList.data.response.data[1]
+                                .default_price.id,
+                            quantity: $state.inputComboSelect2.value
+                          },
+                          {
+                            price:
+                              $queries.stripeProductsList.data.response.data[0]
+                                .default_price.id,
+                            quantity: $state.inputComboSelect3.value
+                          }
+                        ];
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return undefined;
+                        }
+                        throw e;
+                      }
+                    })()}
+                    successUrl={(() => {
+                      try {
+                        return "parametres-abonnement?credit=success&session_id={CHECKOUT_SESSION_ID}";
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return undefined;
+                        }
+                        throw e;
+                      }
+                    })()}
+                  >
+                    <Button
+                      className={classNames("__wab_instance", sty.button___6Ee)}
+                      end={
+                        <GroupIcon
+                          className={classNames(projectcss.all, sty.svg__gNbSa)}
+                          role={"img"}
+                        />
+                      }
+                      iconEnd={true}
+                      label={
+                        <div
+                          className={classNames(
+                            projectcss.all,
+                            projectcss.__wab_text,
+                            sty.text__h3PS
+                          )}
+                        >
+                          {"acheter les cr\u00e9dits"}
+                        </div>
+                      }
+                    />
+                  </StripeCheckoutButton>
                 </div>
               </div>
             }
@@ -18860,7 +18956,8 @@ const PlasmicDescendants = {
     "textInput21",
     "totalAmount",
     "total",
-    "amount"
+    "amount",
+    "stripeCheckoutButton"
   ],
   mobileNavbarTop: ["mobileNavbarTop"],
   sidebar: ["sidebar"],
@@ -19572,7 +19669,8 @@ const PlasmicDescendants = {
     "textInput21",
     "totalAmount",
     "total",
-    "amount"
+    "amount",
+    "stripeCheckoutButton"
   ],
   button3: ["button3"],
   recharges: [
@@ -19587,7 +19685,8 @@ const PlasmicDescendants = {
     "textInput21",
     "totalAmount",
     "total",
-    "amount"
+    "amount",
+    "stripeCheckoutButton"
   ],
   rechargesList: [
     "rechargesList",
@@ -19607,7 +19706,8 @@ const PlasmicDescendants = {
   textInput21: ["textInput21"],
   totalAmount: ["totalAmount", "total", "amount"],
   total: ["total"],
-  amount: ["amount"]
+  amount: ["amount"],
+  stripeCheckoutButton: ["stripeCheckoutButton"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -19799,6 +19899,7 @@ type NodeDefaultElementType = {
   totalAmount: "div";
   total: "div";
   amount: "div";
+  stripeCheckoutButton: typeof StripeCheckoutButton;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -20046,6 +20147,7 @@ export const PlasmicOffreEmployeur = Object.assign(
     totalAmount: makeNodeComponent("totalAmount"),
     total: makeNodeComponent("total"),
     amount: makeNodeComponent("amount"),
+    stripeCheckoutButton: makeNodeComponent("stripeCheckoutButton"),
 
     // Metadata about props expected for PlasmicOffreEmployeur
     internalVariantProps: PlasmicOffreEmployeur__VariantProps,

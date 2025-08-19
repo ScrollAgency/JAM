@@ -3911,7 +3911,7 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                     })()}
                     customerEmail={(() => {
                       try {
-                        return $ctx.SupabaseUser.user.email;
+                        return $ctx.SupabaseUser.user?.email;
                       } catch (e) {
                         if (
                           e instanceof TypeError ||

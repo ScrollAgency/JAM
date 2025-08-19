@@ -6210,6 +6210,10 @@
   max-width: 100%;
   min-width: 0;
 }
+.stripeCheckoutButton:global(.__wab_instance) {
+  max-width: 100%;
+  object-fit: cover;
+}
 .button___6Ee:global(.__wab_instance):global(.__wab_instance) {
   max-width: 100%;
 }
