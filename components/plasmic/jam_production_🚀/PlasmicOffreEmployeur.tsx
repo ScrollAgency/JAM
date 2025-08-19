@@ -3906,14 +3906,52 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                               const actionArgs = {
                                 dataOp: {
                                   sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
-                                  opId: "0b69753a-c14e-43ba-be77-ceea09013794",
+                                  opId: "d065132b-2aac-4c10-8414-8e92410e1c74",
                                   userArgs: {
                                     variables: [
                                       $state.form2.value.address,
 
                                       $state.form2.value.availability_status,
 
-                                      $queries.getCompanies.data[0].id
+                                      $queries.getCompanies.data[0].id,
+
+                                      $state.form2.value.benefits,
+
+                                      $state.form2.value.team_size,
+
+                                      $state.form2.value.contract_type,
+
+                                      $state.form2.value.country,
+
+                                      $state.form2.value.description,
+
+                                      $state.form2.value.end_date,
+
+                                      $state.lastMinuteToggle.switch2IsSelected,
+
+                                      $queries.fetchJobCoordinates.data.response
+                                        .features[0].geometry.coordinates[1],
+
+                                      $state.form2.value.location,
+
+                                      $queries.fetchJobCoordinates.data.response
+                                        .features[0].geometry.coordinates[0],
+
+                                      $state.form2.value.postal_code,
+
+                                      $state.form2.value.requirements,
+
+                                      $state.form2.value.salary,
+
+                                      $state.form2.value.sector_activity,
+
+                                      $state.form2.value.start_date,
+
+                                      $state.form2.value.title,
+
+                                      $state.form2.value.work_mode,
+
+                                      $state.form2.value.working_time
                                     ]
                                   },
                                   cacheKey: null,
