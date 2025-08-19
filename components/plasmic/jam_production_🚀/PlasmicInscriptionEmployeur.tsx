@@ -809,7 +809,7 @@ export const PlasmicInscriptionEmployeur = Object.assign(
 
     // Page metadata
     pageMetadata: {
-      title: "Inscription",
+      title: "Inscription employeur",
       description: "",
       ogImageSrc: "",
       canonical: ""

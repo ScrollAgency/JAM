@@ -257,7 +257,20 @@ function PlasmicOffreAdmin__RenderFunc(props: {
 
   return (
     <React.Fragment>
-      <Head></Head>
+      <Head>
+        <meta name="twitter:card" content="summary" />
+        <title key="title">{PlasmicOffreAdmin.pageMetadata.title}</title>
+        <meta
+          key="og:title"
+          property="og:title"
+          content={PlasmicOffreAdmin.pageMetadata.title}
+        />
+        <meta
+          key="twitter:title"
+          name="twitter:title"
+          content={PlasmicOffreAdmin.pageMetadata.title}
+        />
+      </Head>
 
       <style>{`
         body {
@@ -1630,7 +1643,7 @@ export const PlasmicOffreAdmin = Object.assign(
 
     // Page metadata
     pageMetadata: {
-      title: "",
+      title: "Espace administrateur",
       description: "",
       ogImageSrc: "",
       canonical: ""

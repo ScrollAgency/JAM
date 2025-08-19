@@ -136,6 +136,7 @@ import Icon12Icon from "./icons/PlasmicIcon__Icon12"; // plasmic-import: QOMO9U8
 import IconPhBriefcaseIcon from "./icons/PlasmicIcon__IconPhBriefcase"; // plasmic-import: E-c3RGwvaig6/icon
 import PhClockCountdownFillIcon from "./icons/PlasmicIcon__PhClockCountdownFill"; // plasmic-import: GhtgoozaYTSb/icon
 import Icon15Icon from "./icons/PlasmicIcon__Icon15"; // plasmic-import: p0L_wgJiyVXj/icon
+import Icon17Icon from "./icons/PlasmicIcon__Icon17"; // plasmic-import: pk0tqTEbFRlt/icon
 
 createPlasmicElementProxy;
 
@@ -336,6 +337,12 @@ export type PlasmicOffreEmployeur__OverridesType = {
   total?: Flex__<"div">;
   amount?: Flex__<"div">;
   stripeCheckoutButton?: Flex__<typeof StripeCheckoutButton>;
+  actionCreditSuccess?: Flex__<typeof PageLoader>;
+  modalCreditsAlerts?: Flex__<typeof Modal>;
+  closeButton?: Flex__<"div">;
+  iconSuccess?: Flex__<"div">;
+  messageText?: Flex__<"div">;
+  actionButton?: Flex__<"div">;
 };
 
 export interface DefaultOffreEmployeurProps {}
@@ -1639,6 +1646,44 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
         type: "private",
         variableType: "text",
         initFunc: ({ $props, $state, $queries, $ctx }) => "employer"
+      },
+      {
+        path: "paiementValidated",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $ctx }) => false
+      },
+      {
+        path: "modalCreditsAlerts.isOpen",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $ctx }) =>
+          (() => {
+            try {
+              return (
+                ($ctx.query.credit === "success" &&
+                  $ctx.query.sessionId !== "") ||
+                ($ctx.query.subscription === "success" &&
+                  $ctx.query.sessionId !== "") ||
+                $ctx.query.paiement === "ok"
+                // && $state.modalCreditsAlerts === true
+              );
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return undefined;
+              }
+              throw e;
+            }
+          })()
+      },
+      {
+        path: "isModalCreditOpen",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $ctx }) => false
       }
     ],
     [$props, $ctx, $refs]
@@ -18608,7 +18653,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                     data-plasmic-override={overrides.stripeCheckoutButton}
                     cancelUrl={(() => {
                       try {
-                        return "parametres-abonnement?credit=cancel";
+                        return "offre-employeur?credit=cancel";
                       } catch (e) {
                         if (
                           e instanceof TypeError ||
@@ -18684,7 +18729,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                     })()}
                     successUrl={(() => {
                       try {
-                        return "parametres-abonnement?credit=success&session_id={CHECKOUT_SESSION_ID}";
+                        return "offre-employeur?credit=success&session_id={CHECKOUT_SESSION_ID}";
                       } catch (e) {
                         if (
                           e instanceof TypeError ||
@@ -18763,6 +18808,637 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
               />
             }
           />
+
+          <PageLoader
+            data-plasmic-name={"actionCreditSuccess"}
+            data-plasmic-override={overrides.actionCreditSuccess}
+            className={classNames("__wab_instance", sty.actionCreditSuccess)}
+            onMount={async () => {
+              const $steps = {};
+
+              $steps["updatePaiementValidated"] = true
+                ? (() => {
+                    const actionArgs = {
+                      variable: {
+                        objRoot: $state,
+                        variablePath: ["paiementValidated"]
+                      },
+                      operation: 0,
+                      value: true
+                    };
+                    return (({ variable, value, startIndex, deleteCount }) => {
+                      if (!variable) {
+                        return;
+                      }
+                      const { objRoot, variablePath } = variable;
+
+                      $stateSet(objRoot, variablePath, value);
+                      return value;
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["updatePaiementValidated"] != null &&
+                typeof $steps["updatePaiementValidated"] === "object" &&
+                typeof $steps["updatePaiementValidated"].then === "function"
+              ) {
+                $steps["updatePaiementValidated"] = await $steps[
+                  "updatePaiementValidated"
+                ];
+              }
+
+              $steps["updateStripeSessionId"] = true
+                ? (() => {
+                    const actionArgs = {
+                      variable: {
+                        objRoot: $state,
+                        variablePath: ["stripeSessionId"]
+                      },
+                      operation: 0,
+                      value: $ctx.query.session_id
+                    };
+                    return (({ variable, value, startIndex, deleteCount }) => {
+                      if (!variable) {
+                        return;
+                      }
+                      const { objRoot, variablePath } = variable;
+
+                      $stateSet(objRoot, variablePath, value);
+                      return value;
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["updateStripeSessionId"] != null &&
+                typeof $steps["updateStripeSessionId"] === "object" &&
+                typeof $steps["updateStripeSessionId"].then === "function"
+              ) {
+                $steps["updateStripeSessionId"] = await $steps[
+                  "updateStripeSessionId"
+                ];
+              }
+
+              $steps["getSessionInfos"] = true
+                ? (() => {
+                    const actionArgs = {
+                      dataOp: {
+                        sourceId: "9Q77QfSZHRES57WTLJmYrY",
+                        opId: "5db431b2-902f-44b6-a6b7-6e0b3f6d881b",
+                        userArgs: {
+                          path: ["get-session"],
+
+                          params: [$state.stripeSessionId]
+                        },
+                        cacheKey: null,
+                        invalidatedKeys: null,
+                        roleId: null
+                      }
+                    };
+                    return (async ({ dataOp, continueOnError }) => {
+                      try {
+                        const response = await executePlasmicDataOp(dataOp, {
+                          userAuthToken: dataSourcesCtx?.userAuthToken,
+                          user: dataSourcesCtx?.user
+                        });
+                        await plasmicInvalidate(dataOp.invalidatedKeys);
+                        return response;
+                      } catch (e) {
+                        if (!continueOnError) {
+                          throw e;
+                        }
+                        return e;
+                      }
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["getSessionInfos"] != null &&
+                typeof $steps["getSessionInfos"] === "object" &&
+                typeof $steps["getSessionInfos"].then === "function"
+              ) {
+                $steps["getSessionInfos"] = await $steps["getSessionInfos"];
+              }
+
+              $steps["getPaymentIntent"] = true
+                ? (() => {
+                    const actionArgs = {
+                      dataOp: {
+                        sourceId: "9Q77QfSZHRES57WTLJmYrY",
+                        opId: "13d12d4b-5a53-4196-a4bf-852be730ee37",
+                        userArgs: {
+                          params: [$state.stripeSessionId]
+                        },
+                        cacheKey: null,
+                        invalidatedKeys: null,
+                        roleId: null
+                      }
+                    };
+                    return (async ({ dataOp, continueOnError }) => {
+                      try {
+                        const response = await executePlasmicDataOp(dataOp, {
+                          userAuthToken: dataSourcesCtx?.userAuthToken,
+                          user: dataSourcesCtx?.user
+                        });
+                        await plasmicInvalidate(dataOp.invalidatedKeys);
+                        return response;
+                      } catch (e) {
+                        if (!continueOnError) {
+                          throw e;
+                        }
+                        return e;
+                      }
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["getPaymentIntent"] != null &&
+                typeof $steps["getPaymentIntent"] === "object" &&
+                typeof $steps["getPaymentIntent"].then === "function"
+              ) {
+                $steps["getPaymentIntent"] = await $steps["getPaymentIntent"];
+              }
+
+              $steps["savePurchase"] = true
+                ? (() => {
+                    const actionArgs = {
+                      dataOp: {
+                        sourceId: "9Q77QfSZHRES57WTLJmYrY",
+                        opId: "49ff326d-e4bb-40a2-9a67-e1dc1e1aeb80",
+                        userArgs: {
+                          body: [
+                            {
+                              sessionId: $state.stripeSessionId,
+                              customerId:
+                                $steps.getSessionInfos.data.response.session
+                                  .client_reference_id,
+                              customerEmail:
+                                $steps.getSessionInfos.data.response.session
+                                  .customer_details.email,
+                              receiptUrl:
+                                $steps.getPaymentIntent.data.response
+                                  .receiptUrl,
+                              receiptTitle:
+                                $steps.getPaymentIntent.data.response
+                                  .receiptTitle,
+                              amount:
+                                $steps.getPaymentIntent.data.response.amount,
+                              products:
+                                $steps.getSessionInfos.data.response.session.line_items.data.map(
+                                  item => ({
+                                    product_id: item.price.product,
+                                    quantity: item.quantity
+                                  })
+                                )
+                            }
+                          ]
+                        },
+                        cacheKey: null,
+                        invalidatedKeys: ["plasmic_refresh_all"],
+                        roleId: null
+                      }
+                    };
+                    return (async ({ dataOp, continueOnError }) => {
+                      try {
+                        const response = await executePlasmicDataOp(dataOp, {
+                          userAuthToken: dataSourcesCtx?.userAuthToken,
+                          user: dataSourcesCtx?.user
+                        });
+                        await plasmicInvalidate(dataOp.invalidatedKeys);
+                        return response;
+                      } catch (e) {
+                        if (!continueOnError) {
+                          throw e;
+                        }
+                        return e;
+                      }
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["savePurchase"] != null &&
+                typeof $steps["savePurchase"] === "object" &&
+                typeof $steps["savePurchase"].then === "function"
+              ) {
+                $steps["savePurchase"] = await $steps["savePurchase"];
+              }
+
+              $steps["openModalCreditAlert"] = true
+                ? (() => {
+                    const actionArgs = {
+                      variable: {
+                        objRoot: $state,
+                        variablePath: ["companyInfos", "isOpen"]
+                      },
+                      operation: 0
+                    };
+                    return (({ variable, value, startIndex, deleteCount }) => {
+                      if (!variable) {
+                        return;
+                      }
+                      const { objRoot, variablePath } = variable;
+
+                      $stateSet(objRoot, variablePath, value);
+                      return value;
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["openModalCreditAlert"] != null &&
+                typeof $steps["openModalCreditAlert"] === "object" &&
+                typeof $steps["openModalCreditAlert"].then === "function"
+              ) {
+                $steps["openModalCreditAlert"] = await $steps[
+                  "openModalCreditAlert"
+                ];
+              }
+
+              $steps["goToPage"] = true
+                ? (() => {
+                    const actionArgs = {
+                      destination: (() => {
+                        try {
+                          return "/offre-employeur?paiement=ok";
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return undefined;
+                          }
+                          throw e;
+                        }
+                      })()
+                    };
+                    return (({ destination }) => {
+                      if (
+                        typeof destination === "string" &&
+                        destination.startsWith("#")
+                      ) {
+                        document
+                          .getElementById(destination.substr(1))
+                          .scrollIntoView({ behavior: "smooth" });
+                      } else {
+                        __nextRouter?.push(destination);
+                      }
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["goToPage"] != null &&
+                typeof $steps["goToPage"] === "object" &&
+                typeof $steps["goToPage"].then === "function"
+              ) {
+                $steps["goToPage"] = await $steps["goToPage"];
+              }
+            }}
+            shouldRun={(() => {
+              try {
+                return (
+                  $ctx.query.credit === "success" && !$state.paiementValidated
+                );
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return true;
+                }
+                throw e;
+              }
+            })()}
+          />
+
+          {(() => {
+            const child$Props = {
+              className: classNames("__wab_instance", sty.modalCreditsAlerts),
+              content: (
+                <div
+                  className={classNames(projectcss.all, sty.freeBox___3NSlF)}
+                >
+                  <div
+                    data-plasmic-name={"iconSuccess"}
+                    data-plasmic-override={overrides.iconSuccess}
+                    className={classNames(projectcss.all, sty.iconSuccess)}
+                  >
+                    <Icon17Icon
+                      className={classNames(projectcss.all, sty.svg__ctXis)}
+                      role={"img"}
+                    />
+                  </div>
+                  <div
+                    data-plasmic-name={"messageText"}
+                    data-plasmic-override={overrides.messageText}
+                    className={classNames(projectcss.all, sty.messageText)}
+                  >
+                    {(() => {
+                      try {
+                        return $ctx.query.paiement === "ok";
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return true;
+                        }
+                        throw e;
+                      }
+                    })() ? (
+                      <div
+                        className={classNames(
+                          projectcss.all,
+                          projectcss.__wab_text,
+                          sty.text__clGxo
+                        )}
+                      >
+                        {"Paiement re\u00e7u !"}
+                      </div>
+                    ) : null}
+                    {(() => {
+                      try {
+                        return $ctx.query.paiement !== "ok";
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return true;
+                        }
+                        throw e;
+                      }
+                    })() ? (
+                      <div
+                        className={classNames(
+                          projectcss.all,
+                          projectcss.__wab_text,
+                          sty.text__mYeNy
+                        )}
+                      >
+                        {"Nous terminons d'enregistrer votre paiement..."}
+                      </div>
+                    ) : null}
+                    {(() => {
+                      try {
+                        return $ctx.query.paiement === "ok";
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return true;
+                        }
+                        throw e;
+                      }
+                    })() ? (
+                      <div
+                        className={classNames(
+                          projectcss.all,
+                          projectcss.__wab_text,
+                          sty.text__gG1Qj
+                        )}
+                      >
+                        {
+                          "Votre paiement a bien abouti et vos cr\u00e9dits sont pr\u00eats \u00e0 \u00eatre utilis\u00e9s !"
+                        }
+                      </div>
+                    ) : null}
+                  </div>
+                </div>
+              ),
+              footer: (() => {
+                try {
+                  return $ctx.query.paiement === "ok";
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return true;
+                  }
+                  throw e;
+                }
+              })() ? (
+                <div
+                  data-plasmic-name={"actionButton"}
+                  data-plasmic-override={overrides.actionButton}
+                  className={classNames(projectcss.all, sty.actionButton)}
+                >
+                  <Button
+                    className={classNames("__wab_instance", sty.button__eBwm)}
+                    end={
+                      <GroupIcon
+                        className={classNames(projectcss.all, sty.svg___8P8N)}
+                        role={"img"}
+                      />
+                    }
+                    iconEnd={true}
+                    label={
+                      <div
+                        className={classNames(
+                          projectcss.all,
+                          projectcss.__wab_text,
+                          sty.text__sTjyk
+                        )}
+                      >
+                        {"publier une offre d'emploi"}
+                      </div>
+                    }
+                    onClick={async event => {
+                      const $steps = {};
+
+                      $steps["goToOffreEmployeur"] = true
+                        ? (() => {
+                            const actionArgs = {
+                              destination: `/offre-employeur`
+                            };
+                            return (({ destination }) => {
+                              if (
+                                typeof destination === "string" &&
+                                destination.startsWith("#")
+                              ) {
+                                document
+                                  .getElementById(destination.substr(1))
+                                  .scrollIntoView({ behavior: "smooth" });
+                              } else {
+                                __nextRouter?.push(destination);
+                              }
+                            })?.apply(null, [actionArgs]);
+                          })()
+                        : undefined;
+                      if (
+                        $steps["goToOffreEmployeur"] != null &&
+                        typeof $steps["goToOffreEmployeur"] === "object" &&
+                        typeof $steps["goToOffreEmployeur"].then === "function"
+                      ) {
+                        $steps["goToOffreEmployeur"] = await $steps[
+                          "goToOffreEmployeur"
+                        ];
+                      }
+                    }}
+                  />
+                </div>
+              ) : null,
+              heading: (
+                <div
+                  data-plasmic-name={"closeButton"}
+                  data-plasmic-override={overrides.closeButton}
+                  className={classNames(projectcss.all, sty.closeButton)}
+                >
+                  <PlasmicImg__
+                    alt={""}
+                    className={classNames(sty.img__o4QW)}
+                    displayHeight={"17px"}
+                    displayMaxHeight={"none"}
+                    displayMaxWidth={"100%"}
+                    displayMinHeight={"0"}
+                    displayMinWidth={"0"}
+                    displayWidth={"auto"}
+                    loading={"lazy"}
+                    onClick={async event => {
+                      const $steps = {};
+
+                      $steps["updateIsModalCreditOpen"] = true
+                        ? (() => {
+                            const actionArgs = {
+                              variable: {
+                                objRoot: $state,
+                                variablePath: ["isModalCreditOpen"]
+                              },
+                              operation: 0,
+                              value: false
+                            };
+                            return (({
+                              variable,
+                              value,
+                              startIndex,
+                              deleteCount
+                            }) => {
+                              if (!variable) {
+                                return;
+                              }
+                              const { objRoot, variablePath } = variable;
+
+                              $stateSet(objRoot, variablePath, value);
+                              return value;
+                            })?.apply(null, [actionArgs]);
+                          })()
+                        : undefined;
+                      if (
+                        $steps["updateIsModalCreditOpen"] != null &&
+                        typeof $steps["updateIsModalCreditOpen"] === "object" &&
+                        typeof $steps["updateIsModalCreditOpen"].then ===
+                          "function"
+                      ) {
+                        $steps["updateIsModalCreditOpen"] = await $steps[
+                          "updateIsModalCreditOpen"
+                        ];
+                      }
+
+                      $steps["updateModalCreditsAlertsIsOpen"] = true
+                        ? (() => {
+                            const actionArgs = {
+                              variable: {
+                                objRoot: $state,
+                                variablePath: ["modalCreditsAlerts", "isOpen"]
+                              },
+                              operation: 0,
+                              value: false
+                            };
+                            return (({
+                              variable,
+                              value,
+                              startIndex,
+                              deleteCount
+                            }) => {
+                              if (!variable) {
+                                return;
+                              }
+                              const { objRoot, variablePath } = variable;
+
+                              $stateSet(objRoot, variablePath, value);
+                              return value;
+                            })?.apply(null, [actionArgs]);
+                          })()
+                        : undefined;
+                      if (
+                        $steps["updateModalCreditsAlertsIsOpen"] != null &&
+                        typeof $steps["updateModalCreditsAlertsIsOpen"] ===
+                          "object" &&
+                        typeof $steps["updateModalCreditsAlertsIsOpen"].then ===
+                          "function"
+                      ) {
+                        $steps["updateModalCreditsAlertsIsOpen"] = await $steps[
+                          "updateModalCreditsAlertsIsOpen"
+                        ];
+                      }
+                    }}
+                    src={{
+                      src: "/plasmic/jam_production_🚀/images/close.svg",
+                      fullWidth: 17,
+                      fullHeight: 17,
+                      aspectRatio: 1
+                    }}
+                  />
+                </div>
+              ),
+              isOpen: generateStateValueProp($state, [
+                "modalCreditsAlerts",
+                "isOpen"
+              ]),
+              noTrigger: true,
+              onOpenChange: async (...eventArgs: any) => {
+                generateStateOnChangeProp($state, [
+                  "modalCreditsAlerts",
+                  "isOpen"
+                ]).apply(null, eventArgs);
+
+                if (
+                  eventArgs.length > 1 &&
+                  eventArgs[1] &&
+                  eventArgs[1]._plasmic_state_init_
+                ) {
+                  return;
+                }
+              }
+            };
+
+            initializePlasmicStates(
+              $state,
+              [
+                {
+                  name: "modalCreditsAlerts.isOpen",
+                  initFunc: ({ $props, $state, $queries }) =>
+                    (() => {
+                      try {
+                        return (
+                          ($ctx.query.credit === "success" &&
+                            $ctx.query.sessionId !== "") ||
+                          ($ctx.query.subscription === "success" &&
+                            $ctx.query.sessionId !== "") ||
+                          $ctx.query.paiement === "ok"
+                          // && $state.modalCreditsAlerts === true
+                        );
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return undefined;
+                        }
+                        throw e;
+                      }
+                    })()
+                }
+              ],
+              []
+            );
+            return (
+              <Modal
+                data-plasmic-name={"modalCreditsAlerts"}
+                data-plasmic-override={overrides.modalCreditsAlerts}
+                {...child$Props}
+              />
+            );
+          })()}
         </div>
       </div>
     </React.Fragment>
@@ -18957,7 +19633,13 @@ const PlasmicDescendants = {
     "totalAmount",
     "total",
     "amount",
-    "stripeCheckoutButton"
+    "stripeCheckoutButton",
+    "actionCreditSuccess",
+    "modalCreditsAlerts",
+    "closeButton",
+    "iconSuccess",
+    "messageText",
+    "actionButton"
   ],
   mobileNavbarTop: ["mobileNavbarTop"],
   sidebar: ["sidebar"],
@@ -19707,7 +20389,19 @@ const PlasmicDescendants = {
   totalAmount: ["totalAmount", "total", "amount"],
   total: ["total"],
   amount: ["amount"],
-  stripeCheckoutButton: ["stripeCheckoutButton"]
+  stripeCheckoutButton: ["stripeCheckoutButton"],
+  actionCreditSuccess: ["actionCreditSuccess"],
+  modalCreditsAlerts: [
+    "modalCreditsAlerts",
+    "closeButton",
+    "iconSuccess",
+    "messageText",
+    "actionButton"
+  ],
+  closeButton: ["closeButton"],
+  iconSuccess: ["iconSuccess"],
+  messageText: ["messageText"],
+  actionButton: ["actionButton"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -19900,6 +20594,12 @@ type NodeDefaultElementType = {
   total: "div";
   amount: "div";
   stripeCheckoutButton: typeof StripeCheckoutButton;
+  actionCreditSuccess: typeof PageLoader;
+  modalCreditsAlerts: typeof Modal;
+  closeButton: "div";
+  iconSuccess: "div";
+  messageText: "div";
+  actionButton: "div";
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -20148,6 +20848,12 @@ export const PlasmicOffreEmployeur = Object.assign(
     total: makeNodeComponent("total"),
     amount: makeNodeComponent("amount"),
     stripeCheckoutButton: makeNodeComponent("stripeCheckoutButton"),
+    actionCreditSuccess: makeNodeComponent("actionCreditSuccess"),
+    modalCreditsAlerts: makeNodeComponent("modalCreditsAlerts"),
+    closeButton: makeNodeComponent("closeButton"),
+    iconSuccess: makeNodeComponent("iconSuccess"),
+    messageText: makeNodeComponent("messageText"),
+    actionButton: makeNodeComponent("actionButton"),
 
     // Metadata about props expected for PlasmicOffreEmployeur
     internalVariantProps: PlasmicOffreEmployeur__VariantProps,

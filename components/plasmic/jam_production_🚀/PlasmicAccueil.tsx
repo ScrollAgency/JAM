@@ -1755,7 +1755,20 @@ function PlasmicAccueil__RenderFunc(props: {
 
   return (
     <React.Fragment>
-      <Head></Head>
+      <Head>
+        <meta name="twitter:card" content="summary" />
+        <title key="title">{PlasmicAccueil.pageMetadata.title}</title>
+        <meta
+          key="og:title"
+          property="og:title"
+          content={PlasmicAccueil.pageMetadata.title}
+        />
+        <meta
+          key="twitter:title"
+          name="twitter:title"
+          content={PlasmicAccueil.pageMetadata.title}
+        />
+      </Head>
 
       <style>{`
         body {
@@ -18678,7 +18691,7 @@ export const PlasmicAccueil = Object.assign(
 
     // Page metadata
     pageMetadata: {
-      title: "",
+      title: "Accueil",
       description: "",
       ogImageSrc: "",
       canonical: ""

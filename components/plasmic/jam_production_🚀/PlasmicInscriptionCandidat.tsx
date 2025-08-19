@@ -867,7 +867,7 @@ export const PlasmicInscriptionCandidat = Object.assign(
 
     // Page metadata
     pageMetadata: {
-      title: "Inscription",
+      title: "Inscription candidat",
       description: "",
       ogImageSrc: "",
       canonical: ""

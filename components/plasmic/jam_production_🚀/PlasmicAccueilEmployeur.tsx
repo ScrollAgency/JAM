@@ -359,7 +359,20 @@ function PlasmicAccueilEmployeur__RenderFunc(props: {
 
   return (
     <React.Fragment>
-      <Head></Head>
+      <Head>
+        <meta name="twitter:card" content="summary" />
+        <title key="title">{PlasmicAccueilEmployeur.pageMetadata.title}</title>
+        <meta
+          key="og:title"
+          property="og:title"
+          content={PlasmicAccueilEmployeur.pageMetadata.title}
+        />
+        <meta
+          key="twitter:title"
+          name="twitter:title"
+          content={PlasmicAccueilEmployeur.pageMetadata.title}
+        />
+      </Head>
 
       <style>{`
         body {
@@ -5413,7 +5426,7 @@ export const PlasmicAccueilEmployeur = Object.assign(
 
     // Page metadata
     pageMetadata: {
-      title: "",
+      title: "Accueil employeur",
       description: "",
       ogImageSrc: "",
       canonical: ""

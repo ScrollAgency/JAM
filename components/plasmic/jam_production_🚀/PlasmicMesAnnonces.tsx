@@ -859,7 +859,20 @@ function PlasmicMesAnnonces__RenderFunc(props: {
 
   return (
     <React.Fragment>
-      <Head></Head>
+      <Head>
+        <meta name="twitter:card" content="summary" />
+        <title key="title">{PlasmicMesAnnonces.pageMetadata.title}</title>
+        <meta
+          key="og:title"
+          property="og:title"
+          content={PlasmicMesAnnonces.pageMetadata.title}
+        />
+        <meta
+          key="twitter:title"
+          name="twitter:title"
+          content={PlasmicMesAnnonces.pageMetadata.title}
+        />
+      </Head>
 
       <style>{`
         body {
@@ -6616,7 +6629,7 @@ export const PlasmicMesAnnonces = Object.assign(
 
     // Page metadata
     pageMetadata: {
-      title: "",
+      title: "Mes annonces",
       description: "",
       ogImageSrc: "",
       canonical: ""

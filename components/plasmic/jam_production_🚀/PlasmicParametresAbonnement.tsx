@@ -444,7 +444,22 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
 
   return (
     <React.Fragment>
-      <Head></Head>
+      <Head>
+        <meta name="twitter:card" content="summary" />
+        <title key="title">
+          {PlasmicParametresAbonnement.pageMetadata.title}
+        </title>
+        <meta
+          key="og:title"
+          property="og:title"
+          content={PlasmicParametresAbonnement.pageMetadata.title}
+        />
+        <meta
+          key="twitter:title"
+          name="twitter:title"
+          content={PlasmicParametresAbonnement.pageMetadata.title}
+        />
+      </Head>
 
       <style>{`
         body {
@@ -5104,7 +5119,7 @@ export const PlasmicParametresAbonnement = Object.assign(
 
     // Page metadata
     pageMetadata: {
-      title: "",
+      title: "Abonnement et recharges",
       description: "",
       ogImageSrc: "",
       canonical: ""

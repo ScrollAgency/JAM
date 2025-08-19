@@ -263,7 +263,20 @@ function PlasmicUserAdmin__RenderFunc(props: {
 
   return (
     <React.Fragment>
-      <Head></Head>
+      <Head>
+        <meta name="twitter:card" content="summary" />
+        <title key="title">{PlasmicUserAdmin.pageMetadata.title}</title>
+        <meta
+          key="og:title"
+          property="og:title"
+          content={PlasmicUserAdmin.pageMetadata.title}
+        />
+        <meta
+          key="twitter:title"
+          name="twitter:title"
+          content={PlasmicUserAdmin.pageMetadata.title}
+        />
+      </Head>
 
       <style>{`
         body {
@@ -1302,7 +1315,7 @@ export const PlasmicUserAdmin = Object.assign(
 
     // Page metadata
     pageMetadata: {
-      title: "",
+      title: "Gestion des utilisateurs",
       description: "",
       ogImageSrc: "",
       canonical: ""

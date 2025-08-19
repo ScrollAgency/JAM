@@ -218,7 +218,22 @@ function PlasmicConditionsGeneralesDutilisation__RenderFunc(props: {
 
   return (
     <React.Fragment>
-      <Head></Head>
+      <Head>
+        <meta name="twitter:card" content="summary" />
+        <title key="title">
+          {PlasmicConditionsGeneralesDutilisation.pageMetadata.title}
+        </title>
+        <meta
+          key="og:title"
+          property="og:title"
+          content={PlasmicConditionsGeneralesDutilisation.pageMetadata.title}
+        />
+        <meta
+          key="twitter:title"
+          name="twitter:title"
+          content={PlasmicConditionsGeneralesDutilisation.pageMetadata.title}
+        />
+      </Head>
 
       <style>{`
         body {
@@ -3136,7 +3151,7 @@ export const PlasmicConditionsGeneralesDutilisation = Object.assign(
 
     // Page metadata
     pageMetadata: {
-      title: "",
+      title: "Conditions générales d'utilisation",
       description: "",
       ogImageSrc: "",
       canonical: ""

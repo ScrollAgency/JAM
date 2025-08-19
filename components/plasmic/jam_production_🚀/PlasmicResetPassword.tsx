@@ -565,7 +565,7 @@ export const PlasmicResetPassword = Object.assign(
 
     // Page metadata
     pageMetadata: {
-      title: "Reset password",
+      title: "Réinitialiser son mot de passe",
       description: "",
       ogImageSrc: "",
       canonical: ""

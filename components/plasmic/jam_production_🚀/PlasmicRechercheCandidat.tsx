@@ -423,7 +423,20 @@ function PlasmicRechercheCandidat__RenderFunc(props: {
 
   return (
     <React.Fragment>
-      <Head></Head>
+      <Head>
+        <meta name="twitter:card" content="summary" />
+        <title key="title">{PlasmicRechercheCandidat.pageMetadata.title}</title>
+        <meta
+          key="og:title"
+          property="og:title"
+          content={PlasmicRechercheCandidat.pageMetadata.title}
+        />
+        <meta
+          key="twitter:title"
+          name="twitter:title"
+          content={PlasmicRechercheCandidat.pageMetadata.title}
+        />
+      </Head>
 
       <style>{`
         body {
@@ -3149,7 +3162,7 @@ export const PlasmicRechercheCandidat = Object.assign(
 
     // Page metadata
     pageMetadata: {
-      title: "",
+      title: "Recherche de candidats",
       description: "",
       ogImageSrc: "",
       canonical: ""

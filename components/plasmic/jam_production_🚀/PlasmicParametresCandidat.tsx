@@ -760,7 +760,22 @@ function PlasmicParametresCandidat__RenderFunc(props: {
 
   return (
     <React.Fragment>
-      <Head></Head>
+      <Head>
+        <meta name="twitter:card" content="summary" />
+        <title key="title">
+          {PlasmicParametresCandidat.pageMetadata.title}
+        </title>
+        <meta
+          key="og:title"
+          property="og:title"
+          content={PlasmicParametresCandidat.pageMetadata.title}
+        />
+        <meta
+          key="twitter:title"
+          name="twitter:title"
+          content={PlasmicParametresCandidat.pageMetadata.title}
+        />
+      </Head>
 
       <style>{`
         body {
@@ -5239,7 +5254,7 @@ export const PlasmicParametresCandidat = Object.assign(
 
     // Page metadata
     pageMetadata: {
-      title: "",
+      title: "Paramètres",
       description: "",
       ogImageSrc: "",
       canonical: ""

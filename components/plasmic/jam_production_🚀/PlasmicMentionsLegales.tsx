@@ -241,7 +241,20 @@ function PlasmicMentionsLegales__RenderFunc(props: {
 
   return (
     <React.Fragment>
-      <Head></Head>
+      <Head>
+        <meta name="twitter:card" content="summary" />
+        <title key="title">{PlasmicMentionsLegales.pageMetadata.title}</title>
+        <meta
+          key="og:title"
+          property="og:title"
+          content={PlasmicMentionsLegales.pageMetadata.title}
+        />
+        <meta
+          key="twitter:title"
+          name="twitter:title"
+          content={PlasmicMentionsLegales.pageMetadata.title}
+        />
+      </Head>
 
       <style>{`
         body {
@@ -3641,7 +3654,7 @@ export const PlasmicMentionsLegales = Object.assign(
 
     // Page metadata
     pageMetadata: {
-      title: "",
+      title: "Mentions légales",
       description: "",
       ogImageSrc: "",
       canonical: ""

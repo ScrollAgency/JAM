@@ -915,7 +915,7 @@ export const PlasmicMesCandidatures = Object.assign(
 
     // Page metadata
     pageMetadata: {
-      title: "Job Applications",
+      title: "Mes candidatures",
       description: "",
       ogImageSrc: "",
       canonical: ""
