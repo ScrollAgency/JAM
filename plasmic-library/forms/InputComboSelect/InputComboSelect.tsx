@@ -7,13 +7,14 @@ export interface InputComboSelectProps {
   value?: number;
   onChange?: (value: number) => void;
   className?: string;
+  dropDirection?: "up" | "down";
 }
 
 function InputComboSelect_(
   props: InputComboSelectProps,
   ref: HTMLElementRefOf<"div">
 ) {
-  const { value, onChange, className } = props;
+  const { value, onChange, className, dropDirection = "up"  } = props;
   const [open, setOpen] = React.useState(false);
 
   const wrapperRef = React.useRef<HTMLDivElement>(null);
@@ -65,11 +66,24 @@ function InputComboSelect_(
         className={styles.input}
       />
       <button type="button" className={styles.icon} onClick={toggleDropdown}>
-        {open ? <ChevronUpIcon /> : <ChevronDownIcon />}
+        {open
+          ? dropDirection === "up"
+            ? <ChevronDownIcon />
+            : <ChevronUpIcon />
+          : dropDirection === "up"
+            ? <ChevronUpIcon />
+            : <ChevronDownIcon />
+        }
       </button>
 
       {open && (
-        <div className={styles.dropdown}>
+        <div
+          className={styles.dropdown}
+          style={{
+            top: dropDirection === "down" ? "100%" : undefined,
+            bottom: dropDirection === "up" ? "100%" : undefined,
+          }}
+        >
           {options.map((val) => (
             <button
               key={`option-${val}`}
