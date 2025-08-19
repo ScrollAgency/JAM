@@ -19245,7 +19245,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                     onClick={async event => {
                       const $steps = {};
 
-                      $steps["goToOffreEmployeur"] = true
+                      $steps["goToOffreEmployeur"] = false
                         ? (() => {
                             const actionArgs = {
                               destination: `/offre-employeur`
@@ -19271,6 +19271,92 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                       ) {
                         $steps["goToOffreEmployeur"] = await $steps[
                           "goToOffreEmployeur"
+                        ];
+                      }
+
+                      $steps["verifyRechargesStock"] = true
+                        ? (() => {
+                            const actionArgs = {
+                              customFunction: async () => {
+                                return (() => {
+                                  const rechargeClassic = Number(
+                                    $queries.offreStripeUserInfos.data[0]
+                                      ?.recharge_classic
+                                  );
+                                  const rechargeLastminute = Number(
+                                    $queries.offreStripeUserInfos.data[0]
+                                      ?.recharge_lastminute
+                                  );
+                                  const isNaN = Number.isNaN;
+                                  const isClassicValid =
+                                    !isNaN(rechargeClassic) &&
+                                    rechargeClassic > 0;
+                                  const isLastminuteValid =
+                                    !isNaN(rechargeLastminute) &&
+                                    rechargeLastminute > 0;
+                                  if (isLastminuteValid) {
+                                    $state.insufficientCharges.isOpen = false;
+                                    return true;
+                                  } else if (isClassicValid) {
+                                    $state.insufficientCharges.isOpen = false;
+                                    return true;
+                                  } else {
+                                    $state.insufficientCharges.isOpen = true;
+                                    return false;
+                                  }
+                                })();
+                              }
+                            };
+                            return (({ customFunction }) => {
+                              return customFunction();
+                            })?.apply(null, [actionArgs]);
+                          })()
+                        : undefined;
+                      if (
+                        $steps["verifyRechargesStock"] != null &&
+                        typeof $steps["verifyRechargesStock"] === "object" &&
+                        typeof $steps["verifyRechargesStock"].then ===
+                          "function"
+                      ) {
+                        $steps["verifyRechargesStock"] = await $steps[
+                          "verifyRechargesStock"
+                        ];
+                      }
+
+                      $steps["updateCreateJobIsOpen"] = true
+                        ? (() => {
+                            const actionArgs = {
+                              variable: {
+                                objRoot: $state,
+                                variablePath: ["createJob", "isOpen"]
+                              },
+                              operation: 0,
+                              value: true
+                            };
+                            return (({
+                              variable,
+                              value,
+                              startIndex,
+                              deleteCount
+                            }) => {
+                              if (!variable) {
+                                return;
+                              }
+                              const { objRoot, variablePath } = variable;
+
+                              $stateSet(objRoot, variablePath, value);
+                              return value;
+                            })?.apply(null, [actionArgs]);
+                          })()
+                        : undefined;
+                      if (
+                        $steps["updateCreateJobIsOpen"] != null &&
+                        typeof $steps["updateCreateJobIsOpen"] === "object" &&
+                        typeof $steps["updateCreateJobIsOpen"].then ===
+                          "function"
+                      ) {
+                        $steps["updateCreateJobIsOpen"] = await $steps[
+                          "updateCreateJobIsOpen"
                         ];
                       }
                     }}
