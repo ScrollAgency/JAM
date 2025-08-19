@@ -18263,6 +18263,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                           "__wab_instance",
                           sty.inputComboSelect
                         )}
+                        dropDirection={"down"}
                         onChange={async (...eventArgs: any) => {
                           generateStateOnChangeProp($state, [
                             "inputComboSelect",
@@ -18376,6 +18377,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                           "__wab_instance",
                           sty.inputComboSelect2
                         )}
+                        dropDirection={"down"}
                         onChange={async (...eventArgs: any) => {
                           generateStateOnChangeProp($state, [
                             "inputComboSelect2",
@@ -18492,6 +18494,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                           "__wab_instance",
                           sty.inputComboSelect3
                         )}
+                        dropDirection={"down"}
                         onChange={async (...eventArgs: any) => {
                           generateStateOnChangeProp($state, [
                             "inputComboSelect3",

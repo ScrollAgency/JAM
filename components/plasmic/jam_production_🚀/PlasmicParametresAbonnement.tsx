@@ -3508,6 +3508,7 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                           "__wab_instance",
                           sty.inputComboSelect
                         )}
+                        dropDirection={"up"}
                         onChange={async (...eventArgs: any) => {
                           generateStateOnChangeProp($state, [
                             "inputComboSelect",
@@ -3624,6 +3625,7 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                           "__wab_instance",
                           sty.inputComboSelect2
                         )}
+                        dropDirection={"up"}
                         onChange={async (...eventArgs: any) => {
                           generateStateOnChangeProp($state, [
                             "inputComboSelect2",
@@ -3737,6 +3739,7 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                           "__wab_instance",
                           sty.inputComboSelect3
                         )}
+                        dropDirection={"up"}
                         onChange={async (...eventArgs: any) => {
                           generateStateOnChangeProp($state, [
                             "inputComboSelect3",
