@@ -4163,7 +4163,6 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                           "__wab_instance",
                           sty.formField___9GbMi
                         )}
-                        initialValue={$state.form2.value.title}
                         label={
                           <div
                             className={classNames(
@@ -4176,7 +4175,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                           </div>
                         }
                         name={"title"}
-                        preserve={true}
+                        preserve={false}
                         rules={[{ ruleType: "required", message: "requis" }]}
                       >
                         <TextInput
@@ -6326,8 +6325,8 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                               ];
                             }
                           }}
-                          resetsForm={true}
-                          submitsForm={false}
+                          resetsForm={false}
+                          submitsForm={true}
                         />
                       </div>
                     </FormWrapper>
