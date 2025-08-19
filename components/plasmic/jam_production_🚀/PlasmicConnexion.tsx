@@ -720,7 +720,7 @@ export const PlasmicConnexion = Object.assign(
 
     // Page metadata
     pageMetadata: {
-      title: "Connexion candidat",
+      title: "Connexion",
       description: "",
       ogImageSrc: "",
       canonical: ""
