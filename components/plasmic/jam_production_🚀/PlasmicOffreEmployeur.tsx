@@ -3952,19 +3952,20 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                         $steps["createOffer"] = await $steps["createOffer"];
                       }
 
-                      $steps["showNotification"] = true
-                        ? (() => {
-                            const actionArgs = {
-                              args: [
-                                "success",
-                                "Votre offre est publi\u00e9e et visible des candidats"
-                              ]
-                            };
-                            return $globalActions[
-                              "plasmic-antd5-config-provider.showNotification"
-                            ]?.apply(null, [...actionArgs.args]);
-                          })()
-                        : undefined;
+                      $steps["showNotification"] =
+                        $steps.checkRechargeQuantity === true
+                          ? (() => {
+                              const actionArgs = {
+                                args: [
+                                  "success",
+                                  "Votre offre est publi\u00e9e et visible des candidats"
+                                ]
+                              };
+                              return $globalActions[
+                                "plasmic-antd5-config-provider.showNotification"
+                              ]?.apply(null, [...actionArgs.args]);
+                            })()
+                          : undefined;
                       if (
                         $steps["showNotification"] != null &&
                         typeof $steps["showNotification"] === "object" &&
@@ -5964,7 +5965,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                           onClick={async event => {
                             const $steps = {};
 
-                            $steps["runCode"] = true
+                            $steps["runCode"] = false
                               ? (() => {
                                   const actionArgs = {
                                     customFunction: async () => {
@@ -6017,7 +6018,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                               $steps["runCode"] = await $steps["runCode"];
                             }
 
-                            $steps["closeModal"] = true
+                            $steps["closeModal"] = false
                               ? (() => {
                                   const actionArgs = {
                                     customFunction: async () => {
@@ -6043,103 +6044,102 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                               $steps["closeModal"] = await $steps["closeModal"];
                             }
 
-                            $steps["createOffer"] =
-                              $steps.runCode === true
-                                ? (() => {
-                                    const actionArgs = {
-                                      dataOp: {
-                                        sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
-                                        opId: "5d31e8d8-cff8-4509-9e73-34a7e4b58ca3",
-                                        userArgs: {
-                                          variables: [
-                                            $state.form2.value.address,
+                            $steps["createOffer"] = false
+                              ? (() => {
+                                  const actionArgs = {
+                                    dataOp: {
+                                      sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
+                                      opId: "5d31e8d8-cff8-4509-9e73-34a7e4b58ca3",
+                                      userArgs: {
+                                        variables: [
+                                          $state.form2.value.address,
 
-                                            $state.form2.value
-                                              .availability_status,
+                                          $state.form2.value
+                                            .availability_status,
 
-                                            $queries.getCompanies.data[0].id,
+                                          $queries.getCompanies.data[0].id,
 
-                                            $state.form2.value.contract_type,
+                                          $state.form2.value.contract_type,
 
-                                            $state.form2.value.country,
+                                          $state.form2.value.country,
 
-                                            $state.form2.value.description,
+                                          $state.form2.value.description,
 
-                                            $state.form2.value.location,
+                                          $state.form2.value.location,
 
-                                            $state.form2.value.postal_code,
+                                          $state.form2.value.postal_code,
 
-                                            $state.form2.value.requirements,
+                                          $state.form2.value.requirements,
 
-                                            $state.form2.value.salary,
+                                          $state.form2.value.salary,
 
-                                            $state.form2.value.sector_activity,
+                                          $state.form2.value.sector_activity,
 
-                                            $state.form2.value.title,
+                                          $state.form2.value.title,
 
-                                            $state.form2.value.work_mode,
+                                          $state.form2.value.work_mode,
 
-                                            $state.form2.value.working_time,
+                                          $state.form2.value.working_time,
 
-                                            $state.form2.value.benefits,
+                                          $state.form2.value.benefits,
 
-                                            $state.lastMinuteToggle
-                                              .switch2IsSelected,
+                                          $state.lastMinuteToggle
+                                            .switch2IsSelected,
 
-                                            $state.form2.value.end_date,
+                                          $state.form2.value.end_date,
 
-                                            $state.form2.value.start_date,
+                                          $state.form2.value.start_date,
 
-                                            $queries.fetchJobCoordinates.data
-                                              .response.features[0].geometry
-                                              .coordinates[1],
+                                          $queries.fetchJobCoordinates.data
+                                            .response.features[0].geometry
+                                            .coordinates[1],
 
-                                            $queries.fetchJobCoordinates.data
-                                              .response.features[0].geometry
-                                              .coordinates[0],
+                                          $queries.fetchJobCoordinates.data
+                                            .response.features[0].geometry
+                                            .coordinates[0],
 
-                                            $state.form2.value.team_size
-                                          ]
-                                        },
-                                        cacheKey: null,
-                                        invalidatedKeys: [
-                                          "316176a9-f0d4-44d7-baa0-a763336a6271",
-                                          "e38cc2f4-cfb6-40a3-bc90-0b9ce2786a30",
-                                          "1284f981-03a5-4aae-9f90-4a9eb18e1c6b",
-                                          "1284f981-03a5-4aae-9f90-4a9eb18e1c6b",
-                                          "ba382dfb-c617-44db-a36f-dda3fa7e919f",
-                                          "9258b35e-6135-4ba7-8ce4-fe23b60361d6",
-                                          "c91b3dad-0831-48c9-8dd7-50555a9ed2f8",
-                                          "09c18e19-f24f-4bbd-891f-3c8b83e5f1cc"
-                                        ],
-                                        roleId: null
+                                          $state.form2.value.team_size
+                                        ]
                                       },
-                                      continueOnError: false
-                                    };
-                                    return (async ({
-                                      dataOp,
-                                      continueOnError
-                                    }) => {
-                                      try {
-                                        const response =
-                                          await executePlasmicDataOp(dataOp, {
-                                            userAuthToken:
-                                              dataSourcesCtx?.userAuthToken,
-                                            user: dataSourcesCtx?.user
-                                          });
-                                        await plasmicInvalidate(
-                                          dataOp.invalidatedKeys
-                                        );
-                                        return response;
-                                      } catch (e) {
-                                        if (!continueOnError) {
-                                          throw e;
-                                        }
-                                        return e;
+                                      cacheKey: null,
+                                      invalidatedKeys: [
+                                        "316176a9-f0d4-44d7-baa0-a763336a6271",
+                                        "e38cc2f4-cfb6-40a3-bc90-0b9ce2786a30",
+                                        "1284f981-03a5-4aae-9f90-4a9eb18e1c6b",
+                                        "1284f981-03a5-4aae-9f90-4a9eb18e1c6b",
+                                        "ba382dfb-c617-44db-a36f-dda3fa7e919f",
+                                        "9258b35e-6135-4ba7-8ce4-fe23b60361d6",
+                                        "c91b3dad-0831-48c9-8dd7-50555a9ed2f8",
+                                        "09c18e19-f24f-4bbd-891f-3c8b83e5f1cc"
+                                      ],
+                                      roleId: null
+                                    },
+                                    continueOnError: false
+                                  };
+                                  return (async ({
+                                    dataOp,
+                                    continueOnError
+                                  }) => {
+                                    try {
+                                      const response =
+                                        await executePlasmicDataOp(dataOp, {
+                                          userAuthToken:
+                                            dataSourcesCtx?.userAuthToken,
+                                          user: dataSourcesCtx?.user
+                                        });
+                                      await plasmicInvalidate(
+                                        dataOp.invalidatedKeys
+                                      );
+                                      return response;
+                                    } catch (e) {
+                                      if (!continueOnError) {
+                                        throw e;
                                       }
-                                    })?.apply(null, [actionArgs]);
-                                  })()
-                                : undefined;
+                                      return e;
+                                    }
+                                  })?.apply(null, [actionArgs]);
+                                })()
+                              : undefined;
                             if (
                               $steps["createOffer"] != null &&
                               typeof $steps["createOffer"] === "object" &&
@@ -6150,20 +6150,19 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                               ];
                             }
 
-                            $steps["showNotification"] =
-                              $steps.runCode === true
-                                ? (() => {
-                                    const actionArgs = {
-                                      args: [
-                                        "success",
-                                        "Votre offre est publi\u00e9e et visible des candidats"
-                                      ]
-                                    };
-                                    return $globalActions[
-                                      "plasmic-antd5-config-provider.showNotification"
-                                    ]?.apply(null, [...actionArgs.args]);
-                                  })()
-                                : undefined;
+                            $steps["showNotification"] = false
+                              ? (() => {
+                                  const actionArgs = {
+                                    args: [
+                                      "success",
+                                      "Votre offre est publi\u00e9e et visible des candidats"
+                                    ]
+                                  };
+                                  return $globalActions[
+                                    "plasmic-antd5-config-provider.showNotification"
+                                  ]?.apply(null, [...actionArgs.args]);
+                                })()
+                              : undefined;
                             if (
                               $steps["showNotification"] != null &&
                               typeof $steps["showNotification"] === "object" &&
@@ -6175,112 +6174,109 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                               ];
                             }
 
-                            $steps["updateStripe"] =
-                              $steps.runCode === true
-                                ? (() => {
-                                    const actionArgs = {
-                                      dataOp: {
-                                        sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
-                                        opId: "b3ab694d-132d-4e5d-9ada-cb46ac6ddaad",
-                                        userArgs: {
-                                          variables: [
-                                            (() => {
-                                              const rechargeClassic = Number(
-                                                $queries.offreStripeUserInfos
-                                                  .data[0].recharge_classic
-                                              );
-                                              const rechargeLastminute = Number(
-                                                $queries.offreStripeUserInfos
-                                                  .data[0].recharge_lastminute
-                                              );
-                                              const switchIsSelected =
-                                                $state.lastMinuteToggle
-                                                  .switch2IsSelected;
-                                              const isLastMinuteJob =
-                                                $state.currentJobObject
-                                                  .is_last_minute;
-                                              if (
-                                                isLastMinuteJob &&
-                                                rechargeLastminute > 0
-                                              ) {
-                                                return rechargeLastminute - 1;
-                                              }
-                                              const canUseLastMinute =
-                                                switchIsSelected ||
-                                                (!switchIsSelected &&
-                                                  rechargeClassic <= 0 &&
-                                                  rechargeLastminute > 0);
-                                              if (
-                                                canUseLastMinute &&
-                                                rechargeLastminute > 0
-                                              ) {
-                                                return rechargeLastminute - 1;
-                                              } else {
-                                                return rechargeLastminute;
-                                              }
-                                            })(),
+                            $steps["updateStripe"] = false
+                              ? (() => {
+                                  const actionArgs = {
+                                    dataOp: {
+                                      sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
+                                      opId: "b3ab694d-132d-4e5d-9ada-cb46ac6ddaad",
+                                      userArgs: {
+                                        variables: [
+                                          (() => {
+                                            const rechargeClassic = Number(
+                                              $queries.offreStripeUserInfos
+                                                .data[0].recharge_classic
+                                            );
+                                            const rechargeLastminute = Number(
+                                              $queries.offreStripeUserInfos
+                                                .data[0].recharge_lastminute
+                                            );
+                                            const switchIsSelected =
+                                              $state.lastMinuteToggle
+                                                .switch2IsSelected;
+                                            const isLastMinuteJob =
+                                              $state.currentJobObject
+                                                .is_last_minute;
+                                            if (
+                                              isLastMinuteJob &&
+                                              rechargeLastminute > 0
+                                            ) {
+                                              return rechargeLastminute - 1;
+                                            }
+                                            const canUseLastMinute =
+                                              switchIsSelected ||
+                                              (!switchIsSelected &&
+                                                rechargeClassic <= 0 &&
+                                                rechargeLastminute > 0);
+                                            if (
+                                              canUseLastMinute &&
+                                              rechargeLastminute > 0
+                                            ) {
+                                              return rechargeLastminute - 1;
+                                            } else {
+                                              return rechargeLastminute;
+                                            }
+                                          })(),
 
-                                            (() => {
-                                              const recharge = Number(
-                                                $queries.offreStripeUserInfos
-                                                  .data[0].recharge_classic
-                                              );
-                                              const isLastMinuteJob =
-                                                $state.lastMinuteToggle
-                                                  .switch2IsSelected;
-                                              if (isLastMinuteJob) {
-                                                return recharge;
-                                              }
-                                              if (
-                                                !$state.lastMinuteToggle
-                                                  .switch2IsSelected &&
-                                                recharge > 0
-                                              ) {
-                                                const updatedRecharge =
-                                                  recharge - 1;
-                                                return updatedRecharge;
-                                              }
+                                          (() => {
+                                            const recharge = Number(
+                                              $queries.offreStripeUserInfos
+                                                .data[0].recharge_classic
+                                            );
+                                            const isLastMinuteJob =
+                                              $state.lastMinuteToggle
+                                                .switch2IsSelected;
+                                            if (isLastMinuteJob) {
                                               return recharge;
-                                            })()
-                                          ],
-
-                                          conditions: [
-                                            $ctx.SupabaseUser.user.id
-                                          ]
-                                        },
-                                        cacheKey: null,
-                                        invalidatedKeys: [
-                                          "1284f981-03a5-4aae-9f90-4a9eb18e1c6b",
-                                          "1284f981-03a5-4aae-9f90-4a9eb18e1c6b",
-                                          "9258b35e-6135-4ba7-8ce4-fe23b60361d6"
+                                            }
+                                            if (
+                                              !$state.lastMinuteToggle
+                                                .switch2IsSelected &&
+                                              recharge > 0
+                                            ) {
+                                              const updatedRecharge =
+                                                recharge - 1;
+                                              return updatedRecharge;
+                                            }
+                                            return recharge;
+                                          })()
                                         ],
-                                        roleId: null
+
+                                        conditions: [$ctx.SupabaseUser.user.id]
+                                      },
+                                      cacheKey: null,
+                                      invalidatedKeys: [
+                                        "1284f981-03a5-4aae-9f90-4a9eb18e1c6b",
+                                        "1284f981-03a5-4aae-9f90-4a9eb18e1c6b",
+                                        "9258b35e-6135-4ba7-8ce4-fe23b60361d6"
+                                      ],
+                                      roleId: null
+                                    }
+                                  };
+                                  return (async ({
+                                    dataOp,
+                                    continueOnError
+                                  }) => {
+                                    try {
+                                      const response =
+                                        await executePlasmicDataOp(dataOp, {
+                                          userAuthToken:
+                                            dataSourcesCtx?.userAuthToken,
+                                          user: dataSourcesCtx?.user
+                                        });
+                                      await plasmicInvalidate(
+                                        dataOp.invalidatedKeys
+                                      );
+                                      return response;
+                                    } catch (e) {
+                                      if (!continueOnError) {
+                                        throw e;
                                       }
-                                    };
-                                    return (async ({
-                                      dataOp,
-                                      continueOnError
-                                    }) => {
-                                      try {
-                                        const response =
-                                          await executePlasmicDataOp(dataOp, {
-                                            userAuthToken:
-                                              dataSourcesCtx?.userAuthToken,
-                                            user: dataSourcesCtx?.user
-                                          });
-                                        await plasmicInvalidate(
-                                          dataOp.invalidatedKeys
-                                        );
-                                        return response;
-                                      } catch (e) {
-                                        if (!continueOnError) {
-                                          throw e;
-                                        }
-                                        return e;
-                                      }
-                                    })?.apply(null, [actionArgs]);
-                                  })()
-                                : undefined;
+                                      return e;
+                                    }
+                                  })?.apply(null, [actionArgs]);
+                                })()
+                              : undefined;
                             if (
                               $steps["updateStripe"] != null &&
                               typeof $steps["updateStripe"] === "object" &&
