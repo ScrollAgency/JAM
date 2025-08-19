@@ -5,7 +5,8 @@
 // Plasmic Project: hjKYmYi6HMwK6TRyk7ew5R
 
 import * as React from "react";
-import { hasVariant, ensureGlobalVariants } from "@plasmicapp/react-web";
+
+import { _useGlobalVariants } from "./plasmic"; // plasmic-import: hjKYmYi6HMwK6TRyk7ew5R/projectModule
 import { CmsCredentialsProvider } from "@plasmicpkgs/plasmic-cms";
 
 export interface GlobalContextsProviderProps {
