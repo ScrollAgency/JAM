@@ -181,7 +181,6 @@ export type PlasmicParametresCandidat__OverridesType = {
   card3?: Flex__<"div">;
   resetPassword?: Flex__<typeof ResetPassword>;
   form?: Flex__<typeof FormWrapper>;
-  card4?: Flex__<"div">;
   deleteAccount2?: Flex__<typeof DeleteAccount2>;
   supprCompte?: Flex__<typeof Modal>;
   e?: Flex__<"div">;
@@ -2542,7 +2541,7 @@ function PlasmicParametresCandidat__RenderFunc(props: {
                                 )}
                                 hidden={false}
                                 initialValue={
-                                  $queries.currentUser?.data[0]?.level
+                                  $queries.currentUser?.data?.[0].level
                                 }
                                 label={
                                   <div
@@ -2566,7 +2565,8 @@ function PlasmicParametresCandidat__RenderFunc(props: {
                                   )}
                                   initialSelectedValue={(() => {
                                     try {
-                                      return $queries.currentUser.data[0].level;
+                                      return $queries.currentUser.data?.[0]
+                                        .level;
                                     } catch (e) {
                                       if (
                                         e instanceof TypeError ||
@@ -4173,83 +4173,77 @@ function PlasmicParametresCandidat__RenderFunc(props: {
                           </FormWrapper>
                         );
                       })()}
-                      <div
-                        data-plasmic-name={"card4"}
-                        data-plasmic-override={overrides.card4}
-                        className={classNames(projectcss.all, sty.card4)}
-                      >
-                        <DeleteAccount2
-                          data-plasmic-name={"deleteAccount2"}
-                          data-plasmic-override={overrides.deleteAccount2}
-                          className={classNames(
-                            "__wab_instance",
-                            sty.deleteAccount2
-                          )}
-                          color={"white"}
-                          iconStart={true}
-                          label={
-                            <div
-                              className={classNames(
-                                projectcss.all,
-                                projectcss.__wab_text,
-                                sty.text__sk2Jw
-                              )}
-                            >
-                              {"supprimer le compte"}
-                            </div>
-                          }
-                          onClick={async event => {
-                            const $steps = {};
+                      <DeleteAccount2
+                        data-plasmic-name={"deleteAccount2"}
+                        data-plasmic-override={overrides.deleteAccount2}
+                        className={classNames(
+                          "__wab_instance",
+                          sty.deleteAccount2
+                        )}
+                        color={"white"}
+                        iconStart={true}
+                        label={
+                          <div
+                            className={classNames(
+                              projectcss.all,
+                              projectcss.__wab_text,
+                              sty.text__sk2Jw
+                            )}
+                          >
+                            {"Supprimer le compte"}
+                          </div>
+                        }
+                        onClick={async event => {
+                          const $steps = {};
 
-                            $steps["updateSupprCompteIsOpen"] = true
-                              ? (() => {
-                                  const actionArgs = {
-                                    variable: {
-                                      objRoot: $state,
-                                      variablePath: ["supprCompte", "isOpen"]
-                                    },
-                                    operation: 0,
-                                    value: true
-                                  };
-                                  return (({
-                                    variable,
-                                    value,
-                                    startIndex,
-                                    deleteCount
-                                  }) => {
-                                    if (!variable) {
-                                      return;
-                                    }
-                                    const { objRoot, variablePath } = variable;
+                          $steps["updateSupprCompteIsOpen"] = true
+                            ? (() => {
+                                const actionArgs = {
+                                  variable: {
+                                    objRoot: $state,
+                                    variablePath: ["supprCompte", "isOpen"]
+                                  },
+                                  operation: 0,
+                                  value: true
+                                };
+                                return (({
+                                  variable,
+                                  value,
+                                  startIndex,
+                                  deleteCount
+                                }) => {
+                                  if (!variable) {
+                                    return;
+                                  }
+                                  const { objRoot, variablePath } = variable;
 
-                                    $stateSet(objRoot, variablePath, value);
-                                    return value;
-                                  })?.apply(null, [actionArgs]);
-                                })()
-                              : undefined;
-                            if (
-                              $steps["updateSupprCompteIsOpen"] != null &&
-                              typeof $steps["updateSupprCompteIsOpen"] ===
-                                "object" &&
-                              typeof $steps["updateSupprCompteIsOpen"].then ===
-                                "function"
-                            ) {
-                              $steps["updateSupprCompteIsOpen"] = await $steps[
-                                "updateSupprCompteIsOpen"
-                              ];
-                            }
-                          }}
-                          start={
-                            <PhTrashIcon
-                              className={classNames(
-                                projectcss.all,
-                                sty.svg__o4Hmo
-                              )}
-                              role={"img"}
-                            />
+                                  $stateSet(objRoot, variablePath, value);
+                                  return value;
+                                })?.apply(null, [actionArgs]);
+                              })()
+                            : undefined;
+                          if (
+                            $steps["updateSupprCompteIsOpen"] != null &&
+                            typeof $steps["updateSupprCompteIsOpen"] ===
+                              "object" &&
+                            typeof $steps["updateSupprCompteIsOpen"].then ===
+                              "function"
+                          ) {
+                            $steps["updateSupprCompteIsOpen"] = await $steps[
+                              "updateSupprCompteIsOpen"
+                            ];
                           }
-                        />
-                      </div>
+                        }}
+                        start={
+                          <PhTrashIcon
+                            className={classNames(
+                              projectcss.all,
+                              sty.svg__o4Hmo
+                            )}
+                            role={"img"}
+                          />
+                        }
+                      />
                     </div>
                   </div>
                 </div>
@@ -4653,7 +4647,6 @@ const PlasmicDescendants = {
     "card3",
     "resetPassword",
     "form",
-    "card4",
     "deleteAccount2",
     "supprCompte",
     "e",
@@ -4719,7 +4712,6 @@ const PlasmicDescendants = {
     "card3",
     "resetPassword",
     "form",
-    "card4",
     "deleteAccount2",
     "supprCompte",
     "e",
@@ -4784,7 +4776,6 @@ const PlasmicDescendants = {
     "card3",
     "resetPassword",
     "form",
-    "card4",
     "deleteAccount2",
     "supprCompte",
     "e",
@@ -4845,7 +4836,6 @@ const PlasmicDescendants = {
     "card3",
     "resetPassword",
     "form",
-    "card4",
     "deleteAccount2"
   ],
   informationsPersonnelles: [
@@ -4986,7 +4976,6 @@ const PlasmicDescendants = {
     "card3",
     "resetPassword",
     "form",
-    "card4",
     "deleteAccount2"
   ],
   uploadCvLdm: [
@@ -5038,13 +5027,11 @@ const PlasmicDescendants = {
     "card3",
     "resetPassword",
     "form",
-    "card4",
     "deleteAccount2"
   ],
-  card3: ["card3", "resetPassword", "form", "card4", "deleteAccount2"],
+  card3: ["card3", "resetPassword", "form", "deleteAccount2"],
   resetPassword: ["resetPassword"],
   form: ["form"],
-  card4: ["card4", "deleteAccount2"],
   deleteAccount2: ["deleteAccount2"],
   supprCompte: ["supprCompte", "e", "deleteAccount"],
   e: ["e"],
@@ -5114,7 +5101,6 @@ type NodeDefaultElementType = {
   card3: "div";
   resetPassword: typeof ResetPassword;
   form: typeof FormWrapper;
-  card4: "div";
   deleteAccount2: typeof DeleteAccount2;
   supprCompte: typeof Modal;
   e: "div";
@@ -5240,7 +5226,6 @@ export const PlasmicParametresCandidat = Object.assign(
     card3: makeNodeComponent("card3"),
     resetPassword: makeNodeComponent("resetPassword"),
     form: makeNodeComponent("form"),
-    card4: makeNodeComponent("card4"),
     deleteAccount2: makeNodeComponent("deleteAccount2"),
     supprCompte: makeNodeComponent("supprCompte"),
     e: makeNodeComponent("e"),
