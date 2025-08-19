@@ -676,7 +676,9 @@ function PlasmicParametresCandidat__RenderFunc(props: {
         sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
         opId: "9c25c922-f186-4ed9-850f-6ded6b307e4e",
         userArgs: {
-          keys: [$ctx.SupabaseUser.user?.id]
+          keys: [
+            $ctx.SupabaseUser.user?.id || "dd4e7080-742a-4e22-8ba5-6dbc7ffbb7a3"
+          ]
         },
         cacheKey: `plasmic.$.9c25c922-f186-4ed9-850f-6ded6b307e4e.$.`,
         invalidatedKeys: null,
@@ -2368,7 +2370,7 @@ function PlasmicParametresCandidat__RenderFunc(props: {
                                     $queries.currentUser.data?.[0]?.skill || [];
                                   return $queries.getSoftSkill.data
                                     .filter(skill =>
-                                      selectedSkills.includes(skill.id)
+                                      selectedSkills.includes(skill.skill)
                                     )
                                     .map(skill => ({
                                       value: skill.id,
