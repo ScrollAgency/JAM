@@ -881,6 +881,37 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                 $steps["savePurchase"] = await $steps["savePurchase"];
               }
 
+              $steps["openModalCreditAlert"] = true
+                ? (() => {
+                    const actionArgs = {
+                      variable: {
+                        objRoot: $state,
+                        variablePath: ["modalCreditsAlerts", "isOpen"]
+                      },
+                      operation: 0,
+                      value: true
+                    };
+                    return (({ variable, value, startIndex, deleteCount }) => {
+                      if (!variable) {
+                        return;
+                      }
+                      const { objRoot, variablePath } = variable;
+
+                      $stateSet(objRoot, variablePath, value);
+                      return value;
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["openModalCreditAlert"] != null &&
+                typeof $steps["openModalCreditAlert"] === "object" &&
+                typeof $steps["openModalCreditAlert"].then === "function"
+              ) {
+                $steps["openModalCreditAlert"] = await $steps[
+                  "openModalCreditAlert"
+                ];
+              }
+
               $steps["goToPagePaymentOk"] = true
                 ? (() => {
                     const actionArgs = {
@@ -946,37 +977,6 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                 typeof $steps["updateProductId"].then === "function"
               ) {
                 $steps["updateProductId"] = await $steps["updateProductId"];
-              }
-
-              $steps["openModalCreditAlert"] = true
-                ? (() => {
-                    const actionArgs = {
-                      variable: {
-                        objRoot: $state,
-                        variablePath: ["modalCreditsAlerts", "isOpen"]
-                      },
-                      operation: 0,
-                      value: true
-                    };
-                    return (({ variable, value, startIndex, deleteCount }) => {
-                      if (!variable) {
-                        return;
-                      }
-                      const { objRoot, variablePath } = variable;
-
-                      $stateSet(objRoot, variablePath, value);
-                      return value;
-                    })?.apply(null, [actionArgs]);
-                  })()
-                : undefined;
-              if (
-                $steps["openModalCreditAlert"] != null &&
-                typeof $steps["openModalCreditAlert"] === "object" &&
-                typeof $steps["openModalCreditAlert"].then === "function"
-              ) {
-                $steps["openModalCreditAlert"] = await $steps[
-                  "openModalCreditAlert"
-                ];
               }
             }}
             shouldRun={(() => {
