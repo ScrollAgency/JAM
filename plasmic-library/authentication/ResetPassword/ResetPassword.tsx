@@ -49,6 +49,7 @@ export interface ResetPasswordProps {
   showPasswordToggle?: boolean;
   showAlerts?: boolean;
   showPasswordStrength?: boolean;
+  showCancelButton?: boolean;
 
   // Events handlers
   onPasswordChange?: (value: string) => void;
@@ -96,6 +97,7 @@ function ResetPassword_(
     showPasswordToggle = true,
     showAlerts = true,
     showPasswordStrength = true,
+    showCancelButton = true,
 
     // Events handlers
     onPasswordChange,
@@ -268,7 +270,7 @@ function ResetPassword_(
         onSubmit={handleSubmit}
         style={presets.form as React.CSSProperties}
       >
-        <div style={{ rowGap: presets.inputField.rowGap }}>
+        <div style={presets.inputField as React.CSSProperties}>
           <label style={presets.formLabel as React.CSSProperties} htmlFor="passwordInput">{passwordLabel}</label>
           <div style={presets.passwordInputWrapper as React.CSSProperties}>
             <input
@@ -290,18 +292,18 @@ function ResetPassword_(
                 {showPassword ? <EyeIcon /> : <ViewIcon />}
               </button>
             )}
-          </div>
+          </div> 
 
           {showPasswordStrength && (
             <>
               <div style={presets.strengthBars}>{renderStrengthBars()}</div>
-              <small style={presets.passwordHint as React.CSSProperties}>{passwordInfoText}</small>
+              <div style={presets.passwordHint as React.CSSProperties}>{passwordInfoText}</div>
             </>
           )}
 
         </div>
 
-        <div style={{ rowGap: presets.inputField.rowGap }}>
+        <div style={presets.inputField as React.CSSProperties}>
           <label style={presets.formLabel as React.CSSProperties} htmlFor="confirmPasswordInput">{confirmPasswordLabel}</label>
           <div style={presets.passwordInputWrapper as React.CSSProperties}>
             <input
@@ -346,14 +348,16 @@ function ResetPassword_(
         </button>
       </form>
 
-      <Link href="/login">
-        <button
-          type="button"
-          style={presets.buttons[cancelButtonStyle] as React.CSSProperties}
-        >
-          {cancelButtonText}
-        </button>
-      </Link>
+      { showCancelButton && (
+        <Link href="/login">
+          <button
+            type="button"
+            style={presets.buttons[cancelButtonStyle] as React.CSSProperties}
+          >
+            {cancelButtonText}
+          </button>
+        </Link>
+      )}
     </div>
   );
 }

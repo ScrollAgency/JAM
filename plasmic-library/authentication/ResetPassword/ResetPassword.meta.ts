@@ -134,6 +134,10 @@ const ResetPasswordMeta = {
       defaultValue: true,
       description: "Affiche des alertes pour les erreurs et succès",
     },
+    showCancelButton: {
+      type: "boolean",
+      defaultValue: true,
+    },
 
     // Events handlers
     onSubmit: {
