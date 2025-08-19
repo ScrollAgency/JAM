@@ -262,8 +262,8 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                   $ctx.query.sessionId !== "") ||
                 ($ctx.query.subscription === "success" &&
                   $ctx.query.sessionId !== "") ||
-                ($ctx.query.paiement === "ok" &&
-                  $state.modalCreditsAlerts === true)
+                $ctx.query.paiement === "ok"
+                // && $state.modalCreditsAlerts === true
               );
             } catch (e) {
               if (
@@ -1337,8 +1337,8 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                               $ctx.query.sessionId !== "") ||
                             ($ctx.query.subscription === "success" &&
                               $ctx.query.sessionId !== "") ||
-                            ($ctx.query.paiement === "ok" &&
-                              $state.modalCreditsAlerts === true)
+                            $ctx.query.paiement === "ok"
+                            // && $state.modalCreditsAlerts === true
                           );
                         } catch (e) {
                           if (
