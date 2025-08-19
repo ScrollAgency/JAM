@@ -395,7 +395,9 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
         sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
         opId: "ba382dfb-c617-44db-a36f-dda3fa7e919f",
         userArgs: {
-          query: [$ctx.SupabaseUser.user.id]
+          query: [
+            $ctx.SupabaseUser.user?.id || "007f3aae-c8f3-420d-915c-b845a3387dfd"
+          ]
         },
         cacheKey: `plasmic.$.ba382dfb-c617-44db-a36f-dda3fa7e919f.$.`,
         invalidatedKeys: null,
@@ -1916,7 +1918,7 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                               onClick={async event => {
                                 const $steps = {};
 
-                                $steps["invokeGlobalAction"] = false
+                                $steps["showNotification"] = false
                                   ? (() => {
                                       const actionArgs = {
                                         args: ["success", '""']
@@ -1927,14 +1929,42 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                                     })()
                                   : undefined;
                                 if (
-                                  $steps["invokeGlobalAction"] != null &&
-                                  typeof $steps["invokeGlobalAction"] ===
+                                  $steps["showNotification"] != null &&
+                                  typeof $steps["showNotification"] ===
                                     "object" &&
-                                  typeof $steps["invokeGlobalAction"].then ===
+                                  typeof $steps["showNotification"].then ===
                                     "function"
                                 ) {
-                                  $steps["invokeGlobalAction"] = await $steps[
-                                    "invokeGlobalAction"
+                                  $steps["showNotification"] = await $steps[
+                                    "showNotification"
+                                  ];
+                                }
+
+                                $steps["refreshData"] = false
+                                  ? (() => {
+                                      const actionArgs = {
+                                        queryInvalidation: [
+                                          "plasmic_refresh_all"
+                                        ]
+                                      };
+                                      return (async ({ queryInvalidation }) => {
+                                        if (!queryInvalidation) {
+                                          return;
+                                        }
+                                        await plasmicInvalidate(
+                                          queryInvalidation
+                                        );
+                                      })?.apply(null, [actionArgs]);
+                                    })()
+                                  : undefined;
+                                if (
+                                  $steps["refreshData"] != null &&
+                                  typeof $steps["refreshData"] === "object" &&
+                                  typeof $steps["refreshData"].then ===
+                                    "function"
+                                ) {
+                                  $steps["refreshData"] = await $steps[
+                                    "refreshData"
                                   ];
                                 }
                               }}
@@ -2069,6 +2099,29 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                             ) {
                               $steps["successNotification"] = await $steps[
                                 "successNotification"
+                              ];
+                            }
+
+                            $steps["refreshData"] = true
+                              ? (() => {
+                                  const actionArgs = {
+                                    queryInvalidation: ["plasmic_refresh_all"]
+                                  };
+                                  return (async ({ queryInvalidation }) => {
+                                    if (!queryInvalidation) {
+                                      return;
+                                    }
+                                    await plasmicInvalidate(queryInvalidation);
+                                  })?.apply(null, [actionArgs]);
+                                })()
+                              : undefined;
+                            if (
+                              $steps["refreshData"] != null &&
+                              typeof $steps["refreshData"] === "object" &&
+                              typeof $steps["refreshData"].then === "function"
+                            ) {
+                              $steps["refreshData"] = await $steps[
+                                "refreshData"
                               ];
                             }
                           }}
