@@ -4163,6 +4163,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                           "__wab_instance",
                           sty.formField___9GbMi
                         )}
+                        initialValue={$state.form2.value.title}
                         label={
                           <div
                             className={classNames(
