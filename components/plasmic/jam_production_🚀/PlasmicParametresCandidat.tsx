@@ -1550,13 +1550,13 @@ function PlasmicParametresCandidat__RenderFunc(props: {
                                   )}
                                   initialValue={(() => {
                                     const googleFirstName =
-                                      $ctx.SupabaseUser.user?.user_metadata.name.split(
+                                      $ctx.SupabaseUser.user?.user_metadata?.name?.split(
                                         " "
-                                      )[0];
-                                    return $queries.currentUser.data[0]
-                                      .first_name === null
-                                      ? googleFirstName
-                                      : $queries.currentUser.data[0].first_name;
+                                      )[0] ?? null;
+                                    const firstName =
+                                      $queries.currentUser?.data?.[0]
+                                        ?.first_name ?? googleFirstName;
+                                    return firstName;
                                   })()}
                                   label={
                                     <div
@@ -1617,13 +1617,13 @@ function PlasmicParametresCandidat__RenderFunc(props: {
                                   )}
                                   initialValue={(() => {
                                     const googleLastName =
-                                      $ctx.SupabaseUser.user?.user_metadata.name.split(
+                                      $ctx.SupabaseUser.user?.user_metadata?.name?.split(
                                         " "
-                                      )[1];
-                                    return $queries.currentUser.data[0]
-                                      .first_name === null
-                                      ? googleLastName
-                                      : $queries.currentUser.data[0].first_name;
+                                      )[1] ?? null;
+                                    const lastName =
+                                      $queries.currentUser?.data?.[0]
+                                        ?.last_name ?? googleLastName;
+                                    return lastName;
                                   })()}
                                   label={
                                     <div

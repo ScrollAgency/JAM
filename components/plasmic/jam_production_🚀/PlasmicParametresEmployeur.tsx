@@ -583,11 +583,11 @@ function PlasmicParametresEmployeur__RenderFunc(props: {
     paramGetCompanyById: usePlasmicDataOp(() => {
       return {
         sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
-        opId: "e13b458c-532d-419c-bc09-41e0eb79063a",
+        opId: "a0f345b5-bbed-4347-80ba-1896e0ae6a8a",
         userArgs: {
-          filters: [$ctx.SupabaseUser.user.id]
+          filters: [$ctx.SupabaseUser.user?.id]
         },
-        cacheKey: `plasmic.$.e13b458c-532d-419c-bc09-41e0eb79063a.$.`,
+        cacheKey: `plasmic.$.a0f345b5-bbed-4347-80ba-1896e0ae6a8a.$.`,
         invalidatedKeys: null,
         roleId: null
       };
@@ -611,11 +611,11 @@ function PlasmicParametresEmployeur__RenderFunc(props: {
     paramEmpGetUser: usePlasmicDataOp(() => {
       return {
         sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
-        opId: "9f412504-e938-4e59-9fca-bfe70cfa0a98",
+        opId: "c97d2f24-3d9a-4bf9-8107-193ee0e13062",
         userArgs: {
-          filters: [$ctx.SupabaseUser.user.id]
+          filters: [$ctx.SupabaseUser.user?.id]
         },
-        cacheKey: `plasmic.$.9f412504-e938-4e59-9fca-bfe70cfa0a98.$.`,
+        cacheKey: `plasmic.$.c97d2f24-3d9a-4bf9-8107-193ee0e13062.$.`,
         invalidatedKeys: null,
         roleId: null
       };
@@ -807,7 +807,7 @@ function PlasmicParametresEmployeur__RenderFunc(props: {
                                         },
                                         cacheKey: null,
                                         invalidatedKeys: [
-                                          "9f412504-e938-4e59-9fca-bfe70cfa0a98"
+                                          "c97d2f24-3d9a-4bf9-8107-193ee0e13062"
                                         ],
                                         roleId: null
                                       }
@@ -932,6 +932,16 @@ function PlasmicParametresEmployeur__RenderFunc(props: {
                                   "__wab_instance",
                                   sty.formField__q3Nu6
                                 )}
+                                initialValue={(() => {
+                                  const googleFirstName =
+                                    $ctx.SupabaseUser.user?.user_metadata?.name?.split(
+                                      " "
+                                    )[0] ?? null;
+                                  const firstName =
+                                    $queries.paramEmpGetUser?.data?.[0]
+                                      ?.first_name ?? googleFirstName;
+                                  return firstName;
+                                })()}
                                 label={
                                   <div
                                     className={classNames(
@@ -989,6 +999,16 @@ function PlasmicParametresEmployeur__RenderFunc(props: {
                                   "__wab_instance",
                                   sty.formField__a1JDf
                                 )}
+                                initialValue={(() => {
+                                  const googleLastName =
+                                    $ctx.SupabaseUser.user?.user_metadata?.name?.split(
+                                      " "
+                                    )[1] ?? null;
+                                  const lastName =
+                                    $queries.paramEmpGetUser?.data?.[0]
+                                      ?.last_name ?? googleLastName;
+                                  return lastName;
+                                })()}
                                 label={
                                   <div
                                     className={classNames(
@@ -1424,7 +1444,7 @@ function PlasmicParametresEmployeur__RenderFunc(props: {
                                   cacheKey: null,
                                   invalidatedKeys: [
                                     "c1aa4a8a-4072-41ae-bd85-9a0ae0f16d97",
-                                    "9f412504-e938-4e59-9fca-bfe70cfa0a98"
+                                    "c97d2f24-3d9a-4bf9-8107-193ee0e13062"
                                   ],
                                   roleId: null
                                 }
@@ -1481,7 +1501,7 @@ function PlasmicParametresEmployeur__RenderFunc(props: {
                                   cacheKey: null,
                                   invalidatedKeys: [
                                     "c1aa4a8a-4072-41ae-bd85-9a0ae0f16d97",
-                                    "9f412504-e938-4e59-9fca-bfe70cfa0a98"
+                                    "c97d2f24-3d9a-4bf9-8107-193ee0e13062"
                                   ],
                                   roleId: null
                                 }
@@ -1782,7 +1802,7 @@ function PlasmicParametresEmployeur__RenderFunc(props: {
                                       },
                                       cacheKey: null,
                                       invalidatedKeys: [
-                                        "e13b458c-532d-419c-bc09-41e0eb79063a"
+                                        "a0f345b5-bbed-4347-80ba-1896e0ae6a8a"
                                       ],
                                       roleId: null
                                     }
