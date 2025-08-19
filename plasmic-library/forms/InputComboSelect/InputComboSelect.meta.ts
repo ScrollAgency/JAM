@@ -9,6 +9,11 @@ const InputComboSelectMeta = {
       type: "number",
       defaultValue: 0,
     },
+    dropDirection: {
+      type: "choice",
+      options: ["up", "down"],
+      defaultValue: "up",
+    },
     onChange: {
       type: "eventHandler",
       argTypes: [],
