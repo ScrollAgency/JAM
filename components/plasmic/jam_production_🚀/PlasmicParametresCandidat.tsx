@@ -1548,6 +1548,16 @@ function PlasmicParametresCandidat__RenderFunc(props: {
                                     "__wab_instance",
                                     sty.formField__gu1TP
                                   )}
+                                  initialValue={(() => {
+                                    const googleFirstName =
+                                      $ctx.SupabaseUser.user?.user_metadata.name.split(
+                                        " "
+                                      )[0];
+                                    return $queries.currentUser.data[0]
+                                      .first_name === null
+                                      ? googleFirstName
+                                      : $queries.currentUser.data[0].first_name;
+                                  })()}
                                   label={
                                     <div
                                       className={classNames(
@@ -1605,6 +1615,16 @@ function PlasmicParametresCandidat__RenderFunc(props: {
                                     "__wab_instance",
                                     sty.formField___4ZPYl
                                   )}
+                                  initialValue={(() => {
+                                    const googleLastName =
+                                      $ctx.SupabaseUser.user?.user_metadata.name.split(
+                                        " "
+                                      )[1];
+                                    return $queries.currentUser.data[0]
+                                      .first_name === null
+                                      ? googleLastName
+                                      : $queries.currentUser.data[0].first_name;
+                                  })()}
                                   label={
                                     <div
                                       className={classNames(

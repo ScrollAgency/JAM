@@ -3820,6 +3820,267 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                     labelCol: { span: 8, horizontalOnly: true },
                     layout: "vertical",
                     mode: "advanced",
+                    onFinish: async values => {
+                      const $steps = {};
+
+                      $steps["checkRechargeQuantity"] = true
+                        ? (() => {
+                            const actionArgs = {
+                              customFunction: async () => {
+                                return (() => {
+                                  const rechargeClassic = Number(
+                                    $queries.offreStripeUserInfos.data[0]
+                                      .recharge_classic
+                                  );
+                                  const rechargeLastminute = Number(
+                                    $queries.offreStripeUserInfos.data[0]
+                                      .recharge_lastminute
+                                  );
+                                  if (
+                                    $state.lastMinuteToggle.switch2IsSelected
+                                  ) {
+                                    if (rechargeLastminute > 0) {
+                                      $state.insufficientCharges.isOpen = false;
+                                      return true;
+                                    } else {
+                                      $state.insufficientCharges.isOpen = true;
+                                      return false;
+                                    }
+                                  } else {
+                                    if (rechargeClassic > 0) {
+                                      $state.insufficientCharges.isOpen = false;
+                                      return true;
+                                    } else {
+                                      $state.insufficientCharges.isOpen = true;
+                                      return false;
+                                    }
+                                  }
+                                })();
+                              }
+                            };
+                            return (({ customFunction }) => {
+                              return customFunction();
+                            })?.apply(null, [actionArgs]);
+                          })()
+                        : undefined;
+                      if (
+                        $steps["checkRechargeQuantity"] != null &&
+                        typeof $steps["checkRechargeQuantity"] === "object" &&
+                        typeof $steps["checkRechargeQuantity"].then ===
+                          "function"
+                      ) {
+                        $steps["checkRechargeQuantity"] = await $steps[
+                          "checkRechargeQuantity"
+                        ];
+                      }
+
+                      $steps["closeModalS"] = true
+                        ? (() => {
+                            const actionArgs = {
+                              customFunction: async () => {
+                                return (() => {
+                                  $state.createJob.isOpen = false;
+                                  $state.lastMinuteToggle.switch2IsSelected =
+                                    false;
+                                  return ($state.lastMinuteToggle2.switch2IsSelected =
+                                    false);
+                                })();
+                              }
+                            };
+                            return (({ customFunction }) => {
+                              return customFunction();
+                            })?.apply(null, [actionArgs]);
+                          })()
+                        : undefined;
+                      if (
+                        $steps["closeModalS"] != null &&
+                        typeof $steps["closeModalS"] === "object" &&
+                        typeof $steps["closeModalS"].then === "function"
+                      ) {
+                        $steps["closeModalS"] = await $steps["closeModalS"];
+                      }
+
+                      $steps["createOffer"] =
+                        $steps.checkRechargeQuantity === true
+                          ? (() => {
+                              const actionArgs = {
+                                dataOp: {
+                                  sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
+                                  opId: "0b69753a-c14e-43ba-be77-ceea09013794",
+                                  userArgs: {
+                                    variables: [
+                                      $state.form2.value.address,
+
+                                      $state.form2.value.availability_status,
+
+                                      $queries.getCompanies.data[0].id
+                                    ]
+                                  },
+                                  cacheKey: null,
+                                  invalidatedKeys: ["plasmic_refresh_all"],
+                                  roleId: null
+                                }
+                              };
+                              return (async ({ dataOp, continueOnError }) => {
+                                try {
+                                  const response = await executePlasmicDataOp(
+                                    dataOp,
+                                    {
+                                      userAuthToken:
+                                        dataSourcesCtx?.userAuthToken,
+                                      user: dataSourcesCtx?.user
+                                    }
+                                  );
+                                  await plasmicInvalidate(
+                                    dataOp.invalidatedKeys
+                                  );
+                                  return response;
+                                } catch (e) {
+                                  if (!continueOnError) {
+                                    throw e;
+                                  }
+                                  return e;
+                                }
+                              })?.apply(null, [actionArgs]);
+                            })()
+                          : undefined;
+                      if (
+                        $steps["createOffer"] != null &&
+                        typeof $steps["createOffer"] === "object" &&
+                        typeof $steps["createOffer"].then === "function"
+                      ) {
+                        $steps["createOffer"] = await $steps["createOffer"];
+                      }
+
+                      $steps["showNotification"] = true
+                        ? (() => {
+                            const actionArgs = {
+                              args: [
+                                "success",
+                                "Votre offre est publi\u00e9e et visible des candidats"
+                              ]
+                            };
+                            return $globalActions[
+                              "plasmic-antd5-config-provider.showNotification"
+                            ]?.apply(null, [...actionArgs.args]);
+                          })()
+                        : undefined;
+                      if (
+                        $steps["showNotification"] != null &&
+                        typeof $steps["showNotification"] === "object" &&
+                        typeof $steps["showNotification"].then === "function"
+                      ) {
+                        $steps["showNotification"] = await $steps[
+                          "showNotification"
+                        ];
+                      }
+
+                      $steps["updateStripe"] =
+                        $steps.checkRechargeQuantity === true
+                          ? (() => {
+                              const actionArgs = {
+                                dataOp: {
+                                  sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
+                                  opId: "a73ddeb0-a427-49e7-a77a-47ee6c992568",
+                                  userArgs: {
+                                    conditions: [$ctx.SupabaseUser.user?.id],
+
+                                    variables: [
+                                      (() => {
+                                        const recharge = Number(
+                                          $queries.offreStripeUserInfos.data[0]
+                                            .recharge_classic
+                                        );
+                                        const isLastMinuteJob =
+                                          $state.lastMinuteToggle
+                                            .switch2IsSelected;
+                                        if (isLastMinuteJob) {
+                                          return recharge;
+                                        }
+                                        if (
+                                          !$state.lastMinuteToggle
+                                            .switch2IsSelected &&
+                                          recharge > 0
+                                        ) {
+                                          const updatedRecharge = recharge - 1;
+                                          return updatedRecharge;
+                                        }
+                                        return recharge;
+                                      })(),
+
+                                      (() => {
+                                        const rechargeClassic = Number(
+                                          $queries.offreStripeUserInfos.data[0]
+                                            .recharge_classic
+                                        );
+                                        const rechargeLastminute = Number(
+                                          $queries.offreStripeUserInfos.data[0]
+                                            .recharge_lastminute
+                                        );
+                                        const switchIsSelected =
+                                          $state.lastMinuteToggle
+                                            .switch2IsSelected;
+                                        const isLastMinuteJob =
+                                          $state.currentJobObject
+                                            .is_last_minute;
+                                        if (
+                                          isLastMinuteJob &&
+                                          rechargeLastminute > 0
+                                        ) {
+                                          return rechargeLastminute - 1;
+                                        }
+                                        const canUseLastMinute =
+                                          switchIsSelected ||
+                                          (!switchIsSelected &&
+                                            rechargeClassic <= 0 &&
+                                            rechargeLastminute > 0);
+                                        if (
+                                          canUseLastMinute &&
+                                          rechargeLastminute > 0
+                                        ) {
+                                          return rechargeLastminute - 1;
+                                        } else {
+                                          return rechargeLastminute;
+                                        }
+                                      })()
+                                    ]
+                                  },
+                                  cacheKey: null,
+                                  invalidatedKeys: ["plasmic_refresh_all"],
+                                  roleId: null
+                                }
+                              };
+                              return (async ({ dataOp, continueOnError }) => {
+                                try {
+                                  const response = await executePlasmicDataOp(
+                                    dataOp,
+                                    {
+                                      userAuthToken:
+                                        dataSourcesCtx?.userAuthToken,
+                                      user: dataSourcesCtx?.user
+                                    }
+                                  );
+                                  await plasmicInvalidate(
+                                    dataOp.invalidatedKeys
+                                  );
+                                  return response;
+                                } catch (e) {
+                                  if (!continueOnError) {
+                                    throw e;
+                                  }
+                                  return e;
+                                }
+                              })?.apply(null, [actionArgs]);
+                            })()
+                          : undefined;
+                      if (
+                        $steps["updateStripe"] != null &&
+                        typeof $steps["updateStripe"] === "object" &&
+                        typeof $steps["updateStripe"].then === "function"
+                      ) {
+                        $steps["updateStripe"] = await $steps["updateStripe"];
+                      }
+                    },
                     onIsSubmittingChange: async (...eventArgs: any) => {
                       generateStateOnChangePropForCodeComponents(
                         $state,
@@ -5464,7 +5725,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                             sty.button__zCNdp
                           )}
                           color={"white"}
-                          disabled={true}
+                          disabled={false}
                           end={
                             <GroupIcon
                               className={classNames(
@@ -5643,6 +5904,31 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                             ) {
                               $steps["closeModal"] = await $steps["closeModal"];
                             }
+
+                            $steps["invokeGlobalAction"] = true
+                              ? (() => {
+                                  const actionArgs = {
+                                    args: [
+                                      "success",
+                                      "Votre brouillon a \u00e9t\u00e9 enregistr\u00e9 avec succ\u00e8s !"
+                                    ]
+                                  };
+                                  return $globalActions[
+                                    "plasmic-antd5-config-provider.showNotification"
+                                  ]?.apply(null, [...actionArgs.args]);
+                                })()
+                              : undefined;
+                            if (
+                              $steps["invokeGlobalAction"] != null &&
+                              typeof $steps["invokeGlobalAction"] ===
+                                "object" &&
+                              typeof $steps["invokeGlobalAction"].then ===
+                                "function"
+                            ) {
+                              $steps["invokeGlobalAction"] = await $steps[
+                                "invokeGlobalAction"
+                              ];
+                            }
                           }}
                           resetsForm={true}
                           submitsForm={false}
@@ -5677,32 +5963,6 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                           }
                           onClick={async event => {
                             const $steps = {};
-
-                            $steps["closeModal"] = true
-                              ? (() => {
-                                  const actionArgs = {
-                                    customFunction: async () => {
-                                      return (() => {
-                                        $state.createJob.isOpen = false;
-                                        $state.lastMinuteToggle.switch2IsSelected =
-                                          false;
-                                        return ($state.lastMinuteToggle2.switch2IsSelected =
-                                          false);
-                                      })();
-                                    }
-                                  };
-                                  return (({ customFunction }) => {
-                                    return customFunction();
-                                  })?.apply(null, [actionArgs]);
-                                })()
-                              : undefined;
-                            if (
-                              $steps["closeModal"] != null &&
-                              typeof $steps["closeModal"] === "object" &&
-                              typeof $steps["closeModal"].then === "function"
-                            ) {
-                              $steps["closeModal"] = await $steps["closeModal"];
-                            }
 
                             $steps["runCode"] = true
                               ? (() => {
@@ -5755,6 +6015,32 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                               typeof $steps["runCode"].then === "function"
                             ) {
                               $steps["runCode"] = await $steps["runCode"];
+                            }
+
+                            $steps["closeModal"] = true
+                              ? (() => {
+                                  const actionArgs = {
+                                    customFunction: async () => {
+                                      return (() => {
+                                        $state.createJob.isOpen = false;
+                                        $state.lastMinuteToggle.switch2IsSelected =
+                                          false;
+                                        return ($state.lastMinuteToggle2.switch2IsSelected =
+                                          false);
+                                      })();
+                                    }
+                                  };
+                                  return (({ customFunction }) => {
+                                    return customFunction();
+                                  })?.apply(null, [actionArgs]);
+                                })()
+                              : undefined;
+                            if (
+                              $steps["closeModal"] != null &&
+                              typeof $steps["closeModal"] === "object" &&
+                              typeof $steps["closeModal"].then === "function"
+                            ) {
+                              $steps["closeModal"] = await $steps["closeModal"];
                             }
 
                             $steps["createOffer"] =
