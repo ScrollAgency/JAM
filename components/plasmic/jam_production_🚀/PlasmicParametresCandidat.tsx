@@ -86,6 +86,7 @@ import DeleteAccount2 from "../../DeleteAccount2"; // plasmic-import: Aiz3LwUBdb
 import Modal from "../../Modal"; // plasmic-import: fsC3QwUZz9uz/component
 import DeleteAccount from "../../DeleteAccount"; // plasmic-import: KdtWnTG_vDHe/component
 import MobileNavbarBottom from "../../MobileNavbarBottom"; // plasmic-import: BIS-N7QZzUVV/component
+import { PageLoader } from "../../others/PageLoader/PageLoader"; // plasmic-import: FHDrnDhA4DZe/codeComponent
 import { Fetcher } from "@plasmicapp/react-web/lib/data-sources";
 import { _useGlobalVariants } from "./plasmic"; // plasmic-import: f7DE9y7qp46fyCw5nuY8f9/projectModule
 import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: f7DE9y7qp46fyCw5nuY8f9/styleTokensProvider
@@ -187,6 +188,7 @@ export type PlasmicParametresCandidat__OverridesType = {
   deleteAccount?: Flex__<typeof DeleteAccount>;
   expandTab?: Flex__<"div">;
   mobileNavbarBottom?: Flex__<typeof MobileNavbarBottom>;
+  pageLoader?: Flex__<typeof PageLoader>;
 };
 
 export interface DefaultParametresCandidatProps {}
@@ -4599,6 +4601,97 @@ function PlasmicParametresCandidat__RenderFunc(props: {
               data-plasmic-override={overrides.mobileNavbarBottom}
               className={classNames("__wab_instance", sty.mobileNavbarBottom)}
             />
+
+            <PageLoader
+              data-plasmic-name={"pageLoader"}
+              data-plasmic-override={overrides.pageLoader}
+              className={classNames("__wab_instance", sty.pageLoader)}
+              onMount={async () => {
+                const $steps = {};
+
+                $steps["updateFirstLastName"] = true
+                  ? (() => {
+                      const actionArgs = {
+                        dataOp: {
+                          sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
+                          opId: "e4414a61-be7e-4392-83ff-41f61555d641",
+                          userArgs: {
+                            conditions: [$ctx.SupabaseUser.user?.id],
+
+                            variables: [
+                              $ctx.SupabaseUser.user?.user_metadata?.name?.split(
+                                " "
+                              )[0],
+
+                              $ctx.SupabaseUser.user?.user_metadata?.name?.split(
+                                " "
+                              )[1]
+                            ]
+                          },
+                          cacheKey: null,
+                          invalidatedKeys: ["plasmic_refresh_all"],
+                          roleId: null
+                        }
+                      };
+                      return (async ({ dataOp, continueOnError }) => {
+                        try {
+                          const response = await executePlasmicDataOp(dataOp, {
+                            userAuthToken: dataSourcesCtx?.userAuthToken,
+                            user: dataSourcesCtx?.user
+                          });
+                          await plasmicInvalidate(dataOp.invalidatedKeys);
+                          return response;
+                        } catch (e) {
+                          if (!continueOnError) {
+                            throw e;
+                          }
+                          return e;
+                        }
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["updateFirstLastName"] != null &&
+                  typeof $steps["updateFirstLastName"] === "object" &&
+                  typeof $steps["updateFirstLastName"].then === "function"
+                ) {
+                  $steps["updateFirstLastName"] = await $steps[
+                    "updateFirstLastName"
+                  ];
+                }
+              }}
+              shouldRun={(() => {
+                try {
+                  return (() => {
+                    const googleFirstName =
+                      $ctx.SupabaseUser.user?.user_metadata?.name?.split(
+                        " "
+                      )[0] ?? null;
+                    const googleLastName =
+                      $ctx.SupabaseUser.user?.user_metadata?.name?.split(
+                        " "
+                      )[1] ?? null;
+                    const firstName =
+                      $queries.currentUser?.data?.[0]?.first_name ?? null;
+                    const lastName =
+                      $queries.currentUser?.data?.[0]?.last_name ?? null;
+                    return (
+                      firstName === null &&
+                      lastName === null &&
+                      (googleFirstName !== null || googleLastName !== null)
+                    );
+                  })();
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return true;
+                  }
+                  throw e;
+                }
+              })()}
+            />
           </div>
         </div>
       </div>
@@ -4671,7 +4764,8 @@ const PlasmicDescendants = {
     "e",
     "deleteAccount",
     "expandTab",
-    "mobileNavbarBottom"
+    "mobileNavbarBottom",
+    "pageLoader"
   ],
   body: [
     "body",
@@ -4736,7 +4830,8 @@ const PlasmicDescendants = {
     "e",
     "deleteAccount",
     "expandTab",
-    "mobileNavbarBottom"
+    "mobileNavbarBottom",
+    "pageLoader"
   ],
   mobileNavbarTop: ["mobileNavbarTop"],
   sidebar: ["sidebar"],
@@ -5056,7 +5151,8 @@ const PlasmicDescendants = {
   e: ["e"],
   deleteAccount: ["deleteAccount"],
   expandTab: ["expandTab"],
-  mobileNavbarBottom: ["mobileNavbarBottom"]
+  mobileNavbarBottom: ["mobileNavbarBottom"],
+  pageLoader: ["pageLoader"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -5126,6 +5222,7 @@ type NodeDefaultElementType = {
   deleteAccount: typeof DeleteAccount;
   expandTab: "div";
   mobileNavbarBottom: typeof MobileNavbarBottom;
+  pageLoader: typeof PageLoader;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -5251,6 +5348,7 @@ export const PlasmicParametresCandidat = Object.assign(
     deleteAccount: makeNodeComponent("deleteAccount"),
     expandTab: makeNodeComponent("expandTab"),
     mobileNavbarBottom: makeNodeComponent("mobileNavbarBottom"),
+    pageLoader: makeNodeComponent("pageLoader"),
 
     // Metadata about props expected for PlasmicParametresCandidat
     internalVariantProps: PlasmicParametresCandidat__VariantProps,
