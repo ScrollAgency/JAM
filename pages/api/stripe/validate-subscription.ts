@@ -58,7 +58,7 @@ async function getSubscriptionData(session_id: string) {
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   await corsPolicy(req, res);
 
-  const { session_id, action } = req.query;
+  const { session_id, action, classic, lastminute, boost } = req.query;
 
   if (!action || typeof action !== "string") {
     return res.status(400).json({ error: "Action manquante" });
@@ -72,15 +72,19 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     const data = await getSubscriptionData(session_id);
 
     if (action === "create" || action === "update") {
-      // Utilisation d'upsert avec la contrainte unique sur customer_id dans la table stripe_info
+
+      const recharge_boost = action === "update" ? Number(boost) || 0 : 0;
+      const recharge_classic = action === "update" ? Number(classic) || 0 : 0;
+      const recharge_lastminute = action === "update" ? Number(lastminute) || 0 : 0;
+
       const { error } = await supabaseServer.from("stripe_info").upsert(
         {
           customer_id: data.customerId,
           price_id: data.priceId,
           product_id: data.productId,
-          recharge_boost: 0,
-          recharge_classic: 0,
-          recharge_lastminute: 0,
+          recharge_boost,
+          recharge_classic,
+          recharge_lastminute,
           session_id: session_id,
           status: data.status,
           subscription_id: data.subscriptionId,
@@ -88,7 +92,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         },
         {
           onConflict: "customer_id",
-          // Si tu veux, tu peux aussi spécifier `ignoreDuplicates: false` pour forcer la mise à jour
+          // on peut spécifier `ignoreDuplicates: false` pour forcer la mise à jour
         }
       );
 
