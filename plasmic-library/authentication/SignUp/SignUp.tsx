@@ -3,9 +3,12 @@ import { forwardRef } from "react";
 import { useCallback, useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { presets, getTokenValue } from "@/styles/presets";
+
+import { presets } from "@/styles/presets";
+
+import AuthButton from "@/plasmic-library/buttons/ButtonGoogle/ButtonGoogle";
 import PhoneSelector from "@/plasmic-library/forms/PhoneSelector/PhoneSelector";
-import AlertManager, { type AlertType, type AlertMessage } from "@/plasmic-library/alerts/AlertManager/AlertManager";
+import AlertManager, { type AlertType, type AlertMessage } from "@/plasmic-library/ui/AlertManager/AlertManager";
 import { EyeIcon, ViewIcon } from "@/plasmic-library/icons/icons";
 
 type FormData = {
@@ -39,6 +42,9 @@ export interface SignUpProps {
   phone?: string;
   phoneLabel?: string;
   placeholderPhone?: string;
+
+  // OAuth redirect
+  redirectTo?: string;
 
   // Email
   email?: string;
@@ -90,7 +96,8 @@ export interface SignUpProps {
   // show / hide
   showLabels?: boolean;
   showPasswordToggle?: boolean;
-  showOAuthButtons?: boolean;
+  showGoogleButton?: boolean;
+  showAppleButton?: boolean;
   showPhone?: boolean;
   showPrivacyPolicy?: boolean;
   showLoginLink?: boolean;
@@ -147,6 +154,9 @@ function SignUp_(
   passwordInfoText = "Utilisez 8 caractères ou plus en mélangeant lettres, chiffres et symboles.",
   eyeIconColor = "#666",
 
+  // OAuth redirect
+  redirectTo= "/auth/oauth-callback",
+
   // Links
   loginLinkText = "Déjà inscrit(e) ? CONNEXION",
   
@@ -172,7 +182,8 @@ function SignUp_(
 
   // show / hide
   showPasswordToggle = true,
-  showOAuthButtons = true,
+  showGoogleButton = false,
+  showAppleButton = false,
   showPhone = false,
   showPrivacyPolicy = true,
   showLoginLink = true,
@@ -316,7 +327,7 @@ function SignUp_(
           key={i}
           style={{
             ...presets.strengthBar,
-            backgroundColor: i < passwordStrength ? getStrengthColor(passwordStrength) : getTokenValue("grey-300"),
+            backgroundColor: i < passwordStrength ? getStrengthColor(passwordStrength) : "#b3b3b3",
           }}
         />
       );
@@ -356,31 +367,32 @@ function SignUp_(
 
   // Rendu des boutons OAuth
   const renderOAuthButtons = () => {
-    if (!showOAuthButtons) return null;
+    if (!showGoogleButton && !showAppleButton) return null;
     
     return (
       <div style={presets.oAuthButtons as React.CSSProperties}>
-        <button
-          type="button"
-          onClick={onGoogleSignIn}
-          onKeyDown={(e) => e.key === "Enter" && onGoogleSignIn?.()}
-          style={presets.oAuthButton2 as React.CSSProperties}
-          aria-label="Se connecter avec Google"
-        >
-          <img src="/google-logo.svg" alt="Logo Google" className="w-5 h-5" />
-          <span>{googleButtonText}</span>
-        </button>
+        {showGoogleButton && (
+          <AuthButton
+            label={googleButtonText}
+            icon="start"
+            iconImage="/google-logo.svg"
+            size="large"
+            hierarchy="secondary"
+            redirectTo={redirectTo}
+          />
+        )}
 
-        <button
-          type="button"
-          onClick={onAppleSignIn}
-          onKeyDown={(e) => e.key === "Enter" && onAppleSignIn?.()}
-          style={presets.oAuthButton2 as React.CSSProperties}
-          aria-label="Se connecter avec Apple"
-        >
-          <img src="/apple-logo.svg" alt="Logo Apple" className="w-5 h-5" />
-          <span>{appleButtonText}</span>
-        </button>
+        {showAppleButton && (
+          <button
+            type="button"
+            style={presets.oAuthButtons as React.CSSProperties}
+            aria-label="Se connecter avec Apple"
+          >
+            <img src="/apple-logo.svg" alt="Logo Apple" className="w-5 h-5" />
+            <span>{appleButtonText}</span>
+          </button>
+        )}
+       
       </div>
     );
   };
@@ -443,6 +455,22 @@ function SignUp_(
       phone: showPhone ? `${countryCode}${phone}` : undefined
     };
 
+    try {
+      const response = await fetch('/api/supabase/verify-email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email }),
+      });
+      const result = await response.json();
+      if (result.exists) {
+        addAlert('error', errorMessages.emailExists);
+        return;
+      }
+    } catch (err) {
+      addAlert('error', errorMessages.networkError);
+      return;
+    }
+
     // Soumission du formulaire
     if (onSubmit) {
       try {
@@ -494,7 +522,7 @@ function SignUp_(
         onSubmit={handleSubmit} 
         style={presets.form as React.CSSProperties}>
 
-        {oAuthButtonsPosition === 'top' && showOAuthButtons && renderOAuthButtons()}
+        {oAuthButtonsPosition === 'top' && renderOAuthButtons()}
 
         <div style={ presets.inputGroup as React.CSSProperties }>
           <div style={ presets.inputGroupItem as React.CSSProperties }>
@@ -642,7 +670,7 @@ function SignUp_(
         {showPrivacyPolicy && (
           <div style={presets.checkboxGroup}>
             <input type="checkbox" id="termsCheckbox" required={showPrivacyPolicy} />
-            <label htmlFor="termsCheckbox" style={presets.checkboxLabel}>
+            <label htmlFor="termsCheckbox" style={presets.checkboxLabel as React.CSSProperties}>
               {privacyPolicyText}
             </label>
           </div>
@@ -659,9 +687,17 @@ function SignUp_(
         >
           {submitButtonText} <ArrowIcon />
         </button>
-      </form>
 
-      {oAuthButtonsPosition === 'bottom' && showOAuthButtons && renderOAuthButtons()}
+        {(showGoogleButton || showAppleButton) && oAuthSeparatorText && (
+          <div style={presets.separator as React.CSSProperties}>
+            <div style={presets.separatorHr as React.CSSProperties} />
+              <span style={presets.separatorText as React.CSSProperties}>{oAuthSeparatorText}</span>
+            <div style={presets.separatorHr as React.CSSProperties} />
+          </div>
+        )}
+
+        {oAuthButtonsPosition === 'bottom' && renderOAuthButtons()}
+      </form>
 
       {showLoginLink && (
         <Link href="/login" passHref legacyBehavior>

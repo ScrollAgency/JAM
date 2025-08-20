@@ -1,9 +1,11 @@
 const SignUpMeta = {
   name: "SignUp",
-  section: "🔑 Authentication",
+  section: "1.🔑 Authentication",
   displayName: "Sign Up",
   description: "Un formulaire d'inscription avec validation, contrôle de force du mot de passe, visibilité du mot de passe et système d'alertes intégré",
-  thumbnailUrl: "https://plasmic-api.agence-scroll.com/signup.png",
+  importPath: "./plasmic-library/authentication/SignUp",
+  thumbnailUrl: `https://plasmic-api.agence-scroll.com/library/SignUp.png`,
+  
   props: {
 
     // Wrapper style
@@ -157,6 +159,11 @@ const SignUpMeta = {
     },
 
     // Links
+    redirectTo: {
+      type: "string",
+      defaultValue: "/auth/oauth-callback",
+      description: "URL vers laquelle rediriger après le login oAuth",
+    },
     redirectAfterSignUp: {
       type: "string",
       defaultValue: "/",
@@ -233,10 +240,15 @@ const SignUpMeta = {
       defaultValue: true,
       description: "Affiche un bouton pour montrer/masquer le mot de passe",
     },
-    showOAuthButtons: {
+    showGoogleButton: {
       type: "boolean",
-      defaultValue: true,
-      description: "Montrer/masquer les boutons SSO",
+      defaultValue: false,
+      description: "Affiche ou non le bouton Google",
+    },
+    showAppleButton: {
+      type: "boolean",
+      defaultValue: false,
+      description: "Affiche ou non le bouton Apple",
     },
     showPrivacyPolicy: {
       type: "boolean",
@@ -343,8 +355,6 @@ const SignUpMeta = {
       defaultValue: '+33'
     }
   },
-  
-  importPath: "./plasmic-library/authentication/SignUp",
 };
 
 export default SignUpMeta;
