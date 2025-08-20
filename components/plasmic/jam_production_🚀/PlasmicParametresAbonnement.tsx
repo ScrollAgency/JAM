@@ -396,7 +396,9 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
         sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
         opId: "ba382dfb-c617-44db-a36f-dda3fa7e919f",
         userArgs: {
-          query: [$ctx.SupabaseUser.user?.id]
+          query: [
+            $ctx.SupabaseUser.user?.id || "007f3aae-c8f3-420d-915c-b845a3387dfd"
+          ]
         },
         cacheKey: `plasmic.$.ba382dfb-c617-44db-a36f-dda3fa7e919f.$.`,
         invalidatedKeys: null,
@@ -2178,8 +2180,7 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                                     2 * (remainingPercent / 100)
                                   );
                                   if (classic + lastminute + boost > 0) {
-                                    recharge =
-                                      "Nous vous créditerons dès aujourd'hui : \n";
+                                    recharge = "Nous vous créditerons : \n";
                                     if (classic > 0)
                                       recharge += `${classic} recharges classiques\n`;
                                     if (lastminute > 0)
@@ -2188,7 +2189,16 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                                       recharge += `${boost} recharges boost`;
                                   }
                                 }
-                                return `Votre nouvel abonnement commencera le \n${formatted}\n\n${recharge}`;
+                                let annonce = "";
+                                if (
+                                  $state.selectedProduct !==
+                                  "prod_S81KBWHPyJa53z"
+                                ) {
+                                  annonce = `Votre nouvel abonnement commencera aujourd'hui\n\n${recharge}`;
+                                } else {
+                                  annonce = `Votre nouvel abonnement commencera le \n${formatted}`;
+                                }
+                                return annonce;
                               })();
                             } catch (e) {
                               if (
