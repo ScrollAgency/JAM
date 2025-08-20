@@ -61,9 +61,15 @@ export const ConfirmModal = ({
       ? "flex-end"
       : "center";
 
+  const containerStyle: React.CSSProperties = {
+    alignItems,
+    ...(modalPosition === "top" && { marginTop: 40 }),
+    ...(modalPosition === "bottom" && { marginBottom: 40 }),
+  };
+
   return (
     <div className="fixed inset-0 bg-black/50 z-50 flex justify-center"
-      style={{ alignItems }}
+      style={containerStyle}
     >
       <div className="bg-white rounded-2xl shadow-xl p-6 w-full max-w-md text-center relative">
         <button type="button" className="absolute top-4 right-4" onClick={onCancel}>
