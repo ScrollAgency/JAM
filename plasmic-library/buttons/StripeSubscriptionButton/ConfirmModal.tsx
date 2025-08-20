@@ -69,9 +69,12 @@ export const ConfirmModal = ({
 
   return (
     <div className="fixed inset-0 bg-black/50 z-50 flex justify-center"
-      style={containerStyle}
+      style={{ alignItems }}
     >
-      <div className="bg-white rounded-2xl shadow-xl p-6 w-full max-w-md text-center relative">
+      <div 
+        className="bg-white rounded-2xl shadow-xl p-6 w-full max-w-md text-center relative"
+        style={containerStyle}
+      >
         <button type="button" className="absolute top-4 right-4" onClick={onCancel}>
           <X />
         </button>
