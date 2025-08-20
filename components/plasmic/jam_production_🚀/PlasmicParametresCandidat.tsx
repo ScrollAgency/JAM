@@ -4663,14 +4663,8 @@ function PlasmicParametresCandidat__RenderFunc(props: {
               shouldRun={(() => {
                 try {
                   return (() => {
-                    const googleFirstName =
-                      $ctx.SupabaseUser.user?.user_metadata?.name?.split(
-                        " "
-                      )[0] ?? null;
-                    const googleLastName =
-                      $ctx.SupabaseUser.user?.user_metadata?.name?.split(
-                        " "
-                      )[1] ?? null;
+                    const googleName =
+                      $ctx.SupabaseUser.user?.user_metadata?.name;
                     const firstName =
                       $queries.currentUser?.data?.[0]?.first_name ?? null;
                     const lastName =
@@ -4678,7 +4672,7 @@ function PlasmicParametresCandidat__RenderFunc(props: {
                     return (
                       firstName === null &&
                       lastName === null &&
-                      (googleFirstName !== null || googleLastName !== null)
+                      (googleName !== null || googleLastName !== "")
                     );
                   })();
                 } catch (e) {
