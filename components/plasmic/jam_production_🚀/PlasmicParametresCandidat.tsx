@@ -4662,19 +4662,15 @@ function PlasmicParametresCandidat__RenderFunc(props: {
               }}
               shouldRun={(() => {
                 try {
-                  return (() => {
-                    const googleName =
-                      $ctx.SupabaseUser.user?.user_metadata?.name;
-                    const firstName =
-                      $queries.currentUser?.data?.[0]?.first_name ?? null;
-                    const lastName =
-                      $queries.currentUser?.data?.[0]?.last_name ?? null;
-                    return (
-                      firstName === null &&
-                      lastName === null &&
-                      (googleName !== null || googleName !== "")
-                    );
-                  })();
+                  return (
+                    // const googleName = $ctx.SupabaseUser.user?.user_metadata?.name
+
+                    // const firstName = $queries.currentUser?.data?.[0]?.first_name ?? null;
+                    // const lastName = $queries.currentUser?.data?.[0]?.last_name ?? null;
+
+                    // (firstName === null && lastName === null) && (googleName !== null || googleName !== "")
+                    false
+                  );
                 } catch (e) {
                   if (
                     e instanceof TypeError ||
