@@ -677,7 +677,7 @@ function PlasmicParametresCandidat__RenderFunc(props: {
         opId: "9c25c922-f186-4ed9-850f-6ded6b307e4e",
         userArgs: {
           keys: [
-            $ctx.SupabaseUser.user?.id || "dd4e7080-742a-4e22-8ba5-6dbc7ffbb7a3"
+            $ctx.SupabaseUser.user?.id || "d53cd655-48ec-498d-8304-2417db80b66f"
           ]
         },
         cacheKey: `plasmic.$.9c25c922-f186-4ed9-850f-6ded6b307e4e.$.`,
@@ -2587,7 +2587,7 @@ function PlasmicParametresCandidat__RenderFunc(props: {
                                   )}
                                   initialSelectedValue={(() => {
                                     try {
-                                      return $queries.currentUser.data?.[0]
+                                      return $queries.currentUser?.data?.[0]
                                         .level;
                                     } catch (e) {
                                       if (
