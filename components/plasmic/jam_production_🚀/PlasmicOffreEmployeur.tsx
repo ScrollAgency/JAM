@@ -19030,6 +19030,29 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                 $steps["savePurchase"] = await $steps["savePurchase"];
               }
 
+              $steps["refreshData"] = true
+                ? (() => {
+                    const actionArgs = {
+                      queryInvalidation: [
+                        "9258b35e-6135-4ba7-8ce4-fe23b60361d6"
+                      ]
+                    };
+                    return (async ({ queryInvalidation }) => {
+                      if (!queryInvalidation) {
+                        return;
+                      }
+                      await plasmicInvalidate(queryInvalidation);
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["refreshData"] != null &&
+                typeof $steps["refreshData"] === "object" &&
+                typeof $steps["refreshData"].then === "function"
+              ) {
+                $steps["refreshData"] = await $steps["refreshData"];
+              }
+
               $steps["openModalCreditAlert"] = true
                 ? (() => {
                     const actionArgs = {
