@@ -39,6 +39,20 @@ const publicRoutes = [
 
 export async function middleware(request: NextRequest) {
 
+  const { pathname } = request.nextUrl;
+  
+  if (
+    pathname.startsWith("/_next") ||
+    pathname.startsWith("/api") ||
+    pathname.startsWith("/static") ||
+    pathname.startsWith("/favicon.ico") ||
+    pathname.startsWith("/manifest.json") ||
+    pathname.startsWith("/icons") ||
+    pathname.startsWith("/sw.js")
+  ) {
+    return NextResponse.next();
+  }
+
     const supabaseResponse = NextResponse.next({
       request,
     })
