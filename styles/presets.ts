@@ -544,6 +544,36 @@ linkSignupBottomText: {
     }
   },
 
+  oAuthButton2: {
+		flex: "1 1 0",
+		height: "56px",
+		borderRadius: "28px",
+		border: "1px solid #E5E7EB",
+		backgroundColor: getTokenValue("white-500"),
+		color: getTokenValue("black-500"),
+		fontWeight: "500",
+		fontSize: "16px",
+		display: "flex",
+		alignItems: "center",
+		justifyContent: "center",
+		gap: "12px",
+		cursor: "pointer",
+		padding: "0 24px",
+		boxSizing: "border-box",
+		width: "100%",
+		maxWidth: "100%",
+		boxShadow: "0 1px 2px rgba(0, 0, 0, 0.05)",
+		hover: {
+			backgroundColor: getTokenValue("gray-200"),
+		},
+	},
+
+  inputGroupItem: {
+		display: "flex",
+		flexDirection: "column",
+		flex: 1,
+	},
+
   loginLinkContainer: {
     marginTop: "8px",
     textAlign: "center",
