@@ -66,6 +66,7 @@ import {
   usePlasmicInvalidate
 } from "@plasmicapp/react-web/lib/data-sources";
 
+import { PageLoader } from "../../others/PageLoader/PageLoader"; // plasmic-import: FHDrnDhA4DZe/codeComponent
 import MobileNavbarTop from "../../MobileNavbarTop"; // plasmic-import: mAg8Ml3XUEhy/component
 import Sidebar from "../../Sidebar"; // plasmic-import: M06HuWMcBQV2/component
 import { UploadWrapper } from "@plasmicpkgs/antd5/skinny/registerUpload";
@@ -124,6 +125,7 @@ export const PlasmicParametresCandidat__ArgProps = new Array<ArgPropType>();
 
 export type PlasmicParametresCandidat__OverridesType = {
   parametresDeCompte?: Flex__<"div">;
+  pageLoader?: Flex__<typeof PageLoader>;
   body?: Flex__<"div">;
   mobileNavbarTop?: Flex__<typeof MobileNavbarTop>;
   sidebar?: Flex__<typeof Sidebar>;
@@ -676,9 +678,7 @@ function PlasmicParametresCandidat__RenderFunc(props: {
         sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
         opId: "9c25c922-f186-4ed9-850f-6ded6b307e4e",
         userArgs: {
-          keys: [
-            $ctx.SupabaseUser.user?.id || "d53cd655-48ec-498d-8304-2417db80b66f"
-          ]
+          keys: [$ctx.SupabaseUser.user?.id]
         },
         cacheKey: `plasmic.$.9c25c922-f186-4ed9-850f-6ded6b307e4e.$.`,
         invalidatedKeys: null,
@@ -808,6 +808,96 @@ function PlasmicParametresCandidat__RenderFunc(props: {
             sty.parametresDeCompte
           )}
         >
+          <PageLoader
+            data-plasmic-name={"pageLoader"}
+            data-plasmic-override={overrides.pageLoader}
+            className={classNames("__wab_instance", sty.pageLoader)}
+            onMount={async () => {
+              const $steps = {};
+
+              $steps["postgresUpdateMany"] = true
+                ? (() => {
+                    const actionArgs = {
+                      dataOp: {
+                        sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
+                        opId: "e0315555-ad20-46a4-8822-28eea310b98c",
+                        userArgs: {
+                          conditions: [$ctx.SupabaseUser.user?.id],
+
+                          variables: [
+                            (() => {
+                              return $ctx.SupabaseUser.user?.user_metadata?.name?.split(
+                                " "
+                              )[0];
+                            })(),
+
+                            (() => {
+                              return $ctx.SupabaseUser.user?.user_metadata?.name?.split(
+                                " "
+                              )[1];
+                            })(),
+
+                            (() => {
+                              return $ctx.SupabaseUser.user?.user_metadata
+                                ?.role;
+                            })()
+                          ]
+                        },
+                        cacheKey: null,
+                        invalidatedKeys: ["plasmic_refresh_all"],
+                        roleId: null
+                      }
+                    };
+                    return (async ({ dataOp, continueOnError }) => {
+                      try {
+                        const response = await executePlasmicDataOp(dataOp, {
+                          userAuthToken: dataSourcesCtx?.userAuthToken,
+                          user: dataSourcesCtx?.user
+                        });
+                        await plasmicInvalidate(dataOp.invalidatedKeys);
+                        return response;
+                      } catch (e) {
+                        if (!continueOnError) {
+                          throw e;
+                        }
+                        return e;
+                      }
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["postgresUpdateMany"] != null &&
+                typeof $steps["postgresUpdateMany"] === "object" &&
+                typeof $steps["postgresUpdateMany"].then === "function"
+              ) {
+                $steps["postgresUpdateMany"] = await $steps[
+                  "postgresUpdateMany"
+                ];
+              }
+            }}
+            shouldRun={(() => {
+              try {
+                return (() => {
+                  const googleName =
+                    $ctx.SupabaseUser.user?.user_metadata?.name ?? null;
+                  return (
+                    $queries.currentUser.data[0].first_name === null &&
+                    $queries.currentUser.data[0].last_name === null &&
+                    googleName !== null
+                  );
+                })();
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return true;
+                }
+                throw e;
+              }
+            })()}
+          />
+
           <div
             data-plasmic-name={"body"}
             data-plasmic-override={overrides.body}
@@ -4609,6 +4699,7 @@ function PlasmicParametresCandidat__RenderFunc(props: {
 const PlasmicDescendants = {
   parametresDeCompte: [
     "parametresDeCompte",
+    "pageLoader",
     "body",
     "mobileNavbarTop",
     "sidebar",
@@ -4673,6 +4764,7 @@ const PlasmicDescendants = {
     "expandTab",
     "mobileNavbarBottom"
   ],
+  pageLoader: ["pageLoader"],
   body: [
     "body",
     "mobileNavbarTop",
@@ -5063,6 +5155,7 @@ type DescendantsType<T extends NodeNameType> =
   (typeof PlasmicDescendants)[T][number];
 type NodeDefaultElementType = {
   parametresDeCompte: "div";
+  pageLoader: typeof PageLoader;
   body: "div";
   mobileNavbarTop: typeof MobileNavbarTop;
   sidebar: typeof Sidebar;
@@ -5188,6 +5281,7 @@ export const PlasmicParametresCandidat = Object.assign(
   makeNodeComponent("parametresDeCompte"),
   {
     // Helper components rendering sub-elements
+    pageLoader: makeNodeComponent("pageLoader"),
     body: makeNodeComponent("body"),
     mobileNavbarTop: makeNodeComponent("mobileNavbarTop"),
     sidebar: makeNodeComponent("sidebar"),
