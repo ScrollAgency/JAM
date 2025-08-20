@@ -106,7 +106,7 @@
 .text__div3I {
   width: auto;
   height: auto;
-  max-width: 100%;
+  max-width: 245px;
   color: var(--token-ceD1eQOG2geq);
   font-family: "DM Sans", sans-serif;
   font-weight: 500;
@@ -150,6 +150,7 @@
   font-size: 12px;
   text-align: center;
   padding-bottom: 0px;
+  white-space: pre;
 }
 .freeBox___58Ggo {
   display: flex;

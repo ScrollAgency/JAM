@@ -1711,11 +1711,13 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
     getCompanies: usePlasmicDataOp(() => {
       return {
         sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
-        opId: "e13b458c-532d-419c-bc09-41e0eb79063a",
+        opId: "a0f345b5-bbed-4347-80ba-1896e0ae6a8a",
         userArgs: {
-          filters: [$ctx.SupabaseUser.user.id]
+          filters: [
+            $ctx.SupabaseUser.user?.id || "007f3aae-c8f3-420d-915c-b845a3387dfd"
+          ]
         },
-        cacheKey: `plasmic.$.e13b458c-532d-419c-bc09-41e0eb79063a.$.`,
+        cacheKey: `plasmic.$.a0f345b5-bbed-4347-80ba-1896e0ae6a8a.$.`,
         invalidatedKeys: null,
         roleId: null
       };
