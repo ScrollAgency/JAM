@@ -4672,7 +4672,7 @@ function PlasmicParametresCandidat__RenderFunc(props: {
                     return (
                       firstName === null &&
                       lastName === null &&
-                      (googleName !== null || googleLastName !== "")
+                      (googleName !== null || googleName !== "")
                     );
                   })();
                 } catch (e) {
