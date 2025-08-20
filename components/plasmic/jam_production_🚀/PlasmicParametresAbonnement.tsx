@@ -1815,7 +1815,7 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                             }
                           })()}
                           disabled={false}
-                          modalPosition={"middle"}
+                          modalPosition={"top"}
                           onSuccess={async () => {
                             const $steps = {};
 
