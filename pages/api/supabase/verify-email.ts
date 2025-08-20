@@ -1,6 +1,6 @@
 // /pages/api/verify-email.ts
 import { corsPolicy } from '../../../lib/middleware/corsPolicy';
-import { supabase } from '../../../lib/supabaseClient';
+import { supabaseServer } from '../../../lib/supabaseServer';
 import type { NextApiRequest, NextApiResponse } from "next";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
@@ -17,7 +17,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   }
 
   try {
-    const { data: user, error } = await supabase
+    const { data: user, error } = await supabaseServer
       .from('user')
       .select('email')
       .eq('email', email)
