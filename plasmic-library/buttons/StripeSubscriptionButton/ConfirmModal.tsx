@@ -63,8 +63,8 @@ export const ConfirmModal = ({
 
   const containerStyle: React.CSSProperties = {
     alignItems,
-    ...(modalPosition === "top" && { marginTop: 40 }),
-    ...(modalPosition === "bottom" && { marginBottom: 40 }),
+    ...(modalPosition === "top" && { paddingTop: 40 }),
+    ...(modalPosition === "bottom" && { paddingBottom: 40 }),
   };
 
   return (
