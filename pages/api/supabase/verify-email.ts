@@ -18,10 +18,12 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
   try {
     const { data: user, error } = await supabase
-      .from('public.user')
+      .from('user')
       .select('email')
       .eq('email', email)
       .single();
+    
+    console.log("user:", user, "error:", error);
 
     if (user) {
       return res.status(200).json({ exists: true });
