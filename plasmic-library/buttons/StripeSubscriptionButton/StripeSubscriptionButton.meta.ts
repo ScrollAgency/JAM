@@ -45,6 +45,13 @@ const StripeSubscriptionButtonMeta = {
       type: "slot",
       displayName: "Bouton annuler personnalisé",
     },
+    
+     modalPosition: {
+      type: "choice",
+      options: ["top", "middle", "bottom"],
+      defaultValue: "middle",
+      displayName: "Position de la modale",
+    },
     showConfirmationModal: {
       type: "boolean",
       defaultValue: true,

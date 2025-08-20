@@ -10,6 +10,8 @@ export interface ConfirmModalProps {
   cancelButtonSlot?: React.ReactNode;
   confirmButtonSlot?: React.ReactNode;
 
+  modalPosition?: "top" | "middle" | "bottom";
+
   onCancel: () => void;
   onConfirm: () => void;
 
@@ -24,6 +26,8 @@ export const ConfirmModal = ({
   iconSlot,
   cancelButtonSlot,
   confirmButtonSlot,
+
+  modalPosition = "middle",
 
   onCancel,
   onConfirm,
@@ -50,8 +54,17 @@ export const ConfirmModal = ({
     return node;
   };
 
+  const alignItems =
+    modalPosition === "top"
+      ? "flex-start"
+      : modalPosition === "bottom"
+      ? "flex-end"
+      : "center";
+
   return (
-    <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center">
+    <div className="fixed inset-0 bg-black/50 z-50 flex justify-center"
+      style={{ alignItems }}
+    >
       <div className="bg-white rounded-2xl shadow-xl p-6 w-full max-w-md text-center relative">
         <button type="button" className="absolute top-4 right-4" onClick={onCancel}>
           <X />

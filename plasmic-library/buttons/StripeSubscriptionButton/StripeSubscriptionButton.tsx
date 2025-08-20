@@ -23,6 +23,7 @@ export interface StripeSubscriptionButtonProps {
   confirmIconSlot?: React.ReactNode;
   confirmButtonSlot?: React.ReactNode;
   cancelButtonSlot?: React.ReactNode;
+  modalPosition?: "top" | "middle" | "bottom";
   showConfirmationModal?: boolean;
 }
 
@@ -48,6 +49,7 @@ function StripeSubscriptionButton_(
     confirmIconSlot,
     confirmButtonSlot,
     cancelButtonSlot,
+    modalPosition = "middle",
     showConfirmationModal = true,
   } = props;
 
@@ -148,6 +150,7 @@ function StripeSubscriptionButton_(
         iconSlot={confirmIconSlot}
         confirmButtonSlot={confirmButtonSlot}
         cancelButtonSlot={cancelButtonSlot}
+        modalPosition={modalPosition}
         loading={loading}
       />
 
