@@ -2283,13 +2283,13 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                                   new Date(lastUpdate) < startOfMonth ||
                                   new Date(lastUpdate) >= startOfNextMonth;
                                 return (
-                                  $queries.getUserStripeInfos.data[0]
+                                  ($queries.getUserStripeInfos.data[0]
                                     .product_id === $state.selectedProduct &&
-                                  !$queries.getUserStripeInfos.data[0]
-                                    .status === "completed" &&
-                                  $state.selectedProduct !==
+                                    !$queries.getUserStripeInfos.data[0]
+                                      .status === "completed") ||
+                                  ($state.selectedProduct !==
                                     "prod_S81KBWHPyJa53z" &&
-                                  shouldUpdate
+                                    !shouldUpdate)
                                 );
                               })();
                             } catch (e) {
@@ -2473,10 +2473,33 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                             )}
                             disabled={(() => {
                               try {
-                                return (
-                                  $queries.getUserStripeInfos.data[0]
-                                    .product_id === $state.selectedProduct
-                                );
+                                return (() => {
+                                  const lastUpdate =
+                                    $queries.getUserStripeInfos.data[0]
+                                      .last_update;
+                                  const now = new Date();
+                                  const startOfMonth = new Date(
+                                    now.getFullYear(),
+                                    now.getMonth(),
+                                    1
+                                  );
+                                  const startOfNextMonth = new Date(
+                                    now.getFullYear(),
+                                    now.getMonth() + 1,
+                                    1
+                                  );
+                                  const shouldUpdate =
+                                    !lastUpdate ||
+                                    new Date(lastUpdate) < startOfMonth ||
+                                    new Date(lastUpdate) >= startOfNextMonth;
+                                  return (
+                                    $queries.getUserStripeInfos.data[0]
+                                      .product_id === $state.selectedProduct ||
+                                    ($state.selectedProduct !==
+                                      "prod_S81KBWHPyJa53z" &&
+                                      !shouldUpdate)
+                                  );
+                                })();
                               } catch (e) {
                                 if (
                                   e instanceof TypeError ||
