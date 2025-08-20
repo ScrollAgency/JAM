@@ -696,58 +696,6 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                 ];
               }
 
-              $steps["changeLastUpdateSubscription"] = true
-                ? (() => {
-                    const actionArgs = {
-                      dataOp: {
-                        sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
-                        opId: "cc784393-af16-463f-83d5-eb9b1b0193db",
-                        userArgs: {
-                          conditions: [$ctx.SupabaseUser.user?.id],
-
-                          variables: [
-                            (() => {
-                              const today = new Date();
-                              const todayStr = today
-                                .toISOString()
-                                .split("T")[0];
-                              return todayStr;
-                            })()
-                          ]
-                        },
-                        cacheKey: null,
-                        invalidatedKeys: ["plasmic_refresh_all"],
-                        roleId: null
-                      }
-                    };
-                    return (async ({ dataOp, continueOnError }) => {
-                      try {
-                        const response = await executePlasmicDataOp(dataOp, {
-                          userAuthToken: dataSourcesCtx?.userAuthToken,
-                          user: dataSourcesCtx?.user
-                        });
-                        await plasmicInvalidate(dataOp.invalidatedKeys);
-                        return response;
-                      } catch (e) {
-                        if (!continueOnError) {
-                          throw e;
-                        }
-                        return e;
-                      }
-                    })?.apply(null, [actionArgs]);
-                  })()
-                : undefined;
-              if (
-                $steps["changeLastUpdateSubscription"] != null &&
-                typeof $steps["changeLastUpdateSubscription"] === "object" &&
-                typeof $steps["changeLastUpdateSubscription"].then ===
-                  "function"
-              ) {
-                $steps["changeLastUpdateSubscription"] = await $steps[
-                  "changeLastUpdateSubscription"
-                ];
-              }
-
               $steps["goToParametresAbonnementPaiementOk"] = true
                 ? (() => {
                     const actionArgs = {
@@ -1867,6 +1815,7 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                             }
                           })()}
                           disabled={false}
+                          modalPosition={"middle"}
                           onSuccess={async () => {
                             const $steps = {};
 
@@ -2334,12 +2283,13 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                                   new Date(lastUpdate) < startOfMonth ||
                                   new Date(lastUpdate) >= startOfNextMonth;
                                 return (
-                                  ($queries.getUserStripeInfos.data[0]
+                                  $queries.getUserStripeInfos.data[0]
                                     .product_id === $state.selectedProduct &&
-                                    !$queries.getUserStripeInfos.data[0]
-                                      .status === "completed") ||
-                                  ($state.selectedProduct === "" &&
-                                    shouldUpdate)
+                                  !$queries.getUserStripeInfos.data[0]
+                                    .status === "completed" &&
+                                  $state.selectedProduct !==
+                                    "prod_S81KBWHPyJa53z" &&
+                                  shouldUpdate
                                 );
                               })();
                             } catch (e) {
@@ -2352,8 +2302,71 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                               throw e;
                             }
                           })()}
+                          modalPosition={"top"}
                           onSuccess={async () => {
                             const $steps = {};
+
+                            $steps["changeUpdateDate"] = true
+                              ? (() => {
+                                  const actionArgs = {
+                                    dataOp: {
+                                      sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
+                                      opId: "cc784393-af16-463f-83d5-eb9b1b0193db",
+                                      userArgs: {
+                                        variables: [
+                                          (() => {
+                                            const today = new Date();
+                                            const todayStr = today
+                                              .toISOString()
+                                              .split("T")[0];
+                                            return todayStr;
+                                          })()
+                                        ],
+
+                                        conditions: [
+                                          $ctx.SupabaseUser.user?.id ||
+                                            "007f3aae-c8f3-420d-915c-b845a3387dfd"
+                                        ]
+                                      },
+                                      cacheKey: null,
+                                      invalidatedKeys: ["plasmic_refresh_all"],
+                                      roleId: null
+                                    }
+                                  };
+                                  return (async ({
+                                    dataOp,
+                                    continueOnError
+                                  }) => {
+                                    try {
+                                      const response =
+                                        await executePlasmicDataOp(dataOp, {
+                                          userAuthToken:
+                                            dataSourcesCtx?.userAuthToken,
+                                          user: dataSourcesCtx?.user
+                                        });
+                                      await plasmicInvalidate(
+                                        dataOp.invalidatedKeys
+                                      );
+                                      return response;
+                                    } catch (e) {
+                                      if (!continueOnError) {
+                                        throw e;
+                                      }
+                                      return e;
+                                    }
+                                  })?.apply(null, [actionArgs]);
+                                })()
+                              : undefined;
+                            if (
+                              $steps["changeUpdateDate"] != null &&
+                              typeof $steps["changeUpdateDate"] === "object" &&
+                              typeof $steps["changeUpdateDate"].then ===
+                                "function"
+                            ) {
+                              $steps["changeUpdateDate"] = await $steps[
+                                "changeUpdateDate"
+                              ];
+                            }
 
                             $steps["successNotification"] = true
                               ? (() => {
