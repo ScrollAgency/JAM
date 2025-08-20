@@ -396,9 +396,7 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
         sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
         opId: "ba382dfb-c617-44db-a36f-dda3fa7e919f",
         userArgs: {
-          query: [
-            $ctx.SupabaseUser.user?.id || "007f3aae-c8f3-420d-915c-b845a3387dfd"
-          ]
+          query: [$ctx.SupabaseUser.user?.id]
         },
         cacheKey: `plasmic.$.ba382dfb-c617-44db-a36f-dda3fa7e919f.$.`,
         invalidatedKeys: null,
@@ -3024,13 +3022,9 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                             <React.Fragment>
                               {(() => {
                                 try {
-                                  return (
-                                    $queries.userMonthlyRecharge.data.response
-                                      .solde.totalClassic +
-                                    "/" +
-                                    $queries.userMonthlyRecharge.data.response
-                                      .total.totalClassic
-                                  );
+                                  return $queries.userMonthlyRecharge.data
+                                    .response.solde.totalClassic; //+ "/" +
+                                  //$queries.userMonthlyRecharge.data.response.total.totalClassic
                                 } catch (e) {
                                   if (
                                     e instanceof TypeError ||
@@ -3087,13 +3081,9 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                             <React.Fragment>
                               {(() => {
                                 try {
-                                  return (
-                                    $queries.userMonthlyRecharge.data.response
-                                      .solde.totalLastMinute +
-                                    "/" +
-                                    $queries.userMonthlyRecharge.data.response
-                                      .total.totalLastMinute
-                                  );
+                                  return $queries.userMonthlyRecharge.data
+                                    .response.solde.totalLastMinute; // + "/" +
+                                  //$queries.userMonthlyRecharge.data.response.total.totalLastMinute
                                 } catch (e) {
                                   if (
                                     e instanceof TypeError ||
@@ -3166,17 +3156,10 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                               <React.Fragment>
                                 {(() => {
                                   try {
-                                    return (
-                                      parseInt(
-                                        $queries.getUserStripeInfos.data[0]
-                                          .recharge_boost
-                                      ) +
-                                      "/" +
-                                      ($queries.getUserStripeInfos.data[0]
-                                        .product_id === "prod_S81KBWHPyJa53z"
-                                        ? 0
-                                        : 4)
-                                    );
+                                    return parseInt(
+                                      $queries.getUserStripeInfos.data[0]
+                                        .recharge_boost
+                                    ); // + "/" + ($queries.getUserStripeInfos.data[0].product_id === "prod_S81KBWHPyJa53z" ? 0 : 4)
                                   } catch (e) {
                                     if (
                                       e instanceof TypeError ||

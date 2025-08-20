@@ -21,7 +21,7 @@
     column-gap: 0px;
   }
 }
-.pageLoader:global(.__wab_instance) {
+.updateFirstGoogleConnection:global(.__wab_instance) {
   max-width: 100%;
   object-fit: cover;
 }

@@ -229,7 +229,7 @@ function PlasmicSidebar__RenderFunc(props: {
         sourceId: "5T6gSzGCrEfYgV9rAkCoaD",
         opId: "9258b35e-6135-4ba7-8ce4-fe23b60361d6",
         userArgs: {
-          params: [$queries.sidebarGetUserStripeInfos.data[0].customer_id]
+          params: [$queries.sidebarGetUserStripeInfos.data?.[0].customer_id]
         },
         cacheKey: `plasmic.$.9258b35e-6135-4ba7-8ce4-fe23b60361d6.$.`,
         invalidatedKeys: null,
@@ -1269,11 +1269,8 @@ function PlasmicSidebar__RenderFunc(props: {
                     {(() => {
                       try {
                         return (
-                          ($queries.sidebarUserMonthlyRecharge.data?.response
-                            ?.solde?.totalClassic || 0) +
-                          "/" +
-                          ($queries.sidebarUserMonthlyRecharge.data?.response
-                            ?.total?.totalClassic || 0)
+                          $queries.sidebarUserMonthlyRecharge.data?.response
+                            ?.solde?.totalClassic || 0 // + "/" + ($queries.sidebarUserMonthlyRecharge.data?.response?.total?.totalClassic || 0)
                         );
                       } catch (e) {
                         if (
@@ -1340,11 +1337,8 @@ function PlasmicSidebar__RenderFunc(props: {
                     {(() => {
                       try {
                         return (
-                          ($queries.sidebarUserMonthlyRecharge.data?.response
-                            ?.solde?.totalLastMinute || 0) +
-                          "/" +
-                          ($queries.sidebarUserMonthlyRecharge.data?.response
-                            ?.total?.totalLastMinute || 0)
+                          $queries.sidebarUserMonthlyRecharge.data?.response
+                            ?.solde?.totalLastMinute || 0 // + "/" + ($queries.sidebarUserMonthlyRecharge.data?.response?.total?.totalLastMinute || 0)
                         );
                       } catch (e) {
                         if (
@@ -1411,11 +1405,8 @@ function PlasmicSidebar__RenderFunc(props: {
                     {(() => {
                       try {
                         return (
-                          ($queries.sidebarUserMonthlyRecharge.data?.response
-                            ?.solde?.totalBoost || 0) +
-                          "/" +
-                          ($queries.sidebarUserMonthlyRecharge.data?.response
-                            ?.total?.totalBoost || 0)
+                          $queries.sidebarUserMonthlyRecharge.data?.response
+                            ?.solde?.totalBoost || 0 // + "/" + ($queries.sidebarUserMonthlyRecharge.data?.response?.total?.totalBoost || 0)
                         );
                       } catch (e) {
                         if (

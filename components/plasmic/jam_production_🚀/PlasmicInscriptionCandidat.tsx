@@ -106,7 +106,6 @@ export type PlasmicInscriptionCandidat__OverridesType = {
   signupSuccess?: Flex__<"div">;
   signupLoading?: Flex__<"div">;
   signUp3?: Flex__<typeof SignUp>;
-  img?: Flex__<typeof PlasmicImg__>;
 };
 
 export interface DefaultInscriptionCandidatProps {}
@@ -469,11 +468,9 @@ function PlasmicInscriptionCandidat__RenderFunc(props: {
                       "lastName"
                     ])}
                     lastNameLabel={"Nom*"}
-                    loginLinkLabel={"CONNEXION"}
-                    loginPrefixText={"D\u00e9j\u00e0 inscrit(e) ?"}
                     maxAlerts={3}
                     oAuthButtonsPosition={"bottom"}
-                    oAuthSeparatorText={"ou"}
+                    oAuthSeparatorText={``}
                     onConfirmPasswordChange={async (...eventArgs: any) => {
                       generateStateOnChangeProp($state, [
                         "signUp3",
@@ -519,7 +516,7 @@ function PlasmicInscriptionCandidat__RenderFunc(props: {
                     onSubmit={async event => {
                       const $steps = {};
 
-                      $steps["invokeGlobalAction"] = true
+                      $steps["invokeGlobalAction"] = false
                         ? (() => {
                             const actionArgs = {
                               args: [
@@ -605,7 +602,7 @@ function PlasmicInscriptionCandidat__RenderFunc(props: {
                         ];
                       }
 
-                      $steps["httpPost"] = true
+                      $steps["httpPost"] = false
                         ? (() => {
                             const actionArgs = {
                               dataOp: {
@@ -657,7 +654,6 @@ function PlasmicInscriptionCandidat__RenderFunc(props: {
                         $steps["httpPost"] = await $steps["httpPost"];
                       }
                     }}
-                    padding={"40px 16px"}
                     password={generateStateValueProp($state, [
                       "signUp3",
                       "password"
@@ -666,44 +662,27 @@ function PlasmicInscriptionCandidat__RenderFunc(props: {
                       "Utilisez 8 caractères ou plus en mélangeant lettres, chiffres et symboles."
                     }
                     passwordLabel={"Mot de passe*"}
-                    passwordStrength={true}
                     phone={generateStateValueProp($state, ["signUp3", "phone"])}
                     phoneLabel={"T\u00e9l\u00e9phone*"}
                     placeholderConfirmPassword={"Mot de passe"}
                     placeholderEmail={"Email"}
                     placeholderPassword={"Mot de passe"}
                     placeholderPhone={"060606060606"}
-                    privacyPolicyText={"politique de confidentialit\u00e9"}
+                    privacyPolicyText={
+                      "J'accepte la politique de confidentialit\u00e9"
+                    }
+                    privacyPolicyUrl={""}
                     redirectAfterSignUp={``}
                     redirectTo={"https://job-around-me.com/auth/oauth-callback"}
                     showAlerts={true}
+                    showAppleButton={false}
+                    showGoogleButton={true}
                     showLabels={true}
                     showLoginLink={true}
-                    showOAuthButtons={true}
+                    showPasswordStrength={true}
                     showPasswordToggle={true}
-                    showPhoneInput={true}
-                    submitButtonIcon={
-                      <PlasmicImg__
-                        data-plasmic-name={"img"}
-                        data-plasmic-override={overrides.img}
-                        alt={""}
-                        className={classNames(sty.img)}
-                        displayHeight={"auto"}
-                        displayMaxHeight={"none"}
-                        displayMaxWidth={"100%"}
-                        displayMinHeight={"0"}
-                        displayMinWidth={"0"}
-                        displayWidth={"auto"}
-                        loading={"lazy"}
-                        src={{
-                          src: "/plasmic/jam_production_🚀/images/image19.svg",
-                          fullWidth: 34,
-                          fullHeight: 33,
-                          aspectRatio: undefined
-                        }}
-                      />
-                    }
-                    submitButtonIconPosition={"right"}
+                    showPhone={true}
+                    showPrivacyPolicy={true}
                     submitButtonText={"INSCRIPTION"}
                     title={"Bienvenue !"}
                     titleHeading={"h1"}
@@ -732,8 +711,7 @@ const PlasmicDescendants = {
     "formWrapper",
     "signupSuccess",
     "signupLoading",
-    "signUp3",
-    "img"
+    "signUp3"
   ],
   signUp: [
     "signUp",
@@ -746,8 +724,7 @@ const PlasmicDescendants = {
     "formWrapper",
     "signupSuccess",
     "signupLoading",
-    "signUp3",
-    "img"
+    "signUp3"
   ],
   imageWrapper: [
     "imageWrapper",
@@ -762,17 +739,10 @@ const PlasmicDescendants = {
   frame: ["frame"],
   frame2: ["frame2"],
   frame3: ["frame3"],
-  formWrapper: [
-    "formWrapper",
-    "signupSuccess",
-    "signupLoading",
-    "signUp3",
-    "img"
-  ],
+  formWrapper: ["formWrapper", "signupSuccess", "signupLoading", "signUp3"],
   signupSuccess: ["signupSuccess"],
-  signupLoading: ["signupLoading", "signUp3", "img"],
-  signUp3: ["signUp3", "img"],
-  img: ["img"]
+  signupLoading: ["signupLoading", "signUp3"],
+  signUp3: ["signUp3"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -790,7 +760,6 @@ type NodeDefaultElementType = {
   signupSuccess: "div";
   signupLoading: "div";
   signUp3: typeof SignUp;
-  img: typeof PlasmicImg__;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -864,7 +833,6 @@ export const PlasmicInscriptionCandidat = Object.assign(
     signupSuccess: makeNodeComponent("signupSuccess"),
     signupLoading: makeNodeComponent("signupLoading"),
     signUp3: makeNodeComponent("signUp3"),
-    img: makeNodeComponent("img"),
 
     // Metadata about props expected for PlasmicInscriptionCandidat
     internalVariantProps: PlasmicInscriptionCandidat__VariantProps,

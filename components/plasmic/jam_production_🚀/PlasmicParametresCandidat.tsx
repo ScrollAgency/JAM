@@ -125,7 +125,7 @@ export const PlasmicParametresCandidat__ArgProps = new Array<ArgPropType>();
 
 export type PlasmicParametresCandidat__OverridesType = {
   parametresDeCompte?: Flex__<"div">;
-  pageLoader?: Flex__<typeof PageLoader>;
+  updateFirstGoogleConnection?: Flex__<typeof PageLoader>;
   body?: Flex__<"div">;
   mobileNavbarTop?: Flex__<typeof MobileNavbarTop>;
   sidebar?: Flex__<typeof Sidebar>;
@@ -809,13 +809,39 @@ function PlasmicParametresCandidat__RenderFunc(props: {
           )}
         >
           <PageLoader
-            data-plasmic-name={"pageLoader"}
-            data-plasmic-override={overrides.pageLoader}
-            className={classNames("__wab_instance", sty.pageLoader)}
+            data-plasmic-name={"updateFirstGoogleConnection"}
+            data-plasmic-override={overrides.updateFirstGoogleConnection}
+            className={classNames(
+              "__wab_instance",
+              sty.updateFirstGoogleConnection
+            )}
             onMount={async () => {
               const $steps = {};
 
-              $steps["postgresUpdateMany"] = true
+              $steps["refreshData"] = true
+                ? (() => {
+                    const actionArgs = {
+                      queryInvalidation: [
+                        "9c25c922-f186-4ed9-850f-6ded6b307e4e"
+                      ]
+                    };
+                    return (async ({ queryInvalidation }) => {
+                      if (!queryInvalidation) {
+                        return;
+                      }
+                      await plasmicInvalidate(queryInvalidation);
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["refreshData"] != null &&
+                typeof $steps["refreshData"] === "object" &&
+                typeof $steps["refreshData"].then === "function"
+              ) {
+                $steps["refreshData"] = await $steps["refreshData"];
+              }
+
+              $steps["updateFromGoogle"] = true
                 ? (() => {
                     const actionArgs = {
                       dataOp: {
@@ -825,22 +851,15 @@ function PlasmicParametresCandidat__RenderFunc(props: {
                           conditions: [$ctx.SupabaseUser.user?.id],
 
                           variables: [
-                            (() => {
-                              return $ctx.SupabaseUser.user?.user_metadata?.name?.split(
-                                " "
-                              )[0];
-                            })(),
+                            $ctx.SupabaseUser.user?.user_metadata?.name?.split(
+                              " "
+                            )[0],
 
-                            (() => {
-                              return $ctx.SupabaseUser.user?.user_metadata?.name?.split(
-                                " "
-                              )[1];
-                            })(),
+                            $ctx.SupabaseUser.user?.user_metadata?.name?.split(
+                              " "
+                            )[1],
 
-                            (() => {
-                              return $ctx.SupabaseUser.user?.user_metadata
-                                ?.role;
-                            })()
+                            $ctx.SupabaseUser.user?.user_metadata?.role
                           ]
                         },
                         cacheKey: null,
@@ -866,13 +885,11 @@ function PlasmicParametresCandidat__RenderFunc(props: {
                   })()
                 : undefined;
               if (
-                $steps["postgresUpdateMany"] != null &&
-                typeof $steps["postgresUpdateMany"] === "object" &&
-                typeof $steps["postgresUpdateMany"].then === "function"
+                $steps["updateFromGoogle"] != null &&
+                typeof $steps["updateFromGoogle"] === "object" &&
+                typeof $steps["updateFromGoogle"].then === "function"
               ) {
-                $steps["postgresUpdateMany"] = await $steps[
-                  "postgresUpdateMany"
-                ];
+                $steps["updateFromGoogle"] = await $steps["updateFromGoogle"];
               }
             }}
             shouldRun={(() => {
@@ -4699,7 +4716,7 @@ function PlasmicParametresCandidat__RenderFunc(props: {
 const PlasmicDescendants = {
   parametresDeCompte: [
     "parametresDeCompte",
-    "pageLoader",
+    "updateFirstGoogleConnection",
     "body",
     "mobileNavbarTop",
     "sidebar",
@@ -4764,7 +4781,7 @@ const PlasmicDescendants = {
     "expandTab",
     "mobileNavbarBottom"
   ],
-  pageLoader: ["pageLoader"],
+  updateFirstGoogleConnection: ["updateFirstGoogleConnection"],
   body: [
     "body",
     "mobileNavbarTop",
@@ -5155,7 +5172,7 @@ type DescendantsType<T extends NodeNameType> =
   (typeof PlasmicDescendants)[T][number];
 type NodeDefaultElementType = {
   parametresDeCompte: "div";
-  pageLoader: typeof PageLoader;
+  updateFirstGoogleConnection: typeof PageLoader;
   body: "div";
   mobileNavbarTop: typeof MobileNavbarTop;
   sidebar: typeof Sidebar;
@@ -5281,7 +5298,9 @@ export const PlasmicParametresCandidat = Object.assign(
   makeNodeComponent("parametresDeCompte"),
   {
     // Helper components rendering sub-elements
-    pageLoader: makeNodeComponent("pageLoader"),
+    updateFirstGoogleConnection: makeNodeComponent(
+      "updateFirstGoogleConnection"
+    ),
     body: makeNodeComponent("body"),
     mobileNavbarTop: makeNodeComponent("mobileNavbarTop"),
     sidebar: makeNodeComponent("sidebar"),
