@@ -1,3 +1,4 @@
+import Head from "next/head";
 import type { AppProps } from "next/app";
 
 import "@uppy/core/dist/style.min.css";
@@ -10,10 +11,13 @@ import WeglotScript from "@/components/weglot/WeglotScript";
 function MyApp({ Component, pageProps }: AppProps) {
 	return (
 		<>
-			<Component {...pageProps} />
-      <CrispChat/>
-      <WeglotScript/>
-		</>
+            <Head>
+                <link rel="manifest" href="/manifest.json" />
+            </Head>
+            <Component {...pageProps} />
+            <CrispChat/>
+            <WeglotScript/>
+        </>
 	);
 }
 
