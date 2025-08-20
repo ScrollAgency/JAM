@@ -604,9 +604,64 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                     const actionArgs = {
                       dataOp: {
                         sourceId: "9Q77QfSZHRES57WTLJmYrY",
-                        opId: "c9b3d9bd-f9b6-4aa3-8422-039749cde3cf",
+                        opId: "295f4389-2c29-4bce-a056-3db09a048da7",
                         userArgs: {
-                          params: [$state.sessionId, "update"]
+                          params: [
+                            $state.sessionId,
+
+                            "update",
+
+                            (() => {
+                              const remainingPercent =
+                                $queries.userMonthlyRecharge.data.response
+                                  .subscription.remainingPercent;
+                              const prorated = Math.ceil(
+                                8 * (remainingPercent / 100)
+                              );
+                              const solde =
+                                $queries.userMonthlyRecharge.data.response.solde
+                                  .totalClassic;
+                              const update =
+                                $state.selectedProduct === "prod_S81KBWHPyJa53z"
+                                  ? 0
+                                  : prorated;
+                              return solde + update;
+                            })(),
+
+                            (() => {
+                              const remainingPercent =
+                                $queries.userMonthlyRecharge.data.response
+                                  .subscription.remainingPercent;
+                              const prorated = Math.ceil(
+                                4 * (remainingPercent / 100)
+                              );
+                              const solde =
+                                $queries.userMonthlyRecharge.data.response.solde
+                                  .totalLastMinute;
+                              const update =
+                                $state.selectedProduct === "prod_S81KBWHPyJa53z"
+                                  ? 0
+                                  : prorated;
+                              return solde + update;
+                            })(),
+
+                            (() => {
+                              const remainingPercent =
+                                $queries.userMonthlyRecharge.data.response
+                                  .subscription.remainingPercent;
+                              const prorated = Math.ceil(
+                                2 * (remainingPercent / 100)
+                              );
+                              const solde =
+                                $queries.userMonthlyRecharge.data.response.solde
+                                  .totalBoost;
+                              const update =
+                                $state.selectedProduct === "prod_S81KBWHPyJa53z"
+                                  ? 0
+                                  : prorated;
+                              return solde + update;
+                            })()
+                          ]
                         },
                         cacheKey: null,
                         invalidatedKeys: null,
@@ -638,6 +693,58 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
               ) {
                 $steps["apiStripeValidateSubscription"] = await $steps[
                   "apiStripeValidateSubscription"
+                ];
+              }
+
+              $steps["changeLastUpdateSubscription"] = true
+                ? (() => {
+                    const actionArgs = {
+                      dataOp: {
+                        sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
+                        opId: "cc784393-af16-463f-83d5-eb9b1b0193db",
+                        userArgs: {
+                          conditions: [$ctx.SupabaseUser.user?.id],
+
+                          variables: [
+                            (() => {
+                              const today = new Date();
+                              const todayStr = today
+                                .toISOString()
+                                .split("T")[0];
+                              return todayStr;
+                            })()
+                          ]
+                        },
+                        cacheKey: null,
+                        invalidatedKeys: ["plasmic_refresh_all"],
+                        roleId: null
+                      }
+                    };
+                    return (async ({ dataOp, continueOnError }) => {
+                      try {
+                        const response = await executePlasmicDataOp(dataOp, {
+                          userAuthToken: dataSourcesCtx?.userAuthToken,
+                          user: dataSourcesCtx?.user
+                        });
+                        await plasmicInvalidate(dataOp.invalidatedKeys);
+                        return response;
+                      } catch (e) {
+                        if (!continueOnError) {
+                          throw e;
+                        }
+                        return e;
+                      }
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["changeLastUpdateSubscription"] != null &&
+                typeof $steps["changeLastUpdateSubscription"] === "object" &&
+                typeof $steps["changeLastUpdateSubscription"].then ===
+                  "function"
+              ) {
+                $steps["changeLastUpdateSubscription"] = await $steps[
+                  "changeLastUpdateSubscription"
                 ];
               }
 
@@ -2092,17 +2199,49 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                           confirmDescription={(() => {
                             try {
                               return (() => {
-                                const today = new Date();
-                                const formattedToday = today.toLocaleDateString(
-                                  "fr-FR",
-                                  {
-                                    weekday: "long",
-                                    year: "numeric",
-                                    month: "long",
-                                    day: "numeric"
-                                  }
+                                const endDateStr =
+                                  $queries.userMonthlyRecharge.data.response
+                                    .subscription.end;
+                                const endDate = new Date(endDateStr);
+                                const nextStartDate = new Date(endDate);
+                                nextStartDate.setDate(
+                                  nextStartDate.getDate() + 1
                                 );
-                                return `Votre nouvel abonnement commencera le ${formattedToday}`;
+                                const formatted =
+                                  nextStartDate.toLocaleDateString("fr-FR", {
+                                    day: "numeric",
+                                    month: "long",
+                                    year: "numeric"
+                                  });
+                                let recharge = "";
+                                if (
+                                  $state.selectedProduct !==
+                                  "prod_S81KBWHPyJa53z"
+                                ) {
+                                  const remainingPercent =
+                                    $queries.userMonthlyRecharge.data.response
+                                      .subscription.remainingPercent;
+                                  const classic = Math.ceil(
+                                    8 * (remainingPercent / 100)
+                                  );
+                                  const lastminute = Math.ceil(
+                                    4 * (remainingPercent / 100)
+                                  );
+                                  const boost = Math.ceil(
+                                    2 * (remainingPercent / 100)
+                                  );
+                                  if (classic + lastminute + boost > 0) {
+                                    recharge =
+                                      "Nous vous créditerons dès aujourd'hui : \n";
+                                    if (classic > 0)
+                                      recharge += `${classic} recharges classiques\n`;
+                                    if (lastminute > 0)
+                                      recharge += `${lastminute} recharges last minute\n`;
+                                    if (boost > 0)
+                                      recharge += `${boost} recharges boost`;
+                                  }
+                                }
+                                return `Votre nouvel abonnement commencera le \n${formatted}\n\n${recharge}`;
                               })();
                             } catch (e) {
                               if (
@@ -2175,12 +2314,34 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                           })()}
                           disabled={(() => {
                             try {
-                              return (
-                                $queries.getUserStripeInfos.data[0]
-                                  .product_id === $state.selectedProduct &&
-                                !$queries.getUserStripeInfos.data[0].status ===
-                                  "completed"
-                              );
+                              return (() => {
+                                const lastUpdate =
+                                  $queries.getUserStripeInfos.data[0]
+                                    .last_update;
+                                const now = new Date();
+                                const startOfMonth = new Date(
+                                  now.getFullYear(),
+                                  now.getMonth(),
+                                  1
+                                );
+                                const startOfNextMonth = new Date(
+                                  now.getFullYear(),
+                                  now.getMonth() + 1,
+                                  1
+                                );
+                                const shouldUpdate =
+                                  !lastUpdate ||
+                                  new Date(lastUpdate) < startOfMonth ||
+                                  new Date(lastUpdate) >= startOfNextMonth;
+                                return (
+                                  ($queries.getUserStripeInfos.data[0]
+                                    .product_id === $state.selectedProduct &&
+                                    !$queries.getUserStripeInfos.data[0]
+                                      .status === "completed") ||
+                                  ($state.selectedProduct === "" &&
+                                    shouldUpdate)
+                                );
+                              })();
                             } catch (e) {
                               if (
                                 e instanceof TypeError ||
