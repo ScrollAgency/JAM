@@ -516,7 +516,7 @@ function PlasmicInscriptionCandidat__RenderFunc(props: {
                     onSubmit={async event => {
                       const $steps = {};
 
-                      $steps["invokeGlobalAction"] = false
+                      $steps["invokeGlobalAction"] = true
                         ? (() => {
                             const actionArgs = {
                               args: [
@@ -602,7 +602,7 @@ function PlasmicInscriptionCandidat__RenderFunc(props: {
                         ];
                       }
 
-                      $steps["httpPost"] = false
+                      $steps["httpPost"] = true
                         ? (() => {
                             const actionArgs = {
                               dataOp: {
