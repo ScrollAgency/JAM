@@ -116,6 +116,7 @@ import Icon8Icon from "./icons/PlasmicIcon__Icon8"; // plasmic-import: yCa_tEPZR
 import HeartStraightStreamlinePhosphorSvgIcon from "./icons/PlasmicIcon__HeartStraightStreamlinePhosphorSvg"; // plasmic-import: TgoKIDr5z3En/icon
 import HeartStraightIcon from "./icons/PlasmicIcon__HeartStraight"; // plasmic-import: 2A8amxR7FAse/icon
 import PhClockCountdownFill3Icon from "./icons/PlasmicIcon__PhClockCountdownFill3"; // plasmic-import: j8TopiIYLYKn/icon
+import XIcon from "./icons/PlasmicIcon__X"; // plasmic-import: 7N6Suhwryqlm/icon
 import LikeIconIcon from "./icons/PlasmicIcon__LikeIcon"; // plasmic-import: _YvBX6QjT3en/icon
 import PhMapPin2Icon from "./icons/PlasmicIcon__PhMapPin2"; // plasmic-import: hGRa__J54hta/icon
 import PhFileTextIcon from "./icons/PlasmicIcon__PhFileText"; // plasmic-import: kuV0Q3xSw_jm/icon
@@ -9412,7 +9413,6 @@ function PlasmicAccueil__RenderFunc(props: {
                               role={"img"}
                             />
                           }
-                          iconEnd={true}
                           label={
                             <div
                               className={classNames(
@@ -9421,7 +9421,7 @@ function PlasmicAccueil__RenderFunc(props: {
                                 sty.text__wZ8F1
                               )}
                             >
-                              {"se connecter"}
+                              {"JE M'INSCRIS"}
                             </div>
                           }
                           onClick={async event => {
@@ -9459,16 +9459,75 @@ function PlasmicAccueil__RenderFunc(props: {
                     }
                     footer={null}
                     heading={
-                      <h3
-                        className={classNames(
-                          projectcss.all,
-                          projectcss.h3,
-                          projectcss.__wab_text,
-                          sty.h3__lGrux
-                        )}
-                      >
-                        {"Connexion requise"}
-                      </h3>
+                      <React.Fragment>
+                        <XIcon
+                          className={classNames(projectcss.all, sty.svg__ewiG3)}
+                          onClick={async event => {
+                            const $steps = {};
+
+                            $steps["updateVerifyUserAuthIsOpen"] = true
+                              ? (() => {
+                                  const actionArgs = {
+                                    variable: {
+                                      objRoot: $state,
+                                      variablePath: ["verifyUserAuth", "isOpen"]
+                                    },
+                                    operation: 0,
+                                    value: false
+                                  };
+                                  return (({
+                                    variable,
+                                    value,
+                                    startIndex,
+                                    deleteCount
+                                  }) => {
+                                    if (!variable) {
+                                      return;
+                                    }
+                                    const { objRoot, variablePath } = variable;
+
+                                    $stateSet(objRoot, variablePath, value);
+                                    return value;
+                                  })?.apply(null, [actionArgs]);
+                                })()
+                              : undefined;
+                            if (
+                              $steps["updateVerifyUserAuthIsOpen"] != null &&
+                              typeof $steps["updateVerifyUserAuthIsOpen"] ===
+                                "object" &&
+                              typeof $steps["updateVerifyUserAuthIsOpen"]
+                                .then === "function"
+                            ) {
+                              $steps["updateVerifyUserAuthIsOpen"] =
+                                await $steps["updateVerifyUserAuthIsOpen"];
+                            }
+                          }}
+                          role={"img"}
+                        />
+
+                        <h3
+                          className={classNames(
+                            projectcss.all,
+                            projectcss.h3,
+                            projectcss.__wab_text,
+                            sty.h3__lGrux
+                          )}
+                        >
+                          {"Connexion requise"}
+                        </h3>
+                        <h3
+                          className={classNames(
+                            projectcss.all,
+                            projectcss.h3,
+                            projectcss.__wab_text,
+                            sty.h3__zrtCd
+                          )}
+                        >
+                          {
+                            "Pour postuler \u00e0 cette offre d'emploi, veuillez vous cr\u00e9er u compte"
+                          }
+                        </h3>
+                      </React.Fragment>
                     }
                     isOpen={generateStateValueProp($state, [
                       "verifyUserAuth",
@@ -9490,6 +9549,7 @@ function PlasmicAccueil__RenderFunc(props: {
                       }
                     }}
                     showFooter={false}
+                    showHeader={true}
                   />
 
                   <Modal

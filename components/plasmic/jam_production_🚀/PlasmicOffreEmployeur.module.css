@@ -3811,6 +3811,11 @@
   flex-shrink: 0;
   margin: 32px 0px 0px;
 }
+@media (min-width: 0px) and (max-width: 768px) {
+  .icon {
+    margin-top: 24px;
+  }
+}
 .closeAfterSuccess {
   display: flex;
   flex-direction: row;
