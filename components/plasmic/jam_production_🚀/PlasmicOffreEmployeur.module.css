@@ -2885,6 +2885,9 @@
   overflow: hidden;
   align-self: flex-end;
   cursor: pointer;
+  left: auto;
+  top: auto;
+  right: auto;
   margin: 20px 20px 0px 0px;
 }
 .img___1AQhm > picture > img {
@@ -2943,6 +2946,7 @@
   align-self: center;
   font-size: 36px;
   font-weight: 600;
+  padding-top: 0px;
 }
 .upload2:global(.__wab_instance) {
   max-width: 100%;
@@ -3797,7 +3801,15 @@
   width: 17px;
   height: 17px;
   cursor: pointer;
+  align-self: auto;
+  position: relative;
+  left: auto;
+  top: auto;
+  z-index: 1;
+  right: auto;
+  bottom: auto;
   flex-shrink: 0;
+  margin: 32px 0px 0px;
 }
 .closeAfterSuccess {
   display: flex;

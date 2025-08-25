@@ -554,19 +554,39 @@ function PlasmicInscriptionEmployeur__RenderFunc(props: {
                     placeholderEmail={"Email"}
                     placeholderPassword={"Mot de passe"}
                     placeholderPhone={"060606060606"}
-                    privacyPolicyText={"politique de confidentialit\u00e9"}
+                    privacyPolicyText={
+                      hasVariant(globalVariants, "screen", "mobileOnly")
+                        ? "J'accepte la politique de confidentialit\u00e9"
+                        : "J'accepte la politique de confidentialit\u00e9"
+                    }
                     privacyPolicyUrl={""}
                     redirectAfterSignUp={``}
                     redirectTo={"/auth/oauth-callback"}
                     showAlerts={true}
-                    showAppleButton={false}
-                    showGoogleButton={false}
+                    showAppleButton={
+                      hasVariant(globalVariants, "screen", "mobileOnly")
+                        ? false
+                        : false
+                    }
+                    showGoogleButton={
+                      hasVariant(globalVariants, "screen", "mobileOnly")
+                        ? true
+                        : true
+                    }
                     showLabels={true}
                     showLoginLink={true}
                     showPasswordStrength={true}
                     showPasswordToggle={true}
-                    showPhone={false}
-                    showPrivacyPolicy={true}
+                    showPhone={
+                      hasVariant(globalVariants, "screen", "mobileOnly")
+                        ? false
+                        : false
+                    }
+                    showPrivacyPolicy={
+                      hasVariant(globalVariants, "screen", "mobileOnly")
+                        ? true
+                        : true
+                    }
                     submitButtonText={"INSCRIPTION"}
                     title={"Bienvenue !"}
                     titleHeading={"h1"}

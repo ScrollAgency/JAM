@@ -10375,35 +10375,69 @@ function PlasmicAccueil__RenderFunc(props: {
                                 </div>
                               </div>
                             </div>
-                            {(() => {
-                              try {
-                                return (() => {
-                                  if (
-                                    !!$ctx.SupabaseUser.user &&
-                                    $ctx.SupabaseUser.user.user_metadata
-                                      .role === "Company"
-                                  ) {
-                                    return false;
-                                  } else {
-                                    return $queries.getApplication.data.some(
-                                      application =>
-                                        application.job_id ==
-                                        $state.jobObject.id
-                                    )
-                                      ? false
-                                      : true;
-                                  }
-                                })();
-                              } catch (e) {
-                                if (
-                                  e instanceof TypeError ||
-                                  e?.plasmicType === "PlasmicUndefinedDataError"
-                                ) {
-                                  return true;
-                                }
-                                throw e;
-                              }
-                            })() ? (
+                            {(
+                              hasVariant(globalVariants, "screen", "mobileOnly")
+                                ? (() => {
+                                    try {
+                                      return (() => {
+                                        if (
+                                          !!$ctx.SupabaseUser.user &&
+                                          $ctx.SupabaseUser.user.user_metadata
+                                            .role === "Company"
+                                        ) {
+                                          return false;
+                                        } else {
+                                          return $queries.getApplication.data.some(
+                                            application =>
+                                              application.job_id ==
+                                              $state.jobObject.id
+                                          )
+                                            ? false
+                                            : true;
+                                        }
+                                      })();
+                                    } catch (e) {
+                                      if (
+                                        e instanceof TypeError ||
+                                        e?.plasmicType ===
+                                          "PlasmicUndefinedDataError"
+                                      ) {
+                                        return false;
+                                      }
+                                      throw e;
+                                    }
+                                  })()
+                                : (() => {
+                                    try {
+                                      return (() => {
+                                        if (
+                                          !!$ctx.SupabaseUser.user &&
+                                          $ctx.SupabaseUser.user.user_metadata
+                                            .role === "Company"
+                                        ) {
+                                          return false;
+                                        } else {
+                                          return $queries.getApplication.data.some(
+                                            application =>
+                                              application.job_id ==
+                                              $state.jobObject.id
+                                          )
+                                            ? false
+                                            : true;
+                                        }
+                                      })();
+                                    } catch (e) {
+                                      if (
+                                        e instanceof TypeError ||
+                                        e?.plasmicType ===
+                                          "PlasmicUndefinedDataError"
+                                      ) {
+                                        return true;
+                                      }
+                                      throw e;
+                                    }
+                                  })()
+                            ) ? (
                               <Button
                                 className={classNames(
                                   "__wab_instance",

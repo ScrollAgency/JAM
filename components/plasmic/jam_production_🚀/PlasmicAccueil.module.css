@@ -1295,6 +1295,7 @@
   cursor: pointer;
   width: auto;
   min-height: 47px;
+  pointer-events: auto;
   margin: 0px;
 }
 @media (min-width: 0px) and (max-width: 768px) {
@@ -2944,9 +2945,9 @@
   height: 1em;
 }
 .jobDetails:global(.__wab_instance):global(.__wab_instance) {
-  position: relative;
   left: auto;
   top: auto;
+  position: relative;
 }
 @media (min-width: 0px) and (max-width: 768px) {
   .jobDetails:global(.__wab_instance):global(.__wab_instance) {
@@ -2999,6 +3000,12 @@
   .jobListing {
     width: 100%;
     min-width: auto;
+    flex-shrink: 1;
+    flex-grow: 0;
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    min-height: 0;
     padding: 10px 0px 37px;
   }
 }
@@ -3347,6 +3354,7 @@
     width: 100%;
     min-width: 0;
     flex-shrink: 0;
+    display: flex;
   }
 }
 .svg___3Afrh {
@@ -3597,7 +3605,9 @@
 @media (min-width: 0px) and (max-width: 768px) {
   .companyDetail {
     justify-content: flex-start;
-    align-items: center;
+    align-items: stretch;
+    flex-wrap: wrap;
+    row-gap: 5px;
   }
 }
 .sectorActivity {
@@ -3606,9 +3616,16 @@
   position: relative;
   align-self: stretch;
   flex-direction: row;
-  align-items: center;
+  align-items: stretch;
   justify-content: flex-start;
   column-gap: 4px;
+  flex-wrap: wrap;
+}
+@media (min-width: 0px) and (max-width: 768px) {
+  .sectorActivity {
+    flex-wrap: nowrap;
+    align-content: stretch;
+  }
 }
 .svg__x2Ev5 {
   object-fit: cover;
@@ -3762,8 +3779,9 @@
   .application {
     align-items: center;
     justify-content: flex-start;
-    width: 100%;
-    min-width: 0;
+    width: auto;
+    overflow-x: hidden;
+    overflow-y: auto;
     padding: 0px 0px 20px;
   }
 }
@@ -3917,10 +3935,11 @@
     width: 100%;
     display: flex;
     flex-direction: row;
-    align-items: center;
-    justify-content: center;
+    align-items: stretch;
+    justify-content: flex-start;
     column-gap: 16px;
-    row-gap: 0px;
+    flex-wrap: wrap;
+    align-content: flex-start;
     min-width: 0;
   }
 }
@@ -3939,10 +3958,10 @@
   .freeBox__rTyC {
     width: 100%;
     align-items: flex-start;
-    justify-content: center;
+    justify-content: flex-start;
     height: auto;
     min-width: 0;
-    padding: 0px;
+    padding: 20px 0px 0px;
   }
 }
 .frame76 {
@@ -4043,8 +4062,10 @@
 @media (min-width: 0px) and (max-width: 768px) {
   .freeBox__hwxVw {
     height: 100%;
+    width: 100%;
+    min-width: 0;
     min-height: 0;
-    padding: 20px;
+    padding: 20px 20px 20px 0px;
   }
 }
 .frame16 {
@@ -4169,6 +4190,12 @@
   justify-content: flex-start;
   column-gap: 4px;
 }
+@media (min-width: 0px) and (max-width: 768px) {
+  .frame78 {
+    width: 100%;
+    min-width: 0;
+  }
+}
 .frame79 {
   width: auto;
   height: auto;
@@ -4178,6 +4205,12 @@
   align-items: flex-start;
   justify-content: flex-start;
   row-gap: 4px;
+}
+@media (min-width: 0px) and (max-width: 768px) {
+  .frame79 {
+    width: 100%;
+    min-width: 0;
+  }
 }
 .text__aDnWy {
   display: block;
@@ -4205,7 +4238,9 @@
     display: flex;
     flex-direction: column;
     row-gap: 8px;
+    width: 100%;
     column-gap: 0px;
+    min-width: 0;
   }
 }
 .frame81 {
@@ -4340,6 +4375,12 @@
   object-fit: cover;
   min-width: 0;
   padding: 0px;
+}
+@media (min-width: 0px) and (max-width: 768px) {
+  .form:global(.__wab_instance) {
+    width: 100%;
+    min-width: 0;
+  }
 }
 .freeBox__w96C {
   display: flex;
@@ -4808,6 +4849,12 @@
   align-items: flex-start;
   justify-content: flex-start;
 }
+@media (min-width: 0px) and (max-width: 768px) {
+  .frame14 {
+    width: 100%;
+    min-width: 0;
+  }
+}
 .email4 {
   display: block;
   font-size: 20px;
@@ -4844,6 +4891,8 @@
 @media (min-width: 0px) and (max-width: 768px) {
   .cvUpload {
     width: auto;
+    height: 100%;
+    min-height: 0;
   }
 }
 .svg__hFfKa {
@@ -5168,6 +5217,11 @@
   min-height: 0;
   padding: 8px;
 }
+@media (min-width: 0px) and (max-width: 768px) {
+  .upload3:global(.__wab_instance) {
+    width: auto;
+  }
+}
 .freeBox__qwu7S {
   display: flex;
   flex-direction: column;
@@ -5318,6 +5372,12 @@
   max-width: 100%;
   width: 100%;
   min-width: 0;
+}
+@media (min-width: 0px) and (max-width: 768px) {
+  .button__gaEs:global(.__wab_instance):global(.__wab_instance) {
+    width: 100%;
+    min-width: 0;
+  }
 }
 .svg__zXi1T {
   position: relative;

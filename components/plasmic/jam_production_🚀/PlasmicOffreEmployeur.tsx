@@ -3859,6 +3859,58 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                         ["form2", "value"],
                         FormWrapper_Helpers
                       ).apply(null, eventArgs);
+
+                      (async (changedValues, allValues) => {
+                        const $steps = {};
+
+                        $steps["updateLastMinuteToggleSwitch2IsSelected"] = true
+                          ? (() => {
+                              const actionArgs = {
+                                variable: {
+                                  objRoot: $state,
+                                  variablePath: [
+                                    "lastMinuteToggle",
+                                    "switch2IsSelected"
+                                  ]
+                                },
+                                operation: 4
+                              };
+                              return (({
+                                variable,
+                                value,
+                                startIndex,
+                                deleteCount
+                              }) => {
+                                if (!variable) {
+                                  return;
+                                }
+                                const { objRoot, variablePath } = variable;
+
+                                const oldValue = $stateGet(
+                                  objRoot,
+                                  variablePath
+                                );
+                                $stateSet(objRoot, variablePath, !oldValue);
+                                return !oldValue;
+                              })?.apply(null, [actionArgs]);
+                            })()
+                          : undefined;
+                        if (
+                          $steps["updateLastMinuteToggleSwitch2IsSelected"] !=
+                            null &&
+                          typeof $steps[
+                            "updateLastMinuteToggleSwitch2IsSelected"
+                          ] === "object" &&
+                          typeof $steps[
+                            "updateLastMinuteToggleSwitch2IsSelected"
+                          ].then === "function"
+                        ) {
+                          $steps["updateLastMinuteToggleSwitch2IsSelected"] =
+                            await $steps[
+                              "updateLastMinuteToggleSwitch2IsSelected"
+                            ];
+                        }
+                      }).apply(null, eventArgs);
                     },
                     formItems: [
                       { label: "Name", name: "name", inputType: "Text" },
