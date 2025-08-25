@@ -2902,16 +2902,29 @@
 .verifyUserAuth:global(.__wab_instance):global(.__wab_instance) {
   max-width: 100%;
 }
+.freeBox__ohC5T {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  justify-content: flex-start;
+  align-items: flex-end;
+  min-width: 0;
+  padding: 8px 8px 0px;
+}
 .svg__ewiG3 {
   object-fit: cover;
   max-width: 100%;
   color: var(--token-aGCICITqezSS);
-  position: absolute;
-  left: 60%;
-  top: 47%;
+  position: relative;
+  left: auto;
+  top: auto;
   cursor: pointer;
   z-index: 2;
   height: 1em;
+  flex-shrink: 0;
 }
 .h3__lGrux {
   width: 22vw;
@@ -2920,9 +2933,9 @@
   font-weight: 700;
   font-size: var(--token-JJChWPPhfZHS);
   text-align: center;
-  margin-top: var(--token-cfon0PHiXQoL);
+  margin-top: 0px;
   border-radius: 16px;
-  padding: var(--token-0tl2H1TRPHhV);
+  padding: 0px var(--token-0tl2H1TRPHhV) var(--token-0tl2H1TRPHhV);
 }
 @media (min-width: 0px) and (max-width: 768px) {
   .h3__lGrux {
@@ -2971,6 +2984,7 @@
 .button__vLswu:global(.__wab_instance):global(.__wab_instance) {
   max-width: 100%;
   width: 100%;
+  margin-top: 16px;
   min-width: 0;
   flex-shrink: 0;
 }

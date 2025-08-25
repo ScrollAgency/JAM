@@ -9460,51 +9460,64 @@ function PlasmicAccueil__RenderFunc(props: {
                     footer={null}
                     heading={
                       <React.Fragment>
-                        <XIcon
-                          className={classNames(projectcss.all, sty.svg__ewiG3)}
-                          onClick={async event => {
-                            const $steps = {};
+                        <div
+                          className={classNames(
+                            projectcss.all,
+                            sty.freeBox__ohC5T
+                          )}
+                        >
+                          <XIcon
+                            className={classNames(
+                              projectcss.all,
+                              sty.svg__ewiG3
+                            )}
+                            onClick={async event => {
+                              const $steps = {};
 
-                            $steps["updateVerifyUserAuthIsOpen"] = true
-                              ? (() => {
-                                  const actionArgs = {
-                                    variable: {
-                                      objRoot: $state,
-                                      variablePath: ["verifyUserAuth", "isOpen"]
-                                    },
-                                    operation: 0,
-                                    value: false
-                                  };
-                                  return (({
-                                    variable,
-                                    value,
-                                    startIndex,
-                                    deleteCount
-                                  }) => {
-                                    if (!variable) {
-                                      return;
-                                    }
-                                    const { objRoot, variablePath } = variable;
+                              $steps["updateVerifyUserAuthIsOpen"] = true
+                                ? (() => {
+                                    const actionArgs = {
+                                      variable: {
+                                        objRoot: $state,
+                                        variablePath: [
+                                          "verifyUserAuth",
+                                          "isOpen"
+                                        ]
+                                      },
+                                      operation: 0,
+                                      value: false
+                                    };
+                                    return (({
+                                      variable,
+                                      value,
+                                      startIndex,
+                                      deleteCount
+                                    }) => {
+                                      if (!variable) {
+                                        return;
+                                      }
+                                      const { objRoot, variablePath } =
+                                        variable;
 
-                                    $stateSet(objRoot, variablePath, value);
-                                    return value;
-                                  })?.apply(null, [actionArgs]);
-                                })()
-                              : undefined;
-                            if (
-                              $steps["updateVerifyUserAuthIsOpen"] != null &&
-                              typeof $steps["updateVerifyUserAuthIsOpen"] ===
-                                "object" &&
-                              typeof $steps["updateVerifyUserAuthIsOpen"]
-                                .then === "function"
-                            ) {
-                              $steps["updateVerifyUserAuthIsOpen"] =
-                                await $steps["updateVerifyUserAuthIsOpen"];
-                            }
-                          }}
-                          role={"img"}
-                        />
-
+                                      $stateSet(objRoot, variablePath, value);
+                                      return value;
+                                    })?.apply(null, [actionArgs]);
+                                  })()
+                                : undefined;
+                              if (
+                                $steps["updateVerifyUserAuthIsOpen"] != null &&
+                                typeof $steps["updateVerifyUserAuthIsOpen"] ===
+                                  "object" &&
+                                typeof $steps["updateVerifyUserAuthIsOpen"]
+                                  .then === "function"
+                              ) {
+                                $steps["updateVerifyUserAuthIsOpen"] =
+                                  await $steps["updateVerifyUserAuthIsOpen"];
+                              }
+                            }}
+                            role={"img"}
+                          />
+                        </div>
                         <h3
                           className={classNames(
                             projectcss.all,
@@ -9524,7 +9537,7 @@ function PlasmicAccueil__RenderFunc(props: {
                           )}
                         >
                           {
-                            "Pour postuler \u00e0 cette offre d'emploi, veuillez vous cr\u00e9er u compte"
+                            "Pour postuler \u00e0 cette offre d'emploi, veuillez vous cr\u00e9er un compte"
                           }
                         </h3>
                       </React.Fragment>
