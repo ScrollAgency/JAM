@@ -9523,21 +9523,9 @@ function PlasmicAccueil__RenderFunc(props: {
                             sty.h3__zrtCd
                           )}
                         >
-                          <React.Fragment>
-                            {(() => {
-                              try {
-                                return $state.errorMsg;
-                              } catch (e) {
-                                if (
-                                  e instanceof TypeError ||
-                                  e?.plasmicType === "PlasmicUndefinedDataError"
-                                ) {
-                                  return "Pour postuler \u00e0 cette offre d'emploi, veuillez vous cr\u00e9er u compte";
-                                }
-                                throw e;
-                              }
-                            })()}
-                          </React.Fragment>
+                          {
+                            "Pour postuler \u00e0 cette offre d'emploi, veuillez vous cr\u00e9er u compte"
+                          }
                         </h3>
                       </React.Fragment>
                     }

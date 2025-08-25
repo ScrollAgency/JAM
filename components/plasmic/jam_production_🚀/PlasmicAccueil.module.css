@@ -2908,8 +2908,9 @@
   color: var(--token-aGCICITqezSS);
   position: absolute;
   left: 60%;
-  top: 1154px;
+  top: 47%;
   cursor: pointer;
+  z-index: 2;
   height: 1em;
 }
 .h3__lGrux {
