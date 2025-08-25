@@ -2965,6 +2965,7 @@
 .text__oj5Wl {
   font-weight: 700;
   font-size: 20px;
+  display: none;
 }
 .button__vLswu:global(.__wab_instance):global(.__wab_instance) {
   max-width: 100%;
