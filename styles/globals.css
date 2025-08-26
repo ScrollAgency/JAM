@@ -8,13 +8,42 @@
   padding-right: 0 !important;
 }
 
-/* Si besoin de cibler plus spécifiquement */
+/* Cibler plus spécifiquement si besoin */
 .plasmic_default__all.plasmic_default__div.Modal__scrollableContent__02GeH {
   padding-left: 0 !important;
   padding-right: 0 !important;
 }
-.wg-default, .wg-default .country-selector {
-  right: auto !important;
-  right: unset !important;
+
+.weglot-container {
+  position: fixed;
+  bottom: 0;
+  right: 20px;
+  z-index: 9999;
+  width: 75px;
+}
+
+div[class*="weglot"] {
+  position: fixed !important;
+  bottom: 20px !important;
   left: 20px !important;
+}
+
+@media screen and (max-width: 768px) {
+  .weglot-container {
+    bottom: 20px;
+  }
+
+  div[class*="weglot"] {
+    bottom: 20px !important;
+    background: transparent !important;
+  }
+
+  /* Positionner Crisp plus bas en mobile */
+  div[id*="crisp"],
+  .crisp-client,
+  [data-crisp],
+  #crisp-chatbox {
+    bottom: 80px !important;
+    right: 10px !important;
+  }
 }
