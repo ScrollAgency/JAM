@@ -871,7 +871,7 @@ function PlasmicAccueil__RenderFunc(props: {
         path: "select5.value",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $ctx }) => []
       },
       {
         path: "jobObject",
@@ -13709,42 +13709,21 @@ function PlasmicAccueil__RenderFunc(props: {
                                 role={"img"}
                               />
 
-                              <FormItemWrapper
+                              <div
                                 className={classNames(
-                                  "__wab_instance",
-                                  sty.formField__lHwsv
+                                  projectcss.all,
+                                  sty.freeBox__uo1Wz
                                 )}
-                                initialValue={(() => {
-                                  try {
-                                    return (() => {
-                                      const selectedTransportModes =
-                                        $queries.getCurrentUser.data?.[0]
-                                          ?.transport_mode || [];
-                                      const selectedIds =
-                                        $queries.getTransportModes.data
-                                          .filter(mode =>
-                                            selectedTransportModes.includes(
-                                              mode.id
-                                            )
-                                          )
-                                          .map(mode => mode.id);
-                                      return selectedIds;
-                                    })();
-                                  } catch (e) {
-                                    if (
-                                      e instanceof TypeError ||
-                                      e?.plasmicType ===
-                                        "PlasmicUndefinedDataError"
-                                    ) {
-                                      return undefined;
-                                    }
-                                    throw e;
-                                  }
-                                })()}
-                                label={"Moyens de transport"}
-                                name={"transport_mode"}
-                                noLabel={false}
                               >
+                                <div
+                                  className={classNames(
+                                    projectcss.all,
+                                    projectcss.__wab_text,
+                                    sty.text__n73Pe
+                                  )}
+                                >
+                                  {"Moyens de transport"}
+                                </div>
                                 <AntdSelect
                                   data-plasmic-name={"select5"}
                                   data-plasmic-override={overrides.select5}
@@ -13762,6 +13741,7 @@ function PlasmicAccueil__RenderFunc(props: {
                                     styleTokensClassNames_library_tailwind_3_4_number_tokens,
                                     styleTokensClassNames_plasmic_rich_components
                                   )}
+                                  defaultValue={[]}
                                   mode={"multiple"}
                                   onChange={async (...eventArgs: any) => {
                                     generateStateOnChangeProp($state, [
@@ -13824,7 +13804,46 @@ function PlasmicAccueil__RenderFunc(props: {
                                     "value"
                                   ])}
                                 />
-                              </FormItemWrapper>
+                              </div>
+                              {false ? (
+                                <FormItemWrapper
+                                  children={null}
+                                  className={classNames(
+                                    "__wab_instance",
+                                    sty.formField__lHwsv
+                                  )}
+                                  initialValue={(() => {
+                                    try {
+                                      return (() => {
+                                        const selectedTransportModes =
+                                          $queries.getCurrentUser.data?.[0]
+                                            ?.transport_mode || [];
+                                        const selectedIds =
+                                          $queries.getTransportModes.data
+                                            .filter(mode =>
+                                              selectedTransportModes.includes(
+                                                mode.id
+                                              )
+                                            )
+                                            .map(mode => mode.id);
+                                        return selectedIds;
+                                      })();
+                                    } catch (e) {
+                                      if (
+                                        e instanceof TypeError ||
+                                        e?.plasmicType ===
+                                          "PlasmicUndefinedDataError"
+                                      ) {
+                                        return undefined;
+                                      }
+                                      throw e;
+                                    }
+                                  })()}
+                                  label={null}
+                                  name={"transport_mode"}
+                                  noLabel={false}
+                                />
+                              ) : null}
                               <FormItemWrapper
                                 className={classNames(
                                   "__wab_instance",
@@ -13887,14 +13906,21 @@ function PlasmicAccueil__RenderFunc(props: {
                                   placeholder={"Pr\u00e9sentation"}
                                 />
                               </FormItemWrapper>
-                              <FormItemWrapper
+                              <div
                                 className={classNames(
-                                  "__wab_instance",
-                                  sty.formField___7U8E7
+                                  projectcss.all,
+                                  sty.freeBox__u38R8
                                 )}
-                                label={"Comp\u00e9tences"}
-                                name={"skill"}
                               >
+                                <div
+                                  className={classNames(
+                                    projectcss.all,
+                                    projectcss.__wab_text,
+                                    sty.text__jhc0V
+                                  )}
+                                >
+                                  {"Comp\u00e9tences"}
+                                </div>
                                 <AntdSelect
                                   data-plasmic-name={"select7"}
                                   data-plasmic-override={overrides.select7}
@@ -13982,7 +14008,18 @@ function PlasmicAccueil__RenderFunc(props: {
                                     "value"
                                   ])}
                                 />
-                              </FormItemWrapper>
+                              </div>
+                              {false ? (
+                                <FormItemWrapper
+                                  children={null}
+                                  className={classNames(
+                                    "__wab_instance",
+                                    sty.formField___7U8E7
+                                  )}
+                                  label={null}
+                                  name={"skill"}
+                                />
+                              ) : null}
                               <FormItemWrapper
                                 className={classNames(
                                   "__wab_instance",
