@@ -13716,10 +13716,20 @@ function PlasmicAccueil__RenderFunc(props: {
                                 )}
                                 initialValue={(() => {
                                   try {
-                                    return (
-                                      $queries.getCurrentUser.data[0]
-                                        .transport_mode || undefined
-                                    );
+                                    return (() => {
+                                      const selectedTransportModes =
+                                        $queries.getCurrentUser.data?.[0]
+                                          ?.transport_mode || [];
+                                      const selectedIds =
+                                        $queries.getTransportModes.data
+                                          .filter(mode =>
+                                            selectedTransportModes.includes(
+                                              mode.id
+                                            )
+                                          )
+                                          .map(mode => mode.id);
+                                      return selectedIds;
+                                    })();
                                   } catch (e) {
                                     if (
                                       e instanceof TypeError ||
@@ -13760,12 +13770,21 @@ function PlasmicAccueil__RenderFunc(props: {
                                   }}
                                   options={(() => {
                                     try {
-                                      return $queries.getTransportModes.data.map(
-                                        mode => ({
-                                          value: mode.id,
-                                          label: mode.mode
-                                        })
-                                      );
+                                      return (() => {
+                                        const selectedTransportModes =
+                                          $queries.getCurrentUser.data?.[0]
+                                            ?.transport_mode || [];
+                                        return $queries.getTransportModes.data.map(
+                                          mode => ({
+                                            value: mode.id,
+                                            label: mode.mode,
+                                            selected:
+                                              selectedTransportModes.includes(
+                                                mode.id
+                                              )
+                                          })
+                                        );
+                                      })();
                                     } catch (e) {
                                       if (
                                         e instanceof TypeError ||
@@ -13872,29 +13891,13 @@ function PlasmicAccueil__RenderFunc(props: {
                                   "__wab_instance",
                                   sty.formField___7U8E7
                                 )}
-                                initialValue={(() => {
-                                  try {
-                                    return (
-                                      $queries.getCurrentUser.data[0].skill ||
-                                      undefined
-                                    );
-                                  } catch (e) {
-                                    if (
-                                      e instanceof TypeError ||
-                                      e?.plasmicType ===
-                                        "PlasmicUndefinedDataError"
-                                    ) {
-                                      return undefined;
-                                    }
-                                    throw e;
-                                  }
-                                })()}
                                 label={"Comp\u00e9tences"}
                                 name={"skill"}
                               >
                                 <AntdSelect
                                   data-plasmic-name={"select7"}
                                   data-plasmic-override={overrides.select7}
+                                  allowClear={false}
                                   bordered={
                                     hasVariant(
                                       globalVariants,

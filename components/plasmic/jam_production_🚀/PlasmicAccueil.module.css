@@ -996,6 +996,8 @@
 .text__cIt50 {
   color: #000000;
   font-size: 16px;
+  cursor: pointer;
+  pointer-events: auto;
 }
 .formField__dm5ZL:global(.__wab_instance) {
   background: #ffffff;
