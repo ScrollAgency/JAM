@@ -13748,6 +13748,7 @@ function PlasmicAccueil__RenderFunc(props: {
                                 <AntdSelect
                                   data-plasmic-name={"select5"}
                                   data-plasmic-override={overrides.select5}
+                                  allowClear={true}
                                   className={classNames(
                                     "__wab_instance",
                                     sty.select5
