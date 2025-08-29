@@ -1799,11 +1799,13 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
     offreStripeUserInfos: usePlasmicDataOp(() => {
       return {
         sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
-        opId: "1284f981-03a5-4aae-9f90-4a9eb18e1c6b",
+        opId: "d6ef9cec-3efc-48a9-a282-e4387e1c0996",
         userArgs: {
-          filters: [$ctx.SupabaseUser.user?.id]
+          filters: [
+            $ctx.SupabaseUser.user?.id || "007f3aae-c8f3-420d-915c-b845a3387dfd"
+          ]
         },
-        cacheKey: `plasmic.$.1284f981-03a5-4aae-9f90-4a9eb18e1c6b.$.`,
+        cacheKey: `plasmic.$.d6ef9cec-3efc-48a9-a282-e4387e1c0996.$.`,
         invalidatedKeys: null,
         roleId: null
       };
@@ -3867,38 +3869,39 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                       (async (changedValues, allValues) => {
                         const $steps = {};
 
-                        $steps["updateLastMinuteToggleSwitch2IsSelected"] = true
-                          ? (() => {
-                              const actionArgs = {
-                                variable: {
-                                  objRoot: $state,
-                                  variablePath: [
-                                    "lastMinuteToggle",
-                                    "switch2IsSelected"
-                                  ]
-                                },
-                                operation: 4
-                              };
-                              return (({
-                                variable,
-                                value,
-                                startIndex,
-                                deleteCount
-                              }) => {
-                                if (!variable) {
-                                  return;
-                                }
-                                const { objRoot, variablePath } = variable;
+                        $steps["updateLastMinuteToggleSwitch2IsSelected"] =
+                          false
+                            ? (() => {
+                                const actionArgs = {
+                                  variable: {
+                                    objRoot: $state,
+                                    variablePath: [
+                                      "lastMinuteToggle",
+                                      "switch2IsSelected"
+                                    ]
+                                  },
+                                  operation: 4
+                                };
+                                return (({
+                                  variable,
+                                  value,
+                                  startIndex,
+                                  deleteCount
+                                }) => {
+                                  if (!variable) {
+                                    return;
+                                  }
+                                  const { objRoot, variablePath } = variable;
 
-                                const oldValue = $stateGet(
-                                  objRoot,
-                                  variablePath
-                                );
-                                $stateSet(objRoot, variablePath, !oldValue);
-                                return !oldValue;
-                              })?.apply(null, [actionArgs]);
-                            })()
-                          : undefined;
+                                  const oldValue = $stateGet(
+                                    objRoot,
+                                    variablePath
+                                  );
+                                  $stateSet(objRoot, variablePath, !oldValue);
+                                  return !oldValue;
+                                })?.apply(null, [actionArgs]);
+                              })()
+                            : undefined;
                         if (
                           $steps["updateLastMinuteToggleSwitch2IsSelected"] !=
                             null &&
@@ -6251,7 +6254,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                                       invalidatedKeys: [
                                         "316176a9-f0d4-44d7-baa0-a763336a6271",
                                         "e38cc2f4-cfb6-40a3-bc90-0b9ce2786a30",
-                                        "1284f981-03a5-4aae-9f90-4a9eb18e1c6b",
+                                        "d6ef9cec-3efc-48a9-a282-e4387e1c0996",
                                         "1284f981-03a5-4aae-9f90-4a9eb18e1c6b",
                                         "ba382dfb-c617-44db-a36f-dda3fa7e919f",
                                         "9258b35e-6135-4ba7-8ce4-fe23b60361d6",
@@ -6392,7 +6395,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                                       },
                                       cacheKey: null,
                                       invalidatedKeys: [
-                                        "1284f981-03a5-4aae-9f90-4a9eb18e1c6b",
+                                        "d6ef9cec-3efc-48a9-a282-e4387e1c0996",
                                         "1284f981-03a5-4aae-9f90-4a9eb18e1c6b",
                                         "9258b35e-6135-4ba7-8ce4-fe23b60361d6"
                                       ],

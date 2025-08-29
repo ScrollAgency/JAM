@@ -3319,13 +3319,9 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                               <React.Fragment>
                                 {(() => {
                                   try {
-                                    return (
-                                      $queries.userMonthlyRecharge.data.response
-                                        .solde.totalBoost +
-                                      "/" +
-                                      $queries.userMonthlyRecharge.data.response
-                                        .total.totalBoost
-                                    );
+                                    return $queries.userMonthlyRecharge.data
+                                      .response.solde.totalBoost; // + "/" +
+                                    //$queries.userMonthlyRecharge.data.response.total.totalBoost
                                   } catch (e) {
                                     if (
                                       e instanceof TypeError ||
