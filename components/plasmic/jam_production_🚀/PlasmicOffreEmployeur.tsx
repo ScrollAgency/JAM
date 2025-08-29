@@ -4193,6 +4193,43 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                       ) {
                         $steps["updateStripe"] = await $steps["updateStripe"];
                       }
+
+                      $steps["updateCompanyInfosIsOpen"] = true
+                        ? (() => {
+                            const actionArgs = {
+                              variable: {
+                                objRoot: $state,
+                                variablePath: ["companyInfos", "isOpen"]
+                              },
+                              operation: 0
+                            };
+                            return (({
+                              variable,
+                              value,
+                              startIndex,
+                              deleteCount
+                            }) => {
+                              if (!variable) {
+                                return;
+                              }
+                              const { objRoot, variablePath } = variable;
+
+                              $stateSet(objRoot, variablePath, value);
+                              return value;
+                            })?.apply(null, [actionArgs]);
+                          })()
+                        : undefined;
+                      if (
+                        $steps["updateCompanyInfosIsOpen"] != null &&
+                        typeof $steps["updateCompanyInfosIsOpen"] ===
+                          "object" &&
+                        typeof $steps["updateCompanyInfosIsOpen"].then ===
+                          "function"
+                      ) {
+                        $steps["updateCompanyInfosIsOpen"] = await $steps[
+                          "updateCompanyInfosIsOpen"
+                        ];
+                      }
                     },
                     onIsSubmittingChange: async (...eventArgs: any) => {
                       generateStateOnChangePropForCodeComponents(
@@ -5168,15 +5205,6 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                           name={"availability_status"}
                           rules={[{ ruleType: "required", message: "requis" }]}
                         >
-                          <div
-                            className={classNames(
-                              projectcss.all,
-                              projectcss.__wab_text,
-                              sty.text__ffwnr
-                            )}
-                          >
-                            {"test 2"}
-                          </div>
                           <Select
                             data-plasmic-name={"select33"}
                             data-plasmic-override={overrides.select33}
