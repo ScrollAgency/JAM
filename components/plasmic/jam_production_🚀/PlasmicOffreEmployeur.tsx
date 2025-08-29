@@ -3865,59 +3865,6 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                         ["form2", "value"],
                         FormWrapper_Helpers
                       ).apply(null, eventArgs);
-
-                      (async (changedValues, allValues) => {
-                        const $steps = {};
-
-                        $steps["updateLastMinuteToggleSwitch2IsSelected"] =
-                          false
-                            ? (() => {
-                                const actionArgs = {
-                                  variable: {
-                                    objRoot: $state,
-                                    variablePath: [
-                                      "lastMinuteToggle",
-                                      "switch2IsSelected"
-                                    ]
-                                  },
-                                  operation: 4
-                                };
-                                return (({
-                                  variable,
-                                  value,
-                                  startIndex,
-                                  deleteCount
-                                }) => {
-                                  if (!variable) {
-                                    return;
-                                  }
-                                  const { objRoot, variablePath } = variable;
-
-                                  const oldValue = $stateGet(
-                                    objRoot,
-                                    variablePath
-                                  );
-                                  $stateSet(objRoot, variablePath, !oldValue);
-                                  return !oldValue;
-                                })?.apply(null, [actionArgs]);
-                              })()
-                            : undefined;
-                        if (
-                          $steps["updateLastMinuteToggleSwitch2IsSelected"] !=
-                            null &&
-                          typeof $steps[
-                            "updateLastMinuteToggleSwitch2IsSelected"
-                          ] === "object" &&
-                          typeof $steps[
-                            "updateLastMinuteToggleSwitch2IsSelected"
-                          ].then === "function"
-                        ) {
-                          $steps["updateLastMinuteToggleSwitch2IsSelected"] =
-                            await $steps[
-                              "updateLastMinuteToggleSwitch2IsSelected"
-                            ];
-                        }
-                      }).apply(null, eventArgs);
                     },
                     formItems: [
                       { label: "Name", name: "name", inputType: "Text" },
@@ -4038,7 +3985,10 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
 
                                       $state.form2.value.end_date,
 
-                                      $state.lastMinuteToggle.switch2IsSelected,
+                                      $state.lastMinuteToggle
+                                        .switch2IsSelected === true
+                                        ? true
+                                        : false,
 
                                       $queries.fetchJobCoordinates.data.response
                                         .features[0].geometry.coordinates[1],
@@ -5212,7 +5162,19 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                               "__wab_instance",
                               sty.select33
                             )}
-                            initialSelectedValue={undefined}
+                            initialSelectedValue={(() => {
+                              try {
+                                return undefined;
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return undefined;
+                                }
+                                throw e;
+                              }
+                            })()}
                             items={(_par =>
                               !_par ? [] : Array.isArray(_par) ? _par : [_par])(
                               (() => {
