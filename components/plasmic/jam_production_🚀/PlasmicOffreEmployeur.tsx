@@ -1713,7 +1713,9 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
         sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
         opId: "a0f345b5-bbed-4347-80ba-1896e0ae6a8a",
         userArgs: {
-          filters: [$ctx.SupabaseUser.user?.id]
+          filters: [
+            $ctx.SupabaseUser.user?.id || "007f3aae-c8f3-420d-915c-b845a3387dfd"
+          ]
         },
         cacheKey: `plasmic.$.a0f345b5-bbed-4347-80ba-1896e0ae6a8a.$.`,
         invalidatedKeys: null,
@@ -1739,11 +1741,13 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
     getUser: usePlasmicDataOp(() => {
       return {
         sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
-        opId: "824e3311-006f-47c1-8e57-3abea78d9f18",
+        opId: "c97d2f24-3d9a-4bf9-8107-193ee0e13062",
         userArgs: {
-          filters: [$ctx.SupabaseUser.user.id]
+          filters: [
+            $ctx.SupabaseUser.user?.id || "007f3aae-c8f3-420d-915c-b845a3387dfd"
+          ]
         },
-        cacheKey: `plasmic.$.824e3311-006f-47c1-8e57-3abea78d9f18.$.`,
+        cacheKey: `plasmic.$.c97d2f24-3d9a-4bf9-8107-193ee0e13062.$.`,
         invalidatedKeys: null,
         roleId: null
       };
