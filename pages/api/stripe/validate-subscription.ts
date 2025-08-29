@@ -58,20 +58,18 @@ async function getSubscriptionData(session_id: string) {
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   await corsPolicy(req, res);
 
-  const { session_id, action, classic, lastminute, boost } = req.query;
+  const { session_id, action, classic, lastminute, boost, customer_id } = req.query;
 
   if (!action || typeof action !== "string") {
     return res.status(400).json({ error: "Action manquante" });
   }
 
-  if (!session_id || typeof session_id !== "string") {
-    return res.status(400).json({ error: "Session ID manquant" });
-  }
-
   try {
-    const data = await getSubscriptionData(session_id);
-
     if (action === "update") {
+      if (!customer_id || typeof customer_id !== "string") {
+        return res.status(400).json({ error: "Customer ID manquant" });
+      }
+
       const recharge_boost = Number(boost) || 0;
       const recharge_classic = Number(classic) || 0;
       const recharge_lastminute = Number(lastminute) || 0;
@@ -83,7 +81,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           recharge_classic,
           recharge_lastminute,
         })
-        .eq("customer_id", data.customerId);
+        .eq("customer_id", customer_id);
 
       if (error) throw error;
 
@@ -94,10 +92,15 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     }
 
     if (action === "create") {
+      if (!session_id || typeof session_id !== "string") {
+        return res.status(400).json({ error: "Session ID manquant" });
+      }
 
-      const recharge_boost =  0;
-      const recharge_classic =  0;
-      const recharge_lastminute =  0;
+      const data = await getSubscriptionData(session_id);
+
+      const recharge_boost = 0;
+      const recharge_classic = 0;
+      const recharge_lastminute = 0;
 
       const { error } = await supabaseServer.from("stripe_info").upsert(
         {
@@ -114,7 +117,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         },
         {
           onConflict: "customer_id",
-          // on peut spécifier `ignoreDuplicates: false` pour forcer la mise à jour
         }
       );
 
@@ -122,7 +124,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
       return res.status(200).json({
         success: true,
-        message: `Ligne stripe_info ${action === "create" ? "créée" : "mise à jour"}`,
+        message: "Ligne stripe_info créée",
       });
     }
 
