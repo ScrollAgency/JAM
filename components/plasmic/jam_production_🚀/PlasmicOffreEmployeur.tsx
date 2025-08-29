@@ -145,9 +145,11 @@ export type PlasmicOffreEmployeur__VariantsArgs = {};
 type VariantPropType = keyof PlasmicOffreEmployeur__VariantsArgs;
 export const PlasmicOffreEmployeur__VariantProps = new Array<VariantPropType>();
 
-export type PlasmicOffreEmployeur__ArgsType = {};
+export type PlasmicOffreEmployeur__ArgsType = { newMinuteState?: boolean };
 type ArgPropType = keyof PlasmicOffreEmployeur__ArgsType;
-export const PlasmicOffreEmployeur__ArgProps = new Array<ArgPropType>();
+export const PlasmicOffreEmployeur__ArgProps = new Array<ArgPropType>(
+  "newMinuteState"
+);
 
 export type PlasmicOffreEmployeur__OverridesType = {
   espaceEmployeur?: Flex__<"div">;
@@ -367,7 +369,21 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
   const args = React.useMemo(
     () =>
       Object.assign(
-        {},
+        {
+          newMinuteState: (() => {
+            try {
+              return $state.lastMinuteToggle.switch2IsSelected;
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return false;
+              }
+              throw e;
+            }
+          })()
+        },
         Object.fromEntries(
           Object.entries(props.args).filter(([_, v]) => v !== undefined)
         )
@@ -3964,7 +3980,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                               const actionArgs = {
                                 dataOp: {
                                   sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
-                                  opId: "d065132b-2aac-4c10-8414-8e92410e1c74",
+                                  opId: "476c6369-13f0-437e-9c32-1967dc192efe",
                                   userArgs: {
                                     variables: [
                                       $state.form2.value.address,
@@ -3984,11 +4000,6 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                                       $state.form2.value.description,
 
                                       $state.form2.value.end_date,
-
-                                      $state.lastMinuteToggle
-                                        .switch2IsSelected === true
-                                        ? true
-                                        : false,
 
                                       $queries.fetchJobCoordinates.data.response
                                         .features[0].geometry.coordinates[1],
@@ -4012,7 +4023,9 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
 
                                       $state.form2.value.work_mode,
 
-                                      $state.form2.value.working_time
+                                      $state.form2.value.working_time,
+
+                                      $state.lastMinuteToggle.switch2IsSelected
                                     ]
                                   },
                                   cacheKey: null,
@@ -5155,6 +5168,15 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                           name={"availability_status"}
                           rules={[{ ruleType: "required", message: "requis" }]}
                         >
+                          <div
+                            className={classNames(
+                              projectcss.all,
+                              projectcss.__wab_text,
+                              sty.text__ffwnr
+                            )}
+                          >
+                            {"test 2"}
+                          </div>
                           <Select
                             data-plasmic-name={"select33"}
                             data-plasmic-override={overrides.select33}
@@ -5164,13 +5186,16 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                             )}
                             initialSelectedValue={(() => {
                               try {
-                                return undefined;
+                                return $state.lastMinuteToggle
+                                  .switch2IsSelected === true
+                                  ? "115"
+                                  : null;
                               } catch (e) {
                                 if (
                                   e instanceof TypeError ||
                                   e?.plasmicType === "PlasmicUndefinedDataError"
                                 ) {
-                                  return undefined;
+                                  return "115";
                                 }
                                 throw e;
                               }

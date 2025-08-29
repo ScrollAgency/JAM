@@ -215,10 +215,10 @@
   }
 }
 .jobCard:global(.__wab_instance) {
-  position: relative;
   min-height: 284px;
   width: 500px;
   height: auto;
+  position: relative;
   flex-shrink: 0;
 }
 @media (min-width: 0px) and (max-width: 768px) {
@@ -850,6 +850,13 @@
   right: -188px;
   bottom: 0;
   margin: 0px;
+}
+.text__ffwnr {
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  min-width: 0;
 }
 .select33:global(.__wab_instance):global(.__wab_instance) {
   height: 100%;
