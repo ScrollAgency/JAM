@@ -145,11 +145,9 @@ export type PlasmicOffreEmployeur__VariantsArgs = {};
 type VariantPropType = keyof PlasmicOffreEmployeur__VariantsArgs;
 export const PlasmicOffreEmployeur__VariantProps = new Array<VariantPropType>();
 
-export type PlasmicOffreEmployeur__ArgsType = { newMinuteState?: boolean };
+export type PlasmicOffreEmployeur__ArgsType = {};
 type ArgPropType = keyof PlasmicOffreEmployeur__ArgsType;
-export const PlasmicOffreEmployeur__ArgProps = new Array<ArgPropType>(
-  "newMinuteState"
-);
+export const PlasmicOffreEmployeur__ArgProps = new Array<ArgPropType>();
 
 export type PlasmicOffreEmployeur__OverridesType = {
   espaceEmployeur?: Flex__<"div">;
@@ -369,21 +367,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
   const args = React.useMemo(
     () =>
       Object.assign(
-        {
-          newMinuteState: (() => {
-            try {
-              return $state.lastMinuteToggle.switch2IsSelected;
-            } catch (e) {
-              if (
-                e instanceof TypeError ||
-                e?.plasmicType === "PlasmicUndefinedDataError"
-              ) {
-                return false;
-              }
-              throw e;
-            }
-          })()
-        },
+        {},
         Object.fromEntries(
           Object.entries(props.args).filter(([_, v]) => v !== undefined)
         )
@@ -1603,6 +1587,12 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
         variableType: "boolean"
       },
       {
+        path: "variable",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $ctx }) => ""
+      },
+      {
         path: "currentUser",
         type: "private",
         variableType: "object",
@@ -1723,7 +1713,9 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
         sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
         opId: "a0f345b5-bbed-4347-80ba-1896e0ae6a8a",
         userArgs: {
-          filters: [$ctx.SupabaseUser.user?.id]
+          filters: [
+            $ctx.SupabaseUser.user?.id || "007f3aae-c8f3-420d-915c-b845a3387dfd"
+          ]
         },
         cacheKey: `plasmic.$.a0f345b5-bbed-4347-80ba-1896e0ae6a8a.$.`,
         invalidatedKeys: null,
@@ -1751,7 +1743,9 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
         sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
         opId: "c97d2f24-3d9a-4bf9-8107-193ee0e13062",
         userArgs: {
-          filters: [$ctx.SupabaseUser.user?.id]
+          filters: [
+            $ctx.SupabaseUser.user?.id || "007f3aae-c8f3-420d-915c-b845a3387dfd"
+          ]
         },
         cacheKey: `plasmic.$.c97d2f24-3d9a-4bf9-8107-193ee0e13062.$.`,
         invalidatedKeys: null,
@@ -1807,7 +1801,9 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
         sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
         opId: "d6ef9cec-3efc-48a9-a282-e4387e1c0996",
         userArgs: {
-          filters: [$ctx.SupabaseUser.user?.id]
+          filters: [
+            $ctx.SupabaseUser.user?.id || "007f3aae-c8f3-420d-915c-b845a3387dfd"
+          ]
         },
         cacheKey: `plasmic.$.d6ef9cec-3efc-48a9-a282-e4387e1c0996.$.`,
         invalidatedKeys: null,
@@ -3968,7 +3964,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                               const actionArgs = {
                                 dataOp: {
                                   sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
-                                  opId: "476c6369-13f0-437e-9c32-1967dc192efe",
+                                  opId: "d065132b-2aac-4c10-8414-8e92410e1c74",
                                   userArgs: {
                                     variables: [
                                       $state.form2.value.address,
@@ -3988,6 +3984,11 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                                       $state.form2.value.description,
 
                                       $state.form2.value.end_date,
+
+                                      $state.lastMinuteToggle
+                                        .switch2IsSelected === true
+                                        ? true
+                                        : false,
 
                                       $queries.fetchJobCoordinates.data.response
                                         .features[0].geometry.coordinates[1],
@@ -4011,9 +4012,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
 
                                       $state.form2.value.work_mode,
 
-                                      $state.form2.value.working_time,
-
-                                      $state.lastMinuteToggle.switch2IsSelected
+                                      $state.form2.value.working_time
                                     ]
                                   },
                                   cacheKey: null,
@@ -5163,22 +5162,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                               "__wab_instance",
                               sty.select33
                             )}
-                            initialSelectedValue={(() => {
-                              try {
-                                return $state.lastMinuteToggle
-                                  .switch2IsSelected === true
-                                  ? "115"
-                                  : null;
-                              } catch (e) {
-                                if (
-                                  e instanceof TypeError ||
-                                  e?.plasmicType === "PlasmicUndefinedDataError"
-                                ) {
-                                  return "115";
-                                }
-                                throw e;
-                              }
-                            })()}
+                            initialSelectedValue={undefined}
                             items={(_par =>
                               !_par ? [] : Array.isArray(_par) ? _par : [_par])(
                               (() => {

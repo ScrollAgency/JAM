@@ -474,44 +474,6 @@ function PlasmicLastMinuteToggle__RenderFunc(props: {
                   return;
                 }
               }}
-              onClick={async isSelected => {
-                const $steps = {};
-
-                $steps["updateSwitch2IsSelected"] = true
-                  ? (() => {
-                      const actionArgs = {
-                        variable: {
-                          objRoot: $state,
-                          variablePath: ["switch2", "isSelected"]
-                        },
-                        operation: 0
-                      };
-                      return (({
-                        variable,
-                        value,
-                        startIndex,
-                        deleteCount
-                      }) => {
-                        if (!variable) {
-                          return;
-                        }
-                        const { objRoot, variablePath } = variable;
-
-                        $stateSet(objRoot, variablePath, value);
-                        return value;
-                      })?.apply(null, [actionArgs]);
-                    })()
-                  : undefined;
-                if (
-                  $steps["updateSwitch2IsSelected"] != null &&
-                  typeof $steps["updateSwitch2IsSelected"] === "object" &&
-                  typeof $steps["updateSwitch2IsSelected"].then === "function"
-                ) {
-                  $steps["updateSwitch2IsSelected"] = await $steps[
-                    "updateSwitch2IsSelected"
-                  ];
-                }
-              }}
               showLabel={false}
             />
           </div>

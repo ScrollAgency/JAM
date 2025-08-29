@@ -215,10 +215,10 @@
   }
 }
 .jobCard:global(.__wab_instance) {
+  position: relative;
   min-height: 284px;
   width: 500px;
   height: auto;
-  position: relative;
   flex-shrink: 0;
 }
 @media (min-width: 0px) and (max-width: 768px) {
