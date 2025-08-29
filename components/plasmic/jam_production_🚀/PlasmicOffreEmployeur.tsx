@@ -1759,9 +1759,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
         sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
         opId: "c97d2f24-3d9a-4bf9-8107-193ee0e13062",
         userArgs: {
-          filters: [
-            $ctx.SupabaseUser.user?.id || "007f3aae-c8f3-420d-915c-b845a3387dfd"
-          ]
+          filters: [$ctx.SupabaseUser.user?.id]
         },
         cacheKey: `plasmic.$.c97d2f24-3d9a-4bf9-8107-193ee0e13062.$.`,
         invalidatedKeys: null,
@@ -1817,9 +1815,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
         sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
         opId: "d6ef9cec-3efc-48a9-a282-e4387e1c0996",
         userArgs: {
-          filters: [
-            $ctx.SupabaseUser.user?.id || "007f3aae-c8f3-420d-915c-b845a3387dfd"
-          ]
+          filters: [$ctx.SupabaseUser.user?.id]
         },
         cacheKey: `plasmic.$.d6ef9cec-3efc-48a9-a282-e4387e1c0996.$.`,
         invalidatedKeys: null,
@@ -4192,43 +4188,6 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                         typeof $steps["updateStripe"].then === "function"
                       ) {
                         $steps["updateStripe"] = await $steps["updateStripe"];
-                      }
-
-                      $steps["updateCompanyInfosIsOpen"] = true
-                        ? (() => {
-                            const actionArgs = {
-                              variable: {
-                                objRoot: $state,
-                                variablePath: ["companyInfos", "isOpen"]
-                              },
-                              operation: 0
-                            };
-                            return (({
-                              variable,
-                              value,
-                              startIndex,
-                              deleteCount
-                            }) => {
-                              if (!variable) {
-                                return;
-                              }
-                              const { objRoot, variablePath } = variable;
-
-                              $stateSet(objRoot, variablePath, value);
-                              return value;
-                            })?.apply(null, [actionArgs]);
-                          })()
-                        : undefined;
-                      if (
-                        $steps["updateCompanyInfosIsOpen"] != null &&
-                        typeof $steps["updateCompanyInfosIsOpen"] ===
-                          "object" &&
-                        typeof $steps["updateCompanyInfosIsOpen"].then ===
-                          "function"
-                      ) {
-                        $steps["updateCompanyInfosIsOpen"] = await $steps[
-                          "updateCompanyInfosIsOpen"
-                        ];
                       }
                     },
                     onIsSubmittingChange: async (...eventArgs: any) => {
