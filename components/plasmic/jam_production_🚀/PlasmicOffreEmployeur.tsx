@@ -12306,7 +12306,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                   e instanceof TypeError ||
                   e?.plasmicType === "PlasmicUndefinedDataError"
                 ) {
-                  return false;
+                  return true;
                 }
                 throw e;
               }

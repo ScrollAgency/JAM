@@ -2376,6 +2376,112 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                               ];
                             }
 
+                            $steps["apiStripeValidateSubscription"] = true
+                              ? (() => {
+                                  const actionArgs = {
+                                    dataOp: {
+                                      sourceId: "9Q77QfSZHRES57WTLJmYrY",
+                                      opId: "1c2da343-50de-4cb9-8124-1fb5fb0c570a",
+                                      userArgs: {
+                                        params: [
+                                          (() => {
+                                            const remainingPercent =
+                                              $queries.userMonthlyRecharge.data
+                                                .response.subscription
+                                                .remainingPercent;
+                                            const prorated = Math.ceil(
+                                              8 * (remainingPercent / 100)
+                                            );
+                                            const solde =
+                                              $queries.userMonthlyRecharge.data
+                                                .response.solde.totalClassic;
+                                            const update =
+                                              $state.selectedProduct ===
+                                              "prod_S81KBWHPyJa53z"
+                                                ? 0
+                                                : prorated;
+                                            return solde + update;
+                                          })(),
+
+                                          (() => {
+                                            const remainingPercent =
+                                              $queries.userMonthlyRecharge.data
+                                                .response.subscription
+                                                .remainingPercent;
+                                            const prorated = Math.ceil(
+                                              4 * (remainingPercent / 100)
+                                            );
+                                            const solde =
+                                              $queries.userMonthlyRecharge.data
+                                                .response.solde.totalLastMinute;
+                                            const update =
+                                              $state.selectedProduct ===
+                                              "prod_S81KBWHPyJa53z"
+                                                ? 0
+                                                : prorated;
+                                            return solde + update;
+                                          })(),
+
+                                          (() => {
+                                            const remainingPercent =
+                                              $queries.userMonthlyRecharge.data
+                                                .response.subscription
+                                                .remainingPercent;
+                                            const prorated = Math.ceil(
+                                              2 * (remainingPercent / 100)
+                                            );
+                                            const solde =
+                                              $queries.userMonthlyRecharge.data
+                                                .response.solde.totalBoost;
+                                            const update =
+                                              $state.selectedProduct ===
+                                              "prod_S81KBWHPyJa53z"
+                                                ? 0
+                                                : prorated;
+                                            return solde + update;
+                                          })()
+                                        ]
+                                      },
+                                      cacheKey: null,
+                                      invalidatedKeys: null,
+                                      roleId: null
+                                    }
+                                  };
+                                  return (async ({
+                                    dataOp,
+                                    continueOnError
+                                  }) => {
+                                    try {
+                                      const response =
+                                        await executePlasmicDataOp(dataOp, {
+                                          userAuthToken:
+                                            dataSourcesCtx?.userAuthToken,
+                                          user: dataSourcesCtx?.user
+                                        });
+                                      await plasmicInvalidate(
+                                        dataOp.invalidatedKeys
+                                      );
+                                      return response;
+                                    } catch (e) {
+                                      if (!continueOnError) {
+                                        throw e;
+                                      }
+                                      return e;
+                                    }
+                                  })?.apply(null, [actionArgs]);
+                                })()
+                              : undefined;
+                            if (
+                              $steps["apiStripeValidateSubscription"] != null &&
+                              typeof $steps["apiStripeValidateSubscription"] ===
+                                "object" &&
+                              typeof $steps["apiStripeValidateSubscription"]
+                                .then === "function"
+                            ) {
+                              $steps["apiStripeValidateSubscription"] =
+                                await $steps["apiStripeValidateSubscription"];
+                            }
+
                             $steps["successNotification"] = true
                               ? (() => {
                                   const actionArgs = {

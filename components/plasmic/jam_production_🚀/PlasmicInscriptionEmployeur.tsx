@@ -580,7 +580,7 @@ function PlasmicInscriptionEmployeur__RenderFunc(props: {
                     showPhone={
                       hasVariant(globalVariants, "screen", "mobileOnly")
                         ? false
-                        : false
+                        : true
                     }
                     showPrivacyPolicy={
                       hasVariant(globalVariants, "screen", "mobileOnly")

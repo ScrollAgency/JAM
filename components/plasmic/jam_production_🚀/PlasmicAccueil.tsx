@@ -14973,34 +14973,41 @@ function PlasmicAccueil__RenderFunc(props: {
                                   placeholder={"https://"}
                                 />
                               </FormItemWrapper>
-                              <Button
+                              <div
                                 className={classNames(
-                                  "__wab_instance",
-                                  sty.button__gaEs
+                                  projectcss.all,
+                                  sty.freeBox__vCSmY
                                 )}
-                                end={
-                                  <GroupIcon
-                                    className={classNames(
-                                      projectcss.all,
-                                      sty.svg__lFhqa
-                                    )}
-                                    role={"img"}
-                                  />
-                                }
-                                iconEnd={true}
-                                label={
-                                  <div
-                                    className={classNames(
-                                      projectcss.all,
-                                      projectcss.__wab_text,
-                                      sty.text___9SlXh
-                                    )}
-                                  >
-                                    {"enregistrer et postuler"}
-                                  </div>
-                                }
-                                submitsForm={true}
-                              />
+                              >
+                                <Button
+                                  className={classNames(
+                                    "__wab_instance",
+                                    sty.button__gaEs
+                                  )}
+                                  end={
+                                    <GroupIcon
+                                      className={classNames(
+                                        projectcss.all,
+                                        sty.svg__lFhqa
+                                      )}
+                                      role={"img"}
+                                    />
+                                  }
+                                  iconEnd={true}
+                                  label={
+                                    <div
+                                      className={classNames(
+                                        projectcss.all,
+                                        projectcss.__wab_text,
+                                        sty.text___9SlXh
+                                      )}
+                                    >
+                                      {"enregistrer et postuler"}
+                                    </div>
+                                  }
+                                  submitsForm={true}
+                                />
+                              </div>
                             </FormWrapper>
                           );
                         })()}
