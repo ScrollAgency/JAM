@@ -861,6 +861,11 @@
   color: var(--token-ceD1eQOG2geq);
 }
 .svg__ga8Yf {
+  color: var(--token-OIYWLyLPYWym);
+  position: relative;
+  height: 1em;
+}
+.loader {
   position: relative;
   color: var(--token-OIYWLyLPYWym);
   height: 1em;

@@ -164,6 +164,7 @@ export type PlasmicParametresCandidat__OverridesType = {
   select8?: Flex__<typeof AntdSelect>;
   select?: Flex__<typeof Select>;
   textInput4?: Flex__<typeof TextInput>;
+  loader?: Flex__<"svg">;
   cvModificationDuMdp?: Flex__<"div">;
   uploadCvLdm?: Flex__<"div">;
   frame10?: Flex__<"div">;
@@ -2846,13 +2847,55 @@ function PlasmicParametresCandidat__RenderFunc(props: {
                                 )}
                                 color={"white"}
                                 end={
-                                  <GroupIcon
-                                    className={classNames(
-                                      projectcss.all,
-                                      sty.svg__ga8Yf
-                                    )}
-                                    role={"img"}
-                                  />
+                                  <React.Fragment>
+                                    {(() => {
+                                      try {
+                                        return !$state.form.isSubmitting;
+                                      } catch (e) {
+                                        if (
+                                          e instanceof TypeError ||
+                                          e?.plasmicType ===
+                                            "PlasmicUndefinedDataError"
+                                        ) {
+                                          return true;
+                                        }
+                                        throw e;
+                                      }
+                                    })() ? (
+                                      <GroupIcon
+                                        className={classNames(
+                                          projectcss.all,
+                                          sty.svg__ga8Yf
+                                        )}
+                                        role={"img"}
+                                      />
+                                    ) : null}
+                                    {(() => {
+                                      try {
+                                        return $state.form.isSubmitting;
+                                      } catch (e) {
+                                        if (
+                                          e instanceof TypeError ||
+                                          e?.plasmicType ===
+                                            "PlasmicUndefinedDataError"
+                                        ) {
+                                          return true;
+                                        }
+                                        throw e;
+                                      }
+                                    })() ? (
+                                      <Loader4FillSvgrepoComSvgIcon
+                                        data-plasmic-name={"loader"}
+                                        data-plasmic-override={overrides.loader}
+                                        className={classNames(
+                                          projectcss.all,
+                                          sty.loader,
+                                          "spinner"
+                                        )}
+                                        role={"img"}
+                                      />
+                                    ) : null}
+                                  </React.Fragment>
                                 }
                                 iconEnd={true}
                                 label={
@@ -4755,6 +4798,7 @@ const PlasmicDescendants = {
     "select8",
     "select",
     "textInput4",
+    "loader",
     "cvModificationDuMdp",
     "uploadCvLdm",
     "frame10",
@@ -4821,6 +4865,7 @@ const PlasmicDescendants = {
     "select8",
     "select",
     "textInput4",
+    "loader",
     "cvModificationDuMdp",
     "uploadCvLdm",
     "frame10",
@@ -4885,6 +4930,7 @@ const PlasmicDescendants = {
     "select8",
     "select",
     "textInput4",
+    "loader",
     "cvModificationDuMdp",
     "uploadCvLdm",
     "frame10",
@@ -4945,6 +4991,7 @@ const PlasmicDescendants = {
     "select8",
     "select",
     "textInput4",
+    "loader",
     "cvModificationDuMdp",
     "uploadCvLdm",
     "frame10",
@@ -4998,7 +5045,8 @@ const PlasmicDescendants = {
     "select3",
     "select8",
     "select",
-    "textInput4"
+    "textInput4",
+    "loader"
   ],
   frame1437254343: [
     "frame1437254343",
@@ -5043,7 +5091,8 @@ const PlasmicDescendants = {
     "select3",
     "select8",
     "select",
-    "textInput4"
+    "textInput4",
+    "loader"
   ],
   formulaire: [
     "formulaire",
@@ -5064,7 +5113,8 @@ const PlasmicDescendants = {
     "select3",
     "select8",
     "select",
-    "textInput4"
+    "textInput4",
+    "loader"
   ],
   prenomNom: ["prenomNom", "firstName", "lastName"],
   firstName: ["firstName"],
@@ -5084,6 +5134,7 @@ const PlasmicDescendants = {
   select8: ["select8"],
   select: ["select"],
   textInput4: ["textInput4"],
+  loader: ["loader"],
   cvModificationDuMdp: [
     "cvModificationDuMdp",
     "uploadCvLdm",
@@ -5211,6 +5262,7 @@ type NodeDefaultElementType = {
   select8: typeof AntdSelect;
   select: typeof Select;
   textInput4: typeof TextInput;
+  loader: "svg";
   cvModificationDuMdp: "div";
   uploadCvLdm: "div";
   frame10: "div";
@@ -5339,6 +5391,7 @@ export const PlasmicParametresCandidat = Object.assign(
     select8: makeNodeComponent("select8"),
     select: makeNodeComponent("select"),
     textInput4: makeNodeComponent("textInput4"),
+    loader: makeNodeComponent("loader"),
     cvModificationDuMdp: makeNodeComponent("cvModificationDuMdp"),
     uploadCvLdm: makeNodeComponent("uploadCvLdm"),
     frame10: makeNodeComponent("frame10"),

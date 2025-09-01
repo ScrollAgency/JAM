@@ -9421,7 +9421,13 @@ function PlasmicAccueil__RenderFunc(props: {
                                 sty.text__wZ8F1
                               )}
                             >
-                              {"JE M'INSCRIS"}
+                              {hasVariant(
+                                globalVariants,
+                                "screen",
+                                "mobileOnly"
+                              )
+                                ? "JE ME CONNECTE"
+                                : "JE M'INSCRIS"}
                             </div>
                           }
                           onClick={async event => {
@@ -15750,9 +15756,11 @@ function PlasmicAccueil__RenderFunc(props: {
                                     "__wab_instance",
                                     sty.formField__vfzBe
                                   )}
+                                  hidden={false}
                                   label={"Name"}
                                   name={"availability_status"}
                                   noLabel={true}
+                                  noStyle={false}
                                   preserve={false}
                                 >
                                   <AntdSelect
@@ -15772,6 +15780,15 @@ function PlasmicAccueil__RenderFunc(props: {
                                       styleTokensClassNames_library_tailwind_3_4_number_tokens,
                                       styleTokensClassNames_plasmic_rich_components
                                     )}
+                                    disabled={
+                                      hasVariant(
+                                        globalVariants,
+                                        "screen",
+                                        "mobileOnly"
+                                      )
+                                        ? false
+                                        : undefined
+                                    }
                                     mode={"multiple"}
                                     onChange={async (...eventArgs: any) => {
                                       generateStateOnChangeProp($state, [
@@ -15849,6 +15866,15 @@ function PlasmicAccueil__RenderFunc(props: {
                                     }
                                     popupScopeClassName={sty["select16__popup"]}
                                     size={"large"}
+                                    useChildren={
+                                      hasVariant(
+                                        globalVariants,
+                                        "screen",
+                                        "mobileOnly"
+                                      )
+                                        ? false
+                                        : undefined
+                                    }
                                     value={generateStateValueProp($state, [
                                       "select16",
                                       "value"
@@ -15884,7 +15910,7 @@ function PlasmicAccueil__RenderFunc(props: {
                                       styleTokensClassNames_library_tailwind_3_4_number_tokens,
                                       styleTokensClassNames_plasmic_rich_components
                                     )}
-                                    dropdownMatchSelectWidth={false}
+                                    dropdownMatchSelectWidth={true}
                                     mode={"multiple"}
                                     onChange={async (...eventArgs: any) => {
                                       generateStateOnChangeProp($state, [
@@ -16826,6 +16852,7 @@ function PlasmicAccueil__RenderFunc(props: {
                         />
                       </div>
                     }
+                    isKeyboardDismissDisabled={true}
                     isOpen={generateStateValueProp($state, ["modal", "isOpen"])}
                     onOpenChange={async (...eventArgs: any) => {
                       generateStateOnChangeProp($state, [
@@ -16842,6 +16869,7 @@ function PlasmicAccueil__RenderFunc(props: {
                       }
                     }}
                     showFooter={false}
+                    showHeader={true}
                     trigger={
                       <JamButton
                         data-plasmic-name={"button"}

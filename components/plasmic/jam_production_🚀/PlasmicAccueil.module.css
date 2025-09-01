@@ -3004,6 +3004,11 @@
   font-weight: 700;
   letter-spacing: 1.5px;
 }
+@media (min-width: 0px) and (max-width: 768px) {
+  .text__wZ8F1 {
+    padding-top: 0px;
+  }
+}
 .svg__scp8E {
   position: relative;
   color: var(--token-OIYWLyLPYWym);
@@ -5558,7 +5563,14 @@
   object-fit: cover;
 }
 .modal:global(.__wab_instance):global(.__wab_instance) {
+  flex-shrink: 1;
+  flex-grow: 0;
+  height: 100%;
+  width: 100%;
+  min-width: 100%;
   max-width: 100%;
+  max-height: 100%;
+  min-height: 0;
   display: none;
 }
 @media (min-width: 0px) and (max-width: 768px) {
@@ -5614,9 +5626,15 @@
   display: flex;
   flex-direction: column;
   position: relative;
-  align-items: flex-start;
+  align-items: stretch;
   justify-content: flex-start;
   row-gap: var(--token-nKoNI3RzPDCD);
+  width: auto;
+  height: auto;
+  flex-shrink: 0;
+  flex-grow: 0;
+  flex-wrap: nowrap;
+  align-content: stretch;
   padding: 0px;
 }
 .formFilter2:global(.__wab_instance) {
@@ -5766,8 +5784,11 @@
 .formField__vfzBe:global(.__wab_instance) {
   flex-shrink: 0;
   flex-grow: 0;
-  width: auto;
-  height: auto;
+  width: 100%;
+  height: 100%;
+  display: block;
+  min-width: 0;
+  min-height: 0;
   margin: 0px;
 }
 .select16:global(.__wab_instance) {
@@ -5824,7 +5845,6 @@
 .formField___8JaDx:global(.__wab_instance) {
   flex-shrink: 0;
   flex-grow: 0;
-  width: auto;
   height: auto;
   margin: 0px;
 }
@@ -5867,7 +5887,7 @@
   padding-left: 0px;
 }
 .formField__mcSCf:global(.__wab_instance) {
-  flex-shrink: 0;
+  flex-shrink: 1;
   flex-grow: 0;
   width: auto;
   height: auto;
@@ -5925,7 +5945,7 @@
   height: auto;
 }
 .formField___6JuE:global(.__wab_instance) {
-  flex-shrink: 0;
+  flex-shrink: 1;
   flex-grow: 0;
   width: auto;
   height: auto;
@@ -5985,7 +6005,7 @@
   color: #000000;
 }
 .formField__vc4Qu:global(.__wab_instance) {
-  flex-shrink: 0;
+  flex-shrink: 1;
   flex-grow: 0;
   width: auto;
   height: auto;
@@ -6043,7 +6063,7 @@
   font-size: 16px;
 }
 .formField__rUpCz:global(.__wab_instance) {
-  flex-shrink: 0;
+  flex-shrink: 1;
   flex-grow: 0;
   width: auto;
   height: auto;
@@ -6110,7 +6130,7 @@
     display: none;
   }
 }
-.svg__bUpem {
+.svg__l55Bf {
   position: relative;
   color: var(--token-OIYWLyLPYWym);
   height: 1em;
@@ -6119,7 +6139,7 @@
   white-space: pre;
   color: var(--token-nuB3vbLUeNHj);
 }
-.svg__bAmGb {
+.svg__snWl3 {
   position: relative;
   color: var(--token-OIYWLyLPYWym);
   margin-right: 0px;
@@ -6219,7 +6239,7 @@
     flex-shrink: 0;
   }
 }
-.svg__h1Han {
+.svg__niybk {
   position: relative;
   color: var(--token-OIYWLyLPYWym);
   height: 1em;
