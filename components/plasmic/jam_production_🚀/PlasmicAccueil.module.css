@@ -2011,12 +2011,13 @@
 @media (min-width: 0px) and (max-width: 768px) {
   .formField__e188D:global(.__wab_instance) {
     width: 100%;
-    min-width: 339px;
+    min-width: auto;
     height: 47px;
-    max-width: 100%;
+    max-width: none;
     flex-grow: 0;
     min-height: auto;
-    flex-shrink: 0;
+    overflow: hidden;
+    flex-shrink: 1;
     border-radius: 16px;
   }
 }
