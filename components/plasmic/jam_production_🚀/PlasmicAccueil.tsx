@@ -15653,7 +15653,7 @@ function PlasmicAccueil__RenderFunc(props: {
                                         "screen",
                                         "mobileOnly"
                                       )
-                                        ? false
+                                        ? true
                                         : true
                                     }
                                     mode={"single"}
