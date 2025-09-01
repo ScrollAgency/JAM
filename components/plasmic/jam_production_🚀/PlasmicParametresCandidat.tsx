@@ -2436,6 +2436,15 @@ function PlasmicParametresCandidat__RenderFunc(props: {
                                   data-plasmic-override={
                                     overrides.textAreaInput
                                   }
+                                  autoFocus={
+                                    hasVariant(
+                                      globalVariants,
+                                      "screen",
+                                      "mobileOnly"
+                                    )
+                                      ? false
+                                      : undefined
+                                  }
                                   className={classNames(
                                     "__wab_instance",
                                     sty.textAreaInput
@@ -2455,6 +2464,15 @@ function PlasmicParametresCandidat__RenderFunc(props: {
                                       throw e;
                                     }
                                   })()}
+                                  inputMode={
+                                    hasVariant(
+                                      globalVariants,
+                                      "screen",
+                                      "mobileOnly"
+                                    )
+                                      ? "text"
+                                      : undefined
+                                  }
                                   onChange={async (...eventArgs: any) => {
                                     generateStateOnChangeProp($state, [
                                       "textAreaInput",
@@ -2521,7 +2539,15 @@ function PlasmicParametresCandidat__RenderFunc(props: {
                                     styleTokensClassNames_library_tailwind_3_4_number_tokens,
                                     styleTokensClassNames_plasmic_rich_components
                                   )}
-                                  dropdownMatchSelectWidth={false}
+                                  dropdownMatchSelectWidth={
+                                    hasVariant(
+                                      globalVariants,
+                                      "screen",
+                                      "mobileOnly"
+                                    )
+                                      ? true
+                                      : true
+                                  }
                                   mode={"multiple"}
                                   onChange={async (...eventArgs: any) => {
                                     generateStateOnChangeProp($state, [

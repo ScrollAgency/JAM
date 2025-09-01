@@ -1987,7 +1987,18 @@ function PlasmicAccueil__RenderFunc(props: {
                       </div>
                     </div>
                     <div
-                      className={classNames(projectcss.all, sty.freeBox__cWnZj)}
+                      className={classNames(
+                        projectcss.all,
+                        sty.freeBox__cWnZj,
+                        {
+                          [sty.freeBoxglobal_unnamedGlobalGroupOfVariants_unnamedVariant__cWnZju4NfL]:
+                            hasVariant(
+                              globalVariants,
+                              "unnamedGlobalGroupOfVariants",
+                              "unnamedVariant"
+                            )
+                        }
+                      )}
                     >
                       <PlasmicLink__
                         data-plasmic-name={"link"}
@@ -9427,7 +9438,7 @@ function PlasmicAccueil__RenderFunc(props: {
                                 "mobileOnly"
                               )
                                 ? "JE ME CONNECTE"
-                                : "JE M'INSCRIS"}
+                                : "JE ME CONNECTE"}
                             </div>
                           }
                           onClick={async event => {

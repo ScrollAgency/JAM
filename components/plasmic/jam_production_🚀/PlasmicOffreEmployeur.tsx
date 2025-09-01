@@ -5035,7 +5035,12 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                             sty.formField__lFIqh
                           )}
                           label={
-                            <React.Fragment>
+                            <div
+                              className={classNames(
+                                projectcss.all,
+                                sty.freeBox__vhVxe
+                              )}
+                            >
                               <div
                                 className={classNames(
                                   projectcss.all,
@@ -5150,7 +5155,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                                   ["lastMinuteToggle", "switch2IsSelected"]
                                 )}
                               />
-                            </React.Fragment>
+                            </div>
                           }
                           name={"availability_status"}
                           rules={[{ ruleType: "required", message: "requis" }]}
