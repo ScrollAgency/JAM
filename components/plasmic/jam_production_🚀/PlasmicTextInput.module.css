@@ -22,6 +22,11 @@
   outline-style: solid;
   outline-width: var(--token-UY9kPePLUyPt);
 }
+@media (max-width: 375px) {
+  .ariaInput:global(.__wab_instance) {
+    font-size: 14px;
+  }
+}
 .ariaInputtype_soft:global(.__wab_instance) {
   background: var(--token-2WBfCSZKGd3h);
   box-shadow: none;

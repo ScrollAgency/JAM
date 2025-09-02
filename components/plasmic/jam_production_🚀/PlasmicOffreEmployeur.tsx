@@ -5158,6 +5158,16 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                             </div>
                           }
                           name={"availability_status"}
+                          noLabel={
+                            hasVariant(globalVariants, "screen", "mobileOnly")
+                              ? false
+                              : undefined
+                          }
+                          preserve={
+                            hasVariant(globalVariants, "screen", "mobileOnly")
+                              ? true
+                              : undefined
+                          }
                           rules={[{ ruleType: "required", message: "requis" }]}
                         >
                           <Select

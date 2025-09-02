@@ -61,6 +61,11 @@
   letter-spacing: 0%;
   min-width: 0;
 }
+@media (max-width: 375px) {
+  .text {
+    font-size: 14px;
+  }
+}
 .svg {
   width: var(--token-dvG6wyumbmS0);
   height: var(--token-dvG6wyumbmS0);

@@ -42,6 +42,11 @@
   outline-style: none;
   max-width: 90vw;
 }
+@media (max-width: 375px) {
+  .ariaDialog:global(.__wab_instance) {
+    max-width: 99vw;
+  }
+}
 .ariaDialognoTrigger:global(.__wab_instance) {
   align-items: center;
   justify-content: flex-start;
