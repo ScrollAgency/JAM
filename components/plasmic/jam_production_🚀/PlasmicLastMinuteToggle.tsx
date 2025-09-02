@@ -460,6 +460,17 @@ function PlasmicLastMinuteToggle__RenderFunc(props: {
                 "switch2",
                 "isSelected"
               ])}
+              label={
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text___47Mzn
+                  )}
+                >
+                  {"Label"}
+                </div>
+              }
               onChange={async (...eventArgs: any) => {
                 generateStateOnChangeProp($state, [
                   "switch2",

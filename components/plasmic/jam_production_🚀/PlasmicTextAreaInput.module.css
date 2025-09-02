@@ -22,6 +22,11 @@
 .ariaTextArea[data-disabled]:global(.__wab_instance) {
   cursor: not-allowed;
 }
+@media (max-width: 375px) {
+  .ariaTextArea:global(.__wab_instance) {
+    font-size: 14px;
+  }
+}
 .ariaTextAreatype_soft:global(.__wab_instance) {
   background: var(--token-2WBfCSZKGd3h);
   box-shadow: none;
