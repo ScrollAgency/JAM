@@ -123,6 +123,11 @@
   text-decoration-line: none;
   text-overflow: clip;
 }
+@media (max-width: 375px) {
+  .heading2 {
+    font-size: 20px;
+  }
+}
 .button__tyBbW:global(.__wab_instance):global(.__wab_instance) {
   max-width: 100%;
 }
@@ -130,6 +135,12 @@
   .button__tyBbW:global(.__wab_instance):global(.__wab_instance) {
     max-width: none;
     width: 48px;
+    flex-shrink: 0;
+  }
+}
+@media (max-width: 375px) {
+  .button__tyBbW:global(.__wab_instance):global(.__wab_instance) {
+    width: 40px;
     flex-shrink: 0;
   }
 }
