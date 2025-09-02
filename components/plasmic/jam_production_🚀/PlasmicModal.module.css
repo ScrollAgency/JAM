@@ -70,6 +70,12 @@
   padding-left: var(--token-BL89_XMR-RdQ);
   padding-right: var(--token-BL89_XMR-RdQ);
 }
+@media (max-width: 375px) {
+  .scrollableContent {
+    padding-left: var(--token-smN_UkZiNmlq);
+    padding-right: var(--token-smN_UkZiNmlq);
+  }
+}
 .freeBox___7IsZ2 {
   display: flex;
   flex-direction: column;
@@ -86,6 +92,12 @@
   position: relative;
   flex-shrink: 0;
   padding: var(--token-BL89_XMR-RdQ);
+}
+@media (max-width: 375px) {
+  .freeBox {
+    padding-left: var(--token-smN_UkZiNmlq);
+    padding-right: var(--token-smN_UkZiNmlq);
+  }
 }
 .freeBox__pcOne {
   display: flex;

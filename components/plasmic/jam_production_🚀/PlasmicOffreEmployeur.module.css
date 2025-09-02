@@ -72,6 +72,12 @@
     padding: 90px 20px 121px;
   }
 }
+@media (max-width: 375px) {
+  .main {
+    padding-right: 20px;
+    padding-left: 20px;
+  }
+}
 .freeBox__qDWa {
   display: flex;
   flex-direction: column;
@@ -413,6 +419,7 @@
     padding-left: 4px;
     padding-right: 4px;
     padding-bottom: 55px;
+    overflow: auto;
     min-width: 0;
   }
 }
@@ -428,7 +435,8 @@
 }
 @media (max-width: 375px) {
   .h3__yzTu8 {
-    font-size: 22px;
+    font-size: 30px;
+    text-align: left;
   }
 }
 .form2:global(.__wab_instance) {
@@ -1402,6 +1410,12 @@
     width: 100%;
   }
 }
+@media (max-width: 375px) {
+  .freeBox__pHBqe {
+    padding-left: 4px;
+    padding-right: 4px;
+  }
+}
 .h3__h0Jrc {
   font-family: "DM Sans", sans-serif;
   font-size: 36px;
@@ -1409,7 +1423,8 @@
 }
 @media (max-width: 375px) {
   .h3__h0Jrc {
-    font-size: 22px;
+    text-align: left;
+    font-size: 30px;
   }
 }
 .formUpdate:global(.__wab_instance) {
@@ -1561,6 +1576,11 @@
   text-overflow: clip !important;
   min-width: 0;
 }
+@media (max-width: 375px) {
+  .text__nwHpC {
+    font-size: 14px;
+  }
+}
 .select35:global(.__wab_instance):global(.__wab_instance) {
   height: 100%;
   min-height: 48px;
@@ -1626,7 +1646,7 @@
 }
 @media (max-width: 375px) {
   .text__nLxa {
-    font-size: 16px;
+    font-size: 14px;
   }
 }
 .select36:global(.__wab_instance):global(.__wab_instance) {
@@ -1673,7 +1693,7 @@
 }
 @media (max-width: 375px) {
   .text___0GkLs {
-    font-size: 16px;
+    font-size: 14px;
   }
 }
 .select37:global(.__wab_instance):global(.__wab_instance) {
@@ -1731,7 +1751,7 @@
 }
 @media (max-width: 375px) {
   .text__g1NwT {
-    font-size: 16px;
+    font-size: 14px;
   }
 }
 .timePicker:global(.__wab_instance) {
@@ -1772,7 +1792,7 @@
 }
 @media (max-width: 375px) {
   .text__zOxCr {
-    font-size: 16px;
+    font-size: 14px;
   }
 }
 .timePicker2:global(.__wab_instance) {
@@ -1841,7 +1861,7 @@
 }
 @media (max-width: 375px) {
   .text___29Vu {
-    font-size: 16px;
+    font-size: 14px;
   }
 }
 .select38:global(.__wab_instance):global(.__wab_instance) {
@@ -1905,7 +1925,7 @@
 }
 @media (max-width: 375px) {
   .text__m3QLp {
-    font-size: 16px;
+    font-size: 14px;
   }
 }
 .lastMinuteToggle2:global(.__wab_instance) {
@@ -1951,7 +1971,7 @@
 }
 @media (max-width: 375px) {
   .text__aGHh4 {
-    font-size: 16px;
+    font-size: 14px;
   }
 }
 .select26:global(.__wab_instance) {
@@ -2036,7 +2056,7 @@
 }
 @media (max-width: 375px) {
   .text___5KNrc {
-    font-size: 16px;
+    font-size: 14px;
   }
 }
 .rue2:global(.__wab_instance):global(.__wab_instance) {
@@ -2176,7 +2196,7 @@
 }
 @media (max-width: 375px) {
   .text__ikgYl {
-    font-size: 16px;
+    font-size: 14px;
   }
 }
 .textAreaInput3:global(.__wab_instance):global(.__wab_instance) {
@@ -2211,7 +2231,7 @@
 }
 @media (max-width: 375px) {
   .text__bx9O {
-    font-size: 16px;
+    font-size: 14px;
   }
 }
 .textAreaInput4:global(.__wab_instance):global(.__wab_instance) {
