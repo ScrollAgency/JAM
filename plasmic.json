@@ -2312,6 +2312,20 @@
           "scheme": "blackbox",
           "componentType": "page",
           "path": "/register-validation"
+        },
+        {
+          "id": "fX4JMF3dHI8p",
+          "name": "RechercheCandidat2",
+          "type": "managed",
+          "projectId": "f7DE9y7qp46fyCw5nuY8f9",
+          "renderModuleFilePath": "plasmic/jam_production_🚀/PlasmicRechercheCandidat2.tsx",
+          "importSpec": {
+            "modulePath": "../pages/recherche-candidat-2.tsx"
+          },
+          "cssFilePath": "plasmic/jam_production_🚀/PlasmicRechercheCandidat2.module.css",
+          "scheme": "blackbox",
+          "componentType": "page",
+          "path": "/recherche-candidat-2"
         }
       ],
       "icons": [
