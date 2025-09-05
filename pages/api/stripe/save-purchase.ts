@@ -24,13 +24,13 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       if (!product_id || typeof quantity !== "number") continue;
 
       switch (product_id) {
-        case "prod_S94I2bEjJBgtUi":
+        case "prod_SzeJ4QAAb4xq0E":
           updates.recharge_classic = (updates.recharge_classic || 0) + quantity;
           break;
-        case "prod_S94JK9sfmhTanv":
+        case "prod_SzeKEfPLmPy8kq":
           updates.recharge_lastminute = (updates.recharge_lastminute || 0) + quantity;
           break;
-        case "prod_S94Jb2TNBEp2vU":
+        case "prod_SzeKhzG0NYTZNa":
           updates.recharge_boost = (updates.recharge_boost || 0) + quantity;
           break;
       }
