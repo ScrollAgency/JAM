@@ -214,7 +214,7 @@ function PlasmicOnboarding__RenderFunc(props: {
         type: "private",
         variableType: "text",
         initFunc: ({ $props, $state, $queries, $ctx }) =>
-          "price_1RDlIQG6x7PbBmxr3DLXR9uL"
+          "price_1S3f0ZFVPXc61qf6OOV7PFZB"
       },
       {
         path: "customerId",
@@ -256,7 +256,7 @@ function PlasmicOnboarding__RenderFunc(props: {
     stripeProductsList: usePlasmicDataOp(() => {
       return {
         sourceId: "iWyefF3oqfc9knnzuF1Fin",
-        opId: "65adb9fe-1686-4fa3-8519-62b6b082d238",
+        opId: "a0713f40-cb5c-4658-ad21-e51f23a5591c",
         userArgs: {},
         cacheKey: `plasmic.$.${(() => {
           try {
@@ -270,7 +270,7 @@ function PlasmicOnboarding__RenderFunc(props: {
             }
             throw e;
           }
-        })()}.$.65adb9fe-1686-4fa3-8519-62b6b082d238.$.`,
+        })()}.$.a0713f40-cb5c-4658-ad21-e51f23a5591c.$.`,
         invalidatedKeys: null,
         roleId: null
       };
@@ -278,9 +278,9 @@ function PlasmicOnboarding__RenderFunc(props: {
     productPrice: usePlasmicDataOp(() => {
       return {
         sourceId: "iWyefF3oqfc9knnzuF1Fin",
-        opId: "8d37026a-02c8-45b5-9876-1e7b6252d3fe",
+        opId: "b8e99368-03c8-4257-ab17-350a9614f177",
         userArgs: {},
-        cacheKey: `plasmic.$.8d37026a-02c8-45b5-9876-1e7b6252d3fe.$.`,
+        cacheKey: `plasmic.$.b8e99368-03c8-4257-ab17-350a9614f177.$.`,
         invalidatedKeys: null,
         roleId: null
       };
@@ -551,7 +551,7 @@ function PlasmicOnboarding__RenderFunc(props: {
                       const actionArgs = {
                         dataOp: {
                           sourceId: "iWyefF3oqfc9knnzuF1Fin",
-                          opId: "ff777f02-09eb-450c-8314-de92f4c472c4",
+                          opId: "e59eecb2-463c-497f-b522-c80124c634ef",
                           userArgs: {
                             path: [
                               "v1/checkout/sessions/" + $state.stripeSessionId
@@ -755,15 +755,15 @@ function PlasmicOnboarding__RenderFunc(props: {
 
                               $state.productId,
 
-                              $state.productId === "prod_S81KBWHPyJa53z"
+                              $state.productId === "prod_SzeKhzG0NYTZNa"
                                 ? 0
                                 : 2,
 
-                              $state.productId === "prod_S81KBWHPyJa53z"
+                              $state.productId === "prod_SzeJ4QAAb4xq0E"
                                 ? 3
                                 : 8,
 
-                              $state.productId === "prod_S81KBWHPyJa53z" ? 1 : 4
+                              $state.productId === "prod_SzeKEfPLmPy8kq" ? 1 : 4
                             ]
                           },
                           cacheKey: null,
