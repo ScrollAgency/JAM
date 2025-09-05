@@ -1141,9 +1141,9 @@ function PlasmicRechercheCandidat__RenderFunc(props: {
                   <React.Fragment>
                     {(() => {
                       try {
-                        return $queries.getCandidates.data.length > 1
-                          ? `${$queries.getCandidates.data.length} résultats`
-                          : `${$queries.getCandidates.data.length} résultat `;
+                        return $state.candidates.length > 1
+                          ? `${$state.candidates.length} résultats`
+                          : `${$state.candidates.length} résultat `;
                       } catch (e) {
                         if (
                           e instanceof TypeError ||
