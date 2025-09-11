@@ -1043,12 +1043,10 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
         initFunc: ({ $props, $state, $queries, $ctx }) =>
           (() => {
             try {
-              return (() => {
-                return (
-                  ($queries.offreStripeUserInfos.data[0]?.recharge_lastminute ??
-                    0) === 0
-                );
-              })();
+              return (
+                ($queries.offreStripeUserInfos.data[0]?.recharge_lastminute ??
+                  0) === 0
+              );
             } catch (e) {
               if (
                 e instanceof TypeError ||
@@ -1504,9 +1502,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
               return (() => {
                 const file = $state.form5.value.kbis_file?.[0];
                 const text = file?.name;
-
                 if (!text) return "";
-
                 return text.length > 30 ? `${text.slice(0, 30)}...` : text;
               })();
             } catch (e) {
@@ -1552,9 +1548,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
               return (() => {
                 const file = $state.form5.value.identity_file?.[0];
                 const text = file?.name;
-
                 if (!text) return "";
-
                 return text.length > 30 ? `${text.slice(0, 30)}...` : text;
               })();
             } catch (e) {
@@ -1671,7 +1665,6 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                 ($ctx.query.subscription === "success" &&
                   $ctx.query.sessionId !== "") ||
                 $ctx.query.paiement === "ok"
-                // && $state.modalCreditsAlerts === true
               );
             } catch (e) {
               if (
@@ -1718,10 +1711,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
         sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
         opId: "a0f345b5-bbed-4347-80ba-1896e0ae6a8a",
         userArgs: {
-          filters: [
-            // $ctx.SupabaseUser.user.id
-            "345012d4-d726-480d-81f8-24e461899a19"
-          ]
+          filters: ["345012d4-d726-480d-81f8-24e461899a19"]
         },
         cacheKey: `plasmic.$.a0f345b5-bbed-4347-80ba-1896e0ae6a8a.$.`,
         invalidatedKeys: null,
@@ -1783,9 +1773,9 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
     stripeProductsList: usePlasmicDataOp(() => {
       return {
         sourceId: "iWyefF3oqfc9knnzuF1Fin",
-        opId: "a0713f40-cb5c-4658-ad21-e51f23a5591c",
+        opId: "9403b7cf-20a8-4ab8-ab32-3e0cfab8be10",
         userArgs: {},
-        cacheKey: `plasmic.$.a0713f40-cb5c-4658-ad21-e51f23a5591c.$.`,
+        cacheKey: `plasmic.$.9403b7cf-20a8-4ab8-ab32-3e0cfab8be10.$.`,
         invalidatedKeys: null,
         roleId: null
       };
@@ -1793,9 +1783,9 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
     productPrice: usePlasmicDataOp(() => {
       return {
         sourceId: "iWyefF3oqfc9knnzuF1Fin",
-        opId: "b8e99368-03c8-4257-ab17-350a9614f177",
+        opId: "259a3dde-6cd9-46b6-88e9-225b102d6b69",
         userArgs: {},
-        cacheKey: `plasmic.$.b8e99368-03c8-4257-ab17-350a9614f177.$.`,
+        cacheKey: `plasmic.$.259a3dde-6cd9-46b6-88e9-225b102d6b69.$.`,
         invalidatedKeys: null,
         roleId: null
       };
@@ -1805,9 +1795,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
         sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
         opId: "d6ef9cec-3efc-48a9-a282-e4387e1c0996",
         userArgs: {
-          filters: [
-            $ctx.SupabaseUser.user?.id || "345012d4-d726-480d-81f8-24e461899a19"
-          ]
+          filters: [$ctx.SupabaseUser.user?.id]
         },
         cacheKey: `plasmic.$.d6ef9cec-3efc-48a9-a282-e4387e1c0996.$.`,
         invalidatedKeys: null,
@@ -1842,6 +1830,16 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
           ]
         },
         cacheKey: `plasmic.$.65b170b0-3295-43b3-ba9d-6e16e0e5541b.$.`,
+        invalidatedKeys: null,
+        roleId: null
+      };
+    }),
+    getStripeRefs: usePlasmicDataOp(() => {
+      return {
+        sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
+        opId: "a5b7058f-d1b3-4094-af68-d47e61215b98",
+        userArgs: {},
+        cacheKey: `plasmic.$.a5b7058f-d1b3-4094-af68-d47e61215b98.$.`,
         invalidatedKeys: null,
         roleId: null
       };
@@ -12282,7 +12280,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
             }}
             shouldRun={(() => {
               try {
-                return false; //!$queries.getUser.data[0].onboarding
+                return false;
               } catch (e) {
                 if (
                   e instanceof TypeError ||
@@ -12341,14 +12339,12 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                     >
                       {(() => {
                         try {
-                          return (() => {
-                            return (
-                              typeof window !== "undefined" &&
-                              new window.URL(
-                                window.location.href
-                              ).searchParams.get("onboarding") !== "success"
-                            );
-                          })();
+                          return (
+                            typeof window !== "undefined" &&
+                            new window.URL(
+                              window.location.href
+                            ).searchParams.get("onboarding") !== "success"
+                          );
                         } catch (e) {
                           if (
                             e instanceof TypeError ||
@@ -12454,14 +12450,12 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                       ) : null}
                       {(() => {
                         try {
-                          return (() => {
-                            return (
-                              typeof window !== "undefined" &&
-                              new window.URL(
-                                window.location.href
-                              ).searchParams.get("onboarding") === "success"
-                            );
-                          })();
+                          return (
+                            typeof window !== "undefined" &&
+                            new window.URL(
+                              window.location.href
+                            ).searchParams.get("onboarding") === "success"
+                          );
                         } catch (e) {
                           if (
                             e instanceof TypeError ||
@@ -14129,56 +14123,54 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                                 }
 
                                 $steps["kbis"] = (() => {
-                                  return (() => {
-                                    const files = $state.form5.value.kbis_file;
-                                    if (
-                                      !Array.isArray(files) ||
-                                      files.length === 0
-                                    ) {
-                                      return false;
-                                    }
-                                    const file = files[0];
-                                    const maxSize = 2 * 1024 * 1024;
-                                    const allowedTypes = [
-                                      "application/pdf",
-                                      "application/msword",
-                                      "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-                                      "image/jpeg",
-                                      "image/png"
-                                    ];
+                                  const files = $state.form5.value.kbis_file;
+                                  if (
+                                    !Array.isArray(files) ||
+                                    files.length === 0
+                                  ) {
+                                    return false;
+                                  }
+                                  const file = files[0];
+                                  const maxSize = 2 * 1024 * 1024;
+                                  const allowedTypes = [
+                                    "application/pdf",
+                                    "application/msword",
+                                    "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+                                    "image/jpeg",
+                                    "image/png"
+                                  ];
 
-                                    const allowedExtensions = [
-                                      ".pdf",
-                                      ".doc",
-                                      ".docx",
-                                      ".jpg",
-                                      ".jpeg",
-                                      ".png"
-                                    ];
+                                  const allowedExtensions = [
+                                    ".pdf",
+                                    ".doc",
+                                    ".docx",
+                                    ".jpg",
+                                    ".jpeg",
+                                    ".png"
+                                  ];
 
-                                    const fileTypeOk = allowedTypes.includes(
-                                      file.type
+                                  const fileTypeOk = allowedTypes.includes(
+                                    file.type
+                                  );
+                                  const fileName =
+                                    file.name?.toLowerCase() || "";
+                                  const fileExtensionOk =
+                                    allowedExtensions.some(ext =>
+                                      fileName.endsWith(ext)
                                     );
-                                    const fileName =
-                                      file.name?.toLowerCase() || "";
-                                    const fileExtensionOk =
-                                      allowedExtensions.some(ext =>
-                                        fileName.endsWith(ext)
-                                      );
-                                    if (file.size > maxSize) {
-                                      $state.errorMsg.push(
-                                        "Le KBIS ne doit pas dépasser 2 Mo."
-                                      );
-                                      return false;
-                                    }
-                                    if (!fileTypeOk || !fileExtensionOk) {
-                                      $state.errorMsg.push(
-                                        "Le format du KBIS n'est pas accepté."
-                                      );
-                                      return false;
-                                    }
-                                    return true;
-                                  })();
+                                  if (file.size > maxSize) {
+                                    $state.errorMsg.push(
+                                      "Le KBIS ne doit pas dépasser 2 Mo."
+                                    );
+                                    return false;
+                                  }
+                                  if (!fileTypeOk || !fileExtensionOk) {
+                                    $state.errorMsg.push(
+                                      "Le format du KBIS n'est pas accepté."
+                                    );
+                                    return false;
+                                  }
+                                  return true;
                                 })()
                                   ? (() => {
                                       const actionArgs = {
@@ -14258,57 +14250,55 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                                 }
 
                                 $steps["idFile"] = (() => {
-                                  return (() => {
-                                    const files =
-                                      $state.form5.value.identity_file;
-                                    if (
-                                      !Array.isArray(files) ||
-                                      files.length === 0
-                                    ) {
-                                      return false;
-                                    }
-                                    const file = files[0];
-                                    const maxSize = 2 * 1024 * 1024;
-                                    const allowedTypes = [
-                                      "application/pdf",
-                                      "application/msword",
-                                      "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-                                      "image/jpeg",
-                                      "image/png"
-                                    ];
+                                  const files =
+                                    $state.form5.value.identity_file;
+                                  if (
+                                    !Array.isArray(files) ||
+                                    files.length === 0
+                                  ) {
+                                    return false;
+                                  }
+                                  const file = files[0];
+                                  const maxSize = 2 * 1024 * 1024;
+                                  const allowedTypes = [
+                                    "application/pdf",
+                                    "application/msword",
+                                    "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+                                    "image/jpeg",
+                                    "image/png"
+                                  ];
 
-                                    const allowedExtensions = [
-                                      ".pdf",
-                                      ".doc",
-                                      ".docx",
-                                      ".jpg",
-                                      ".jpeg",
-                                      ".png"
-                                    ];
+                                  const allowedExtensions = [
+                                    ".pdf",
+                                    ".doc",
+                                    ".docx",
+                                    ".jpg",
+                                    ".jpeg",
+                                    ".png"
+                                  ];
 
-                                    const fileTypeOk = allowedTypes.includes(
-                                      file.type
+                                  const fileTypeOk = allowedTypes.includes(
+                                    file.type
+                                  );
+                                  const fileName =
+                                    file.name?.toLowerCase() || "";
+                                  const fileExtensionOk =
+                                    allowedExtensions.some(ext =>
+                                      fileName.endsWith(ext)
                                     );
-                                    const fileName =
-                                      file.name?.toLowerCase() || "";
-                                    const fileExtensionOk =
-                                      allowedExtensions.some(ext =>
-                                        fileName.endsWith(ext)
-                                      );
-                                    if (file.size > maxSize) {
-                                      $state.errorMsg.push(
-                                        "La carte d'identité ne doit pas dépasser 2 Mo."
-                                      );
-                                      return false;
-                                    }
-                                    if (!fileTypeOk || !fileExtensionOk) {
-                                      $state.errorMsg.push(
-                                        "Le format de la carte d'identité n'est pas accepté."
-                                      );
-                                      return false;
-                                    }
-                                    return true;
-                                  })();
+                                  if (file.size > maxSize) {
+                                    $state.errorMsg.push(
+                                      "La carte d'identité ne doit pas dépasser 2 Mo."
+                                    );
+                                    return false;
+                                  }
+                                  if (!fileTypeOk || !fileExtensionOk) {
+                                    $state.errorMsg.push(
+                                      "Le format de la carte d'identité n'est pas accepté."
+                                    );
+                                    return false;
+                                  }
+                                  return true;
                                 })()
                                   ? (() => {
                                       const actionArgs = {
@@ -16879,14 +16869,12 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                       ) : null}
                       {(() => {
                         try {
-                          return (() => {
-                            return (
-                              typeof window !== "undefined" &&
-                              new window.URL(
-                                window.location.href
-                              ).searchParams.get("onboarding") === "success"
-                            );
-                          })();
+                          return (
+                            typeof window !== "undefined" &&
+                            new window.URL(
+                              window.location.href
+                            ).searchParams.get("onboarding") === "success"
+                          );
                         } catch (e) {
                           if (
                             e instanceof TypeError ||
@@ -17394,7 +17382,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                         const actionArgs = {
                           dataOp: {
                             sourceId: "iWyefF3oqfc9knnzuF1Fin",
-                            opId: "0c550ba0-5774-4abb-84db-fca8e3012f17",
+                            opId: "33df8ef7-dd9b-4373-9d6d-d0221abda1b8",
                             userArgs: {
                               path: [
                                 "v1/checkout/sessions/" + $state.stripeSessionId
@@ -17440,7 +17428,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                         const actionArgs = {
                           dataOp: {
                             sourceId: "iWyefF3oqfc9knnzuF1Fin",
-                            opId: "0c550ba0-5774-4abb-84db-fca8e3012f17",
+                            opId: "33df8ef7-dd9b-4373-9d6d-d0221abda1b8",
                             userArgs: {
                               path: [
                                 "v1/invoices/" +
@@ -17865,7 +17853,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                         const actionArgs = {
                           destination: (() => {
                             try {
-                              return (() => {})();
+                              return undefined;
                             } catch (e) {
                               if (
                                 e instanceof TypeError ||
@@ -19566,7 +19554,6 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                           ($ctx.query.subscription === "success" &&
                             $ctx.query.sessionId !== "") ||
                           $ctx.query.paiement === "ok"
-                          // && $state.modalCreditsAlerts === true
                         );
                       } catch (e) {
                         if (

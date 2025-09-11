@@ -265,7 +265,6 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                 ($ctx.query.subscription === "success" &&
                   $ctx.query.sessionId !== "") ||
                 $ctx.query.paiement === "ok"
-                // && $state.modalCreditsAlerts === true
               );
             } catch (e) {
               if (
@@ -369,6 +368,25 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
         type: "private",
         variableType: "text",
         initFunc: ({ $props, $state, $queries, $ctx }) => "employer"
+      },
+      {
+        path: "classicSubPid",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $ctx }) =>
+          (() => {
+            try {
+              return $queries.getStripeRefs.data[0].product_id;
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return undefined;
+              }
+              throw e;
+            }
+          })()
       }
     ],
     [$props, $ctx, $refs]
@@ -386,9 +404,9 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
     stripeProductsList: usePlasmicDataOp(() => {
       return {
         sourceId: "iWyefF3oqfc9knnzuF1Fin",
-        opId: "a0713f40-cb5c-4658-ad21-e51f23a5591c",
+        opId: "8f20e4af-51db-48c9-8083-d0c647280bc6",
         userArgs: {},
-        cacheKey: `plasmic.$.a0713f40-cb5c-4658-ad21-e51f23a5591c.$.`,
+        cacheKey: `plasmic.$.8f20e4af-51db-48c9-8083-d0c647280bc6.$.`,
         invalidatedKeys: null,
         roleId: null
       };
@@ -398,9 +416,7 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
         sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
         opId: "ba382dfb-c617-44db-a36f-dda3fa7e919f",
         userArgs: {
-          query: [
-            $ctx.SupabaseUser.user?.id || "007f3aae-c8f3-420d-915c-b845a3387dfd"
-          ]
+          query: [$ctx.SupabaseUser.user?.id]
         },
         cacheKey: `plasmic.$.ba382dfb-c617-44db-a36f-dda3fa7e919f.$.`,
         invalidatedKeys: null,
@@ -429,6 +445,16 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
           params: [$queries.getUserStripeInfos.data[0].customer_id]
         },
         cacheKey: `plasmic.$.c91b3dad-0831-48c9-8dd7-50555a9ed2f8.$.`,
+        invalidatedKeys: null,
+        roleId: null
+      };
+    }),
+    getStripeRefs: usePlasmicDataOp(() => {
+      return {
+        sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
+        opId: "a5b7058f-d1b3-4094-af68-d47e61215b98",
+        userArgs: {},
+        cacheKey: `plasmic.$.a5b7058f-d1b3-4094-af68-d47e61215b98.$.`,
         invalidatedKeys: null,
         roleId: null
       };
@@ -623,7 +649,7 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                                 $queries.userMonthlyRecharge.data.response.solde
                                   .totalClassic;
                               const update =
-                                $state.selectedProduct === "prod_S81KBWHPyJa53z"
+                                $state.selectedProduct === $state.classicSubPid
                                   ? 0
                                   : prorated;
                               return solde + update;
@@ -640,7 +666,7 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                                 $queries.userMonthlyRecharge.data.response.solde
                                   .totalLastMinute;
                               const update =
-                                $state.selectedProduct === "prod_S81KBWHPyJa53z"
+                                $state.selectedProduct === $state.classicSubPid
                                   ? 0
                                   : prorated;
                               return solde + update;
@@ -657,7 +683,7 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                                 $queries.userMonthlyRecharge.data.response.solde
                                   .totalBoost;
                               const update =
-                                $state.selectedProduct === "prod_S81KBWHPyJa53z"
+                                $state.selectedProduct === $state.classicSubPid
                                   ? 0
                                   : prorated;
                               return solde + update;
@@ -1414,7 +1440,6 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                             ($ctx.query.subscription === "success" &&
                               $ctx.query.sessionId !== "") ||
                             $ctx.query.paiement === "ok"
-                            // && $state.modalCreditsAlerts === true
                           );
                         } catch (e) {
                           if (
@@ -1445,14 +1470,12 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
             >
               {(() => {
                 try {
-                  return (() => {
-                    return (
-                      typeof window !== "undefined" &&
-                      new window.URL(window.location.href).searchParams.get(
-                        "payementstatus"
-                      ) === "success"
-                    );
-                  })();
+                  return (
+                    typeof window !== "undefined" &&
+                    new window.URL(window.location.href).searchParams.get(
+                      "payementstatus"
+                    ) === "success"
+                  );
                 } catch (e) {
                   if (
                     e instanceof TypeError ||
@@ -1992,7 +2015,6 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                         return (
                           $state.selectedProduct !==
                             $queries.getUserStripeInfos.data[0].product_id &&
-                          //$queries.getUserStripeInfos.data[0].status !== "complete"
                           $queries.getUserStripeInfos.data[0].status !==
                             "cancel"
                         );
@@ -2229,10 +2251,7 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                           }
                           confirmTitle={(() => {
                             try {
-                              return (
-                                // Voulez-vous résilier votre abonnement ?
-                                "Souhaitez-vous changer de formule ?"
-                              );
+                              return "Souhaitez-vous changer de formule ?";
                             } catch (e) {
                               if (
                                 e instanceof TypeError ||
@@ -2554,12 +2573,10 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                           showConfirmationModal={true}
                           stripeAction={(() => {
                             try {
-                              return (() => {
-                                return $queries.getUserStripeInfos.data[0]
-                                  .status === "cancel"
-                                  ? "create"
-                                  : "update";
-                              })();
+                              return $queries.getUserStripeInfos.data[0]
+                                .status === "cancel"
+                                ? "create"
+                                : "update";
                             } catch (e) {
                               if (
                                 e instanceof TypeError ||
@@ -2674,10 +2691,8 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                     {(() => {
                       try {
                         return (
-                          // $queries.getUserStripeInfos.data[0].status !== "complete" ||
                           $queries.getUserStripeInfos.data[0].status ===
                           "cancel"
-                          //false
                         );
                       } catch (e) {
                         if (
@@ -2925,17 +2940,12 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                               $queries.stripeProductsList.data.response.data.find(
                                 p => p.id === $state.selectedProduct
                               )?.default_price.id;
-
                             __composite["0"]["quantity"] = 1;
                             return __composite;
                           })()}
                           successUrl={(() => {
                             try {
-                              return (
-                                //`/parametres-abonnement?credit=success&session_id=${$queries.getUserStripeInfos.data[0].session_id}\n`
-
-                                "parametres-abonnement?credit=success&session_id={CHECKOUT_SESSION_ID}"
-                              );
+                              return "parametres-abonnement?credit=success&session_id={CHECKOUT_SESSION_ID}";
                             } catch (e) {
                               if (
                                 e instanceof TypeError ||
@@ -3143,8 +3153,7 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                               {(() => {
                                 try {
                                   return $queries.userMonthlyRecharge.data
-                                    .response.solde.totalClassic; //+ "/" +
-                                  //$queries.userMonthlyRecharge.data.response.total.totalClassic
+                                    .response.solde.totalClassic;
                                 } catch (e) {
                                   if (
                                     e instanceof TypeError ||
@@ -3202,8 +3211,7 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                               {(() => {
                                 try {
                                   return $queries.userMonthlyRecharge.data
-                                    .response.solde.totalLastMinute; // + "/" +
-                                  //$queries.userMonthlyRecharge.data.response.total.totalLastMinute
+                                    .response.solde.totalLastMinute;
                                 } catch (e) {
                                   if (
                                     e instanceof TypeError ||
@@ -3279,7 +3287,7 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                                     return parseInt(
                                       $queries.getUserStripeInfos.data[0]
                                         .recharge_boost
-                                    ); // + "/" + ($queries.getUserStripeInfos.data[0].product_id === "prod_S81KBWHPyJa53z" ? 0 : 4)
+                                    );
                                   } catch (e) {
                                     if (
                                       e instanceof TypeError ||
@@ -3321,8 +3329,7 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                                 {(() => {
                                   try {
                                     return $queries.userMonthlyRecharge.data
-                                      .response.solde.totalBoost; // + "/" +
-                                    //$queries.userMonthlyRecharge.data.response.total.totalBoost
+                                      .response.solde.totalBoost;
                                   } catch (e) {
                                     if (
                                       e instanceof TypeError ||
@@ -4439,7 +4446,7 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                         const actionArgs = {
                           dataOp: {
                             sourceId: "iWyefF3oqfc9knnzuF1Fin",
-                            opId: "ff777f02-09eb-450c-8314-de92f4c472c4",
+                            opId: "33df8ef7-dd9b-4373-9d6d-d0221abda1b8",
                             userArgs: {
                               path: [
                                 "v1/checkout/sessions/" + $state.stripeSessionId
@@ -4485,7 +4492,7 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                         const actionArgs = {
                           dataOp: {
                             sourceId: "iWyefF3oqfc9knnzuF1Fin",
-                            opId: "e871ec15-d0b3-433b-aa4c-7a6d8ceb2468",
+                            opId: "9eb052c8-9784-40e1-b714-c95094be7fbe",
                             userArgs: {
                               path: [
                                 "v1/invoices/" +
@@ -4881,14 +4888,12 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                 condition5={false}
                 shouldRun={(() => {
                   try {
-                    return (() => {
-                      return (
-                        typeof window !== "undefined" &&
-                        new window.URL(window.location.href).searchParams.get(
-                          "payementstatus"
-                        ) === "success"
-                      );
-                    })();
+                    return (
+                      typeof window !== "undefined" &&
+                      new window.URL(window.location.href).searchParams.get(
+                        "payementstatus"
+                      ) === "success"
+                    );
                   } catch (e) {
                     if (
                       e instanceof TypeError ||
