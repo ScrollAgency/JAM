@@ -3065,7 +3065,7 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                               .status === "cancel"
                               ? "résilié"
                               : $queries.getUserStripeInfos.data[0]
-                                  .product_id === "prod_S81KBWHPyJa53z"
+                                  .product_id === $state.classicSubPid
                               ? "Basic"
                               : "Premium";
                           } catch (e) {

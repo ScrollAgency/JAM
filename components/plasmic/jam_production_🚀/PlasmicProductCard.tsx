@@ -217,11 +217,11 @@ function PlasmicProductCard__RenderFunc(props: {
     stripeProductPrice: usePlasmicDataOp(() => {
       return {
         sourceId: "iWyefF3oqfc9knnzuF1Fin",
-        opId: "2b51d638-9ec1-4c5f-962c-d09016a05b57",
+        opId: "cbb3111f-8f19-4fa5-a256-f334947a1793",
         userArgs: {
           params: [$props.productId]
         },
-        cacheKey: `plasmic.$.2b51d638-9ec1-4c5f-962c-d09016a05b57.$.`,
+        cacheKey: `plasmic.$.cbb3111f-8f19-4fa5-a256-f334947a1793.$.`,
         invalidatedKeys: null,
         roleId: null
       };
@@ -229,9 +229,9 @@ function PlasmicProductCard__RenderFunc(props: {
     stripeProducts: usePlasmicDataOp(() => {
       return {
         sourceId: "iWyefF3oqfc9knnzuF1Fin",
-        opId: "c337f625-bab8-4f3e-a3ab-7158854e0cdc",
+        opId: "e99c70fb-d502-4e49-8e3c-e7aac00ca72d",
         userArgs: {},
-        cacheKey: `plasmic.$.c337f625-bab8-4f3e-a3ab-7158854e0cdc.$.`,
+        cacheKey: `plasmic.$.e99c70fb-d502-4e49-8e3c-e7aac00ca72d.$.`,
         invalidatedKeys: null,
         roleId: null
       };

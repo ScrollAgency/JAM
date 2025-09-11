@@ -113,6 +113,7 @@ export const PlasmicOnboarding__VariantProps = new Array<VariantPropType>();
 export type PlasmicOnboarding__ArgsType = {
   step?: number;
   onStepChange?: (val: string) => void;
+  onClassicPidChange?: (val: string) => void;
   children?: React.ReactNode;
   step3?: number;
 };
@@ -120,6 +121,7 @@ type ArgPropType = keyof PlasmicOnboarding__ArgsType;
 export const PlasmicOnboarding__ArgProps = new Array<ArgPropType>(
   "step",
   "onStepChange",
+  "onClassicPidChange",
   "children",
   "step3"
 );
@@ -131,6 +133,7 @@ export type PlasmicOnboarding__OverridesType = {
 export interface DefaultOnboardingProps {
   step?: number;
   onStepChange?: (val: string) => void;
+  onClassicPidChange?: (val: string) => void;
   children?: React.ReactNode;
   step3?: number;
   className?: string;
@@ -235,10 +238,25 @@ function PlasmicOnboarding__RenderFunc(props: {
         initFunc: ({ $props, $state, $queries, $ctx }) => ""
       },
       {
-        path: "variable",
-        type: "private",
+        path: "classicPid",
+        type: "readonly",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => ""
+        initFunc: ({ $props, $state, $queries, $ctx }) =>
+          (() => {
+            try {
+              return $queries.getStripeRefs.data[0].product_id;
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return undefined;
+              }
+              throw e;
+            }
+          })(),
+
+        onChangeProp: "onClassicPidChange"
       }
     ],
     [$props, $ctx, $refs]
@@ -256,7 +274,7 @@ function PlasmicOnboarding__RenderFunc(props: {
     stripeProductsList: usePlasmicDataOp(() => {
       return {
         sourceId: "iWyefF3oqfc9knnzuF1Fin",
-        opId: "a0713f40-cb5c-4658-ad21-e51f23a5591c",
+        opId: "9403b7cf-20a8-4ab8-ab32-3e0cfab8be10",
         userArgs: {},
         cacheKey: `plasmic.$.${(() => {
           try {
@@ -270,7 +288,7 @@ function PlasmicOnboarding__RenderFunc(props: {
             }
             throw e;
           }
-        })()}.$.a0713f40-cb5c-4658-ad21-e51f23a5591c.$.`,
+        })()}.$.9403b7cf-20a8-4ab8-ab32-3e0cfab8be10.$.`,
         invalidatedKeys: null,
         roleId: null
       };
@@ -278,9 +296,19 @@ function PlasmicOnboarding__RenderFunc(props: {
     productPrice: usePlasmicDataOp(() => {
       return {
         sourceId: "iWyefF3oqfc9knnzuF1Fin",
-        opId: "b8e99368-03c8-4257-ab17-350a9614f177",
+        opId: "259a3dde-6cd9-46b6-88e9-225b102d6b69",
         userArgs: {},
-        cacheKey: `plasmic.$.b8e99368-03c8-4257-ab17-350a9614f177.$.`,
+        cacheKey: `plasmic.$.259a3dde-6cd9-46b6-88e9-225b102d6b69.$.`,
+        invalidatedKeys: null,
+        roleId: null
+      };
+    }),
+    getStripeRefs: usePlasmicDataOp(() => {
+      return {
+        sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
+        opId: "a5b7058f-d1b3-4094-af68-d47e61215b98",
+        userArgs: {},
+        cacheKey: `plasmic.$.a5b7058f-d1b3-4094-af68-d47e61215b98.$.`,
         invalidatedKeys: null,
         roleId: null
       };
@@ -551,7 +579,7 @@ function PlasmicOnboarding__RenderFunc(props: {
                       const actionArgs = {
                         dataOp: {
                           sourceId: "iWyefF3oqfc9knnzuF1Fin",
-                          opId: "e59eecb2-463c-497f-b522-c80124c634ef",
+                          opId: "33df8ef7-dd9b-4373-9d6d-d0221abda1b8",
                           userArgs: {
                             path: [
                               "v1/checkout/sessions/" + $state.stripeSessionId
@@ -755,15 +783,11 @@ function PlasmicOnboarding__RenderFunc(props: {
 
                               $state.productId,
 
-                              $state.productId === "prod_SzeKhzG0NYTZNa"
-                                ? 0
-                                : 2,
+                              $state.productId === $state.classicPID ? 0 : 2,
 
-                              $state.productId === "prod_SzeJ4QAAb4xq0E"
-                                ? 3
-                                : 8,
+                              $state.productId === $state.classicPID ? 3 : 8,
 
-                              $state.productId === "prod_SzeKEfPLmPy8kq" ? 1 : 4
+                              $state.productId === $state.classicPID ? 1 : 4
                             ]
                           },
                           cacheKey: null,
@@ -1107,7 +1131,7 @@ function PlasmicOnboarding__RenderFunc(props: {
                             sty.h1__gtVd
                           )}
                         >
-                          {"Votre profile entreprise"}
+                          {"Votre profile entreprise 2"}
                         </h1>
                         <UploadWrapper
                           accept={""}
@@ -2510,7 +2534,7 @@ function PlasmicOnboarding__RenderFunc(props: {
                           const actionArgs = {
                             dataOp: {
                               sourceId: "iWyefF3oqfc9knnzuF1Fin",
-                              opId: "7a3bbe72-8573-43c8-8756-40fef9354511",
+                              opId: "6cafb79f-2dd2-4f38-b6c6-69b09a1a14a2",
                               userArgs: {
                                 params: [
                                   $queries.stripeProductsList.data.response.data.find(
