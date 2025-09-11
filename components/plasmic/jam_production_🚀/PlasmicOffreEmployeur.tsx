@@ -1739,7 +1739,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
         sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
         opId: "c97d2f24-3d9a-4bf9-8107-193ee0e13062",
         userArgs: {
-          filters: [$ctx.SupabaseUser.user.id]
+          filters: [$ctx.SupabaseUser.user?.id]
         },
         cacheKey: `plasmic.$.c97d2f24-3d9a-4bf9-8107-193ee0e13062.$.`,
         invalidatedKeys: null,
@@ -12280,7 +12280,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
             }}
             shouldRun={(() => {
               try {
-                return true;
+                return $queries.getUser.data[0].onboarding === false;
               } catch (e) {
                 if (
                   e instanceof TypeError ||
