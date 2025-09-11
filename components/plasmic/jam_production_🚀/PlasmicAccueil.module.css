@@ -1323,7 +1323,7 @@
   height: 47px;
   object-fit: cover;
   display: block;
-  min-width: 135px;
+  min-width: 180px;
   border-radius: 16px;
   border: 1px solid var(--token-d-0gEGbakN0M);
 }

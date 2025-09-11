@@ -18,6 +18,10 @@
     column-gap: 0px;
   }
 }
+.updateFirstGoogleConnection:global(.__wab_instance) {
+  max-width: 100%;
+  object-fit: cover;
+}
 .mobileNavbarTop:global(.__wab_instance) {
   max-width: 100%;
   width: 100%;

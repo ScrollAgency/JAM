@@ -221,6 +221,8 @@ function PlasmicRechercheCandidat2__RenderFunc(props: {
   const refsRef = React.useRef({});
   const $refs = refsRef.current;
 
+  const globalVariants = _useGlobalVariants();
+
   let [$queries, setDollarQueries] = React.useState<
     Record<string, ReturnType<typeof usePlasmicDataOp>>
   >({});
@@ -417,7 +419,6 @@ function PlasmicRechercheCandidat2__RenderFunc(props: {
     $queries = new$Queries;
   }
 
-  const globalVariants = _useGlobalVariants();
   const styleTokensClassNames = _useStyleTokens();
   const styleTokensClassNames_antd_5_hostless =
     useStyleTokens_antd_5_hostless();

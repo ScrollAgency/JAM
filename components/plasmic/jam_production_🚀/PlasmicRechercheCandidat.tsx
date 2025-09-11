@@ -221,6 +221,8 @@ function PlasmicRechercheCandidat__RenderFunc(props: {
   const refsRef = React.useRef({});
   const $refs = refsRef.current;
 
+  const globalVariants = _useGlobalVariants();
+
   let [$queries, setDollarQueries] = React.useState<
     Record<string, ReturnType<typeof usePlasmicDataOp>>
   >({});
@@ -288,21 +290,8 @@ function PlasmicRechercheCandidat__RenderFunc(props: {
       {
         path: "listWords",
         type: "private",
-        variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) =>
-          (() => {
-            try {
-              return undefined;
-            } catch (e) {
-              if (
-                e instanceof TypeError ||
-                e?.plasmicType === "PlasmicUndefinedDataError"
-              ) {
-                return undefined;
-              }
-              throw e;
-            }
-          })()
+        variableType: "array",
+        initFunc: ({ $props, $state, $queries, $ctx }) => []
       },
       {
         path: "cvModal.isOpen",
@@ -486,6 +475,51 @@ function PlasmicRechercheCandidat__RenderFunc(props: {
               throw e;
             }
           })()
+      },
+      {
+        path: "resultsArray",
+        type: "private",
+        variableType: "array",
+        initFunc: ({ $props, $state, $queries, $ctx }) =>
+          (() => {
+            try {
+              return (() => {
+                return $state.candidates.filter(candidate => {
+                  if (
+                    $state.cityTab.length === 0 &&
+                    $state.keyWordsTab.length === 0
+                  ) {
+                    return false;
+                  }
+                  const city = candidate.city || "";
+                  const skills = Array.isArray(candidate.skill)
+                    ? candidate.skill
+                    : [];
+                  const cityMatch =
+                    $state.cityTab.length === 0 ||
+                    $state.cityTab.some(
+                      c => c.toLowerCase() === city.toLowerCase()
+                    );
+                  const skillsMatch =
+                    $state.keyWordsTab.length === 0 ||
+                    skills.some(s =>
+                      $state.keyWordsTab.some(
+                        k => String(s).toLowerCase() === String(k).toLowerCase()
+                      )
+                    );
+                  return cityMatch && skillsMatch;
+                });
+              })();
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return [];
+              }
+              throw e;
+            }
+          })()
       }
     ],
     [$props, $ctx, $refs]
@@ -503,11 +537,9 @@ function PlasmicRechercheCandidat__RenderFunc(props: {
     getCandidates: usePlasmicDataOp(() => {
       return {
         sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
-        opId: "16c05080-5fe1-430a-827d-bdba5ebe4fc2",
-        userArgs: {
-          query: [$ctx.SupabaseUser?.user?.id]
-        },
-        cacheKey: `plasmic.$.16c05080-5fe1-430a-827d-bdba5ebe4fc2.$.`,
+        opId: "8cb2b56e-8e95-4435-9999-638f47be04c6",
+        userArgs: {},
+        cacheKey: `plasmic.$.8cb2b56e-8e95-4435-9999-638f47be04c6.$.`,
         invalidatedKeys: null,
         roleId: null
       };
@@ -531,7 +563,6 @@ function PlasmicRechercheCandidat__RenderFunc(props: {
     $queries = new$Queries;
   }
 
-  const globalVariants = _useGlobalVariants();
   const styleTokensClassNames = _useStyleTokens();
   const styleTokensClassNames_antd_5_hostless =
     useStyleTokens_antd_5_hostless();
@@ -664,100 +695,15 @@ function PlasmicRechercheCandidat__RenderFunc(props: {
                 onFinish: async values => {
                   const $steps = {};
 
-                  $steps["updateArray"] = true
-                    ? (() => {
-                        const actionArgs = {
-                          customFunction: async () => {
-                            return (
-                              /*const city = $state.filterForm.value.city?.trim();
-                          const keyWords = $state.filterForm.value.keyWords?.trim();
-                          if (city && !$state.cityTab.some(c => c.toLowerCase() === city.toLowerCase())) {
-                          $state.cityTab.push(city);
-                          }
-                          if (keyWords && !$state.keyWordsTab.some(k => k.toLowerCase() === keyWords.toLowerCase())) {
-                          $state.keyWordsTab.push(keyWords);
-                          }*/
-
-                              (() => {
-                                const city =
-                                  $state.filterForm.value.city?.trim();
-                                if (!city) return $state.cityTab ?? [];
-                                const exists = ($state.cityTab ?? []).some(
-                                  c => c?.toLowerCase() === city.toLowerCase()
-                                );
-                                return exists
-                                  ? $state.cityTab
-                                  : [...($state.cityTab ?? []), city];
-                              })()
-                            );
-                          }
-                        };
-                        return (({ customFunction }) => {
-                          return customFunction();
-                        })?.apply(null, [actionArgs]);
-                      })()
-                    : undefined;
-                  if (
-                    $steps["updateArray"] != null &&
-                    typeof $steps["updateArray"] === "object" &&
-                    typeof $steps["updateArray"].then === "function"
-                  ) {
-                    $steps["updateArray"] = await $steps["updateArray"];
-                  }
-
-                  $steps["clearValues"] = true
-                    ? (() => {
-                        const actionArgs = {
-                          customFunction: async () => {
-                            return (() => {
-                              $state.keyWordsInput.value = "";
-                              return ($state.locationInput.value = "");
-                            })();
-                          }
-                        };
-                        return (({ customFunction }) => {
-                          return customFunction();
-                        })?.apply(null, [actionArgs]);
-                      })()
-                    : undefined;
-                  if (
-                    $steps["clearValues"] != null &&
-                    typeof $steps["clearValues"] === "object" &&
-                    typeof $steps["clearValues"].then === "function"
-                  ) {
-                    $steps["clearValues"] = await $steps["clearValues"];
-                  }
-
-                  $steps["resetFields"] = true
-                    ? (() => {
-                        const actionArgs = {
-                          tplRef: "filterForm",
-                          action: "resetFields"
-                        };
-                        return (({ tplRef, action, args }) => {
-                          return $refs?.[tplRef]?.[action]?.(...(args ?? []));
-                        })?.apply(null, [actionArgs]);
-                      })()
-                    : undefined;
-                  if (
-                    $steps["resetFields"] != null &&
-                    typeof $steps["resetFields"] === "object" &&
-                    typeof $steps["resetFields"].then === "function"
-                  ) {
-                    $steps["resetFields"] = await $steps["resetFields"];
-                  }
-                },
-                onFinishFailed: async data => {
-                  const $steps = {};
-
-                  $steps["updateKeyWordsInputValue"] = true
+                  $steps["updateResultsObj"] = true
                     ? (() => {
                         const actionArgs = {
                           variable: {
                             objRoot: $state,
-                            variablePath: ["keyWordsInput", "value"]
+                            variablePath: ["resultsArray"]
                           },
-                          operation: 0
+                          operation: 0,
+                          value: []
                         };
                         return (({
                           variable,
@@ -776,14 +722,104 @@ function PlasmicRechercheCandidat__RenderFunc(props: {
                       })()
                     : undefined;
                   if (
-                    $steps["updateKeyWordsInputValue"] != null &&
-                    typeof $steps["updateKeyWordsInputValue"] === "object" &&
-                    typeof $steps["updateKeyWordsInputValue"].then ===
-                      "function"
+                    $steps["updateResultsObj"] != null &&
+                    typeof $steps["updateResultsObj"] === "object" &&
+                    typeof $steps["updateResultsObj"].then === "function"
                   ) {
-                    $steps["updateKeyWordsInputValue"] = await $steps[
-                      "updateKeyWordsInputValue"
+                    $steps["updateResultsObj"] = await $steps[
+                      "updateResultsObj"
                     ];
+                  }
+
+                  $steps["pushWords"] = true
+                    ? (() => {
+                        const actionArgs = {
+                          customFunction: async () => {
+                            return (() => {
+                              const city = $state.locationInput.value?.trim();
+                              const keyWords =
+                                $state.keyWordsInput.value?.trim();
+                              if (
+                                city &&
+                                !$state.cityTab.some(
+                                  c => c.toLowerCase() === city.toLowerCase()
+                                )
+                              ) {
+                                $state.cityTab.push(city);
+                              }
+                              if (
+                                keyWords &&
+                                !$state.keyWordsTab.some(
+                                  k =>
+                                    k.toLowerCase() === keyWords.toLowerCase()
+                                )
+                              ) {
+                                return $state.keyWordsTab.push(keyWords);
+                              }
+                            })();
+                          }
+                        };
+                        return (({ customFunction }) => {
+                          return customFunction();
+                        })?.apply(null, [actionArgs]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["pushWords"] != null &&
+                    typeof $steps["pushWords"] === "object" &&
+                    typeof $steps["pushWords"].then === "function"
+                  ) {
+                    $steps["pushWords"] = await $steps["pushWords"];
+                  }
+
+                  $steps["runCode"] = false
+                    ? (() => {
+                        const actionArgs = {
+                          customFunction: async () => {
+                            return (() => {
+                              if (
+                                $state.cityTab.length === 0 &&
+                                $state.keyWordsTab.length === 0
+                              ) {
+                                return ($state.resultsArray = []);
+                              } else {
+                                return ($state.resultsArray =
+                                  $queries.getCandidates.data.filter(
+                                    candidate => {
+                                      const cityMatch =
+                                        $state.cityTab.length === 0 ||
+                                        $state.cityTab.some(
+                                          city =>
+                                            city.toLowerCase() ===
+                                            (candidate.city || "").toLowerCase()
+                                        );
+                                      const skillsMatch =
+                                        $state.keyWordsTab.length === 0 ||
+                                        $state.keyWordsTab.some(skill =>
+                                          candidate.skill?.some(
+                                            candidateSkill =>
+                                              candidateSkill.toLowerCase() ===
+                                              skill.toLowerCase()
+                                          )
+                                        );
+                                      return cityMatch && skillsMatch;
+                                    }
+                                  ));
+                              }
+                            })();
+                          }
+                        };
+                        return (({ customFunction }) => {
+                          return customFunction();
+                        })?.apply(null, [actionArgs]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["runCode"] != null &&
+                    typeof $steps["runCode"] === "object" &&
+                    typeof $steps["runCode"].then === "function"
+                  ) {
+                    $steps["runCode"] = await $steps["runCode"];
                   }
                 },
                 onIsSubmittingChange: async (...eventArgs: any) => {
@@ -865,46 +901,6 @@ function PlasmicRechercheCandidat__RenderFunc(props: {
                             (async event => {
                               const $steps = {};
                             }).apply(null, eventArgs);
-                          },
-                          onPressEnter: async event => {
-                            const $steps = {};
-
-                            $steps["updateKeyWordsTab"] = true
-                              ? (() => {
-                                  const actionArgs = {
-                                    variable: {
-                                      objRoot: $state,
-                                      variablePath: ["keyWordsTab"]
-                                    },
-                                    operation: 0,
-                                    value: $state.keyWordsInput.value
-                                  };
-                                  return (({
-                                    variable,
-                                    value,
-                                    startIndex,
-                                    deleteCount
-                                  }) => {
-                                    if (!variable) {
-                                      return;
-                                    }
-                                    const { objRoot, variablePath } = variable;
-
-                                    $stateSet(objRoot, variablePath, value);
-                                    return value;
-                                  })?.apply(null, [actionArgs]);
-                                })()
-                              : undefined;
-                            if (
-                              $steps["updateKeyWordsTab"] != null &&
-                              typeof $steps["updateKeyWordsTab"] === "object" &&
-                              typeof $steps["updateKeyWordsTab"].then ===
-                                "function"
-                            ) {
-                              $steps["updateKeyWordsTab"] = await $steps[
-                                "updateKeyWordsTab"
-                              ];
-                            }
                           },
                           placeholder: "Mot-cl\u00e9, comp\u00e9tence...",
                           prefix: (
@@ -998,45 +994,6 @@ function PlasmicRechercheCandidat__RenderFunc(props: {
                             },
                             onPressEnter: async event => {
                               const $steps = {};
-
-                              $steps["updateKeyWordsTab"] = true
-                                ? (() => {
-                                    const actionArgs = {
-                                      variable: {
-                                        objRoot: $state,
-                                        variablePath: ["keyWordsTab"]
-                                      },
-                                      operation: 0,
-                                      value: $state.locationInput.value
-                                    };
-                                    return (({
-                                      variable,
-                                      value,
-                                      startIndex,
-                                      deleteCount
-                                    }) => {
-                                      if (!variable) {
-                                        return;
-                                      }
-                                      const { objRoot, variablePath } =
-                                        variable;
-
-                                      $stateSet(objRoot, variablePath, value);
-                                      return value;
-                                    })?.apply(null, [actionArgs]);
-                                  })()
-                                : undefined;
-                              if (
-                                $steps["updateKeyWordsTab"] != null &&
-                                typeof $steps["updateKeyWordsTab"] ===
-                                  "object" &&
-                                typeof $steps["updateKeyWordsTab"].then ===
-                                  "function"
-                              ) {
-                                $steps["updateKeyWordsTab"] = await $steps[
-                                  "updateKeyWordsTab"
-                                ];
-                              }
                             },
                             placeholder: "Localisation",
                             prefix: (
@@ -1141,9 +1098,9 @@ function PlasmicRechercheCandidat__RenderFunc(props: {
                   <React.Fragment>
                     {(() => {
                       try {
-                        return $state.candidates.length > 1
-                          ? `${$state.candidates.length} résultats`
-                          : `${$state.candidates.length} résultat `;
+                        return $state.resultsArray.length > 1
+                          ? `${$state.resultsArray.length} résultats`
+                          : `${$state.resultsArray.length} résultat `;
                       } catch (e) {
                         if (
                           e instanceof TypeError ||
@@ -1231,43 +1188,6 @@ function PlasmicRechercheCandidat__RenderFunc(props: {
                             typeof $steps["runCode"].then === "function"
                           ) {
                             $steps["runCode"] = await $steps["runCode"];
-                          }
-
-                          $steps["updateInputValue"] = true
-                            ? (() => {
-                                const actionArgs = {
-                                  variable: {
-                                    objRoot: $state,
-                                    variablePath: ["keyWordsInput", "value"]
-                                  },
-                                  operation: 1,
-                                  value: ""
-                                };
-                                return (({
-                                  variable,
-                                  value,
-                                  startIndex,
-                                  deleteCount
-                                }) => {
-                                  if (!variable) {
-                                    return;
-                                  }
-                                  const { objRoot, variablePath } = variable;
-
-                                  $stateSet(objRoot, variablePath, undefined);
-                                  return undefined;
-                                })?.apply(null, [actionArgs]);
-                              })()
-                            : undefined;
-                          if (
-                            $steps["updateInputValue"] != null &&
-                            typeof $steps["updateInputValue"] === "object" &&
-                            typeof $steps["updateInputValue"].then ===
-                              "function"
-                          ) {
-                            $steps["updateInputValue"] = await $steps[
-                              "updateInputValue"
-                            ];
                           }
                         }}
                         role={"img"}
@@ -1383,7 +1303,7 @@ function PlasmicRechercheCandidat__RenderFunc(props: {
               ) : null}
               {(() => {
                 try {
-                  return !$queries.getCandidates.isLoading;
+                  return $state.resultsArray.length > 0;
                 } catch (e) {
                   if (
                     e instanceof TypeError ||
@@ -1402,7 +1322,7 @@ function PlasmicRechercheCandidat__RenderFunc(props: {
                   {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
                     (() => {
                       try {
-                        return $state.candidates;
+                        return $state.resultsArray;
                       } catch (e) {
                         if (
                           e instanceof TypeError ||
@@ -2202,7 +2122,7 @@ function PlasmicRechercheCandidat__RenderFunc(props: {
                                       <React.Fragment>
                                         {(() => {
                                           try {
-                                            return currentItem.label;
+                                            return currentItem;
                                           } catch (e) {
                                             if (
                                               e instanceof TypeError ||
@@ -2541,7 +2461,12 @@ function PlasmicRechercheCandidat__RenderFunc(props: {
               ) : null}
               {(() => {
                 try {
-                  return $state.candidates.length <= 0;
+                  return (() => {
+                    return (
+                      $state.cityTab.length === 0 &&
+                      $state.keyWordsTab.length === 0
+                    );
+                  })();
                 } catch (e) {
                   if (
                     e instanceof TypeError ||

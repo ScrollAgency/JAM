@@ -66,6 +66,7 @@ import {
   usePlasmicInvalidate
 } from "@plasmicapp/react-web/lib/data-sources";
 
+import { PageLoader } from "../../others/PageLoader/PageLoader"; // plasmic-import: FHDrnDhA4DZe/codeComponent
 import MobileNavbarTop from "../../MobileNavbarTop"; // plasmic-import: mAg8Ml3XUEhy/component
 import Sidebar from "../../Sidebar"; // plasmic-import: M06HuWMcBQV2/component
 import { LoadingBoundary } from "@plasmicpkgs/plasmic-basic-components";
@@ -116,6 +117,7 @@ export const PlasmicParametresEmployeur__ArgProps = new Array<ArgPropType>();
 
 export type PlasmicParametresEmployeur__OverridesType = {
   parametresEmployeur?: Flex__<"div">;
+  updateFirstGoogleConnection?: Flex__<typeof PageLoader>;
   mobileNavbarTop?: Flex__<typeof MobileNavbarTop>;
   sidebar?: Flex__<typeof Sidebar>;
   main?: Flex__<"div">;
@@ -195,6 +197,8 @@ function PlasmicParametresEmployeur__RenderFunc(props: {
   const $ctx = useDataEnv?.() || {};
   const refsRef = React.useRef({});
   const $refs = refsRef.current;
+
+  const globalVariants = _useGlobalVariants();
 
   const $globalActions = useGlobalActions?.();
 
@@ -627,7 +631,6 @@ function PlasmicParametresEmployeur__RenderFunc(props: {
     $queries = new$Queries;
   }
 
-  const globalVariants = _useGlobalVariants();
   const styleTokensClassNames = _useStyleTokens();
   const styleTokensClassNames_antd_5_hostless =
     useStyleTokens_antd_5_hostless();
@@ -679,6 +682,113 @@ function PlasmicParametresEmployeur__RenderFunc(props: {
             sty.parametresEmployeur
           )}
         >
+          <PageLoader
+            data-plasmic-name={"updateFirstGoogleConnection"}
+            data-plasmic-override={overrides.updateFirstGoogleConnection}
+            className={classNames(
+              "__wab_instance",
+              sty.updateFirstGoogleConnection
+            )}
+            onMount={async () => {
+              const $steps = {};
+
+              $steps["refreshData"] = true
+                ? (() => {
+                    const actionArgs = {
+                      queryInvalidation: [
+                        "9c25c922-f186-4ed9-850f-6ded6b307e4e"
+                      ]
+                    };
+                    return (async ({ queryInvalidation }) => {
+                      if (!queryInvalidation) {
+                        return;
+                      }
+                      await plasmicInvalidate(queryInvalidation);
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["refreshData"] != null &&
+                typeof $steps["refreshData"] === "object" &&
+                typeof $steps["refreshData"].then === "function"
+              ) {
+                $steps["refreshData"] = await $steps["refreshData"];
+              }
+
+              $steps["updateFromGoogle"] = true
+                ? (() => {
+                    const actionArgs = {
+                      dataOp: {
+                        sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
+                        opId: "e0315555-ad20-46a4-8822-28eea310b98c",
+                        userArgs: {
+                          conditions: [$ctx.SupabaseUser.user?.id],
+
+                          variables: [
+                            $ctx.SupabaseUser.user?.user_metadata?.name?.split(
+                              " "
+                            )[0],
+
+                            $ctx.SupabaseUser.user?.user_metadata?.name?.split(
+                              " "
+                            )[1],
+
+                            $ctx.SupabaseUser.user?.user_metadata?.role
+                          ]
+                        },
+                        cacheKey: null,
+                        invalidatedKeys: ["plasmic_refresh_all"],
+                        roleId: null
+                      }
+                    };
+                    return (async ({ dataOp, continueOnError }) => {
+                      try {
+                        const response = await executePlasmicDataOp(dataOp, {
+                          userAuthToken: dataSourcesCtx?.userAuthToken,
+                          user: dataSourcesCtx?.user
+                        });
+                        await plasmicInvalidate(dataOp.invalidatedKeys);
+                        return response;
+                      } catch (e) {
+                        if (!continueOnError) {
+                          throw e;
+                        }
+                        return e;
+                      }
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["updateFromGoogle"] != null &&
+                typeof $steps["updateFromGoogle"] === "object" &&
+                typeof $steps["updateFromGoogle"].then === "function"
+              ) {
+                $steps["updateFromGoogle"] = await $steps["updateFromGoogle"];
+              }
+            }}
+            shouldRun={(() => {
+              try {
+                return (() => {
+                  const googleName =
+                    $ctx.SupabaseUser.user?.user_metadata?.name ?? null;
+                  return (
+                    $queries.currentUser.data[0].first_name === null &&
+                    $queries.currentUser.data[0].last_name === null &&
+                    googleName !== null
+                  );
+                })();
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return true;
+                }
+                throw e;
+              }
+            })()}
+          />
+
           <MobileNavbarTop
             data-plasmic-name={"mobileNavbarTop"}
             data-plasmic-override={overrides.mobileNavbarTop}
@@ -2846,6 +2956,7 @@ function PlasmicParametresEmployeur__RenderFunc(props: {
 const PlasmicDescendants = {
   parametresEmployeur: [
     "parametresEmployeur",
+    "updateFirstGoogleConnection",
     "mobileNavbarTop",
     "sidebar",
     "main",
@@ -2884,6 +2995,7 @@ const PlasmicDescendants = {
     "expandTab",
     "mobileNavbarBottomCompany"
   ],
+  updateFirstGoogleConnection: ["updateFirstGoogleConnection"],
   mobileNavbarTop: ["mobileNavbarTop"],
   sidebar: ["sidebar"],
   main: [
@@ -3023,6 +3135,7 @@ type DescendantsType<T extends NodeNameType> =
   (typeof PlasmicDescendants)[T][number];
 type NodeDefaultElementType = {
   parametresEmployeur: "div";
+  updateFirstGoogleConnection: typeof PageLoader;
   mobileNavbarTop: typeof MobileNavbarTop;
   sidebar: typeof Sidebar;
   main: "div";
@@ -3122,6 +3235,9 @@ export const PlasmicParametresEmployeur = Object.assign(
   makeNodeComponent("parametresEmployeur"),
   {
     // Helper components rendering sub-elements
+    updateFirstGoogleConnection: makeNodeComponent(
+      "updateFirstGoogleConnection"
+    ),
     mobileNavbarTop: makeNodeComponent("mobileNavbarTop"),
     sidebar: makeNodeComponent("sidebar"),
     main: makeNodeComponent("main"),

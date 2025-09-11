@@ -386,6 +386,8 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
   const refsRef = React.useRef({});
   const $refs = refsRef.current;
 
+  const globalVariants = _useGlobalVariants();
+
   const $globalActions = useGlobalActions?.();
 
   let [$queries, setDollarQueries] = React.useState<
@@ -505,7 +507,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
         path: "createJob.isOpen",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $ctx }) => false
       },
       {
         path: "form2.value",
@@ -1041,9 +1043,12 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
         initFunc: ({ $props, $state, $queries, $ctx }) =>
           (() => {
             try {
-              return (
-                $queries.offreStripeUserInfos.data[0].recharge_lastminute <= 0
-              );
+              return (() => {
+                return (
+                  ($queries.offreStripeUserInfos.data[0]?.recharge_lastminute ??
+                    0) === 0
+                );
+              })();
             } catch (e) {
               if (
                 e instanceof TypeError ||
@@ -1714,7 +1719,8 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
         opId: "a0f345b5-bbed-4347-80ba-1896e0ae6a8a",
         userArgs: {
           filters: [
-            $ctx.SupabaseUser.user?.id || "007f3aae-c8f3-420d-915c-b845a3387dfd"
+            // $ctx.SupabaseUser.user.id
+            "345012d4-d726-480d-81f8-24e461899a19"
           ]
         },
         cacheKey: `plasmic.$.a0f345b5-bbed-4347-80ba-1896e0ae6a8a.$.`,
@@ -1743,9 +1749,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
         sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
         opId: "c97d2f24-3d9a-4bf9-8107-193ee0e13062",
         userArgs: {
-          filters: [
-            $ctx.SupabaseUser.user?.id || "007f3aae-c8f3-420d-915c-b845a3387dfd"
-          ]
+          filters: [$ctx.SupabaseUser.user.id]
         },
         cacheKey: `plasmic.$.c97d2f24-3d9a-4bf9-8107-193ee0e13062.$.`,
         invalidatedKeys: null,
@@ -1802,7 +1806,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
         opId: "d6ef9cec-3efc-48a9-a282-e4387e1c0996",
         userArgs: {
           filters: [
-            $ctx.SupabaseUser.user?.id || "007f3aae-c8f3-420d-915c-b845a3387dfd"
+            $ctx.SupabaseUser.user?.id || "345012d4-d726-480d-81f8-24e461899a19"
           ]
         },
         cacheKey: `plasmic.$.d6ef9cec-3efc-48a9-a282-e4387e1c0996.$.`,
@@ -1849,7 +1853,6 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
     $queries = new$Queries;
   }
 
-  const globalVariants = _useGlobalVariants();
   const styleTokensClassNames = _useStyleTokens();
   const styleTokensClassNames_antd_5_hostless =
     useStyleTokens_antd_5_hostless();
@@ -3932,123 +3935,130 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                         ];
                       }
 
-                      $steps["closeModalS"] = true
+                      $steps["createOffer"] = true
                         ? (() => {
                             const actionArgs = {
-                              customFunction: async () => {
-                                return (() => {
-                                  $state.createJob.isOpen = false;
-                                  $state.lastMinuteToggle.switch2IsSelected =
-                                    false;
-                                  return ($state.lastMinuteToggle2.switch2IsSelected =
-                                    false);
-                                })();
+                              dataOp: {
+                                sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
+                                opId: "d065132b-2aac-4c10-8414-8e92410e1c74",
+                                userArgs: {
+                                  variables: [
+                                    $state.form2.value.address,
+
+                                    $state.form2.value.availability_status,
+
+                                    $queries.getCompanies.data[0].id,
+
+                                    $state.form2.value.benefits,
+
+                                    $state.form2.value.team_size,
+
+                                    $state.form2.value.contract_type,
+
+                                    $state.form2.value.country,
+
+                                    $state.form2.value.description,
+
+                                    $state.form2.value.end_date,
+
+                                    $state.lastMinuteToggle
+                                      .switch2IsSelected === true
+                                      ? true
+                                      : false,
+
+                                    $queries.fetchJobCoordinates.data.response
+                                      .features[0].geometry.coordinates[1],
+
+                                    $state.form2.value.location,
+
+                                    $queries.fetchJobCoordinates.data.response
+                                      .features[0].geometry.coordinates[0],
+
+                                    $state.form2.value.postal_code,
+
+                                    $state.form2.value.requirements,
+
+                                    $state.form2.value.salary,
+
+                                    $state.form2.value.sector_activity,
+
+                                    $state.form2.value.start_date,
+
+                                    $state.form2.value.title,
+
+                                    $state.form2.value.work_mode,
+
+                                    $state.form2.value.working_time
+                                  ]
+                                },
+                                cacheKey: null,
+                                invalidatedKeys: [
+                                  "316176a9-f0d4-44d7-baa0-a763336a6271"
+                                ],
+                                roleId: null
                               }
                             };
-                            return (({ customFunction }) => {
-                              return customFunction();
+                            return (async ({ dataOp, continueOnError }) => {
+                              try {
+                                const response = await executePlasmicDataOp(
+                                  dataOp,
+                                  {
+                                    userAuthToken:
+                                      dataSourcesCtx?.userAuthToken,
+                                    user: dataSourcesCtx?.user
+                                  }
+                                );
+                                await plasmicInvalidate(dataOp.invalidatedKeys);
+                                return response;
+                              } catch (e) {
+                                if (!continueOnError) {
+                                  throw e;
+                                }
+                                return e;
+                              }
                             })?.apply(null, [actionArgs]);
                           })()
                         : undefined;
-                      if (
-                        $steps["closeModalS"] != null &&
-                        typeof $steps["closeModalS"] === "object" &&
-                        typeof $steps["closeModalS"].then === "function"
-                      ) {
-                        $steps["closeModalS"] = await $steps["closeModalS"];
-                      }
-
-                      $steps["createOffer"] =
-                        $steps.checkRechargeQuantity === true
-                          ? (() => {
-                              const actionArgs = {
-                                dataOp: {
-                                  sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
-                                  opId: "d065132b-2aac-4c10-8414-8e92410e1c74",
-                                  userArgs: {
-                                    variables: [
-                                      $state.form2.value.address,
-
-                                      $state.form2.value.availability_status,
-
-                                      $queries.getCompanies.data[0].id,
-
-                                      $state.form2.value.benefits,
-
-                                      $state.form2.value.team_size,
-
-                                      $state.form2.value.contract_type,
-
-                                      $state.form2.value.country,
-
-                                      $state.form2.value.description,
-
-                                      $state.form2.value.end_date,
-
-                                      $state.lastMinuteToggle
-                                        .switch2IsSelected === true
-                                        ? true
-                                        : false,
-
-                                      $queries.fetchJobCoordinates.data.response
-                                        .features[0].geometry.coordinates[1],
-
-                                      $state.form2.value.location,
-
-                                      $queries.fetchJobCoordinates.data.response
-                                        .features[0].geometry.coordinates[0],
-
-                                      $state.form2.value.postal_code,
-
-                                      $state.form2.value.requirements,
-
-                                      $state.form2.value.salary,
-
-                                      $state.form2.value.sector_activity,
-
-                                      $state.form2.value.start_date,
-
-                                      $state.form2.value.title,
-
-                                      $state.form2.value.work_mode,
-
-                                      $state.form2.value.working_time
-                                    ]
-                                  },
-                                  cacheKey: null,
-                                  invalidatedKeys: ["plasmic_refresh_all"],
-                                  roleId: null
-                                }
-                              };
-                              return (async ({ dataOp, continueOnError }) => {
-                                try {
-                                  const response = await executePlasmicDataOp(
-                                    dataOp,
-                                    {
-                                      userAuthToken:
-                                        dataSourcesCtx?.userAuthToken,
-                                      user: dataSourcesCtx?.user
-                                    }
-                                  );
-                                  await plasmicInvalidate(
-                                    dataOp.invalidatedKeys
-                                  );
-                                  return response;
-                                } catch (e) {
-                                  if (!continueOnError) {
-                                    throw e;
-                                  }
-                                  return e;
-                                }
-                              })?.apply(null, [actionArgs]);
-                            })()
-                          : undefined;
                       if (
                         $steps["createOffer"] != null &&
                         typeof $steps["createOffer"] === "object" &&
                         typeof $steps["createOffer"].then === "function"
                       ) {
                         $steps["createOffer"] = await $steps["createOffer"];
+                      }
+
+                      $steps["closeModal"] = true
+                        ? (() => {
+                            const actionArgs = {
+                              variable: {
+                                objRoot: $state,
+                                variablePath: ["createJob", "isOpen"]
+                              },
+                              operation: 0,
+                              value: false
+                            };
+                            return (({
+                              variable,
+                              value,
+                              startIndex,
+                              deleteCount
+                            }) => {
+                              if (!variable) {
+                                return;
+                              }
+                              const { objRoot, variablePath } = variable;
+
+                              $stateSet(objRoot, variablePath, value);
+                              return value;
+                            })?.apply(null, [actionArgs]);
+                          })()
+                        : undefined;
+                      if (
+                        $steps["closeModal"] != null &&
+                        typeof $steps["closeModal"] === "object" &&
+                        typeof $steps["closeModal"].then === "function"
+                      ) {
+                        $steps["closeModal"] = await $steps["closeModal"];
                       }
 
                       $steps["showNotification"] =
@@ -12272,7 +12282,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
             }}
             shouldRun={(() => {
               try {
-                return true; //!$queries.getUser.data[0].onboarding
+                return false; //!$queries.getUser.data[0].onboarding
               } catch (e) {
                 if (
                   e instanceof TypeError ||
@@ -17384,7 +17394,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                         const actionArgs = {
                           dataOp: {
                             sourceId: "iWyefF3oqfc9knnzuF1Fin",
-                            opId: "ff777f02-09eb-450c-8314-de92f4c472c4",
+                            opId: "0c550ba0-5774-4abb-84db-fca8e3012f17",
                             userArgs: {
                               path: [
                                 "v1/checkout/sessions/" + $state.stripeSessionId
@@ -17430,7 +17440,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                         const actionArgs = {
                           dataOp: {
                             sourceId: "iWyefF3oqfc9knnzuF1Fin",
-                            opId: "ff777f02-09eb-450c-8314-de92f4c472c4",
+                            opId: "0c550ba0-5774-4abb-84db-fca8e3012f17",
                             userArgs: {
                               path: [
                                 "v1/invoices/" +
