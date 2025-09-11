@@ -9,6 +9,16 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     return res.status(405).json({ error: "Method not allowed" });
   }
 
+  const { data: products, error } = await supabaseServer
+  .from("stripe_products")
+  .select("product_id, name");
+
+  if (error) throw error;
+
+  const classic = products?.find(p => p.name === "classic")?.product_id;
+  const minute = products?.find(p => p.name === "minute")?.product_id;
+  const boost = products?.find(p => p.name === "boost")?.product_id;
+
   try {
     const body = Array.isArray(req.body) ? req.body[0] : req.body;
     const { sessionId, customerId, customerEmail, products, receiptUrl, amount, receiptTitle } = body;
@@ -24,13 +34,13 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       if (!product_id || typeof quantity !== "number") continue;
 
       switch (product_id) {
-        case "prod_SzeJ4QAAb4xq0E":
+        case classic:
           updates.recharge_classic = (updates.recharge_classic || 0) + quantity;
           break;
-        case "prod_SzeKEfPLmPy8kq":
+        case minute:
           updates.recharge_lastminute = (updates.recharge_lastminute || 0) + quantity;
           break;
-        case "prod_SzeKhzG0NYTZNa":
+        case boost:
           updates.recharge_boost = (updates.recharge_boost || 0) + quantity;
           break;
       }
