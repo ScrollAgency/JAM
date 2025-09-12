@@ -2187,7 +2187,7 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                                 let recharge = "";
                                 if (
                                   $state.selectedProduct !==
-                                  "prod_S81KBWHPyJa53z"
+                                  $state.classicSubPid
                                 ) {
                                   const remainingPercent =
                                     $queries.userMonthlyRecharge.data.response
@@ -2214,7 +2214,7 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                                 let annonce = "";
                                 if (
                                   $state.selectedProduct !==
-                                  "prod_S81KBWHPyJa53z"
+                                  $state.classicSubPid
                                 ) {
                                   annonce = `Votre nouvel abonnement commencera aujourd'hui\n\n${recharge}`;
                                 } else {
@@ -2315,7 +2315,7 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                                     !$queries.getUserStripeInfos.data[0]
                                       .status === "completed") ||
                                   ($state.selectedProduct !==
-                                    "prod_S81KBWHPyJa53z" &&
+                                    $state.classicSubPid &&
                                     !shouldUpdate)
                                 );
                               })();
