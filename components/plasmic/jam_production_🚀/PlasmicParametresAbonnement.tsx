@@ -324,8 +324,7 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
         path: "stripeSessionId",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) =>
-          "cs_test_a1y2XqCLnIWjNIvXqBWWSG9RcdPOKYwbfrNHv9fwbjZwkAYWLfiwmcIOWo"
+        initFunc: ({ $props, $state, $queries, $ctx }) => ``
       },
       {
         path: "priceId",
@@ -2351,10 +2350,7 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                                           })()
                                         ],
 
-                                        conditions: [
-                                          $ctx.SupabaseUser.user?.id ||
-                                            "007f3aae-c8f3-420d-915c-b845a3387dfd"
-                                        ]
+                                        conditions: [$ctx.SupabaseUser.user?.id]
                                       },
                                       cacheKey: null,
                                       invalidatedKeys: ["plasmic_refresh_all"],
@@ -2417,7 +2413,7 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                                                 .response.solde.totalClassic;
                                             const update =
                                               $state.selectedProduct ===
-                                              "prod_S81KBWHPyJa53z"
+                                              $state.classicSubPid
                                                 ? 0
                                                 : prorated;
                                             return solde + update;
@@ -2436,7 +2432,7 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                                                 .response.solde.totalLastMinute;
                                             const update =
                                               $state.selectedProduct ===
-                                              "prod_S81KBWHPyJa53z"
+                                              $state.classicSubPid
                                                 ? 0
                                                 : prorated;
                                             return solde + update;
@@ -2455,7 +2451,7 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                                                 .response.solde.totalBoost;
                                             const update =
                                               $state.selectedProduct ===
-                                              "prod_S81KBWHPyJa53z"
+                                              $state.classicSubPid
                                                 ? 0
                                                 : prorated;
                                             return solde + update;
@@ -2750,7 +2746,7 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                                   const actionArgs = {
                                     dataOp: {
                                       sourceId: "iWyefF3oqfc9knnzuF1Fin",
-                                      opId: "edac38f5-7e6a-4471-abc9-1fae839a1f82",
+                                      opId: "4057985d-b5cb-457f-afb0-c8d2c9ec9daf",
                                       userArgs: {
                                         params: [
                                           $queries.stripeProductsList.data.response.data.find(
