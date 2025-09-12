@@ -17301,9 +17301,9 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                         const actionArgs = {
                           dataOp: {
                             sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
-                            opId: "44279b1d-8867-4128-97b8-520ffe67ab32",
+                            opId: "d6ef9cec-3efc-48a9-a282-e4387e1c0996",
                             userArgs: {
-                              filters: [$ctx.SupabaseUser.user.id]
+                              filters: [$ctx.SupabaseUser.user?.id]
                             },
                             cacheKey: null,
                             invalidatedKeys: null,
@@ -17710,15 +17710,18 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
 
                                   $state.productId,
 
-                                  $state.productId === "prod_S81KBWHPyJa53z"
+                                  $state.productId ===
+                                  $queries.getStripeRefs.data[0].product_id
                                     ? 0
                                     : 2,
 
-                                  $state.productId === "prod_S81KBWHPyJa53z"
+                                  $state.productId ===
+                                  $queries.getStripeRefs.data[0].product_id
                                     ? 3
                                     : 8,
 
-                                  $state.productId === "prod_S81KBWHPyJa53z"
+                                  $state.productId ===
+                                  $queries.getStripeRefs.data[0].product_id
                                     ? 1
                                     : 4,
 
