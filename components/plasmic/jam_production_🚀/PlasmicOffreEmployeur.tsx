@@ -252,6 +252,7 @@ export type PlasmicOffreEmployeur__OverridesType = {
   stopInscription?: Flex__<typeof Modal>;
   e?: Flex__<"div">;
   onBoarding?: Flex__<typeof PageLoader>;
+  onBoarding2?: Flex__<typeof PageLoader>;
   onBordingNew?: Flex__<typeof SmartLoader>;
   modalOnboarding?: Flex__<"div">;
   loadingBoundary?: Flex__<typeof LoadingBoundary>;
@@ -1740,7 +1741,9 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
         sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
         opId: "c97d2f24-3d9a-4bf9-8107-193ee0e13062",
         userArgs: {
-          filters: [$ctx.SupabaseUser.user?.id]
+          filters: [
+            $ctx.SupabaseUser.user?.id || "b8f45c2e-11b8-4bca-9547-f9b3c1ae530a"
+          ]
         },
         cacheKey: `plasmic.$.c97d2f24-3d9a-4bf9-8107-193ee0e13062.$.`,
         invalidatedKeys: null,
@@ -12281,10 +12284,58 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
             }}
             shouldRun={(() => {
               try {
-                return (
-                  $queries.getUser.data[0].onboarding === false
-                  //false
-                );
+                return $queries.getUser.data[0].onboarding === false;
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return true;
+                }
+                throw e;
+              }
+            })()}
+          />
+
+          <PageLoader
+            data-plasmic-name={"onBoarding2"}
+            data-plasmic-override={overrides.onBoarding2}
+            className={classNames("__wab_instance", sty.onBoarding2)}
+            onMount={async () => {
+              const $steps = {};
+
+              $steps["updateShowModal"] = true
+                ? (() => {
+                    const actionArgs = {
+                      variable: {
+                        objRoot: $state,
+                        variablePath: ["showModal"]
+                      },
+                      operation: 0,
+                      value: false
+                    };
+                    return (({ variable, value, startIndex, deleteCount }) => {
+                      if (!variable) {
+                        return;
+                      }
+                      const { objRoot, variablePath } = variable;
+
+                      $stateSet(objRoot, variablePath, value);
+                      return value;
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["updateShowModal"] != null &&
+                typeof $steps["updateShowModal"] === "object" &&
+                typeof $steps["updateShowModal"].then === "function"
+              ) {
+                $steps["updateShowModal"] = await $steps["updateShowModal"];
+              }
+            }}
+            shouldRun={(() => {
+              try {
+                return $queries.getUser.data[0].onboarding !== false;
               } catch (e) {
                 if (
                   e instanceof TypeError ||
@@ -19778,6 +19829,7 @@ const PlasmicDescendants = {
     "stopInscription",
     "e",
     "onBoarding",
+    "onBoarding2",
     "onBordingNew",
     "modalOnboarding",
     "loadingBoundary",
@@ -20193,6 +20245,7 @@ const PlasmicDescendants = {
   stopInscription: ["stopInscription", "e"],
   e: ["e"],
   onBoarding: ["onBoarding"],
+  onBoarding2: ["onBoarding2"],
   onBordingNew: ["onBordingNew"],
   modalOnboarding: [
     "modalOnboarding",
@@ -20740,6 +20793,7 @@ type NodeDefaultElementType = {
   stopInscription: typeof Modal;
   e: "div";
   onBoarding: typeof PageLoader;
+  onBoarding2: typeof PageLoader;
   onBordingNew: typeof SmartLoader;
   modalOnboarding: "div";
   loadingBoundary: typeof LoadingBoundary;
@@ -20995,6 +21049,7 @@ export const PlasmicOffreEmployeur = Object.assign(
     stopInscription: makeNodeComponent("stopInscription"),
     e: makeNodeComponent("e"),
     onBoarding: makeNodeComponent("onBoarding"),
+    onBoarding2: makeNodeComponent("onBoarding2"),
     onBordingNew: makeNodeComponent("onBordingNew"),
     modalOnboarding: makeNodeComponent("modalOnboarding"),
     loadingBoundary: makeNodeComponent("loadingBoundary"),
