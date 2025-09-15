@@ -12282,8 +12282,8 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
             shouldRun={(() => {
               try {
                 return (
-                  //$queries.getUser.data[0].onboarding === false
-                  false
+                  $queries.getUser.data[0].onboarding === false
+                  //false
                 );
               } catch (e) {
                 if (
@@ -12378,7 +12378,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                 throw e;
               }
             })()}
-            shouldRun={true}
+            shouldRun={false}
           />
 
           {(() => {
