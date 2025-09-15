@@ -1219,14 +1219,30 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                         className={classNames(
                           projectcss.all,
                           projectcss.__wab_text,
-                          sty.text__fHy9E
+                          sty.text___7VgD1
                         )}
                       >
                         <React.Fragment>
                           {(() => {
                             try {
                               return (
-                                "step 6 : " + $state.modalCreditsAlerts.isOpen
+                                "step 3, sessison : " +
+                                {
+                                  sessionId: $state.sessionId,
+                                  customerId:
+                                    $steps.getSessionInfos.data.response.session
+                                      .client_reference_id,
+                                  customerEmail:
+                                    $steps.getSessionInfos.data.response.session
+                                      .customer_details.email,
+                                  products:
+                                    $steps.getSessionInfos.data.response.session.line_items.data.map(
+                                      item => ({
+                                        product_id: item.price.product,
+                                        quantity: item.quantity
+                                      })
+                                    )
+                                }
                               );
                             } catch (e) {
                               if (
@@ -1244,13 +1260,38 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                         className={classNames(
                           projectcss.all,
                           projectcss.__wab_text,
-                          sty.text___7VgD1
+                          sty.text__bwe7M
                         )}
                       >
                         <React.Fragment>
                           {(() => {
                             try {
-                              return "step 7 : ";
+                              return "step 5 : ?";
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return "Nous terminons d'enregistrer votre paiement...";
+                              }
+                              throw e;
+                            }
+                          })()}
+                        </React.Fragment>
+                      </div>
+                      <div
+                        className={classNames(
+                          projectcss.all,
+                          projectcss.__wab_text,
+                          sty.text__fHy9E
+                        )}
+                      >
+                        <React.Fragment>
+                          {(() => {
+                            try {
+                              return (
+                                "step 6 : " + $state.modalCreditsAlerts.isOpen
+                              );
                             } catch (e) {
                               if (
                                 e instanceof TypeError ||
