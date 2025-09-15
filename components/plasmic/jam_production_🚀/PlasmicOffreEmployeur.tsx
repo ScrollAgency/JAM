@@ -1684,6 +1684,12 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
         type: "private",
         variableType: "boolean",
         initFunc: ({ $props, $state, $queries, $ctx }) => false
+      },
+      {
+        path: "onBoardingStatus",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $ctx }) => false
       }
     ],
     [$props, $ctx, $refs]
@@ -12282,19 +12288,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                 $steps["updateShowModal"] = await $steps["updateShowModal"];
               }
             }}
-            shouldRun={(() => {
-              try {
-                return $queries.getUser.data[0].onboarding === false;
-              } catch (e) {
-                if (
-                  e instanceof TypeError ||
-                  e?.plasmicType === "PlasmicUndefinedDataError"
-                ) {
-                  return true;
-                }
-                throw e;
-              }
-            })()}
+            shouldRun={false}
           />
 
           <PageLoader
@@ -12333,25 +12327,47 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                 $steps["updateShowModal"] = await $steps["updateShowModal"];
               }
             }}
-            shouldRun={(() => {
-              try {
-                return $queries.getUser.data[0].onboarding !== false;
-              } catch (e) {
-                if (
-                  e instanceof TypeError ||
-                  e?.plasmicType === "PlasmicUndefinedDataError"
-                ) {
-                  return true;
-                }
-                throw e;
-              }
-            })()}
+            shouldRun={true}
           />
 
           <SmartLoader
             data-plasmic-name={"onBordingNew"}
             data-plasmic-override={overrides.onBordingNew}
             action1={async () => {
+              const $steps = {};
+
+              $steps["updateOnBoardingStatus"] = true
+                ? (() => {
+                    const actionArgs = {
+                      variable: {
+                        objRoot: $state,
+                        variablePath: ["onBoardingStatus"]
+                      },
+                      operation: 0,
+                      value: $queries.getUser.data[0].onboarding
+                    };
+                    return (({ variable, value, startIndex, deleteCount }) => {
+                      if (!variable) {
+                        return;
+                      }
+                      const { objRoot, variablePath } = variable;
+
+                      $stateSet(objRoot, variablePath, value);
+                      return value;
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["updateOnBoardingStatus"] != null &&
+                typeof $steps["updateOnBoardingStatus"] === "object" &&
+                typeof $steps["updateOnBoardingStatus"].then === "function"
+              ) {
+                $steps["updateOnBoardingStatus"] = await $steps[
+                  "updateOnBoardingStatus"
+                ];
+              }
+            }}
+            action2={async () => {
               const $steps = {};
 
               $steps["updateShowModal"] = true
@@ -12383,7 +12399,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                 $steps["updateShowModal"] = await $steps["updateShowModal"];
               }
             }}
-            action2={async () => {
+            action3={async () => {
               const $steps = {};
 
               $steps["updateShowModal"] = true
@@ -12416,9 +12432,10 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
               }
             }}
             className={classNames("__wab_instance", sty.onBordingNew)}
-            condition1={(() => {
+            condition1={true}
+            condition2={(() => {
               try {
-                return $queries.getUser.data[0].onboarding === false;
+                return $state.onBoardingStatus === true;
               } catch (e) {
                 if (
                   e instanceof TypeError ||
@@ -12429,7 +12446,20 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                 throw e;
               }
             })()}
-            shouldRun={false}
+            condition3={(() => {
+              try {
+                return $state.onBoardingStatus === false;
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return true;
+                }
+                throw e;
+              }
+            })()}
+            shouldRun={true}
           />
 
           {(() => {
