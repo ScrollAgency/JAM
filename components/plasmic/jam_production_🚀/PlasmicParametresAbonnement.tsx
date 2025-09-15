@@ -1195,6 +1195,77 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                           {"Nous terminons d'enregistrer votre paiement..."}
                         </div>
                       ) : null}
+                      <div
+                        className={classNames(
+                          projectcss.all,
+                          projectcss.__wab_text,
+                          sty.text__vMxci
+                        )}
+                      >
+                        <React.Fragment>
+                          {(() => {
+                            try {
+                              return "step 1 : " + $state.paiementValidated;
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return "Nous terminons d'enregistrer votre paiement...";
+                              }
+                              throw e;
+                            }
+                          })()}
+                        </React.Fragment>
+                      </div>
+                      <div
+                        className={classNames(
+                          projectcss.all,
+                          projectcss.__wab_text,
+                          sty.text__lcv7S
+                        )}
+                      >
+                        <React.Fragment>
+                          {(() => {
+                            try {
+                              return (
+                                "step 2 : " + $state.sessionId.slice(0, 10)
+                              );
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return "Nous terminons d'enregistrer votre paiement...";
+                              }
+                              throw e;
+                            }
+                          })()}
+                        </React.Fragment>
+                      </div>
+                      <div
+                        className={classNames(
+                          projectcss.all,
+                          projectcss.__wab_text,
+                          sty.text__fHy9E
+                        )}
+                      >
+                        <React.Fragment>
+                          {(() => {
+                            try {
+                              return "step 3 : ";
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return "Nous terminons d'enregistrer votre paiement...";
+                              }
+                              throw e;
+                            }
+                          })()}
+                        </React.Fragment>
+                      </div>
                       {(() => {
                         try {
                           return $ctx.query.paiement === "ok";
