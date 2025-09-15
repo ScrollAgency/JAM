@@ -1051,34 +1051,6 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
               ) {
                 $steps["goToPagePaymentOk"] = await $steps["goToPagePaymentOk"];
               }
-
-              $steps["updateProductId"] = true
-                ? (() => {
-                    const actionArgs = {
-                      variable: {
-                        objRoot: $state,
-                        variablePath: ["productId"]
-                      },
-                      operation: 0
-                    };
-                    return (({ variable, value, startIndex, deleteCount }) => {
-                      if (!variable) {
-                        return;
-                      }
-                      const { objRoot, variablePath } = variable;
-
-                      $stateSet(objRoot, variablePath, value);
-                      return value;
-                    })?.apply(null, [actionArgs]);
-                  })()
-                : undefined;
-              if (
-                $steps["updateProductId"] != null &&
-                typeof $steps["updateProductId"] === "object" &&
-                typeof $steps["updateProductId"].then === "function"
-              ) {
-                $steps["updateProductId"] = await $steps["updateProductId"];
-              }
             }}
             shouldRun={(() => {
               try {
@@ -1253,7 +1225,32 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                         <React.Fragment>
                           {(() => {
                             try {
-                              return "step 3 : ";
+                              return (
+                                "step 6 : " + $state.modalCreditsAlerts.isOpen
+                              );
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return "Nous terminons d'enregistrer votre paiement...";
+                              }
+                              throw e;
+                            }
+                          })()}
+                        </React.Fragment>
+                      </div>
+                      <div
+                        className={classNames(
+                          projectcss.all,
+                          projectcss.__wab_text,
+                          sty.text___7VgD1
+                        )}
+                      >
+                        <React.Fragment>
+                          {(() => {
+                            try {
+                              return "step 7 : ";
                             } catch (e) {
                               if (
                                 e instanceof TypeError ||
