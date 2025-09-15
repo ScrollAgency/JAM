@@ -87,6 +87,7 @@ import { UploadWrapper } from "@plasmicpkgs/antd5/skinny/registerUpload";
 import ProgressBar from "../../ProgressBar"; // plasmic-import: o2sDSKJQp4UX/component
 import { JamButton } from "../../forms/JamButton/JamButton"; // plasmic-import: UiI0wt2mxfuf/codeComponent
 import { PageLoader } from "../../others/PageLoader/PageLoader"; // plasmic-import: FHDrnDhA4DZe/codeComponent
+import { SmartLoader } from "../../others/SmartLoader/SmartLoader"; // plasmic-import: YAp2GWWLB3S2/codeComponent
 import { LoadingBoundary } from "@plasmicpkgs/plasmic-basic-components";
 import { AntdInput } from "@plasmicpkgs/antd5/skinny/registerInput";
 import { inputHelpers as AntdInput_Helpers } from "@plasmicpkgs/antd5/skinny/registerInput";
@@ -94,7 +95,6 @@ import { AntdTextArea } from "@plasmicpkgs/antd5/skinny/registerInput";
 import { inputHelpers as AntdTextArea_Helpers } from "@plasmicpkgs/antd5/skinny/registerInput";
 import CvUploaded from "../../CvUploaded"; // plasmic-import: bmRjHjAcjHYi/component
 import ProductCard from "../../ProductCard"; // plasmic-import: XNMQC2V0FBMZ/component
-import { SmartLoader } from "../../others/SmartLoader/SmartLoader"; // plasmic-import: YAp2GWWLB3S2/codeComponent
 import MobileNavbarBottomCompany from "../../MobileNavbarBottomCompany"; // plasmic-import: gAnwjyfMiBe9/component
 import { InputComboSelect } from "../../forms/InputComboSelect/InputComboSelect"; // plasmic-import: KwvhXarw-EVS/codeComponent
 import { StripeCheckoutButton } from "../../forms/StripeCheckoutButton/StripeCheckoutButton"; // plasmic-import: HaGLE8b9jujz/codeComponent
@@ -252,6 +252,7 @@ export type PlasmicOffreEmployeur__OverridesType = {
   stopInscription?: Flex__<typeof Modal>;
   e?: Flex__<"div">;
   onBoarding?: Flex__<typeof PageLoader>;
+  onBordingNew?: Flex__<typeof SmartLoader>;
   modalOnboarding?: Flex__<"div">;
   loadingBoundary?: Flex__<typeof LoadingBoundary>;
   modal?: Flex__<"div">;
@@ -12280,6 +12281,92 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
             }}
             shouldRun={(() => {
               try {
+                return (
+                  //$queries.getUser.data[0].onboarding === false
+                  false
+                );
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return true;
+                }
+                throw e;
+              }
+            })()}
+          />
+
+          <SmartLoader
+            data-plasmic-name={"onBordingNew"}
+            data-plasmic-override={overrides.onBordingNew}
+            action1={async () => {
+              const $steps = {};
+
+              $steps["updateShowModal"] = true
+                ? (() => {
+                    const actionArgs = {
+                      variable: {
+                        objRoot: $state,
+                        variablePath: ["showModal"]
+                      },
+                      operation: 0,
+                      value: false
+                    };
+                    return (({ variable, value, startIndex, deleteCount }) => {
+                      if (!variable) {
+                        return;
+                      }
+                      const { objRoot, variablePath } = variable;
+
+                      $stateSet(objRoot, variablePath, value);
+                      return value;
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["updateShowModal"] != null &&
+                typeof $steps["updateShowModal"] === "object" &&
+                typeof $steps["updateShowModal"].then === "function"
+              ) {
+                $steps["updateShowModal"] = await $steps["updateShowModal"];
+              }
+            }}
+            action2={async () => {
+              const $steps = {};
+
+              $steps["updateShowModal"] = true
+                ? (() => {
+                    const actionArgs = {
+                      variable: {
+                        objRoot: $state,
+                        variablePath: ["showModal"]
+                      },
+                      operation: 0,
+                      value: true
+                    };
+                    return (({ variable, value, startIndex, deleteCount }) => {
+                      if (!variable) {
+                        return;
+                      }
+                      const { objRoot, variablePath } = variable;
+
+                      $stateSet(objRoot, variablePath, value);
+                      return value;
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["updateShowModal"] != null &&
+                typeof $steps["updateShowModal"] === "object" &&
+                typeof $steps["updateShowModal"].then === "function"
+              ) {
+                $steps["updateShowModal"] = await $steps["updateShowModal"];
+              }
+            }}
+            className={classNames("__wab_instance", sty.onBordingNew)}
+            condition1={(() => {
+              try {
                 return $queries.getUser.data[0].onboarding === false;
               } catch (e) {
                 if (
@@ -12291,6 +12378,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                 throw e;
               }
             })()}
+            shouldRun={true}
           />
 
           {(() => {
@@ -19690,6 +19778,7 @@ const PlasmicDescendants = {
     "stopInscription",
     "e",
     "onBoarding",
+    "onBordingNew",
     "modalOnboarding",
     "loadingBoundary",
     "modal",
@@ -20104,6 +20193,7 @@ const PlasmicDescendants = {
   stopInscription: ["stopInscription", "e"],
   e: ["e"],
   onBoarding: ["onBoarding"],
+  onBordingNew: ["onBordingNew"],
   modalOnboarding: [
     "modalOnboarding",
     "loadingBoundary",
@@ -20650,6 +20740,7 @@ type NodeDefaultElementType = {
   stopInscription: typeof Modal;
   e: "div";
   onBoarding: typeof PageLoader;
+  onBordingNew: typeof SmartLoader;
   modalOnboarding: "div";
   loadingBoundary: typeof LoadingBoundary;
   modal: "div";
@@ -20904,6 +20995,7 @@ export const PlasmicOffreEmployeur = Object.assign(
     stopInscription: makeNodeComponent("stopInscription"),
     e: makeNodeComponent("e"),
     onBoarding: makeNodeComponent("onBoarding"),
+    onBordingNew: makeNodeComponent("onBordingNew"),
     modalOnboarding: makeNodeComponent("modalOnboarding"),
     loadingBoundary: makeNodeComponent("loadingBoundary"),
     modal: makeNodeComponent("modal"),
