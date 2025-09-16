@@ -86,7 +86,6 @@ import DeleteAccount from "../../DeleteAccount"; // plasmic-import: KdtWnTG_vDHe
 import { UploadWrapper } from "@plasmicpkgs/antd5/skinny/registerUpload";
 import ProgressBar from "../../ProgressBar"; // plasmic-import: o2sDSKJQp4UX/component
 import { JamButton } from "../../forms/JamButton/JamButton"; // plasmic-import: UiI0wt2mxfuf/codeComponent
-import { PageLoader } from "../../others/PageLoader/PageLoader"; // plasmic-import: FHDrnDhA4DZe/codeComponent
 import { SmartLoader } from "../../others/SmartLoader/SmartLoader"; // plasmic-import: YAp2GWWLB3S2/codeComponent
 import { LoadingBoundary } from "@plasmicpkgs/plasmic-basic-components";
 import { AntdInput } from "@plasmicpkgs/antd5/skinny/registerInput";
@@ -95,6 +94,7 @@ import { AntdTextArea } from "@plasmicpkgs/antd5/skinny/registerInput";
 import { inputHelpers as AntdTextArea_Helpers } from "@plasmicpkgs/antd5/skinny/registerInput";
 import CvUploaded from "../../CvUploaded"; // plasmic-import: bmRjHjAcjHYi/component
 import ProductCard from "../../ProductCard"; // plasmic-import: XNMQC2V0FBMZ/component
+import { PageLoader } from "../../others/PageLoader/PageLoader"; // plasmic-import: FHDrnDhA4DZe/codeComponent
 import MobileNavbarBottomCompany from "../../MobileNavbarBottomCompany"; // plasmic-import: gAnwjyfMiBe9/component
 import { InputComboSelect } from "../../forms/InputComboSelect/InputComboSelect"; // plasmic-import: KwvhXarw-EVS/codeComponent
 import { StripeCheckoutButton } from "../../forms/StripeCheckoutButton/StripeCheckoutButton"; // plasmic-import: HaGLE8b9jujz/codeComponent
@@ -251,8 +251,6 @@ export type PlasmicOffreEmployeur__OverridesType = {
   profilCreate?: Flex__<typeof Modal>;
   stopInscription?: Flex__<typeof Modal>;
   e?: Flex__<"div">;
-  onBoarding?: Flex__<typeof PageLoader>;
-  onBoarding2?: Flex__<typeof PageLoader>;
   onBordingNew?: Flex__<typeof SmartLoader>;
   modalOnboarding?: Flex__<"div">;
   loadingBoundary?: Flex__<typeof LoadingBoundary>;
@@ -12252,84 +12250,6 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
               }
             />
           ) : null}
-          <PageLoader
-            data-plasmic-name={"onBoarding"}
-            data-plasmic-override={overrides.onBoarding}
-            className={classNames("__wab_instance", sty.onBoarding)}
-            onMount={async () => {
-              const $steps = {};
-
-              $steps["updateShowModal"] = true
-                ? (() => {
-                    const actionArgs = {
-                      variable: {
-                        objRoot: $state,
-                        variablePath: ["showModal"]
-                      },
-                      operation: 0,
-                      value: true
-                    };
-                    return (({ variable, value, startIndex, deleteCount }) => {
-                      if (!variable) {
-                        return;
-                      }
-                      const { objRoot, variablePath } = variable;
-
-                      $stateSet(objRoot, variablePath, value);
-                      return value;
-                    })?.apply(null, [actionArgs]);
-                  })()
-                : undefined;
-              if (
-                $steps["updateShowModal"] != null &&
-                typeof $steps["updateShowModal"] === "object" &&
-                typeof $steps["updateShowModal"].then === "function"
-              ) {
-                $steps["updateShowModal"] = await $steps["updateShowModal"];
-              }
-            }}
-            shouldRun={false}
-          />
-
-          <PageLoader
-            data-plasmic-name={"onBoarding2"}
-            data-plasmic-override={overrides.onBoarding2}
-            className={classNames("__wab_instance", sty.onBoarding2)}
-            onMount={async () => {
-              const $steps = {};
-
-              $steps["updateShowModal"] = true
-                ? (() => {
-                    const actionArgs = {
-                      variable: {
-                        objRoot: $state,
-                        variablePath: ["showModal"]
-                      },
-                      operation: 0,
-                      value: false
-                    };
-                    return (({ variable, value, startIndex, deleteCount }) => {
-                      if (!variable) {
-                        return;
-                      }
-                      const { objRoot, variablePath } = variable;
-
-                      $stateSet(objRoot, variablePath, value);
-                      return value;
-                    })?.apply(null, [actionArgs]);
-                  })()
-                : undefined;
-              if (
-                $steps["updateShowModal"] != null &&
-                typeof $steps["updateShowModal"] === "object" &&
-                typeof $steps["updateShowModal"].then === "function"
-              ) {
-                $steps["updateShowModal"] = await $steps["updateShowModal"];
-              }
-            }}
-            shouldRun={false}
-          />
-
           <SmartLoader
             data-plasmic-name={"onBordingNew"}
             data-plasmic-override={overrides.onBordingNew}
@@ -19858,8 +19778,6 @@ const PlasmicDescendants = {
     "profilCreate",
     "stopInscription",
     "e",
-    "onBoarding",
-    "onBoarding2",
     "onBordingNew",
     "modalOnboarding",
     "loadingBoundary",
@@ -20274,8 +20192,6 @@ const PlasmicDescendants = {
   profilCreate: ["profilCreate"],
   stopInscription: ["stopInscription", "e"],
   e: ["e"],
-  onBoarding: ["onBoarding"],
-  onBoarding2: ["onBoarding2"],
   onBordingNew: ["onBordingNew"],
   modalOnboarding: [
     "modalOnboarding",
@@ -20822,8 +20738,6 @@ type NodeDefaultElementType = {
   profilCreate: typeof Modal;
   stopInscription: typeof Modal;
   e: "div";
-  onBoarding: typeof PageLoader;
-  onBoarding2: typeof PageLoader;
   onBordingNew: typeof SmartLoader;
   modalOnboarding: "div";
   loadingBoundary: typeof LoadingBoundary;
@@ -21078,8 +20992,6 @@ export const PlasmicOffreEmployeur = Object.assign(
     profilCreate: makeNodeComponent("profilCreate"),
     stopInscription: makeNodeComponent("stopInscription"),
     e: makeNodeComponent("e"),
-    onBoarding: makeNodeComponent("onBoarding"),
-    onBoarding2: makeNodeComponent("onBoarding2"),
     onBordingNew: makeNodeComponent("onBordingNew"),
     modalOnboarding: makeNodeComponent("modalOnboarding"),
     loadingBoundary: makeNodeComponent("loadingBoundary"),

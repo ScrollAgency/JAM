@@ -4000,14 +4000,6 @@
   color: var(--token-OIYWLyLPYWym);
   height: 1em;
 }
-.onBoarding:global(.__wab_instance) {
-  max-width: 100%;
-  object-fit: cover;
-}
-.onBoarding2:global(.__wab_instance) {
-  max-width: 100%;
-  object-fit: cover;
-}
 .onBordingNew:global(.__wab_instance) {
   max-width: 100%;
   object-fit: cover;
