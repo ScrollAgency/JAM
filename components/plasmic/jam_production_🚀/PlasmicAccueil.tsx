@@ -81,6 +81,7 @@ import { MapBox } from "../../../plasmic-library/others/Map/Map"; // plasmic-imp
 import SectionCard from "../../SectionCard"; // plasmic-import: nbNWFt-vOCjr/component
 import Modal from "../../Modal"; // plasmic-import: fsC3QwUZz9uz/component
 import { JamButton } from "../../forms/JamButton/JamButton"; // plasmic-import: UiI0wt2mxfuf/codeComponent
+import { PageLoader } from "../../others/PageLoader/PageLoader"; // plasmic-import: FHDrnDhA4DZe/codeComponent
 import { UploadWrapper } from "@plasmicpkgs/antd5/skinny/registerUpload";
 import TextInput from "../../TextInput"; // plasmic-import: pZ7Ql6sUFRw9/component
 import { PhoneSelector } from "../../forms/PhoneSelector/PhoneSelector"; // plasmic-import: sOyePdANTQ6t/codeComponent
@@ -91,7 +92,6 @@ import TextAreaInput from "../../TextAreaInput"; // plasmic-import: nVAUbPc6gpoz
 import { FileUploader } from "../../others/FileUploader/FileUploader"; // plasmic-import: RpVDoPZzyXH3/codeComponent
 import { Login } from "../../../plasmic-library/authentication/Login"; // plasmic-import: DTfpuarR8FPx/codeComponent
 import Footer from "../../Footer"; // plasmic-import: ZOpOgPOAiAAY/component
-import { PageLoader } from "../../others/PageLoader/PageLoader"; // plasmic-import: FHDrnDhA4DZe/codeComponent
 import { Fetcher } from "@plasmicapp/react-web/lib/data-sources";
 import { _useGlobalVariants } from "./plasmic"; // plasmic-import: f7DE9y7qp46fyCw5nuY8f9/projectModule
 import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: f7DE9y7qp46fyCw5nuY8f9/styleTokensProvider
@@ -228,6 +228,7 @@ export type PlasmicAccueil__OverridesType = {
   sectionCard2?: Flex__<typeof SectionCard>;
   sectionCard3?: Flex__<typeof SectionCard>;
   verifyUserAuth?: Flex__<typeof Modal>;
+  pageLoader?: Flex__<typeof PageLoader>;
   jobDetails?: Flex__<typeof Modal>;
   button5?: Flex__<typeof JamButton>;
   jobListing?: Flex__<"div">;
@@ -509,7 +510,7 @@ function PlasmicAccueil__RenderFunc(props: {
         path: "jobDetails.isOpen",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => false
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
       },
       {
         path: "signUpApplication.isOpen",
@@ -1651,7 +1652,7 @@ function PlasmicAccueil__RenderFunc(props: {
         sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
         opId: "43adfa1c-e51d-4d59-86cb-4e2c2456c3f6",
         userArgs: {
-          query: [$ctx.query.job_id]
+          query: [Number($ctx.query.job_id)]
         },
         cacheKey: `plasmic.$.43adfa1c-e51d-4d59-86cb-4e2c2456c3f6.$.`,
         invalidatedKeys: null,
@@ -6035,67 +6036,6 @@ function PlasmicAccueil__RenderFunc(props: {
                                                         }
 
                                                         $steps[
-                                                          "updateJobDetailsIsOpen"
-                                                        ] = true
-                                                          ? (() => {
-                                                              const actionArgs =
-                                                                {
-                                                                  variable: {
-                                                                    objRoot:
-                                                                      $state,
-                                                                    variablePath:
-                                                                      [
-                                                                        "jobDetails",
-                                                                        "isOpen"
-                                                                      ]
-                                                                  },
-                                                                  operation: 0,
-                                                                  value: true
-                                                                };
-                                                              return (({
-                                                                variable,
-                                                                value,
-                                                                startIndex,
-                                                                deleteCount
-                                                              }) => {
-                                                                if (!variable) {
-                                                                  return;
-                                                                }
-                                                                const {
-                                                                  objRoot,
-                                                                  variablePath
-                                                                } = variable;
-
-                                                                $stateSet(
-                                                                  objRoot,
-                                                                  variablePath,
-                                                                  value
-                                                                );
-                                                                return value;
-                                                              })?.apply(null, [
-                                                                actionArgs
-                                                              ]);
-                                                            })()
-                                                          : undefined;
-                                                        if (
-                                                          $steps[
-                                                            "updateJobDetailsIsOpen"
-                                                          ] != null &&
-                                                          typeof $steps[
-                                                            "updateJobDetailsIsOpen"
-                                                          ] === "object" &&
-                                                          typeof $steps[
-                                                            "updateJobDetailsIsOpen"
-                                                          ].then === "function"
-                                                        ) {
-                                                          $steps[
-                                                            "updateJobDetailsIsOpen"
-                                                          ] = await $steps[
-                                                            "updateJobDetailsIsOpen"
-                                                          ];
-                                                        }
-
-                                                        $steps[
                                                           "updateJobCoordinates"
                                                         ] = true
                                                           ? (() => {
@@ -6157,6 +6097,67 @@ function PlasmicAccueil__RenderFunc(props: {
                                                             "updateJobCoordinates"
                                                           ] = await $steps[
                                                             "updateJobCoordinates"
+                                                          ];
+                                                        }
+
+                                                        $steps[
+                                                          "updateJobDetailsIsOpen"
+                                                        ] = true
+                                                          ? (() => {
+                                                              const actionArgs =
+                                                                {
+                                                                  variable: {
+                                                                    objRoot:
+                                                                      $state,
+                                                                    variablePath:
+                                                                      [
+                                                                        "jobDetails",
+                                                                        "isOpen"
+                                                                      ]
+                                                                  },
+                                                                  operation: 0,
+                                                                  value: true
+                                                                };
+                                                              return (({
+                                                                variable,
+                                                                value,
+                                                                startIndex,
+                                                                deleteCount
+                                                              }) => {
+                                                                if (!variable) {
+                                                                  return;
+                                                                }
+                                                                const {
+                                                                  objRoot,
+                                                                  variablePath
+                                                                } = variable;
+
+                                                                $stateSet(
+                                                                  objRoot,
+                                                                  variablePath,
+                                                                  value
+                                                                );
+                                                                return value;
+                                                              })?.apply(null, [
+                                                                actionArgs
+                                                              ]);
+                                                            })()
+                                                          : undefined;
+                                                        if (
+                                                          $steps[
+                                                            "updateJobDetailsIsOpen"
+                                                          ] != null &&
+                                                          typeof $steps[
+                                                            "updateJobDetailsIsOpen"
+                                                          ] === "object" &&
+                                                          typeof $steps[
+                                                            "updateJobDetailsIsOpen"
+                                                          ].then === "function"
+                                                        ) {
+                                                          $steps[
+                                                            "updateJobDetailsIsOpen"
+                                                          ] = await $steps[
+                                                            "updateJobDetailsIsOpen"
                                                           ];
                                                         }
                                                       },
@@ -9486,6 +9487,65 @@ function PlasmicAccueil__RenderFunc(props: {
                     showHeader={true}
                   />
 
+                  <PageLoader
+                    data-plasmic-name={"pageLoader"}
+                    data-plasmic-override={overrides.pageLoader}
+                    className={classNames("__wab_instance", sty.pageLoader)}
+                    onMount={async () => {
+                      const $steps = {};
+
+                      $steps["updateJobDetailsIsOpen"] = true
+                        ? (() => {
+                            const actionArgs = {
+                              variable: {
+                                objRoot: $state,
+                                variablePath: ["jobDetails", "isOpen"]
+                              },
+                              operation: 0,
+                              value: true
+                            };
+                            return (({
+                              variable,
+                              value,
+                              startIndex,
+                              deleteCount
+                            }) => {
+                              if (!variable) {
+                                return;
+                              }
+                              const { objRoot, variablePath } = variable;
+
+                              $stateSet(objRoot, variablePath, value);
+                              return value;
+                            })?.apply(null, [actionArgs]);
+                          })()
+                        : undefined;
+                      if (
+                        $steps["updateJobDetailsIsOpen"] != null &&
+                        typeof $steps["updateJobDetailsIsOpen"] === "object" &&
+                        typeof $steps["updateJobDetailsIsOpen"].then ===
+                          "function"
+                      ) {
+                        $steps["updateJobDetailsIsOpen"] = await $steps[
+                          "updateJobDetailsIsOpen"
+                        ];
+                      }
+                    }}
+                    shouldRun={(() => {
+                      try {
+                        return !!$state.jobObject.id;
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return false;
+                        }
+                        throw e;
+                      }
+                    })()}
+                  />
+
                   <Modal
                     data-plasmic-name={"jobDetails"}
                     data-plasmic-override={overrides.jobDetails}
@@ -11166,15 +11226,15 @@ function PlasmicAccueil__RenderFunc(props: {
                           onClick={async event => {
                             const $steps = {};
 
-                            $steps["updateModalIsOpen"] = true
+                            $steps["updateJobObject"] = true
                               ? (() => {
                                   const actionArgs = {
                                     variable: {
                                       objRoot: $state,
-                                      variablePath: ["jobDetails", "isOpen"]
+                                      variablePath: ["jobObject"]
                                     },
                                     operation: 0,
-                                    value: false
+                                    value: {}
                                   };
                                   return (({
                                     variable,
@@ -11193,13 +11253,13 @@ function PlasmicAccueil__RenderFunc(props: {
                                 })()
                               : undefined;
                             if (
-                              $steps["updateModalIsOpen"] != null &&
-                              typeof $steps["updateModalIsOpen"] === "object" &&
-                              typeof $steps["updateModalIsOpen"].then ===
+                              $steps["updateJobObject"] != null &&
+                              typeof $steps["updateJobObject"] === "object" &&
+                              typeof $steps["updateJobObject"].then ===
                                 "function"
                             ) {
-                              $steps["updateModalIsOpen"] = await $steps[
-                                "updateModalIsOpen"
+                              $steps["updateJobObject"] = await $steps[
+                                "updateJobObject"
                               ];
                             }
 
@@ -11237,6 +11297,43 @@ function PlasmicAccueil__RenderFunc(props: {
                                 "updateJobId"
                               ];
                             }
+
+                            $steps["updateModalIsOpen"] = true
+                              ? (() => {
+                                  const actionArgs = {
+                                    variable: {
+                                      objRoot: $state,
+                                      variablePath: ["jobDetails", "isOpen"]
+                                    },
+                                    operation: 0,
+                                    value: false
+                                  };
+                                  return (({
+                                    variable,
+                                    value,
+                                    startIndex,
+                                    deleteCount
+                                  }) => {
+                                    if (!variable) {
+                                      return;
+                                    }
+                                    const { objRoot, variablePath } = variable;
+
+                                    $stateSet(objRoot, variablePath, value);
+                                    return value;
+                                  })?.apply(null, [actionArgs]);
+                                })()
+                              : undefined;
+                            if (
+                              $steps["updateModalIsOpen"] != null &&
+                              typeof $steps["updateModalIsOpen"] === "object" &&
+                              typeof $steps["updateModalIsOpen"].then ===
+                                "function"
+                            ) {
+                              $steps["updateModalIsOpen"] = await $steps[
+                                "updateModalIsOpen"
+                              ];
+                            }
                           }}
                           src={{
                             src: "/plasmic/jam_production_🚀/images/close3.svg",
@@ -11264,43 +11361,6 @@ function PlasmicAccueil__RenderFunc(props: {
                       ) {
                         return;
                       }
-
-                      (async val => {
-                        const $steps = {};
-
-                        $steps["updateJobId"] = true
-                          ? (() => {
-                              const actionArgs = {
-                                variable: {
-                                  objRoot: $state,
-                                  variablePath: ["jobId"]
-                                },
-                                operation: 1
-                              };
-                              return (({
-                                variable,
-                                value,
-                                startIndex,
-                                deleteCount
-                              }) => {
-                                if (!variable) {
-                                  return;
-                                }
-                                const { objRoot, variablePath } = variable;
-
-                                $stateSet(objRoot, variablePath, undefined);
-                                return undefined;
-                              })?.apply(null, [actionArgs]);
-                            })()
-                          : undefined;
-                        if (
-                          $steps["updateJobId"] != null &&
-                          typeof $steps["updateJobId"] === "object" &&
-                          typeof $steps["updateJobId"].then === "function"
-                        ) {
-                          $steps["updateJobId"] = await $steps["updateJobId"];
-                        }
-                      }).apply(null, eventArgs);
                     }}
                     showFooter={false}
                     showHeader={false}
@@ -16946,6 +17006,7 @@ const PlasmicDescendants = {
     "sectionCard2",
     "sectionCard3",
     "verifyUserAuth",
+    "pageLoader",
     "jobDetails",
     "button5",
     "jobListing",
@@ -17164,6 +17225,7 @@ const PlasmicDescendants = {
     "sectionCard2",
     "sectionCard3",
     "verifyUserAuth",
+    "pageLoader",
     "jobDetails",
     "button5",
     "jobListing",
@@ -17771,6 +17833,7 @@ const PlasmicDescendants = {
   sectionCard2: ["sectionCard2"],
   sectionCard3: ["sectionCard3"],
   verifyUserAuth: ["verifyUserAuth"],
+  pageLoader: ["pageLoader"],
   jobDetails: [
     "jobDetails",
     "button5",
@@ -18512,6 +18575,7 @@ type NodeDefaultElementType = {
   sectionCard2: typeof SectionCard;
   sectionCard3: typeof SectionCard;
   verifyUserAuth: typeof Modal;
+  pageLoader: typeof PageLoader;
   jobDetails: typeof Modal;
   button5: typeof JamButton;
   jobListing: "div";
@@ -18794,6 +18858,7 @@ export const PlasmicAccueil = Object.assign(
     sectionCard2: makeNodeComponent("sectionCard2"),
     sectionCard3: makeNodeComponent("sectionCard3"),
     verifyUserAuth: makeNodeComponent("verifyUserAuth"),
+    pageLoader: makeNodeComponent("pageLoader"),
     jobDetails: makeNodeComponent("jobDetails"),
     button5: makeNodeComponent("button5"),
     jobListing: makeNodeComponent("jobListing"),
