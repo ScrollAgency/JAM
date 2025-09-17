@@ -67,8 +67,8 @@ import {
 } from "@plasmicapp/react-web/lib/data-sources";
 
 import { PageLoader } from "../../others/PageLoader/PageLoader"; // plasmic-import: FHDrnDhA4DZe/codeComponent
-import MobileNavbarTop from "../../MobileNavbarTop"; // plasmic-import: mAg8Ml3XUEhy/component
 import Sidebar from "../../Sidebar"; // plasmic-import: M06HuWMcBQV2/component
+import MobileNavbarTop from "../../MobileNavbarTop"; // plasmic-import: mAg8Ml3XUEhy/component
 import { UploadWrapper } from "@plasmicpkgs/antd5/skinny/registerUpload";
 import Switch from "../../Switch"; // plasmic-import: 5AuMkYqOTdqa/component
 import { LoadingBoundary } from "@plasmicpkgs/plasmic-basic-components";
@@ -126,9 +126,9 @@ export const PlasmicParametresCandidat__ArgProps = new Array<ArgPropType>();
 export type PlasmicParametresCandidat__OverridesType = {
   parametresDeCompte?: Flex__<"div">;
   updateFirstGoogleConnection?: Flex__<typeof PageLoader>;
-  body?: Flex__<"div">;
-  mobileNavbarTop?: Flex__<typeof MobileNavbarTop>;
   sidebar?: Flex__<typeof Sidebar>;
+  mobileNavbarTop?: Flex__<typeof MobileNavbarTop>;
+  body?: Flex__<"div">;
   main?: Flex__<"main">;
   heading?: Flex__<"h1">;
   container?: Flex__<"div">;
@@ -662,6 +662,13 @@ function PlasmicParametresCandidat__RenderFunc(props: {
         type: "private",
         variableType: "text",
         initFunc: ({ $props, $state, $queries, $ctx }) => "candidat"
+      },
+      {
+        path: "mobileNavbarBottom.role",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $ctx }) =>
+          hasVariant(globalVariants, "screen", "mobileOnly") ? "candidat" : ""
       }
     ],
     [$props, $ctx, $refs]
@@ -917,60 +924,66 @@ function PlasmicParametresCandidat__RenderFunc(props: {
             })()}
           />
 
+          <Sidebar
+            data-plasmic-name={"sidebar"}
+            data-plasmic-override={overrides.sidebar}
+            className={classNames("__wab_instance", sty.sidebar)}
+            disableLinks={generateStateValueProp($state, [
+              "sidebar",
+              "disableLinks"
+            ])}
+            onDisableLinksChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, [
+                "sidebar",
+                "disableLinks"
+              ]).apply(null, eventArgs);
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+            onRoleChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, ["sidebar", "role"]).apply(
+                null,
+                eventArgs
+              );
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+            role={generateStateValueProp($state, ["sidebar", "role"])}
+          />
+
+          <MobileNavbarTop
+            data-plasmic-name={"mobileNavbarTop"}
+            data-plasmic-override={overrides.mobileNavbarTop}
+            className={classNames("__wab_instance", sty.mobileNavbarTop)}
+          />
+
           <div
             data-plasmic-name={"body"}
             data-plasmic-override={overrides.body}
-            className={classNames(projectcss.all, sty.body)}
+            className={classNames(
+              projectcss.all,
+              sty.body,
+              hasVariant(globalVariants, "screen", "mobileOnly")
+                ? ``
+                : "main-content"
+            )}
           >
-            <MobileNavbarTop
-              data-plasmic-name={"mobileNavbarTop"}
-              data-plasmic-override={overrides.mobileNavbarTop}
-              className={classNames("__wab_instance", sty.mobileNavbarTop)}
-            />
-
-            <Sidebar
-              data-plasmic-name={"sidebar"}
-              data-plasmic-override={overrides.sidebar}
-              className={classNames("__wab_instance", sty.sidebar)}
-              disableLinks={generateStateValueProp($state, [
-                "sidebar",
-                "disableLinks"
-              ])}
-              onDisableLinksChange={async (...eventArgs: any) => {
-                generateStateOnChangeProp($state, [
-                  "sidebar",
-                  "disableLinks"
-                ]).apply(null, eventArgs);
-
-                if (
-                  eventArgs.length > 1 &&
-                  eventArgs[1] &&
-                  eventArgs[1]._plasmic_state_init_
-                ) {
-                  return;
-                }
-              }}
-              onRoleChange={async (...eventArgs: any) => {
-                generateStateOnChangeProp($state, ["sidebar", "role"]).apply(
-                  null,
-                  eventArgs
-                );
-
-                if (
-                  eventArgs.length > 1 &&
-                  eventArgs[1] &&
-                  eventArgs[1]._plasmic_state_init_
-                ) {
-                  return;
-                }
-              }}
-              role={generateStateValueProp($state, ["sidebar", "role"])}
-            />
-
             <main
               data-plasmic-name={"main"}
               data-plasmic-override={overrides.main}
-              className={classNames(projectcss.all, sty.main)}
+              className={classNames(projectcss.all, sty.main, ``)}
             >
               <h1
                 data-plasmic-name={"heading"}
@@ -4785,12 +4798,30 @@ function PlasmicParametresCandidat__RenderFunc(props: {
                 </div>
               ) : null}
             </main>
-            <MobileNavbarBottom
-              data-plasmic-name={"mobileNavbarBottom"}
-              data-plasmic-override={overrides.mobileNavbarBottom}
-              className={classNames("__wab_instance", sty.mobileNavbarBottom)}
-            />
           </div>
+          <MobileNavbarBottom
+            data-plasmic-name={"mobileNavbarBottom"}
+            data-plasmic-override={overrides.mobileNavbarBottom}
+            className={classNames("__wab_instance", sty.mobileNavbarBottom)}
+            onRoleChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, [
+                "mobileNavbarBottom",
+                "role"
+              ]).apply(null, eventArgs);
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+            role={generateStateValueProp($state, [
+              "mobileNavbarBottom",
+              "role"
+            ])}
+          />
         </div>
       </div>
     </React.Fragment>
@@ -4801,9 +4832,9 @@ const PlasmicDescendants = {
   parametresDeCompte: [
     "parametresDeCompte",
     "updateFirstGoogleConnection",
-    "body",
-    "mobileNavbarTop",
     "sidebar",
+    "mobileNavbarTop",
+    "body",
     "main",
     "heading",
     "container",
@@ -4867,10 +4898,10 @@ const PlasmicDescendants = {
     "mobileNavbarBottom"
   ],
   updateFirstGoogleConnection: ["updateFirstGoogleConnection"],
+  sidebar: ["sidebar"],
+  mobileNavbarTop: ["mobileNavbarTop"],
   body: [
     "body",
-    "mobileNavbarTop",
-    "sidebar",
     "main",
     "heading",
     "container",
@@ -4930,11 +4961,8 @@ const PlasmicDescendants = {
     "supprCompte",
     "e",
     "deleteAccount",
-    "expandTab",
-    "mobileNavbarBottom"
+    "expandTab"
   ],
-  mobileNavbarTop: ["mobileNavbarTop"],
-  sidebar: ["sidebar"],
   main: [
     "main",
     "heading",
@@ -5265,9 +5293,9 @@ type DescendantsType<T extends NodeNameType> =
 type NodeDefaultElementType = {
   parametresDeCompte: "div";
   updateFirstGoogleConnection: typeof PageLoader;
-  body: "div";
-  mobileNavbarTop: typeof MobileNavbarTop;
   sidebar: typeof Sidebar;
+  mobileNavbarTop: typeof MobileNavbarTop;
+  body: "div";
   main: "main";
   heading: "h1";
   container: "div";
@@ -5394,9 +5422,9 @@ export const PlasmicParametresCandidat = Object.assign(
     updateFirstGoogleConnection: makeNodeComponent(
       "updateFirstGoogleConnection"
     ),
-    body: makeNodeComponent("body"),
-    mobileNavbarTop: makeNodeComponent("mobileNavbarTop"),
     sidebar: makeNodeComponent("sidebar"),
+    mobileNavbarTop: makeNodeComponent("mobileNavbarTop"),
+    body: makeNodeComponent("body"),
     main: makeNodeComponent("main"),
     heading: makeNodeComponent("heading"),
     container: makeNodeComponent("container"),

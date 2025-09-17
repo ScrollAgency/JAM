@@ -76,7 +76,7 @@ import { Notation } from "../../../plasmic-library/others/Notation/Notation"; //
 import { Iframe } from "@plasmicpkgs/plasmic-basic-components";
 import { JamButton } from "../../forms/JamButton/JamButton"; // plasmic-import: UiI0wt2mxfuf/codeComponent
 import Button7 from "../../Button7"; // plasmic-import: 3oYr7EcSqEVK/component
-import MobileNavbarBottomCompany from "../../MobileNavbarBottomCompany"; // plasmic-import: gAnwjyfMiBe9/component
+import MobileNavbarBottom from "../../MobileNavbarBottom"; // plasmic-import: BIS-N7QZzUVV/component
 import { Fetcher } from "@plasmicapp/react-web/lib/data-sources";
 import { _useGlobalVariants } from "./plasmic"; // plasmic-import: f7DE9y7qp46fyCw5nuY8f9/projectModule
 import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: f7DE9y7qp46fyCw5nuY8f9/styleTokensProvider
@@ -146,7 +146,7 @@ export type PlasmicCandidaturesEmployeur__OverridesType = {
   frame1437254298?: Flex__<"div">;
   button3?: Flex__<typeof Button7>;
   button4?: Flex__<typeof Button7>;
-  mobileNavbarBottomCompany?: Flex__<typeof MobileNavbarBottomCompany>;
+  mobileNavbarBottom?: Flex__<typeof MobileNavbarBottom>;
 };
 
 export interface DefaultCandidaturesEmployeurProps {}
@@ -306,6 +306,12 @@ function PlasmicCandidaturesEmployeur__RenderFunc(props: {
         type: "private",
         variableType: "text",
         initFunc: ({ $props, $state, $queries, $ctx }) => "employer"
+      },
+      {
+        path: "mobileNavbarBottom.role",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $ctx }) => "company"
       }
     ],
     [$props, $ctx, $refs]
@@ -486,7 +492,13 @@ function PlasmicCandidaturesEmployeur__RenderFunc(props: {
           <main
             data-plasmic-name={"main"}
             data-plasmic-override={overrides.main}
-            className={classNames(projectcss.all, sty.main)}
+            className={classNames(
+              projectcss.all,
+              sty.main,
+              hasVariant(globalVariants, "screen", "mobileOnly")
+                ? ``
+                : "main-content"
+            )}
           >
             <div className={classNames(projectcss.all, sty.freeBox__rl1Ro)}>
               <div
@@ -3383,32 +3395,29 @@ function PlasmicCandidaturesEmployeur__RenderFunc(props: {
             showHeader={false}
           />
 
-          {(
-            hasVariant(globalVariants, "screen", "mobileOnly")
-              ? true
-              : (() => {
-                  try {
-                    return $queries.empGetJobapplicationsByJobOffers.isLoading;
-                  } catch (e) {
-                    if (
-                      e instanceof TypeError ||
-                      e?.plasmicType === "PlasmicUndefinedDataError"
-                    ) {
-                      return true;
-                    }
-                    throw e;
-                  }
-                })()
-          ) ? (
-            <MobileNavbarBottomCompany
-              data-plasmic-name={"mobileNavbarBottomCompany"}
-              data-plasmic-override={overrides.mobileNavbarBottomCompany}
-              className={classNames(
-                "__wab_instance",
-                sty.mobileNavbarBottomCompany
-              )}
-            />
-          ) : null}
+          <MobileNavbarBottom
+            data-plasmic-name={"mobileNavbarBottom"}
+            data-plasmic-override={overrides.mobileNavbarBottom}
+            className={classNames("__wab_instance", sty.mobileNavbarBottom)}
+            onRoleChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, [
+                "mobileNavbarBottom",
+                "role"
+              ]).apply(null, eventArgs);
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+            role={generateStateValueProp($state, [
+              "mobileNavbarBottom",
+              "role"
+            ])}
+          />
         </div>
       </div>
     </React.Fragment>
@@ -3450,7 +3459,7 @@ const PlasmicDescendants = {
     "frame1437254298",
     "button3",
     "button4",
-    "mobileNavbarBottomCompany"
+    "mobileNavbarBottom"
   ],
   mobileNavbarTop: ["mobileNavbarTop"],
   sidebar: ["sidebar"],
@@ -3539,7 +3548,7 @@ const PlasmicDescendants = {
   frame1437254298: ["frame1437254298", "button3", "button4"],
   button3: ["button3"],
   button4: ["button4"],
-  mobileNavbarBottomCompany: ["mobileNavbarBottomCompany"]
+  mobileNavbarBottom: ["mobileNavbarBottom"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -3578,7 +3587,7 @@ type NodeDefaultElementType = {
   frame1437254298: "div";
   button3: typeof Button7;
   button4: typeof Button7;
-  mobileNavbarBottomCompany: typeof MobileNavbarBottomCompany;
+  mobileNavbarBottom: typeof MobileNavbarBottom;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -3673,7 +3682,7 @@ export const PlasmicCandidaturesEmployeur = Object.assign(
     frame1437254298: makeNodeComponent("frame1437254298"),
     button3: makeNodeComponent("button3"),
     button4: makeNodeComponent("button4"),
-    mobileNavbarBottomCompany: makeNodeComponent("mobileNavbarBottomCompany"),
+    mobileNavbarBottom: makeNodeComponent("mobileNavbarBottom"),
 
     // Metadata about props expected for PlasmicCandidaturesEmployeur
     internalVariantProps: PlasmicCandidaturesEmployeur__VariantProps,

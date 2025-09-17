@@ -11,6 +11,29 @@
   grid-column-end: -1 !important;
   min-height: 0;
 }
+@media (min-width: 0px) and (max-width: 768px) {
+  .root {
+    display: flex;
+    flex-direction: column;
+    column-gap: 0px;
+  }
+}
+.mobileNavbarTop:global(.__wab_instance) {
+  max-width: 100%;
+  left: 0;
+  top: 0;
+  z-index: 1;
+  position: fixed;
+  right: 0;
+  width: 100%;
+  min-width: 0;
+  display: none;
+}
+@media (min-width: 0px) and (max-width: 768px) {
+  .mobileNavbarTop:global(.__wab_instance) {
+    display: flex;
+  }
+}
 .sidebar:global(.__wab_instance) {
   max-width: 100%;
   left: 0;
@@ -18,7 +41,12 @@
   z-index: 1;
   position: fixed;
   bottom: 0;
-  width: 20%;
+  flex-shrink: 0;
+}
+@media (min-width: 0px) and (max-width: 768px) {
+  .sidebar:global(.__wab_instance) {
+    display: none;
+  }
 }
 .actionSubscriptionSuccess:global(.__wab_instance) {
   max-width: 100%;
@@ -36,7 +64,6 @@
   align-items: flex-start;
   justify-content: flex-start;
   flex-shrink: 0;
-  width: 80%;
   height: 100%;
   background: #f4f4f4;
   row-gap: 32px;
@@ -46,7 +73,7 @@
 @media (min-width: 0px) and (max-width: 768px) {
   .main {
     width: 100%;
-    height: 100%;
+    height: auto;
     align-items: stretch;
     justify-content: flex-start;
     align-self: stretch;
@@ -55,8 +82,7 @@
     row-gap: 32px;
     column-gap: 0px;
     min-width: 0;
-    min-height: 0;
-    padding: 44px 20px 78px;
+    padding: 91px 20px 78px;
   }
 }
 .heading {
@@ -228,6 +254,7 @@
     transform: none;
     width: 100%;
     row-gap: 32px;
+    overflow: auto;
     column-gap: 0px;
     min-width: 0;
     padding: 32px;
@@ -645,6 +672,7 @@
 }
 @media (min-width: 0px) and (max-width: 768px) {
   .subscriptionDetailsHistory {
+    overflow: auto;
     padding: 32px;
   }
 }
@@ -1560,4 +1588,15 @@
   bottom: auto;
   right: auto;
   display: none;
+}
+.mobileNavbarBottom:global(.__wab_instance) {
+  max-width: 100%;
+  width: 100%;
+  min-width: 0;
+  display: none;
+}
+@media (min-width: 0px) and (max-width: 768px) {
+  .mobileNavbarBottom:global(.__wab_instance) {
+    display: flex;
+  }
 }

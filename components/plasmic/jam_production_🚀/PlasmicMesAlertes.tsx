@@ -301,6 +301,12 @@ function PlasmicMesAlertes__RenderFunc(props: {
         type: "private",
         variableType: "text",
         initFunc: ({ $props, $state, $queries, $ctx }) => "candidat"
+      },
+      {
+        path: "mobileNavbarBottom.role",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $ctx }) => "candidat"
       }
     ],
     [$props, $ctx, $refs]
@@ -453,7 +459,13 @@ function PlasmicMesAlertes__RenderFunc(props: {
           <main
             data-plasmic-name={"main"}
             data-plasmic-override={overrides.main}
-            className={classNames(projectcss.all, sty.main)}
+            className={classNames(
+              projectcss.all,
+              sty.main,
+              hasVariant(globalVariants, "screen", "mobileOnly")
+                ? ``
+                : "main-content"
+            )}
           >
             <div className={classNames(projectcss.all, sty.freeBox__kohVn)}>
               <h1
@@ -468,114 +480,100 @@ function PlasmicMesAlertes__RenderFunc(props: {
               >
                 {"Mes alertes"}
               </h1>
-              {(() => {
-                try {
-                  return $queries.getAlerts?.data?.length > 0;
-                } catch (e) {
-                  if (
-                    e instanceof TypeError ||
-                    e?.plasmicType === "PlasmicUndefinedDataError"
-                  ) {
-                    return true;
-                  }
-                  throw e;
+              <Button
+                className={classNames("__wab_instance", sty.button__a9Gtr)}
+                end={
+                  <PlusCircle2Icon
+                    className={classNames(projectcss.all, sty.svg__kh3Ee)}
+                    role={"img"}
+                  />
                 }
-              })() ? (
-                <Button
-                  className={classNames("__wab_instance", sty.button__a9Gtr)}
-                  end={
-                    <PlusCircle2Icon
-                      className={classNames(projectcss.all, sty.svg__kh3Ee)}
-                      role={"img"}
-                    />
+                iconEnd={true}
+                label={
+                  <div
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.__wab_text,
+                      sty.text__n8SHv
+                    )}
+                  >
+                    {"Cr\u00e9er une alerte"}
+                  </div>
+                }
+                onClick={async event => {
+                  const $steps = {};
+
+                  $steps["resetCurrentAlert"] = true
+                    ? (() => {
+                        const actionArgs = {
+                          variable: {
+                            objRoot: $state,
+                            variablePath: ["currentAlert"]
+                          },
+                          operation: 0,
+                          value: {}
+                        };
+                        return (({
+                          variable,
+                          value,
+                          startIndex,
+                          deleteCount
+                        }) => {
+                          if (!variable) {
+                            return;
+                          }
+                          const { objRoot, variablePath } = variable;
+
+                          $stateSet(objRoot, variablePath, value);
+                          return value;
+                        })?.apply(null, [actionArgs]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["resetCurrentAlert"] != null &&
+                    typeof $steps["resetCurrentAlert"] === "object" &&
+                    typeof $steps["resetCurrentAlert"].then === "function"
+                  ) {
+                    $steps["resetCurrentAlert"] = await $steps[
+                      "resetCurrentAlert"
+                    ];
                   }
-                  iconEnd={true}
-                  label={
-                    <div
-                      className={classNames(
-                        projectcss.all,
-                        projectcss.__wab_text,
-                        sty.text__n8SHv
-                      )}
-                    >
-                      {"Cr\u00e9er une alerte"}
-                    </div>
+
+                  $steps["openModal"] = true
+                    ? (() => {
+                        const actionArgs = {
+                          variable: {
+                            objRoot: $state,
+                            variablePath: ["isModalOpen"]
+                          },
+                          operation: 0,
+                          value: true
+                        };
+                        return (({
+                          variable,
+                          value,
+                          startIndex,
+                          deleteCount
+                        }) => {
+                          if (!variable) {
+                            return;
+                          }
+                          const { objRoot, variablePath } = variable;
+
+                          $stateSet(objRoot, variablePath, value);
+                          return value;
+                        })?.apply(null, [actionArgs]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["openModal"] != null &&
+                    typeof $steps["openModal"] === "object" &&
+                    typeof $steps["openModal"].then === "function"
+                  ) {
+                    $steps["openModal"] = await $steps["openModal"];
                   }
-                  onClick={async event => {
-                    const $steps = {};
-
-                    $steps["resetCurrentAlert"] = true
-                      ? (() => {
-                          const actionArgs = {
-                            variable: {
-                              objRoot: $state,
-                              variablePath: ["currentAlert"]
-                            },
-                            operation: 0,
-                            value: {}
-                          };
-                          return (({
-                            variable,
-                            value,
-                            startIndex,
-                            deleteCount
-                          }) => {
-                            if (!variable) {
-                              return;
-                            }
-                            const { objRoot, variablePath } = variable;
-
-                            $stateSet(objRoot, variablePath, value);
-                            return value;
-                          })?.apply(null, [actionArgs]);
-                        })()
-                      : undefined;
-                    if (
-                      $steps["resetCurrentAlert"] != null &&
-                      typeof $steps["resetCurrentAlert"] === "object" &&
-                      typeof $steps["resetCurrentAlert"].then === "function"
-                    ) {
-                      $steps["resetCurrentAlert"] = await $steps[
-                        "resetCurrentAlert"
-                      ];
-                    }
-
-                    $steps["openModal"] = true
-                      ? (() => {
-                          const actionArgs = {
-                            variable: {
-                              objRoot: $state,
-                              variablePath: ["isModalOpen"]
-                            },
-                            operation: 0,
-                            value: true
-                          };
-                          return (({
-                            variable,
-                            value,
-                            startIndex,
-                            deleteCount
-                          }) => {
-                            if (!variable) {
-                              return;
-                            }
-                            const { objRoot, variablePath } = variable;
-
-                            $stateSet(objRoot, variablePath, value);
-                            return value;
-                          })?.apply(null, [actionArgs]);
-                        })()
-                      : undefined;
-                    if (
-                      $steps["openModal"] != null &&
-                      typeof $steps["openModal"] === "object" &&
-                      typeof $steps["openModal"].then === "function"
-                    ) {
-                      $steps["openModal"] = await $steps["openModal"];
-                    }
-                  }}
-                />
-              ) : null}
+                }}
+              />
             </div>
             <div
               data-plasmic-name={"alerts"}
@@ -2068,6 +2066,24 @@ function PlasmicMesAlertes__RenderFunc(props: {
             data-plasmic-name={"mobileNavbarBottom"}
             data-plasmic-override={overrides.mobileNavbarBottom}
             className={classNames("__wab_instance", sty.mobileNavbarBottom)}
+            onRoleChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, [
+                "mobileNavbarBottom",
+                "role"
+              ]).apply(null, eventArgs);
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+            role={generateStateValueProp($state, [
+              "mobileNavbarBottom",
+              "role"
+            ])}
           />
 
           <Modal

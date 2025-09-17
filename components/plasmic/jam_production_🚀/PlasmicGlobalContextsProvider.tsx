@@ -18,19 +18,15 @@ export interface GlobalContextsProviderProps {
   antdConfigProviderProps?: Partial<
     Omit<React.ComponentProps<typeof AntdConfigProvider>, "children">
   >;
-
   supabaseUserGlobalContextProps?: Partial<
     Omit<React.ComponentProps<typeof SupabaseUserGlobalContext>, "children">
   >;
-
   commerceProviderComponentProps?: Partial<
     Omit<React.ComponentProps<typeof CommerceProviderComponent>, "children">
   >;
-
   embedCssProps?: Partial<
     Omit<React.ComponentProps<typeof EmbedCss>, "children">
   >;
-
   cmsCredentialsProviderProps?: Partial<
     Omit<React.ComponentProps<typeof CmsCredentialsProvider>, "children">
   >;
@@ -170,7 +166,7 @@ export default function GlobalContextsProvider(
             css={
               embedCssProps && "css" in embedCssProps
                 ? embedCssProps.css!
-                : ".no-scroll-bar {\n  -ms-overflow-style: none;  /* Internet Explorer 10+ */\n  scrollbar-width: none;\n  /* Firefox */\n}\n\n.no-scroll-bar::-webkit-scrollbar {\n  display: none;\n  /* Safari and Chrome */\n}\n\n\n\n\n/* CSS snippet */\n\n.stretch {\n  width: 100%;\n}\n\n.last-minute {\n  background: linear-gradient(180deg, #F6165B, #F36320); /* Rose \u2192 Orange (haut \u2192 bas) */\n  -webkit-background-clip: text;\n  -webkit-text-fill-color: transparent;\n\n  background-clip: text;\n  color: transparent;\n}\n\n.zero-charge {\n  color: #C8C8C8;\n}\n\ncharge {\n  color: #666666;\n}\n\n.grey-600 {\n  color: #666666;\n}\n\n.green-500 {\n  color: #BBFE68;\n}\n\n\n\n\n\n.crisp-client .cc-1brb6[data-full-view=true] .cc-1yy0g .cc-1m2mf {\n  bottom: 70px !important;\n  right: 14px !important;\n  z-index: 1 !important;\n}\n\n.wg-default, .wg-default .country-selector {\n      bottom: 70px !important;\n      left: 0 !important;\n}\n\n\n\n\n\n\n/*animation*/\n@keyframes spin {\n  0% {\n    transform: rotate(0deg);\n  }\n  100% {\n    transform: rotate(360deg);\n  }\n}\n\n.spinner {\n \n  animation: spin 0.6s linear infinite;\n  transform-origin: center;\n}\n\n\n\n\n\n\n@keyframes pulse {\n  0% {\n    transform: scale(1);\n    opacity: 1;\n  }\n  50% {\n    transform: scale(1.1);\n    opacity: 0.8;\n  }\n  100% {\n    transform: scale(1);\n    opacity: 1;\n  }\n}\n\n.pulse-animation {\n  animation: pulse 1.5s ease-in-out infinite;\n  display: inline-block;\n}\n"
+                : ".no-scroll-bar {\r\n  -ms-overflow-style: none;  /* Internet Explorer 10+ */\r\n  scrollbar-width: none;\r\n  /* Firefox */\r\n}\r\n\r\n.no-scroll-bar::-webkit-scrollbar {\r\n  display: none;\r\n  /* Safari and Chrome */\r\n}\r\n\r\n\r\n\r\n\r\n/* CSS snippet */\r\n\r\n.stretch {\r\n  width: 100%;\r\n}\r\n\r\n.last-minute {\r\n  background: linear-gradient(180deg, #F6165B, #F36320); /* Rose \u2192 Orange (haut \u2192 bas) */\r\n  -webkit-background-clip: text;\r\n  -webkit-text-fill-color: transparent;\r\n\r\n  background-clip: text;\r\n  color: transparent;\r\n}\r\n\r\n.zero-charge {\r\n  color: #C8C8C8;\r\n}\r\n\r\ncharge {\r\n  color: #666666;\r\n}\r\n\r\n.grey-600 {\r\n  color: #666666;\r\n}\r\n\r\n.green-500 {\r\n  color: #BBFE68;\r\n}\r\n\r\n\r\n\r\n\r\n\r\n.crisp-client .cc-1brb6[data-full-view=true] .cc-1yy0g .cc-1m2mf {\r\n  bottom: 70px !important;\r\n  right: 14px !important;\r\n  z-index: 1 !important;\r\n}\r\n\r\n.wg-default, .wg-default .country-selector {\r\n      bottom: 70px !important;\r\n      left: 0 !important;\r\n}\r\n\r\n\r\n\r\n\r\n\r\n\r\n/*animation*/\r\n@keyframes spin {\r\n  0% {\r\n    transform: rotate(0deg);\r\n  }\r\n  100% {\r\n    transform: rotate(360deg);\r\n  }\r\n}\r\n\r\n.spinner {\r\n \r\n  animation: spin 0.6s linear infinite;\r\n  transform-origin: center;\r\n}\r\n\r\n\r\n\r\n\r\n\r\n\r\n@keyframes pulse {\r\n  0% {\r\n    transform: scale(1);\r\n    opacity: 1;\r\n  }\r\n  50% {\r\n    transform: scale(1.1);\r\n    opacity: 0.8;\r\n  }\r\n  100% {\r\n    transform: scale(1);\r\n    opacity: 1;\r\n  }\r\n}\r\n\r\n.pulse-animation {\r\n  animation: pulse 1.5s ease-in-out infinite;\r\n  display: inline-block;\r\n}\r\n\r\n\r\n.main-content {\r\n  width: calc(100% - 250px); /* reste de l'espace */\r\n  overflow: auto;\r\n}"
             }
           >
             <CmsCredentialsProvider

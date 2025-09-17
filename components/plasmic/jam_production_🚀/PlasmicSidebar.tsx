@@ -86,9 +86,9 @@ import GridFourIcon from "./icons/PlasmicIcon__GridFour"; // plasmic-import: KzA
 import HeartStraightIcon from "./icons/PlasmicIcon__HeartStraight"; // plasmic-import: 2A8amxR7FAse/icon
 import EnvelopeSimple2Icon from "./icons/PlasmicIcon__EnvelopeSimple2"; // plasmic-import: 44ROc7g2Vqof/icon
 import PhGearFillIcon from "./icons/PlasmicIcon__PhGearFill"; // plasmic-import: M0oN64eO6n3z/icon
-import SolarLogoutOutlineIcon from "./icons/PlasmicIcon__SolarLogoutOutline"; // plasmic-import: UZfkN-2mqbQ1/icon
 import IconPhFileTextIcon from "./icons/PlasmicIcon__IconPhFileText"; // plasmic-import: FeEx4DkPe8hp/icon
 import IconPhUsersThreeIcon from "./icons/PlasmicIcon__IconPhUsersThree"; // plasmic-import: 9cl-NgfR2fAr/icon
+import SolarLogoutOutlineIcon from "./icons/PlasmicIcon__SolarLogoutOutline"; // plasmic-import: UZfkN-2mqbQ1/icon
 
 createPlasmicElementProxy;
 
@@ -114,15 +114,13 @@ export const PlasmicSidebar__ArgProps = new Array<ArgPropType>(
 export type PlasmicSidebar__OverridesType = {
   sidebar?: Flex__<"nav">;
   logoWrapper?: Flex__<"a"> & Partial<LinkProps>;
-  candidatLinks?: Flex__<"div">;
-  links?: Flex__<"div">;
+  candidat?: Flex__<"div">;
+  employer?: Flex__<"div">;
+  company?: Flex__<"div">;
+  credits?: Flex__<"div">;
+  admin?: Flex__<"div">;
   disconnectButton?: Flex__<"div">;
-  employerLinks?: Flex__<"div">;
-  links2?: Flex__<"div">;
-  disconnectButton2?: Flex__<"div">;
-  adminLinks?: Flex__<"div">;
-  links3?: Flex__<"div">;
-  disconnectButton3?: Flex__<"div">;
+  link?: Flex__<"a"> & Partial<LinkProps>;
 };
 
 export interface DefaultSidebarProps {
@@ -321,28 +319,24 @@ function PlasmicSidebar__RenderFunc(props: {
           {"JOB AROUND ME"}
         </div>
       </PlasmicLink__>
-      {(() => {
-        try {
-          return $state.role == "candidat";
-        } catch (e) {
-          if (
-            e instanceof TypeError ||
-            e?.plasmicType === "PlasmicUndefinedDataError"
-          ) {
-            return true;
+      <div className={classNames(projectcss.all, sty.freeBox__flPpg)}>
+        {(() => {
+          try {
+            return $state.role == "candidat";
+          } catch (e) {
+            if (
+              e instanceof TypeError ||
+              e?.plasmicType === "PlasmicUndefinedDataError"
+            ) {
+              return true;
+            }
+            throw e;
           }
-          throw e;
-        }
-      })() ? (
-        <div
-          data-plasmic-name={"candidatLinks"}
-          data-plasmic-override={overrides.candidatLinks}
-          className={classNames(projectcss.all, sty.candidatLinks)}
-        >
+        })() ? (
           <div
-            data-plasmic-name={"links"}
-            data-plasmic-override={overrides.links}
-            className={classNames(projectcss.all, sty.links)}
+            data-plasmic-name={"candidat"}
+            data-plasmic-override={overrides.candidat}
+            className={classNames(projectcss.all, sty.candidat)}
           >
             <SideBarButton
               className={classNames("__wab_instance", sty.sideBarButton__ybHin)}
@@ -667,413 +661,233 @@ function PlasmicSidebar__RenderFunc(props: {
               })()}
             />
           </div>
-          <div
-            data-plasmic-name={"disconnectButton"}
-            data-plasmic-override={overrides.disconnectButton}
-            className={classNames(projectcss.all, sty.disconnectButton)}
-          >
-            <SolarLogoutOutlineIcon
-              className={classNames(projectcss.all, sty.svg__qm6FN)}
-              role={"img"}
-            />
-
-            <PlasmicLink__
-              className={classNames(
-                projectcss.all,
-                projectcss.a,
-                projectcss.__wab_text,
-                sty.link__wrqAe
-              )}
-              component={Link}
-              href={""}
-              onClick={async event => {
-                const $steps = {};
-
-                $steps["invokeGlobalAction"] = true
-                  ? (() => {
-                      const actionArgs = { args: ["/login"] };
-                      return $globalActions[
-                        "SupabaseUserGlobalContext.logout"
-                      ]?.apply(null, [...actionArgs.args]);
-                    })()
-                  : undefined;
-                if (
-                  $steps["invokeGlobalAction"] != null &&
-                  typeof $steps["invokeGlobalAction"] === "object" &&
-                  typeof $steps["invokeGlobalAction"].then === "function"
-                ) {
-                  $steps["invokeGlobalAction"] = await $steps[
-                    "invokeGlobalAction"
-                  ];
-                }
-              }}
-              platform={"nextjs"}
-            >
-              {"D\u00e9connexion"}
-            </PlasmicLink__>
-            <SideBarButton
-              className={classNames("__wab_instance", sty.sideBarButton__bG6GX)}
-              iconStart={true}
-              label={
-                <div
-                  className={classNames(
-                    projectcss.all,
-                    projectcss.__wab_text,
-                    sty.text__jJnT7
-                  )}
-                >
-                  {"D\u00e9connexion"}
-                </div>
-              }
-              onClick={async event => {
-                const $steps = {};
-
-                $steps["invokeGlobalAction"] = true
-                  ? (() => {
-                      const actionArgs = { args: ["/"] };
-                      return $globalActions[
-                        "SupabaseUserGlobalContext.logout"
-                      ]?.apply(null, [...actionArgs.args]);
-                    })()
-                  : undefined;
-                if (
-                  $steps["invokeGlobalAction"] != null &&
-                  typeof $steps["invokeGlobalAction"] === "object" &&
-                  typeof $steps["invokeGlobalAction"].then === "function"
-                ) {
-                  $steps["invokeGlobalAction"] = await $steps[
-                    "invokeGlobalAction"
-                  ];
-                }
-              }}
-              start={
-                <SolarLogoutOutlineIcon
-                  className={classNames(projectcss.all, sty.svg__jHbiR)}
-                  role={"img"}
-                />
-              }
-              type={(() => {
-                try {
-                  return $ctx.pagePath === "/" ? "actif" : "";
-                } catch (e) {
-                  if (
-                    e instanceof TypeError ||
-                    e?.plasmicType === "PlasmicUndefinedDataError"
-                  ) {
-                    return "actif";
-                  }
-                  throw e;
-                }
-              })()}
-            />
-          </div>
-        </div>
-      ) : null}
-      {(() => {
-        try {
-          return $state.role == "employer";
-        } catch (e) {
-          if (
-            e instanceof TypeError ||
-            e?.plasmicType === "PlasmicUndefinedDataError"
-          ) {
-            return true;
+        ) : null}
+        {(() => {
+          try {
+            return $state.role == "employer";
+          } catch (e) {
+            if (
+              e instanceof TypeError ||
+              e?.plasmicType === "PlasmicUndefinedDataError"
+            ) {
+              return true;
+            }
+            throw e;
           }
-          throw e;
-        }
-      })() ? (
-        <div
-          data-plasmic-name={"employerLinks"}
-          data-plasmic-override={overrides.employerLinks}
-          className={classNames(projectcss.all, sty.employerLinks)}
-        >
+        })() ? (
           <div
-            data-plasmic-name={"links2"}
-            data-plasmic-override={overrides.links2}
-            className={classNames(projectcss.all, sty.links2)}
+            data-plasmic-name={"employer"}
+            data-plasmic-override={overrides.employer}
+            className={classNames(projectcss.all, sty.employer)}
           >
-            <SideBarButton
-              className={classNames(
-                "__wab_instance",
-                sty.sideBarButton___7LAme
-              )}
-              disabled={(() => {
-                try {
-                  return $state.disableLinks;
-                } catch (e) {
-                  if (
-                    e instanceof TypeError ||
-                    e?.plasmicType === "PlasmicUndefinedDataError"
-                  ) {
-                    return undefined;
-                  }
-                  throw e;
-                }
-              })()}
-              iconStart={true}
-              label={
-                <div
-                  className={classNames(
-                    projectcss.all,
-                    projectcss.__wab_text,
-                    sty.text__dz75
-                  )}
-                >
-                  {"MES OFFRES"}
-                </div>
-              }
-              onClick={async event => {
-                const $steps = {};
-
-                $steps["goToOffreEmployeur"] = true
-                  ? (() => {
-                      const actionArgs = { destination: `/offre-employeur` };
-                      return (({ destination }) => {
-                        if (
-                          typeof destination === "string" &&
-                          destination.startsWith("#")
-                        ) {
-                          document
-                            .getElementById(destination.substr(1))
-                            .scrollIntoView({ behavior: "smooth" });
-                        } else {
-                          __nextRouter?.push(destination);
-                        }
-                      })?.apply(null, [actionArgs]);
-                    })()
-                  : undefined;
-                if (
-                  $steps["goToOffreEmployeur"] != null &&
-                  typeof $steps["goToOffreEmployeur"] === "object" &&
-                  typeof $steps["goToOffreEmployeur"].then === "function"
-                ) {
-                  $steps["goToOffreEmployeur"] = await $steps[
-                    "goToOffreEmployeur"
-                  ];
-                }
-              }}
-              start={
-                <GridFourIcon
-                  className={classNames(projectcss.all, sty.svg__aqy53)}
-                  role={"img"}
-                />
-              }
-              type={(() => {
-                try {
-                  return $ctx.pagePath === "/offre-employeur" ||
-                    $ctx.pagePath === "/candidatures-employeur/[job_id]"
-                    ? "actif"
-                    : "";
-                } catch (e) {
-                  if (
-                    e instanceof TypeError ||
-                    e?.plasmicType === "PlasmicUndefinedDataError"
-                  ) {
-                    return "actif";
-                  }
-                  throw e;
-                }
-              })()}
-            />
-
-            <SideBarButton
-              className={classNames("__wab_instance", sty.sideBarButton__fAuua)}
-              disabled={(() => {
-                try {
-                  return $state.disableLinks;
-                } catch (e) {
-                  if (
-                    e instanceof TypeError ||
-                    e?.plasmicType === "PlasmicUndefinedDataError"
-                  ) {
-                    return undefined;
-                  }
-                  throw e;
-                }
-              })()}
-              iconStart={true}
-              label={
-                <div
-                  className={classNames(
-                    projectcss.all,
-                    projectcss.__wab_text,
-                    sty.text__tvpT4
-                  )}
-                >
-                  {"Recherche Candidat"}
-                </div>
-              }
-              linkTo={`/recherche-candidat`}
-              onClick={async event => {
-                const $steps = {};
-
-                $steps["goToAccueil"] = true
-                  ? (() => {
-                      const actionArgs = { destination: `/recherche-candidat` };
-                      return (({ destination }) => {
-                        if (
-                          typeof destination === "string" &&
-                          destination.startsWith("#")
-                        ) {
-                          document
-                            .getElementById(destination.substr(1))
-                            .scrollIntoView({ behavior: "smooth" });
-                        } else {
-                          __nextRouter?.push(destination);
-                        }
-                      })?.apply(null, [actionArgs]);
-                    })()
-                  : undefined;
-                if (
-                  $steps["goToAccueil"] != null &&
-                  typeof $steps["goToAccueil"] === "object" &&
-                  typeof $steps["goToAccueil"].then === "function"
-                ) {
-                  $steps["goToAccueil"] = await $steps["goToAccueil"];
-                }
-              }}
-              start={
-                <SearchIcon
-                  className={classNames(projectcss.all, sty.svg__ri08Y)}
-                  role={"img"}
-                />
-              }
-              type={(() => {
-                try {
-                  return $ctx.pagePath === "/recherche-candidat" ? "actif" : "";
-                } catch (e) {
-                  if (
-                    e instanceof TypeError ||
-                    e?.plasmicType === "PlasmicUndefinedDataError"
-                  ) {
-                    return "actif";
-                  }
-                  throw e;
-                }
-              })()}
-            />
-
-            <SideBarButton
-              className={classNames("__wab_instance", sty.sideBarButton__qEg5Q)}
-              disabled={(() => {
-                try {
-                  return $state.disableLinks;
-                } catch (e) {
-                  if (
-                    e instanceof TypeError ||
-                    e?.plasmicType === "PlasmicUndefinedDataError"
-                  ) {
-                    return undefined;
-                  }
-                  throw e;
-                }
-              })()}
-              iconStart={true}
-              label={
-                <div
-                  className={classNames(
-                    projectcss.all,
-                    projectcss.__wab_text,
-                    sty.text__zAoaM
-                  )}
-                >
-                  {"parametres"}
-                </div>
-              }
-              linkTo={`/parametres-employeur`}
-              onClick={async event => {
-                const $steps = {};
-
-                $steps["goToParametresEmployeur"] = true
-                  ? (() => {
-                      const actionArgs = {
-                        destination: `/parametres-employeur`
-                      };
-                      return (({ destination }) => {
-                        if (
-                          typeof destination === "string" &&
-                          destination.startsWith("#")
-                        ) {
-                          document
-                            .getElementById(destination.substr(1))
-                            .scrollIntoView({ behavior: "smooth" });
-                        } else {
-                          __nextRouter?.push(destination);
-                        }
-                      })?.apply(null, [actionArgs]);
-                    })()
-                  : undefined;
-                if (
-                  $steps["goToParametresEmployeur"] != null &&
-                  typeof $steps["goToParametresEmployeur"] === "object" &&
-                  typeof $steps["goToParametresEmployeur"].then === "function"
-                ) {
-                  $steps["goToParametresEmployeur"] = await $steps[
-                    "goToParametresEmployeur"
-                  ];
-                }
-              }}
-              start={
-                <PhGearFillIcon
-                  className={classNames(projectcss.all, sty.svg__mqqq5)}
-                  role={"img"}
-                />
-              }
-              type={(() => {
-                try {
-                  return $ctx.pagePath === "/parametres-employeur" ||
-                    $ctx.pagePath === "/parametres-abonnement"
-                    ? "actif"
-                    : "";
-                } catch (e) {
-                  if (
-                    e instanceof TypeError ||
-                    e?.plasmicType === "PlasmicUndefinedDataError"
-                  ) {
-                    return "actif";
-                  }
-                  throw e;
-                }
-              })()}
-            />
-
-            {(() => {
-              try {
-                return $ctx.pagePath === "/parametres-employeur" ||
-                  $ctx.pagePath === "parametres-abonnement"
-                  ? ($state.showButton = true)
-                  : $state.showButton;
-              } catch (e) {
-                if (
-                  e instanceof TypeError ||
-                  e?.plasmicType === "PlasmicUndefinedDataError"
-                ) {
-                  return true;
-                }
-                throw e;
-              }
-            })() ? (
+            <div
+              data-plasmic-name={"company"}
+              data-plasmic-override={overrides.company}
+              className={classNames(projectcss.all, sty.company)}
+            >
               <SideBarButton
                 className={classNames(
                   "__wab_instance",
-                  sty.sideBarButton__c6S9
+                  sty.sideBarButton__lL8JE
                 )}
+                disabled={(() => {
+                  try {
+                    return $state.disableLinks;
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return undefined;
+                    }
+                    throw e;
+                  }
+                })()}
+                iconStart={true}
                 label={
                   <div
                     className={classNames(
                       projectcss.all,
                       projectcss.__wab_text,
-                      sty.text__mPezf
+                      sty.text___8YwHh
                     )}
                   >
-                    {"Mon compte"}
+                    {"MES OFFRES"}
+                  </div>
+                }
+                onClick={async event => {
+                  const $steps = {};
+
+                  $steps["goToOffreEmployeur"] = true
+                    ? (() => {
+                        const actionArgs = { destination: `/offre-employeur` };
+                        return (({ destination }) => {
+                          if (
+                            typeof destination === "string" &&
+                            destination.startsWith("#")
+                          ) {
+                            document
+                              .getElementById(destination.substr(1))
+                              .scrollIntoView({ behavior: "smooth" });
+                          } else {
+                            __nextRouter?.push(destination);
+                          }
+                        })?.apply(null, [actionArgs]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["goToOffreEmployeur"] != null &&
+                    typeof $steps["goToOffreEmployeur"] === "object" &&
+                    typeof $steps["goToOffreEmployeur"].then === "function"
+                  ) {
+                    $steps["goToOffreEmployeur"] = await $steps[
+                      "goToOffreEmployeur"
+                    ];
+                  }
+                }}
+                start={
+                  <GridFourIcon
+                    className={classNames(projectcss.all, sty.svg___6CsA)}
+                    role={"img"}
+                  />
+                }
+                type={(() => {
+                  try {
+                    return $ctx.pagePath === "/offre-employeur" ||
+                      $ctx.pagePath === "/candidatures-employeur/[job_id]"
+                      ? "actif"
+                      : "";
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return "actif";
+                    }
+                    throw e;
+                  }
+                })()}
+              />
+
+              <SideBarButton
+                className={classNames(
+                  "__wab_instance",
+                  sty.sideBarButton__nGyEt
+                )}
+                disabled={(() => {
+                  try {
+                    return $state.disableLinks;
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return undefined;
+                    }
+                    throw e;
+                  }
+                })()}
+                iconStart={true}
+                label={
+                  <div
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.__wab_text,
+                      sty.text__dao91
+                    )}
+                  >
+                    {"Recherche Candidat"}
+                  </div>
+                }
+                linkTo={`/recherche-candidat`}
+                onClick={async event => {
+                  const $steps = {};
+
+                  $steps["goToAccueil"] = true
+                    ? (() => {
+                        const actionArgs = {
+                          destination: `/recherche-candidat`
+                        };
+                        return (({ destination }) => {
+                          if (
+                            typeof destination === "string" &&
+                            destination.startsWith("#")
+                          ) {
+                            document
+                              .getElementById(destination.substr(1))
+                              .scrollIntoView({ behavior: "smooth" });
+                          } else {
+                            __nextRouter?.push(destination);
+                          }
+                        })?.apply(null, [actionArgs]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["goToAccueil"] != null &&
+                    typeof $steps["goToAccueil"] === "object" &&
+                    typeof $steps["goToAccueil"].then === "function"
+                  ) {
+                    $steps["goToAccueil"] = await $steps["goToAccueil"];
+                  }
+                }}
+                start={
+                  <SearchIcon
+                    className={classNames(projectcss.all, sty.svg__etOs9)}
+                    role={"img"}
+                  />
+                }
+                type={(() => {
+                  try {
+                    return $ctx.pagePath === "/recherche-candidat"
+                      ? "actif"
+                      : "";
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return "actif";
+                    }
+                    throw e;
+                  }
+                })()}
+              />
+
+              <SideBarButton
+                className={classNames(
+                  "__wab_instance",
+                  sty.sideBarButton___54H2X
+                )}
+                disabled={(() => {
+                  try {
+                    return $state.disableLinks;
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return undefined;
+                    }
+                    throw e;
+                  }
+                })()}
+                iconStart={true}
+                label={
+                  <div
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.__wab_text,
+                      sty.text__fLt0T
+                    )}
+                  >
+                    {"parametres"}
                   </div>
                 }
                 linkTo={`/parametres-employeur`}
                 onClick={async event => {
                   const $steps = {};
 
-                  $steps["goToParametresDeCompte"] = true
+                  $steps["goToParametresEmployeur"] = true
                     ? (() => {
                         const actionArgs = {
                           destination: `/parametres-employeur`
@@ -1093,19 +907,25 @@ function PlasmicSidebar__RenderFunc(props: {
                       })()
                     : undefined;
                   if (
-                    $steps["goToParametresDeCompte"] != null &&
-                    typeof $steps["goToParametresDeCompte"] === "object" &&
-                    typeof $steps["goToParametresDeCompte"].then === "function"
+                    $steps["goToParametresEmployeur"] != null &&
+                    typeof $steps["goToParametresEmployeur"] === "object" &&
+                    typeof $steps["goToParametresEmployeur"].then === "function"
                   ) {
-                    $steps["goToParametresDeCompte"] = await $steps[
-                      "goToParametresDeCompte"
+                    $steps["goToParametresEmployeur"] = await $steps[
+                      "goToParametresEmployeur"
                     ];
                   }
                 }}
-                start={null}
+                start={
+                  <PhGearFillIcon
+                    className={classNames(projectcss.all, sty.svg__xLfno)}
+                    role={"img"}
+                  />
+                }
                 type={(() => {
                   try {
-                    return $ctx.pagePath === "/parametres-employeur"
+                    return $ctx.pagePath === "/parametres-employeur" ||
+                      $ctx.pagePath === "/parametres-abonnement"
                       ? "actif"
                       : "";
                   } catch (e) {
@@ -1119,102 +939,186 @@ function PlasmicSidebar__RenderFunc(props: {
                   }
                 })()}
               />
-            ) : null}
-            {(() => {
-              try {
-                return $ctx.pagePath === "/parametres-abonnement" ||
-                  $ctx.pagePath === "parametres-employeur"
-                  ? ($state.showButton = true)
-                  : $state.showButton;
-              } catch (e) {
-                if (
-                  e instanceof TypeError ||
-                  e?.plasmicType === "PlasmicUndefinedDataError"
-                ) {
-                  return true;
-                }
-                throw e;
-              }
-            })() ? (
-              <SideBarButton
-                className={classNames(
-                  "__wab_instance",
-                  sty.sideBarButton__jJ8XX
-                )}
-                label={
-                  <div
-                    className={classNames(
-                      projectcss.all,
-                      projectcss.__wab_text,
-                      sty.text__c6PGr
-                    )}
-                  >
-                    {"Mon abonnement"}
-                  </div>
-                }
-                linkTo={`/parametres-abonnement`}
-                onClick={async event => {
-                  const $steps = {};
 
-                  $steps["goToParametresDeCompte"] = true
-                    ? (() => {
-                        const actionArgs = {
-                          destination: `/parametres-abonnement`
-                        };
-                        return (({ destination }) => {
-                          if (
-                            typeof destination === "string" &&
-                            destination.startsWith("#")
-                          ) {
-                            document
-                              .getElementById(destination.substr(1))
-                              .scrollIntoView({ behavior: "smooth" });
-                          } else {
-                            __nextRouter?.push(destination);
-                          }
-                        })?.apply(null, [actionArgs]);
-                      })()
-                    : undefined;
+              {(() => {
+                try {
+                  return $ctx.pagePath === "/parametres-employeur" ||
+                    $ctx.pagePath === "parametres-abonnement"
+                    ? ($state.showButton = true)
+                    : $state.showButton;
+                } catch (e) {
                   if (
-                    $steps["goToParametresDeCompte"] != null &&
-                    typeof $steps["goToParametresDeCompte"] === "object" &&
-                    typeof $steps["goToParametresDeCompte"].then === "function"
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
                   ) {
-                    $steps["goToParametresDeCompte"] = await $steps[
-                      "goToParametresDeCompte"
-                    ];
+                    return true;
                   }
-                }}
-                start={null}
-                type={(() => {
-                  try {
-                    return $ctx.pagePath === "/parametres-abonnement"
-                      ? "actif"
-                      : "";
-                  } catch (e) {
+                  throw e;
+                }
+              })() ? (
+                <SideBarButton
+                  className={classNames(
+                    "__wab_instance",
+                    sty.sideBarButton___6BJNu
+                  )}
+                  label={
+                    <div
+                      className={classNames(
+                        projectcss.all,
+                        projectcss.__wab_text,
+                        sty.text__c7TJv
+                      )}
+                    >
+                      {"Mon compte"}
+                    </div>
+                  }
+                  linkTo={`/parametres-employeur`}
+                  onClick={async event => {
+                    const $steps = {};
+
+                    $steps["goToParametresDeCompte"] = true
+                      ? (() => {
+                          const actionArgs = {
+                            destination: `/parametres-employeur`
+                          };
+                          return (({ destination }) => {
+                            if (
+                              typeof destination === "string" &&
+                              destination.startsWith("#")
+                            ) {
+                              document
+                                .getElementById(destination.substr(1))
+                                .scrollIntoView({ behavior: "smooth" });
+                            } else {
+                              __nextRouter?.push(destination);
+                            }
+                          })?.apply(null, [actionArgs]);
+                        })()
+                      : undefined;
                     if (
-                      e instanceof TypeError ||
-                      e?.plasmicType === "PlasmicUndefinedDataError"
+                      $steps["goToParametresDeCompte"] != null &&
+                      typeof $steps["goToParametresDeCompte"] === "object" &&
+                      typeof $steps["goToParametresDeCompte"].then ===
+                        "function"
                     ) {
-                      return "actif";
+                      $steps["goToParametresDeCompte"] = await $steps[
+                        "goToParametresDeCompte"
+                      ];
                     }
-                    throw e;
+                  }}
+                  start={null}
+                  type={(() => {
+                    try {
+                      return $ctx.pagePath === "/parametres-employeur"
+                        ? "actif"
+                        : "";
+                    } catch (e) {
+                      if (
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
+                      ) {
+                        return "actif";
+                      }
+                      throw e;
+                    }
+                  })()}
+                />
+              ) : null}
+              {(() => {
+                try {
+                  return $ctx.pagePath === "/parametres-abonnement" ||
+                    $ctx.pagePath === "parametres-employeur"
+                    ? ($state.showButton = true)
+                    : $state.showButton;
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return true;
                   }
-                })()}
-              />
-            ) : null}
-          </div>
-          <div
-            data-plasmic-name={"disconnectButton2"}
-            data-plasmic-override={overrides.disconnectButton2}
-            className={classNames(projectcss.all, sty.disconnectButton2)}
-          >
-            <div className={classNames(projectcss.all, sty.freeBox__tllFj)}>
+                  throw e;
+                }
+              })() ? (
+                <SideBarButton
+                  className={classNames(
+                    "__wab_instance",
+                    sty.sideBarButton__szFlz
+                  )}
+                  label={
+                    <div
+                      className={classNames(
+                        projectcss.all,
+                        projectcss.__wab_text,
+                        sty.text__ocyzT
+                      )}
+                    >
+                      {"Mon abonnement"}
+                    </div>
+                  }
+                  linkTo={`/parametres-abonnement`}
+                  onClick={async event => {
+                    const $steps = {};
+
+                    $steps["goToParametresDeCompte"] = true
+                      ? (() => {
+                          const actionArgs = {
+                            destination: `/parametres-abonnement`
+                          };
+                          return (({ destination }) => {
+                            if (
+                              typeof destination === "string" &&
+                              destination.startsWith("#")
+                            ) {
+                              document
+                                .getElementById(destination.substr(1))
+                                .scrollIntoView({ behavior: "smooth" });
+                            } else {
+                              __nextRouter?.push(destination);
+                            }
+                          })?.apply(null, [actionArgs]);
+                        })()
+                      : undefined;
+                    if (
+                      $steps["goToParametresDeCompte"] != null &&
+                      typeof $steps["goToParametresDeCompte"] === "object" &&
+                      typeof $steps["goToParametresDeCompte"].then ===
+                        "function"
+                    ) {
+                      $steps["goToParametresDeCompte"] = await $steps[
+                        "goToParametresDeCompte"
+                      ];
+                    }
+                  }}
+                  start={null}
+                  type={(() => {
+                    try {
+                      return $ctx.pagePath === "/parametres-abonnement"
+                        ? "actif"
+                        : "";
+                    } catch (e) {
+                      if (
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
+                      ) {
+                        return "actif";
+                      }
+                      throw e;
+                    }
+                  })()}
+                />
+              ) : null}
+            </div>
+            <div
+              data-plasmic-name={"credits"}
+              data-plasmic-override={overrides.credits}
+              className={classNames(projectcss.all, sty.credits)}
+            >
               <div
                 className={classNames(
                   projectcss.all,
                   projectcss.__wab_text,
-                  sty.text__bqHyS
+                  sty.text__zoKt
                 )}
               >
                 <React.Fragment>
@@ -1226,12 +1130,12 @@ function PlasmicSidebar__RenderFunc(props: {
                   </span>
                 </React.Fragment>
               </div>
-              <div className={classNames(projectcss.all, sty.freeBox__u1JpD)}>
+              <div className={classNames(projectcss.all, sty.freeBox__m0CJu)}>
                 <div
                   className={classNames(
                     projectcss.all,
                     projectcss.__wab_text,
-                    sty.text__p6ADo
+                    sty.text__bkGa9
                   )}
                 >
                   <React.Fragment>
@@ -1247,7 +1151,7 @@ function PlasmicSidebar__RenderFunc(props: {
                   className={classNames(
                     projectcss.all,
                     projectcss.__wab_text,
-                    sty.text__w7Abm,
+                    sty.text__ic0Wd,
                     (() => {
                       try {
                         return $queries.sidebarUserMonthlyRecharge?.data
@@ -1288,18 +1192,18 @@ function PlasmicSidebar__RenderFunc(props: {
               </div>
               <Separator
                 className={
-                  "" + " " + classNames("__wab_instance", sty.separateur__vwUpc)
+                  "" + " " + classNames("__wab_instance", sty.separateur__usu6B)
                 }
                 decorative={false}
                 orientation={"horizontal"}
               />
 
-              <div className={classNames(projectcss.all, sty.freeBox__xkpLi)}>
+              <div className={classNames(projectcss.all, sty.freeBox__ttH)}>
                 <div
                   className={classNames(
                     projectcss.all,
                     projectcss.__wab_text,
-                    sty.text__j42GZ
+                    sty.text__fFlxo
                   )}
                 >
                   <React.Fragment>
@@ -1315,7 +1219,7 @@ function PlasmicSidebar__RenderFunc(props: {
                   className={classNames(
                     projectcss.all,
                     projectcss.__wab_text,
-                    sty.text__xHjbx,
+                    sty.text__ucbk9,
                     (() => {
                       try {
                         return $queries.sidebarUserMonthlyRecharge.data
@@ -1356,18 +1260,20 @@ function PlasmicSidebar__RenderFunc(props: {
               </div>
               <Separator
                 className={
-                  "" + " " + classNames("__wab_instance", sty.separateur__wnuP5)
+                  "" +
+                  " " +
+                  classNames("__wab_instance", sty.separateur___33Zas)
                 }
                 decorative={false}
                 orientation={"horizontal"}
               />
 
-              <div className={classNames(projectcss.all, sty.freeBox__aJKi)}>
+              <div className={classNames(projectcss.all, sty.freeBox__coPh9)}>
                 <div
                   className={classNames(
                     projectcss.all,
                     projectcss.__wab_text,
-                    sty.text__wXRH
+                    sty.text__dJbUf
                   )}
                 >
                   <React.Fragment>
@@ -1383,7 +1289,7 @@ function PlasmicSidebar__RenderFunc(props: {
                   className={classNames(
                     projectcss.all,
                     projectcss.__wab_text,
-                    sty.text__pDmN3,
+                    sty.text__vuK4E,
                     (() => {
                       try {
                         return $queries.sidebarUserMonthlyRecharge.data
@@ -1424,147 +1330,44 @@ function PlasmicSidebar__RenderFunc(props: {
               </div>
               <Separator
                 className={
-                  "" + " " + classNames("__wab_instance", sty.separateur__rtNs)
+                  "" + " " + classNames("__wab_instance", sty.separateur__lOvhJ)
                 }
                 decorative={false}
                 orientation={"horizontal"}
               />
             </div>
-            <SolarLogoutOutlineIcon
-              className={classNames(projectcss.all, sty.svg__bgBnu)}
-              role={"img"}
-            />
-
-            <PlasmicLink__
-              className={classNames(
-                projectcss.all,
-                projectcss.a,
-                projectcss.__wab_text,
-                sty.link__mrpVm
-              )}
-              component={Link}
-              href={""}
-              onClick={async event => {
-                const $steps = {};
-
-                $steps["invokeGlobalAction"] = true
-                  ? (() => {
-                      const actionArgs = { args: ["/login"] };
-                      return $globalActions[
-                        "SupabaseUserGlobalContext.logout"
-                      ]?.apply(null, [...actionArgs.args]);
-                    })()
-                  : undefined;
-                if (
-                  $steps["invokeGlobalAction"] != null &&
-                  typeof $steps["invokeGlobalAction"] === "object" &&
-                  typeof $steps["invokeGlobalAction"].then === "function"
-                ) {
-                  $steps["invokeGlobalAction"] = await $steps[
-                    "invokeGlobalAction"
-                  ];
-                }
-              }}
-              platform={"nextjs"}
-            >
-              {"D\u00e9connexion"}
-            </PlasmicLink__>
-            <SideBarButton
-              className={classNames("__wab_instance", sty.sideBarButton__uZl0Z)}
-              end={
-                <PictogramIcon
-                  className={classNames(projectcss.all, sty.svg___0Eilz)}
-                  role={"img"}
-                />
-              }
-              iconStart={true}
-              label={
-                <div
-                  className={classNames(
-                    projectcss.all,
-                    projectcss.__wab_text,
-                    sty.text__qnI0
-                  )}
-                >
-                  {"D\u00e9connexion"}
-                </div>
-              }
-              onClick={async event => {
-                const $steps = {};
-
-                $steps["invokeGlobalAction"] = true
-                  ? (() => {
-                      const actionArgs = { args: ["/"] };
-                      return $globalActions[
-                        "SupabaseUserGlobalContext.logout"
-                      ]?.apply(null, [...actionArgs.args]);
-                    })()
-                  : undefined;
-                if (
-                  $steps["invokeGlobalAction"] != null &&
-                  typeof $steps["invokeGlobalAction"] === "object" &&
-                  typeof $steps["invokeGlobalAction"].then === "function"
-                ) {
-                  $steps["invokeGlobalAction"] = await $steps[
-                    "invokeGlobalAction"
-                  ];
-                }
-              }}
-              start={
-                <SolarLogoutOutlineIcon
-                  className={classNames(projectcss.all, sty.svg__rN8A)}
-                  role={"img"}
-                />
-              }
-              type={(() => {
-                try {
-                  return $ctx.pagePath === "/" ? "actif" : "";
-                } catch (e) {
-                  if (
-                    e instanceof TypeError ||
-                    e?.plasmicType === "PlasmicUndefinedDataError"
-                  ) {
-                    return "actif";
-                  }
-                  throw e;
-                }
-              })()}
-            />
           </div>
-        </div>
-      ) : null}
-      {(() => {
-        try {
-          return $state.role == "admin";
-        } catch (e) {
-          if (
-            e instanceof TypeError ||
-            e?.plasmicType === "PlasmicUndefinedDataError"
-          ) {
-            return true;
+        ) : null}
+        {(() => {
+          try {
+            return $state.role == "admin";
+          } catch (e) {
+            if (
+              e instanceof TypeError ||
+              e?.plasmicType === "PlasmicUndefinedDataError"
+            ) {
+              return true;
+            }
+            throw e;
           }
-          throw e;
-        }
-      })() ? (
-        <div
-          data-plasmic-name={"adminLinks"}
-          data-plasmic-override={overrides.adminLinks}
-          className={classNames(projectcss.all, sty.adminLinks)}
-        >
+        })() ? (
           <div
-            data-plasmic-name={"links3"}
-            data-plasmic-override={overrides.links3}
-            className={classNames(projectcss.all, sty.links3)}
+            data-plasmic-name={"admin"}
+            data-plasmic-override={overrides.admin}
+            className={classNames(projectcss.all, sty.admin)}
           >
             <SideBarButton
-              className={classNames("__wab_instance", sty.sideBarButton__r9Uhx)}
+              className={classNames(
+                "__wab_instance",
+                sty.sideBarButton___6A8E5
+              )}
               iconStart={true}
               label={
                 <div
                   className={classNames(
                     projectcss.all,
                     projectcss.__wab_text,
-                    sty.text__rgqdy
+                    sty.text__tyMmm
                   )}
                 >
                   {"Gestion des offres"}
@@ -1601,7 +1404,7 @@ function PlasmicSidebar__RenderFunc(props: {
               }}
               start={
                 <IconPhFileTextIcon
-                  className={classNames(projectcss.all, sty.svg__ufYwD)}
+                  className={classNames(projectcss.all, sty.svg__oik43)}
                   role={"img"}
                 />
               }
@@ -1621,14 +1424,14 @@ function PlasmicSidebar__RenderFunc(props: {
             />
 
             <SideBarButton
-              className={classNames("__wab_instance", sty.sideBarButton__ecR6L)}
+              className={classNames("__wab_instance", sty.sideBarButton__xh4Xg)}
               iconStart={true}
               label={
                 <div
                   className={classNames(
                     projectcss.all,
                     projectcss.__wab_text,
-                    sty.text__wmYi1
+                    sty.text___9HeY
                   )}
                 >
                   {"gestion des users"}
@@ -1665,7 +1468,7 @@ function PlasmicSidebar__RenderFunc(props: {
               }}
               start={
                 <IconPhUsersThreeIcon
-                  className={classNames(projectcss.all, sty.svg__e9Pc5)}
+                  className={classNames(projectcss.all, sty.svg___5Xej7)}
                   role={"img"}
                 />
               }
@@ -1703,14 +1506,14 @@ function PlasmicSidebar__RenderFunc(props: {
               <SideBarButton
                 className={classNames(
                   "__wab_instance",
-                  sty.sideBarButton__wPBww
+                  sty.sideBarButton__ncJxO
                 )}
                 label={
                   <div
                     className={classNames(
                       projectcss.all,
                       projectcss.__wab_text,
-                      sty.text__cPvIs
+                      sty.text__ilW
                     )}
                   >
                     {"Mon compte"}
@@ -1786,14 +1589,14 @@ function PlasmicSidebar__RenderFunc(props: {
               <SideBarButton
                 className={classNames(
                   "__wab_instance",
-                  sty.sideBarButton___1VsZo
+                  sty.sideBarButton__brRvD
                 )}
                 label={
                   <div
                     className={classNames(
                       projectcss.all,
                       projectcss.__wab_text,
-                      sty.text___0W62
+                      sty.text__cMtud
                     )}
                   >
                     {"Mon abonnement"}
@@ -1851,108 +1654,110 @@ function PlasmicSidebar__RenderFunc(props: {
               />
             ) : null}
           </div>
-          <div
-            data-plasmic-name={"disconnectButton3"}
-            data-plasmic-override={overrides.disconnectButton3}
-            className={classNames(projectcss.all, sty.disconnectButton3)}
+        ) : null}
+        <div
+          data-plasmic-name={"disconnectButton"}
+          data-plasmic-override={overrides.disconnectButton}
+          className={classNames(projectcss.all, sty.disconnectButton)}
+        >
+          <SolarLogoutOutlineIcon
+            className={classNames(projectcss.all, sty.svg__qm6FN)}
+            role={"img"}
+          />
+
+          <PlasmicLink__
+            data-plasmic-name={"link"}
+            data-plasmic-override={overrides.link}
+            className={classNames(
+              projectcss.all,
+              projectcss.a,
+              projectcss.__wab_text,
+              sty.link
+            )}
+            component={Link}
+            href={""}
+            onClick={async event => {
+              const $steps = {};
+
+              $steps["invokeGlobalAction"] = true
+                ? (() => {
+                    const actionArgs = { args: ["/login"] };
+                    return $globalActions[
+                      "SupabaseUserGlobalContext.logout"
+                    ]?.apply(null, [...actionArgs.args]);
+                  })()
+                : undefined;
+              if (
+                $steps["invokeGlobalAction"] != null &&
+                typeof $steps["invokeGlobalAction"] === "object" &&
+                typeof $steps["invokeGlobalAction"].then === "function"
+              ) {
+                $steps["invokeGlobalAction"] = await $steps[
+                  "invokeGlobalAction"
+                ];
+              }
+            }}
+            platform={"nextjs"}
           >
-            <SolarLogoutOutlineIcon
-              className={classNames(projectcss.all, sty.svg__ez8Qf)}
-              role={"img"}
-            />
+            {"D\u00e9connexion"}
+          </PlasmicLink__>
+          <SideBarButton
+            className={classNames("__wab_instance", sty.sideBarButton__bG6GX)}
+            iconStart={true}
+            label={
+              <div
+                className={classNames(
+                  projectcss.all,
+                  projectcss.__wab_text,
+                  sty.text__jJnT7
+                )}
+              >
+                {"D\u00e9connexion"}
+              </div>
+            }
+            onClick={async event => {
+              const $steps = {};
 
-            <PlasmicLink__
-              className={classNames(
-                projectcss.all,
-                projectcss.a,
-                projectcss.__wab_text,
-                sty.link__qjkIa
-              )}
-              component={Link}
-              href={""}
-              onClick={async event => {
-                const $steps = {};
-
-                $steps["invokeGlobalAction"] = true
-                  ? (() => {
-                      const actionArgs = { args: ["/login"] };
-                      return $globalActions[
-                        "SupabaseUserGlobalContext.logout"
-                      ]?.apply(null, [...actionArgs.args]);
-                    })()
-                  : undefined;
-                if (
-                  $steps["invokeGlobalAction"] != null &&
-                  typeof $steps["invokeGlobalAction"] === "object" &&
-                  typeof $steps["invokeGlobalAction"].then === "function"
-                ) {
-                  $steps["invokeGlobalAction"] = await $steps[
-                    "invokeGlobalAction"
-                  ];
-                }
-              }}
-              platform={"nextjs"}
-            >
-              {"D\u00e9connexion"}
-            </PlasmicLink__>
-            <SideBarButton
-              className={classNames("__wab_instance", sty.sideBarButton__ng41)}
-              iconStart={true}
-              label={
-                <div
-                  className={classNames(
-                    projectcss.all,
-                    projectcss.__wab_text,
-                    sty.text__xbI3
-                  )}
-                >
-                  {"D\u00e9connexion"}
-                </div>
+              $steps["invokeGlobalAction"] = true
+                ? (() => {
+                    const actionArgs = { args: ["/"] };
+                    return $globalActions[
+                      "SupabaseUserGlobalContext.logout"
+                    ]?.apply(null, [...actionArgs.args]);
+                  })()
+                : undefined;
+              if (
+                $steps["invokeGlobalAction"] != null &&
+                typeof $steps["invokeGlobalAction"] === "object" &&
+                typeof $steps["invokeGlobalAction"].then === "function"
+              ) {
+                $steps["invokeGlobalAction"] = await $steps[
+                  "invokeGlobalAction"
+                ];
               }
-              onClick={async event => {
-                const $steps = {};
-
-                $steps["invokeGlobalAction"] = true
-                  ? (() => {
-                      const actionArgs = { args: ["/"] };
-                      return $globalActions[
-                        "SupabaseUserGlobalContext.logout"
-                      ]?.apply(null, [...actionArgs.args]);
-                    })()
-                  : undefined;
+            }}
+            start={
+              <SolarLogoutOutlineIcon
+                className={classNames(projectcss.all, sty.svg__jHbiR)}
+                role={"img"}
+              />
+            }
+            type={(() => {
+              try {
+                return $ctx.pagePath === "/" ? "actif" : "";
+              } catch (e) {
                 if (
-                  $steps["invokeGlobalAction"] != null &&
-                  typeof $steps["invokeGlobalAction"] === "object" &&
-                  typeof $steps["invokeGlobalAction"].then === "function"
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
                 ) {
-                  $steps["invokeGlobalAction"] = await $steps[
-                    "invokeGlobalAction"
-                  ];
+                  return "actif";
                 }
-              }}
-              start={
-                <SolarLogoutOutlineIcon
-                  className={classNames(projectcss.all, sty.svg__weJz9)}
-                  role={"img"}
-                />
+                throw e;
               }
-              type={(() => {
-                try {
-                  return $ctx.pagePath === "/" ? "actif" : "";
-                } catch (e) {
-                  if (
-                    e instanceof TypeError ||
-                    e?.plasmicType === "PlasmicUndefinedDataError"
-                  ) {
-                    return "actif";
-                  }
-                  throw e;
-                }
-              })()}
-            />
-          </div>
+            })()}
+          />
         </div>
-      ) : null}
+      </div>
     </nav>
   ) as React.ReactElement | null;
 }
@@ -1961,26 +1766,22 @@ const PlasmicDescendants = {
   sidebar: [
     "sidebar",
     "logoWrapper",
-    "candidatLinks",
-    "links",
+    "candidat",
+    "employer",
+    "company",
+    "credits",
+    "admin",
     "disconnectButton",
-    "employerLinks",
-    "links2",
-    "disconnectButton2",
-    "adminLinks",
-    "links3",
-    "disconnectButton3"
+    "link"
   ],
   logoWrapper: ["logoWrapper"],
-  candidatLinks: ["candidatLinks", "links", "disconnectButton"],
-  links: ["links"],
-  disconnectButton: ["disconnectButton"],
-  employerLinks: ["employerLinks", "links2", "disconnectButton2"],
-  links2: ["links2"],
-  disconnectButton2: ["disconnectButton2"],
-  adminLinks: ["adminLinks", "links3", "disconnectButton3"],
-  links3: ["links3"],
-  disconnectButton3: ["disconnectButton3"]
+  candidat: ["candidat"],
+  employer: ["employer", "company", "credits"],
+  company: ["company"],
+  credits: ["credits"],
+  admin: ["admin"],
+  disconnectButton: ["disconnectButton", "link"],
+  link: ["link"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -1988,15 +1789,13 @@ type DescendantsType<T extends NodeNameType> =
 type NodeDefaultElementType = {
   sidebar: "nav";
   logoWrapper: "a";
-  candidatLinks: "div";
-  links: "div";
+  candidat: "div";
+  employer: "div";
+  company: "div";
+  credits: "div";
+  admin: "div";
   disconnectButton: "div";
-  employerLinks: "div";
-  links2: "div";
-  disconnectButton2: "div";
-  adminLinks: "div";
-  links3: "div";
-  disconnectButton3: "div";
+  link: "a";
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -2060,15 +1859,13 @@ export const PlasmicSidebar = Object.assign(
   {
     // Helper components rendering sub-elements
     logoWrapper: makeNodeComponent("logoWrapper"),
-    candidatLinks: makeNodeComponent("candidatLinks"),
-    links: makeNodeComponent("links"),
+    candidat: makeNodeComponent("candidat"),
+    employer: makeNodeComponent("employer"),
+    company: makeNodeComponent("company"),
+    credits: makeNodeComponent("credits"),
+    admin: makeNodeComponent("admin"),
     disconnectButton: makeNodeComponent("disconnectButton"),
-    employerLinks: makeNodeComponent("employerLinks"),
-    links2: makeNodeComponent("links2"),
-    disconnectButton2: makeNodeComponent("disconnectButton2"),
-    adminLinks: makeNodeComponent("adminLinks"),
-    links3: makeNodeComponent("links3"),
-    disconnectButton3: makeNodeComponent("disconnectButton3"),
+    link: makeNodeComponent("link"),
 
     // Metadata about props expected for PlasmicSidebar
     internalVariantProps: PlasmicSidebar__VariantProps,

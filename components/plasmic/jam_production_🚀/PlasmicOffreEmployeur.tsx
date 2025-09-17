@@ -70,6 +70,7 @@ import MobileNavbarTop from "../../MobileNavbarTop"; // plasmic-import: mAg8Ml3X
 import Sidebar from "../../Sidebar"; // plasmic-import: M06HuWMcBQV2/component
 import Button from "../../Button"; // plasmic-import: 9ixtKbGKv7x-/component
 import JobCard from "../../JobCard"; // plasmic-import: 9MKR6AAbT8y6/component
+import MobileNavbarBottom from "../../MobileNavbarBottom"; // plasmic-import: BIS-N7QZzUVV/component
 import Modal from "../../Modal"; // plasmic-import: fsC3QwUZz9uz/component
 import { FormWrapper } from "@plasmicpkgs/antd5/skinny/Form";
 import { formHelpers as FormWrapper_Helpers } from "@plasmicpkgs/antd5/skinny/Form";
@@ -95,7 +96,6 @@ import { inputHelpers as AntdTextArea_Helpers } from "@plasmicpkgs/antd5/skinny/
 import CvUploaded from "../../CvUploaded"; // plasmic-import: bmRjHjAcjHYi/component
 import ProductCard from "../../ProductCard"; // plasmic-import: XNMQC2V0FBMZ/component
 import { PageLoader } from "../../others/PageLoader/PageLoader"; // plasmic-import: FHDrnDhA4DZe/codeComponent
-import MobileNavbarBottomCompany from "../../MobileNavbarBottomCompany"; // plasmic-import: gAnwjyfMiBe9/component
 import { InputComboSelect } from "../../forms/InputComboSelect/InputComboSelect"; // plasmic-import: KwvhXarw-EVS/codeComponent
 import { StripeCheckoutButton } from "../../forms/StripeCheckoutButton/StripeCheckoutButton"; // plasmic-import: HaGLE8b9jujz/codeComponent
 import { Fetcher } from "@plasmicapp/react-web/lib/data-sources";
@@ -162,6 +162,7 @@ export type PlasmicOffreEmployeur__OverridesType = {
   textAndSupportingText3?: Flex__<"div">;
   text7?: Flex__<"div">;
   supportingText3?: Flex__<"div">;
+  mobileNavbarBottom?: Flex__<typeof MobileNavbarBottom>;
   createJob?: Flex__<typeof Modal>;
   form2?: Flex__<typeof FormWrapper>;
   textInput8?: Flex__<typeof TextInput>;
@@ -318,7 +319,6 @@ export type PlasmicOffreEmployeur__OverridesType = {
   step2?: Flex__<"div">;
   stripeCancel?: Flex__<typeof PageLoader>;
   stripeCheckout?: Flex__<typeof SmartLoader>;
-  mobileNavbarBottomCompany?: Flex__<typeof MobileNavbarBottomCompany>;
   insufficientCharges?: Flex__<typeof Modal>;
   button?: Flex__<typeof JamButton>;
   e3?: Flex__<"div">;
@@ -1688,6 +1688,12 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
         type: "private",
         variableType: "boolean",
         initFunc: ({ $props, $state, $queries, $ctx }) => false
+      },
+      {
+        path: "mobileNavbarBottom.role",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $ctx }) => "company"
       }
     ],
     [$props, $ctx, $refs]
@@ -1991,7 +1997,13 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
           <main
             data-plasmic-name={"main"}
             data-plasmic-override={overrides.main}
-            className={classNames(projectcss.all, sty.main)}
+            className={classNames(
+              projectcss.all,
+              sty.main,
+              hasVariant(globalVariants, "screen", "mobileOnly")
+                ? ``
+                : "main-content"
+            )}
           >
             <div className={classNames(projectcss.all, sty.freeBox__qDWa)}>
               <div className={classNames(projectcss.all, sty.freeBox___8RxEe)}>
@@ -3847,6 +3859,30 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
               ) : null}
             </div>
           </main>
+          <MobileNavbarBottom
+            data-plasmic-name={"mobileNavbarBottom"}
+            data-plasmic-override={overrides.mobileNavbarBottom}
+            className={classNames("__wab_instance", sty.mobileNavbarBottom)}
+            onRoleChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, [
+                "mobileNavbarBottom",
+                "role"
+              ]).apply(null, eventArgs);
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+            role={generateStateValueProp($state, [
+              "mobileNavbarBottom",
+              "role"
+            ])}
+          />
+
           <Modal
             data-plasmic-name={"createJob"}
             data-plasmic-override={overrides.createJob}
@@ -6240,7 +6276,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                                         "ba382dfb-c617-44db-a36f-dda3fa7e919f",
                                         "9258b35e-6135-4ba7-8ce4-fe23b60361d6",
                                         "c91b3dad-0831-48c9-8dd7-50555a9ed2f8",
-                                        "09c18e19-f24f-4bbd-891f-3c8b83e5f1cc"
+                                        "a6b10ed4-7764-401c-a116-8f0bf67bb617"
                                       ],
                                       roleId: null
                                     },
@@ -18025,15 +18061,6 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
               />
             </div>
           ) : null}
-          <MobileNavbarBottomCompany
-            data-plasmic-name={"mobileNavbarBottomCompany"}
-            data-plasmic-override={overrides.mobileNavbarBottomCompany}
-            className={classNames(
-              "__wab_instance",
-              sty.mobileNavbarBottomCompany
-            )}
-          />
-
           <Modal
             data-plasmic-name={"insufficientCharges"}
             data-plasmic-override={overrides.insufficientCharges}
@@ -19689,6 +19716,7 @@ const PlasmicDescendants = {
     "textAndSupportingText3",
     "text7",
     "supportingText3",
+    "mobileNavbarBottom",
     "createJob",
     "form2",
     "textInput8",
@@ -19845,7 +19873,6 @@ const PlasmicDescendants = {
     "step2",
     "stripeCancel",
     "stripeCheckout",
-    "mobileNavbarBottomCompany",
     "insufficientCharges",
     "button",
     "e3",
@@ -19902,6 +19929,7 @@ const PlasmicDescendants = {
   ],
   text7: ["text7"],
   supportingText3: ["supportingText3"],
+  mobileNavbarBottom: ["mobileNavbarBottom"],
   createJob: [
     "createJob",
     "form2",
@@ -20563,7 +20591,6 @@ const PlasmicDescendants = {
   step2: ["step2"],
   stripeCancel: ["stripeCancel"],
   stripeCheckout: ["stripeCheckout"],
-  mobileNavbarBottomCompany: ["mobileNavbarBottomCompany"],
   insufficientCharges: ["insufficientCharges", "button", "e3"],
   button: ["button"],
   e3: ["e3"],
@@ -20649,6 +20676,7 @@ type NodeDefaultElementType = {
   textAndSupportingText3: "div";
   text7: "div";
   supportingText3: "div";
+  mobileNavbarBottom: typeof MobileNavbarBottom;
   createJob: typeof Modal;
   form2: typeof FormWrapper;
   textInput8: typeof TextInput;
@@ -20805,7 +20833,6 @@ type NodeDefaultElementType = {
   step2: "div";
   stripeCancel: typeof PageLoader;
   stripeCheckout: typeof SmartLoader;
-  mobileNavbarBottomCompany: typeof MobileNavbarBottomCompany;
   insufficientCharges: typeof Modal;
   button: typeof JamButton;
   e3: "div";
@@ -20903,6 +20930,7 @@ export const PlasmicOffreEmployeur = Object.assign(
     textAndSupportingText3: makeNodeComponent("textAndSupportingText3"),
     text7: makeNodeComponent("text7"),
     supportingText3: makeNodeComponent("supportingText3"),
+    mobileNavbarBottom: makeNodeComponent("mobileNavbarBottom"),
     createJob: makeNodeComponent("createJob"),
     form2: makeNodeComponent("form2"),
     textInput8: makeNodeComponent("textInput8"),
@@ -21059,7 +21087,6 @@ export const PlasmicOffreEmployeur = Object.assign(
     step2: makeNodeComponent("step2"),
     stripeCancel: makeNodeComponent("stripeCancel"),
     stripeCheckout: makeNodeComponent("stripeCheckout"),
-    mobileNavbarBottomCompany: makeNodeComponent("mobileNavbarBottomCompany"),
     insufficientCharges: makeNodeComponent("insufficientCharges"),
     button: makeNodeComponent("button"),
     e3: makeNodeComponent("e3"),

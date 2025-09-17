@@ -79,7 +79,7 @@ import { Notation } from "../../../plasmic-library/others/Notation/Notation"; //
 import Modal from "../../Modal"; // plasmic-import: fsC3QwUZz9uz/component
 import { JamButton } from "../../forms/JamButton/JamButton"; // plasmic-import: UiI0wt2mxfuf/codeComponent
 import { Iframe } from "@plasmicpkgs/plasmic-basic-components";
-import MobileNavbarBottomCompany from "../../MobileNavbarBottomCompany"; // plasmic-import: gAnwjyfMiBe9/component
+import MobileNavbarBottom from "../../MobileNavbarBottom"; // plasmic-import: BIS-N7QZzUVV/component
 import { Fetcher } from "@plasmicapp/react-web/lib/data-sources";
 import { _useGlobalVariants } from "./plasmic"; // plasmic-import: f7DE9y7qp46fyCw5nuY8f9/projectModule
 import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: f7DE9y7qp46fyCw5nuY8f9/styleTokensProvider
@@ -177,7 +177,7 @@ export type PlasmicRechercheCandidat__OverridesType = {
   supportingText2?: Flex__<"div">;
   cvModal?: Flex__<typeof Modal>;
   coverLetterModal?: Flex__<typeof Modal>;
-  mobileNavbarBottomCompany?: Flex__<typeof MobileNavbarBottomCompany>;
+  mobileNavbarBottom?: Flex__<typeof MobileNavbarBottom>;
 };
 
 export interface DefaultRechercheCandidatProps {}
@@ -520,6 +520,12 @@ function PlasmicRechercheCandidat__RenderFunc(props: {
               throw e;
             }
           })()
+      },
+      {
+        path: "mobileNavbarBottom.role",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $ctx }) => "company"
       }
     ],
     [$props, $ctx, $refs]
@@ -660,7 +666,13 @@ function PlasmicRechercheCandidat__RenderFunc(props: {
           <main
             data-plasmic-name={"main"}
             data-plasmic-override={overrides.main}
-            className={classNames(projectcss.all, sty.main)}
+            className={classNames(
+              projectcss.all,
+              sty.main,
+              hasVariant(globalVariants, "screen", "mobileOnly")
+                ? ``
+                : "main-content"
+            )}
           >
             <h1
               data-plasmic-name={"h1"}
@@ -2732,13 +2744,28 @@ function PlasmicRechercheCandidat__RenderFunc(props: {
             showHeader={false}
           />
 
-          <MobileNavbarBottomCompany
-            data-plasmic-name={"mobileNavbarBottomCompany"}
-            data-plasmic-override={overrides.mobileNavbarBottomCompany}
-            className={classNames(
-              "__wab_instance",
-              sty.mobileNavbarBottomCompany
-            )}
+          <MobileNavbarBottom
+            data-plasmic-name={"mobileNavbarBottom"}
+            data-plasmic-override={overrides.mobileNavbarBottom}
+            className={classNames("__wab_instance", sty.mobileNavbarBottom)}
+            onRoleChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, [
+                "mobileNavbarBottom",
+                "role"
+              ]).apply(null, eventArgs);
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+            role={generateStateValueProp($state, [
+              "mobileNavbarBottom",
+              "role"
+            ])}
           />
         </div>
       </div>
@@ -2810,7 +2837,7 @@ const PlasmicDescendants = {
     "supportingText2",
     "cvModal",
     "coverLetterModal",
-    "mobileNavbarBottomCompany"
+    "mobileNavbarBottom"
   ],
   mobileNavbarTop: ["mobileNavbarTop"],
   sidebar: ["sidebar"],
@@ -3139,7 +3166,7 @@ const PlasmicDescendants = {
   supportingText2: ["supportingText2"],
   cvModal: ["cvModal"],
   coverLetterModal: ["coverLetterModal"],
-  mobileNavbarBottomCompany: ["mobileNavbarBottomCompany"]
+  mobileNavbarBottom: ["mobileNavbarBottom"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -3207,7 +3234,7 @@ type NodeDefaultElementType = {
   supportingText2: "div";
   cvModal: typeof Modal;
   coverLetterModal: typeof Modal;
-  mobileNavbarBottomCompany: typeof MobileNavbarBottomCompany;
+  mobileNavbarBottom: typeof MobileNavbarBottom;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -3331,7 +3358,7 @@ export const PlasmicRechercheCandidat = Object.assign(
     supportingText2: makeNodeComponent("supportingText2"),
     cvModal: makeNodeComponent("cvModal"),
     coverLetterModal: makeNodeComponent("coverLetterModal"),
-    mobileNavbarBottomCompany: makeNodeComponent("mobileNavbarBottomCompany"),
+    mobileNavbarBottom: makeNodeComponent("mobileNavbarBottom"),
 
     // Metadata about props expected for PlasmicRechercheCandidat
     internalVariantProps: PlasmicRechercheCandidat__VariantProps,

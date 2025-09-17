@@ -67,10 +67,12 @@ import {
 } from "@plasmicapp/react-web/lib/data-sources";
 
 import Sidebar from "../../Sidebar"; // plasmic-import: M06HuWMcBQV2/component
+import MobileNavbarTop from "../../MobileNavbarTop"; // plasmic-import: mAg8Ml3XUEhy/component
 import { DataGridOffre } from "../../others/DataGridOffre/DataGridOffre"; // plasmic-import: xkvR5y_rqfm4/codeComponent
 import Modal from "../../Modal"; // plasmic-import: fsC3QwUZz9uz/component
 import Button from "../../Button"; // plasmic-import: 9ixtKbGKv7x-/component
 import DeleteAccount from "../../DeleteAccount"; // plasmic-import: KdtWnTG_vDHe/component
+import MobileNavbarBottom from "../../MobileNavbarBottom"; // plasmic-import: BIS-N7QZzUVV/component
 import { Fetcher } from "@plasmicapp/react-web/lib/data-sources";
 import { _useGlobalVariants } from "./plasmic"; // plasmic-import: f7DE9y7qp46fyCw5nuY8f9/projectModule
 import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: f7DE9y7qp46fyCw5nuY8f9/styleTokensProvider
@@ -106,6 +108,7 @@ export const PlasmicOffreAdmin__ArgProps = new Array<ArgPropType>();
 export type PlasmicOffreAdmin__OverridesType = {
   root?: Flex__<"div">;
   sidebar?: Flex__<typeof Sidebar>;
+  mobileNavbarTop?: Flex__<typeof MobileNavbarTop>;
   main?: Flex__<"div">;
   h1?: Flex__<"h1">;
   dataGridOffre?: Flex__<typeof DataGridOffre>;
@@ -129,6 +132,7 @@ export type PlasmicOffreAdmin__OverridesType = {
   e2?: Flex__<"div">;
   button?: Flex__<typeof Button>;
   deleteAccount?: Flex__<typeof DeleteAccount>;
+  mobileNavbarBottom?: Flex__<typeof MobileNavbarBottom>;
 };
 
 export interface DefaultOffreAdminProps {}
@@ -219,6 +223,12 @@ function PlasmicOffreAdmin__RenderFunc(props: {
       },
       {
         path: "sidebar.role",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $ctx }) => "admin"
+      },
+      {
+        path: "mobileNavbarBottom.role",
         type: "private",
         variableType: "text",
         initFunc: ({ $props, $state, $queries, $ctx }) => "admin"
@@ -341,10 +351,22 @@ function PlasmicOffreAdmin__RenderFunc(props: {
             role={generateStateValueProp($state, ["sidebar", "role"])}
           />
 
+          <MobileNavbarTop
+            data-plasmic-name={"mobileNavbarTop"}
+            data-plasmic-override={overrides.mobileNavbarTop}
+            className={classNames("__wab_instance", sty.mobileNavbarTop)}
+          />
+
           <div
             data-plasmic-name={"main"}
             data-plasmic-override={overrides.main}
-            className={classNames(projectcss.all, sty.main)}
+            className={classNames(
+              projectcss.all,
+              sty.main,
+              hasVariant(globalVariants, "screen", "mobileOnly")
+                ? ``
+                : "main-content"
+            )}
           >
             <div
               className={classNames(
@@ -1133,6 +1155,9 @@ function PlasmicOffreAdmin__RenderFunc(props: {
                 ) : null
               }
               isOpen={generateStateValueProp($state, ["offre", "isOpen"])}
+              noTrigger={
+                hasVariant(globalVariants, "screen", "mobileOnly") ? true : true
+              }
               onOpenChange={async (...eventArgs: any) => {
                 generateStateOnChangeProp($state, ["offre", "isOpen"]).apply(
                   null,
@@ -1384,6 +1409,9 @@ function PlasmicOffreAdmin__RenderFunc(props: {
               footer={null}
               heading={null}
               isOpen={generateStateValueProp($state, ["_delete", "isOpen"])}
+              noTrigger={
+                hasVariant(globalVariants, "screen", "mobileOnly") ? true : true
+              }
               onOpenChange={async (...eventArgs: any) => {
                 generateStateOnChangeProp($state, ["_delete", "isOpen"]).apply(
                   null,
@@ -1403,6 +1431,29 @@ function PlasmicOffreAdmin__RenderFunc(props: {
               trigger={null}
             />
           </div>
+          <MobileNavbarBottom
+            data-plasmic-name={"mobileNavbarBottom"}
+            data-plasmic-override={overrides.mobileNavbarBottom}
+            className={classNames("__wab_instance", sty.mobileNavbarBottom)}
+            onRoleChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, [
+                "mobileNavbarBottom",
+                "role"
+              ]).apply(null, eventArgs);
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+            role={generateStateValueProp($state, [
+              "mobileNavbarBottom",
+              "role"
+            ])}
+          />
         </div>
       </div>
     </React.Fragment>
@@ -1413,6 +1464,7 @@ const PlasmicDescendants = {
   root: [
     "root",
     "sidebar",
+    "mobileNavbarTop",
     "main",
     "h1",
     "dataGridOffre",
@@ -1435,9 +1487,11 @@ const PlasmicDescendants = {
     "_delete",
     "e2",
     "button",
-    "deleteAccount"
+    "deleteAccount",
+    "mobileNavbarBottom"
   ],
   sidebar: ["sidebar"],
+  mobileNavbarTop: ["mobileNavbarTop"],
   main: [
     "main",
     "h1",
@@ -1525,7 +1579,8 @@ const PlasmicDescendants = {
   _delete: ["_delete", "e2", "button", "deleteAccount"],
   e2: ["e2"],
   button: ["button"],
-  deleteAccount: ["deleteAccount"]
+  deleteAccount: ["deleteAccount"],
+  mobileNavbarBottom: ["mobileNavbarBottom"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -1533,6 +1588,7 @@ type DescendantsType<T extends NodeNameType> =
 type NodeDefaultElementType = {
   root: "div";
   sidebar: typeof Sidebar;
+  mobileNavbarTop: typeof MobileNavbarTop;
   main: "div";
   h1: "h1";
   dataGridOffre: typeof DataGridOffre;
@@ -1556,6 +1612,7 @@ type NodeDefaultElementType = {
   e2: "div";
   button: typeof Button;
   deleteAccount: typeof DeleteAccount;
+  mobileNavbarBottom: typeof MobileNavbarBottom;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -1619,6 +1676,7 @@ export const PlasmicOffreAdmin = Object.assign(
   {
     // Helper components rendering sub-elements
     sidebar: makeNodeComponent("sidebar"),
+    mobileNavbarTop: makeNodeComponent("mobileNavbarTop"),
     main: makeNodeComponent("main"),
     h1: makeNodeComponent("h1"),
     dataGridOffre: makeNodeComponent("dataGridOffre"),
@@ -1642,6 +1700,7 @@ export const PlasmicOffreAdmin = Object.assign(
     e2: makeNodeComponent("e2"),
     button: makeNodeComponent("button"),
     deleteAccount: makeNodeComponent("deleteAccount"),
+    mobileNavbarBottom: makeNodeComponent("mobileNavbarBottom"),
 
     // Metadata about props expected for PlasmicOffreAdmin
     internalVariantProps: PlasmicOffreAdmin__VariantProps,

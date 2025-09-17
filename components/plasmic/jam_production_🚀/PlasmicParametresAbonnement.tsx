@@ -66,6 +66,7 @@ import {
   usePlasmicInvalidate
 } from "@plasmicapp/react-web/lib/data-sources";
 
+import MobileNavbarTop from "../../MobileNavbarTop"; // plasmic-import: mAg8Ml3XUEhy/component
 import Sidebar from "../../Sidebar"; // plasmic-import: M06HuWMcBQV2/component
 import { PageLoader } from "../../others/PageLoader/PageLoader"; // plasmic-import: FHDrnDhA4DZe/codeComponent
 import Modal from "../../Modal"; // plasmic-import: fsC3QwUZz9uz/component
@@ -77,6 +78,7 @@ import { StripeCheckoutButton } from "../../forms/StripeCheckoutButton/StripeChe
 import { InputComboSelect } from "../../forms/InputComboSelect/InputComboSelect"; // plasmic-import: KwvhXarw-EVS/codeComponent
 import TextInput from "../../TextInput"; // plasmic-import: pZ7Ql6sUFRw9/component
 import { SmartLoader } from "../../others/SmartLoader/SmartLoader"; // plasmic-import: YAp2GWWLB3S2/codeComponent
+import MobileNavbarBottom from "../../MobileNavbarBottom"; // plasmic-import: BIS-N7QZzUVV/component
 import { Fetcher } from "@plasmicapp/react-web/lib/data-sources";
 import { _useGlobalVariants } from "./plasmic"; // plasmic-import: f7DE9y7qp46fyCw5nuY8f9/projectModule
 import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: f7DE9y7qp46fyCw5nuY8f9/styleTokensProvider
@@ -114,6 +116,7 @@ export const PlasmicParametresAbonnement__ArgProps = new Array<ArgPropType>();
 
 export type PlasmicParametresAbonnement__OverridesType = {
   root?: Flex__<"div">;
+  mobileNavbarTop?: Flex__<typeof MobileNavbarTop>;
   sidebar?: Flex__<typeof Sidebar>;
   actionSubscriptionSuccess?: Flex__<typeof PageLoader>;
   actionCreditSuccess?: Flex__<typeof PageLoader>;
@@ -170,6 +173,7 @@ export type PlasmicParametresAbonnement__OverridesType = {
   total?: Flex__<"div">;
   amount?: Flex__<"div">;
   stripeCheckout?: Flex__<typeof SmartLoader>;
+  mobileNavbarBottom?: Flex__<typeof MobileNavbarBottom>;
 };
 
 export interface DefaultParametresAbonnementProps {}
@@ -386,6 +390,12 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
               throw e;
             }
           })()
+      },
+      {
+        path: "mobileNavbarBottom.role",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $ctx }) => "company"
       }
     ],
     [$props, $ctx, $refs]
@@ -425,11 +435,9 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
     getStripeHistory: usePlasmicDataOp(() => {
       return {
         sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
-        opId: "edae9b98-d01c-4ff8-9741-cdfedc2753d6",
-        userArgs: {
-          filters: [$ctx.SupabaseUser.user.email]
-        },
-        cacheKey: `plasmic.$.edae9b98-d01c-4ff8-9741-cdfedc2753d6.$.`,
+        opId: "d6e3d924-7580-49eb-b7c6-12cf3eb2f11d",
+        userArgs: {},
+        cacheKey: `plasmic.$.d6e3d924-7580-49eb-b7c6-12cf3eb2f11d.$.`,
         invalidatedKeys: null,
         roleId: null
       };
@@ -516,6 +524,12 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
             sty.root
           )}
         >
+          <MobileNavbarTop
+            data-plasmic-name={"mobileNavbarTop"}
+            data-plasmic-override={overrides.mobileNavbarTop}
+            className={classNames("__wab_instance", sty.mobileNavbarTop)}
+          />
+
           <Sidebar
             data-plasmic-name={"sidebar"}
             data-plasmic-override={overrides.sidebar}
@@ -1072,7 +1086,13 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
           <div
             data-plasmic-name={"main"}
             data-plasmic-override={overrides.main}
-            className={classNames(projectcss.all, sty.main)}
+            className={classNames(
+              projectcss.all,
+              sty.main,
+              hasVariant(globalVariants, "screen", "mobileOnly")
+                ? ``
+                : "main-content"
+            )}
           >
             <div
               data-plasmic-name={"heading"}
@@ -1083,21 +1103,7 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                 sty.heading
               )}
             >
-              <React.Fragment>
-                {(() => {
-                  try {
-                    return undefined;
-                  } catch (e) {
-                    if (
-                      e instanceof TypeError ||
-                      e?.plasmicType === "PlasmicUndefinedDataError"
-                    ) {
-                      return "Mon abonnement";
-                    }
-                    throw e;
-                  }
-                })()}
-              </React.Fragment>
+              {"Mon abonnement"}
             </div>
             {(() => {
               const child$Props = {
@@ -4875,6 +4881,29 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
               />
             </div>
           </div>
+          <MobileNavbarBottom
+            data-plasmic-name={"mobileNavbarBottom"}
+            data-plasmic-override={overrides.mobileNavbarBottom}
+            className={classNames("__wab_instance", sty.mobileNavbarBottom)}
+            onRoleChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, [
+                "mobileNavbarBottom",
+                "role"
+              ]).apply(null, eventArgs);
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+            role={generateStateValueProp($state, [
+              "mobileNavbarBottom",
+              "role"
+            ])}
+          />
         </div>
       </div>
     </React.Fragment>
@@ -4884,6 +4913,7 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
 const PlasmicDescendants = {
   root: [
     "root",
+    "mobileNavbarTop",
     "sidebar",
     "actionSubscriptionSuccess",
     "actionCreditSuccess",
@@ -4939,8 +4969,10 @@ const PlasmicDescendants = {
     "totalAmount",
     "total",
     "amount",
-    "stripeCheckout"
+    "stripeCheckout",
+    "mobileNavbarBottom"
   ],
+  mobileNavbarTop: ["mobileNavbarTop"],
   sidebar: ["sidebar"],
   actionSubscriptionSuccess: ["actionSubscriptionSuccess"],
   actionCreditSuccess: ["actionCreditSuccess"],
@@ -5206,13 +5238,15 @@ const PlasmicDescendants = {
   totalAmount: ["totalAmount", "total", "amount"],
   total: ["total"],
   amount: ["amount"],
-  stripeCheckout: ["stripeCheckout"]
+  stripeCheckout: ["stripeCheckout"],
+  mobileNavbarBottom: ["mobileNavbarBottom"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
   (typeof PlasmicDescendants)[T][number];
 type NodeDefaultElementType = {
   root: "div";
+  mobileNavbarTop: typeof MobileNavbarTop;
   sidebar: typeof Sidebar;
   actionSubscriptionSuccess: typeof PageLoader;
   actionCreditSuccess: typeof PageLoader;
@@ -5269,6 +5303,7 @@ type NodeDefaultElementType = {
   total: "div";
   amount: "div";
   stripeCheckout: typeof SmartLoader;
+  mobileNavbarBottom: typeof MobileNavbarBottom;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -5331,6 +5366,7 @@ export const PlasmicParametresAbonnement = Object.assign(
   makeNodeComponent("root"),
   {
     // Helper components rendering sub-elements
+    mobileNavbarTop: makeNodeComponent("mobileNavbarTop"),
     sidebar: makeNodeComponent("sidebar"),
     actionSubscriptionSuccess: makeNodeComponent("actionSubscriptionSuccess"),
     actionCreditSuccess: makeNodeComponent("actionCreditSuccess"),
@@ -5389,6 +5425,7 @@ export const PlasmicParametresAbonnement = Object.assign(
     total: makeNodeComponent("total"),
     amount: makeNodeComponent("amount"),
     stripeCheckout: makeNodeComponent("stripeCheckout"),
+    mobileNavbarBottom: makeNodeComponent("mobileNavbarBottom"),
 
     // Metadata about props expected for PlasmicParametresAbonnement
     internalVariantProps: PlasmicParametresAbonnement__VariantProps,

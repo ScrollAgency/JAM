@@ -82,7 +82,7 @@ import { UploadWrapper } from "@plasmicpkgs/antd5/skinny/registerUpload";
 import TextAreaInput from "../../TextAreaInput"; // plasmic-import: nVAUbPc6gpoz/component
 import Select from "../../Select"; // plasmic-import: ZMB-SB-xJDyQ/component
 import MenuItem from "../../MenuItem"; // plasmic-import: plmAgyhhAdMc/component
-import MobileNavbarBottomCompany from "../../MobileNavbarBottomCompany"; // plasmic-import: gAnwjyfMiBe9/component
+import MobileNavbarBottom from "../../MobileNavbarBottom"; // plasmic-import: BIS-N7QZzUVV/component
 import { Fetcher } from "@plasmicapp/react-web/lib/data-sources";
 import { _useGlobalVariants } from "./plasmic"; // plasmic-import: f7DE9y7qp46fyCw5nuY8f9/projectModule
 import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: f7DE9y7qp46fyCw5nuY8f9/styleTokensProvider
@@ -154,7 +154,7 @@ export type PlasmicParametresEmployeur__OverridesType = {
   select2?: Flex__<typeof Select>;
   textInput4?: Flex__<typeof TextInput>;
   expandTab?: Flex__<"div">;
-  mobileNavbarBottomCompany?: Flex__<typeof MobileNavbarBottomCompany>;
+  mobileNavbarBottom?: Flex__<typeof MobileNavbarBottom>;
 };
 
 export interface DefaultParametresEmployeurProps {}
@@ -560,6 +560,12 @@ function PlasmicParametresEmployeur__RenderFunc(props: {
           "Zambie",
           "Zimbabwe"
         ]
+      },
+      {
+        path: "mobileNavbarBottom.role",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $ctx }) => "company"
       }
     ],
     [$props, $ctx, $refs]
@@ -837,7 +843,13 @@ function PlasmicParametresEmployeur__RenderFunc(props: {
           <div
             data-plasmic-name={"main"}
             data-plasmic-override={overrides.main}
-            className={classNames(projectcss.all, sty.main)}
+            className={classNames(
+              projectcss.all,
+              sty.main,
+              hasVariant(globalVariants, "screen", "mobileOnly")
+                ? ``
+                : "main-content"
+            )}
           >
             <div
               data-plasmic-name={"heading"}
@@ -2939,13 +2951,28 @@ function PlasmicParametresEmployeur__RenderFunc(props: {
               </div>
             ) : null}
           </div>
-          <MobileNavbarBottomCompany
-            data-plasmic-name={"mobileNavbarBottomCompany"}
-            data-plasmic-override={overrides.mobileNavbarBottomCompany}
-            className={classNames(
-              "__wab_instance",
-              sty.mobileNavbarBottomCompany
-            )}
+          <MobileNavbarBottom
+            data-plasmic-name={"mobileNavbarBottom"}
+            data-plasmic-override={overrides.mobileNavbarBottom}
+            className={classNames("__wab_instance", sty.mobileNavbarBottom)}
+            onRoleChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, [
+                "mobileNavbarBottom",
+                "role"
+              ]).apply(null, eventArgs);
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+            role={generateStateValueProp($state, [
+              "mobileNavbarBottom",
+              "role"
+            ])}
           />
         </div>
       </div>
@@ -2993,7 +3020,7 @@ const PlasmicDescendants = {
     "select2",
     "textInput4",
     "expandTab",
-    "mobileNavbarBottomCompany"
+    "mobileNavbarBottom"
   ],
   updateFirstGoogleConnection: ["updateFirstGoogleConnection"],
   mobileNavbarTop: ["mobileNavbarTop"],
@@ -3128,7 +3155,7 @@ const PlasmicDescendants = {
   select2: ["select2"],
   textInput4: ["textInput4"],
   expandTab: ["expandTab"],
-  mobileNavbarBottomCompany: ["mobileNavbarBottomCompany"]
+  mobileNavbarBottom: ["mobileNavbarBottom"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -3172,7 +3199,7 @@ type NodeDefaultElementType = {
   select2: typeof Select;
   textInput4: typeof TextInput;
   expandTab: "div";
-  mobileNavbarBottomCompany: typeof MobileNavbarBottomCompany;
+  mobileNavbarBottom: typeof MobileNavbarBottom;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -3274,7 +3301,7 @@ export const PlasmicParametresEmployeur = Object.assign(
     select2: makeNodeComponent("select2"),
     textInput4: makeNodeComponent("textInput4"),
     expandTab: makeNodeComponent("expandTab"),
-    mobileNavbarBottomCompany: makeNodeComponent("mobileNavbarBottomCompany"),
+    mobileNavbarBottom: makeNodeComponent("mobileNavbarBottom"),
 
     // Metadata about props expected for PlasmicParametresEmployeur
     internalVariantProps: PlasmicParametresEmployeur__VariantProps,

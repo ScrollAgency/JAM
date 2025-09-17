@@ -66,13 +66,14 @@ import {
   usePlasmicInvalidate
 } from "@plasmicapp/react-web/lib/data-sources";
 
+import MobileNavbarTop from "../../MobileNavbarTop"; // plasmic-import: mAg8Ml3XUEhy/component
 import Sidebar from "../../Sidebar"; // plasmic-import: M06HuWMcBQV2/component
 import { SideEffect } from "@plasmicpkgs/plasmic-basic-components";
 import Button from "../../Button"; // plasmic-import: 9ixtKbGKv7x-/component
 import { DataGridUser } from "../../others/DataGridUser/DataGridUser"; // plasmic-import: HXtz_l-PfcN1/codeComponent
 import Modal from "../../Modal"; // plasmic-import: fsC3QwUZz9uz/component
 import DeleteAccount from "../../DeleteAccount"; // plasmic-import: KdtWnTG_vDHe/component
-import MobileNavbarBottomAdmin from "../../MobileNavbarBottomAdmin"; // plasmic-import: m4jmCbHtDuQ4/component
+import MobileNavbarBottom from "../../MobileNavbarBottom"; // plasmic-import: BIS-N7QZzUVV/component
 import { Fetcher } from "@plasmicapp/react-web/lib/data-sources";
 import { _useGlobalVariants } from "./plasmic"; // plasmic-import: f7DE9y7qp46fyCw5nuY8f9/projectModule
 import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: f7DE9y7qp46fyCw5nuY8f9/styleTokensProvider
@@ -102,6 +103,7 @@ export const PlasmicUserAdmin__ArgProps = new Array<ArgPropType>();
 
 export type PlasmicUserAdmin__OverridesType = {
   root?: Flex__<"div">;
+  mobileNavbarTop?: Flex__<typeof MobileNavbarTop>;
   sidebar?: Flex__<typeof Sidebar>;
   main?: Flex__<"div">;
   sideEffect?: Flex__<typeof SideEffect>;
@@ -110,7 +112,7 @@ export type PlasmicUserAdmin__OverridesType = {
   svg?: Flex__<"svg">;
   e2?: Flex__<"div">;
   deleteAccount?: Flex__<typeof DeleteAccount>;
-  mobileNavbarBottomAdmin?: Flex__<typeof MobileNavbarBottomAdmin>;
+  mobileNavbarBottom?: Flex__<typeof MobileNavbarBottom>;
 };
 
 export interface DefaultUserAdminProps {}
@@ -208,6 +210,13 @@ function PlasmicUserAdmin__RenderFunc(props: {
         type: "private",
         variableType: "text",
         initFunc: ({ $props, $state, $queries, $ctx }) => "admin"
+      },
+      {
+        path: "mobileNavbarBottom.role",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $ctx }) =>
+          hasVariant(globalVariants, "screen", "mobileOnly") ? "admin" : "admin"
       }
     ],
     [$props, $ctx, $refs]
@@ -308,6 +317,12 @@ function PlasmicUserAdmin__RenderFunc(props: {
             sty.root
           )}
         >
+          <MobileNavbarTop
+            data-plasmic-name={"mobileNavbarTop"}
+            data-plasmic-override={overrides.mobileNavbarTop}
+            className={classNames("__wab_instance", sty.mobileNavbarTop)}
+          />
+
           <Sidebar
             data-plasmic-name={"sidebar"}
             data-plasmic-override={overrides.sidebar}
@@ -350,7 +365,13 @@ function PlasmicUserAdmin__RenderFunc(props: {
           <div
             data-plasmic-name={"main"}
             data-plasmic-override={overrides.main}
-            className={classNames(projectcss.all, sty.main)}
+            className={classNames(
+              projectcss.all,
+              sty.main,
+              hasVariant(globalVariants, "screen", "mobileOnly")
+                ? ``
+                : "main-content"
+            )}
           >
             <SideEffect
               data-plasmic-name={"sideEffect"}
@@ -1192,13 +1213,28 @@ function PlasmicUserAdmin__RenderFunc(props: {
               trigger={null}
             />
           </div>
-          <MobileNavbarBottomAdmin
-            data-plasmic-name={"mobileNavbarBottomAdmin"}
-            data-plasmic-override={overrides.mobileNavbarBottomAdmin}
-            className={classNames(
-              "__wab_instance",
-              sty.mobileNavbarBottomAdmin
-            )}
+          <MobileNavbarBottom
+            data-plasmic-name={"mobileNavbarBottom"}
+            data-plasmic-override={overrides.mobileNavbarBottom}
+            className={classNames("__wab_instance", sty.mobileNavbarBottom)}
+            onRoleChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, [
+                "mobileNavbarBottom",
+                "role"
+              ]).apply(null, eventArgs);
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+            role={generateStateValueProp($state, [
+              "mobileNavbarBottom",
+              "role"
+            ])}
           />
         </div>
       </div>
@@ -1209,6 +1245,7 @@ function PlasmicUserAdmin__RenderFunc(props: {
 const PlasmicDescendants = {
   root: [
     "root",
+    "mobileNavbarTop",
     "sidebar",
     "main",
     "sideEffect",
@@ -1217,8 +1254,9 @@ const PlasmicDescendants = {
     "svg",
     "e2",
     "deleteAccount",
-    "mobileNavbarBottomAdmin"
+    "mobileNavbarBottom"
   ],
+  mobileNavbarTop: ["mobileNavbarTop"],
   sidebar: ["sidebar"],
   main: ["main", "sideEffect", "h1", "supprUser", "svg", "e2", "deleteAccount"],
   sideEffect: ["sideEffect"],
@@ -1227,13 +1265,14 @@ const PlasmicDescendants = {
   svg: ["svg"],
   e2: ["e2"],
   deleteAccount: ["deleteAccount"],
-  mobileNavbarBottomAdmin: ["mobileNavbarBottomAdmin"]
+  mobileNavbarBottom: ["mobileNavbarBottom"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
   (typeof PlasmicDescendants)[T][number];
 type NodeDefaultElementType = {
   root: "div";
+  mobileNavbarTop: typeof MobileNavbarTop;
   sidebar: typeof Sidebar;
   main: "div";
   sideEffect: typeof SideEffect;
@@ -1242,7 +1281,7 @@ type NodeDefaultElementType = {
   svg: "svg";
   e2: "div";
   deleteAccount: typeof DeleteAccount;
-  mobileNavbarBottomAdmin: typeof MobileNavbarBottomAdmin;
+  mobileNavbarBottom: typeof MobileNavbarBottom;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -1305,6 +1344,7 @@ export const PlasmicUserAdmin = Object.assign(
   makeNodeComponent("root"),
   {
     // Helper components rendering sub-elements
+    mobileNavbarTop: makeNodeComponent("mobileNavbarTop"),
     sidebar: makeNodeComponent("sidebar"),
     main: makeNodeComponent("main"),
     sideEffect: makeNodeComponent("sideEffect"),
@@ -1313,7 +1353,7 @@ export const PlasmicUserAdmin = Object.assign(
     svg: makeNodeComponent("svg"),
     e2: makeNodeComponent("e2"),
     deleteAccount: makeNodeComponent("deleteAccount"),
-    mobileNavbarBottomAdmin: makeNodeComponent("mobileNavbarBottomAdmin"),
+    mobileNavbarBottom: makeNodeComponent("mobileNavbarBottom"),
 
     // Metadata about props expected for PlasmicUserAdmin
     internalVariantProps: PlasmicUserAdmin__VariantProps,

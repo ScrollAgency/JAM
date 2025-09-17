@@ -13,12 +13,12 @@
 }
 @media (min-width: 0px) and (max-width: 768px) {
   .mobileNavbar {
-    width: auto;
+    width: 100%;
     height: auto;
     justify-self: flex-start;
     column-gap: 0px;
     row-gap: 0px;
-    display: inline-flex;
+    min-width: 0;
   }
 }
 .logoTitre {
