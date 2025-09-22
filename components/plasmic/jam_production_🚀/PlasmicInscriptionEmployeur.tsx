@@ -59,6 +59,13 @@ import {
   useGlobalActions
 } from "@plasmicapp/react-web/lib/host";
 
+import { usePlasmicDataSourceContext } from "@plasmicapp/data-sources-context";
+import {
+  executePlasmicDataOp,
+  usePlasmicDataOp,
+  usePlasmicInvalidate
+} from "@plasmicapp/react-web/lib/data-sources";
+
 import { SignUp } from "../../../plasmic-library/authentication/SignUp"; // plasmic-import: l54x2CZo0bN2/codeComponent
 import { _useGlobalVariants } from "./plasmic"; // plasmic-import: f7DE9y7qp46fyCw5nuY8f9/projectModule
 import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: f7DE9y7qp46fyCw5nuY8f9/styleTokensProvider
@@ -196,6 +203,8 @@ function PlasmicInscriptionEmployeur__RenderFunc(props: {
     $queries: {},
     $refs
   });
+  const dataSourcesCtx = usePlasmicDataSourceContext();
+  const plasmicInvalidate = usePlasmicInvalidate();
 
   const styleTokensClassNames = _useStyleTokens();
 
@@ -526,6 +535,64 @@ function PlasmicInscriptionEmployeur__RenderFunc(props: {
                       ) {
                         $steps["invokeGlobalAction"] = await $steps[
                           "invokeGlobalAction"
+                        ];
+                      }
+
+                      $steps["sendEmailToEmployer"] = true
+                        ? (() => {
+                            const actionArgs = {
+                              dataOp: {
+                                sourceId: "5T6gSzGCrEfYgV9rAkCoaD",
+                                opId: "dfff26c2-5788-4d74-ab5c-ccde3a6a6d83",
+                                userArgs: {
+                                  body: [
+                                    {
+                                      to: `${$state.signUp4.email}`,
+                                      template: "welcomeMailCompany",
+                                      subject:
+                                        "Bienvenue dans Job Around Me – recrutez facilement près de vous",
+                                      params: {
+                                        firstName:
+                                          $state.signUp4.firstName +
+                                          " " +
+                                          $state.signUp4.lastName
+                                      }
+                                    }
+                                  ]
+                                },
+                                cacheKey: null,
+                                invalidatedKeys: [],
+                                roleId: null
+                              }
+                            };
+                            return (async ({ dataOp, continueOnError }) => {
+                              try {
+                                const response = await executePlasmicDataOp(
+                                  dataOp,
+                                  {
+                                    userAuthToken:
+                                      dataSourcesCtx?.userAuthToken,
+                                    user: dataSourcesCtx?.user
+                                  }
+                                );
+                                await plasmicInvalidate(dataOp.invalidatedKeys);
+                                return response;
+                              } catch (e) {
+                                if (!continueOnError) {
+                                  throw e;
+                                }
+                                return e;
+                              }
+                            })?.apply(null, [actionArgs]);
+                          })()
+                        : undefined;
+                      if (
+                        $steps["sendEmailToEmployer"] != null &&
+                        typeof $steps["sendEmailToEmployer"] === "object" &&
+                        typeof $steps["sendEmailToEmployer"].then === "function"
+                      ) {
+                        $steps["sendEmailToEmployer"] = await $steps[
+                          "sendEmailToEmployer"
                         ];
                       }
                     }}

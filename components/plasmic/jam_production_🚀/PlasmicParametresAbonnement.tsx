@@ -432,9 +432,11 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
     getStripeHistory: usePlasmicDataOp(() => {
       return {
         sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
-        opId: "d6e3d924-7580-49eb-b7c6-12cf3eb2f11d",
-        userArgs: {},
-        cacheKey: `plasmic.$.d6e3d924-7580-49eb-b7c6-12cf3eb2f11d.$.`,
+        opId: "edae9b98-d01c-4ff8-9741-cdfedc2753d6",
+        userArgs: {
+          filters: [$queries.getUserStripeInfos.data[0].email]
+        },
+        cacheKey: `plasmic.$.edae9b98-d01c-4ff8-9741-cdfedc2753d6.$.`,
         invalidatedKeys: null,
         roleId: null
       };

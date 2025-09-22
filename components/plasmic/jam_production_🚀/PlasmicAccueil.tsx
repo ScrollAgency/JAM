@@ -12414,23 +12414,18 @@ function PlasmicAccueil__RenderFunc(props: {
                                         userArgs: {
                                           body: [
                                             {
-                                              to: `${$state.jobObject.employer_email}`,
+                                              to: $state.jobObject
+                                                .employer_email,
                                               template: "applicationReceived",
-                                              subject:
-                                                "Nouvelle candidature reçue pour votre offre \uD83D\uDCBC",
+                                              subject: `Nouvelle candidature reçue pour ${$state.jobObject.title}`,
                                               params: {
                                                 firstName:
                                                   $state.jobObject
                                                     .employer_name,
                                                 jobTitle:
                                                   $state.jobObject.title,
-                                                candidateName:
-                                                  $queries.getCurrentUser
-                                                    .data[0].first_name +
-                                                  " " +
-                                                  $queries.getCurrentUser
-                                                    .data[0].last_name,
-                                                applicationUrl: `https://job-around-me.com/candidatures-employeur/${$state.jobObject.id}`
+                                                candidateName: `${$queries.getCurrentUser.data[0].first_name} ${$queries.getCurrentUser.data[0].last_name}`
+                                                // applicationUrl: `https://job-around-me.com/candidatures-employeur/${$state.jobObject.id}`
                                               }
                                             }
                                           ]
@@ -12488,7 +12483,7 @@ function PlasmicAccueil__RenderFunc(props: {
                                               to: `${$state.form.value?.email}`,
                                               template: "applicationSubmitted",
                                               subject:
-                                                "Ta candidature a bien été envoyée ✅",
+                                                "Ta candidature a bien été envoyée",
                                               params: {
                                                 firstName:
                                                   $state.form.value?.first_name,
@@ -13660,21 +13655,12 @@ function PlasmicAccueil__RenderFunc(props: {
                                   }}
                                   options={(() => {
                                     try {
-                                      return (() => {
-                                        const selectedTransportModes =
-                                          $queries.getCurrentUser.data?.[0]
-                                            ?.transport_mode || [];
-                                        return $queries.getTransportModes.data.map(
-                                          mode => ({
-                                            value: mode.id,
-                                            label: mode.mode,
-                                            selected:
-                                              selectedTransportModes.includes(
-                                                mode.id
-                                              )
-                                          })
-                                        );
-                                      })();
+                                      return $queries.getTransportModes.data.map(
+                                        mode => ({
+                                          value: mode.id,
+                                          label: mode.mode
+                                        })
+                                      );
                                     } catch (e) {
                                       if (
                                         e instanceof TypeError ||

@@ -591,7 +591,7 @@ function PlasmicInscriptionCandidat__RenderFunc(props: {
                         ];
                       }
 
-                      $steps["httpPost"] = true
+                      $steps["sendEmailToCandidate"] = true
                         ? (() => {
                             const actionArgs = {
                               dataOp: {
@@ -601,16 +601,19 @@ function PlasmicInscriptionCandidat__RenderFunc(props: {
                                   body: [
                                     {
                                       to: `${$state.signUp3.email}`,
-                                      template: "welcomeCandidat",
-                                      subject: "Bienvenue {{name}} !",
+                                      template: "welcomeMailCandidate",
+                                      subject: "Bienvenue sur Job Around Me",
                                       params: {
-                                        name: `${$state.signUp3.firstName}`
+                                        firstName:
+                                          $state.signUp3.firstName +
+                                          " " +
+                                          $state.signUp3.lastName
                                       }
                                     }
                                   ]
                                 },
                                 cacheKey: null,
-                                invalidatedKeys: ["plasmic_refresh_all"],
+                                invalidatedKeys: [],
                                 roleId: null
                               }
                             };
@@ -636,11 +639,14 @@ function PlasmicInscriptionCandidat__RenderFunc(props: {
                           })()
                         : undefined;
                       if (
-                        $steps["httpPost"] != null &&
-                        typeof $steps["httpPost"] === "object" &&
-                        typeof $steps["httpPost"].then === "function"
+                        $steps["sendEmailToCandidate"] != null &&
+                        typeof $steps["sendEmailToCandidate"] === "object" &&
+                        typeof $steps["sendEmailToCandidate"].then ===
+                          "function"
                       ) {
-                        $steps["httpPost"] = await $steps["httpPost"];
+                        $steps["sendEmailToCandidate"] = await $steps[
+                          "sendEmailToCandidate"
+                        ];
                       }
                     }}
                     password={generateStateValueProp($state, [

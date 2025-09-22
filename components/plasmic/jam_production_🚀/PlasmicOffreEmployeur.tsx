@@ -1748,7 +1748,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
         sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
         opId: "c97d2f24-3d9a-4bf9-8107-193ee0e13062",
         userArgs: {
-          filters: [$ctx.SupabaseUser.user.id]
+          filters: ["345012d4-d726-480d-81f8-24e461899a19"]
         },
         cacheKey: `plasmic.$.c97d2f24-3d9a-4bf9-8107-193ee0e13062.$.`,
         invalidatedKeys: null,
@@ -1772,7 +1772,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
         sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
         opId: "316176a9-f0d4-44d7-baa0-a763336a6271",
         userArgs: {
-          query: [$queries.getCompanies.data[0].id]
+          query: [$queries.getCompanies.data[0]?.id]
         },
         cacheKey: `plasmic.$.316176a9-f0d4-44d7-baa0-a763336a6271.$.`,
         invalidatedKeys: null,
@@ -3243,6 +3243,69 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                                   "goToOffreEmployeur"
                                 ];
                               }
+
+                              $steps["httpPost"] =
+                                $steps.runCode === true
+                                  ? (() => {
+                                      const actionArgs = {
+                                        dataOp: {
+                                          sourceId: "5T6gSzGCrEfYgV9rAkCoaD",
+                                          opId: "ac3aeb59-a5a8-4309-9807-433a1356e04e",
+                                          userArgs: {
+                                            body: [
+                                              {
+                                                to: `${$queries.getUser.data[0].email}`,
+                                                template: "jobPosted",
+                                                subject:
+                                                  "Mail de confirmation de publication d’offre",
+                                                params: {
+                                                  firstName:
+                                                    $queries.getUser.data[0]
+                                                      .first_name +
+                                                    " " +
+                                                    $queries.getUser.data[0]
+                                                      .last_name,
+                                                  jobTitle: currentItem.title
+                                                }
+                                              }
+                                            ]
+                                          },
+                                          cacheKey: null,
+                                          invalidatedKeys: [],
+                                          roleId: null
+                                        }
+                                      };
+                                      return (async ({
+                                        dataOp,
+                                        continueOnError
+                                      }) => {
+                                        try {
+                                          const response =
+                                            await executePlasmicDataOp(dataOp, {
+                                              userAuthToken:
+                                                dataSourcesCtx?.userAuthToken,
+                                              user: dataSourcesCtx?.user
+                                            });
+                                          await plasmicInvalidate(
+                                            dataOp.invalidatedKeys
+                                          );
+                                          return response;
+                                        } catch (e) {
+                                          if (!continueOnError) {
+                                            throw e;
+                                          }
+                                          return e;
+                                        }
+                                      })?.apply(null, [actionArgs]);
+                                    })()
+                                  : undefined;
+                              if (
+                                $steps["httpPost"] != null &&
+                                typeof $steps["httpPost"] === "object" &&
+                                typeof $steps["httpPost"].then === "function"
+                              ) {
+                                $steps["httpPost"] = await $steps["httpPost"];
+                              }
                             },
                             onclickToShowJobApplications: async () => {
                               const $steps = {};
@@ -4152,6 +4215,65 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                         typeof $steps["createOffer"].then === "function"
                       ) {
                         $steps["createOffer"] = await $steps["createOffer"];
+                      }
+
+                      $steps["sendEmailToEmployer"] = true
+                        ? (() => {
+                            const actionArgs = {
+                              dataOp: {
+                                sourceId: "5T6gSzGCrEfYgV9rAkCoaD",
+                                opId: "fcf17976-4f7f-44b3-8083-e1bf6bb812dd",
+                                userArgs: {
+                                  body: [
+                                    {
+                                      to: `${$queries.getUser.data[0].email}`,
+                                      template: "jobPosted",
+                                      subject:
+                                        "Mail de confirmation de publication d’offre",
+                                      params: {
+                                        firstName:
+                                          $queries.getUser.data[0].first_name +
+                                          " " +
+                                          $queries.getUser.data[0].last_name,
+                                        jobTitle: $state.form2.value.title
+                                      }
+                                    }
+                                  ]
+                                },
+                                cacheKey: null,
+                                invalidatedKeys: [],
+                                roleId: null
+                              }
+                            };
+                            return (async ({ dataOp, continueOnError }) => {
+                              try {
+                                const response = await executePlasmicDataOp(
+                                  dataOp,
+                                  {
+                                    userAuthToken:
+                                      dataSourcesCtx?.userAuthToken,
+                                    user: dataSourcesCtx?.user
+                                  }
+                                );
+                                await plasmicInvalidate(dataOp.invalidatedKeys);
+                                return response;
+                              } catch (e) {
+                                if (!continueOnError) {
+                                  throw e;
+                                }
+                                return e;
+                              }
+                            })?.apply(null, [actionArgs]);
+                          })()
+                        : undefined;
+                      if (
+                        $steps["sendEmailToEmployer"] != null &&
+                        typeof $steps["sendEmailToEmployer"] === "object" &&
+                        typeof $steps["sendEmailToEmployer"].then === "function"
+                      ) {
+                        $steps["sendEmailToEmployer"] = await $steps[
+                          "sendEmailToEmployer"
+                        ];
                       }
 
                       $steps["closeModal"] = true

@@ -1552,14 +1552,14 @@
   flex-direction: row;
   align-items: stretch;
   justify-content: space-between;
-  width: 100%;
+  width: auto;
   height: auto;
   max-width: 100%;
   z-index: 9999;
   position: absolute;
   left: 0px;
   top: 0px;
-  min-width: 0;
+  right: 0px;
 }
 @media (min-width: 0px) and (max-width: 768px) {
   .btn {
@@ -2629,15 +2629,16 @@
   top: 0;
   left: auto;
   z-index: 99999;
-  right: 0;
+  right: 0px;
   padding: 8px 50px 8px 8px;
+  margin: 0px;
 }
 @media (min-width: 0px) and (max-width: 768px) {
   .lastMinuteBtn {
     left: auto;
     top: 0;
-    right: 0;
     bottom: auto;
+    right: 0;
   }
 }
 .buttonLastMin2 {
