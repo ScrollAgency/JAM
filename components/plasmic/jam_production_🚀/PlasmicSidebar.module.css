@@ -78,7 +78,7 @@
   justify-content: flex-start;
   width: 100%;
   flex-shrink: 0;
-  row-gap: 30px;
+  row-gap: 28px;
   min-width: 0;
   padding: 0px;
 }
@@ -193,7 +193,7 @@
   width: auto;
   flex-shrink: 0;
   cursor: auto;
-  row-gap: 30px;
+  row-gap: 28px;
   padding: 0px;
 }
 .sideBarButton__lL8JE:global(.__wab_instance):global(.__wab_instance) {
@@ -433,7 +433,7 @@
   justify-content: flex-start;
   width: 100%;
   flex-shrink: 0;
-  row-gap: 30px;
+  row-gap: 28px;
   min-width: 0;
   padding: 0px;
 }

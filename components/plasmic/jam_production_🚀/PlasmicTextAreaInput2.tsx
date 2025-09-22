@@ -63,9 +63,6 @@ import { BaseTextArea } from "@plasmicpkgs/react-aria/skinny/registerTextArea";
 import { inputHelpers as BaseTextArea_Helpers } from "@plasmicpkgs/react-aria/skinny/registerTextArea";
 import { _useGlobalVariants } from "./plasmic"; // plasmic-import: f7DE9y7qp46fyCw5nuY8f9/projectModule
 import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: f7DE9y7qp46fyCw5nuY8f9/styleTokensProvider
-import { _useStyleTokens as useStyleTokens_antd_5_hostless } from "../antd_5_hostless/PlasmicStyleTokensProvider"; // plasmic-import: ohDidvG9XsCeFumugENU3J/styleTokensProvider
-import { _useStyleTokens as useStyleTokens_library_tailwind_3_4_number_tokens } from "../library_tailwind_3_4_number_tokens/PlasmicStyleTokensProvider"; // plasmic-import: 4vjRXvnb4XuY6J15w9oRcQ/styleTokensProvider
-import { _useStyleTokens as useStyleTokens_plasmic_rich_components } from "../plasmic_rich_components/PlasmicStyleTokensProvider"; // plasmic-import: jkU633o1Cz7HrJdwdxhVHk/styleTokensProvider
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
@@ -233,12 +230,6 @@ function PlasmicTextAreaInput2__RenderFunc(props: {
   });
 
   const styleTokensClassNames = _useStyleTokens();
-  const styleTokensClassNames_antd_5_hostless =
-    useStyleTokens_antd_5_hostless();
-  const styleTokensClassNames_library_tailwind_3_4_number_tokens =
-    useStyleTokens_library_tailwind_3_4_number_tokens();
-  const styleTokensClassNames_plasmic_rich_components =
-    useStyleTokens_plasmic_rich_components();
 
   const [$ccVariants, setDollarCcVariants] = React.useState<
     Record<string, boolean>
@@ -270,9 +261,6 @@ function PlasmicTextAreaInput2__RenderFunc(props: {
         projectcss.plasmic_default_styles,
         projectcss.plasmic_mixins,
         styleTokensClassNames,
-        styleTokensClassNames_antd_5_hostless,
-        styleTokensClassNames_library_tailwind_3_4_number_tokens,
-        styleTokensClassNames_plasmic_rich_components,
         sty.ariaTextArea,
         {
           [sty.ariaTextAreaflat_bottom]: hasVariant($state, "flat", "bottom"),

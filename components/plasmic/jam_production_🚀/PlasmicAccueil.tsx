@@ -95,9 +95,6 @@ import Footer from "../../Footer"; // plasmic-import: ZOpOgPOAiAAY/component
 import { Fetcher } from "@plasmicapp/react-web/lib/data-sources";
 import { _useGlobalVariants } from "./plasmic"; // plasmic-import: f7DE9y7qp46fyCw5nuY8f9/projectModule
 import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: f7DE9y7qp46fyCw5nuY8f9/styleTokensProvider
-import { _useStyleTokens as useStyleTokens_antd_5_hostless } from "../antd_5_hostless/PlasmicStyleTokensProvider"; // plasmic-import: ohDidvG9XsCeFumugENU3J/styleTokensProvider
-import { _useStyleTokens as useStyleTokens_library_tailwind_3_4_number_tokens } from "../library_tailwind_3_4_number_tokens/PlasmicStyleTokensProvider"; // plasmic-import: 4vjRXvnb4XuY6J15w9oRcQ/styleTokensProvider
-import { _useStyleTokens as useStyleTokens_plasmic_rich_components } from "../plasmic_rich_components/PlasmicStyleTokensProvider"; // plasmic-import: jkU633o1Cz7HrJdwdxhVHk/styleTokensProvider
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
@@ -1747,12 +1744,6 @@ function PlasmicAccueil__RenderFunc(props: {
   }
 
   const styleTokensClassNames = _useStyleTokens();
-  const styleTokensClassNames_antd_5_hostless =
-    useStyleTokens_antd_5_hostless();
-  const styleTokensClassNames_library_tailwind_3_4_number_tokens =
-    useStyleTokens_library_tailwind_3_4_number_tokens();
-  const styleTokensClassNames_plasmic_rich_components =
-    useStyleTokens_plasmic_rich_components();
 
   return (
     <React.Fragment>
@@ -1789,9 +1780,6 @@ function PlasmicAccueil__RenderFunc(props: {
             projectcss.plasmic_default_styles,
             projectcss.plasmic_mixins,
             styleTokensClassNames,
-            styleTokensClassNames_antd_5_hostless,
-            styleTokensClassNames_library_tailwind_3_4_number_tokens,
-            styleTokensClassNames_plasmic_rich_components,
             sty.rechercheJob,
             {
               [sty.rechercheJobglobal_unnamedGlobalGroupOfVariants_unnamedVariant]:
@@ -2525,7 +2513,7 @@ function PlasmicAccueil__RenderFunc(props: {
                                 <React.Fragment>
                                   <React.Fragment>
                                     {
-                                      "Trouver un job n\u2019a jamais \u00e9t\u00e9 aussi "
+                                      "Trouver un job n\u2019a  jamais \u00e9t\u00e9 aussi "
                                     }
                                   </React.Fragment>
                                   <span
@@ -3071,10 +3059,7 @@ function PlasmicAccueil__RenderFunc(props: {
                                             projectcss.root_reset,
                                             projectcss.plasmic_default_styles,
                                             projectcss.plasmic_mixins,
-                                            styleTokensClassNames,
-                                            styleTokensClassNames_antd_5_hostless,
-                                            styleTokensClassNames_library_tailwind_3_4_number_tokens,
-                                            styleTokensClassNames_plasmic_rich_components
+                                            styleTokensClassNames
                                           )}
                                           dropdownMatchSelectWidth={true}
                                           mode={"single"}
@@ -3187,10 +3172,7 @@ function PlasmicAccueil__RenderFunc(props: {
                                             projectcss.root_reset,
                                             projectcss.plasmic_default_styles,
                                             projectcss.plasmic_mixins,
-                                            styleTokensClassNames,
-                                            styleTokensClassNames_antd_5_hostless,
-                                            styleTokensClassNames_library_tailwind_3_4_number_tokens,
-                                            styleTokensClassNames_plasmic_rich_components
+                                            styleTokensClassNames
                                           )}
                                           mode={"multiple"}
                                           onChange={async (
@@ -3322,10 +3304,7 @@ function PlasmicAccueil__RenderFunc(props: {
                                             projectcss.root_reset,
                                             projectcss.plasmic_default_styles,
                                             projectcss.plasmic_mixins,
-                                            styleTokensClassNames,
-                                            styleTokensClassNames_antd_5_hostless,
-                                            styleTokensClassNames_library_tailwind_3_4_number_tokens,
-                                            styleTokensClassNames_plasmic_rich_components
+                                            styleTokensClassNames
                                           )}
                                           dropdownMatchSelectWidth={false}
                                           mode={"multiple"}
@@ -3456,10 +3435,7 @@ function PlasmicAccueil__RenderFunc(props: {
                                             projectcss.root_reset,
                                             projectcss.plasmic_default_styles,
                                             projectcss.plasmic_mixins,
-                                            styleTokensClassNames,
-                                            styleTokensClassNames_antd_5_hostless,
-                                            styleTokensClassNames_library_tailwind_3_4_number_tokens,
-                                            styleTokensClassNames_plasmic_rich_components
+                                            styleTokensClassNames
                                           )}
                                           mode={"multiple"}
                                           onChange={async (
@@ -3557,10 +3533,7 @@ function PlasmicAccueil__RenderFunc(props: {
                                             projectcss.root_reset,
                                             projectcss.plasmic_default_styles,
                                             projectcss.plasmic_mixins,
-                                            styleTokensClassNames,
-                                            styleTokensClassNames_antd_5_hostless,
-                                            styleTokensClassNames_library_tailwind_3_4_number_tokens,
-                                            styleTokensClassNames_plasmic_rich_components
+                                            styleTokensClassNames
                                           )}
                                           mode={"multiple"}
                                           onChange={async (
@@ -3688,10 +3661,7 @@ function PlasmicAccueil__RenderFunc(props: {
                                             projectcss.root_reset,
                                             projectcss.plasmic_default_styles,
                                             projectcss.plasmic_mixins,
-                                            styleTokensClassNames,
-                                            styleTokensClassNames_antd_5_hostless,
-                                            styleTokensClassNames_library_tailwind_3_4_number_tokens,
-                                            styleTokensClassNames_plasmic_rich_components
+                                            styleTokensClassNames
                                           )}
                                           mode={"multiple"}
                                           onChange={async (
@@ -7360,10 +7330,7 @@ function PlasmicAccueil__RenderFunc(props: {
                                                   projectcss.root_reset,
                                                   projectcss.plasmic_default_styles,
                                                   projectcss.plasmic_mixins,
-                                                  styleTokensClassNames,
-                                                  styleTokensClassNames_antd_5_hostless,
-                                                  styleTokensClassNames_library_tailwind_3_4_number_tokens,
-                                                  styleTokensClassNames_plasmic_rich_components
+                                                  styleTokensClassNames
                                                 )}
                                                 dropdownMatchSelectWidth={true}
                                                 mode={"single"}
@@ -7479,10 +7446,7 @@ function PlasmicAccueil__RenderFunc(props: {
                                                   projectcss.root_reset,
                                                   projectcss.plasmic_default_styles,
                                                   projectcss.plasmic_mixins,
-                                                  styleTokensClassNames,
-                                                  styleTokensClassNames_antd_5_hostless,
-                                                  styleTokensClassNames_library_tailwind_3_4_number_tokens,
-                                                  styleTokensClassNames_plasmic_rich_components
+                                                  styleTokensClassNames
                                                 )}
                                                 mode={"multiple"}
                                                 onChange={async (
@@ -7615,10 +7579,7 @@ function PlasmicAccueil__RenderFunc(props: {
                                                   projectcss.root_reset,
                                                   projectcss.plasmic_default_styles,
                                                   projectcss.plasmic_mixins,
-                                                  styleTokensClassNames,
-                                                  styleTokensClassNames_antd_5_hostless,
-                                                  styleTokensClassNames_library_tailwind_3_4_number_tokens,
-                                                  styleTokensClassNames_plasmic_rich_components
+                                                  styleTokensClassNames
                                                 )}
                                                 dropdownMatchSelectWidth={false}
                                                 mode={"multiple"}
@@ -7751,10 +7712,7 @@ function PlasmicAccueil__RenderFunc(props: {
                                                   projectcss.root_reset,
                                                   projectcss.plasmic_default_styles,
                                                   projectcss.plasmic_mixins,
-                                                  styleTokensClassNames,
-                                                  styleTokensClassNames_antd_5_hostless,
-                                                  styleTokensClassNames_library_tailwind_3_4_number_tokens,
-                                                  styleTokensClassNames_plasmic_rich_components
+                                                  styleTokensClassNames
                                                 )}
                                                 mode={"multiple"}
                                                 onChange={async (
@@ -7854,10 +7812,7 @@ function PlasmicAccueil__RenderFunc(props: {
                                                   projectcss.root_reset,
                                                   projectcss.plasmic_default_styles,
                                                   projectcss.plasmic_mixins,
-                                                  styleTokensClassNames,
-                                                  styleTokensClassNames_antd_5_hostless,
-                                                  styleTokensClassNames_library_tailwind_3_4_number_tokens,
-                                                  styleTokensClassNames_plasmic_rich_components
+                                                  styleTokensClassNames
                                                 )}
                                                 mode={"multiple"}
                                                 onChange={async (
@@ -7988,10 +7943,7 @@ function PlasmicAccueil__RenderFunc(props: {
                                                   projectcss.root_reset,
                                                   projectcss.plasmic_default_styles,
                                                   projectcss.plasmic_mixins,
-                                                  styleTokensClassNames,
-                                                  styleTokensClassNames_antd_5_hostless,
-                                                  styleTokensClassNames_library_tailwind_3_4_number_tokens,
-                                                  styleTokensClassNames_plasmic_rich_components
+                                                  styleTokensClassNames
                                                 )}
                                                 mode={"multiple"}
                                                 onChange={async (
@@ -13696,10 +13648,7 @@ function PlasmicAccueil__RenderFunc(props: {
                                     projectcss.root_reset,
                                     projectcss.plasmic_default_styles,
                                     projectcss.plasmic_mixins,
-                                    styleTokensClassNames,
-                                    styleTokensClassNames_antd_5_hostless,
-                                    styleTokensClassNames_library_tailwind_3_4_number_tokens,
-                                    styleTokensClassNames_plasmic_rich_components
+                                    styleTokensClassNames
                                   )}
                                   defaultValue={[]}
                                   mode={"multiple"}
@@ -13902,10 +13851,7 @@ function PlasmicAccueil__RenderFunc(props: {
                                     projectcss.root_reset,
                                     projectcss.plasmic_default_styles,
                                     projectcss.plasmic_mixins,
-                                    styleTokensClassNames,
-                                    styleTokensClassNames_antd_5_hostless,
-                                    styleTokensClassNames_library_tailwind_3_4_number_tokens,
-                                    styleTokensClassNames_plasmic_rich_components
+                                    styleTokensClassNames
                                   )}
                                   mode={"multiple"}
                                   onChange={async (...eventArgs: any) => {
@@ -15602,10 +15548,7 @@ function PlasmicAccueil__RenderFunc(props: {
                                       projectcss.root_reset,
                                       projectcss.plasmic_default_styles,
                                       projectcss.plasmic_mixins,
-                                      styleTokensClassNames,
-                                      styleTokensClassNames_antd_5_hostless,
-                                      styleTokensClassNames_library_tailwind_3_4_number_tokens,
-                                      styleTokensClassNames_plasmic_rich_components
+                                      styleTokensClassNames
                                     )}
                                     dropdownMatchSelectWidth={
                                       hasVariant(
@@ -15729,10 +15672,7 @@ function PlasmicAccueil__RenderFunc(props: {
                                       projectcss.root_reset,
                                       projectcss.plasmic_default_styles,
                                       projectcss.plasmic_mixins,
-                                      styleTokensClassNames,
-                                      styleTokensClassNames_antd_5_hostless,
-                                      styleTokensClassNames_library_tailwind_3_4_number_tokens,
-                                      styleTokensClassNames_plasmic_rich_components
+                                      styleTokensClassNames
                                     )}
                                     disabled={
                                       hasVariant(
@@ -15859,10 +15799,7 @@ function PlasmicAccueil__RenderFunc(props: {
                                       projectcss.root_reset,
                                       projectcss.plasmic_default_styles,
                                       projectcss.plasmic_mixins,
-                                      styleTokensClassNames,
-                                      styleTokensClassNames_antd_5_hostless,
-                                      styleTokensClassNames_library_tailwind_3_4_number_tokens,
-                                      styleTokensClassNames_plasmic_rich_components
+                                      styleTokensClassNames
                                     )}
                                     dropdownMatchSelectWidth={true}
                                     mode={"multiple"}
@@ -15963,10 +15900,7 @@ function PlasmicAccueil__RenderFunc(props: {
                                       projectcss.root_reset,
                                       projectcss.plasmic_default_styles,
                                       projectcss.plasmic_mixins,
-                                      styleTokensClassNames,
-                                      styleTokensClassNames_antd_5_hostless,
-                                      styleTokensClassNames_library_tailwind_3_4_number_tokens,
-                                      styleTokensClassNames_plasmic_rich_components
+                                      styleTokensClassNames
                                     )}
                                     mode={"multiple"}
                                     onChange={async (...eventArgs: any) => {
@@ -16069,10 +16003,7 @@ function PlasmicAccueil__RenderFunc(props: {
                                       projectcss.root_reset,
                                       projectcss.plasmic_default_styles,
                                       projectcss.plasmic_mixins,
-                                      styleTokensClassNames,
-                                      styleTokensClassNames_antd_5_hostless,
-                                      styleTokensClassNames_library_tailwind_3_4_number_tokens,
-                                      styleTokensClassNames_plasmic_rich_components
+                                      styleTokensClassNames
                                     )}
                                     mode={"multiple"}
                                     onChange={async (...eventArgs: any) => {
@@ -16176,10 +16107,7 @@ function PlasmicAccueil__RenderFunc(props: {
                                       projectcss.root_reset,
                                       projectcss.plasmic_default_styles,
                                       projectcss.plasmic_mixins,
-                                      styleTokensClassNames,
-                                      styleTokensClassNames_antd_5_hostless,
-                                      styleTokensClassNames_library_tailwind_3_4_number_tokens,
-                                      styleTokensClassNames_plasmic_rich_components
+                                      styleTokensClassNames
                                     )}
                                     mode={"multiple"}
                                     onChange={async (...eventArgs: any) => {
@@ -16283,10 +16211,7 @@ function PlasmicAccueil__RenderFunc(props: {
                                       projectcss.root_reset,
                                       projectcss.plasmic_default_styles,
                                       projectcss.plasmic_mixins,
-                                      styleTokensClassNames,
-                                      styleTokensClassNames_antd_5_hostless,
-                                      styleTokensClassNames_library_tailwind_3_4_number_tokens,
-                                      styleTokensClassNames_plasmic_rich_components
+                                      styleTokensClassNames
                                     )}
                                     mode={"multiple"}
                                     onChange={async (...eventArgs: any) => {

@@ -137,6 +137,10 @@
     font-size: 20px;
   }
 }
+.pageLoader:global(.__wab_instance) {
+  max-width: 100%;
+  object-fit: cover;
+}
 .button__tyBbW:global(.__wab_instance):global(.__wab_instance) {
   max-width: 100%;
 }
@@ -4024,10 +4028,6 @@
   color: var(--token-OIYWLyLPYWym);
   height: 1em;
 }
-.onBordingNew:global(.__wab_instance) {
-  max-width: 100%;
-  object-fit: cover;
-}
 .modalOnboarding {
   display: flex;
   position: absolute;
@@ -4085,6 +4085,22 @@
   .modal {
     padding-left: 27px;
     padding-right: 27px;
+    left: auto;
+    top: auto;
+  }
+}
+@media (max-width: 375px) {
+  .modal {
+    left: auto;
+    top: auto;
+  }
+}
+.modalglobal_unnamedGlobalGroupOfVariants_unnamedVariant {
+  left: auto;
+  top: auto;
+}
+@media (max-width: 375px) {
+  .modalglobal_unnamedGlobalGroupOfVariants_unnamedVariant {
     left: auto;
     top: auto;
   }
