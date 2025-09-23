@@ -1748,7 +1748,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
         sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
         opId: "c97d2f24-3d9a-4bf9-8107-193ee0e13062",
         userArgs: {
-          filters: ["345012d4-d726-480d-81f8-24e461899a19"]
+          filters: [$ctx.SupabaseUser.user.id]
         },
         cacheKey: `plasmic.$.c97d2f24-3d9a-4bf9-8107-193ee0e13062.$.`,
         invalidatedKeys: null,
