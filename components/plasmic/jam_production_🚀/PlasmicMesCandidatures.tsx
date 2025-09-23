@@ -206,7 +206,7 @@ function PlasmicMesCandidatures__RenderFunc(props: {
         type: "private",
         variableType: "text",
         initFunc: ({ $props, $state, $queries, $ctx }) =>
-          hasVariant(globalVariants, "screen", "mobileOnly") ? "candidat" : ""
+          hasVariant(globalVariants, "screen", "mobileOnly") ? 0 : 0
       }
     ],
     [$props, $ctx, $refs]

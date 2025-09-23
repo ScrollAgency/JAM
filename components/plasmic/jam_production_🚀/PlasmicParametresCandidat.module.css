@@ -55,30 +55,6 @@
     display: flex;
   }
 }
-.body {
-  display: flex;
-  flex-direction: row;
-  position: relative;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: auto;
-  max-width: 100%;
-  overflow-x: hidden;
-  overflow-y: visible;
-  min-width: 0;
-}
-@media (min-width: 0px) and (max-width: 768px) {
-  .body {
-    position: relative;
-    top: auto;
-    left: auto;
-    z-index: 1;
-    margin-bottom: 0px;
-    width: 100%;
-    min-width: 0;
-  }
-}
 .main {
   height: auto;
   display: flex;
@@ -99,10 +75,10 @@
     justify-content: flex-start;
     height: auto;
     flex-shrink: 0;
-    flex-wrap: wrap;
-    overflow-x: hidden;
+    flex-wrap: nowrap;
+    align-content: stretch;
     min-width: 0;
-    padding: 80px 20px 131px;
+    padding: 100px 20px 131px;
   }
 }
 .heading {
@@ -123,7 +99,6 @@
   .heading {
     left: auto;
     top: auto;
-    padding-top: 20px;
   }
 }
 .container {
@@ -1652,8 +1627,8 @@
     top: auto;
     z-index: 100;
     position: fixed;
-    bottom: 0;
     right: 0;
+    bottom: 0;
     min-width: 0;
     display: flex;
   }

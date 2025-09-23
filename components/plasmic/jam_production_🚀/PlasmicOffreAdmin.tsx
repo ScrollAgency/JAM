@@ -228,7 +228,7 @@ function PlasmicOffreAdmin__RenderFunc(props: {
         path: "mobileNavbarBottom.role",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => "admin"
+        initFunc: ({ $props, $state, $queries, $ctx }) => 2
       }
     ],
     [$props, $ctx, $refs]

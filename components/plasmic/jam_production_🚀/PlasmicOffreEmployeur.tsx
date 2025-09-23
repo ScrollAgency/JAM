@@ -1690,7 +1690,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
         path: "mobileNavbarBottom.role",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => "company"
+        initFunc: ({ $props, $state, $queries, $ctx }) => 1
       }
     ],
     [$props, $ctx, $refs]

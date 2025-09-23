@@ -213,7 +213,7 @@ function PlasmicUserAdmin__RenderFunc(props: {
         type: "private",
         variableType: "text",
         initFunc: ({ $props, $state, $queries, $ctx }) =>
-          hasVariant(globalVariants, "screen", "mobileOnly") ? "admin" : "admin"
+          hasVariant(globalVariants, "screen", "mobileOnly") ? 2 : "admin"
       }
     ],
     [$props, $ctx, $refs]

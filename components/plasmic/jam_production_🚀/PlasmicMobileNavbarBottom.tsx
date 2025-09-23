@@ -88,7 +88,7 @@ export const PlasmicMobileNavbarBottom__VariantProps =
   new Array<VariantPropType>();
 
 export type PlasmicMobileNavbarBottom__ArgsType = {
-  role?: string;
+  role?: number;
   onRoleChange?: (val: string) => void;
 };
 type ArgPropType = keyof PlasmicMobileNavbarBottom__ArgsType;
@@ -123,7 +123,7 @@ export type PlasmicMobileNavbarBottom__OverridesType = {
 };
 
 export interface DefaultMobileNavbarBottomProps {
-  role?: string;
+  role?: number;
   onRoleChange?: (val: string) => void;
   className?: string;
 }
@@ -176,7 +176,7 @@ function PlasmicMobileNavbarBottom__RenderFunc(props: {
       {
         path: "role",
         type: "writable",
-        variableType: "text",
+        variableType: "number",
 
         valueProp: "role",
         onChangeProp: "onRoleChange"
@@ -212,7 +212,7 @@ function PlasmicMobileNavbarBottom__RenderFunc(props: {
         hasVariant(globalVariants, "screen", "mobileOnly")
           ? (() => {
               try {
-                return $state.role == "candidat";
+                return $state.role == 0;
               } catch (e) {
                 if (
                   e instanceof TypeError ||
@@ -225,7 +225,7 @@ function PlasmicMobileNavbarBottom__RenderFunc(props: {
             })()
           : (() => {
               try {
-                return $state.role == "candidat";
+                return $state.role == 0;
               } catch (e) {
                 if (
                   e instanceof TypeError ||
@@ -599,7 +599,7 @@ function PlasmicMobileNavbarBottom__RenderFunc(props: {
         hasVariant(globalVariants, "screen", "mobileOnly")
           ? (() => {
               try {
-                return $state.role == "company";
+                return $state.role == 1;
               } catch (e) {
                 if (
                   e instanceof TypeError ||
@@ -612,7 +612,7 @@ function PlasmicMobileNavbarBottom__RenderFunc(props: {
             })()
           : (() => {
               try {
-                return $state.role == "company";
+                return $state.role == 1;
               } catch (e) {
                 if (
                   e instanceof TypeError ||
@@ -988,7 +988,7 @@ function PlasmicMobileNavbarBottom__RenderFunc(props: {
         hasVariant(globalVariants, "screen", "mobileOnly")
           ? (() => {
               try {
-                return $state.role == "admin";
+                return $state.role == 2;
               } catch (e) {
                 if (
                   e instanceof TypeError ||
@@ -1001,7 +1001,7 @@ function PlasmicMobileNavbarBottom__RenderFunc(props: {
             })()
           : (() => {
               try {
-                return $state.role == "admin";
+                return $state.role == 2;
               } catch (e) {
                 if (
                   e instanceof TypeError ||

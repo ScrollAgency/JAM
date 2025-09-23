@@ -303,7 +303,7 @@ function PlasmicMesAlertes__RenderFunc(props: {
         path: "mobileNavbarBottom.role",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => "candidat"
+        initFunc: ({ $props, $state, $queries, $ctx }) => 0
       }
     ],
     [$props, $ctx, $refs]
