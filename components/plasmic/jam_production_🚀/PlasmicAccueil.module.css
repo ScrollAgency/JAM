@@ -1557,9 +1557,9 @@
   max-width: 100%;
   z-index: 9999;
   position: absolute;
-  left: 0px;
-  top: 0px;
-  right: 0px;
+  left: 0;
+  top: 0;
+  right: auto;
 }
 @media (min-width: 0px) and (max-width: 768px) {
   .btn {
@@ -2629,8 +2629,8 @@
   top: 0;
   left: auto;
   z-index: 99999;
-  right: 0px;
-  padding: 8px 50px 8px 8px;
+  right: 51px;
+  padding: 8px;
   margin: 0px;
 }
 @media (min-width: 0px) and (max-width: 768px) {
@@ -4551,7 +4551,7 @@
   overflow: hidden;
   cursor: pointer;
 }
-.nomPrenom {
+.freeBox__sjrEh {
   display: flex;
   flex-direction: row;
   position: relative;
@@ -4594,7 +4594,7 @@
   max-width: 100%;
   height: var(--token--_xqF59Qmd-S);
 }
-.telephone {
+.freeBox__lnLym {
   display: flex;
   flex-direction: row;
   position: relative;
@@ -4661,7 +4661,7 @@
 .rue:global(.__wab_instance):global(.__wab_instance) {
   max-width: 100%;
 }
-.codePosteVille {
+.freeBox__mbmzs {
   display: flex;
   flex-direction: row;
   position: relative;
@@ -4725,36 +4725,6 @@
 .ville:global(.__wab_instance):global(.__wab_instance) {
   max-width: 100%;
 }
-.freeBox__jGum5 {
-  flex-direction: row;
-  position: relative;
-  align-items: stretch;
-  justify-content: flex-start;
-  width: 100%;
-  height: auto;
-  max-width: 100%;
-  column-gap: 10px;
-  min-width: 0;
-  display: none;
-  padding: 0px;
-}
-.textInput5:global(.__wab_instance):global(.__wab_instance) {
-  max-width: 100%;
-}
-.select2:global(.__wab_instance):global(.__wab_instance) {
-  max-width: 100%;
-  height: auto;
-}
-.menuSection__i0W19:global(.__wab_instance):global(.__wab_instance) {
-  max-width: 100%;
-}
-.text__ar3Xh {
-  position: relative;
-  width: 100%;
-  height: auto;
-  max-width: 100%;
-  min-width: 0;
-}
 .formField__ldZSu:global(.__wab_instance) {
   width: 100%;
   min-width: 0;
@@ -4768,31 +4738,19 @@
   left: auto;
   top: auto;
 }
-.svg___3UUi {
-  object-fit: cover;
-  max-width: 100%;
-  color: #f4f4f4;
-  transform: none;
-  height: 1px;
-  transform-origin: top left;
+.formField___3Zkz:global(.__wab_instance) {
   width: 100%;
+  margin-bottom: 24px;
+  max-width: 100%;
+  object-fit: cover;
   min-width: 0;
-  display: none;
-  margin: 24px 0px;
-  border-width: 1px;
 }
-.freeBox__uo1Wz {
-  display: flex;
-  flex-direction: column;
+.text__hllUl {
   position: relative;
-  align-items: flex-start;
-  justify-content: flex-start;
   width: 100%;
   height: auto;
   max-width: 100%;
-  row-gap: 8px;
   min-width: 0;
-  padding: 0px;
 }
 .select5:global(.__wab_instance) {
   max-width: 100%;
@@ -4800,7 +4758,6 @@
   height: 48px;
   width: 100%;
   min-width: 0;
-  flex-shrink: 0;
 }
 @media (min-width: 0px) and (max-width: 768px) {
   .select5:global(.__wab_instance) {
@@ -4821,14 +4778,11 @@
   width: var(--token-dvG6wyumbmS0);
   height: var(--token-dvG6wyumbmS0);
 }
-.formField__lHwsv:global(.__wab_instance) {
-  width: 100%;
-  min-width: 0;
-}
 .formField__mFsz0:global(.__wab_instance) {
   width: 100%;
   display: block;
   min-width: 0;
+  padding: 0px;
 }
 .freeBox__mS8Kr {
   display: flex;
@@ -4848,20 +4802,15 @@
   max-width: 100%;
   height: 120px;
 }
-.freeBox__u38R8 {
-  display: flex;
-  flex-direction: column;
-  position: relative;
+.formField___7U8E7:global(.__wab_instance) {
   width: 100%;
-  height: 100%;
-  max-width: 100%;
-  justify-content: flex-start;
-  align-items: flex-start;
-  row-gap: 8px;
-  flex-shrink: 0;
   min-width: 0;
-  min-height: 0;
-  padding: 0px;
+}
+.text__xKd4 {
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  min-width: 0;
 }
 .select7:global(.__wab_instance) {
   max-width: 100%;
@@ -4869,7 +4818,6 @@
   width: 100%;
   height: 48px;
   min-width: 0;
-  flex-shrink: 0;
 }
 @media (min-width: 0px) and (max-width: 768px) {
   .select7:global(.__wab_instance) {
@@ -4881,6 +4829,8 @@
 }
 .text___9ZIu6 {
   color: var(--token-vE7ENHhK130K);
+  width: 100%;
+  min-width: 0;
 }
 .svg__gGwGf {
   object-fit: cover;
@@ -4888,10 +4838,6 @@
   color: var(--token-ceD1eQOG2geq);
   width: var(--token-dvG6wyumbmS0);
   height: var(--token-dvG6wyumbmS0);
-}
-.formField___7U8E7:global(.__wab_instance) {
-  width: 100%;
-  min-width: 0;
 }
 .formField___0N6P1:global(.__wab_instance) {
   width: 100%;

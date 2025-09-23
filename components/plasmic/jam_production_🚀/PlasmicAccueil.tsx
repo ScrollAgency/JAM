@@ -87,7 +87,6 @@ import TextInput from "../../TextInput"; // plasmic-import: pZ7Ql6sUFRw9/compone
 import { PhoneSelector } from "../../forms/PhoneSelector/PhoneSelector"; // plasmic-import: sOyePdANTQ6t/codeComponent
 import Select from "../../Select"; // plasmic-import: ZMB-SB-xJDyQ/component
 import MenuItem from "../../MenuItem"; // plasmic-import: plmAgyhhAdMc/component
-import MenuSection from "../../MenuSection"; // plasmic-import: MUvYPH7rZO6i/component
 import TextAreaInput from "../../TextAreaInput"; // plasmic-import: nVAUbPc6gpoz/component
 import { FileUploader } from "../../others/FileUploader/FileUploader"; // plasmic-import: RpVDoPZzyXH3/codeComponent
 import { Login } from "../../../plasmic-library/authentication/Login"; // plasmic-import: DTfpuarR8FPx/codeComponent
@@ -126,7 +125,6 @@ import PhUsersThreeIcon from "./icons/PlasmicIcon__PhUsersThree"; // plasmic-imp
 import PhMapTrifoldFillIcon from "./icons/PlasmicIcon__PhMapTrifoldFill"; // plasmic-import: uZBfKa3cidgz/icon
 import PhPencilSimpleIcon from "./icons/PlasmicIcon__PhPencilSimple"; // plasmic-import: 7xHLZEkolpKE/icon
 import PhTrashIcon from "./icons/PlasmicIcon__PhTrash"; // plasmic-import: juO39VElEpcx/icon
-import Line10Icon from "./icons/PlasmicIcon__Line10"; // plasmic-import: okDoJMf2ty5e/icon
 import ChevronDownIcon from "./icons/PlasmicIcon__ChevronDown"; // plasmic-import: yud1FH0Ox1FR/icon
 import PhClockCountdownFillIcon from "./icons/PlasmicIcon__PhClockCountdownFill"; // plasmic-import: GhtgoozaYTSb/icon
 import IconPhBellFillIcon from "./icons/PlasmicIcon__IconPhBellFill"; // plasmic-import: unf2e-lexzfx/icon
@@ -298,19 +296,14 @@ export type PlasmicAccueil__OverridesType = {
   frame19?: Flex__<"div">;
   deleteIcon2?: Flex__<"div">;
   frame20?: Flex__<"div">;
-  nomPrenom?: Flex__<"div">;
   textInput1?: Flex__<typeof TextInput>;
   textInput2?: Flex__<typeof TextInput>;
   textInput4?: Flex__<typeof TextInput>;
-  telephone?: Flex__<"div">;
   phoneSelector?: Flex__<typeof PhoneSelector>;
   textInput3?: Flex__<typeof TextInput>;
   rue?: Flex__<typeof TextInput>;
-  codePosteVille?: Flex__<"div">;
   codePostal?: Flex__<typeof TextInput>;
   ville?: Flex__<typeof TextInput>;
-  textInput5?: Flex__<typeof TextInput>;
-  select2?: Flex__<typeof Select>;
   select4?: Flex__<typeof Select>;
   select5?: Flex__<typeof AntdSelect>;
   textAreaInput?: Flex__<typeof TextAreaInput>;
@@ -481,18 +474,6 @@ function PlasmicAccueil__RenderFunc(props: {
       },
       {
         path: "textInput4.value",
-        type: "private",
-        variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
-      },
-      {
-        path: "textInput5.value",
-        type: "private",
-        variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
-      },
-      {
-        path: "select2.value",
         type: "private",
         variableType: "text",
         initFunc: ({ $props, $state, $queries, $ctx }) => undefined
@@ -12197,7 +12178,7 @@ function PlasmicAccueil__RenderFunc(props: {
 
                                             $state.form.value.skill,
 
-                                            $state.form.value.transport_modes,
+                                            $state.form.value.transport_mode,
 
                                             new Date().toISOString(),
 
@@ -13027,11 +13008,9 @@ function PlasmicAccueil__RenderFunc(props: {
                                 </UploadWrapper>
                               </div>
                               <div
-                                data-plasmic-name={"nomPrenom"}
-                                data-plasmic-override={overrides.nomPrenom}
                                 className={classNames(
                                   projectcss.all,
-                                  sty.nomPrenom
+                                  sty.freeBox__sjrEh
                                 )}
                               >
                                 <FormItemWrapper
@@ -13182,11 +13161,9 @@ function PlasmicAccueil__RenderFunc(props: {
                                 />
                               </FormItemWrapper>
                               <div
-                                data-plasmic-name={"telephone"}
-                                data-plasmic-override={overrides.telephone}
                                 className={classNames(
                                   projectcss.all,
-                                  sty.telephone
+                                  sty.freeBox__lnLym
                                 )}
                               >
                                 <FormItemWrapper
@@ -13328,11 +13305,9 @@ function PlasmicAccueil__RenderFunc(props: {
                                 />
                               </FormItemWrapper>
                               <div
-                                data-plasmic-name={"codePosteVille"}
-                                data-plasmic-override={overrides.codePosteVille}
                                 className={classNames(
                                   projectcss.all,
-                                  sty.codePosteVille
+                                  sty.freeBox__mbmzs
                                 )}
                               >
                                 <FormItemWrapper
@@ -13455,62 +13430,6 @@ function PlasmicAccueil__RenderFunc(props: {
                                   />
                                 </FormItemWrapper>
                               </div>
-                              <div
-                                className={classNames(
-                                  projectcss.all,
-                                  sty.freeBox__jGum5
-                                )}
-                              >
-                                <TextInput
-                                  data-plasmic-name={"textInput5"}
-                                  data-plasmic-override={overrides.textInput5}
-                                  className={classNames(
-                                    "__wab_instance",
-                                    sty.textInput5
-                                  )}
-                                  defaultValue={``}
-                                  onChange={async (...eventArgs: any) => {
-                                    generateStateOnChangeProp($state, [
-                                      "textInput5",
-                                      "value"
-                                    ]).apply(null, eventArgs);
-
-                                    if (
-                                      eventArgs.length > 1 &&
-                                      eventArgs[1] &&
-                                      eventArgs[1]._plasmic_state_init_
-                                    ) {
-                                      return;
-                                    }
-                                  }}
-                                  placeholder={"Code postal"}
-                                />
-
-                                <Select
-                                  data-plasmic-name={"select2"}
-                                  data-plasmic-override={overrides.select2}
-                                  className={classNames(
-                                    "__wab_instance",
-                                    sty.select2
-                                  )}
-                                  onChange={async (...eventArgs: any) => {
-                                    generateStateOnChangeProp($state, [
-                                      "select2",
-                                      "value"
-                                    ]).apply(null, eventArgs);
-
-                                    if (
-                                      eventArgs.length > 1 &&
-                                      eventArgs[1] &&
-                                      eventArgs[1]._plasmic_state_init_
-                                    ) {
-                                      return;
-                                    }
-                                  }}
-                                  placeholder={"Ville"}
-                                  showLabel={false}
-                                />
-                              </div>
                               <FormItemWrapper
                                 className={classNames(
                                   "__wab_instance",
@@ -13608,29 +13527,38 @@ function PlasmicAccueil__RenderFunc(props: {
                                   showLabel={false}
                                 />
                               </FormItemWrapper>
-                              <Line10Icon
+                              <FormItemWrapper
                                 className={classNames(
-                                  projectcss.all,
-                                  sty.svg___3UUi
+                                  "__wab_instance",
+                                  sty.formField___3Zkz
                                 )}
-                                role={"img"}
-                              />
-
-                              <div
-                                className={classNames(
-                                  projectcss.all,
-                                  sty.freeBox__uo1Wz
-                                )}
+                                initialValue={(() => {
+                                  try {
+                                    return undefined;
+                                  } catch (e) {
+                                    if (
+                                      e instanceof TypeError ||
+                                      e?.plasmicType ===
+                                        "PlasmicUndefinedDataError"
+                                    ) {
+                                      return undefined;
+                                    }
+                                    throw e;
+                                  }
+                                })()}
+                                label={
+                                  <div
+                                    className={classNames(
+                                      projectcss.all,
+                                      projectcss.__wab_text,
+                                      sty.text__hllUl
+                                    )}
+                                  >
+                                    {"Moyen de transport"}
+                                  </div>
+                                }
+                                name={"transport_mode"}
                               >
-                                <div
-                                  className={classNames(
-                                    projectcss.all,
-                                    projectcss.__wab_text,
-                                    sty.text__n73Pe
-                                  )}
-                                >
-                                  {"Moyens de transport"}
-                                </div>
                                 <AntdSelect
                                   data-plasmic-name={"select5"}
                                   data-plasmic-override={overrides.select5}
@@ -13699,46 +13627,7 @@ function PlasmicAccueil__RenderFunc(props: {
                                     "value"
                                   ])}
                                 />
-                              </div>
-                              {false ? (
-                                <FormItemWrapper
-                                  children={null}
-                                  className={classNames(
-                                    "__wab_instance",
-                                    sty.formField__lHwsv
-                                  )}
-                                  initialValue={(() => {
-                                    try {
-                                      return (() => {
-                                        const selectedTransportModes =
-                                          $queries.getCurrentUser.data?.[0]
-                                            ?.transport_mode || [];
-                                        const selectedIds =
-                                          $queries.getTransportModes.data
-                                            .filter(mode =>
-                                              selectedTransportModes.includes(
-                                                mode.id
-                                              )
-                                            )
-                                            .map(mode => mode.id);
-                                        return selectedIds;
-                                      })();
-                                    } catch (e) {
-                                      if (
-                                        e instanceof TypeError ||
-                                        e?.plasmicType ===
-                                          "PlasmicUndefinedDataError"
-                                      ) {
-                                        return undefined;
-                                      }
-                                      throw e;
-                                    }
-                                  })()}
-                                  label={null}
-                                  name={"transport_mode"}
-                                  noLabel={false}
-                                />
-                              ) : null}
+                              </FormItemWrapper>
                               <FormItemWrapper
                                 className={classNames(
                                   "__wab_instance",
@@ -13801,21 +13690,38 @@ function PlasmicAccueil__RenderFunc(props: {
                                   placeholder={"Pr\u00e9sentation"}
                                 />
                               </FormItemWrapper>
-                              <div
+                              <FormItemWrapper
                                 className={classNames(
-                                  projectcss.all,
-                                  sty.freeBox__u38R8
+                                  "__wab_instance",
+                                  sty.formField___7U8E7
                                 )}
+                                initialValue={(() => {
+                                  try {
+                                    return undefined;
+                                  } catch (e) {
+                                    if (
+                                      e instanceof TypeError ||
+                                      e?.plasmicType ===
+                                        "PlasmicUndefinedDataError"
+                                    ) {
+                                      return undefined;
+                                    }
+                                    throw e;
+                                  }
+                                })()}
+                                label={
+                                  <div
+                                    className={classNames(
+                                      projectcss.all,
+                                      projectcss.__wab_text,
+                                      sty.text__xKd4
+                                    )}
+                                  >
+                                    {"Comp\u00e9tences"}
+                                  </div>
+                                }
+                                name={"skill"}
                               >
-                                <div
-                                  className={classNames(
-                                    projectcss.all,
-                                    projectcss.__wab_text,
-                                    sty.text__jhc0V
-                                  )}
-                                >
-                                  {"Comp\u00e9tences"}
-                                </div>
                                 <AntdSelect
                                   data-plasmic-name={"select7"}
                                   data-plasmic-override={overrides.select7}
@@ -13900,18 +13806,7 @@ function PlasmicAccueil__RenderFunc(props: {
                                     "value"
                                   ])}
                                 />
-                              </div>
-                              {false ? (
-                                <FormItemWrapper
-                                  children={null}
-                                  className={classNames(
-                                    "__wab_instance",
-                                    sty.formField___7U8E7
-                                  )}
-                                  label={null}
-                                  name={"skill"}
-                                />
-                              ) : null}
+                              </FormItemWrapper>
                               <FormItemWrapper
                                 className={classNames(
                                   "__wab_instance",
@@ -16969,19 +16864,14 @@ const PlasmicDescendants = {
     "frame19",
     "deleteIcon2",
     "frame20",
-    "nomPrenom",
     "textInput1",
     "textInput2",
     "textInput4",
-    "telephone",
     "phoneSelector",
     "textInput3",
     "rue",
-    "codePosteVille",
     "codePostal",
     "ville",
-    "textInput5",
-    "select2",
     "select4",
     "select5",
     "textAreaInput",
@@ -17188,19 +17078,14 @@ const PlasmicDescendants = {
     "frame19",
     "deleteIcon2",
     "frame20",
-    "nomPrenom",
     "textInput1",
     "textInput2",
     "textInput4",
-    "telephone",
     "phoneSelector",
     "textInput3",
     "rue",
-    "codePosteVille",
     "codePostal",
     "ville",
-    "textInput5",
-    "select2",
     "select4",
     "select5",
     "textAreaInput",
@@ -17938,19 +17823,14 @@ const PlasmicDescendants = {
     "frame19",
     "deleteIcon2",
     "frame20",
-    "nomPrenom",
     "textInput1",
     "textInput2",
     "textInput4",
-    "telephone",
     "phoneSelector",
     "textInput3",
     "rue",
-    "codePosteVille",
     "codePostal",
     "ville",
-    "textInput5",
-    "select2",
     "select4",
     "select5",
     "textAreaInput",
@@ -18015,19 +17895,14 @@ const PlasmicDescendants = {
     "frame19",
     "deleteIcon2",
     "frame20",
-    "nomPrenom",
     "textInput1",
     "textInput2",
     "textInput4",
-    "telephone",
     "phoneSelector",
     "textInput3",
     "rue",
-    "codePosteVille",
     "codePostal",
     "ville",
-    "textInput5",
-    "select2",
     "select4",
     "select5",
     "textAreaInput",
@@ -18176,19 +18051,14 @@ const PlasmicDescendants = {
     "frame19",
     "deleteIcon2",
     "frame20",
-    "nomPrenom",
     "textInput1",
     "textInput2",
     "textInput4",
-    "telephone",
     "phoneSelector",
     "textInput3",
     "rue",
-    "codePosteVille",
     "codePostal",
     "ville",
-    "textInput5",
-    "select2",
     "select4",
     "select5",
     "textAreaInput",
@@ -18222,19 +18092,14 @@ const PlasmicDescendants = {
   frame19: ["frame19"],
   deleteIcon2: ["deleteIcon2", "frame20"],
   frame20: ["frame20"],
-  nomPrenom: ["nomPrenom", "textInput1", "textInput2"],
   textInput1: ["textInput1"],
   textInput2: ["textInput2"],
   textInput4: ["textInput4"],
-  telephone: ["telephone", "phoneSelector", "textInput3"],
   phoneSelector: ["phoneSelector"],
   textInput3: ["textInput3"],
   rue: ["rue"],
-  codePosteVille: ["codePosteVille", "codePostal", "ville"],
   codePostal: ["codePostal"],
   ville: ["ville"],
-  textInput5: ["textInput5"],
-  select2: ["select2"],
   select4: ["select4"],
   select5: ["select5"],
   textAreaInput: ["textAreaInput"],
@@ -18538,19 +18403,14 @@ type NodeDefaultElementType = {
   frame19: "div";
   deleteIcon2: "div";
   frame20: "div";
-  nomPrenom: "div";
   textInput1: typeof TextInput;
   textInput2: typeof TextInput;
   textInput4: typeof TextInput;
-  telephone: "div";
   phoneSelector: typeof PhoneSelector;
   textInput3: typeof TextInput;
   rue: typeof TextInput;
-  codePosteVille: "div";
   codePostal: typeof TextInput;
   ville: typeof TextInput;
-  textInput5: typeof TextInput;
-  select2: typeof Select;
   select4: typeof Select;
   select5: typeof AntdSelect;
   textAreaInput: typeof TextAreaInput;
@@ -18821,19 +18681,14 @@ export const PlasmicAccueil = Object.assign(
     frame19: makeNodeComponent("frame19"),
     deleteIcon2: makeNodeComponent("deleteIcon2"),
     frame20: makeNodeComponent("frame20"),
-    nomPrenom: makeNodeComponent("nomPrenom"),
     textInput1: makeNodeComponent("textInput1"),
     textInput2: makeNodeComponent("textInput2"),
     textInput4: makeNodeComponent("textInput4"),
-    telephone: makeNodeComponent("telephone"),
     phoneSelector: makeNodeComponent("phoneSelector"),
     textInput3: makeNodeComponent("textInput3"),
     rue: makeNodeComponent("rue"),
-    codePosteVille: makeNodeComponent("codePosteVille"),
     codePostal: makeNodeComponent("codePostal"),
     ville: makeNodeComponent("ville"),
-    textInput5: makeNodeComponent("textInput5"),
-    select2: makeNodeComponent("select2"),
     select4: makeNodeComponent("select4"),
     select5: makeNodeComponent("select5"),
     textAreaInput: makeNodeComponent("textAreaInput"),
