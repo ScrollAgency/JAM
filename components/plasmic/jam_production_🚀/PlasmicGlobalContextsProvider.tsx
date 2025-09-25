@@ -18,19 +18,15 @@ export interface GlobalContextsProviderProps {
   antdConfigProviderProps?: Partial<
     Omit<React.ComponentProps<typeof AntdConfigProvider>, "children">
   >;
-
   supabaseUserGlobalContextProps?: Partial<
     Omit<React.ComponentProps<typeof SupabaseUserGlobalContext>, "children">
   >;
-
   commerceProviderComponentProps?: Partial<
     Omit<React.ComponentProps<typeof CommerceProviderComponent>, "children">
   >;
-
   embedCssProps?: Partial<
     Omit<React.ComponentProps<typeof EmbedCss>, "children">
   >;
-
   cmsCredentialsProviderProps?: Partial<
     Omit<React.ComponentProps<typeof CmsCredentialsProvider>, "children">
   >;
@@ -109,7 +105,7 @@ export default function GlobalContextsProvider(
       removeLoading={
         antdConfigProviderProps && "removeLoading" in antdConfigProviderProps
           ? antdConfigProviderProps.removeLoading!
-          : true
+          : false
       }
       sizeStep={
         antdConfigProviderProps && "sizeStep" in antdConfigProviderProps

@@ -4183,7 +4183,8 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                                 },
                                 cacheKey: null,
                                 invalidatedKeys: [
-                                  "316176a9-f0d4-44d7-baa0-a763336a6271"
+                                  "316176a9-f0d4-44d7-baa0-a763336a6271",
+                                  "a6b10ed4-7764-401c-a116-8f0bf67bb617"
                                 ],
                                 roleId: null
                               }
@@ -8891,7 +8892,10 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                                         ]
                                       },
                                       cacheKey: null,
-                                      invalidatedKeys: ["plasmic_refresh_all"],
+                                      invalidatedKeys: [
+                                        "316176a9-f0d4-44d7-baa0-a763336a6271",
+                                        "a6b10ed4-7764-401c-a116-8f0bf67bb617"
+                                      ],
                                       roleId: null
                                     }
                                   };

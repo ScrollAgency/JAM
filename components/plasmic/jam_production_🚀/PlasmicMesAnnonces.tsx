@@ -82,7 +82,6 @@ import TextInput from "../../TextInput"; // plasmic-import: pZ7Ql6sUFRw9/compone
 import { PhoneSelector } from "../../forms/PhoneSelector/PhoneSelector"; // plasmic-import: sOyePdANTQ6t/codeComponent
 import Select from "../../Select"; // plasmic-import: ZMB-SB-xJDyQ/component
 import MenuItem from "../../MenuItem"; // plasmic-import: plmAgyhhAdMc/component
-import MenuSection from "../../MenuSection"; // plasmic-import: MUvYPH7rZO6i/component
 import { AntdSelect } from "@plasmicpkgs/antd5/skinny/registerSelect";
 import TextAreaInput from "../../TextAreaInput"; // plasmic-import: nVAUbPc6gpoz/component
 import { FileUploader } from "../../others/FileUploader/FileUploader"; // plasmic-import: RpVDoPZzyXH3/codeComponent
@@ -205,8 +204,6 @@ export type PlasmicMesAnnonces__OverridesType = {
   codePosteVille?: Flex__<"div">;
   codePostal?: Flex__<typeof TextInput>;
   ville?: Flex__<typeof TextInput>;
-  textInput5?: Flex__<typeof TextInput>;
-  select2?: Flex__<typeof Select>;
   select4?: Flex__<typeof Select>;
   select3?: Flex__<typeof AntdSelect>;
   textAreaInput?: Flex__<typeof TextAreaInput>;
@@ -341,18 +338,6 @@ function PlasmicMesAnnonces__RenderFunc(props: {
       },
       {
         path: "textInput3.value",
-        type: "private",
-        variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
-      },
-      {
-        path: "textInput5.value",
-        type: "private",
-        variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
-      },
-      {
-        path: "select2.value",
         type: "private",
         variableType: "text",
         initFunc: ({ $props, $state, $queries, $ctx }) => undefined
@@ -2356,6 +2341,43 @@ function PlasmicMesAnnonces__RenderFunc(props: {
                         onClick={async event => {
                           const $steps = {};
 
+                          $steps["updateModalDetailsJobIsOpen"] = true
+                            ? (() => {
+                                const actionArgs = {
+                                  variable: {
+                                    objRoot: $state,
+                                    variablePath: ["modalDetailsJob", "isOpen"]
+                                  },
+                                  operation: 0,
+                                  value: false
+                                };
+                                return (({
+                                  variable,
+                                  value,
+                                  startIndex,
+                                  deleteCount
+                                }) => {
+                                  if (!variable) {
+                                    return;
+                                  }
+                                  const { objRoot, variablePath } = variable;
+
+                                  $stateSet(objRoot, variablePath, value);
+                                  return value;
+                                })?.apply(null, [actionArgs]);
+                              })()
+                            : undefined;
+                          if (
+                            $steps["updateModalDetailsJobIsOpen"] != null &&
+                            typeof $steps["updateModalDetailsJobIsOpen"] ===
+                              "object" &&
+                            typeof $steps["updateModalDetailsJobIsOpen"]
+                              .then === "function"
+                          ) {
+                            $steps["updateModalDetailsJobIsOpen"] =
+                              await $steps["updateModalDetailsJobIsOpen"];
+                          }
+
                           $steps["updateModal2IsOpen"] = true
                             ? (() => {
                                 const actionArgs = {
@@ -3468,18 +3490,14 @@ function PlasmicMesAnnonces__RenderFunc(props: {
                                   sourceId: "rtEg85U6Vbyi94cRAe93i7",
                                   opId: "84c0bb0b-0e3b-43a7-ae52-d0cf288eb28f",
                                   userArgs: {
-                                    path: [
-                                      $ctx.SupabaseUser.user.id,
+                                    path: [(() => {})(), (() => {})()],
 
-                                      $state.upload.files[0].name
-                                    ],
+                                    content: [(() => {})()],
 
-                                    content: [$state.upload.files[0].contents],
-
-                                    contentType: [$state.upload.files[0].type]
+                                    contentType: [(() => {})()]
                                   },
                                   cacheKey: null,
-                                  invalidatedKeys: ["plasmic_refresh_all"],
+                                  invalidatedKeys: [],
                                   roleId: null
                                 }
                               };
@@ -3522,15 +3540,11 @@ function PlasmicMesAnnonces__RenderFunc(props: {
                                   sourceId: "rtEg85U6Vbyi94cRAe93i7",
                                   opId: "84c0bb0b-0e3b-43a7-ae52-d0cf288eb28f",
                                   userArgs: {
-                                    path: [
-                                      $ctx.SupabaseUser.user.id,
+                                    path: [(() => {})(), (() => {})()],
 
-                                      $state.upload3.files[0].name
-                                    ],
+                                    content: [(() => {})()],
 
-                                    content: [$state.upload3.files[0].contents],
-
-                                    contentType: [$state.upload3.files[0].type]
+                                    contentType: [(() => {})()]
                                   },
                                   cacheKey: null,
                                   invalidatedKeys: [],
@@ -3757,6 +3771,40 @@ function PlasmicMesAnnonces__RenderFunc(props: {
                         $steps["errorMsg"] = await $steps["errorMsg"];
                       }
 
+                      $steps["closeModal2"] = true
+                        ? (() => {
+                            const actionArgs = {
+                              operation: 0,
+                              value: false,
+                              variable: {
+                                objRoot: $state,
+                                variablePath: ["modal2", "isOpen"]
+                              }
+                            };
+                            return (({
+                              variable,
+                              value,
+                              startIndex,
+                              deleteCount
+                            }) => {
+                              if (!variable) {
+                                return;
+                              }
+                              const { objRoot, variablePath } = variable;
+
+                              $stateSet(objRoot, variablePath, value);
+                              return value;
+                            })?.apply(null, [actionArgs]);
+                          })()
+                        : undefined;
+                      if (
+                        $steps["closeModal2"] != null &&
+                        typeof $steps["closeModal2"] === "object" &&
+                        typeof $steps["closeModal2"].then === "function"
+                      ) {
+                        $steps["closeModal2"] = await $steps["closeModal2"];
+                      }
+
                       $steps["succesMsg"] = (
                         $queries.userApplications.data.some(
                           application =>
@@ -3784,40 +3832,6 @@ function PlasmicMesAnnonces__RenderFunc(props: {
                         typeof $steps["succesMsg"].then === "function"
                       ) {
                         $steps["succesMsg"] = await $steps["succesMsg"];
-                      }
-
-                      $steps["closeModal2"] = true
-                        ? (() => {
-                            const actionArgs = {
-                              variable: {
-                                objRoot: $state,
-                                variablePath: ["modal2", "isOpen"]
-                              },
-                              operation: 0,
-                              value: false
-                            };
-                            return (({
-                              variable,
-                              value,
-                              startIndex,
-                              deleteCount
-                            }) => {
-                              if (!variable) {
-                                return;
-                              }
-                              const { objRoot, variablePath } = variable;
-
-                              $stateSet(objRoot, variablePath, value);
-                              return value;
-                            })?.apply(null, [actionArgs]);
-                          })()
-                        : undefined;
-                      if (
-                        $steps["closeModal2"] != null &&
-                        typeof $steps["closeModal2"] === "object" &&
-                        typeof $steps["closeModal2"].then === "function"
-                      ) {
-                        $steps["closeModal2"] = await $steps["closeModal2"];
                       }
 
                       $steps["sendEmailToEmployer"] = true
@@ -4766,65 +4780,11 @@ function PlasmicMesAnnonces__RenderFunc(props: {
                           />
                         </FormItemWrapper>
                       </div>
-                      <div
-                        className={classNames(
-                          projectcss.all,
-                          sty.freeBox__rhZlq
-                        )}
-                      >
-                        <TextInput
-                          data-plasmic-name={"textInput5"}
-                          data-plasmic-override={overrides.textInput5}
-                          className={classNames(
-                            "__wab_instance",
-                            sty.textInput5
-                          )}
-                          defaultValue={``}
-                          onChange={async (...eventArgs: any) => {
-                            generateStateOnChangeProp($state, [
-                              "textInput5",
-                              "value"
-                            ]).apply(null, eventArgs);
-
-                            if (
-                              eventArgs.length > 1 &&
-                              eventArgs[1] &&
-                              eventArgs[1]._plasmic_state_init_
-                            ) {
-                              return;
-                            }
-                          }}
-                          placeholder={"Code postal"}
-                        />
-
-                        <Select
-                          data-plasmic-name={"select2"}
-                          data-plasmic-override={overrides.select2}
-                          className={classNames("__wab_instance", sty.select2)}
-                          onChange={async (...eventArgs: any) => {
-                            generateStateOnChangeProp($state, [
-                              "select2",
-                              "value"
-                            ]).apply(null, eventArgs);
-
-                            if (
-                              eventArgs.length > 1 &&
-                              eventArgs[1] &&
-                              eventArgs[1]._plasmic_state_init_
-                            ) {
-                              return;
-                            }
-                          }}
-                          placeholder={"Ville"}
-                          showLabel={false}
-                        />
-                      </div>
                       <FormItemWrapper
                         className={classNames(
                           "__wab_instance",
                           sty.formField__t6BZ4
                         )}
-                        initialValue={$queries.getUser?.data[0]?.country}
                         label={null}
                         name={"Country"}
                         noLabel={true}
@@ -5955,8 +5915,6 @@ const PlasmicDescendants = {
     "codePosteVille",
     "codePostal",
     "ville",
-    "textInput5",
-    "select2",
     "select4",
     "select3",
     "textAreaInput",
@@ -6160,8 +6118,6 @@ const PlasmicDescendants = {
     "codePosteVille",
     "codePostal",
     "ville",
-    "textInput5",
-    "select2",
     "select4",
     "select3",
     "textAreaInput",
@@ -6264,8 +6220,6 @@ const PlasmicDescendants = {
     "codePosteVille",
     "codePostal",
     "ville",
-    "textInput5",
-    "select2",
     "select4",
     "select3",
     "textAreaInput",
@@ -6309,8 +6263,6 @@ const PlasmicDescendants = {
   codePosteVille: ["codePosteVille", "codePostal", "ville"],
   codePostal: ["codePostal"],
   ville: ["ville"],
-  textInput5: ["textInput5"],
-  select2: ["select2"],
   select4: ["select4"],
   select3: ["select3"],
   textAreaInput: ["textAreaInput"],
@@ -6444,8 +6396,6 @@ type NodeDefaultElementType = {
   codePosteVille: "div";
   codePostal: typeof TextInput;
   ville: typeof TextInput;
-  textInput5: typeof TextInput;
-  select2: typeof Select;
   select4: typeof Select;
   select3: typeof AntdSelect;
   textAreaInput: typeof TextAreaInput;
@@ -6612,8 +6562,6 @@ export const PlasmicMesAnnonces = Object.assign(
     codePosteVille: makeNodeComponent("codePosteVille"),
     codePostal: makeNodeComponent("codePostal"),
     ville: makeNodeComponent("ville"),
-    textInput5: makeNodeComponent("textInput5"),
-    select2: makeNodeComponent("select2"),
     select4: makeNodeComponent("select4"),
     select3: makeNodeComponent("select3"),
     textAreaInput: makeNodeComponent("textAreaInput"),

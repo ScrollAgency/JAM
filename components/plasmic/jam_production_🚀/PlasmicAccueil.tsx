@@ -66,6 +66,7 @@ import {
   usePlasmicInvalidate
 } from "@plasmicapp/react-web/lib/data-sources";
 
+import { PageLoader } from "../../others/PageLoader/PageLoader"; // plasmic-import: FHDrnDhA4DZe/codeComponent
 import { LoadingBoundary } from "@plasmicpkgs/plasmic-basic-components";
 import Button from "../../Button"; // plasmic-import: 9ixtKbGKv7x-/component
 import { FormWrapper } from "@plasmicpkgs/antd5/skinny/Form";
@@ -81,7 +82,6 @@ import { MapBox } from "../../../plasmic-library/others/Map/Map"; // plasmic-imp
 import SectionCard from "../../SectionCard"; // plasmic-import: nbNWFt-vOCjr/component
 import Modal from "../../Modal"; // plasmic-import: fsC3QwUZz9uz/component
 import { JamButton } from "../../forms/JamButton/JamButton"; // plasmic-import: UiI0wt2mxfuf/codeComponent
-import { PageLoader } from "../../others/PageLoader/PageLoader"; // plasmic-import: FHDrnDhA4DZe/codeComponent
 import { UploadWrapper } from "@plasmicpkgs/antd5/skinny/registerUpload";
 import TextInput from "../../TextInput"; // plasmic-import: pZ7Ql6sUFRw9/component
 import { PhoneSelector } from "../../forms/PhoneSelector/PhoneSelector"; // plasmic-import: sOyePdANTQ6t/codeComponent
@@ -142,6 +142,7 @@ export const PlasmicAccueil__ArgProps = new Array<ArgPropType>();
 
 export type PlasmicAccueil__OverridesType = {
   rechercheJob?: Flex__<"div">;
+  pageLoader?: Flex__<typeof PageLoader>;
   loadingBoundary?: Flex__<typeof LoadingBoundary>;
   screen?: Flex__<"div">;
   frame6?: Flex__<"div">;
@@ -223,7 +224,6 @@ export type PlasmicAccueil__OverridesType = {
   sectionCard2?: Flex__<typeof SectionCard>;
   sectionCard3?: Flex__<typeof SectionCard>;
   verifyUserAuth?: Flex__<typeof Modal>;
-  pageLoader?: Flex__<typeof PageLoader>;
   jobDetails?: Flex__<typeof Modal>;
   button5?: Flex__<typeof JamButton>;
   jobListing?: Flex__<"div">;
@@ -488,7 +488,7 @@ function PlasmicAccueil__RenderFunc(props: {
         path: "jobDetails.isOpen",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $ctx }) => false
       },
       {
         path: "signUpApplication.isOpen",
@@ -1531,6 +1531,25 @@ function PlasmicAccueil__RenderFunc(props: {
         type: "private",
         variableType: "text",
         initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+      },
+      {
+        path: "userObj",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $ctx }) =>
+          (() => {
+            try {
+              return $queries.getCurrentUser.data[0];
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return {};
+              }
+              throw e;
+            }
+          })()
       }
     ],
     [$props, $ctx, $refs]
@@ -1562,7 +1581,7 @@ function PlasmicAccueil__RenderFunc(props: {
         sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
         opId: "9c25c922-f186-4ed9-850f-6ded6b307e4e",
         userArgs: {
-          keys: [$ctx.SupabaseUser.user.id]
+          keys: [$ctx.SupabaseUser.user?.id]
         },
         cacheKey: `plasmic.$.9c25c922-f186-4ed9-850f-6ded6b307e4e.$.`,
         invalidatedKeys: null,
@@ -1772,6 +1791,65 @@ function PlasmicAccueil__RenderFunc(props: {
             }
           )}
         >
+          {false ? (
+            <PageLoader
+              data-plasmic-name={"pageLoader"}
+              data-plasmic-override={overrides.pageLoader}
+              className={classNames("__wab_instance", sty.pageLoader)}
+              onMount={async () => {
+                const $steps = {};
+
+                $steps["updateJobDetailsIsOpen"] = true
+                  ? (() => {
+                      const actionArgs = {
+                        variable: {
+                          objRoot: $state,
+                          variablePath: ["jobDetails", "isOpen"]
+                        },
+                        operation: 0,
+                        value: true
+                      };
+                      return (({
+                        variable,
+                        value,
+                        startIndex,
+                        deleteCount
+                      }) => {
+                        if (!variable) {
+                          return;
+                        }
+                        const { objRoot, variablePath } = variable;
+
+                        $stateSet(objRoot, variablePath, value);
+                        return value;
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["updateJobDetailsIsOpen"] != null &&
+                  typeof $steps["updateJobDetailsIsOpen"] === "object" &&
+                  typeof $steps["updateJobDetailsIsOpen"].then === "function"
+                ) {
+                  $steps["updateJobDetailsIsOpen"] = await $steps[
+                    "updateJobDetailsIsOpen"
+                  ];
+                }
+              }}
+              shouldRun={(() => {
+                try {
+                  return !!$state.jobObject.id;
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return false;
+                  }
+                  throw e;
+                }
+              })()}
+            />
+          ) : null}
           <LoadingBoundary
             data-plasmic-name={"loadingBoundary"}
             data-plasmic-override={overrides.loadingBoundary}
@@ -9399,65 +9477,6 @@ function PlasmicAccueil__RenderFunc(props: {
                     showHeader={true}
                   />
 
-                  <PageLoader
-                    data-plasmic-name={"pageLoader"}
-                    data-plasmic-override={overrides.pageLoader}
-                    className={classNames("__wab_instance", sty.pageLoader)}
-                    onMount={async () => {
-                      const $steps = {};
-
-                      $steps["updateJobDetailsIsOpen"] = true
-                        ? (() => {
-                            const actionArgs = {
-                              variable: {
-                                objRoot: $state,
-                                variablePath: ["jobDetails", "isOpen"]
-                              },
-                              operation: 0,
-                              value: true
-                            };
-                            return (({
-                              variable,
-                              value,
-                              startIndex,
-                              deleteCount
-                            }) => {
-                              if (!variable) {
-                                return;
-                              }
-                              const { objRoot, variablePath } = variable;
-
-                              $stateSet(objRoot, variablePath, value);
-                              return value;
-                            })?.apply(null, [actionArgs]);
-                          })()
-                        : undefined;
-                      if (
-                        $steps["updateJobDetailsIsOpen"] != null &&
-                        typeof $steps["updateJobDetailsIsOpen"] === "object" &&
-                        typeof $steps["updateJobDetailsIsOpen"].then ===
-                          "function"
-                      ) {
-                        $steps["updateJobDetailsIsOpen"] = await $steps[
-                          "updateJobDetailsIsOpen"
-                        ];
-                      }
-                    }}
-                    shouldRun={(() => {
-                      try {
-                        return !!$state.jobObject.id;
-                      } catch (e) {
-                        if (
-                          e instanceof TypeError ||
-                          e?.plasmicType === "PlasmicUndefinedDataError"
-                        ) {
-                          return false;
-                        }
-                        throw e;
-                      }
-                    })()}
-                  />
-
                   <Modal
                     data-plasmic-name={"jobDetails"}
                     data-plasmic-override={overrides.jobDetails}
@@ -10433,38 +10452,39 @@ function PlasmicAccueil__RenderFunc(props: {
                                 onClick={async event => {
                                   const $steps = {};
 
-                                  $steps["updateMessage2"] = true
-                                    ? (() => {
-                                        const actionArgs = {
-                                          variable: {
-                                            objRoot: $state,
-                                            variablePath: ["messages"]
-                                          },
-                                          operation: 0,
-                                          value:
-                                            "Veuillez vous connecter pour pouvoir postuler à cette offre."
-                                        };
-                                        return (({
-                                          variable,
-                                          value,
-                                          startIndex,
-                                          deleteCount
-                                        }) => {
-                                          if (!variable) {
-                                            return;
-                                          }
-                                          const { objRoot, variablePath } =
-                                            variable;
+                                  $steps["updateMessage2"] =
+                                    $ctx.SupabaseUser?.user?.id == undefined
+                                      ? (() => {
+                                          const actionArgs = {
+                                            variable: {
+                                              objRoot: $state,
+                                              variablePath: ["messages"]
+                                            },
+                                            operation: 0,
+                                            value:
+                                              "Veuillez vous connecter pour pouvoir postuler à cette offre."
+                                          };
+                                          return (({
+                                            variable,
+                                            value,
+                                            startIndex,
+                                            deleteCount
+                                          }) => {
+                                            if (!variable) {
+                                              return;
+                                            }
+                                            const { objRoot, variablePath } =
+                                              variable;
 
-                                          $stateSet(
-                                            objRoot,
-                                            variablePath,
-                                            value
-                                          );
-                                          return value;
-                                        })?.apply(null, [actionArgs]);
-                                      })()
-                                    : undefined;
+                                            $stateSet(
+                                              objRoot,
+                                              variablePath,
+                                              value
+                                            );
+                                            return value;
+                                          })?.apply(null, [actionArgs]);
+                                        })()
+                                      : undefined;
                                   if (
                                     $steps["updateMessage2"] != null &&
                                     typeof $steps["updateMessage2"] ===
@@ -10527,28 +10547,6 @@ function PlasmicAccueil__RenderFunc(props: {
                                       ];
                                   }
 
-                                  $steps["runCode"] = $ctx.SupabaseUser?.user
-                                    ?.id
-                                    ? (() => {
-                                        const actionArgs = {
-                                          customFunction: async () => {
-                                            return ($state.signUpApplication.isOpen =
-                                              true);
-                                          }
-                                        };
-                                        return (({ customFunction }) => {
-                                          return customFunction();
-                                        })?.apply(null, [actionArgs]);
-                                      })()
-                                    : undefined;
-                                  if (
-                                    $steps["runCode"] != null &&
-                                    typeof $steps["runCode"] === "object" &&
-                                    typeof $steps["runCode"].then === "function"
-                                  ) {
-                                    $steps["runCode"] = await $steps["runCode"];
-                                  }
-
                                   $steps["updateDetailsDeLoffreIsOpen"] = true
                                     ? (() => {
                                         const actionArgs = {
@@ -10595,6 +10593,57 @@ function PlasmicAccueil__RenderFunc(props: {
                                     $steps["updateDetailsDeLoffreIsOpen"] =
                                       await $steps[
                                         "updateDetailsDeLoffreIsOpen"
+                                      ];
+                                  }
+
+                                  $steps["updateSignUpApplicationIsOpen"] = $ctx
+                                    .SupabaseUser?.user?.id
+                                    ? (() => {
+                                        const actionArgs = {
+                                          variable: {
+                                            objRoot: $state,
+                                            variablePath: [
+                                              "signUpApplication",
+                                              "isOpen"
+                                            ]
+                                          },
+                                          operation: 0,
+                                          value: true
+                                        };
+                                        return (({
+                                          variable,
+                                          value,
+                                          startIndex,
+                                          deleteCount
+                                        }) => {
+                                          if (!variable) {
+                                            return;
+                                          }
+                                          const { objRoot, variablePath } =
+                                            variable;
+
+                                          $stateSet(
+                                            objRoot,
+                                            variablePath,
+                                            value
+                                          );
+                                          return value;
+                                        })?.apply(null, [actionArgs]);
+                                      })()
+                                    : undefined;
+                                  if (
+                                    $steps["updateSignUpApplicationIsOpen"] !=
+                                      null &&
+                                    typeof $steps[
+                                      "updateSignUpApplicationIsOpen"
+                                    ] === "object" &&
+                                    typeof $steps[
+                                      "updateSignUpApplicationIsOpen"
+                                    ].then === "function"
+                                  ) {
+                                    $steps["updateSignUpApplicationIsOpen"] =
+                                      await $steps[
+                                        "updateSignUpApplicationIsOpen"
                                       ];
                                   }
                                 }}
@@ -11962,19 +12011,7 @@ function PlasmicAccueil__RenderFunc(props: {
                                 inputType: "Text Area"
                               }
                             ],
-                            initialValues: (() => {
-                              try {
-                                return $queries.getCurrentUser.data[0];
-                              } catch (e) {
-                                if (
-                                  e instanceof TypeError ||
-                                  e?.plasmicType === "PlasmicUndefinedDataError"
-                                ) {
-                                  return undefined;
-                                }
-                                throw e;
-                              }
-                            })(),
+                            initialValues: undefined,
                             labelCol: { span: 8, horizontalOnly: true },
                             layout: "vertical",
                             mode: "advanced",
@@ -12136,10 +12173,10 @@ function PlasmicAccueil__RenderFunc(props: {
                                     const actionArgs = {
                                       dataOp: {
                                         sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
-                                        opId: "208b2516-0c26-4591-9cde-df43376962ed",
+                                        opId: "fe19f554-48c9-43f4-b7dc-ea628addc559",
                                         userArgs: {
                                           conditions: [
-                                            $ctx.SupabaseUser.user.id
+                                            $ctx.SupabaseUser.user?.id
                                           ],
 
                                           variables: [
@@ -12164,8 +12201,6 @@ function PlasmicAccueil__RenderFunc(props: {
                                             $state.form.value.first_name,
 
                                             $state.form.value.last_name,
-
-                                            $state.form.value.level,
 
                                             $state.form.value.linkedin_url,
 
@@ -12192,7 +12227,9 @@ function PlasmicAccueil__RenderFunc(props: {
 
                                             $queries.fetchUserCoordinates.data
                                               .response.features[0].geometry
-                                              .coordinates[1]
+                                              .coordinates[1],
+
+                                            $state.form.value.level
                                           ]
                                         },
                                         cacheKey: null,
@@ -12276,9 +12313,9 @@ function PlasmicAccueil__RenderFunc(props: {
 
                                             $state.form.value.transport_mode,
 
-                                            $ctx.SupabaseUser.user.id,
+                                            $ctx.SupabaseUser.user?.id,
 
-                                            $state.jobObject.id
+                                            $state.jobObject?.id
                                           ]
                                         },
                                         cacheKey: null,
@@ -13031,8 +13068,7 @@ function PlasmicAccueil__RenderFunc(props: {
                                     )}
                                     defaultValue={(() => {
                                       try {
-                                        return $queries.getCurrentUser.data[0]
-                                          .first_name;
+                                        return $state.userObj.first_name;
                                       } catch (e) {
                                         if (
                                           e instanceof TypeError ||
@@ -13079,8 +13115,7 @@ function PlasmicAccueil__RenderFunc(props: {
                                     )}
                                     defaultValue={(() => {
                                       try {
-                                        return $queries.getCurrentUser.data[0]
-                                          .last_name;
+                                        return $state.userObj.last_name;
                                       } catch (e) {
                                         if (
                                           e instanceof TypeError ||
@@ -13128,8 +13163,7 @@ function PlasmicAccueil__RenderFunc(props: {
                                   )}
                                   defaultValue={(() => {
                                     try {
-                                      return $queries.getCurrentUser.data[0]
-                                        .email;
+                                      return $state.userObj.email;
                                     } catch (e) {
                                       if (
                                         e instanceof TypeError ||
@@ -13214,8 +13248,7 @@ function PlasmicAccueil__RenderFunc(props: {
                                     )}
                                     defaultValue={(() => {
                                       try {
-                                        return $queries.getCurrentUser.data[0]
-                                          .phone_number;
+                                        return $state.userObj.phone_number;
                                       } catch (e) {
                                         if (
                                           e instanceof TypeError ||
@@ -13274,8 +13307,7 @@ function PlasmicAccueil__RenderFunc(props: {
                                   )}
                                   defaultValue={(() => {
                                     try {
-                                      return $queries.getCurrentUser.data[0]
-                                        .address;
+                                      return $state.userObj.address;
                                     } catch (e) {
                                       if (
                                         e instanceof TypeError ||
@@ -13316,6 +13348,7 @@ function PlasmicAccueil__RenderFunc(props: {
                                     sty.formField__wp2A
                                   )}
                                   hidden={false}
+                                  initialValue={$state.userObj.postal_code}
                                   label={
                                     <div
                                       className={classNames(
@@ -13399,8 +13432,7 @@ function PlasmicAccueil__RenderFunc(props: {
                                     )}
                                     defaultValue={(() => {
                                       try {
-                                        return $queries.getCurrentUser.data[0]
-                                          .city;
+                                        return $state.userObj.city;
                                       } catch (e) {
                                         if (
                                           e instanceof TypeError ||
@@ -13447,7 +13479,20 @@ function PlasmicAccueil__RenderFunc(props: {
                                     "__wab_instance",
                                     sty.select4
                                   )}
-                                  initialSelectedValue={"France"}
+                                  initialSelectedValue={(() => {
+                                    try {
+                                      return $state.userObj.country ?? "France";
+                                    } catch (e) {
+                                      if (
+                                        e instanceof TypeError ||
+                                        e?.plasmicType ===
+                                          "PlasmicUndefinedDataError"
+                                      ) {
+                                        return "France";
+                                      }
+                                      throw e;
+                                    }
+                                  })()}
                                   items={(_par =>
                                     !_par
                                       ? []
@@ -13534,7 +13579,7 @@ function PlasmicAccueil__RenderFunc(props: {
                                 )}
                                 initialValue={(() => {
                                   try {
-                                    return undefined;
+                                    return $state.userObj.transport_mode ?? [];
                                   } catch (e) {
                                     if (
                                       e instanceof TypeError ||
@@ -13673,6 +13718,20 @@ function PlasmicAccueil__RenderFunc(props: {
                                     "__wab_instance",
                                     sty.textAreaInput
                                   )}
+                                  defaultValue={(() => {
+                                    try {
+                                      return $state.userObj.short_presentation;
+                                    } catch (e) {
+                                      if (
+                                        e instanceof TypeError ||
+                                        e?.plasmicType ===
+                                          "PlasmicUndefinedDataError"
+                                      ) {
+                                        return undefined;
+                                      }
+                                      throw e;
+                                    }
+                                  })()}
                                   onChange={async (...eventArgs: any) => {
                                     generateStateOnChangeProp($state, [
                                       "textAreaInput",
@@ -13697,7 +13756,7 @@ function PlasmicAccueil__RenderFunc(props: {
                                 )}
                                 initialValue={(() => {
                                   try {
-                                    return undefined;
+                                    return $state.userObj.skill ?? [];
                                   } catch (e) {
                                     if (
                                       e instanceof TypeError ||
@@ -13812,9 +13871,6 @@ function PlasmicAccueil__RenderFunc(props: {
                                   "__wab_instance",
                                   sty.formField___0N6P1
                                 )}
-                                initialValue={
-                                  $queries.getCurrentUser?.data[0]?.level
-                                }
                                 label={"Niveau d'exp\u00e9rience"}
                                 name={"level"}
                               >
@@ -13827,8 +13883,7 @@ function PlasmicAccueil__RenderFunc(props: {
                                   )}
                                   initialSelectedValue={(() => {
                                     try {
-                                      return $queries.getCurrentUser.data[0]
-                                        .level;
+                                      return $state.userObj.level ?? null;
                                     } catch (e) {
                                       if (
                                         e instanceof TypeError ||
@@ -14730,8 +14785,7 @@ function PlasmicAccueil__RenderFunc(props: {
                                   )}
                                   defaultValue={(() => {
                                     try {
-                                      return $queries.getCurrentUser.data[0]
-                                        .linkedin_url;
+                                      return $state.userObj.linkedin_url;
                                     } catch (e) {
                                       if (
                                         e instanceof TypeError ||
@@ -14913,103 +14967,91 @@ function PlasmicAccueil__RenderFunc(props: {
                     }
                     footer={null}
                     heading={
-                      <React.Fragment>
-                        {(
-                          hasVariant(globalVariants, "screen", "mobileOnly")
-                            ? true
-                            : (() => {
-                                try {
+                      (
+                        hasVariant(globalVariants, "screen", "mobileOnly")
+                          ? true
+                          : (() => {
+                              try {
+                                return true;
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
                                   return true;
-                                } catch (e) {
-                                  if (
-                                    e instanceof TypeError ||
-                                    e?.plasmicType ===
-                                      "PlasmicUndefinedDataError"
-                                  ) {
-                                    return true;
-                                  }
-                                  throw e;
                                 }
-                              })()
-                        ) ? (
-                          <PlasmicImg__
-                            alt={""}
-                            className={classNames(sty.img__dQyt2)}
-                            displayHeight={"17px"}
-                            displayMaxHeight={"none"}
-                            displayMaxWidth={"100%"}
-                            displayMinHeight={"0"}
-                            displayMinWidth={"0"}
-                            displayWidth={"17px"}
-                            loading={"lazy"}
-                            onClick={async event => {
-                              const $steps = {};
-
-                              $steps["updateModal2IsOpen"] = true
-                                ? (() => {
-                                    const actionArgs = {
-                                      variable: {
-                                        objRoot: $state,
-                                        variablePath: [
-                                          "signUpApplication",
-                                          "isOpen"
-                                        ]
-                                      },
-                                      operation: 0,
-                                      value: false
-                                    };
-                                    return (({
-                                      variable,
-                                      value,
-                                      startIndex,
-                                      deleteCount
-                                    }) => {
-                                      if (!variable) {
-                                        return;
-                                      }
-                                      const { objRoot, variablePath } =
-                                        variable;
-
-                                      $stateSet(objRoot, variablePath, value);
-                                      return value;
-                                    })?.apply(null, [actionArgs]);
-                                  })()
-                                : undefined;
-                              if (
-                                $steps["updateModal2IsOpen"] != null &&
-                                typeof $steps["updateModal2IsOpen"] ===
-                                  "object" &&
-                                typeof $steps["updateModal2IsOpen"].then ===
-                                  "function"
-                              ) {
-                                $steps["updateModal2IsOpen"] = await $steps[
-                                  "updateModal2IsOpen"
-                                ];
+                                throw e;
                               }
-                            }}
-                            src={{
-                              src: "/plasmic/jam_production_🚀/images/close3.svg",
-                              fullWidth: 17,
-                              fullHeight: 17,
-                              aspectRatio: 1
-                            }}
-                          />
-                        ) : null}
-                        <div
-                          className={classNames(
-                            projectcss.all,
-                            projectcss.__wab_text,
-                            sty.text__osnHc
-                          )}
-                        >
-                          {"Enter some text"}
-                        </div>
-                      </React.Fragment>
+                            })()
+                      ) ? (
+                        <PlasmicImg__
+                          alt={""}
+                          className={classNames(sty.img__dQyt2)}
+                          displayHeight={"17px"}
+                          displayMaxHeight={"none"}
+                          displayMaxWidth={"100%"}
+                          displayMinHeight={"0"}
+                          displayMinWidth={"0"}
+                          displayWidth={"17px"}
+                          loading={"lazy"}
+                          onClick={async event => {
+                            const $steps = {};
+
+                            $steps["updateModal2IsOpen"] = true
+                              ? (() => {
+                                  const actionArgs = {
+                                    variable: {
+                                      objRoot: $state,
+                                      variablePath: [
+                                        "signUpApplication",
+                                        "isOpen"
+                                      ]
+                                    },
+                                    operation: 0,
+                                    value: false
+                                  };
+                                  return (({
+                                    variable,
+                                    value,
+                                    startIndex,
+                                    deleteCount
+                                  }) => {
+                                    if (!variable) {
+                                      return;
+                                    }
+                                    const { objRoot, variablePath } = variable;
+
+                                    $stateSet(objRoot, variablePath, value);
+                                    return value;
+                                  })?.apply(null, [actionArgs]);
+                                })()
+                              : undefined;
+                            if (
+                              $steps["updateModal2IsOpen"] != null &&
+                              typeof $steps["updateModal2IsOpen"] ===
+                                "object" &&
+                              typeof $steps["updateModal2IsOpen"].then ===
+                                "function"
+                            ) {
+                              $steps["updateModal2IsOpen"] = await $steps[
+                                "updateModal2IsOpen"
+                              ];
+                            }
+                          }}
+                          src={{
+                            src: "/plasmic/jam_production_🚀/images/close3.svg",
+                            fullWidth: 17,
+                            fullHeight: 17,
+                            aspectRatio: 1
+                          }}
+                        />
+                      ) : null
                     }
                     isOpen={generateStateValueProp($state, [
                       "signUpApplication",
                       "isOpen"
                     ])}
+                    noTrigger={true}
                     onOpenChange={async (...eventArgs: any) => {
                       generateStateOnChangeProp($state, [
                         "signUpApplication",
@@ -16710,6 +16752,7 @@ function PlasmicAccueil__RenderFunc(props: {
 const PlasmicDescendants = {
   rechercheJob: [
     "rechercheJob",
+    "pageLoader",
     "loadingBoundary",
     "screen",
     "frame6",
@@ -16791,7 +16834,6 @@ const PlasmicDescendants = {
     "sectionCard2",
     "sectionCard3",
     "verifyUserAuth",
-    "pageLoader",
     "jobDetails",
     "button5",
     "jobListing",
@@ -16923,6 +16965,7 @@ const PlasmicDescendants = {
     "footer",
     "updateRoleForGoogleRegistration"
   ],
+  pageLoader: ["pageLoader"],
   loadingBoundary: [
     "loadingBoundary",
     "screen",
@@ -17005,7 +17048,6 @@ const PlasmicDescendants = {
     "sectionCard2",
     "sectionCard3",
     "verifyUserAuth",
-    "pageLoader",
     "jobDetails",
     "button5",
     "jobListing",
@@ -17608,7 +17650,6 @@ const PlasmicDescendants = {
   sectionCard2: ["sectionCard2"],
   sectionCard3: ["sectionCard3"],
   verifyUserAuth: ["verifyUserAuth"],
-  pageLoader: ["pageLoader"],
   jobDetails: [
     "jobDetails",
     "button5",
@@ -18249,6 +18290,7 @@ type DescendantsType<T extends NodeNameType> =
   (typeof PlasmicDescendants)[T][number];
 type NodeDefaultElementType = {
   rechercheJob: "div";
+  pageLoader: typeof PageLoader;
   loadingBoundary: typeof LoadingBoundary;
   screen: "div";
   frame6: "div";
@@ -18330,7 +18372,6 @@ type NodeDefaultElementType = {
   sectionCard2: typeof SectionCard;
   sectionCard3: typeof SectionCard;
   verifyUserAuth: typeof Modal;
-  pageLoader: typeof PageLoader;
   jobDetails: typeof Modal;
   button5: typeof JamButton;
   jobListing: "div";
@@ -18523,6 +18564,7 @@ export const PlasmicAccueil = Object.assign(
   makeNodeComponent("rechercheJob"),
   {
     // Helper components rendering sub-elements
+    pageLoader: makeNodeComponent("pageLoader"),
     loadingBoundary: makeNodeComponent("loadingBoundary"),
     screen: makeNodeComponent("screen"),
     frame6: makeNodeComponent("frame6"),
@@ -18608,7 +18650,6 @@ export const PlasmicAccueil = Object.assign(
     sectionCard2: makeNodeComponent("sectionCard2"),
     sectionCard3: makeNodeComponent("sectionCard3"),
     verifyUserAuth: makeNodeComponent("verifyUserAuth"),
-    pageLoader: makeNodeComponent("pageLoader"),
     jobDetails: makeNodeComponent("jobDetails"),
     button5: makeNodeComponent("button5"),
     jobListing: makeNodeComponent("jobListing"),

@@ -2326,6 +2326,19 @@
           "scheme": "blackbox",
           "componentType": "page",
           "path": "/recherche-candidat-2"
+        },
+        {
+          "id": "RYWE8Vd6eCS7",
+          "name": "Test",
+          "type": "managed",
+          "projectId": "f7DE9y7qp46fyCw5nuY8f9",
+          "renderModuleFilePath": "plasmic/jam_production_🚀/PlasmicTest.tsx",
+          "importSpec": {
+            "modulePath": "Test.tsx"
+          },
+          "cssFilePath": "plasmic/jam_production_🚀/PlasmicTest.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
         }
       ],
       "icons": [

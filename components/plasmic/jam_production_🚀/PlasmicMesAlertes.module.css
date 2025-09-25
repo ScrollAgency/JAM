@@ -179,12 +179,6 @@
     margin: 0px;
   }
 }
-.loading {
-  position: relative;
-  width: auto;
-  height: auto;
-  max-width: 100%;
-}
 .noAnnonce {
   transform: scale(1.0000001192092896, 1.0000001192092896);
   height: 100%;

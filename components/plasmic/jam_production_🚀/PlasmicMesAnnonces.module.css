@@ -1847,36 +1847,6 @@
   min-height: 48px;
   max-width: 100%;
 }
-.freeBox__rhZlq {
-  flex-direction: row;
-  position: relative;
-  align-items: stretch;
-  justify-content: flex-start;
-  width: 100%;
-  height: auto;
-  max-width: 100%;
-  column-gap: 10px;
-  min-width: 0;
-  display: none;
-  padding: 0px;
-}
-.textInput5:global(.__wab_instance):global(.__wab_instance) {
-  max-width: 100%;
-}
-.select2:global(.__wab_instance):global(.__wab_instance) {
-  max-width: 100%;
-  height: auto;
-}
-.menuSection__nDdIl:global(.__wab_instance):global(.__wab_instance) {
-  max-width: 100%;
-}
-.text__exRQv {
-  position: relative;
-  width: 100%;
-  height: auto;
-  max-width: 100%;
-  min-width: 0;
-}
 .formField__t6BZ4:global(.__wab_instance) {
   color: var(--token-OIYWLyLPYWym);
   font-family: "DM Sans", sans-serif;

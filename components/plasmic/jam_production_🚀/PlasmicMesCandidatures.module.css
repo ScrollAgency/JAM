@@ -20,15 +20,18 @@
   }
 }
 .slidebarMenu:global(.__wab_instance) {
-  position: fixed;
+  position: relative;
   flex-shrink: 0;
-  left: 0;
-  top: 0;
+  left: auto;
+  top: auto;
   z-index: 1;
-  bottom: 0;
+  bottom: auto;
 }
 @media (min-width: 0px) and (max-width: 768px) {
   .slidebarMenu:global(.__wab_instance) {
+    left: auto;
+    top: auto;
+    bottom: auto;
     display: none;
   }
 }
@@ -41,12 +44,10 @@
 @media (min-width: 0px) and (max-width: 768px) {
   .mobileNavbarTop:global(.__wab_instance) {
     position: fixed;
-    top: 0px;
-    left: 0px;
+    top: 0;
+    left: 0;
     z-index: 1;
-    width: 100%;
-    right: 0px;
-    min-width: 0;
+    right: 0;
     display: flex;
   }
 }
@@ -371,8 +372,8 @@
     position: fixed;
     top: auto;
     left: 0;
-    bottom: 0;
     right: 0;
+    bottom: 0;
     display: flex;
   }
 }

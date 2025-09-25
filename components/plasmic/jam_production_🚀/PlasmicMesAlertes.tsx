@@ -119,7 +119,6 @@ export type PlasmicMesAlertes__OverridesType = {
   main?: Flex__<"main">;
   h1?: Flex__<"h1">;
   alerts?: Flex__<"div">;
-  loading?: Flex__<"div">;
   noAnnonce?: Flex__<"div">;
   featuredIcon2?: Flex__<"div">;
   textAndSupportingText2?: Flex__<"div">;
@@ -333,7 +332,7 @@ function PlasmicMesAlertes__RenderFunc(props: {
         sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
         opId: "51cfa6ad-54c7-439f-ad10-406a19a5bdf9",
         userArgs: {
-          filters: [$ctx.SupabaseUser?.user?.id]
+          filters: [$ctx.SupabaseUser.user?.id]
         },
         cacheKey: `plasmic.$.51cfa6ad-54c7-439f-ad10-406a19a5bdf9.$.`,
         invalidatedKeys: null,
@@ -568,31 +567,6 @@ function PlasmicMesAlertes__RenderFunc(props: {
               data-plasmic-override={overrides.alerts}
               className={classNames(projectcss.all, sty.alerts)}
             >
-              {(() => {
-                try {
-                  return $queries.getAlerts.isLoading;
-                } catch (e) {
-                  if (
-                    e instanceof TypeError ||
-                    e?.plasmicType === "PlasmicUndefinedDataError"
-                  ) {
-                    return true;
-                  }
-                  throw e;
-                }
-              })() ? (
-                <div
-                  data-plasmic-name={"loading"}
-                  data-plasmic-override={overrides.loading}
-                  className={classNames(
-                    projectcss.all,
-                    projectcss.__wab_text,
-                    sty.loading
-                  )}
-                >
-                  {"Chargement..."}
-                </div>
-              ) : null}
               {(
                 hasVariant(globalVariants, "screen", "mobileOnly")
                   ? (() => {
@@ -1116,7 +1090,7 @@ function PlasmicMesAlertes__RenderFunc(props: {
                                   variables: [
                                     $state.form.value,
 
-                                    $ctx.SupabaseUser.user.id
+                                    $ctx.SupabaseUser.user?.id
                                   ]
                                 },
                                 cacheKey: null,
@@ -2277,7 +2251,7 @@ function PlasmicMesAlertes__RenderFunc(props: {
                     onClick={async event => {
                       const $steps = {};
 
-                      $steps["updateDeleteAlertIsOpen"] = true
+                      $steps["closeModal"] = true
                         ? (() => {
                             const actionArgs = {
                               variable: {
@@ -2304,14 +2278,11 @@ function PlasmicMesAlertes__RenderFunc(props: {
                           })()
                         : undefined;
                       if (
-                        $steps["updateDeleteAlertIsOpen"] != null &&
-                        typeof $steps["updateDeleteAlertIsOpen"] === "object" &&
-                        typeof $steps["updateDeleteAlertIsOpen"].then ===
-                          "function"
+                        $steps["closeModal"] != null &&
+                        typeof $steps["closeModal"] === "object" &&
+                        typeof $steps["closeModal"].then === "function"
                       ) {
-                        $steps["updateDeleteAlertIsOpen"] = await $steps[
-                          "updateDeleteAlertIsOpen"
-                        ];
+                        $steps["closeModal"] = await $steps["closeModal"];
                       }
                     }}
                     type={"bordered"}
@@ -2336,7 +2307,7 @@ function PlasmicMesAlertes__RenderFunc(props: {
                     onClick={async event => {
                       const $steps = {};
 
-                      $steps["postgresDeleteMany"] = true
+                      $steps["deleteAlert"] = true
                         ? (() => {
                             const actionArgs = {
                               dataOp: {
@@ -2374,16 +2345,14 @@ function PlasmicMesAlertes__RenderFunc(props: {
                           })()
                         : undefined;
                       if (
-                        $steps["postgresDeleteMany"] != null &&
-                        typeof $steps["postgresDeleteMany"] === "object" &&
-                        typeof $steps["postgresDeleteMany"].then === "function"
+                        $steps["deleteAlert"] != null &&
+                        typeof $steps["deleteAlert"] === "object" &&
+                        typeof $steps["deleteAlert"].then === "function"
                       ) {
-                        $steps["postgresDeleteMany"] = await $steps[
-                          "postgresDeleteMany"
-                        ];
+                        $steps["deleteAlert"] = await $steps["deleteAlert"];
                       }
 
-                      $steps["updateDeleteAlertIsOpen"] = true
+                      $steps["closeModal1"] = true
                         ? (() => {
                             const actionArgs = {
                               variable: {
@@ -2410,14 +2379,45 @@ function PlasmicMesAlertes__RenderFunc(props: {
                           })()
                         : undefined;
                       if (
-                        $steps["updateDeleteAlertIsOpen"] != null &&
-                        typeof $steps["updateDeleteAlertIsOpen"] === "object" &&
-                        typeof $steps["updateDeleteAlertIsOpen"].then ===
-                          "function"
+                        $steps["closeModal1"] != null &&
+                        typeof $steps["closeModal1"] === "object" &&
+                        typeof $steps["closeModal1"].then === "function"
                       ) {
-                        $steps["updateDeleteAlertIsOpen"] = await $steps[
-                          "updateDeleteAlertIsOpen"
-                        ];
+                        $steps["closeModal1"] = await $steps["closeModal1"];
+                      }
+
+                      $steps["closeModal2"] = true
+                        ? (() => {
+                            const actionArgs = {
+                              variable: {
+                                objRoot: $state,
+                                variablePath: ["isModalOpen"]
+                              },
+                              operation: 0,
+                              value: false
+                            };
+                            return (({
+                              variable,
+                              value,
+                              startIndex,
+                              deleteCount
+                            }) => {
+                              if (!variable) {
+                                return;
+                              }
+                              const { objRoot, variablePath } = variable;
+
+                              $stateSet(objRoot, variablePath, value);
+                              return value;
+                            })?.apply(null, [actionArgs]);
+                          })()
+                        : undefined;
+                      if (
+                        $steps["closeModal2"] != null &&
+                        typeof $steps["closeModal2"] === "object" &&
+                        typeof $steps["closeModal2"].then === "function"
+                      ) {
+                        $steps["closeModal2"] = await $steps["closeModal2"];
                       }
                     }}
                   />
@@ -2469,7 +2469,6 @@ const PlasmicDescendants = {
     "main",
     "h1",
     "alerts",
-    "loading",
     "noAnnonce",
     "featuredIcon2",
     "textAndSupportingText2",
@@ -2508,7 +2507,6 @@ const PlasmicDescendants = {
     "main",
     "h1",
     "alerts",
-    "loading",
     "noAnnonce",
     "featuredIcon2",
     "textAndSupportingText2",
@@ -2519,7 +2517,6 @@ const PlasmicDescendants = {
   h1: ["h1"],
   alerts: [
     "alerts",
-    "loading",
     "noAnnonce",
     "featuredIcon2",
     "textAndSupportingText2",
@@ -2527,7 +2524,6 @@ const PlasmicDescendants = {
     "supportingText2",
     "alertCard"
   ],
-  loading: ["loading"],
   noAnnonce: [
     "noAnnonce",
     "featuredIcon2",
@@ -2639,7 +2635,6 @@ type NodeDefaultElementType = {
   main: "main";
   h1: "h1";
   alerts: "div";
-  loading: "div";
   noAnnonce: "div";
   featuredIcon2: "div";
   textAndSupportingText2: "div";
@@ -2738,7 +2733,6 @@ export const PlasmicMesAlertes = Object.assign(
     main: makeNodeComponent("main"),
     h1: makeNodeComponent("h1"),
     alerts: makeNodeComponent("alerts"),
-    loading: makeNodeComponent("loading"),
     noAnnonce: makeNodeComponent("noAnnonce"),
     featuredIcon2: makeNodeComponent("featuredIcon2"),
     textAndSupportingText2: makeNodeComponent("textAndSupportingText2"),

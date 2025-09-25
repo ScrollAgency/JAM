@@ -48,6 +48,10 @@
     grid-column: 4;
   }
 }
+.pageLoader:global(.__wab_instance) {
+  max-width: 100%;
+  object-fit: cover;
+}
 .loadingBoundary:global(.__wab_instance) {
   max-width: 100%;
   object-fit: cover;
@@ -2974,10 +2978,6 @@
   color: var(--token-OIYWLyLPYWym);
   height: 1em;
 }
-.pageLoader:global(.__wab_instance) {
-  max-width: 100%;
-  object-fit: cover;
-}
 .jobDetails:global(.__wab_instance):global(.__wab_instance) {
   left: auto;
   top: auto;
@@ -3788,14 +3788,6 @@
     display: block;
   }
 }
-.text__osnHc {
-  position: relative;
-  width: 100%;
-  height: auto;
-  max-width: 100%;
-  min-width: 0;
-  display: none;
-}
 .application {
   background: #ffffff;
   width: 780px;
@@ -3806,6 +3798,7 @@
   align-items: center;
   justify-content: flex-start;
   align-self: stretch;
+  z-index: 9999;
   border-radius: 24px;
   padding: 50px;
 }
@@ -4561,7 +4554,7 @@
   height: auto;
   max-width: 100%;
   margin-bottom: 16px;
-  column-gap: var(--token-cfon0PHiXQoL);
+  column-gap: 8px;
   min-width: 0;
   padding: 0px;
 }
