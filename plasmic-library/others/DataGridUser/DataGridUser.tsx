@@ -551,15 +551,6 @@ export const DataGridUser: React.FC<DataGridUserProps> = ({
 
   if (!mounted) return null;
 
-  if (process.env.NODE_ENV === 'development') {
-    console.log(`DataGridUser - Page ${currentPage}: ${paginatedUsers.length} utilisateurs`, {
-      totalUsers: users.length,
-      filteredUsers: filteredUsers.length,
-      sortedUsers: sortedUsers.length,
-      paginatedUsers: paginatedUsers.length
-    });
-  }
-
   if (error) {
     return (
       <div className={styles.error}>
