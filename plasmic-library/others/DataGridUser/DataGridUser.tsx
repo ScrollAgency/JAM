@@ -3,6 +3,162 @@ import { format, parseISO } from 'date-fns';
 import dynamic from 'next/dynamic';
 import styles from './DataGridUser.module.css';
 import Head from 'next/head';
+import { supabase } from '../../../lib/supabaseClient';
+
+const SupabaseFileLink: React.FC<{
+  filePath: string;
+  fileName: string;
+  onClick?: (e: React.MouseEvent) => void;
+}> = ({ filePath, fileName, onClick }) => {
+  const [fileUrl, setFileUrl] = useState<string>('');
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
+
+  useEffect(() => {
+    const generateSignedUrl = async () => {
+      try {
+        const pathParts = filePath.split('/');
+        const userId = pathParts[0];
+        const originalFileName = pathParts[pathParts.length - 1];
+
+        const publicUrl = supabase.storage.from('files').getPublicUrl(filePath).data.publicUrl;
+        try {
+          const response = await fetch(publicUrl, { method: 'HEAD' });
+          if (response.ok) {
+            setFileUrl(publicUrl);
+            return;
+          }
+        } catch (err) {
+        }
+
+        const { data: userFiles } = await supabase.storage.from('files').list(userId);
+
+        if (userFiles && userFiles.length > 0) {
+          const calculateSimilarity = (str1: string, str2: string): number => {
+            const normalize = (s: string) => s.toLowerCase().replace(/[^a-z0-9]/g, '');
+            const norm1 = normalize(str1);
+            const norm2 = normalize(str2);
+
+            if (norm1 === norm2) return 100;
+            if (norm1.includes(norm2) || norm2.includes(norm1)) return 90;
+
+            const ext1 = str1.split('.').pop()?.toLowerCase();
+            const ext2 = str2.split('.').pop()?.toLowerCase();
+            return ext1 === ext2 ? 60 : 30;
+          };
+
+          let bestMatch = null;
+          let bestScore = 0;
+
+          userFiles.forEach(file => {
+            const score = calculateSimilarity(originalFileName, file.name);
+            if (score > bestScore && score >= 50) {
+              bestScore = score;
+              bestMatch = file;
+            }
+          });
+
+          if (bestMatch) {
+            const { data: matchData } = await supabase.storage
+              .from('files')
+              .createSignedUrl(`${userId}/${(bestMatch as any).name}`, 3600);
+
+            if (matchData?.signedUrl) {
+              setFileUrl(matchData.signedUrl);
+              return;
+            }
+          }
+
+          const { data: fallbackData } = await supabase.storage
+            .from('files')
+            .createSignedUrl(`${userId}/${userFiles[0].name}`, 3600);
+
+          if (fallbackData?.signedUrl) {
+            setFileUrl(fallbackData.signedUrl);
+            return;
+          }
+        }
+
+        const classicPaths = [
+          `${userId}/${originalFileName}`,
+          `${userId}/${originalFileName.toLowerCase()}`
+        ];
+
+        for (const path of classicPaths) {
+          const { data, error } = await supabase.storage
+            .from('files')
+            .createSignedUrl(path, 3600);
+
+          if (!error && data?.signedUrl) {
+            setFileUrl(data.signedUrl);
+            return;
+          }
+        }
+
+        setError(true);
+      } catch (err) {
+        setError(true);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    if (filePath) {
+      generateSignedUrl();
+    }
+  }, [filePath]);
+
+  if (loading) {
+    return (
+      <div className={styles.fileCell}>
+        <div className={styles.fileSkeleton}>
+          <div className={styles.skeletonIcon}></div>
+          <div className={styles.skeletonText}></div>
+        </div>
+      </div>
+    );
+  }
+
+  if (error || !fileUrl) {
+    return (
+      <div className={styles.fileCell}>
+        <span className={styles.fileError}>Fichier indisponible</span>
+      </div>
+    );
+  }
+
+  return (
+    <div className={styles.fileCell}>
+      <a
+        href={fileUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={styles.fileLink}
+        onClick={onClick}
+        title={`Télécharger ${fileName}`}
+      >
+        <svg
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          style={{ marginRight: '6px' }}
+        >
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+          <polyline points="14,2 14,8 20,8" />
+          <line x1="16" y1="13" x2="8" y2="13" />
+          <line x1="16" y1="17" x2="8" y2="17" />
+          <polyline points="10,9 9,9 8,9" />
+        </svg>
+        {fileName}
+      </a>
+    </div>
+  );
+};
 
 interface User {
   id?: string;
@@ -12,6 +168,8 @@ interface User {
   date_inscription: string;
   statut: string;
   photo_profil?: string | null;
+  kbis_file?: string;
+  identity_file?: string;
   [key: string]: string | null | undefined;
 }
 
@@ -95,11 +253,16 @@ interface DataGridUserProps {
 
 const DEFAULT_LABELS: { [key: string]: string } = {
   nom: "Nom",
+  name: "Nom",
   email: "Email",
   role: "Rôle",
   date_inscription: "Date d'inscription",
+  created_at_formatted: "Date de création",
   statut: "Statut",
-  photo_profil: "Photo de profil"
+  photo_profil: "Photo de profil",
+  kbis_file: "KBIS",
+  identity_file: "Pièce d'identité",
+  siren: "SIREN"
 };
 
 const DEFAULT_THEME: DataGridTheme = {
@@ -154,6 +317,12 @@ export const DataGridUser: React.FC<DataGridUserProps> = ({
   useEffect(() => {
     setMounted(true);
   }, []);
+
+  useEffect(() => {
+    setMounted(false);
+    const timeout = setTimeout(() => setMounted(true), 0);
+    return () => clearTimeout(timeout);
+  }, [currentPage]);
 
   const allColumns = useMemo(() => {
     if (users.length === 0) return [];
@@ -224,7 +393,17 @@ export const DataGridUser: React.FC<DataGridUserProps> = ({
 
   const paginatedUsers = useMemo(() => {
     const start = (currentPage - 1) * pageSize;
-    return sortedUsers.slice(start, start + pageSize);
+    const end = start + pageSize;
+
+    const uniqueUsers = sortedUsers.filter((user, index, arr) => {
+      const userKey = user.id || `${user.email}-${user.nom}-${user.date_inscription}`;
+      return arr.findIndex(u => {
+        const uKey = u.id || `${u.email}-${u.nom}-${u.date_inscription}`;
+        return uKey === userKey;
+      }) === index;
+    });
+
+    return uniqueUsers.slice(start, end);
   }, [sortedUsers, currentPage, pageSize]);
 
   const totalPages = Math.ceil((totalItems ?? sortedUsers.length) / pageSize);
@@ -266,11 +445,10 @@ export const DataGridUser: React.FC<DataGridUserProps> = ({
             className={`${styles.actionButton} ${styles.deleteButton}`}
             onClick={(e) => {
               e.stopPropagation();
-              onDelete?.(user.id || '');
+              if (user.id) onDelete?.(user.id);
             }}
             title="Supprimer l'utilisateur"
           >
-            {/* Icône croix */}
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <circle cx="12" cy="12" r="10"></circle>
               <line x1="15" y1="9" x2="9" y2="15"></line>
@@ -283,16 +461,31 @@ export const DataGridUser: React.FC<DataGridUserProps> = ({
 
     if (value === null || value === undefined) return 'N/A';
 
+    if (column === 'kbis_file' || column === 'identity_file') {
+      if (!value || value === 'N/A') return 'N/A';
+
+      const fileName = value.split('/').pop() || value;
+      const filePath = `${user.id}/${value}`;
+
+      return (
+        <SupabaseFileLink
+          filePath={filePath}
+          fileName={fileName}
+          onClick={(e) => e.stopPropagation()}
+        />
+      );
+    }
+
     const style = columnStyles[column];
-    
+
     if (style?.isImage) {
       const imageSize = style.imageSize || { width: '32px', height: '32px' };
       const imageAlt = style.imageAlt || `Image ${column}`;
-      
+
       return (
         <div className={styles.imageCell}>
-          <img 
-            src={value} 
+          <img
+            src={value}
             alt={imageAlt}
             style={{
               width: imageSize.width,
@@ -310,7 +503,7 @@ export const DataGridUser: React.FC<DataGridUserProps> = ({
         return (
           <div className={styles.userCell}>
             {user.photo_profil && (
-              <img 
+              <img
                 src={user.photo_profil}
                 alt=""
                 className={styles.userAvatar}
@@ -330,9 +523,9 @@ export const DataGridUser: React.FC<DataGridUserProps> = ({
         if (!statusConfig || !value) return value;
         const status = statusConfig[value];
         if (!status) return value;
-        
+
         return (
-          <span 
+          <span
             className={`${styles.statusTag} ${status.className || ''}`}
             style={status.color ? { backgroundColor: status.color } : undefined}
           >
@@ -357,6 +550,15 @@ export const DataGridUser: React.FC<DataGridUserProps> = ({
   };
 
   if (!mounted) return null;
+
+  if (process.env.NODE_ENV === 'development') {
+    console.log(`DataGridUser - Page ${currentPage}: ${paginatedUsers.length} utilisateurs`, {
+      totalUsers: users.length,
+      filteredUsers: filteredUsers.length,
+      sortedUsers: sortedUsers.length,
+      paginatedUsers: paginatedUsers.length
+    });
+  }
 
   if (error) {
     return (
@@ -392,7 +594,7 @@ export const DataGridUser: React.FC<DataGridUserProps> = ({
           rel="stylesheet"
         />
       </Head>
-      <div 
+      <div
         className={`${styles.wrapper} ${containerClassName}`}
         style={{
           position: 'relative',
@@ -434,9 +636,9 @@ export const DataGridUser: React.FC<DataGridUserProps> = ({
               >
                 {exportIcon || (
                   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-                    <polyline points="7 10 12 15 17 10"/>
-                    <line x1="12" y1="15" x2="12" y2="3"/>
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                    <polyline points="7 10 12 15 17 10" />
+                    <line x1="12" y1="15" x2="12" y2="3" />
                   </svg>
                 )}
               </div>
@@ -476,40 +678,44 @@ export const DataGridUser: React.FC<DataGridUserProps> = ({
             </tr>
           </thead>
           <tbody>
-            {paginatedUsers.map((user: User) => (
-              <tr
-                key={user.id as string}
-                className={`${styles.row} ${rowClassName}`}
-                onClick={() => onUserClick?.(user.id as string)}
-                style={{
-                  backgroundColor: theme.rowBgColor,
-                  color: theme.textColor,
-                  fontSize: '14px',
-                  borderColor: theme.borderColor,
-                  cursor: onUserClick ? 'pointer' : 'default'
-                }}
-                onMouseEnter={(e) => {
-                  (e.currentTarget as HTMLElement).style.backgroundColor = theme.hoverBgColor || '';
-                }}
-                onMouseLeave={(e) => {
-                  (e.currentTarget as HTMLElement).style.backgroundColor = theme.rowBgColor || '';
-                }}
-              >
-                {columns.map((column) => (
-                  <td
-                    key={column}
-                    className={styles.cell}
-                    style={{ 
-                      textAlign: columnStyles[column]?.align || 'left',
-                      borderColor: theme.borderColor,
-                      width: columnStyles[column]?.width
-                    }}
-                  >
-                    {renderCell(column, user[column], user)}
-                  </td>
-                ))}
-              </tr>
-            ))}
+            {paginatedUsers.map((user: User, index: number) => {
+              // Créer une clé unique stable basée sur les données utilisateur
+              const userKey = user.id || user.email || `${user.nom}-${user.date_inscription}-${index}`;
+              return (
+                <tr
+                  key={`page-${currentPage}-${userKey}-${index}`}
+                  className={`${styles.row} ${rowClassName}`}
+                  onClick={() => user.id && onUserClick?.(user.id)}
+                  style={{
+                    backgroundColor: theme.rowBgColor,
+                    color: theme.textColor,
+                    fontSize: '14px',
+                    borderColor: theme.borderColor,
+                    cursor: onUserClick ? 'pointer' : 'default'
+                  }}
+                  onMouseEnter={(e) => {
+                    (e.currentTarget as HTMLElement).style.backgroundColor = theme.hoverBgColor || '';
+                  }}
+                  onMouseLeave={(e) => {
+                    (e.currentTarget as HTMLElement).style.backgroundColor = theme.rowBgColor || '';
+                  }}
+                >
+                  {columns.map((column) => (
+                    <td
+                      key={column}
+                      className={styles.cell}
+                      style={{
+                        textAlign: columnStyles[column]?.align || 'left',
+                        borderColor: theme.borderColor,
+                        width: columnStyles[column]?.width
+                      }}
+                    >
+                      {renderCell(column, user[column], user)}
+                    </td>
+                  ))}
+                </tr>
+              );
+            })}
           </tbody>
         </table>
 
@@ -521,7 +727,7 @@ export const DataGridUser: React.FC<DataGridUserProps> = ({
               disabled={currentPage === 1}
             >
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ marginRight: '4px' }}>
-                <path d="M10 12L6 8L10 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M10 12L6 8L10 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
               PRECEDENT
             </button>
@@ -546,7 +752,7 @@ export const DataGridUser: React.FC<DataGridUserProps> = ({
             >
               SUIVANT
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ marginLeft: '4px' }}>
-                <path d="M6 12L10 8L6 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M6 12L10 8L6 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
             </button>
           </div>
