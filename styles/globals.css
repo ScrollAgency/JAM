@@ -15,9 +15,55 @@
 }
 
 
-.weglot_switcher {
-  width: 70px !important;
+/* ========== WEGLOT STYLES PRODUCTION-SAFE ========== */
+
+/* Sélecteurs ultra-spécifiques pour production */
+html body .weglot_switcher,
+html body .weglot-dropdown,
+html body [class*="weglot"],
+html body #weglot_here,
+body .weglot_switcher,
+body .weglot-dropdown,
+body [class*="weglot"],
+body #weglot_here,
+.weglot_switcher,
+.weglot-dropdown,
+[class*="weglot"],
+#weglot_here {
   position: fixed !important;
   bottom: 30px !important;
   left: 20px !important;
+  width: 70px !important;
+  z-index: 99999 !important;
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+/* Forcer même avec les attributs style inline */
+.weglot_switcher[style],
+.weglot-dropdown[style],
+[class*="weglot"][style],
+#weglot_here[style] {
+  position: fixed !important;
+  bottom: 30px !important;
+  left: 20px !important;
+  width: 70px !important;
+}
+
+/* Classes Weglot par défaut */
+.wg-default,
+.wg-li,
+.wgcurrent {
+  position: relative !important;
+}
+
+/* Surcharge pour les builds de production */
+html[data-build="production"] .weglot_switcher,
+html[data-build="production"] .weglot-dropdown,
+html[data-build="production"] [class*="weglot"] {
+  position: fixed !important;
+  bottom: 30px !important;
+  left: 20px !important;
+  width: 70px !important;
 }
