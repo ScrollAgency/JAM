@@ -14,70 +14,10 @@
   padding-right: 0 !important;
 }
 
-.weglot-container {
-  position: fixed;
-  bottom: 0;
-  right: 20px;
-  z-index: 9999;
-  width: 75px;
-}
 
-/* Weglot - Styles robustes pour dev et prod */
-div[class*="weglot"],
-div[id*="weglot"],
-.weglot-dropdown,
-.wgcurrent,
-#weglot_here {
+.weglot_switcher {
+  width: 70px !important;
   position: fixed !important;
-  bottom: 20px !important;
+  bottom: 30px !important;
   left: 20px !important;
-  z-index: 99999 !important;
-  display: block !important;
-  visibility: visible !important;
-  opacity: 1 !important;
-}
-
-/* Forcer les styles même après minification/build */
-html div[class*="weglot"],
-body div[class*="weglot"],
-html div[id*="weglot"],
-body div[id*="weglot"] {
-  position: fixed !important;
-  bottom: 20px !important;
-  left: 20px !important;
-  z-index: 99999 !important;
-}
-
-/* Media queries - Mobile */
-@media screen and (max-width: 768px) {
-  .weglot-container {
-    bottom: 20px;
-  }
-
-  div[class*="weglot"],
-  div[id*="weglot"],
-  .weglot-dropdown,
-  .wgcurrent,
-  #weglot_here {
-    bottom: 70px !important;
-    left: 15px !important;
-  }
-
-  /* Forcer en mobile aussi */
-  html div[class*="weglot"],
-  body div[class*="weglot"],
-  html div[id*="weglot"],
-  body div[id*="weglot"] {
-    bottom: 70px !important;
-    left: 15px !important;
-  }
-
-  /* Positionner Crisp plus bas en mobile */
-  div[id*="crisp"],
-  .crisp-client,
-  [data-crisp],
-  #crisp-chatbox {
-    bottom: 80px !important;
-    right: 10px !important;
-  }
 }
