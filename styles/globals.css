@@ -22,20 +22,54 @@
   width: 75px;
 }
 
-div[class*="weglot"] {
+/* Weglot - Styles robustes pour dev et prod */
+div[class*="weglot"],
+div[id*="weglot"],
+.weglot-dropdown,
+.wgcurrent,
+#weglot_here {
   position: fixed !important;
   bottom: 20px !important;
   left: 20px !important;
+  z-index: 99999 !important;
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
 }
 
+/* Forcer les styles même après minification/build */
+html div[class*="weglot"],
+body div[class*="weglot"],
+html div[id*="weglot"],
+body div[id*="weglot"] {
+  position: fixed !important;
+  bottom: 20px !important;
+  left: 20px !important;
+  z-index: 99999 !important;
+}
+
+/* Media queries - Mobile */
 @media screen and (max-width: 768px) {
   .weglot-container {
     bottom: 20px;
   }
 
-  div[class*="weglot"] {
+  div[class*="weglot"],
+  div[id*="weglot"],
+  .weglot-dropdown,
+  .wgcurrent,
+  #weglot_here {
     bottom: 70px !important;
-    background: transparent !important;
+    left: 15px !important;
+  }
+
+  /* Forcer en mobile aussi */
+  html div[class*="weglot"],
+  body div[class*="weglot"],
+  html div[id*="weglot"],
+  body div[id*="weglot"] {
+    bottom: 70px !important;
+    left: 15px !important;
   }
 
   /* Positionner Crisp plus bas en mobile */
