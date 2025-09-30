@@ -16731,8 +16731,8 @@ function PlasmicAccueil__RenderFunc(props: {
                       defaultLanguage={"fr"}
                       labels={
                         hasVariant(globalVariants, "screen", "mobileOnly")
-                          ? { fr: " ", en: " " }
-                          : { fr: "FR", en: "EN" }
+                          ? { fr: "", en: "" }
+                          : { fr: " ", en: " " }
                       }
                       languages={["fr", "en"]}
                     />
