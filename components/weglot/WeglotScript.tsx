@@ -15,7 +15,34 @@ export default function WeglotScript() {
         destinationLanguages: ['en', 'es'],
         autoSwitch: false,
       });
+
+      // Attendre que le switcher Weglot soit présent dans le DOM
+      const interval = setInterval(() => {
+        const weglotSwitcher = document.querySelector('.weglot-container.wg-default');
+        const mobileTranslate = document.querySelector('.mobile-translate');
+
+        if (weglotSwitcher) {
+          // Déplace dans .mobile-translate si présent
+          if (mobileTranslate) {
+            mobileTranslate.appendChild(weglotSwitcher);
+          }
+
+          // Applique le style pour top-right
+          const switcherEl = weglotSwitcher as HTMLElement;
+          switcherEl.style.position = 'fixed';
+          switcherEl.style.top = '20px';
+          switcherEl.style.right = '20px';
+          switcherEl.style.left = 'auto';
+          switcherEl.style.bottom = 'auto';
+          switcherEl.style.width = 'auto';
+          switcherEl.style.zIndex = '99999';
+
+          clearInterval(interval); // stop l'attente
+          console.log('✅ Weglot déplacé et stylisé en haut à droite !');
+        }
+      }, 500);
     };
+
     document.head.appendChild(script);
   }, []);
 
