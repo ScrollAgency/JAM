@@ -2037,7 +2037,6 @@ function PlasmicAccueil__RenderFunc(props: {
                       className={classNames(
                         projectcss.all,
                         sty.freeBox__cWnZj,
-                        "mobile-translate",
                         {
                           [sty.freeBoxglobal_unnamedGlobalGroupOfVariants_unnamedVariant__cWnZju4NfL]:
                             hasVariant(
@@ -2047,6 +2046,7 @@ function PlasmicAccueil__RenderFunc(props: {
                             )
                         }
                       )}
+                      id={"#weglothome"}
                     >
                       <PlasmicLink__
                         data-plasmic-name={"link"}
