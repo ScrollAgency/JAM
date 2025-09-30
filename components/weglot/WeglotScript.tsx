@@ -3,6 +3,17 @@
 import { useEffect } from "react";
 import { useRouter } from "next/router";
 
+function readPreferredLang(): string | null {
+	try {
+		const ls = window.localStorage.getItem("weglot_language");
+		if (ls) return ls;
+		const m = document.cookie.match(/(?:^|; )weglot_language=([^;]+)/);
+		return m ? decodeURIComponent(m[1]) : null;
+	} catch {
+		return null;
+	}
+}
+
 export default function WeglotScript() {
 	const router = useRouter();
 
@@ -28,6 +39,14 @@ export default function WeglotScript() {
 					destinationLanguages: ["en"],
 					autoSwitch: false,
 				});
+				// Applique la langue préférée si présente
+				try {
+					const preferred = readPreferredLang();
+					// @ts-ignore
+					const current = Weglot.getLanguage?.() || Weglot.getCurrentLang?.();
+					// @ts-ignore
+					if (preferred && preferred !== current) Weglot.switchTo?.(preferred);
+				} catch {}
 			}
 		};
 		document.head.appendChild(script);

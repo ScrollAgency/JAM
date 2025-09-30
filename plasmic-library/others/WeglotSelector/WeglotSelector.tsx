@@ -22,6 +22,15 @@ const FLAG_EMOJI: Record<string, string> = {
 	pt: "🇵🇹",
 };
 
+function persistLang(code: string) {
+	try {
+		window.localStorage.setItem("weglot_language", code);
+		document.cookie = `weglot_language=${encodeURIComponent(
+			code
+		)}; path=/; max-age=${60 * 60 * 24 * 365}`;
+	} catch {}
+}
+
 const WeglotSelector: React.FC<WeglotSelectorProps> = ({
 	languages = ["fr", "en"],
 	labels = { fr: "Français", en: "English" },
@@ -59,6 +68,10 @@ const WeglotSelector: React.FC<WeglotSelectorProps> = ({
 
 	// Synchronise l'état local avec Weglot au montage
 	useEffect(() => {
+		try {
+			const ls = window.localStorage.getItem("weglot_language");
+			if (ls) setSelected(ls);
+		} catch {}
 		const current = getWeglotLanguage();
 		if (current && current !== selected) setSelected(current);
 	}, []); // eslint-disable-line react-hooks/exhaustive-deps
@@ -80,6 +93,7 @@ const WeglotSelector: React.FC<WeglotSelectorProps> = ({
 
 	const switchLanguage = (code: string) => {
 		setSelected(code);
+		persistLang(code);
 		// Notifie Plasmic
 		onLanguageChange?.({ code, label: labels[code] || code.toUpperCase() });
 		// Demande à Weglot si présent
