@@ -1856,7 +1856,9 @@ function PlasmicAccueil__RenderFunc(props: {
                 ? (() => {
                     const actionArgs = {
                       customFunction: async () => {
-                        return (() => {})();
+                        return (() => {
+                          return console.lkog(Weglot.getAvailableLanguages());
+                        })();
                       }
                     };
                     return (({ customFunction }) => {
