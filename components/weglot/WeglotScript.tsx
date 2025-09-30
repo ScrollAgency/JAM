@@ -1,75 +1,66 @@
-"use client";
+'use client';
 
-import { useEffect } from "react";
-import { useRouter } from "next/router";
-
-function readPreferredLang(): string | null {
-	try {
-		const ls = window.localStorage.getItem("weglot_language");
-		if (ls) return ls;
-		const m = document.cookie.match(/(?:^|; )weglot_language=([^;]+)/);
-		return m ? decodeURIComponent(m[1]) : null;
-	} catch {
-		return null;
-	}
-}
+import { useEffect } from 'react';
 
 export default function WeglotScript() {
-	const router = useRouter();
+  useEffect(() => {
+    // Éviter le double chargement
+    if (document.querySelector('script[src*="weglot"]')) {
+      return;
+    }
 
-	useEffect(() => {
-		// Evite d'injecter plusieurs fois
-		if (document.getElementById("weglot-sdk")) return;
+    const script = document.createElement('script');
+    script.src = 'https://cdn.weglot.com/weglot.min.js';
+    script.async = true;
+    script.onload = () => {
+      // @ts-ignore
+      if (typeof Weglot !== 'undefined') {
+        // @ts-ignore
+        Weglot.initialize({
+          api_key: 'wg_7a994a95d8a52ee847d1d76f13c919c67',
+          originalLanguage: 'fr',
+          destinationLanguages: ['en', 'es'],
+          autoSwitch: false,
+          cache: false, // Désactiver le cache pour éviter les problèmes de prod
+          dynamic: false, // Éviter les changements dynamiques
+        });
 
-		const apiKey =
-			process.env.NEXT_PUBLIC_WEGLOT_API_KEY ||
-			"wg_d329a44473da57760d76b809239d58082";
+        // Forcer l'application des styles après initialisation
+        setTimeout(() => {
+          const applyStyles = () => {
+            const selectors = [
+              '.weglot_switcher',
+              '.weglot-dropdown',
+              '[class*="weglot"]',
+              '#weglot_here'
+            ];
 
-		const script = document.createElement("script");
-		script.id = "weglot-sdk";
-		script.src = "https://cdn.weglot.com/weglot.min.js";
-		script.async = true;
-		script.onload = () => {
-			// @ts-ignore
-			if (typeof Weglot !== "undefined") {
-				// @ts-ignore
-				Weglot.initialize({
-					api_key: apiKey,
-					originalLanguage: "fr",
-					destinationLanguages: ["en"],
-					autoSwitch: false,
-				});
-				// Applique la langue préférée si présente
-				try {
-					const preferred = readPreferredLang();
-					// @ts-ignore
-					const current = Weglot.getLanguage?.() || Weglot.getCurrentLang?.();
-					// @ts-ignore
-					if (preferred && preferred !== current) Weglot.switchTo?.(preferred);
-				} catch {}
-			}
-		};
-		document.head.appendChild(script);
-	}, []);
+            selectors.forEach(selector => {
+              const elements = document.querySelectorAll(selector);
+              elements.forEach(element => {
+                if (element) {
+                  (element as HTMLElement).style.cssText += `
+                    position: fixed !important;
+                    bottom: 30px !important;
+                    left: 20px !important;
+                    width: 70px !important;
+                    z-index: 99999 !important;
+                  `;
+                }
+              });
+            });
+          };
 
-	useEffect(() => {
-		const handleRoute = () => {
-			try {
-				// @ts-ignore
-				const current =
-					typeof Weglot !== "undefined" &&
-					(Weglot.getLanguage?.() || Weglot.getCurrentLang?.());
-				// @ts-ignore
-				if (typeof Weglot !== "undefined" && current)
-					Weglot.switchTo?.(current);
-			} catch {}
-		};
+          applyStyles();
+          // Réappliquer plusieurs fois pour s'assurer que ça tient
+          setTimeout(applyStyles, 500);
+          setTimeout(applyStyles, 1000);
+          setTimeout(applyStyles, 2000);
+        }, 100);
+      }
+    };
+    document.head.appendChild(script);
+  }, []);
 
-		router.events.on("routeChangeComplete", handleRoute);
-		return () => {
-			router.events.off("routeChangeComplete", handleRoute);
-		};
-	}, [router.events]);
-
-	return null;
+  return null;
 }
