@@ -13,6 +13,15 @@ export interface WeglotSelectorProps {
 	onLanguageChange?: (lang: { code: string; label: string }) => void;
 }
 
+const FLAG_EMOJI: Record<string, string> = {
+	fr: "🇫🇷",
+	en: "🇬🇧",
+	es: "🇪🇸",
+	de: "🇩🇪",
+	it: "🇮🇹",
+	pt: "🇵🇹",
+};
+
 const WeglotSelector: React.FC<WeglotSelectorProps> = ({
 	languages = ["fr", "en"],
 	labels = { fr: "Français", en: "English" },
@@ -27,6 +36,7 @@ const WeglotSelector: React.FC<WeglotSelectorProps> = ({
 		return languages.map((code) => ({
 			code,
 			label: labels[code] || code.toUpperCase(),
+			flag: FLAG_EMOJI[code] || "",
 		}));
 	}, [languages, labels]);
 
@@ -94,6 +104,7 @@ const WeglotSelector: React.FC<WeglotSelectorProps> = ({
 			>
 				{normalizedOptions.map((opt) => (
 					<option key={opt.code} value={opt.code}>
+						{opt.flag ? `${opt.flag} ` : ""}
 						{opt.label}
 					</option>
 				))}
