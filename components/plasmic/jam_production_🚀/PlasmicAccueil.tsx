@@ -353,8 +353,8 @@ export type PlasmicAccueil__OverridesType = {
   textLinkBase?: Flex__<"a"> & Partial<LinkProps>;
   text6?: Flex__<"div">;
   footer?: Flex__<typeof Footer>;
-  updateRoleForGoogleRegistration?: Flex__<typeof PageLoader>;
   weglotSelector?: Flex__<typeof WeglotSelector>;
+  updateRoleForGoogleRegistration?: Flex__<typeof PageLoader>;
 };
 
 export interface DefaultAccueilProps {}
@@ -16717,6 +16717,22 @@ function PlasmicAccueil__RenderFunc(props: {
                     data-plasmic-override={overrides.footer}
                     className={classNames("__wab_instance", sty.footer)}
                   />
+
+                  <div
+                    className={classNames(projectcss.all, sty.freeBox__kLrqw)}
+                  >
+                    <WeglotSelector
+                      data-plasmic-name={"weglotSelector"}
+                      data-plasmic-override={overrides.weglotSelector}
+                      className={classNames(
+                        "__wab_instance",
+                        sty.weglotSelector
+                      )}
+                      defaultLanguage={"fr"}
+                      labels={{ fr: "FR", en: "EN" }}
+                      languages={["fr", "en"]}
+                    />
+                  </div>
                 </React.Fragment>
               )}
             </DataCtxReader__>
@@ -16773,17 +16789,6 @@ function PlasmicAccueil__RenderFunc(props: {
               }
             })()}
           />
-
-          <div className={classNames(projectcss.all, sty.freeBox__kLrqw)}>
-            <WeglotSelector
-              data-plasmic-name={"weglotSelector"}
-              data-plasmic-override={overrides.weglotSelector}
-              className={classNames("__wab_instance", sty.weglotSelector)}
-              defaultLanguage={"fr"}
-              labels={{ fr: "FR", en: "EN" }}
-              languages={["fr", "en"]}
-            />
-          </div>
         </div>
       </div>
     </React.Fragment>
@@ -17003,8 +17008,8 @@ const PlasmicDescendants = {
     "textLinkBase",
     "text6",
     "footer",
-    "updateRoleForGoogleRegistration",
-    "weglotSelector"
+    "weglotSelector",
+    "updateRoleForGoogleRegistration"
   ],
   loadingBoundary: [
     "loadingBoundary",
@@ -17216,7 +17221,8 @@ const PlasmicDescendants = {
     "text5",
     "textLinkBase",
     "text6",
-    "footer"
+    "footer",
+    "weglotSelector"
   ],
   screen: ["screen", "frame6", "frame7", "frame8", "frame9"],
   frame6: ["frame6", "frame7", "frame8", "frame9"],
@@ -18323,8 +18329,8 @@ const PlasmicDescendants = {
   textLinkBase: ["textLinkBase", "text6"],
   text6: ["text6"],
   footer: ["footer"],
-  updateRoleForGoogleRegistration: ["updateRoleForGoogleRegistration"],
-  weglotSelector: ["weglotSelector"]
+  weglotSelector: ["weglotSelector"],
+  updateRoleForGoogleRegistration: ["updateRoleForGoogleRegistration"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -18541,8 +18547,8 @@ type NodeDefaultElementType = {
   textLinkBase: "a";
   text6: "div";
   footer: typeof Footer;
-  updateRoleForGoogleRegistration: typeof PageLoader;
   weglotSelector: typeof WeglotSelector;
+  updateRoleForGoogleRegistration: typeof PageLoader;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -18819,10 +18825,10 @@ export const PlasmicAccueil = Object.assign(
     textLinkBase: makeNodeComponent("textLinkBase"),
     text6: makeNodeComponent("text6"),
     footer: makeNodeComponent("footer"),
+    weglotSelector: makeNodeComponent("weglotSelector"),
     updateRoleForGoogleRegistration: makeNodeComponent(
       "updateRoleForGoogleRegistration"
     ),
-    weglotSelector: makeNodeComponent("weglotSelector"),
 
     // Metadata about props expected for PlasmicAccueil
     internalVariantProps: PlasmicAccueil__VariantProps,

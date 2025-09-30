@@ -6181,10 +6181,6 @@
   max-width: 100%;
   min-width: 0;
 }
-.updateRoleForGoogleRegistration:global(.__wab_instance) {
-  max-width: 100%;
-  object-fit: cover;
-}
 .freeBox__kLrqw {
   display: flex;
   flex-direction: row;
@@ -6199,7 +6195,6 @@
   z-index: 730;
   justify-self: flex-start;
   bottom: 0;
-  right: auto;
   padding: 8px;
 }
 @media (min-width: 0px) and (max-width: 768px) {
@@ -6211,6 +6206,10 @@
   }
 }
 .weglotSelector:global(.__wab_instance) {
+  max-width: 100%;
+  object-fit: cover;
+}
+.updateRoleForGoogleRegistration:global(.__wab_instance) {
   max-width: 100%;
   object-fit: cover;
 }
