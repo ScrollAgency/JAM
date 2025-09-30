@@ -59,6 +59,7 @@ import {
   useGlobalActions
 } from "@plasmicapp/react-web/lib/host";
 
+import { WeglotSelector } from "../../../plasmic-library/others/WeglotSelector/WeglotSelector"; // plasmic-import: u2KNJoJwhAa_/codeComponent
 import { _useGlobalVariants } from "./plasmic"; // plasmic-import: f7DE9y7qp46fyCw5nuY8f9/projectModule
 import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: f7DE9y7qp46fyCw5nuY8f9/styleTokensProvider
 
@@ -93,6 +94,7 @@ export type PlasmicMobileNavbarTop__OverridesType = {
   boutonDeRecherche?: Flex__<"div">;
   svg?: Flex__<"svg">;
   freeBox?: Flex__<"div">;
+  weglotSelector?: Flex__<typeof WeglotSelector>;
 };
 
 export interface DefaultMobileNavbarTopProps {
@@ -302,7 +304,16 @@ function PlasmicMobileNavbarTop__RenderFunc(props: {
         data-plasmic-name={"freeBox"}
         data-plasmic-override={overrides.freeBox}
         className={classNames(projectcss.all, sty.freeBox, "mobile-translate")}
-      />
+      >
+        <WeglotSelector
+          data-plasmic-name={"weglotSelector"}
+          data-plasmic-override={overrides.weglotSelector}
+          className={classNames("__wab_instance", sty.weglotSelector)}
+          defaultLanguage={"fr"}
+          labels={{ fr: "FR", en: "EN" }}
+          languages={["fr", "en"]}
+        />
+      </div>
     </header>
   ) as React.ReactElement | null;
 }
@@ -317,7 +328,8 @@ const PlasmicDescendants = {
     "cloche",
     "boutonDeRecherche",
     "svg",
-    "freeBox"
+    "freeBox",
+    "weglotSelector"
   ],
   logoTitre: ["logoTitre", "logo", "text"],
   logo: ["logo"],
@@ -326,7 +338,8 @@ const PlasmicDescendants = {
   cloche: ["cloche"],
   boutonDeRecherche: ["boutonDeRecherche", "svg"],
   svg: ["svg"],
-  freeBox: ["freeBox"]
+  freeBox: ["freeBox", "weglotSelector"],
+  weglotSelector: ["weglotSelector"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -341,6 +354,7 @@ type NodeDefaultElementType = {
   boutonDeRecherche: "div";
   svg: "svg";
   freeBox: "div";
+  weglotSelector: typeof WeglotSelector;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -411,6 +425,7 @@ export const PlasmicMobileNavbarTop = Object.assign(
     boutonDeRecherche: makeNodeComponent("boutonDeRecherche"),
     svg: makeNodeComponent("svg"),
     freeBox: makeNodeComponent("freeBox"),
+    weglotSelector: makeNodeComponent("weglotSelector"),
 
     // Metadata about props expected for PlasmicMobileNavbarTop
     internalVariantProps: PlasmicMobileNavbarTop__VariantProps,

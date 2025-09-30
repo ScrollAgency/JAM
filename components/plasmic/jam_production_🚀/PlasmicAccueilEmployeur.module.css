@@ -679,11 +679,6 @@
   position: relative;
   cursor: pointer;
 }
-.weglotSelector:global(.__wab_instance) {
-  max-width: 100%;
-  object-fit: cover;
-  color: #463838;
-}
 .freeBox__gSxWr {
   display: flex;
   flex-direction: row;
