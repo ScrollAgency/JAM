@@ -61,6 +61,7 @@ import {
 
 import { NavigationBar } from "@plasmicpkgs/plasmic-nav";
 import Button from "../../Button"; // plasmic-import: 9ixtKbGKv7x-/component
+import { WeglotSelector } from "../../../plasmic-library/others/WeglotSelector/WeglotSelector"; // plasmic-import: u2KNJoJwhAa_/codeComponent
 import { Accordion } from "@/plasmic-library/accordions/Accordion/Accordion"; // plasmic-import: -gP7ERQN5qH1/codeComponent
 import { AccordionItem } from "@/plasmic-library/accordions/Accordion/Accordion"; // plasmic-import: hJN_iqaoFDr8/codeComponent
 import { AccordionTrigger } from "@/plasmic-library/accordions/Accordion/Accordion"; // plasmic-import: HDsLndt6b8B_/codeComponent
@@ -127,6 +128,7 @@ export type PlasmicAccueilEmployeur__OverridesType = {
   frame28?: Flex__<"div">;
   frame29?: Flex__<"div">;
   menuItems2?: Flex__<"div">;
+  weglotSelector?: Flex__<typeof WeglotSelector>;
   frame6?: Flex__<"div">;
   pexelsPhotoByCottonbroStudio?: Flex__<"div">;
   frame7?: Flex__<"div">;
@@ -1171,6 +1173,15 @@ function PlasmicAccueilEmployeur__RenderFunc(props: {
                     {"FAQ"}
                   </div>
                 </div>
+                <WeglotSelector
+                  data-plasmic-name={"weglotSelector"}
+                  data-plasmic-override={overrides.weglotSelector}
+                  className={classNames("__wab_instance", sty.weglotSelector)}
+                  defaultLanguage={"fr"}
+                  labels={{ fr: "Français", en: "English" }}
+                  languages={["fr", "en"]}
+                />
+
                 <div className={classNames(projectcss.all, sty.freeBox__gSxWr)}>
                   <Button
                     className={classNames("__wab_instance", sty.button__kfsux)}
@@ -3473,6 +3484,7 @@ const PlasmicDescendants = {
     "frame28",
     "frame29",
     "menuItems2",
+    "weglotSelector",
     "frame6",
     "pexelsPhotoByCottonbroStudio",
     "frame7",
@@ -3675,6 +3687,7 @@ const PlasmicDescendants = {
     "frame28",
     "frame29",
     "menuItems2",
+    "weglotSelector",
     "frame6",
     "pexelsPhotoByCottonbroStudio",
     "frame7",
@@ -3875,7 +3888,8 @@ const PlasmicDescendants = {
     "frame27",
     "frame28",
     "frame29",
-    "menuItems2"
+    "menuItems2",
+    "weglotSelector"
   ],
   navigationBar: [
     "navigationBar",
@@ -3907,7 +3921,8 @@ const PlasmicDescendants = {
     "frame27",
     "frame28",
     "frame29",
-    "menuItems2"
+    "menuItems2",
+    "weglotSelector"
   ],
   jamLogo: ["jamLogo", "frame26", "frame27", "frame28", "frame29"],
   frame26: ["frame26", "frame27", "frame28", "frame29"],
@@ -3915,6 +3930,7 @@ const PlasmicDescendants = {
   frame28: ["frame28"],
   frame29: ["frame29"],
   menuItems2: ["menuItems2"],
+  weglotSelector: ["weglotSelector"],
   frame6: [
     "frame6",
     "pexelsPhotoByCottonbroStudio",
@@ -4967,6 +4983,7 @@ type NodeDefaultElementType = {
   frame28: "div";
   frame29: "div";
   menuItems2: "div";
+  weglotSelector: typeof WeglotSelector;
   frame6: "div";
   pexelsPhotoByCottonbroStudio: "div";
   frame7: "div";
@@ -5229,6 +5246,7 @@ export const PlasmicAccueilEmployeur = Object.assign(
     frame28: makeNodeComponent("frame28"),
     frame29: makeNodeComponent("frame29"),
     menuItems2: makeNodeComponent("menuItems2"),
+    weglotSelector: makeNodeComponent("weglotSelector"),
     frame6: makeNodeComponent("frame6"),
     pexelsPhotoByCottonbroStudio: makeNodeComponent(
       "pexelsPhotoByCottonbroStudio"

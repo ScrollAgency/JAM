@@ -5087,6 +5087,12 @@
           "name": "AccordionTrigger",
           "displayName": "AccordionTrigger",
           "componentImportPath": "@/plasmic-library/accordions/Accordion/Accordion"
+        },
+        {
+          "id": "u2KNJoJwhAa_",
+          "name": "WeglotSelector",
+          "displayName": "WeglotSelector",
+          "componentImportPath": "./plasmic-library/others/WeglotSelector/WeglotSelector"
         }
       ],
       "customFunctions": [],
