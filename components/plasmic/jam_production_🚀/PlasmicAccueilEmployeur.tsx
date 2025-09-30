@@ -1178,10 +1178,7 @@ function PlasmicAccueilEmployeur__RenderFunc(props: {
                   data-plasmic-override={overrides.weglotSelector}
                   className={classNames("__wab_instance", sty.weglotSelector)}
                   defaultLanguage={"fr"}
-                  labels={{
-                    fr: "Fran\u00e7ais \ud83c\uddeb\ud83c\uddf7",
-                    en: "English \ud83c\uddec\ud83c\udde7"
-                  }}
+                  labels={{ fr: "Fran\u00e7ais", en: "English" }}
                   languages={["fr", "en"]}
                 />
 
