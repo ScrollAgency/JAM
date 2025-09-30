@@ -1856,37 +1856,7 @@ function PlasmicAccueil__RenderFunc(props: {
                 ? (() => {
                     const actionArgs = {
                       customFunction: async () => {
-                        return (() => {
-                          return (function () {
-                            var TARGET_ID = "weglotcontainerscroll";
-                            var css = document.createElement("style");
-                            css.textContent = ".wg-default{visibility:hidden}";
-                            document.head.appendChild(css);
-                            function moveIfReady() {
-                              var slot = document.getElementById(TARGET_ID);
-                              var wg = document.querySelector(
-                                "#weglot_here, .wg-default, .weglot-container"
-                              );
-                              if (slot && wg && !slot.contains(wg)) {
-                                slot.appendChild(wg);
-                                wg.style.visibility = "visible";
-                                return true;
-                              }
-                              return false;
-                            }
-                            if (!moveIfReady()) {
-                              var obs = new MutationObserver(function () {
-                                if (moveIfReady()) obs.disconnect();
-                              });
-                              obs.observe(document.documentElement, {
-                                childList: true,
-                                subtree: true
-                              });
-                              setTimeout(moveIfReady, 3000);
-                              setTimeout(moveIfReady, 6000);
-                            }
-                          })();
-                        })();
+                        return (() => {})();
                       }
                     };
                     return (({ customFunction }) => {
