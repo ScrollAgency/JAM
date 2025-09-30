@@ -67,6 +67,7 @@ import {
 
 import SideBarButton from "../../SideBarButton"; // plasmic-import: QWOZXZk1eTc0/component
 import { Separator } from "../../../plasmic-library/others/Separator/Separator"; // plasmic-import: DY1R_wd6WfSn/codeComponent
+import { WeglotSelector } from "../../../plasmic-library/others/WeglotSelector/WeglotSelector"; // plasmic-import: u2KNJoJwhAa_/codeComponent
 import { Fetcher } from "@plasmicapp/react-web/lib/data-sources";
 import { _useGlobalVariants } from "./plasmic"; // plasmic-import: f7DE9y7qp46fyCw5nuY8f9/projectModule
 import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: f7DE9y7qp46fyCw5nuY8f9/styleTokensProvider
@@ -116,6 +117,8 @@ export type PlasmicSidebar__OverridesType = {
   company?: Flex__<"div">;
   credits?: Flex__<"div">;
   admin?: Flex__<"div">;
+  transalteComponent?: Flex__<"div">;
+  weglotSelector?: Flex__<typeof WeglotSelector>;
   disconnectButton?: Flex__<"div">;
   link?: Flex__<"a"> & Partial<LinkProps>;
 };
@@ -1648,6 +1651,20 @@ function PlasmicSidebar__RenderFunc(props: {
           </div>
         ) : null}
         <div
+          data-plasmic-name={"transalteComponent"}
+          data-plasmic-override={overrides.transalteComponent}
+          className={classNames(projectcss.all, sty.transalteComponent)}
+        >
+          <WeglotSelector
+            data-plasmic-name={"weglotSelector"}
+            data-plasmic-override={overrides.weglotSelector}
+            className={classNames("__wab_instance", sty.weglotSelector)}
+            defaultLanguage={"fr"}
+            labels={{ fr: "Français", en: "English" }}
+            languages={["fr", "en"]}
+          />
+        </div>
+        <div
           data-plasmic-name={"disconnectButton"}
           data-plasmic-override={overrides.disconnectButton}
           className={classNames(projectcss.all, sty.disconnectButton)}
@@ -1763,6 +1780,8 @@ const PlasmicDescendants = {
     "company",
     "credits",
     "admin",
+    "transalteComponent",
+    "weglotSelector",
     "disconnectButton",
     "link"
   ],
@@ -1772,6 +1791,8 @@ const PlasmicDescendants = {
   company: ["company"],
   credits: ["credits"],
   admin: ["admin"],
+  transalteComponent: ["transalteComponent", "weglotSelector"],
+  weglotSelector: ["weglotSelector"],
   disconnectButton: ["disconnectButton", "link"],
   link: ["link"]
 } as const;
@@ -1786,6 +1807,8 @@ type NodeDefaultElementType = {
   company: "div";
   credits: "div";
   admin: "div";
+  transalteComponent: "div";
+  weglotSelector: typeof WeglotSelector;
   disconnectButton: "div";
   link: "a";
 };
@@ -1856,6 +1879,8 @@ export const PlasmicSidebar = Object.assign(
     company: makeNodeComponent("company"),
     credits: makeNodeComponent("credits"),
     admin: makeNodeComponent("admin"),
+    transalteComponent: makeNodeComponent("transalteComponent"),
+    weglotSelector: makeNodeComponent("weglotSelector"),
     disconnectButton: makeNodeComponent("disconnectButton"),
     link: makeNodeComponent("link"),
 
