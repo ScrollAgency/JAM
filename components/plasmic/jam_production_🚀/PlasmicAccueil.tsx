@@ -142,7 +142,6 @@ export const PlasmicAccueil__ArgProps = new Array<ArgPropType>();
 
 export type PlasmicAccueil__OverridesType = {
   rechercheJob?: Flex__<"div">;
-  pageLoader?: Flex__<typeof PageLoader>;
   loadingBoundary?: Flex__<typeof LoadingBoundary>;
   screen?: Flex__<"div">;
   frame6?: Flex__<"div">;
@@ -1793,9 +1792,7 @@ function PlasmicAccueil__RenderFunc(props: {
         >
           {false ? (
             <PageLoader
-              data-plasmic-name={"pageLoader"}
-              data-plasmic-override={overrides.pageLoader}
-              className={classNames("__wab_instance", sty.pageLoader)}
+              className={classNames("__wab_instance", sty.pageLoader__aEt67)}
               onMount={async () => {
                 const $steps = {};
 
@@ -1850,6 +1847,64 @@ function PlasmicAccueil__RenderFunc(props: {
               })()}
             />
           ) : null}
+          <PageLoader
+            className={classNames("__wab_instance", sty.pageLoader__u5B0X)}
+            onMount={async () => {
+              const $steps = {};
+
+              $steps["runCode"] = true
+                ? (() => {
+                    const actionArgs = {
+                      customFunction: async () => {
+                        return (() => {
+                          return (function () {
+                            var TARGET_ID = "weglotcontainerscroll";
+                            var css = document.createElement("style");
+                            css.textContent = ".wg-default{visibility:hidden}";
+                            document.head.appendChild(css);
+                            function moveIfReady() {
+                              var slot = document.getElementById(TARGET_ID);
+                              var wg = document.querySelector(
+                                "#weglot_here, .wg-default, .weglot-container"
+                              );
+                              if (slot && wg && !slot.contains(wg)) {
+                                slot.appendChild(wg);
+                                wg.style.visibility = "visible";
+                                return true;
+                              }
+                              return false;
+                            }
+                            if (!moveIfReady()) {
+                              var obs = new MutationObserver(function () {
+                                if (moveIfReady()) obs.disconnect();
+                              });
+                              obs.observe(document.documentElement, {
+                                childList: true,
+                                subtree: true
+                              });
+                              setTimeout(moveIfReady, 3000);
+                              setTimeout(moveIfReady, 6000);
+                            }
+                          })();
+                        })();
+                      }
+                    };
+                    return (({ customFunction }) => {
+                      return customFunction();
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["runCode"] != null &&
+                typeof $steps["runCode"] === "object" &&
+                typeof $steps["runCode"].then === "function"
+              ) {
+                $steps["runCode"] = await $steps["runCode"];
+              }
+            }}
+            shouldRun={true}
+          />
+
           <LoadingBoundary
             data-plasmic-name={"loadingBoundary"}
             data-plasmic-override={overrides.loadingBoundary}
@@ -16753,7 +16808,6 @@ function PlasmicAccueil__RenderFunc(props: {
 const PlasmicDescendants = {
   rechercheJob: [
     "rechercheJob",
-    "pageLoader",
     "loadingBoundary",
     "screen",
     "frame6",
@@ -16966,7 +17020,6 @@ const PlasmicDescendants = {
     "footer",
     "updateRoleForGoogleRegistration"
   ],
-  pageLoader: ["pageLoader"],
   loadingBoundary: [
     "loadingBoundary",
     "screen",
@@ -18291,7 +18344,6 @@ type DescendantsType<T extends NodeNameType> =
   (typeof PlasmicDescendants)[T][number];
 type NodeDefaultElementType = {
   rechercheJob: "div";
-  pageLoader: typeof PageLoader;
   loadingBoundary: typeof LoadingBoundary;
   screen: "div";
   frame6: "div";
@@ -18565,7 +18617,6 @@ export const PlasmicAccueil = Object.assign(
   makeNodeComponent("rechercheJob"),
   {
     // Helper components rendering sub-elements
-    pageLoader: makeNodeComponent("pageLoader"),
     loadingBoundary: makeNodeComponent("loadingBoundary"),
     screen: makeNodeComponent("screen"),
     frame6: makeNodeComponent("frame6"),
