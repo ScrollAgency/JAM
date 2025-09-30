@@ -10,7 +10,7 @@ export default function WeglotScript() {
     script.onload = () => {
       // @ts-ignore
       Weglot.initialize({
-        api_key: 'wg_7a994a95d8a52ee847d1d76f13c919c67',
+        api_key: 'wg_d329a44473da57760d76b809239d58082',
         originalLanguage: 'fr',
         destinationLanguages: ['en', 'es'],
         autoSwitch: false,
