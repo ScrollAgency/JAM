@@ -91,6 +91,7 @@ import TextAreaInput from "../../TextAreaInput"; // plasmic-import: nVAUbPc6gpoz
 import { FileUploader } from "../../others/FileUploader/FileUploader"; // plasmic-import: RpVDoPZzyXH3/codeComponent
 import { Login } from "../../../plasmic-library/authentication/Login"; // plasmic-import: DTfpuarR8FPx/codeComponent
 import Footer from "../../Footer"; // plasmic-import: ZOpOgPOAiAAY/component
+import { WeglotSelector } from "../../../plasmic-library/others/WeglotSelector/WeglotSelector"; // plasmic-import: u2KNJoJwhAa_/codeComponent
 import { Fetcher } from "@plasmicapp/react-web/lib/data-sources";
 import { _useGlobalVariants } from "./plasmic"; // plasmic-import: f7DE9y7qp46fyCw5nuY8f9/projectModule
 import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: f7DE9y7qp46fyCw5nuY8f9/styleTokensProvider
@@ -353,6 +354,7 @@ export type PlasmicAccueil__OverridesType = {
   text6?: Flex__<"div">;
   footer?: Flex__<typeof Footer>;
   updateRoleForGoogleRegistration?: Flex__<typeof PageLoader>;
+  weglotSelector?: Flex__<typeof WeglotSelector>;
 };
 
 export interface DefaultAccueilProps {}
@@ -16771,6 +16773,17 @@ function PlasmicAccueil__RenderFunc(props: {
               }
             })()}
           />
+
+          <div className={classNames(projectcss.all, sty.freeBox__kLrqw)}>
+            <WeglotSelector
+              data-plasmic-name={"weglotSelector"}
+              data-plasmic-override={overrides.weglotSelector}
+              className={classNames("__wab_instance", sty.weglotSelector)}
+              defaultLanguage={"fr"}
+              labels={{ fr: "FR", en: "EN" }}
+              languages={["fr", "en"]}
+            />
+          </div>
         </div>
       </div>
     </React.Fragment>
@@ -16990,7 +17003,8 @@ const PlasmicDescendants = {
     "textLinkBase",
     "text6",
     "footer",
-    "updateRoleForGoogleRegistration"
+    "updateRoleForGoogleRegistration",
+    "weglotSelector"
   ],
   loadingBoundary: [
     "loadingBoundary",
@@ -18309,7 +18323,8 @@ const PlasmicDescendants = {
   textLinkBase: ["textLinkBase", "text6"],
   text6: ["text6"],
   footer: ["footer"],
-  updateRoleForGoogleRegistration: ["updateRoleForGoogleRegistration"]
+  updateRoleForGoogleRegistration: ["updateRoleForGoogleRegistration"],
+  weglotSelector: ["weglotSelector"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -18527,6 +18542,7 @@ type NodeDefaultElementType = {
   text6: "div";
   footer: typeof Footer;
   updateRoleForGoogleRegistration: typeof PageLoader;
+  weglotSelector: typeof WeglotSelector;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -18806,6 +18822,7 @@ export const PlasmicAccueil = Object.assign(
     updateRoleForGoogleRegistration: makeNodeComponent(
       "updateRoleForGoogleRegistration"
     ),
+    weglotSelector: makeNodeComponent("weglotSelector"),
 
     // Metadata about props expected for PlasmicAccueil
     internalVariantProps: PlasmicAccueil__VariantProps,
