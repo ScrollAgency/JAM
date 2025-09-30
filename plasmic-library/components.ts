@@ -20,7 +20,12 @@ export { default as ResetPasswordMeta } from "./authentication/ResetPassword/Res
 
 // Accordions
 //       Accordion
-export { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "./accordions/Accordion/Accordion";
+export {
+	Accordion,
+	AccordionItem,
+	AccordionTrigger,
+	AccordionContent,
+} from "./accordions/Accordion/Accordion";
 export { default as AccordionMeta } from "./accordions/Accordion/Accordion.meta";
 export { default as AccordionItemMeta } from "./accordions/Accordion/AccordionItem.meta";
 export { default as AccordionTriggerMeta } from "./accordions/Accordion/AccordionTrigger.meta";
@@ -56,7 +61,6 @@ export { default as StripeCheckoutButtonMeta } from "./buttons/StripeCheckoutBut
 //       StripeSubscriptionButton
 export { default as StripeSubscriptionButton } from "./buttons/StripeSubscriptionButton/StripeSubscriptionButton";
 export { default as StripeSubscriptionButtonMeta } from "./buttons/StripeSubscriptionButton/StripeSubscriptionButton.meta";
-
 
 // Cards
 //       CardSimple
@@ -175,3 +179,6 @@ export { default as SmartLoaderMeta } from "./others/SmartLoader/SmartLoader.met
 //       Notation
 export { default as Notation } from "./others/Notation/Notation";
 export { default as NotationMeta } from "./others/Notation/Notation.meta";
+//       WeglotSelector
+export { default as WeglotSelector } from "./others/WeglotSelector/WeglotSelector";
+export { default as WeglotSelectorMeta } from "./others/WeglotSelector/WeglotSelector.meta";
