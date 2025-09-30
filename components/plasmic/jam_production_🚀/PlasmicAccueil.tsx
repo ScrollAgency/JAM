@@ -16729,7 +16729,11 @@ function PlasmicAccueil__RenderFunc(props: {
                         sty.weglotSelector
                       )}
                       defaultLanguage={"fr"}
-                      labels={{ fr: "FR", en: "EN" }}
+                      labels={
+                        hasVariant(globalVariants, "screen", "mobileOnly")
+                          ? { fr: " ", en: " " }
+                          : { fr: "FR", en: "EN" }
+                      }
                       languages={["fr", "en"]}
                     />
                   </div>
