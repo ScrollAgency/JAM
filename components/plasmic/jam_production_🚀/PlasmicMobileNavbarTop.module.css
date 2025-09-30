@@ -138,3 +138,19 @@
     display: block;
   }
 }
+.freeBox {
+  flex-direction: row;
+  position: relative;
+  align-items: stretch;
+  justify-content: flex-start;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  display: none;
+  padding: 8px;
+}
+@media (min-width: 0px) and (max-width: 768px) {
+  .freeBox {
+    display: flex;
+  }
+}

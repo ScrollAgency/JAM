@@ -164,13 +164,13 @@ function PlasmicUserAdmin__RenderFunc(props: {
         path: "showCandidat",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => true
+        initFunc: ({ $props, $state, $queries, $ctx }) => false
       },
       {
         path: "showCompany",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => false
+        initFunc: ({ $props, $state, $queries, $ctx }) => true
       },
       {
         path: "pageUser",
@@ -200,7 +200,7 @@ function PlasmicUserAdmin__RenderFunc(props: {
         path: "sidebar.disableLinks",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => false
+        initFunc: ({ $props, $state, $queries, $ctx }) => true
       },
       {
         path: "sidebar.role",
@@ -251,9 +251,9 @@ function PlasmicUserAdmin__RenderFunc(props: {
     paramAdminGetCompany2: usePlasmicDataOp(() => {
       return {
         sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
-        opId: "263223b7-4d44-44fe-9673-2df25060ea1d",
+        opId: "69ef5223-bbea-4520-8d08-0598747d0ac3",
         userArgs: {},
-        cacheKey: `plasmic.$.263223b7-4d44-44fe-9673-2df25060ea1d.$.`,
+        cacheKey: `plasmic.$.69ef5223-bbea-4520-8d08-0598747d0ac3.$.`,
         invalidatedKeys: null,
         roleId: null
       };
@@ -373,7 +373,7 @@ function PlasmicUserAdmin__RenderFunc(props: {
                       const actionArgs = {
                         queryInvalidation: [
                           "bb945d86-82c9-4e29-8e20-a93fd544ce10",
-                          "263223b7-4d44-44fe-9673-2df25060ea1d"
+                          "69ef5223-bbea-4520-8d08-0598747d0ac3"
                         ]
                       };
                       return (async ({ queryInvalidation }) => {
@@ -808,7 +808,9 @@ function PlasmicUserAdmin__RenderFunc(props: {
                       email: "Email",
                       role: "R\u00f4le",
                       created_at_formatted: "Date d'inscription",
-                      siren: "Siren"
+                      siren: "Siren",
+                      kbis_file: "KBIS",
+                      identity_file: "Pi\u00e8ce d'identit\u00e9"
                     }}
                     currentPage={(() => {
                       try {
@@ -966,7 +968,9 @@ function PlasmicUserAdmin__RenderFunc(props: {
                       "email",
                       "role",
                       "created_at_formatted",
-                      "siren"
+                      "siren",
+                      "kbis_file",
+                      "identity_file"
                     ]}
                   />
                 </div>

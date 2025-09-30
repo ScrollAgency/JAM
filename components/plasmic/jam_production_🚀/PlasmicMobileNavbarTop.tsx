@@ -92,6 +92,7 @@ export type PlasmicMobileNavbarTop__OverridesType = {
   cloche?: Flex__<"svg">;
   boutonDeRecherche?: Flex__<"div">;
   svg?: Flex__<"svg">;
+  freeBox?: Flex__<"div">;
 };
 
 export interface DefaultMobileNavbarTopProps {
@@ -155,6 +156,7 @@ function PlasmicMobileNavbarTop__RenderFunc(props: {
         styleTokensClassNames,
         sty.mobileNavbar
       )}
+      id={"mobilenavbar"}
     >
       <div
         data-plasmic-name={"logoTitre"}
@@ -296,6 +298,11 @@ function PlasmicMobileNavbarTop__RenderFunc(props: {
           ) : null}
         </div>
       ) : null}
+      <div
+        data-plasmic-name={"freeBox"}
+        data-plasmic-override={overrides.freeBox}
+        className={classNames(projectcss.all, sty.freeBox, "mobile-translate")}
+      />
     </header>
   ) as React.ReactElement | null;
 }
@@ -309,7 +316,8 @@ const PlasmicDescendants = {
     "clocheRecherche",
     "cloche",
     "boutonDeRecherche",
-    "svg"
+    "svg",
+    "freeBox"
   ],
   logoTitre: ["logoTitre", "logo", "text"],
   logo: ["logo"],
@@ -317,7 +325,8 @@ const PlasmicDescendants = {
   clocheRecherche: ["clocheRecherche", "cloche", "boutonDeRecherche", "svg"],
   cloche: ["cloche"],
   boutonDeRecherche: ["boutonDeRecherche", "svg"],
-  svg: ["svg"]
+  svg: ["svg"],
+  freeBox: ["freeBox"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -331,6 +340,7 @@ type NodeDefaultElementType = {
   cloche: "svg";
   boutonDeRecherche: "div";
   svg: "svg";
+  freeBox: "div";
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -400,6 +410,7 @@ export const PlasmicMobileNavbarTop = Object.assign(
     cloche: makeNodeComponent("cloche"),
     boutonDeRecherche: makeNodeComponent("boutonDeRecherche"),
     svg: makeNodeComponent("svg"),
+    freeBox: makeNodeComponent("freeBox"),
 
     // Metadata about props expected for PlasmicMobileNavbarTop
     internalVariantProps: PlasmicMobileNavbarTop__VariantProps,

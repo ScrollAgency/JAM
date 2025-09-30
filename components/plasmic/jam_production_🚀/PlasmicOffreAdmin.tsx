@@ -216,7 +216,7 @@ function PlasmicOffreAdmin__RenderFunc(props: {
         path: "sidebar.disableLinks",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => false
+        initFunc: ({ $props, $state, $queries, $ctx }) => true
       },
       {
         path: "sidebar.role",

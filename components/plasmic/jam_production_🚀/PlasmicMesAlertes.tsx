@@ -68,6 +68,8 @@ import {
 
 import Sidebar from "../../Sidebar"; // plasmic-import: M06HuWMcBQV2/component
 import MobileNavbarTop from "../../MobileNavbarTop"; // plasmic-import: mAg8Ml3XUEhy/component
+import { LoadingBoundary } from "@plasmicpkgs/plasmic-basic-components";
+import LoadingComponent from "../../LoadingComponent"; // plasmic-import: H7nb8l13ZEyx/component
 import Button from "../../Button"; // plasmic-import: 9ixtKbGKv7x-/component
 import AlertCard from "../../AlertCard"; // plasmic-import: -xst-G3CRLYp/component
 import { FormWrapper } from "@plasmicpkgs/antd5/skinny/Form";
@@ -116,6 +118,8 @@ export type PlasmicMesAlertes__OverridesType = {
   mesAlertes?: Flex__<"div">;
   sidebar?: Flex__<typeof Sidebar>;
   mobileNavbarTop?: Flex__<typeof MobileNavbarTop>;
+  loadingBoundary?: Flex__<typeof LoadingBoundary>;
+  loadingComponent?: Flex__<typeof LoadingComponent>;
   main?: Flex__<"main">;
   h1?: Flex__<"h1">;
   alerts?: Flex__<"div">;
@@ -137,10 +141,8 @@ export type PlasmicMesAlertes__OverridesType = {
   textInput3?: Flex__<typeof TextInput>;
   textInput4?: Flex__<typeof TextInput>;
   mobileNavbarBottom?: Flex__<typeof MobileNavbarBottom>;
-  createEditAlert?: Flex__<typeof Modal>;
-  button?: Flex__<typeof JamButton>;
-  img?: Flex__<typeof PlasmicImg__>;
   deleteAlert?: Flex__<typeof Modal>;
+  h3?: Flex__<"h3">;
   modal3?: Flex__<"div">;
   content?: Flex__<"div">;
   featuredIcon?: Flex__<"div">;
@@ -202,12 +204,6 @@ function PlasmicMesAlertes__RenderFunc(props: {
   >({});
   const stateSpecs: Parameters<typeof useDollarState>[0] = React.useMemo(
     () => [
-      {
-        path: "createEditAlert.isOpen",
-        type: "private",
-        variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => false
-      },
       {
         path: "form.value",
         type: "private",
@@ -290,7 +286,7 @@ function PlasmicMesAlertes__RenderFunc(props: {
         path: "sidebar.disableLinks",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => false
+        initFunc: ({ $props, $state, $queries, $ctx }) => true
       },
       {
         path: "sidebar.role",
@@ -320,9 +316,9 @@ function PlasmicMesAlertes__RenderFunc(props: {
     getCriteria: usePlasmicDataOp(() => {
       return {
         sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
-        opId: "3c8bdc4e-677f-4634-aaef-8a13e1973a95",
+        opId: "86769c2d-f8b1-48ab-8760-172a9a34e8d8",
         userArgs: {},
-        cacheKey: `plasmic.$.3c8bdc4e-677f-4634-aaef-8a13e1973a95.$.`,
+        cacheKey: `plasmic.$.86769c2d-f8b1-48ab-8760-172a9a34e8d8.$.`,
         invalidatedKeys: null,
         roleId: null
       };
@@ -330,11 +326,11 @@ function PlasmicMesAlertes__RenderFunc(props: {
     getAlerts: usePlasmicDataOp(() => {
       return {
         sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
-        opId: "51cfa6ad-54c7-439f-ad10-406a19a5bdf9",
+        opId: "a1f81989-5cfa-4625-bd5d-80a85b885ddf",
         userArgs: {
-          filters: [$ctx.SupabaseUser.user?.id]
+          query: [$ctx.SupabaseUser.user?.id]
         },
-        cacheKey: `plasmic.$.51cfa6ad-54c7-439f-ad10-406a19a5bdf9.$.`,
+        cacheKey: `plasmic.$.a1f81989-5cfa-4625-bd5d-80a85b885ddf.$.`,
         invalidatedKeys: null,
         roleId: null
       };
@@ -344,7 +340,7 @@ function PlasmicMesAlertes__RenderFunc(props: {
         sourceId: "3fRequBPthJKGmQ2njgcZi",
         opId: "aa010057-e02c-4841-8097-37c029a66625",
         userArgs: {
-          headers: [$state.form?.value?.city]
+          headers: [$state.form?.value?.city ?? "Paris"]
         },
         cacheKey: `plasmic.$.aa010057-e02c-4841-8097-37c029a66625.$.`,
         invalidatedKeys: null,
@@ -443,225 +439,64 @@ function PlasmicMesAlertes__RenderFunc(props: {
             className={classNames("__wab_instance", sty.mobileNavbarTop)}
           />
 
-          <main
-            data-plasmic-name={"main"}
-            data-plasmic-override={overrides.main}
-            className={classNames(
-              projectcss.all,
-              sty.main,
-              hasVariant(globalVariants, "screen", "mobileOnly")
-                ? ``
-                : "main-content"
-            )}
-          >
-            <div className={classNames(projectcss.all, sty.freeBox__kohVn)}>
-              <h1
-                data-plasmic-name={"h1"}
-                data-plasmic-override={overrides.h1}
-                className={classNames(
-                  projectcss.all,
-                  projectcss.h1,
-                  projectcss.__wab_text,
-                  sty.h1
-                )}
-              >
-                {"Mes alertes"}
-              </h1>
-              <Button
-                className={classNames("__wab_instance", sty.button__a9Gtr)}
-                end={
-                  <PlusCircle2Icon
-                    className={classNames(projectcss.all, sty.svg__kh3Ee)}
-                    role={"img"}
-                  />
-                }
-                iconEnd={true}
-                label={
+          <LoadingBoundary
+            data-plasmic-name={"loadingBoundary"}
+            data-plasmic-override={overrides.loadingBoundary}
+            loadingState={
+              <DataCtxReader__>
+                {$ctx => (
                   <div
-                    className={classNames(
-                      projectcss.all,
-                      projectcss.__wab_text,
-                      sty.text__n8SHv
-                    )}
+                    className={classNames(projectcss.all, sty.freeBox__p5Zsz)}
                   >
-                    {"Cr\u00e9er une alerte"}
-                  </div>
-                }
-                onClick={async event => {
-                  const $steps = {};
-
-                  $steps["resetCurrentAlert"] = true
-                    ? (() => {
-                        const actionArgs = {
-                          variable: {
-                            objRoot: $state,
-                            variablePath: ["currentAlert"]
-                          },
-                          operation: 0,
-                          value: {}
-                        };
-                        return (({
-                          variable,
-                          value,
-                          startIndex,
-                          deleteCount
-                        }) => {
-                          if (!variable) {
-                            return;
-                          }
-                          const { objRoot, variablePath } = variable;
-
-                          $stateSet(objRoot, variablePath, value);
-                          return value;
-                        })?.apply(null, [actionArgs]);
-                      })()
-                    : undefined;
-                  if (
-                    $steps["resetCurrentAlert"] != null &&
-                    typeof $steps["resetCurrentAlert"] === "object" &&
-                    typeof $steps["resetCurrentAlert"].then === "function"
-                  ) {
-                    $steps["resetCurrentAlert"] = await $steps[
-                      "resetCurrentAlert"
-                    ];
-                  }
-
-                  $steps["openModal"] = true
-                    ? (() => {
-                        const actionArgs = {
-                          variable: {
-                            objRoot: $state,
-                            variablePath: ["isModalOpen"]
-                          },
-                          operation: 0,
-                          value: true
-                        };
-                        return (({
-                          variable,
-                          value,
-                          startIndex,
-                          deleteCount
-                        }) => {
-                          if (!variable) {
-                            return;
-                          }
-                          const { objRoot, variablePath } = variable;
-
-                          $stateSet(objRoot, variablePath, value);
-                          return value;
-                        })?.apply(null, [actionArgs]);
-                      })()
-                    : undefined;
-                  if (
-                    $steps["openModal"] != null &&
-                    typeof $steps["openModal"] === "object" &&
-                    typeof $steps["openModal"].then === "function"
-                  ) {
-                    $steps["openModal"] = await $steps["openModal"];
-                  }
-                }}
-              />
-            </div>
-            <div
-              data-plasmic-name={"alerts"}
-              data-plasmic-override={overrides.alerts}
-              className={classNames(projectcss.all, sty.alerts)}
-            >
-              {(
-                hasVariant(globalVariants, "screen", "mobileOnly")
-                  ? (() => {
-                      try {
-                        return $queries.getAlerts.data.length == 0;
-                      } catch (e) {
-                        if (
-                          e instanceof TypeError ||
-                          e?.plasmicType === "PlasmicUndefinedDataError"
-                        ) {
-                          return true;
-                        }
-                        throw e;
-                      }
-                    })()
-                  : (() => {
-                      try {
-                        return (
-                          !$queries.getAlerts.isLoading &&
-                          $queries.getAlerts?.data?.length == 0
-                        );
-                      } catch (e) {
-                        if (
-                          e instanceof TypeError ||
-                          e?.plasmicType === "PlasmicUndefinedDataError"
-                        ) {
-                          return true;
-                        }
-                        throw e;
-                      }
-                    })()
-              ) ? (
-                <div
-                  data-plasmic-name={"noAnnonce"}
-                  data-plasmic-override={overrides.noAnnonce}
-                  className={classNames(projectcss.all, sty.noAnnonce)}
-                  onLoad={async event => {
-                    const $steps = {};
-                  }}
-                >
-                  <div
-                    data-plasmic-name={"featuredIcon2"}
-                    data-plasmic-override={overrides.featuredIcon2}
-                    className={classNames(projectcss.all, sty.featuredIcon2)}
-                  >
-                    <PlasmicIcon__
-                      PlasmicIconType={
-                        hasVariant(globalVariants, "screen", "mobileOnly")
-                          ? NotificationBellSvgrepoComSvgIcon
-                          : NotificationBellSvgrepoComSvgIcon
-                      }
-                      className={classNames(projectcss.all, sty.svg__aq2Ug)}
-                      role={"img"}
+                    <LoadingComponent
+                      data-plasmic-name={"loadingComponent"}
+                      data-plasmic-override={overrides.loadingComponent}
+                      className={classNames(
+                        "__wab_instance",
+                        sty.loadingComponent
+                      )}
                     />
                   </div>
+                )}
+              </DataCtxReader__>
+            }
+          >
+            <DataCtxReader__>
+              {$ctx => (
+                <main
+                  data-plasmic-name={"main"}
+                  data-plasmic-override={overrides.main}
+                  className={classNames(
+                    projectcss.all,
+                    sty.main,
+                    hasVariant(globalVariants, "screen", "mobileOnly")
+                      ? ``
+                      : "main-content"
+                  )}
+                >
                   <div
-                    data-plasmic-name={"textAndSupportingText2"}
-                    data-plasmic-override={overrides.textAndSupportingText2}
-                    className={classNames(
-                      projectcss.all,
-                      sty.textAndSupportingText2
-                    )}
+                    className={classNames(projectcss.all, sty.freeBox__kohVn)}
                   >
-                    <div
-                      data-plasmic-name={"text6"}
-                      data-plasmic-override={overrides.text6}
+                    <h1
+                      data-plasmic-name={"h1"}
+                      data-plasmic-override={overrides.h1}
                       className={classNames(
                         projectcss.all,
+                        projectcss.h1,
                         projectcss.__wab_text,
-                        sty.text6
+                        sty.h1
                       )}
                     >
-                      {"Vous n'avez pas encore d'alerte"}
-                    </div>
-                    <div
-                      data-plasmic-name={"supportingText2"}
-                      data-plasmic-override={overrides.supportingText2}
-                      className={classNames(
-                        projectcss.all,
-                        projectcss.__wab_text,
-                        sty.supportingText2
-                      )}
-                    >
-                      {
-                        "Cr\u00e9ez des alertes et recevez des notifications pour les offres d'emploi qui vous int\u00e9ressent."
-                      }
-                    </div>
+                      {"Mes alertes"}
+                    </h1>
                     <Button
                       className={classNames(
                         "__wab_instance",
-                        sty.button__seaXf
+                        sty.button__a9Gtr
                       )}
                       end={
-                        <PlusCircle1425SvgrepoComSvgIcon
-                          className={classNames(projectcss.all, sty.svg__crfqi)}
+                        <PlusCircle2Icon
+                          className={classNames(projectcss.all, sty.svg__kh3Ee)}
                           role={"img"}
                         />
                       }
@@ -671,16 +506,16 @@ function PlasmicMesAlertes__RenderFunc(props: {
                           className={classNames(
                             projectcss.all,
                             projectcss.__wab_text,
-                            sty.text___29COm
+                            sty.text__n8SHv
                           )}
                         >
-                          {"cr\u00e9er une alerte"}
+                          {"Cr\u00e9er une alerte"}
                         </div>
                       }
                       onClick={async event => {
                         const $steps = {};
 
-                        $steps["updateCurrentAlert"] = true
+                        $steps["resetCurrentAlert"] = true
                           ? (() => {
                               const actionArgs = {
                                 variable: {
@@ -707,13 +542,12 @@ function PlasmicMesAlertes__RenderFunc(props: {
                             })()
                           : undefined;
                         if (
-                          $steps["updateCurrentAlert"] != null &&
-                          typeof $steps["updateCurrentAlert"] === "object" &&
-                          typeof $steps["updateCurrentAlert"].then ===
-                            "function"
+                          $steps["resetCurrentAlert"] != null &&
+                          typeof $steps["resetCurrentAlert"] === "object" &&
+                          typeof $steps["resetCurrentAlert"].then === "function"
                         ) {
-                          $steps["updateCurrentAlert"] = await $steps[
-                            "updateCurrentAlert"
+                          $steps["resetCurrentAlert"] = await $steps[
+                            "resetCurrentAlert"
                           ];
                         }
 
@@ -753,205 +587,429 @@ function PlasmicMesAlertes__RenderFunc(props: {
                       }}
                     />
                   </div>
-                </div>
-              ) : null}
-              {(() => {
-                try {
-                  return true;
-                } catch (e) {
-                  if (
-                    e instanceof TypeError ||
-                    e?.plasmicType === "PlasmicUndefinedDataError"
-                  ) {
-                    return true;
-                  }
-                  throw e;
-                }
-              })()
-                ? (_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
-                    (() => {
+                  <div
+                    data-plasmic-name={"alerts"}
+                    data-plasmic-override={overrides.alerts}
+                    className={classNames(projectcss.all, sty.alerts)}
+                  >
+                    {(
+                      hasVariant(globalVariants, "screen", "mobileOnly")
+                        ? (() => {
+                            try {
+                              return $queries.getAlerts.data.length == 0;
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return false;
+                              }
+                              throw e;
+                            }
+                          })()
+                        : (() => {
+                            try {
+                              return (
+                                !$queries.getAlerts.isLoading &&
+                                $queries.getAlerts?.data?.length == 0
+                              );
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return true;
+                              }
+                              throw e;
+                            }
+                          })()
+                    ) ? (
+                      <div
+                        data-plasmic-name={"noAnnonce"}
+                        data-plasmic-override={overrides.noAnnonce}
+                        className={classNames(projectcss.all, sty.noAnnonce)}
+                        onLoad={async event => {
+                          const $steps = {};
+                        }}
+                      >
+                        <div
+                          data-plasmic-name={"featuredIcon2"}
+                          data-plasmic-override={overrides.featuredIcon2}
+                          className={classNames(
+                            projectcss.all,
+                            sty.featuredIcon2
+                          )}
+                        >
+                          <PlasmicIcon__
+                            PlasmicIconType={
+                              hasVariant(globalVariants, "screen", "mobileOnly")
+                                ? NotificationBellSvgrepoComSvgIcon
+                                : NotificationBellSvgrepoComSvgIcon
+                            }
+                            className={classNames(
+                              projectcss.all,
+                              sty.svg__aq2Ug
+                            )}
+                            role={"img"}
+                          />
+                        </div>
+                        <div
+                          data-plasmic-name={"textAndSupportingText2"}
+                          data-plasmic-override={
+                            overrides.textAndSupportingText2
+                          }
+                          className={classNames(
+                            projectcss.all,
+                            sty.textAndSupportingText2
+                          )}
+                        >
+                          <div
+                            data-plasmic-name={"text6"}
+                            data-plasmic-override={overrides.text6}
+                            className={classNames(
+                              projectcss.all,
+                              projectcss.__wab_text,
+                              sty.text6
+                            )}
+                          >
+                            {"Vous n'avez pas encore d'alerte"}
+                          </div>
+                          <div
+                            data-plasmic-name={"supportingText2"}
+                            data-plasmic-override={overrides.supportingText2}
+                            className={classNames(
+                              projectcss.all,
+                              projectcss.__wab_text,
+                              sty.supportingText2
+                            )}
+                          >
+                            {
+                              "Cr\u00e9ez des alertes et recevez des notifications pour les offres d'emploi qui vous int\u00e9ressent."
+                            }
+                          </div>
+                          <Button
+                            className={classNames(
+                              "__wab_instance",
+                              sty.button__seaXf
+                            )}
+                            end={
+                              <PlusCircle1425SvgrepoComSvgIcon
+                                className={classNames(
+                                  projectcss.all,
+                                  sty.svg__crfqi
+                                )}
+                                role={"img"}
+                              />
+                            }
+                            iconEnd={true}
+                            label={
+                              <div
+                                className={classNames(
+                                  projectcss.all,
+                                  projectcss.__wab_text,
+                                  sty.text___29COm
+                                )}
+                              >
+                                {"cr\u00e9er une alerte"}
+                              </div>
+                            }
+                            onClick={async event => {
+                              const $steps = {};
+
+                              $steps["updateCurrentAlert"] = true
+                                ? (() => {
+                                    const actionArgs = {
+                                      variable: {
+                                        objRoot: $state,
+                                        variablePath: ["currentAlert"]
+                                      },
+                                      operation: 0,
+                                      value: {}
+                                    };
+                                    return (({
+                                      variable,
+                                      value,
+                                      startIndex,
+                                      deleteCount
+                                    }) => {
+                                      if (!variable) {
+                                        return;
+                                      }
+                                      const { objRoot, variablePath } =
+                                        variable;
+
+                                      $stateSet(objRoot, variablePath, value);
+                                      return value;
+                                    })?.apply(null, [actionArgs]);
+                                  })()
+                                : undefined;
+                              if (
+                                $steps["updateCurrentAlert"] != null &&
+                                typeof $steps["updateCurrentAlert"] ===
+                                  "object" &&
+                                typeof $steps["updateCurrentAlert"].then ===
+                                  "function"
+                              ) {
+                                $steps["updateCurrentAlert"] = await $steps[
+                                  "updateCurrentAlert"
+                                ];
+                              }
+
+                              $steps["openModal"] = true
+                                ? (() => {
+                                    const actionArgs = {
+                                      variable: {
+                                        objRoot: $state,
+                                        variablePath: ["isModalOpen"]
+                                      },
+                                      operation: 0,
+                                      value: true
+                                    };
+                                    return (({
+                                      variable,
+                                      value,
+                                      startIndex,
+                                      deleteCount
+                                    }) => {
+                                      if (!variable) {
+                                        return;
+                                      }
+                                      const { objRoot, variablePath } =
+                                        variable;
+
+                                      $stateSet(objRoot, variablePath, value);
+                                      return value;
+                                    })?.apply(null, [actionArgs]);
+                                  })()
+                                : undefined;
+                              if (
+                                $steps["openModal"] != null &&
+                                typeof $steps["openModal"] === "object" &&
+                                typeof $steps["openModal"].then === "function"
+                              ) {
+                                $steps["openModal"] = await $steps["openModal"];
+                              }
+                            }}
+                          />
+                        </div>
+                      </div>
+                    ) : null}
+                    {(() => {
                       try {
-                        return $queries.getAlerts.data;
+                        return true;
                       } catch (e) {
                         if (
                           e instanceof TypeError ||
                           e?.plasmicType === "PlasmicUndefinedDataError"
                         ) {
-                          return [];
+                          return true;
                         }
                         throw e;
                       }
                     })()
-                  ).map((__plasmic_item_0, __plasmic_idx_0) => {
-                    const currentItem = __plasmic_item_0;
-                    const currentIndex = __plasmic_idx_0;
-                    return (
-                      <AlertCard
-                        data-plasmic-name={"alertCard"}
-                        data-plasmic-override={overrides.alertCard}
-                        className={classNames("__wab_instance", sty.alertCard)}
-                        currentItem={currentItem}
-                        getAlerts={$queries.getAlerts}
-                        key={currentIndex}
-                        onClickDelete={async event => {
-                          const $steps = {};
+                      ? (_par =>
+                          !_par ? [] : Array.isArray(_par) ? _par : [_par])(
+                          (() => {
+                            try {
+                              return $queries.getAlerts.data;
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return [];
+                              }
+                              throw e;
+                            }
+                          })()
+                        ).map((__plasmic_item_0, __plasmic_idx_0) => {
+                          const currentItem = __plasmic_item_0;
+                          const currentIndex = __plasmic_idx_0;
+                          return (
+                            <AlertCard
+                              data-plasmic-name={"alertCard"}
+                              data-plasmic-override={overrides.alertCard}
+                              className={classNames(
+                                "__wab_instance",
+                                sty.alertCard
+                              )}
+                              currentItem={currentItem}
+                              getAlerts={$queries.getAlerts}
+                              key={currentIndex}
+                              onClickDelete={async event => {
+                                const $steps = {};
 
-                          $steps["updateCurrentAlert"] = true
-                            ? (() => {
-                                const actionArgs = {
-                                  variable: {
-                                    objRoot: $state,
-                                    variablePath: ["currentAlert"]
-                                  },
-                                  operation: 0,
-                                  value: currentItem
-                                };
-                                return (({
-                                  variable,
-                                  value,
-                                  startIndex,
-                                  deleteCount
-                                }) => {
-                                  if (!variable) {
-                                    return;
-                                  }
-                                  const { objRoot, variablePath } = variable;
+                                $steps["updateCurrentAlert"] = true
+                                  ? (() => {
+                                      const actionArgs = {
+                                        variable: {
+                                          objRoot: $state,
+                                          variablePath: ["currentAlert"]
+                                        },
+                                        operation: 0,
+                                        value: currentItem
+                                      };
+                                      return (({
+                                        variable,
+                                        value,
+                                        startIndex,
+                                        deleteCount
+                                      }) => {
+                                        if (!variable) {
+                                          return;
+                                        }
+                                        const { objRoot, variablePath } =
+                                          variable;
 
-                                  $stateSet(objRoot, variablePath, value);
-                                  return value;
-                                })?.apply(null, [actionArgs]);
-                              })()
-                            : undefined;
-                          if (
-                            $steps["updateCurrentAlert"] != null &&
-                            typeof $steps["updateCurrentAlert"] === "object" &&
-                            typeof $steps["updateCurrentAlert"].then ===
-                              "function"
-                          ) {
-                            $steps["updateCurrentAlert"] = await $steps[
-                              "updateCurrentAlert"
-                            ];
-                          }
+                                        $stateSet(objRoot, variablePath, value);
+                                        return value;
+                                      })?.apply(null, [actionArgs]);
+                                    })()
+                                  : undefined;
+                                if (
+                                  $steps["updateCurrentAlert"] != null &&
+                                  typeof $steps["updateCurrentAlert"] ===
+                                    "object" &&
+                                  typeof $steps["updateCurrentAlert"].then ===
+                                    "function"
+                                ) {
+                                  $steps["updateCurrentAlert"] = await $steps[
+                                    "updateCurrentAlert"
+                                  ];
+                                }
 
-                          $steps["openDeleteModal"] = true
-                            ? (() => {
-                                const actionArgs = {
-                                  variable: {
-                                    objRoot: $state,
-                                    variablePath: ["deleteAlert", "isOpen"]
-                                  },
-                                  operation: 0,
-                                  value: true
-                                };
-                                return (({
-                                  variable,
-                                  value,
-                                  startIndex,
-                                  deleteCount
-                                }) => {
-                                  if (!variable) {
-                                    return;
-                                  }
-                                  const { objRoot, variablePath } = variable;
+                                $steps["openDeleteModal"] = true
+                                  ? (() => {
+                                      const actionArgs = {
+                                        variable: {
+                                          objRoot: $state,
+                                          variablePath: [
+                                            "deleteAlert",
+                                            "isOpen"
+                                          ]
+                                        },
+                                        operation: 0,
+                                        value: true
+                                      };
+                                      return (({
+                                        variable,
+                                        value,
+                                        startIndex,
+                                        deleteCount
+                                      }) => {
+                                        if (!variable) {
+                                          return;
+                                        }
+                                        const { objRoot, variablePath } =
+                                          variable;
 
-                                  $stateSet(objRoot, variablePath, value);
-                                  return value;
-                                })?.apply(null, [actionArgs]);
-                              })()
-                            : undefined;
-                          if (
-                            $steps["openDeleteModal"] != null &&
-                            typeof $steps["openDeleteModal"] === "object" &&
-                            typeof $steps["openDeleteModal"].then === "function"
-                          ) {
-                            $steps["openDeleteModal"] = await $steps[
-                              "openDeleteModal"
-                            ];
-                          }
-                        }}
-                        onClickEdit={async event => {
-                          const $steps = {};
+                                        $stateSet(objRoot, variablePath, value);
+                                        return value;
+                                      })?.apply(null, [actionArgs]);
+                                    })()
+                                  : undefined;
+                                if (
+                                  $steps["openDeleteModal"] != null &&
+                                  typeof $steps["openDeleteModal"] ===
+                                    "object" &&
+                                  typeof $steps["openDeleteModal"].then ===
+                                    "function"
+                                ) {
+                                  $steps["openDeleteModal"] = await $steps[
+                                    "openDeleteModal"
+                                  ];
+                                }
+                              }}
+                              onClickEdit={async event => {
+                                const $steps = {};
 
-                          $steps["updateCurrentAlert"] = true
-                            ? (() => {
-                                const actionArgs = {
-                                  variable: {
-                                    objRoot: $state,
-                                    variablePath: ["currentAlert"]
-                                  },
-                                  operation: 0,
-                                  value: currentItem
-                                };
-                                return (({
-                                  variable,
-                                  value,
-                                  startIndex,
-                                  deleteCount
-                                }) => {
-                                  if (!variable) {
-                                    return;
-                                  }
-                                  const { objRoot, variablePath } = variable;
+                                $steps["updateCurrentAlert"] = true
+                                  ? (() => {
+                                      const actionArgs = {
+                                        variable: {
+                                          objRoot: $state,
+                                          variablePath: ["currentAlert"]
+                                        },
+                                        operation: 0,
+                                        value: currentItem
+                                      };
+                                      return (({
+                                        variable,
+                                        value,
+                                        startIndex,
+                                        deleteCount
+                                      }) => {
+                                        if (!variable) {
+                                          return;
+                                        }
+                                        const { objRoot, variablePath } =
+                                          variable;
 
-                                  $stateSet(objRoot, variablePath, value);
-                                  return value;
-                                })?.apply(null, [actionArgs]);
-                              })()
-                            : undefined;
-                          if (
-                            $steps["updateCurrentAlert"] != null &&
-                            typeof $steps["updateCurrentAlert"] === "object" &&
-                            typeof $steps["updateCurrentAlert"].then ===
-                              "function"
-                          ) {
-                            $steps["updateCurrentAlert"] = await $steps[
-                              "updateCurrentAlert"
-                            ];
-                          }
+                                        $stateSet(objRoot, variablePath, value);
+                                        return value;
+                                      })?.apply(null, [actionArgs]);
+                                    })()
+                                  : undefined;
+                                if (
+                                  $steps["updateCurrentAlert"] != null &&
+                                  typeof $steps["updateCurrentAlert"] ===
+                                    "object" &&
+                                  typeof $steps["updateCurrentAlert"].then ===
+                                    "function"
+                                ) {
+                                  $steps["updateCurrentAlert"] = await $steps[
+                                    "updateCurrentAlert"
+                                  ];
+                                }
 
-                          $steps["updateIsModalOpen"] = true
-                            ? (() => {
-                                const actionArgs = {
-                                  variable: {
-                                    objRoot: $state,
-                                    variablePath: ["isModalOpen"]
-                                  },
-                                  operation: 0,
-                                  value: true
-                                };
-                                return (({
-                                  variable,
-                                  value,
-                                  startIndex,
-                                  deleteCount
-                                }) => {
-                                  if (!variable) {
-                                    return;
-                                  }
-                                  const { objRoot, variablePath } = variable;
+                                $steps["updateIsModalOpen"] = true
+                                  ? (() => {
+                                      const actionArgs = {
+                                        variable: {
+                                          objRoot: $state,
+                                          variablePath: ["isModalOpen"]
+                                        },
+                                        operation: 0,
+                                        value: true
+                                      };
+                                      return (({
+                                        variable,
+                                        value,
+                                        startIndex,
+                                        deleteCount
+                                      }) => {
+                                        if (!variable) {
+                                          return;
+                                        }
+                                        const { objRoot, variablePath } =
+                                          variable;
 
-                                  $stateSet(objRoot, variablePath, value);
-                                  return value;
-                                })?.apply(null, [actionArgs]);
-                              })()
-                            : undefined;
-                          if (
-                            $steps["updateIsModalOpen"] != null &&
-                            typeof $steps["updateIsModalOpen"] === "object" &&
-                            typeof $steps["updateIsModalOpen"].then ===
-                              "function"
-                          ) {
-                            $steps["updateIsModalOpen"] = await $steps[
-                              "updateIsModalOpen"
-                            ];
-                          }
-                        }}
-                      />
-                    );
-                  })
-                : null}
-            </div>
-          </main>
+                                        $stateSet(objRoot, variablePath, value);
+                                        return value;
+                                      })?.apply(null, [actionArgs]);
+                                    })()
+                                  : undefined;
+                                if (
+                                  $steps["updateIsModalOpen"] != null &&
+                                  typeof $steps["updateIsModalOpen"] ===
+                                    "object" &&
+                                  typeof $steps["updateIsModalOpen"].then ===
+                                    "function"
+                                ) {
+                                  $steps["updateIsModalOpen"] = await $steps[
+                                    "updateIsModalOpen"
+                                  ];
+                                }
+                              }}
+                            />
+                          );
+                        })
+                      : null}
+                  </div>
+                </main>
+              )}
+            </DataCtxReader__>
+          </LoadingBoundary>
           {(() => {
             try {
               return $state.isModalOpen;
@@ -1095,7 +1153,7 @@ function PlasmicMesAlertes__RenderFunc(props: {
                                 },
                                 cacheKey: null,
                                 invalidatedKeys: [
-                                  "51cfa6ad-54c7-439f-ad10-406a19a5bdf9"
+                                  "a1f81989-5cfa-4625-bd5d-80a85b885ddf"
                                 ],
                                 roleId: null
                               }
@@ -1149,7 +1207,7 @@ function PlasmicMesAlertes__RenderFunc(props: {
                                   },
                                   cacheKey: null,
                                   invalidatedKeys: [
-                                    "51cfa6ad-54c7-439f-ad10-406a19a5bdf9"
+                                    "a1f81989-5cfa-4625-bd5d-80a85b885ddf"
                                   ],
                                   roleId: null
                                 }
@@ -2040,135 +2098,6 @@ function PlasmicMesAlertes__RenderFunc(props: {
           />
 
           <Modal
-            data-plasmic-name={"createEditAlert"}
-            data-plasmic-override={overrides.createEditAlert}
-            className={classNames("__wab_instance", sty.createEditAlert)}
-            closeOnBackdropClick={false}
-            content={null}
-            footer={null}
-            heading={
-              <React.Fragment>
-                <h3
-                  className={classNames(
-                    projectcss.all,
-                    projectcss.h3,
-                    projectcss.__wab_text,
-                    sty.h3__g8Ju1
-                  )}
-                >
-                  {"Heading"}
-                </h3>
-                {(
-                  hasVariant(globalVariants, "screen", "mobileOnly")
-                    ? true
-                    : (() => {
-                        try {
-                          return true;
-                        } catch (e) {
-                          if (
-                            e instanceof TypeError ||
-                            e?.plasmicType === "PlasmicUndefinedDataError"
-                          ) {
-                            return true;
-                          }
-                          throw e;
-                        }
-                      })()
-                ) ? (
-                  <PlasmicImg__
-                    data-plasmic-name={"img"}
-                    data-plasmic-override={overrides.img}
-                    alt={""}
-                    className={classNames(sty.img)}
-                    displayHeight={"17px"}
-                    displayMaxHeight={"none"}
-                    displayMaxWidth={"100%"}
-                    displayMinHeight={"0"}
-                    displayMinWidth={"0"}
-                    displayWidth={"17px"}
-                    loading={"lazy"}
-                    onClick={async event => {
-                      const $steps = {};
-
-                      $steps["updateCreateAlertIsOpen"] = true
-                        ? (() => {
-                            const actionArgs = {
-                              variable: {
-                                objRoot: $state,
-                                variablePath: ["createEditAlert", "isOpen"]
-                              },
-                              operation: 0,
-                              value: false
-                            };
-                            return (({
-                              variable,
-                              value,
-                              startIndex,
-                              deleteCount
-                            }) => {
-                              if (!variable) {
-                                return;
-                              }
-                              const { objRoot, variablePath } = variable;
-
-                              $stateSet(objRoot, variablePath, value);
-                              return value;
-                            })?.apply(null, [actionArgs]);
-                          })()
-                        : undefined;
-                      if (
-                        $steps["updateCreateAlertIsOpen"] != null &&
-                        typeof $steps["updateCreateAlertIsOpen"] === "object" &&
-                        typeof $steps["updateCreateAlertIsOpen"].then ===
-                          "function"
-                      ) {
-                        $steps["updateCreateAlertIsOpen"] = await $steps[
-                          "updateCreateAlertIsOpen"
-                        ];
-                      }
-                    }}
-                    src={{
-                      src: "/plasmic/jam_production_🚀/images/close3.svg",
-                      fullWidth: 17,
-                      fullHeight: 17,
-                      aspectRatio: 1
-                    }}
-                  />
-                ) : null}
-              </React.Fragment>
-            }
-            isOpen={generateStateValueProp($state, [
-              "createEditAlert",
-              "isOpen"
-            ])}
-            noTrigger={true}
-            onOpenChange={async (...eventArgs: any) => {
-              generateStateOnChangeProp($state, [
-                "createEditAlert",
-                "isOpen"
-              ]).apply(null, eventArgs);
-
-              if (
-                eventArgs.length > 1 &&
-                eventArgs[1] &&
-                eventArgs[1]._plasmic_state_init_
-              ) {
-                return;
-              }
-            }}
-            showFooter={false}
-            showHeader={true}
-            trigger={
-              <JamButton
-                data-plasmic-name={"button"}
-                data-plasmic-override={overrides.button}
-                className={classNames("__wab_instance", sty.button)}
-                icon={"none"}
-              />
-            }
-          />
-
-          <Modal
             data-plasmic-name={"deleteAlert"}
             data-plasmic-override={overrides.deleteAlert}
             className={classNames("__wab_instance", sty.deleteAlert)}
@@ -2318,7 +2247,7 @@ function PlasmicMesAlertes__RenderFunc(props: {
                                 },
                                 cacheKey: null,
                                 invalidatedKeys: [
-                                  "51cfa6ad-54c7-439f-ad10-406a19a5bdf9"
+                                  "a1f81989-5cfa-4625-bd5d-80a85b885ddf"
                                 ],
                                 roleId: null
                               }
@@ -2426,11 +2355,13 @@ function PlasmicMesAlertes__RenderFunc(props: {
             }
             heading={
               <h3
+                data-plasmic-name={"h3"}
+                data-plasmic-override={overrides.h3}
                 className={classNames(
                   projectcss.all,
                   projectcss.h3,
                   projectcss.__wab_text,
-                  sty.h3___11Jsa
+                  sty.h3
                 )}
               >
                 {"Heading"}
@@ -2466,6 +2397,8 @@ const PlasmicDescendants = {
     "mesAlertes",
     "sidebar",
     "mobileNavbarTop",
+    "loadingBoundary",
+    "loadingComponent",
     "main",
     "h1",
     "alerts",
@@ -2487,10 +2420,8 @@ const PlasmicDescendants = {
     "textInput3",
     "textInput4",
     "mobileNavbarBottom",
-    "createEditAlert",
-    "button",
-    "img",
     "deleteAlert",
+    "h3",
     "modal3",
     "content",
     "featuredIcon",
@@ -2503,6 +2434,20 @@ const PlasmicDescendants = {
   ],
   sidebar: ["sidebar"],
   mobileNavbarTop: ["mobileNavbarTop"],
+  loadingBoundary: [
+    "loadingBoundary",
+    "loadingComponent",
+    "main",
+    "h1",
+    "alerts",
+    "noAnnonce",
+    "featuredIcon2",
+    "textAndSupportingText2",
+    "text6",
+    "supportingText2",
+    "alertCard"
+  ],
+  loadingComponent: ["loadingComponent"],
   main: [
     "main",
     "h1",
@@ -2584,11 +2529,9 @@ const PlasmicDescendants = {
   textInput3: ["textInput3"],
   textInput4: ["textInput4"],
   mobileNavbarBottom: ["mobileNavbarBottom"],
-  createEditAlert: ["createEditAlert", "button", "img"],
-  button: ["button"],
-  img: ["img"],
   deleteAlert: [
     "deleteAlert",
+    "h3",
     "modal3",
     "content",
     "featuredIcon",
@@ -2599,6 +2542,7 @@ const PlasmicDescendants = {
     "button4",
     "deleteAccount"
   ],
+  h3: ["h3"],
   modal3: [
     "modal3",
     "content",
@@ -2632,6 +2576,8 @@ type NodeDefaultElementType = {
   mesAlertes: "div";
   sidebar: typeof Sidebar;
   mobileNavbarTop: typeof MobileNavbarTop;
+  loadingBoundary: typeof LoadingBoundary;
+  loadingComponent: typeof LoadingComponent;
   main: "main";
   h1: "h1";
   alerts: "div";
@@ -2653,10 +2599,8 @@ type NodeDefaultElementType = {
   textInput3: typeof TextInput;
   textInput4: typeof TextInput;
   mobileNavbarBottom: typeof MobileNavbarBottom;
-  createEditAlert: typeof Modal;
-  button: typeof JamButton;
-  img: typeof PlasmicImg__;
   deleteAlert: typeof Modal;
+  h3: "h3";
   modal3: "div";
   content: "div";
   featuredIcon: "div";
@@ -2730,6 +2674,8 @@ export const PlasmicMesAlertes = Object.assign(
     // Helper components rendering sub-elements
     sidebar: makeNodeComponent("sidebar"),
     mobileNavbarTop: makeNodeComponent("mobileNavbarTop"),
+    loadingBoundary: makeNodeComponent("loadingBoundary"),
+    loadingComponent: makeNodeComponent("loadingComponent"),
     main: makeNodeComponent("main"),
     h1: makeNodeComponent("h1"),
     alerts: makeNodeComponent("alerts"),
@@ -2751,10 +2697,8 @@ export const PlasmicMesAlertes = Object.assign(
     textInput3: makeNodeComponent("textInput3"),
     textInput4: makeNodeComponent("textInput4"),
     mobileNavbarBottom: makeNodeComponent("mobileNavbarBottom"),
-    createEditAlert: makeNodeComponent("createEditAlert"),
-    button: makeNodeComponent("button"),
-    img: makeNodeComponent("img"),
     deleteAlert: makeNodeComponent("deleteAlert"),
+    h3: makeNodeComponent("h3"),
     modal3: makeNodeComponent("modal3"),
     content: makeNodeComponent("content"),
     featuredIcon: makeNodeComponent("featuredIcon"),

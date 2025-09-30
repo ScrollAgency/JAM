@@ -212,11 +212,11 @@ function PlasmicSidebar__RenderFunc(props: {
     sidebarGetUserStripeInfos: usePlasmicDataOp(() => {
       return {
         sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
-        opId: "1284f981-03a5-4aae-9f90-4a9eb18e1c6b",
+        opId: "d6ef9cec-3efc-48a9-a282-e4387e1c0996",
         userArgs: {
-          filters: [$ctx.SupabaseUser.user.id]
+          filters: [$ctx.SupabaseUser.user?.id]
         },
-        cacheKey: `plasmic.$.1284f981-03a5-4aae-9f90-4a9eb18e1c6b.$.`,
+        cacheKey: `plasmic.$.d6ef9cec-3efc-48a9-a282-e4387e1c0996.$.`,
         invalidatedKeys: null,
         roleId: null
       };
@@ -673,261 +673,265 @@ function PlasmicSidebar__RenderFunc(props: {
               data-plasmic-override={overrides.company}
               className={classNames(projectcss.all, sty.company)}
             >
-              <SideBarButton
-                className={classNames(
-                  "__wab_instance",
-                  sty.sideBarButton__lL8JE
-                )}
-                disabled={(() => {
-                  try {
-                    return $state.disableLinks;
-                  } catch (e) {
-                    if (
-                      e instanceof TypeError ||
-                      e?.plasmicType === "PlasmicUndefinedDataError"
-                    ) {
-                      return undefined;
-                    }
-                    throw e;
-                  }
-                })()}
-                iconStart={true}
-                label={
-                  <div
-                    className={classNames(
-                      projectcss.all,
-                      projectcss.__wab_text,
-                      sty.text___8YwHh
-                    )}
-                  >
-                    {"MES OFFRES"}
-                  </div>
-                }
-                onClick={async event => {
-                  const $steps = {};
-
-                  $steps["goToOffreEmployeur"] = true
-                    ? (() => {
-                        const actionArgs = { destination: `/offre-employeur` };
-                        return (({ destination }) => {
-                          if (
-                            typeof destination === "string" &&
-                            destination.startsWith("#")
-                          ) {
-                            document
-                              .getElementById(destination.substr(1))
-                              .scrollIntoView({ behavior: "smooth" });
-                          } else {
-                            __nextRouter?.push(destination);
-                          }
-                        })?.apply(null, [actionArgs]);
-                      })()
-                    : undefined;
+              {(() => {
+                try {
+                  return $state.disableLinks;
+                } catch (e) {
                   if (
-                    $steps["goToOffreEmployeur"] != null &&
-                    typeof $steps["goToOffreEmployeur"] === "object" &&
-                    typeof $steps["goToOffreEmployeur"].then === "function"
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
                   ) {
-                    $steps["goToOffreEmployeur"] = await $steps[
-                      "goToOffreEmployeur"
-                    ];
+                    return true;
                   }
-                }}
-                start={
-                  <GridFourIcon
-                    className={classNames(projectcss.all, sty.svg___6CsA)}
-                    role={"img"}
-                  />
+                  throw e;
                 }
-                type={(() => {
-                  try {
-                    return $ctx.pagePath === "/offre-employeur" ||
-                      $ctx.pagePath === "/candidatures-employeur/[job_id]"
-                      ? "actif"
-                      : "";
-                  } catch (e) {
-                    if (
-                      e instanceof TypeError ||
-                      e?.plasmicType === "PlasmicUndefinedDataError"
-                    ) {
-                      return "actif";
-                    }
-                    throw e;
+              })() ? (
+                <SideBarButton
+                  className={classNames(
+                    "__wab_instance",
+                    sty.sideBarButton__lL8JE
+                  )}
+                  disabled={undefined}
+                  iconStart={true}
+                  label={
+                    <div
+                      className={classNames(
+                        projectcss.all,
+                        projectcss.__wab_text,
+                        sty.text___8YwHh
+                      )}
+                    >
+                      {"MES OFFRES"}
+                    </div>
                   }
-                })()}
-              />
+                  onClick={async event => {
+                    const $steps = {};
 
-              <SideBarButton
-                className={classNames(
-                  "__wab_instance",
-                  sty.sideBarButton__nGyEt
-                )}
-                disabled={(() => {
-                  try {
-                    return $state.disableLinks;
-                  } catch (e) {
+                    $steps["goToOffreEmployeur"] = true
+                      ? (() => {
+                          const actionArgs = {
+                            destination: `/offre-employeur`
+                          };
+                          return (({ destination }) => {
+                            if (
+                              typeof destination === "string" &&
+                              destination.startsWith("#")
+                            ) {
+                              document
+                                .getElementById(destination.substr(1))
+                                .scrollIntoView({ behavior: "smooth" });
+                            } else {
+                              __nextRouter?.push(destination);
+                            }
+                          })?.apply(null, [actionArgs]);
+                        })()
+                      : undefined;
                     if (
-                      e instanceof TypeError ||
-                      e?.plasmicType === "PlasmicUndefinedDataError"
+                      $steps["goToOffreEmployeur"] != null &&
+                      typeof $steps["goToOffreEmployeur"] === "object" &&
+                      typeof $steps["goToOffreEmployeur"].then === "function"
                     ) {
-                      return undefined;
+                      $steps["goToOffreEmployeur"] = await $steps[
+                        "goToOffreEmployeur"
+                      ];
                     }
-                    throw e;
+                  }}
+                  start={
+                    <GridFourIcon
+                      className={classNames(projectcss.all, sty.svg___6CsA)}
+                      role={"img"}
+                    />
                   }
-                })()}
-                iconStart={true}
-                label={
-                  <div
-                    className={classNames(
-                      projectcss.all,
-                      projectcss.__wab_text,
-                      sty.text__dao91
-                    )}
-                  >
-                    {"Recherche Candidat"}
-                  </div>
-                }
-                linkTo={`/recherche-candidat`}
-                onClick={async event => {
-                  const $steps = {};
-
-                  $steps["goToAccueil"] = true
-                    ? (() => {
-                        const actionArgs = {
-                          destination: `/recherche-candidat`
-                        };
-                        return (({ destination }) => {
-                          if (
-                            typeof destination === "string" &&
-                            destination.startsWith("#")
-                          ) {
-                            document
-                              .getElementById(destination.substr(1))
-                              .scrollIntoView({ behavior: "smooth" });
-                          } else {
-                            __nextRouter?.push(destination);
-                          }
-                        })?.apply(null, [actionArgs]);
-                      })()
-                    : undefined;
+                  type={(() => {
+                    try {
+                      return $ctx.pagePath === "/offre-employeur" ||
+                        $ctx.pagePath === "/candidatures-employeur/[job_id]"
+                        ? "actif"
+                        : "";
+                    } catch (e) {
+                      if (
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
+                      ) {
+                        return "actif";
+                      }
+                      throw e;
+                    }
+                  })()}
+                />
+              ) : null}
+              {(() => {
+                try {
+                  return $state.disableLinks;
+                } catch (e) {
                   if (
-                    $steps["goToAccueil"] != null &&
-                    typeof $steps["goToAccueil"] === "object" &&
-                    typeof $steps["goToAccueil"].then === "function"
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
                   ) {
-                    $steps["goToAccueil"] = await $steps["goToAccueil"];
+                    return true;
                   }
-                }}
-                start={
-                  <SearchIcon
-                    className={classNames(projectcss.all, sty.svg__etOs9)}
-                    role={"img"}
-                  />
+                  throw e;
                 }
-                type={(() => {
-                  try {
-                    return $ctx.pagePath === "/recherche-candidat"
-                      ? "actif"
-                      : "";
-                  } catch (e) {
-                    if (
-                      e instanceof TypeError ||
-                      e?.plasmicType === "PlasmicUndefinedDataError"
-                    ) {
-                      return "actif";
-                    }
-                    throw e;
+              })() ? (
+                <SideBarButton
+                  className={classNames(
+                    "__wab_instance",
+                    sty.sideBarButton__nGyEt
+                  )}
+                  iconStart={true}
+                  label={
+                    <div
+                      className={classNames(
+                        projectcss.all,
+                        projectcss.__wab_text,
+                        sty.text__dao91
+                      )}
+                    >
+                      {"Recherche Candidat"}
+                    </div>
                   }
-                })()}
-              />
+                  linkTo={`/recherche-candidat`}
+                  onClick={async event => {
+                    const $steps = {};
 
-              <SideBarButton
-                className={classNames(
-                  "__wab_instance",
-                  sty.sideBarButton___54H2X
-                )}
-                disabled={(() => {
-                  try {
-                    return $state.disableLinks;
-                  } catch (e) {
+                    $steps["goToAccueil"] = true
+                      ? (() => {
+                          const actionArgs = {
+                            destination: `/recherche-candidat`
+                          };
+                          return (({ destination }) => {
+                            if (
+                              typeof destination === "string" &&
+                              destination.startsWith("#")
+                            ) {
+                              document
+                                .getElementById(destination.substr(1))
+                                .scrollIntoView({ behavior: "smooth" });
+                            } else {
+                              __nextRouter?.push(destination);
+                            }
+                          })?.apply(null, [actionArgs]);
+                        })()
+                      : undefined;
                     if (
-                      e instanceof TypeError ||
-                      e?.plasmicType === "PlasmicUndefinedDataError"
+                      $steps["goToAccueil"] != null &&
+                      typeof $steps["goToAccueil"] === "object" &&
+                      typeof $steps["goToAccueil"].then === "function"
                     ) {
-                      return undefined;
+                      $steps["goToAccueil"] = await $steps["goToAccueil"];
                     }
-                    throw e;
+                  }}
+                  start={
+                    <SearchIcon
+                      className={classNames(projectcss.all, sty.svg__etOs9)}
+                      role={"img"}
+                    />
                   }
-                })()}
-                iconStart={true}
-                label={
-                  <div
-                    className={classNames(
-                      projectcss.all,
-                      projectcss.__wab_text,
-                      sty.text__fLt0T
-                    )}
-                  >
-                    {"parametres"}
-                  </div>
-                }
-                linkTo={`/parametres-employeur`}
-                onClick={async event => {
-                  const $steps = {};
-
-                  $steps["goToParametresEmployeur"] = true
-                    ? (() => {
-                        const actionArgs = {
-                          destination: `/parametres-employeur`
-                        };
-                        return (({ destination }) => {
-                          if (
-                            typeof destination === "string" &&
-                            destination.startsWith("#")
-                          ) {
-                            document
-                              .getElementById(destination.substr(1))
-                              .scrollIntoView({ behavior: "smooth" });
-                          } else {
-                            __nextRouter?.push(destination);
-                          }
-                        })?.apply(null, [actionArgs]);
-                      })()
-                    : undefined;
+                  type={(() => {
+                    try {
+                      return $ctx.pagePath === "/recherche-candidat"
+                        ? "actif"
+                        : "";
+                    } catch (e) {
+                      if (
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
+                      ) {
+                        return "actif";
+                      }
+                      throw e;
+                    }
+                  })()}
+                />
+              ) : null}
+              {(() => {
+                try {
+                  return $state.disableLinks;
+                } catch (e) {
                   if (
-                    $steps["goToParametresEmployeur"] != null &&
-                    typeof $steps["goToParametresEmployeur"] === "object" &&
-                    typeof $steps["goToParametresEmployeur"].then === "function"
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
                   ) {
-                    $steps["goToParametresEmployeur"] = await $steps[
-                      "goToParametresEmployeur"
-                    ];
+                    return true;
                   }
-                }}
-                start={
-                  <PhGearFillIcon
-                    className={classNames(projectcss.all, sty.svg__xLfno)}
-                    role={"img"}
-                  />
+                  throw e;
                 }
-                type={(() => {
-                  try {
-                    return $ctx.pagePath === "/parametres-employeur" ||
-                      $ctx.pagePath === "/parametres-abonnement"
-                      ? "actif"
-                      : "";
-                  } catch (e) {
-                    if (
-                      e instanceof TypeError ||
-                      e?.plasmicType === "PlasmicUndefinedDataError"
-                    ) {
-                      return "actif";
-                    }
-                    throw e;
+              })() ? (
+                <SideBarButton
+                  className={classNames(
+                    "__wab_instance",
+                    sty.sideBarButton___54H2X
+                  )}
+                  iconStart={true}
+                  label={
+                    <div
+                      className={classNames(
+                        projectcss.all,
+                        projectcss.__wab_text,
+                        sty.text__fLt0T
+                      )}
+                    >
+                      {"parametres"}
+                    </div>
                   }
-                })()}
-              />
+                  linkTo={`/parametres-employeur`}
+                  onClick={async event => {
+                    const $steps = {};
 
+                    $steps["goToParametresEmployeur"] = true
+                      ? (() => {
+                          const actionArgs = {
+                            destination: `/parametres-employeur`
+                          };
+                          return (({ destination }) => {
+                            if (
+                              typeof destination === "string" &&
+                              destination.startsWith("#")
+                            ) {
+                              document
+                                .getElementById(destination.substr(1))
+                                .scrollIntoView({ behavior: "smooth" });
+                            } else {
+                              __nextRouter?.push(destination);
+                            }
+                          })?.apply(null, [actionArgs]);
+                        })()
+                      : undefined;
+                    if (
+                      $steps["goToParametresEmployeur"] != null &&
+                      typeof $steps["goToParametresEmployeur"] === "object" &&
+                      typeof $steps["goToParametresEmployeur"].then ===
+                        "function"
+                    ) {
+                      $steps["goToParametresEmployeur"] = await $steps[
+                        "goToParametresEmployeur"
+                      ];
+                    }
+                  }}
+                  start={
+                    <PhGearFillIcon
+                      className={classNames(projectcss.all, sty.svg__xLfno)}
+                      role={"img"}
+                    />
+                  }
+                  type={(() => {
+                    try {
+                      return $ctx.pagePath === "/parametres-employeur" ||
+                        $ctx.pagePath === "/parametres-abonnement"
+                        ? "actif"
+                        : "";
+                    } catch (e) {
+                      if (
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
+                      ) {
+                        return "actif";
+                      }
+                      throw e;
+                    }
+                  })()}
+                />
+              ) : null}
               {(() => {
                 try {
                   return $ctx.pagePath === "/parametres-employeur" ||
