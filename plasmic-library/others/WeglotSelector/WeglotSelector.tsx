@@ -15,13 +15,9 @@ export interface WeglotSelectorProps {
 	onLanguageChange?: (lang: { code: string; label: string }) => void;
 }
 
-const FLAG_EMOJI: Record<string, string> = {
-	fr: "🇫🇷",
-	en: "🇬🇧",
-	es: "🇪🇸",
-	de: "🇩🇪",
-	it: "🇮🇹",
-	pt: "🇵🇹",
+const FLAG_SVG_URLS: Record<string, string | undefined> = {
+	fr: "/plasmic/weglot/flags/fr.svg",
+	en: "/plasmic/weglot/flags/en.svg",
 };
 
 function persistLang(code: string) {
@@ -48,7 +44,7 @@ const WeglotSelector: React.FC<WeglotSelectorProps> = ({
 		return languages.map((code) => ({
 			code,
 			label: labels[code] || code.toUpperCase(),
-			flag: FLAG_EMOJI[code] || "",
+			flagSvg: FLAG_SVG_URLS[code],
 		}));
 	}, [languages, labels]);
 
@@ -220,7 +216,19 @@ const WeglotSelector: React.FC<WeglotSelectorProps> = ({
 					whiteSpace: "nowrap",
 				}}
 			>
-				<span style={{ fontSize: 16 }}>{FLAG_EMOJI[selected] || ""}</span>
+				{FLAG_SVG_URLS[selected] && (
+					<img
+						src={FLAG_SVG_URLS[selected]!}
+						alt=""
+						aria-hidden
+						style={{
+							width: 16,
+							height: 12,
+							objectFit: "cover",
+							borderRadius: 2,
+						}}
+					/>
+				)}
 				<span>{labels[selected] || selected.toUpperCase()}</span>
 				<span aria-hidden style={{ marginLeft: "auto", opacity: 0.6 }}>
 					{isOpen ? "▴" : "▾"}
@@ -273,9 +281,19 @@ const WeglotSelector: React.FC<WeglotSelectorProps> = ({
 									cursor: "pointer",
 								}}
 							>
-								<span style={{ fontSize: 16 }}>
-									{opt.flag ? `${opt.flag}` : ""}
-								</span>
+								{opt.flagSvg && (
+									<img
+										src={opt.flagSvg}
+										alt=""
+										aria-hidden
+										style={{
+											width: 16,
+											height: 12,
+											objectFit: "cover",
+											borderRadius: 2,
+										}}
+									/>
+								)}
 								<span>{opt.label}</span>
 							</div>
 						);
