@@ -125,6 +125,7 @@
   .freeBox__mwkAc {
     top: auto;
     left: auto;
+    margin-top: 16px;
   }
 }
 .freeBox__am21O {
@@ -137,6 +138,11 @@
   height: auto;
   max-width: 100%;
   column-gap: 8px;
+}
+@media (min-width: 0px) and (max-width: 768px) {
+  .freeBox__am21O {
+    margin-top: 16px;
+  }
 }
 .heading2 {
   display: block;

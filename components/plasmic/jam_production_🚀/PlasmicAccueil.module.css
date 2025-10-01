@@ -226,6 +226,12 @@
     padding: 5px 11px 15px;
   }
 }
+@media (max-width: 375px) {
+  .header {
+    column-gap: 14px;
+    row-gap: 0px;
+  }
+}
 .jamLogo {
   width: auto;
   height: auto;
@@ -240,6 +246,12 @@
 @media (min-width: 0px) and (max-width: 768px) {
   .jamLogo {
     align-self: flex-start;
+    column-gap: 1px;
+    row-gap: 0px;
+  }
+}
+@media (max-width: 375px) {
+  .jamLogo {
     column-gap: 1px;
     row-gap: 0px;
   }
@@ -262,6 +274,12 @@
   .svg___5Qs48 {
     width: 42px;
     height: 42px;
+    flex-shrink: 0;
+  }
+}
+@media (max-width: 375px) {
+  .svg___5Qs48 {
+    width: 34px;
     flex-shrink: 0;
   }
 }
@@ -301,6 +319,11 @@
     font-size: 17px;
   }
 }
+@media (max-width: 375px) {
+  .text__vpFC {
+    font-size: 14px;
+  }
+}
 .frame4 {
   width: auto;
   height: auto;
@@ -327,6 +350,11 @@
 @media (min-width: 0px) and (max-width: 768px) {
   .text__sawvN {
     font-size: 17px;
+  }
+}
+@media (max-width: 375px) {
+  .text__sawvN {
+    font-size: 14px;
   }
 }
 .frame5 {
@@ -356,6 +384,11 @@
     font-size: 17px;
   }
 }
+@media (max-width: 375px) {
+  .text__rxVy {
+    font-size: 14px;
+  }
+}
 .freeBox__cWnZj {
   display: flex;
   flex-direction: row;
@@ -372,7 +405,7 @@
   .freeBox__cWnZj {
     justify-content: flex-end;
     align-items: center;
-    column-gap: 0px;
+    column-gap: 8px;
     padding-left: 0px;
     row-gap: 0px;
   }
@@ -392,6 +425,11 @@
     font-size: 14px;
     text-align: center;
     cursor: pointer;
+  }
+}
+@media (max-width: 375px) {
+  .link {
+    font-size: 12px;
   }
 }
 .button__c3Lr:global(.__wab_instance):global(.__wab_instance) {

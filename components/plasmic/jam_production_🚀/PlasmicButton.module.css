@@ -33,6 +33,11 @@
 .root[data-disabled]:global(.__wab_instance) {
   cursor: not-allowed;
 }
+@media (max-width: 375px) {
+  .root:global(.__wab_instance) {
+    font-size: 16px;
+  }
+}
 .rootcolor_neutral:global(.__wab_instance) {
   background: var(--token-5Q3utKadeUb3);
   color: #002400;

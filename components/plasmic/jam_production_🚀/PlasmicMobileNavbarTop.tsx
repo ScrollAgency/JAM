@@ -311,7 +311,7 @@ function PlasmicMobileNavbarTop__RenderFunc(props: {
           className={classNames("__wab_instance", sty.weglotSelector)}
           defaultLanguage={"fr"}
           dropdownDirection={"down"}
-          labels={{ fr: "FR", en: "EN" }}
+          labels={{ fr: " ", en: " " }}
           languages={["fr", "en"]}
         />
       </div>
