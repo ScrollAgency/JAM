@@ -1,10 +1,21 @@
 import React, { useState, useEffect } from "react";
-import { DatePicker, TimePicker } from "antd";
+import dynamic from "next/dynamic";
 import { Dayjs } from "dayjs";
 import dayjs from "dayjs";
-import "antd/dist/reset.css";
 import { cva } from "class-variance-authority";
 import { cn } from "@/lib/utils";
+
+// Import dynamique d'Ant Design pour éviter les problèmes SSR
+const DatePicker = dynamic(() => import("antd").then(mod => ({ default: mod.DatePicker })), {
+  ssr: false,
+  loading: () => <div className="animate-pulse bg-gray-200 h-10 rounded-2xl" />
+});
+
+const TimePicker = dynamic(() => import("antd").then(mod => ({ default: mod.TimePicker })), {
+  ssr: false,
+  loading: () => <div className="animate-pulse bg-gray-200 h-10 rounded-2xl" />
+});
+import "tailwindcss/tailwind.css";
 
 interface JamDatePickerProps {
     type?: "date" | "time" | "datetime";
@@ -50,11 +61,13 @@ const JamDatePicker = ({
         }
     }, [value]);
 
-    const handleDateChange = (date: Dayjs | null, dateString: string | string[]) => {
-        setDateValue(date);
+    const handleDateChange = (date: any, dateString: string | string[]) => {
+        const dayjsDate = date as Dayjs | null;
+        setDateValue(dayjsDate);
         if (onDateChange) {
+            // Convertir string[] en string si nécessaire
             const stringValue = Array.isArray(dateString) ? dateString[0] : dateString;
-            onDateChange(stringValue || null, date);
+            onDateChange(stringValue || null, dayjsDate);
         }
     };
 
