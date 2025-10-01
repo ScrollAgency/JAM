@@ -3,7 +3,7 @@ import React, { useEffect, useMemo, useState, useRef } from "react";
 export interface WeglotSelectorProps {
 	// Langues disponibles (codes ISO: ex 'fr', 'en')
 	languages?: string[];
-	// Libellés à afficher pour chaque langue; si absent, on affiche le code
+	// Libellés à afficher pour chaque langue; si absent, on n'affiche rien
 	labels?: Record<string, string>;
 	// Langue par défaut si Weglot n'est pas dispo
 	defaultLanguage?: string;
@@ -31,7 +31,7 @@ function persistLang(code: string) {
 
 const WeglotSelector: React.FC<WeglotSelectorProps> = ({
 	languages = ["fr", "en"],
-	labels = { fr: "Français", en: "English" },
+	labels = {},
 	defaultLanguage = "fr",
 	className = "",
 	dropdownDirection = "down",
@@ -40,12 +40,19 @@ const WeglotSelector: React.FC<WeglotSelectorProps> = ({
 	const weglot =
 		(typeof window !== "undefined" && (window as any).Weglot) || null;
 
+	const getLabel = (code: string): string => {
+		return Object.prototype.hasOwnProperty.call(labels, code)
+			? labels[code] ?? ""
+			: "";
+	};
+
 	const normalizedOptions = useMemo(() => {
 		return languages.map((code) => ({
 			code,
-			label: labels[code] || code.toUpperCase(),
+			label: getLabel(code),
 			flagSvg: FLAG_SVG_URLS[code],
 		}));
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [languages, labels]);
 
 	const getWeglotLanguage = (): string | null => {
@@ -123,7 +130,6 @@ const WeglotSelector: React.FC<WeglotSelectorProps> = ({
 	}, []);
 
 	// Fermer au clic extérieur
-	
 	useEffect(() => {
 		if (!isOpen) return;
 		const onDocClick = (e: MouseEvent | TouchEvent) => {
@@ -192,8 +198,8 @@ const WeglotSelector: React.FC<WeglotSelectorProps> = ({
 	const switchLanguage = (code: string) => {
 		setSelected(code);
 		persistLang(code);
-		// Notifie Plasmic
-		onLanguageChange?.({ code, label: labels[code] || code.toUpperCase() });
+		// Notifie Plasmic avec le libellé tel que fourni (éventuellement vide)
+		onLanguageChange?.({ code, label: getLabel(code) });
 		// Demande à Weglot si présent
 		try {
 			weglot?.switchTo?.(code);
@@ -258,7 +264,7 @@ const WeglotSelector: React.FC<WeglotSelectorProps> = ({
 						}}
 					/>
 				)}
-				<span>{labels[selected] || selected.toUpperCase()}</span>
+				{getLabel(selected) ? <span>{getLabel(selected)}</span> : null}
 				<span aria-hidden style={{ marginLeft: "auto", opacity: 0.6 }}>
 					{isOpen ? "▴" : "▾"}
 				</span>
@@ -323,7 +329,7 @@ const WeglotSelector: React.FC<WeglotSelectorProps> = ({
 										}}
 									/>
 								)}
-								<span>{opt.label}</span>
+								{opt.label ? <span>{opt.label}</span> : null}
 							</div>
 						);
 					})}
