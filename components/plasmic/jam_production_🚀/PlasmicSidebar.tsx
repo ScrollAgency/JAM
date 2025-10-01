@@ -1660,6 +1660,7 @@ function PlasmicSidebar__RenderFunc(props: {
             data-plasmic-override={overrides.weglotSelector}
             className={classNames("__wab_instance", sty.weglotSelector)}
             defaultLanguage={"fr"}
+            dropdownDirection={"down"}
             labels={{ fr: "Français", en: "English" }}
             languages={["fr", "en"]}
           />

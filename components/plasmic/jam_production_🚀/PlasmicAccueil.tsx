@@ -16729,6 +16729,7 @@ function PlasmicAccueil__RenderFunc(props: {
                         sty.weglotSelector
                       )}
                       defaultLanguage={"fr"}
+                      dropdownDirection={"up"}
                       labels={
                         hasVariant(globalVariants, "screen", "mobileOnly")
                           ? { fr: "", en: "" }
