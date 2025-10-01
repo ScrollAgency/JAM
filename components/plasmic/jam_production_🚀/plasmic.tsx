@@ -12,10 +12,8 @@ import {
   UnnamedGlobalGroupOfVariantsValue,
   useUnnamedGlobalGroupOfVariants
 } from "./PlasmicGlobalVariant__UnnamedGlobalGroupOfVariants"; // plasmic-import: XIKLz2YbSl05/globalVariant
-import { useScreenVariants as useScreenVariantssunYRowGfPxL } from "../library_tailwind_3_4_number_tokens/PlasmicGlobalVariant__Screen"; // plasmic-import: sunYRowGFPxL/globalVariant
 
 export const _useGlobalVariants = createUseGlobalVariants({
   screen: useScreenVariantshm8Nko4B5BDd,
-  unnamedGlobalGroupOfVariants: useUnnamedGlobalGroupOfVariants,
-  screen: useScreenVariantssunYRowGfPxL
+  unnamedGlobalGroupOfVariants: useUnnamedGlobalGroupOfVariants
 });

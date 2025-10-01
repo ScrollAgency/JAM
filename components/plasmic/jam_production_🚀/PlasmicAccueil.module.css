@@ -6184,17 +6184,17 @@
 .freeBox__kLrqw {
   display: flex;
   flex-direction: row;
-  position: relative;
+  position: fixed;
   align-items: stretch;
   justify-content: flex-start;
   width: auto;
   height: auto;
   max-width: 100%;
   top: auto;
-  left: auto;
+  left: 0;
   z-index: 730;
-  bottom: auto;
   justify-self: flex-start;
+  bottom: 0;
   padding: 8px;
 }
 @media (min-width: 0px) and (max-width: 768px) {
@@ -6203,6 +6203,11 @@
     top: auto;
     position: relative;
     bottom: auto;
+  }
+}
+@media (max-width: 375px) {
+  .freeBox__kLrqw {
+    width: auto;
   }
 }
 .weglotSelector:global(.__wab_instance) {
