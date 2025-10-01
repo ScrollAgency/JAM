@@ -1,6 +1,4 @@
 import React, { useEffect, useMemo, useState, useRef } from "react";
-import frFlagUrl from "./icons/fr.svg";
-import enFlagUrl from "./icons/en.svg";
 
 export interface WeglotSelectorProps {
 	// Langues disponibles (codes ISO: ex 'fr', 'en')
@@ -17,9 +15,9 @@ export interface WeglotSelectorProps {
 	onLanguageChange?: (lang: { code: string; label: string }) => void;
 }
 
-const FLAG_SVG: Record<string, string | undefined> = {
-	fr: frFlagUrl,
-	en: enFlagUrl,
+const FLAG_SVG_URLS: Record<string, string | undefined> = {
+	fr: "/plasmic/weglot/flags/fr.svg",
+	en: "/plasmic/weglot/flags/en.svg",
 };
 
 function persistLang(code: string) {
@@ -46,7 +44,7 @@ const WeglotSelector: React.FC<WeglotSelectorProps> = ({
 		return languages.map((code) => ({
 			code,
 			label: labels[code] || code.toUpperCase(),
-			flagSvg: FLAG_SVG[code],
+			flagSvg: FLAG_SVG_URLS[code],
 		}));
 	}, [languages, labels]);
 
@@ -218,9 +216,9 @@ const WeglotSelector: React.FC<WeglotSelectorProps> = ({
 					whiteSpace: "nowrap",
 				}}
 			>
-				{FLAG_SVG[selected] && (
+				{FLAG_SVG_URLS[selected] && (
 					<img
-						src={FLAG_SVG[selected]!}
+						src={FLAG_SVG_URLS[selected]!}
 						alt=""
 						aria-hidden
 						style={{
