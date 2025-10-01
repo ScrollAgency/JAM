@@ -6199,10 +6199,10 @@
 }
 @media (min-width: 0px) and (max-width: 768px) {
   .freeBox__kLrqw {
-    left: auto;
+    left: 0;
     top: auto;
-    position: relative;
-    bottom: auto;
+    position: fixed;
+    bottom: 0;
   }
 }
 @media (max-width: 375px) {
