@@ -113,6 +113,9 @@ export { default as PhoneSelectorMeta } from "./forms/PhoneSelector/PhoneSelecto
 //       JamInputText
 export { default as JamTextInput } from "./forms/JamTextInput/JamTextInput";
 export { default as JamTextInputMeta } from "./forms/JamTextInput/JamTextInput.meta";
+//       JamDatePicker
+export { default as JamDatePicker } from "./forms/JamDatePicker/JamDatePicker";
+export { default as JamDatePickerMeta } from "./forms/JamDatePicker/JamDatePicker.meta";
 //       SitexForm
 export { default as SitexForm } from "./forms/SitexForm/SitexForm";
 export { default as SitexFormMeta } from "./forms/SitexForm/SitexForm.meta";
