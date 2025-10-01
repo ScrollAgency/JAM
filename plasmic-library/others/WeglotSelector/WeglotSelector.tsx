@@ -1,4 +1,6 @@
 import React, { useEffect, useMemo, useState, useRef } from "react";
+import frFlagUrl from "./icons/fr.svg";
+import enFlagUrl from "./icons/en.svg";
 
 export interface WeglotSelectorProps {
 	// Langues disponibles (codes ISO: ex 'fr', 'en')
@@ -15,13 +17,9 @@ export interface WeglotSelectorProps {
 	onLanguageChange?: (lang: { code: string; label: string }) => void;
 }
 
-const FLAG_EMOJI: Record<string, string> = {
-	fr: "🇫🇷",
-	en: "🇬🇧",
-	es: "🇪🇸",
-	de: "🇩🇪",
-	it: "🇮🇹",
-	pt: "🇵🇹",
+const FLAG_SVG: Record<string, string | undefined> = {
+	fr: frFlagUrl,
+	en: enFlagUrl,
 };
 
 function persistLang(code: string) {
@@ -48,7 +46,7 @@ const WeglotSelector: React.FC<WeglotSelectorProps> = ({
 		return languages.map((code) => ({
 			code,
 			label: labels[code] || code.toUpperCase(),
-			flag: FLAG_EMOJI[code] || "",
+			flagSvg: FLAG_SVG[code],
 		}));
 	}, [languages, labels]);
 
@@ -220,7 +218,19 @@ const WeglotSelector: React.FC<WeglotSelectorProps> = ({
 					whiteSpace: "nowrap",
 				}}
 			>
-				<span style={{ fontSize: 16 }}>{FLAG_EMOJI[selected] || ""}</span>
+				{FLAG_SVG[selected] && (
+					<img
+						src={FLAG_SVG[selected]!}
+						alt=""
+						aria-hidden
+						style={{
+							width: 16,
+							height: 12,
+							objectFit: "cover",
+							borderRadius: 2,
+						}}
+					/>
+				)}
 				<span>{labels[selected] || selected.toUpperCase()}</span>
 				<span aria-hidden style={{ marginLeft: "auto", opacity: 0.6 }}>
 					{isOpen ? "▴" : "▾"}
@@ -273,9 +283,19 @@ const WeglotSelector: React.FC<WeglotSelectorProps> = ({
 									cursor: "pointer",
 								}}
 							>
-								<span style={{ fontSize: 16 }}>
-									{opt.flag ? `${opt.flag}` : ""}
-								</span>
+								{opt.flagSvg && (
+									<img
+										src={opt.flagSvg}
+										alt=""
+										aria-hidden
+										style={{
+											width: 16,
+											height: 12,
+											objectFit: "cover",
+											borderRadius: 2,
+										}}
+									/>
+								)}
 								<span>{opt.label}</span>
 							</div>
 						);
