@@ -123,6 +123,7 @@ const WeglotSelector: React.FC<WeglotSelectorProps> = ({
 	}, []);
 
 	// Fermer au clic extérieur
+	
 	useEffect(() => {
 		if (!isOpen) return;
 		const onDocClick = (e: MouseEvent | TouchEvent) => {
