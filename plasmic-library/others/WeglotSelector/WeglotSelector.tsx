@@ -69,7 +69,7 @@ const WeglotSelector: React.FC<WeglotSelectorProps> = ({
 	const menuRef = useRef<HTMLDivElement | null>(null);
 	const [autoOpenUp, setAutoOpenUp] = useState<boolean>(false);
 
-	// Synchronise l'état local avec Weglot au montage
+	// Synchronise l'état local avec Weglot au montage (LS puis Weglot si dispo)
 	useEffect(() => {
 		try {
 			const ls = window.localStorage.getItem("weglot_language");
@@ -78,6 +78,22 @@ const WeglotSelector: React.FC<WeglotSelectorProps> = ({
 		const current = getWeglotLanguage();
 		if (current && current !== selected) setSelected(current);
 	}, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+	// Poll court pour attendre l'initialisation réelle de Weglot et resynchroniser
+	useEffect(() => {
+		let tries = 0;
+		const maxTries = 25; // ~2.5s à 100ms
+		const id = window.setInterval(() => {
+			tries += 1;
+			const current = getWeglotLanguage();
+			if (current) {
+				setSelected((prev) => (prev !== current ? current : prev));
+				window.clearInterval(id);
+			}
+			if (tries >= maxTries) window.clearInterval(id);
+		}, 100);
+		return () => window.clearInterval(id);
+	}, []);
 
 	// Quand Weglot change en dehors (ex: widget natif), on écoute l'évènement si dispo
 	useEffect(() => {
@@ -93,6 +109,18 @@ const WeglotSelector: React.FC<WeglotSelectorProps> = ({
 			return;
 		}
 	}, [weglot]);
+
+	// Resynchronise lorsqu'on revient sur l'onglet (visibility change)
+	useEffect(() => {
+		const onVis = () => {
+			if (document.visibilityState === "visible") {
+				const current = getWeglotLanguage();
+				if (current) setSelected(current);
+			}
+		};
+		document.addEventListener("visibilitychange", onVis);
+		return () => document.removeEventListener("visibilitychange", onVis);
+	}, []);
 
 	// Fermer au clic extérieur
 	useEffect(() => {
