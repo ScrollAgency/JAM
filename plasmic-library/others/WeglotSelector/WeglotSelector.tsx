@@ -9,6 +9,8 @@ export interface WeglotSelectorProps {
 	defaultLanguage?: string;
 	// Style simple
 	className?: string;
+	// Direction du dropdown: 'up' (vers le haut) ou 'down' (vers le bas)
+	dropdownDirection?: "up" | "down" | "auto";
 	// Event: renvoie { code, label }
 	onLanguageChange?: (lang: { code: string; label: string }) => void;
 }
@@ -36,6 +38,7 @@ const WeglotSelector: React.FC<WeglotSelectorProps> = ({
 	labels = { fr: "Français", en: "English" },
 	defaultLanguage = "fr",
 	className = "",
+	dropdownDirection = "down",
 	onLanguageChange,
 }) => {
 	const weglot =
@@ -68,6 +71,7 @@ const WeglotSelector: React.FC<WeglotSelectorProps> = ({
 	const [isOpen, setIsOpen] = useState<boolean>(false);
 	const buttonRef = useRef<HTMLButtonElement | null>(null);
 	const menuRef = useRef<HTMLDivElement | null>(null);
+	const [autoOpenUp, setAutoOpenUp] = useState<boolean>(false);
 
 	// Synchronise l'état local avec Weglot au montage
 	useEffect(() => {
@@ -122,6 +126,44 @@ const WeglotSelector: React.FC<WeglotSelectorProps> = ({
 		return () => document.removeEventListener("keydown", onKey);
 	}, [isOpen]);
 
+	// Decide direction en mode auto (à l'ouverture + resize/scroll)
+	const decideAutoDirection = () => {
+		try {
+			const btn = buttonRef.current;
+			if (!btn) return;
+			const rect = btn.getBoundingClientRect();
+			const viewportH =
+				window.innerHeight || document.documentElement.clientHeight;
+			const spaceBelow = Math.max(0, viewportH - rect.bottom);
+			const spaceAbove = Math.max(0, rect.top);
+			// Estimation de la hauteur du menu
+			const estimatedItemH = 36; // px
+			const estimatedMenuH = Math.min(
+				240,
+				normalizedOptions.length * estimatedItemH
+			);
+			// Ouvre vers le haut si dessous insuffisant mais au-dessus suffisant
+			if (spaceBelow < estimatedMenuH && spaceAbove > spaceBelow) {
+				setAutoOpenUp(true);
+			} else {
+				setAutoOpenUp(false);
+			}
+		} catch {}
+	};
+
+	useEffect(() => {
+		if (!isOpen || dropdownDirection !== "auto") return;
+		decideAutoDirection();
+		const onWinChange = () => decideAutoDirection();
+		window.addEventListener("resize", onWinChange);
+		window.addEventListener("scroll", onWinChange, true);
+		return () => {
+			window.removeEventListener("resize", onWinChange);
+			window.removeEventListener("scroll", onWinChange, true);
+		};
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [isOpen, dropdownDirection]);
+
 	const switchLanguage = (code: string) => {
 		setSelected(code);
 		persistLang(code);
@@ -135,6 +177,10 @@ const WeglotSelector: React.FC<WeglotSelectorProps> = ({
 		setIsOpen(false);
 	};
 
+	const isUp =
+		dropdownDirection === "up" ||
+		(dropdownDirection === "auto" ? autoOpenUp : false);
+
 	return (
 		<div
 			className={className}
@@ -144,11 +190,21 @@ const WeglotSelector: React.FC<WeglotSelectorProps> = ({
 				ref={buttonRef}
 				aria-haspopup="listbox"
 				aria-expanded={isOpen}
-				onClick={() => setIsOpen((v) => !v)}
+				onClick={() => {
+					setIsOpen((v) => {
+						const next = !v;
+						if (next && dropdownDirection === "auto") decideAutoDirection();
+						return next;
+					});
+				}}
 				onKeyDown={(e) => {
 					if (e.key === "Enter" || e.key === " ") {
 						e.preventDefault();
-						setIsOpen((v) => !v);
+						setIsOpen((v) => {
+							const next = !v;
+							if (next && dropdownDirection === "auto") decideAutoDirection();
+							return next;
+						});
 					}
 				}}
 				style={{
@@ -177,10 +233,11 @@ const WeglotSelector: React.FC<WeglotSelectorProps> = ({
 					aria-activedescendant={`weglot-opt-${selected}`}
 					style={{
 						position: "absolute",
-						bottom: "100%",
+						...(isUp
+							? { bottom: "100%", marginBottom: 6 }
+							: { top: "100%", marginTop: 6 }),
 						left: 0,
 						zIndex: 1000,
-						marginBottom: 6,
 						width: "max-content",
 						minWidth: "auto",
 						maxHeight: 240,
