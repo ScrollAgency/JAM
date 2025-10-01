@@ -161,13 +161,13 @@ const WeglotSelector: React.FC<WeglotSelectorProps> = ({
 					background: "#fff",
 					fontSize: 14,
 					cursor: "pointer",
-					minWidth: 120,
+					whiteSpace: "nowrap",
 				}}
 			>
 				<span style={{ fontSize: 16 }}>{FLAG_EMOJI[selected] || ""}</span>
 				<span>{labels[selected] || selected.toUpperCase()}</span>
 				<span aria-hidden style={{ marginLeft: "auto", opacity: 0.6 }}>
-					▾
+					{isOpen ? "▴" : "▾"}
 				</span>
 			</button>
 			{isOpen && (
@@ -177,13 +177,16 @@ const WeglotSelector: React.FC<WeglotSelectorProps> = ({
 					aria-activedescendant={`weglot-opt-${selected}`}
 					style={{
 						position: "absolute",
-						top: "100%",
+						bottom: "100%",
 						left: 0,
 						zIndex: 1000,
-						marginTop: 6,
-						minWidth: "100%",
+						marginBottom: 6,
+						width: "max-content",
+						minWidth: "auto",
 						maxHeight: 240,
 						overflowY: "auto",
+						maxWidth: "90vw",
+						overflowX: "auto",
 						background: "#fff",
 						border: "1px solid #e2e2e2",
 						borderRadius: 8,
