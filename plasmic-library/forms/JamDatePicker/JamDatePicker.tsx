@@ -7,13 +7,13 @@ import { cn } from "@/lib/utils";
 
 // Import dynamique d'Ant Design pour éviter les problèmes SSR
 const DatePicker = dynamic(() => import("antd").then(mod => ({ default: mod.DatePicker })), {
-  ssr: false,
-  loading: () => <div className="animate-pulse bg-gray-200 h-10 rounded-2xl" />
+    ssr: false,
+    loading: () => <div className="animate-pulse bg-gray-200 h-10 rounded-2xl" />
 });
 
 const TimePicker = dynamic(() => import("antd").then(mod => ({ default: mod.TimePicker })), {
-  ssr: false,
-  loading: () => <div className="animate-pulse bg-gray-200 h-10 rounded-2xl" />
+    ssr: false,
+    loading: () => <div className="animate-pulse bg-gray-200 h-10 rounded-2xl" />
 });
 import "tailwindcss/tailwind.css";
 
