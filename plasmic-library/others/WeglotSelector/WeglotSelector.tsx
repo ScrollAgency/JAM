@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState, useRef } from "react";
 
 export interface WeglotSelectorProps {
 	// Langues disponibles (codes ISO: ex 'fr', 'en')
@@ -65,6 +65,9 @@ const WeglotSelector: React.FC<WeglotSelectorProps> = ({
 	};
 
 	const [selected, setSelected] = useState<string>(defaultLanguage);
+	const [isOpen, setIsOpen] = useState<boolean>(false);
+	const buttonRef = useRef<HTMLButtonElement | null>(null);
+	const menuRef = useRef<HTMLDivElement | null>(null);
 
 	// Synchronise l'état local avec Weglot au montage
 	useEffect(() => {
@@ -91,6 +94,34 @@ const WeglotSelector: React.FC<WeglotSelectorProps> = ({
 		}
 	}, [weglot]);
 
+	// Fermer au clic extérieur
+	useEffect(() => {
+		if (!isOpen) return;
+		const onDocClick = (e: MouseEvent | TouchEvent) => {
+			const target = e.target as Node | null;
+			if (!target) return;
+			const inButton = buttonRef.current?.contains(target);
+			const inMenu = menuRef.current?.contains(target);
+			if (!inButton && !inMenu) setIsOpen(false);
+		};
+		document.addEventListener("mousedown", onDocClick);
+		document.addEventListener("touchstart", onDocClick, { passive: true });
+		return () => {
+			document.removeEventListener("mousedown", onDocClick);
+			document.removeEventListener("touchstart", onDocClick);
+		};
+	}, [isOpen]);
+
+	// Fermer avec Échap
+	useEffect(() => {
+		if (!isOpen) return;
+		const onKey = (e: KeyboardEvent) => {
+			if (e.key === "Escape") setIsOpen(false);
+		};
+		document.addEventListener("keydown", onKey);
+		return () => document.removeEventListener("keydown", onKey);
+	}, [isOpen]);
+
 	const switchLanguage = (code: string) => {
 		setSelected(code);
 		persistLang(code);
@@ -101,28 +132,96 @@ const WeglotSelector: React.FC<WeglotSelectorProps> = ({
 			weglot?.switchTo?.(code);
 			weglot?.setLanguage?.(code);
 		} catch {}
+		setIsOpen(false);
 	};
 
 	return (
-		<div className={className}>
-			<select
-				value={selected}
-				onChange={(e) => switchLanguage(e.target.value)}
+		<div
+			className={className}
+			style={{ position: "relative", display: "inline-block" }}
+		>
+			<button
+				ref={buttonRef}
+				aria-haspopup="listbox"
+				aria-expanded={isOpen}
+				onClick={() => setIsOpen((v) => !v)}
+				onKeyDown={(e) => {
+					if (e.key === "Enter" || e.key === " ") {
+						e.preventDefault();
+						setIsOpen((v) => !v);
+					}
+				}}
 				style={{
+					display: "flex",
+					alignItems: "center",
+					gap: 8,
 					padding: "8px 12px",
 					borderRadius: 8,
 					border: "1px solid #e2e2e2",
 					background: "#fff",
 					fontSize: 14,
+					cursor: "pointer",
+					minWidth: 120,
 				}}
 			>
-				{normalizedOptions.map((opt) => (
-					<option key={opt.code} value={opt.code}>
-						{opt.flag ? `${opt.flag} ` : ""}
-						{opt.label}
-					</option>
-				))}
-			</select>
+				<span style={{ fontSize: 16 }}>{FLAG_EMOJI[selected] || ""}</span>
+				<span>{labels[selected] || selected.toUpperCase()}</span>
+				<span aria-hidden style={{ marginLeft: "auto", opacity: 0.6 }}>
+					▾
+				</span>
+			</button>
+			{isOpen && (
+				<div
+					ref={menuRef}
+					role="listbox"
+					aria-activedescendant={`weglot-opt-${selected}`}
+					style={{
+						position: "absolute",
+						top: "100%",
+						left: 0,
+						zIndex: 1000,
+						marginTop: 6,
+						minWidth: "100%",
+						maxHeight: 240,
+						overflowY: "auto",
+						background: "#fff",
+						border: "1px solid #e2e2e2",
+						borderRadius: 8,
+						boxShadow: "0 8px 24px rgba(0,0,0,0.08)",
+					}}
+				>
+					{normalizedOptions.map((opt) => {
+						const isActive = opt.code === selected;
+						return (
+							<div
+								id={`weglot-opt-${opt.code}`}
+								key={opt.code}
+								role="option"
+								aria-selected={isActive}
+								onClick={() => switchLanguage(opt.code)}
+								onKeyDown={(e) => {
+									if (e.key === "Enter") switchLanguage(opt.code);
+								}}
+								tabIndex={0}
+								style={{
+									display: "flex",
+									alignItems: "center",
+									gap: 8,
+									padding: "8px 12px",
+									fontSize: 14,
+									background: isActive ? "#f5f5f5" : "#fff",
+									cursor: "pointer",
+								}}
+							>
+								<span style={{ fontSize: 16 }}>
+									{opt.flag ? `${opt.flag}` : ""}
+								</span>
+								<span>{opt.label}</span>
+							</div>
+						);
+					})}
+				</div>
+			)}
 		</div>
 	);
 };
