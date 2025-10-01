@@ -7,7 +7,7 @@ const WeglotSelectorMeta = {
 	name: "WeglotSelector",
 	props: {
 		languages: {
-			type: "object",
+			type: "array",
 			defaultValue: ["fr", "en"],
 			description: "Codes de langues disponibles (ex: fr, en)",
 		},
@@ -22,6 +22,12 @@ const WeglotSelectorMeta = {
 			description: "Langue sélectionnée par défaut",
 		},
 		className: "string",
+		dropdownDirection: {
+			type: "choice",
+			options: ["down", "up", "auto"],
+			defaultValue: "down",
+			description: "Direction d'ouverture du menu",
+		},
 		onLanguageChange: {
 			type: "eventHandler",
 			argTypes: [{ name: "lang", type: "object" }],
