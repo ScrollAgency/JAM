@@ -5362,104 +5362,115 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                           name={"work_mode"}
                           rules={[{ ruleType: "required", message: "requis" }]}
                         >
-                          <Select
-                            data-plasmic-name={"select32"}
-                            data-plasmic-override={overrides.select32}
+                          <div
                             className={classNames(
-                              "__wab_instance",
-                              sty.select32
+                              projectcss.all,
+                              sty.freeBox__fnjuv
                             )}
-                            initialSelectedValue={undefined}
-                            items={(_par =>
-                              !_par ? [] : Array.isArray(_par) ? _par : [_par])(
-                              (() => {
-                                try {
-                                  return $queries.getCriteria.data
-                                    .filter(item => item.type === "work_mode")
-                                    .map(item => ({
-                                      value: item.id,
-                                      label: item.name
-                                    }));
-                                } catch (e) {
-                                  if (
-                                    e instanceof TypeError ||
-                                    e?.plasmicType ===
-                                      "PlasmicUndefinedDataError"
-                                  ) {
-                                    return [];
+                          >
+                            <Select
+                              data-plasmic-name={"select32"}
+                              data-plasmic-override={overrides.select32}
+                              className={classNames(
+                                "__wab_instance",
+                                sty.select32
+                              )}
+                              initialSelectedValue={undefined}
+                              items={(_par =>
+                                !_par
+                                  ? []
+                                  : Array.isArray(_par)
+                                    ? _par
+                                    : [_par])(
+                                (() => {
+                                  try {
+                                    return $queries.getCriteria.data
+                                      .filter(item => item.type === "work_mode")
+                                      .map(item => ({
+                                        value: item.id,
+                                        label: item.name
+                                      }));
+                                  } catch (e) {
+                                    if (
+                                      e instanceof TypeError ||
+                                      e?.plasmicType ===
+                                        "PlasmicUndefinedDataError"
+                                    ) {
+                                      return [];
+                                    }
+                                    throw e;
                                   }
-                                  throw e;
-                                }
-                              })()
-                            ).map((__plasmic_item_0, __plasmic_idx_0) => {
-                              const currentItem = __plasmic_item_0;
-                              const currentIndex = __plasmic_idx_0;
-                              return (
-                                <MenuItem
+                                })()
+                              ).map((__plasmic_item_0, __plasmic_idx_0) => {
+                                const currentItem = __plasmic_item_0;
+                                const currentIndex = __plasmic_idx_0;
+                                return (
+                                  <MenuItem
+                                    className={classNames(
+                                      "__wab_instance",
+                                      sty.menuItem__gsxIt
+                                    )}
+                                    key={currentIndex}
+                                    label={(() => {
+                                      try {
+                                        return currentItem.label;
+                                      } catch (e) {
+                                        if (
+                                          e instanceof TypeError ||
+                                          e?.plasmicType ===
+                                            "PlasmicUndefinedDataError"
+                                        ) {
+                                          return undefined;
+                                        }
+                                        throw e;
+                                      }
+                                    })()}
+                                    value={(() => {
+                                      try {
+                                        return currentItem.value;
+                                      } catch (e) {
+                                        if (
+                                          e instanceof TypeError ||
+                                          e?.plasmicType ===
+                                            "PlasmicUndefinedDataError"
+                                        ) {
+                                          return undefined;
+                                        }
+                                        throw e;
+                                      }
+                                    })()}
+                                  />
+                                );
+                              })}
+                              label={
+                                <div
                                   className={classNames(
-                                    "__wab_instance",
-                                    sty.menuItem__gsxIt
+                                    projectcss.all,
+                                    projectcss.__wab_text,
+                                    sty.text__x20T
                                   )}
-                                  key={currentIndex}
-                                  label={(() => {
-                                    try {
-                                      return currentItem.label;
-                                    } catch (e) {
-                                      if (
-                                        e instanceof TypeError ||
-                                        e?.plasmicType ===
-                                          "PlasmicUndefinedDataError"
-                                      ) {
-                                        return undefined;
-                                      }
-                                      throw e;
-                                    }
-                                  })()}
-                                  value={(() => {
-                                    try {
-                                      return currentItem.value;
-                                    } catch (e) {
-                                      if (
-                                        e instanceof TypeError ||
-                                        e?.plasmicType ===
-                                          "PlasmicUndefinedDataError"
-                                      ) {
-                                        return undefined;
-                                      }
-                                      throw e;
-                                    }
-                                  })()}
-                                />
-                              );
-                            })}
-                            label={
-                              <div
-                                className={classNames(
-                                  projectcss.all,
-                                  projectcss.__wab_text,
-                                  sty.text__x20T
-                                )}
-                              >
-                                {"Label"}
-                              </div>
-                            }
-                            onChange={async (...eventArgs: any) => {
-                              generateStateOnChangeProp($state, [
-                                "select32",
-                                "value"
-                              ]).apply(null, eventArgs);
-
-                              if (
-                                eventArgs.length > 1 &&
-                                eventArgs[1] &&
-                                eventArgs[1]._plasmic_state_init_
-                              ) {
-                                return;
+                                >
+                                  {"Label"}
+                                </div>
                               }
-                            }}
-                            placeholder={"Mode de travail"}
-                            showLabel={false}
-                          />
+                              onChange={async (...eventArgs: any) => {
+                                generateStateOnChangeProp($state, [
+                                  "select32",
+                                  "value"
+                                ]).apply(null, eventArgs);
+
+                                if (
+                                  eventArgs.length > 1 &&
+                                  eventArgs[1] &&
+                                  eventArgs[1]._plasmic_state_init_
+                                ) {
+                                  return;
+                                }
+                              }}
+                              placeholder={"Mode de travail"}
+                              showLabel={false}
+                            />
+                          </div>
                         </FormItemWrapper>
                         <FormItemWrapper
                           className={classNames(

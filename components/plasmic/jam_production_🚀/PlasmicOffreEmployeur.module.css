@@ -958,6 +958,18 @@
     font-size: 14px;
   }
 }
+.freeBox__fnjuv {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  justify-content: flex-start;
+  align-items: center;
+  min-width: 0;
+  padding: 15px 8px 8px;
+}
 .select32:global(.__wab_instance):global(.__wab_instance) {
   height: 100%;
   min-height: 48px;
@@ -991,7 +1003,7 @@
   height: auto;
   max-width: 100%;
   min-width: 0;
-  padding: 8px;
+  padding: 8px 8px 0px;
 }
 @media (min-width: 0px) and (max-width: 768px) {
   .freeBox__vhVxe {
