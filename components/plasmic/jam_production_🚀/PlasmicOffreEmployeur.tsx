@@ -85,7 +85,6 @@ import { JamDatePicker } from "../../forms/JamDatePicker/JamDatePicker"; // plas
 import LastMinuteToggle from "../../LastMinuteToggle"; // plasmic-import: Porp6y76-dWy/component
 import { AntdSelect } from "@plasmicpkgs/antd5/skinny/registerSelect";
 import TextAreaInput from "../../TextAreaInput"; // plasmic-import: nVAUbPc6gpoz/component
-import { Embed } from "@plasmicpkgs/plasmic-basic-components";
 import { AntdDatePicker } from "@plasmicpkgs/antd5/skinny/registerDatePicker";
 import { datePickerHelpers as AntdDatePicker_Helpers } from "@plasmicpkgs/antd5/skinny/registerDatePicker";
 import DeleteAccount from "../../DeleteAccount"; // plasmic-import: KdtWnTG_vDHe/component
@@ -185,7 +184,6 @@ export type PlasmicOffreEmployeur__OverridesType = {
   select10?: Flex__<typeof Select>;
   textAreaInput?: Flex__<typeof TextAreaInput>;
   textAreaInput2?: Flex__<typeof TextAreaInput>;
-  embedHtml?: Flex__<typeof Embed>;
   editJob?: Flex__<typeof Modal>;
   formUpdate?: Flex__<typeof FormWrapper>;
   textInput20?: Flex__<typeof TextInput>;
@@ -6826,14 +6824,6 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                     </FormWrapper>
                   );
                 })()}
-                <Embed
-                  data-plasmic-name={"embedHtml"}
-                  data-plasmic-override={overrides.embedHtml}
-                  className={classNames("__wab_instance", sty.embedHtml)}
-                  code={
-                    "<style>\r\n.ant-picker-panel-container{\r\n  margin-top : 400px;\r\n  margin-left : 10%;\r\n}\r\n</style>\r\n"
-                  }
-                />
               </div>
             }
             footer={null}
@@ -19906,7 +19896,6 @@ const PlasmicDescendants = {
     "select10",
     "textAreaInput",
     "textAreaInput2",
-    "embedHtml",
     "editJob",
     "formUpdate",
     "textInput20",
@@ -20121,8 +20110,7 @@ const PlasmicDescendants = {
     "ville",
     "select10",
     "textAreaInput",
-    "textAreaInput2",
-    "embedHtml"
+    "textAreaInput2"
   ],
   form2: [
     "form2",
@@ -20163,7 +20151,6 @@ const PlasmicDescendants = {
   select10: ["select10"],
   textAreaInput: ["textAreaInput"],
   textAreaInput2: ["textAreaInput2"],
-  embedHtml: ["embedHtml"],
   editJob: [
     "editJob",
     "formUpdate",
@@ -20805,7 +20792,6 @@ type NodeDefaultElementType = {
   select10: typeof Select;
   textAreaInput: typeof TextAreaInput;
   textAreaInput2: typeof TextAreaInput;
-  embedHtml: typeof Embed;
   editJob: typeof Modal;
   formUpdate: typeof FormWrapper;
   textInput20: typeof TextInput;
@@ -21062,7 +21048,6 @@ export const PlasmicOffreEmployeur = Object.assign(
     select10: makeNodeComponent("select10"),
     textAreaInput: makeNodeComponent("textAreaInput"),
     textAreaInput2: makeNodeComponent("textAreaInput2"),
-    embedHtml: makeNodeComponent("embedHtml"),
     editJob: makeNodeComponent("editJob"),
     formUpdate: makeNodeComponent("formUpdate"),
     textInput20: makeNodeComponent("textInput20"),
