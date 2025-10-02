@@ -858,21 +858,9 @@
   min-width: 0;
   padding: 8px;
 }
-.timePicker3:global(.__wab_instance) {
-  color: var(--token-qVvTulujfE86);
-  height: 100%;
-  min-height: 48px;
-  display: flex;
-  font-size: 16px;
-  flex-direction: row;
-  row-gap: 0px;
+.jamDatePicker__wrVbn:global(.__wab_instance) {
   max-width: 100%;
   object-fit: cover;
-  width: 100%;
-  background: none;
-  min-width: 0;
-  border-radius: 16px;
-  border: 1px solid var(--token-d-0gEGbakN0M);
 }
 .formField__jnbdB:global(.__wab_instance) {
   width: 100%;
@@ -907,19 +895,9 @@
   min-width: 0;
   padding: 8px;
 }
-.timePicker4:global(.__wab_instance) {
-  color: var(--token-qVvTulujfE86);
-  height: 100%;
-  min-height: 48px;
-  display: flex;
-  font-size: 16px;
-  flex-direction: row;
-  row-gap: 0px;
+.jamDatePicker__r3Ki7:global(.__wab_instance) {
+  max-width: 100%;
   object-fit: cover;
-  width: 100%;
-  min-width: 0;
-  border-radius: 16px;
-  border: 1px solid var(--token-d-0gEGbakN0M);
 }
 .freeBox__pxPvH {
   display: flex;

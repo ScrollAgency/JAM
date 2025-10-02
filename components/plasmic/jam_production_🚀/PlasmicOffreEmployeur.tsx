@@ -81,12 +81,13 @@ import { FormItemWrapper } from "@plasmicpkgs/antd5/skinny/FormItem";
 import TextInput from "../../TextInput"; // plasmic-import: pZ7Ql6sUFRw9/component
 import Select from "../../Select"; // plasmic-import: ZMB-SB-xJDyQ/component
 import MenuItem from "../../MenuItem"; // plasmic-import: plmAgyhhAdMc/component
-import { AntdDatePicker } from "@plasmicpkgs/antd5/skinny/registerDatePicker";
-import { datePickerHelpers as AntdDatePicker_Helpers } from "@plasmicpkgs/antd5/skinny/registerDatePicker";
+import { JamDatePicker } from "../../forms/JamDatePicker/JamDatePicker"; // plasmic-import: Qpnfm_SMTd8c/codeComponent
 import LastMinuteToggle from "../../LastMinuteToggle"; // plasmic-import: Porp6y76-dWy/component
 import { AntdSelect } from "@plasmicpkgs/antd5/skinny/registerSelect";
 import TextAreaInput from "../../TextAreaInput"; // plasmic-import: nVAUbPc6gpoz/component
 import { Embed } from "@plasmicpkgs/plasmic-basic-components";
+import { AntdDatePicker } from "@plasmicpkgs/antd5/skinny/registerDatePicker";
+import { datePickerHelpers as AntdDatePicker_Helpers } from "@plasmicpkgs/antd5/skinny/registerDatePicker";
 import DeleteAccount from "../../DeleteAccount"; // plasmic-import: KdtWnTG_vDHe/component
 import { UploadWrapper } from "@plasmicpkgs/antd5/skinny/registerUpload";
 import ProgressBar from "../../ProgressBar"; // plasmic-import: o2sDSKJQp4UX/component
@@ -172,9 +173,7 @@ export type PlasmicOffreEmployeur__OverridesType = {
   select30?: Flex__<typeof Select>;
   select31?: Flex__<typeof Select>;
   container1?: Flex__<"div">;
-  timePicker3?: Flex__<typeof AntdDatePicker>;
   container2?: Flex__<"div">;
-  timePicker4?: Flex__<typeof AntdDatePicker>;
   select32?: Flex__<typeof Select>;
   lastMinuteToggle?: Flex__<typeof LastMinuteToggle>;
   select33?: Flex__<typeof Select>;
@@ -999,22 +998,6 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
       },
       {
         path: "timePicker2.value",
-        type: "private",
-        variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
-
-        onMutate: generateOnMutateForSpec("value", AntdDatePicker_Helpers)
-      },
-      {
-        path: "timePicker3.value",
-        type: "private",
-        variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
-
-        onMutate: generateOnMutateForSpec("value", AntdDatePicker_Helpers)
-      },
-      {
-        path: "timePicker4.value",
         type: "private",
         variableType: "text",
         initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
@@ -1942,9 +1925,8 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
               typeof $steps["updateCompanyInfosIsOpen"] === "object" &&
               typeof $steps["updateCompanyInfosIsOpen"].then === "function"
             ) {
-              $steps["updateCompanyInfosIsOpen"] = await $steps[
-                "updateCompanyInfosIsOpen"
-              ];
+              $steps["updateCompanyInfosIsOpen"] =
+                await $steps["updateCompanyInfosIsOpen"];
             }
           }}
           style={undefined}
@@ -2097,9 +2079,8 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                             typeof $steps["postgresGetList"] === "object" &&
                             typeof $steps["postgresGetList"].then === "function"
                           ) {
-                            $steps["postgresGetList"] = await $steps[
-                              "postgresGetList"
-                            ];
+                            $steps["postgresGetList"] =
+                              await $steps["postgresGetList"];
                           }
 
                           $steps["updateOnBoardingStatus"] = true
@@ -2136,9 +2117,8 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                             typeof $steps["updateOnBoardingStatus"].then ===
                               "function"
                           ) {
-                            $steps["updateOnBoardingStatus"] = await $steps[
-                              "updateOnBoardingStatus"
-                            ];
+                            $steps["updateOnBoardingStatus"] =
+                              await $steps["updateOnBoardingStatus"];
                           }
                         }}
                         shouldRun={true}
@@ -2212,16 +2192,13 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                                         !isNaN(rechargeLastminute) &&
                                         rechargeLastminute > 0;
                                       if (isLastminuteValid) {
-                                        $state.insufficientCharges.isOpen =
-                                          false;
+                                        $state.insufficientCharges.isOpen = false;
                                         return true;
                                       } else if (isClassicValid) {
-                                        $state.insufficientCharges.isOpen =
-                                          false;
+                                        $state.insufficientCharges.isOpen = false;
                                         return true;
                                       } else {
-                                        $state.insufficientCharges.isOpen =
-                                          true;
+                                        $state.insufficientCharges.isOpen = true;
                                         return false;
                                       }
                                     })();
@@ -2274,9 +2251,8 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                             typeof $steps["updateCreateOffreIsOpen"].then ===
                               "function"
                           ) {
-                            $steps["updateCreateOffreIsOpen"] = await $steps[
-                              "updateCreateOffreIsOpen"
-                            ];
+                            $steps["updateCreateOffreIsOpen"] =
+                              await $steps["updateCreateOffreIsOpen"];
                           }
                         }}
                       />
@@ -2441,9 +2417,8 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                                       typeof $steps["openDeleteModal"].then ===
                                         "function"
                                     ) {
-                                      $steps["openDeleteModal"] = await $steps[
-                                        "openDeleteModal"
-                                      ];
+                                      $steps["openDeleteModal"] =
+                                        await $steps["openDeleteModal"];
                                     }
                                   },
                                   avalabilityStatus: generateStateValueProp(
@@ -2662,9 +2637,10 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                                     ) {
                                       $steps[
                                         "updateInsufficientChargesIsOpen"
-                                      ] = await $steps[
-                                        "updateInsufficientChargesIsOpen"
-                                      ];
+                                      ] =
+                                        await $steps[
+                                          "updateInsufficientChargesIsOpen"
+                                        ];
                                     }
                                   },
                                   onContractTypeChange: async (
@@ -2765,8 +2741,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                                                     .switch3IsSelected &&
                                                   rechargeBoost <= 0
                                                 ) {
-                                                  $state.insufficientCharges.isOpen =
-                                                    true;
+                                                  $state.insufficientCharges.isOpen = true;
                                                   $state.jobCard[
                                                     currentItem
                                                   ].switch3IsSelected = false;
@@ -2787,9 +2762,8 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                                       typeof $steps["runCode"].then ===
                                         "function"
                                     ) {
-                                      $steps["runCode"] = await $steps[
-                                        "runCode"
-                                      ];
+                                      $steps["runCode"] =
+                                        await $steps["runCode"];
                                     }
 
                                     $steps["postgresUpdateMany"] =
@@ -3129,28 +3103,23 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                                                   currentItem.is_last_minute;
                                                 if (isLastMinuteJob) {
                                                   if (rechargeLastminute > 0) {
-                                                    $state.insufficientCharges.isOpen =
-                                                      false;
+                                                    $state.insufficientCharges.isOpen = false;
                                                     return true;
                                                   } else {
-                                                    $state.insufficientCharges.isOpen =
-                                                      true;
+                                                    $state.insufficientCharges.isOpen = true;
                                                     return false;
                                                   }
                                                 } else {
                                                   if (rechargeClassic > 0) {
-                                                    $state.insufficientCharges.isOpen =
-                                                      false;
+                                                    $state.insufficientCharges.isOpen = false;
                                                     return true;
                                                   } else if (
                                                     rechargeLastminute > 0
                                                   ) {
-                                                    $state.insufficientCharges.isOpen =
-                                                      true;
+                                                    $state.insufficientCharges.isOpen = true;
                                                     return false;
                                                   } else {
-                                                    $state.insufficientCharges.isOpen =
-                                                      true;
+                                                    $state.insufficientCharges.isOpen = true;
                                                     return false;
                                                   }
                                                 }
@@ -3168,9 +3137,8 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                                       typeof $steps["runCode"].then ===
                                         "function"
                                     ) {
-                                      $steps["runCode"] = await $steps[
-                                        "runCode"
-                                      ];
+                                      $steps["runCode"] =
+                                        await $steps["runCode"];
                                     }
 
                                     $steps["postgresUpdateById"] =
@@ -3347,9 +3315,8 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                                       typeof $steps["useCredit"].then ===
                                         "function"
                                     ) {
-                                      $steps["useCredit"] = await $steps[
-                                        "useCredit"
-                                      ];
+                                      $steps["useCredit"] =
+                                        await $steps["useCredit"];
                                     }
 
                                     $steps["goToOffreEmployeur"] =
@@ -3453,9 +3420,8 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                                       typeof $steps["httpPost"].then ===
                                         "function"
                                     ) {
-                                      $steps["httpPost"] = await $steps[
-                                        "httpPost"
-                                      ];
+                                      $steps["httpPost"] =
+                                        await $steps["httpPost"];
                                     }
                                   },
                                   onclickToShowJobApplications: async () => {
@@ -4189,22 +4155,18 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                                             .switch2IsSelected
                                         ) {
                                           if (isLastminuteValid) {
-                                            $state.insufficientCharges.isOpen =
-                                              false;
+                                            $state.insufficientCharges.isOpen = false;
                                             return true;
                                           } else {
-                                            $state.insufficientCharges.isOpen =
-                                              true;
+                                            $state.insufficientCharges.isOpen = true;
                                             return false;
                                           }
                                         } else {
                                           if (isClassicValid) {
-                                            $state.insufficientCharges.isOpen =
-                                              false;
+                                            $state.insufficientCharges.isOpen = false;
                                             return true;
                                           } else {
-                                            $state.insufficientCharges.isOpen =
-                                              true;
+                                            $state.insufficientCharges.isOpen = true;
                                             return false;
                                           }
                                         }
@@ -4259,9 +4221,8 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                               typeof $steps["updateCreateOffreIsOpen"].then ===
                                 "function"
                             ) {
-                              $steps["updateCreateOffreIsOpen"] = await $steps[
-                                "updateCreateOffreIsOpen"
-                              ];
+                              $steps["updateCreateOffreIsOpen"] =
+                                await $steps["updateCreateOffreIsOpen"];
                             }
                           }}
                         />
@@ -4385,9 +4346,8 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                         typeof $steps["checkRechargeQuantity"].then ===
                           "function"
                       ) {
-                        $steps["checkRechargeQuantity"] = await $steps[
-                          "checkRechargeQuantity"
-                        ];
+                        $steps["checkRechargeQuantity"] =
+                          await $steps["checkRechargeQuantity"];
                       }
 
                       $steps["createOffer"] = true
@@ -4537,9 +4497,8 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                         typeof $steps["sendEmailToEmployer"] === "object" &&
                         typeof $steps["sendEmailToEmployer"].then === "function"
                       ) {
-                        $steps["sendEmailToEmployer"] = await $steps[
-                          "sendEmailToEmployer"
-                        ];
+                        $steps["sendEmailToEmployer"] =
+                          await $steps["sendEmailToEmployer"];
                       }
 
                       $steps["closeModal"] = true
@@ -4595,9 +4554,8 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                         typeof $steps["showNotification"] === "object" &&
                         typeof $steps["showNotification"].then === "function"
                       ) {
-                        $steps["showNotification"] = await $steps[
-                          "showNotification"
-                        ];
+                        $steps["showNotification"] =
+                          await $steps["showNotification"];
                       }
 
                       $steps["updateStripe"] =
@@ -5312,54 +5270,18 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                               sty.container1
                             )}
                           >
-                            {(() => {
-                              const child$Props = {
-                                allowClear: true,
-                                autoFocus: false,
-                                bordered: true,
-                                className: classNames(
-                                  "__wab_instance",
-                                  sty.timePicker3
-                                ),
-                                disabled: false,
-                                onChange: async (...eventArgs: any) => {
-                                  generateStateOnChangePropForCodeComponents(
-                                    $state,
-                                    "value",
-                                    ["timePicker3", "value"],
-                                    AntdDatePicker_Helpers
-                                  ).apply(null, eventArgs);
-                                },
-                                popupScopeClassName:
-                                  sty["timePicker3__datePickerPopup"],
-                                showTime: false,
-                                showToday: true,
-                                value: generateStateValueProp($state, [
-                                  "timePicker3",
-                                  "value"
-                                ])
-                              };
-                              initializeCodeComponentStates(
-                                $state,
-                                [
-                                  {
-                                    name: "value",
-                                    plasmicStateName: "timePicker3.value"
-                                  }
-                                ],
-                                [],
-                                AntdDatePicker_Helpers ?? {},
-                                child$Props
-                              );
-
-                              return (
-                                <AntdDatePicker
-                                  data-plasmic-name={"timePicker3"}
-                                  data-plasmic-override={overrides.timePicker3}
-                                  {...child$Props}
-                                />
-                              );
-                            })()}
+                            <JamDatePicker
+                              allowClear={true}
+                              className={classNames(
+                                "__wab_instance",
+                                sty.jamDatePicker__wrVbn
+                              )}
+                              destructive={false}
+                              disabled={false}
+                              showTime={false}
+                              size={"middle"}
+                              type={"date"}
+                            />
                           </div>
                         </FormItemWrapper>
                         <FormItemWrapper
@@ -5402,56 +5324,18 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                               sty.container2
                             )}
                           >
-                            {(() => {
-                              const child$Props = {
-                                allowClear: true,
-                                className: classNames(
-                                  "__wab_instance",
-                                  sty.timePicker4
-                                ),
-                                onChange: async (...eventArgs: any) => {
-                                  generateStateOnChangePropForCodeComponents(
-                                    $state,
-                                    "value",
-                                    ["timePicker4", "value"],
-                                    AntdDatePicker_Helpers
-                                  ).apply(null, eventArgs);
-                                },
-                                popupClassName: classNames({
-                                  [sty["pcls_IoHJJlCE9lBU"]]: hasVariant(
-                                    globalVariants,
-                                    "screen",
-                                    "mobileOnly"
-                                  )
-                                }),
-                                popupScopeClassName:
-                                  sty["timePicker4__datePickerPopup"],
-                                value: generateStateValueProp($state, [
-                                  "timePicker4",
-                                  "value"
-                                ])
-                              };
-                              initializeCodeComponentStates(
-                                $state,
-                                [
-                                  {
-                                    name: "value",
-                                    plasmicStateName: "timePicker4.value"
-                                  }
-                                ],
-                                [],
-                                AntdDatePicker_Helpers ?? {},
-                                child$Props
-                              );
-
-                              return (
-                                <AntdDatePicker
-                                  data-plasmic-name={"timePicker4"}
-                                  data-plasmic-override={overrides.timePicker4}
-                                  {...child$Props}
-                                />
-                              );
-                            })()}
+                            <JamDatePicker
+                              allowClear={true}
+                              className={classNames(
+                                "__wab_instance",
+                                sty.jamDatePicker__r3Ki7
+                              )}
+                              destructive={false}
+                              disabled={false}
+                              showTime={false}
+                              size={"middle"}
+                              type={"date"}
+                            />
                           </div>
                         </FormItemWrapper>
                       </div>
@@ -6503,9 +6387,8 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                               typeof $steps["createDraftJob"].then ===
                                 "function"
                             ) {
-                              $steps["createDraftJob"] = await $steps[
-                                "createDraftJob"
-                              ];
+                              $steps["createDraftJob"] =
+                                await $steps["createDraftJob"];
                             }
 
                             $steps["runCode"] = true
@@ -6513,10 +6396,8 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                                   const actionArgs = {
                                     customFunction: async () => {
                                       return (() => {
-                                        $state.lastMinuteToggle.switch2IsSelected =
-                                          false;
-                                        return ($state.lastMinuteToggle2.switch2IsSelected =
-                                          false);
+                                        $state.lastMinuteToggle.switch2IsSelected = false;
+                                        return ($state.lastMinuteToggle2.switch2IsSelected = false);
                                       })();
                                     }
                                   };
@@ -6587,9 +6468,8 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                               typeof $steps["invokeGlobalAction"].then ===
                                 "function"
                             ) {
-                              $steps["invokeGlobalAction"] = await $steps[
-                                "invokeGlobalAction"
-                              ];
+                              $steps["invokeGlobalAction"] =
+                                await $steps["invokeGlobalAction"];
                             }
                           }}
                           resetsForm={true}
@@ -6644,22 +6524,18 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                                             .switch2IsSelected
                                         ) {
                                           if (rechargeLastminute > 0) {
-                                            $state.insufficientCharges.isOpen =
-                                              false;
+                                            $state.insufficientCharges.isOpen = false;
                                             return true;
                                           } else {
-                                            $state.insufficientCharges.isOpen =
-                                              true;
+                                            $state.insufficientCharges.isOpen = true;
                                             return false;
                                           }
                                         } else {
                                           if (rechargeClassic > 0) {
-                                            $state.insufficientCharges.isOpen =
-                                              false;
+                                            $state.insufficientCharges.isOpen = false;
                                             return true;
                                           } else {
-                                            $state.insufficientCharges.isOpen =
-                                              true;
+                                            $state.insufficientCharges.isOpen = true;
                                             return false;
                                           }
                                         }
@@ -6685,10 +6561,8 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                                     customFunction: async () => {
                                       return (() => {
                                         $state.createJob.isOpen = false;
-                                        $state.lastMinuteToggle.switch2IsSelected =
-                                          false;
-                                        return ($state.lastMinuteToggle2.switch2IsSelected =
-                                          false);
+                                        $state.lastMinuteToggle.switch2IsSelected = false;
+                                        return ($state.lastMinuteToggle2.switch2IsSelected = false);
                                       })();
                                     }
                                   };
@@ -6806,9 +6680,8 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                               typeof $steps["createOffer"] === "object" &&
                               typeof $steps["createOffer"].then === "function"
                             ) {
-                              $steps["createOffer"] = await $steps[
-                                "createOffer"
-                              ];
+                              $steps["createOffer"] =
+                                await $steps["createOffer"];
                             }
 
                             $steps["showNotification"] = false
@@ -6830,9 +6703,8 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                               typeof $steps["showNotification"].then ===
                                 "function"
                             ) {
-                              $steps["showNotification"] = await $steps[
-                                "showNotification"
-                              ];
+                              $steps["showNotification"] =
+                                await $steps["showNotification"];
                             }
 
                             $steps["updateStripe"] = false
@@ -6943,9 +6815,8 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                               typeof $steps["updateStripe"] === "object" &&
                               typeof $steps["updateStripe"].then === "function"
                             ) {
-                              $steps["updateStripe"] = await $steps[
-                                "updateStripe"
-                              ];
+                              $steps["updateStripe"] =
+                                await $steps["updateStripe"];
                             }
                           }}
                           resetsForm={false}
@@ -7029,9 +6900,8 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                       typeof $steps["updateCreateOffreIsOpen"].then ===
                         "function"
                     ) {
-                      $steps["updateCreateOffreIsOpen"] = await $steps[
-                        "updateCreateOffreIsOpen"
-                      ];
+                      $steps["updateCreateOffreIsOpen"] =
+                        await $steps["updateCreateOffreIsOpen"];
                     }
                   }}
                   src={{
@@ -7141,9 +7011,8 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                         typeof $steps["updateCompanyInfosIsOpen"].then ===
                           "function"
                       ) {
-                        $steps["updateCompanyInfosIsOpen"] = await $steps[
-                          "updateCompanyInfosIsOpen"
-                        ];
+                        $steps["updateCompanyInfosIsOpen"] =
+                          await $steps["updateCompanyInfosIsOpen"];
                       }
                     },
                     onIsSubmittingChange: async (...eventArgs: any) => {
@@ -9030,9 +8899,8 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                                 typeof $steps["updateEditOffreIsOpen"].then ===
                                   "function"
                               ) {
-                                $steps["updateEditOffreIsOpen"] = await $steps[
-                                  "updateEditOffreIsOpen"
-                                ];
+                                $steps["updateEditOffreIsOpen"] =
+                                  await $steps["updateEditOffreIsOpen"];
                               }
 
                               $steps["runCode"] = true
@@ -9227,9 +9095,8 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                               typeof $steps["updateJobInfos"].then ===
                                 "function"
                             ) {
-                              $steps["updateJobInfos"] = await $steps[
-                                "updateJobInfos"
-                              ];
+                              $steps["updateJobInfos"] =
+                                await $steps["updateJobInfos"];
                             }
 
                             $steps["showNotification"] = true
@@ -9251,9 +9118,8 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                               typeof $steps["showNotification"].then ===
                                 "function"
                             ) {
-                              $steps["showNotification"] = await $steps[
-                                "showNotification"
-                              ];
+                              $steps["showNotification"] =
+                                await $steps["showNotification"];
                             }
 
                             $steps["runCode"] = false
@@ -9270,8 +9136,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                                             ?.is_last_minute === true &&
                                           rechargeLastMinute <= 0
                                         ) {
-                                          $state.insufficientCharges.isOpen =
-                                            true;
+                                          $state.insufficientCharges.isOpen = true;
                                           return false;
                                         }
                                         if (
@@ -9279,8 +9144,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                                             .switch2IsSelected &&
                                           rechargeLastMinute <= 0
                                         ) {
-                                          $state.insufficientCharges.isOpen =
-                                            true;
+                                          $state.insufficientCharges.isOpen = true;
                                           return false;
                                         }
                                         return true;
@@ -9404,9 +9268,8 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                               typeof $steps["debitLastMinuteRecharge"].then ===
                                 "function"
                             ) {
-                              $steps["debitLastMinuteRecharge"] = await $steps[
-                                "debitLastMinuteRecharge"
-                              ];
+                              $steps["debitLastMinuteRecharge"] =
+                                await $steps["debitLastMinuteRecharge"];
                             }
                           }}
                           submitsForm={true}
@@ -9480,9 +9343,8 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                       typeof $steps["updateEditOffreIsOpen"] === "object" &&
                       typeof $steps["updateEditOffreIsOpen"].then === "function"
                     ) {
-                      $steps["updateEditOffreIsOpen"] = await $steps[
-                        "updateEditOffreIsOpen"
-                      ];
+                      $steps["updateEditOffreIsOpen"] =
+                        await $steps["updateEditOffreIsOpen"];
                     }
                   }}
                   src={{
@@ -9569,9 +9431,8 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                       typeof $steps["postgresUpdateMany"] === "object" &&
                       typeof $steps["postgresUpdateMany"].then === "function"
                     ) {
-                      $steps["postgresUpdateMany"] = await $steps[
-                        "postgresUpdateMany"
-                      ];
+                      $steps["postgresUpdateMany"] =
+                        await $steps["postgresUpdateMany"];
                     }
                   }}
                   role={"img"}
@@ -9652,9 +9513,8 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                         typeof $steps["updateCurrentJobObject"].then ===
                           "function"
                       ) {
-                        $steps["updateCurrentJobObject"] = await $steps[
-                          "updateCurrentJobObject"
-                        ];
+                        $steps["updateCurrentJobObject"] =
+                          await $steps["updateCurrentJobObject"];
                       }
 
                       $steps["closeDeleteModal"] = true
@@ -9688,9 +9548,8 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                         typeof $steps["closeDeleteModal"] === "object" &&
                         typeof $steps["closeDeleteModal"].then === "function"
                       ) {
-                        $steps["closeDeleteModal"] = await $steps[
-                          "closeDeleteModal"
-                        ];
+                        $steps["closeDeleteModal"] =
+                          await $steps["closeDeleteModal"];
                       }
                     }}
                     type={"bordered"}
@@ -9758,9 +9617,8 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                         typeof $steps["postgresDeleteMany"] === "object" &&
                         typeof $steps["postgresDeleteMany"].then === "function"
                       ) {
-                        $steps["postgresDeleteMany"] = await $steps[
-                          "postgresDeleteMany"
-                        ];
+                        $steps["postgresDeleteMany"] =
+                          await $steps["postgresDeleteMany"];
                       }
 
                       $steps["closeDeleteModal"] = true
@@ -9794,9 +9652,8 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                         typeof $steps["closeDeleteModal"] === "object" &&
                         typeof $steps["closeDeleteModal"].then === "function"
                       ) {
-                        $steps["closeDeleteModal"] = await $steps[
-                          "closeDeleteModal"
-                        ];
+                        $steps["closeDeleteModal"] =
+                          await $steps["closeDeleteModal"];
                       }
                     }}
                   />
@@ -10168,9 +10025,8 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                           typeof $steps["closeJobDetailModal"].then ===
                             "function"
                         ) {
-                          $steps["closeJobDetailModal"] = await $steps[
-                            "closeJobDetailModal"
-                          ];
+                          $steps["closeJobDetailModal"] =
+                            await $steps["closeJobDetailModal"];
                         }
 
                         $steps["openEditModal"] = true
@@ -10204,9 +10060,8 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                           typeof $steps["openEditModal"] === "object" &&
                           typeof $steps["openEditModal"].then === "function"
                         ) {
-                          $steps["openEditModal"] = await $steps[
-                            "openEditModal"
-                          ];
+                          $steps["openEditModal"] =
+                            await $steps["openEditModal"];
                         }
                       }}
                     />
@@ -10645,9 +10500,8 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                       typeof $steps["updateJobDetailsIsOpen"].then ===
                         "function"
                     ) {
-                      $steps["updateJobDetailsIsOpen"] = await $steps[
-                        "updateJobDetailsIsOpen"
-                      ];
+                      $steps["updateJobDetailsIsOpen"] =
+                        await $steps["updateJobDetailsIsOpen"];
                     }
                   }}
                   src={{
@@ -10780,9 +10634,8 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                         typeof $steps["clearErrorMsgArray"] === "object" &&
                         typeof $steps["clearErrorMsgArray"].then === "function"
                       ) {
-                        $steps["clearErrorMsgArray"] = await $steps[
-                          "clearErrorMsgArray"
-                        ];
+                        $steps["clearErrorMsgArray"] =
+                          await $steps["clearErrorMsgArray"];
                       }
 
                       $steps["kbis"] = (() => {
@@ -10966,9 +10819,8 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                         typeof $steps["displayErrorToast"] === "object" &&
                         typeof $steps["displayErrorToast"].then === "function"
                       ) {
-                        $steps["displayErrorToast"] = await $steps[
-                          "displayErrorToast"
-                        ];
+                        $steps["displayErrorToast"] =
+                          await $steps["displayErrorToast"];
                       }
 
                       $steps["createCompany"] =
@@ -11175,9 +11027,8 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                                 typeof $steps["supabaseUploadFile"].then ===
                                   "function"
                               ) {
-                                $steps["supabaseUploadFile"] = await $steps[
-                                  "supabaseUploadFile"
-                                ];
+                                $steps["supabaseUploadFile"] =
+                                  await $steps["supabaseUploadFile"];
                               }
 
                               $steps["postgresUpdateById"] = true
@@ -11235,9 +11086,8 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                                 typeof $steps["postgresUpdateById"].then ===
                                   "function"
                               ) {
-                                $steps["postgresUpdateById"] = await $steps[
-                                  "postgresUpdateById"
-                                ];
+                                $steps["postgresUpdateById"] =
+                                  await $steps["postgresUpdateById"];
                               }
                             }).apply(null, eventArgs);
                           }}
@@ -11326,9 +11176,8 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                                 typeof $steps["updateUpload2Files"].then ===
                                   "function"
                               ) {
-                                $steps["updateUpload2Files"] = await $steps[
-                                  "updateUpload2Files"
-                                ];
+                                $steps["updateUpload2Files"] =
+                                  await $steps["updateUpload2Files"];
                               }
 
                               $steps["runCode"] = true
@@ -11402,9 +11251,8 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                                 typeof $steps["postgresUpdateMany"].then ===
                                   "function"
                               ) {
-                                $steps["postgresUpdateMany"] = await $steps[
-                                  "postgresUpdateMany"
-                                ];
+                                $steps["postgresUpdateMany"] =
+                                  await $steps["postgresUpdateMany"];
                               }
                             }}
                           >
@@ -12309,9 +12157,8 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                       typeof $steps["updateStopInscriptionIsOpen"].then ===
                         "function"
                     ) {
-                      $steps["updateStopInscriptionIsOpen"] = await $steps[
-                        "updateStopInscriptionIsOpen"
-                      ];
+                      $steps["updateStopInscriptionIsOpen"] =
+                        await $steps["updateStopInscriptionIsOpen"];
                     }
                   }}
                   src={{
@@ -12401,9 +12248,8 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                       typeof $steps["postgresUpdateMany"] === "object" &&
                       typeof $steps["postgresUpdateMany"].then === "function"
                     ) {
-                      $steps["postgresUpdateMany"] = await $steps[
-                        "postgresUpdateMany"
-                      ];
+                      $steps["postgresUpdateMany"] =
+                        await $steps["postgresUpdateMany"];
                     }
                   }}
                   role={"img"}
@@ -12545,9 +12391,8 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                         typeof $steps["postgresUpdateMany"] === "object" &&
                         typeof $steps["postgresUpdateMany"].then === "function"
                       ) {
-                        $steps["postgresUpdateMany"] = await $steps[
-                          "postgresUpdateMany"
-                        ];
+                        $steps["postgresUpdateMany"] =
+                          await $steps["postgresUpdateMany"];
                       }
                     }}
                     role={"img"}
@@ -12631,9 +12476,8 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                           typeof $steps["updateAbordInscription"].then ===
                             "function"
                         ) {
-                          $steps["updateAbordInscription"] = await $steps[
-                            "updateAbordInscription"
-                          ];
+                          $steps["updateAbordInscription"] =
+                            await $steps["updateAbordInscription"];
                         }
 
                         $steps["updateShowModal"] = true
@@ -12667,9 +12511,8 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                           typeof $steps["updateShowModal"] === "object" &&
                           typeof $steps["updateShowModal"].then === "function"
                         ) {
-                          $steps["updateShowModal"] = await $steps[
-                            "updateShowModal"
-                          ];
+                          $steps["updateShowModal"] =
+                            await $steps["updateShowModal"];
                         }
 
                         $steps["updateHiddeModal"] = true
@@ -12703,9 +12546,8 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                           typeof $steps["updateHiddeModal"] === "object" &&
                           typeof $steps["updateHiddeModal"].then === "function"
                         ) {
-                          $steps["updateHiddeModal"] = await $steps[
-                            "updateHiddeModal"
-                          ];
+                          $steps["updateHiddeModal"] =
+                            await $steps["updateHiddeModal"];
                         }
                       }}
                       type={"bordered"}
@@ -12744,9 +12586,8 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                           typeof $steps["invokeGlobalAction"].then ===
                             "function"
                         ) {
-                          $steps["invokeGlobalAction"] = await $steps[
-                            "invokeGlobalAction"
-                          ];
+                          $steps["invokeGlobalAction"] =
+                            await $steps["invokeGlobalAction"];
                         }
                       }}
                     />
@@ -12889,9 +12730,8 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                               typeof $steps["updateShowModal"].then ===
                                 "function"
                             ) {
-                              $steps["updateShowModal"] = await $steps[
-                                "updateShowModal"
-                              ];
+                              $steps["updateShowModal"] =
+                                await $steps["updateShowModal"];
                             }
 
                             $steps["updateStopInscriptionIsOpen"] = true
@@ -13003,9 +12843,8 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                               typeof $steps["updateShowModal"].then ===
                                 "function"
                             ) {
-                              $steps["updateShowModal"] = await $steps[
-                                "updateShowModal"
-                              ];
+                              $steps["updateShowModal"] =
+                                await $steps["updateShowModal"];
                             }
 
                             $steps["updateOnboardingStep"] = true
@@ -13041,9 +12880,8 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                               typeof $steps["updateOnboardingStep"].then ===
                                 "function"
                             ) {
-                              $steps["updateOnboardingStep"] = await $steps[
-                                "updateOnboardingStep"
-                              ];
+                              $steps["updateOnboardingStep"] =
+                                await $steps["updateOnboardingStep"];
                             }
 
                             $steps["postgresUpdateById"] = true
@@ -13091,9 +12929,8 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                               typeof $steps["postgresUpdateById"].then ===
                                 "function"
                             ) {
-                              $steps["postgresUpdateById"] = await $steps[
-                                "postgresUpdateById"
-                              ];
+                              $steps["postgresUpdateById"] =
+                                await $steps["postgresUpdateById"];
                             }
 
                             $steps["goToOffreEmployeur"] = true
@@ -13122,9 +12959,8 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                               typeof $steps["goToOffreEmployeur"].then ===
                                 "function"
                             ) {
-                              $steps["goToOffreEmployeur"] = await $steps[
-                                "goToOffreEmployeur"
-                              ];
+                              $steps["goToOffreEmployeur"] =
+                                await $steps["goToOffreEmployeur"];
                             }
                           }}
                         >
@@ -13925,8 +13761,8 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                                       !_par
                                         ? []
                                         : Array.isArray(_par)
-                                        ? _par
-                                        : [_par])(
+                                          ? _par
+                                          : [_par])(
                                       (() => {
                                         try {
                                           return $state.countries;
@@ -14482,9 +14318,8 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                                         typeof $steps["updateStep"].then ===
                                           "function"
                                       ) {
-                                        $steps["updateStep"] = await $steps[
-                                          "updateStep"
-                                        ];
+                                        $steps["updateStep"] =
+                                          await $steps["updateStep"];
                                       }
                                     }}
                                     submitsForm={true}
@@ -14568,9 +14403,8 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                                   typeof $steps["updateIsLoading"].then ===
                                     "function"
                                 ) {
-                                  $steps["updateIsLoading"] = await $steps[
-                                    "updateIsLoading"
-                                  ];
+                                  $steps["updateIsLoading"] =
+                                    await $steps["updateIsLoading"];
                                 }
 
                                 $steps["clearErrors"] = true
@@ -14606,9 +14440,8 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                                   typeof $steps["clearErrors"].then ===
                                     "function"
                                 ) {
-                                  $steps["clearErrors"] = await $steps[
-                                    "clearErrors"
-                                  ];
+                                  $steps["clearErrors"] =
+                                    await $steps["clearErrors"];
                                 }
 
                                 $steps["kbis"] = (() => {
@@ -14901,9 +14734,8 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                                   typeof $steps["showErrors"].then ===
                                     "function"
                                 ) {
-                                  $steps["showErrors"] = await $steps[
-                                    "showErrors"
-                                  ];
+                                  $steps["showErrors"] =
+                                    await $steps["showErrors"];
                                 }
 
                                 $steps["saveCompanyInfos"] =
@@ -14986,9 +14818,8 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                                   typeof $steps["saveCompanyInfos"].then ===
                                     "function"
                                 ) {
-                                  $steps["saveCompanyInfos"] = await $steps[
-                                    "saveCompanyInfos"
-                                  ];
+                                  $steps["saveCompanyInfos"] =
+                                    await $steps["saveCompanyInfos"];
                                 }
 
                                 $steps["updateIsLoading2"] = true
@@ -15032,9 +14863,8 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                                   typeof $steps["updateIsLoading2"].then ===
                                     "function"
                                 ) {
-                                  $steps["updateIsLoading2"] = await $steps[
-                                    "updateIsLoading2"
-                                  ];
+                                  $steps["updateIsLoading2"] =
+                                    await $steps["updateIsLoading2"];
                                 }
 
                                 $steps["nextStep"] =
@@ -15470,9 +15300,8 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                                             typeof $steps["runCode"].then ===
                                               "function"
                                           ) {
-                                            $steps["runCode"] = await $steps[
-                                              "runCode"
-                                            ];
+                                            $steps["runCode"] =
+                                              await $steps["runCode"];
                                           }
 
                                           $steps["postgresUpdateMany"] = true
@@ -15865,8 +15694,8 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                                       !_par
                                         ? []
                                         : Array.isArray(_par)
-                                        ? _par
-                                        : [_par])(
+                                          ? _par
+                                          : [_par])(
                                       (() => {
                                         try {
                                           return $state.countries;
@@ -16023,8 +15852,8 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                                         !_par
                                           ? []
                                           : Array.isArray(_par)
-                                          ? _par
-                                          : [_par])(
+                                            ? _par
+                                            : [_par])(
                                         (() => {
                                           try {
                                             return $queries.getCriteria.data
@@ -16135,8 +15964,8 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                                         !_par
                                           ? []
                                           : Array.isArray(_par)
-                                          ? _par
-                                          : [_par])(
+                                            ? _par
+                                            : [_par])(
                                         (() => {
                                           try {
                                             return $queries.getCriteria.data
@@ -16479,9 +16308,8 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                                           typeof $steps["runCode"].then ===
                                             "function"
                                         ) {
-                                          $steps["runCode"] = await $steps[
-                                            "runCode"
-                                          ];
+                                          $steps["runCode"] =
+                                            await $steps["runCode"];
                                         }
                                       }}
                                       onFileNameChange={async (
@@ -16735,9 +16563,8 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                                           typeof $steps["runCode"].then ===
                                             "function"
                                         ) {
-                                          $steps["runCode"] = await $steps[
-                                            "runCode"
-                                          ];
+                                          $steps["runCode"] =
+                                            await $steps["runCode"];
                                         }
                                       }}
                                       onFileNameChange={async (
@@ -16967,9 +16794,8 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                                       typeof $steps["updateProductId"].then ===
                                         "function"
                                     ) {
-                                      $steps["updateProductId"] = await $steps[
-                                        "updateProductId"
-                                      ];
+                                      $steps["updateProductId"] =
+                                        await $steps["updateProductId"];
                                     }
 
                                     $steps["updatePriceId"] = true
@@ -17015,9 +16841,8 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                                       typeof $steps["updatePriceId"].then ===
                                         "function"
                                     ) {
-                                      $steps["updatePriceId"] = await $steps[
-                                        "updatePriceId"
-                                      ];
+                                      $steps["updatePriceId"] =
+                                        await $steps["updatePriceId"];
                                     }
                                   }}
                                 >
@@ -17124,9 +16949,8 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                                   typeof $steps["updateOnboardingStep"].then ===
                                     "function"
                                 ) {
-                                  $steps["updateOnboardingStep"] = await $steps[
-                                    "updateOnboardingStep"
-                                  ];
+                                  $steps["updateOnboardingStep"] =
+                                    await $steps["updateOnboardingStep"];
                                 }
                               }}
                               submitsForm={true}
@@ -17346,9 +17170,8 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                                   typeof $steps["updateOnboardingStep"].then ===
                                     "function"
                                 ) {
-                                  $steps["updateOnboardingStep"] = await $steps[
-                                    "updateOnboardingStep"
-                                  ];
+                                  $steps["updateOnboardingStep"] =
+                                    await $steps["updateOnboardingStep"];
                                 }
                               }}
                               submitsForm={true}
@@ -17585,9 +17408,8 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                                   typeof $steps["sendEmailToEmployer"].then ===
                                     "function"
                                 ) {
-                                  $steps["sendEmailToEmployer"] = await $steps[
-                                    "sendEmailToEmployer"
-                                  ];
+                                  $steps["sendEmailToEmployer"] =
+                                    await $steps["sendEmailToEmployer"];
                                 }
 
                                 $steps["closeModal"] = true
@@ -17623,9 +17445,8 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                                   typeof $steps["closeModal"].then ===
                                     "function"
                                 ) {
-                                  $steps["closeModal"] = await $steps[
-                                    "closeModal"
-                                  ];
+                                  $steps["closeModal"] =
+                                    await $steps["closeModal"];
                                 }
                               }}
                             />
@@ -17722,9 +17543,8 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                     typeof $steps["updateOnboardingStep"] === "object" &&
                     typeof $steps["updateOnboardingStep"].then === "function"
                   ) {
-                    $steps["updateOnboardingStep"] = await $steps[
-                      "updateOnboardingStep"
-                    ];
+                    $steps["updateOnboardingStep"] =
+                      await $steps["updateOnboardingStep"];
                   }
                 }}
                 shouldRun={(() => {
@@ -17825,9 +17645,8 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                     typeof $steps["checkStripeUserExists"] === "object" &&
                     typeof $steps["checkStripeUserExists"].then === "function"
                   ) {
-                    $steps["checkStripeUserExists"] = await $steps[
-                      "checkStripeUserExists"
-                    ];
+                    $steps["checkStripeUserExists"] =
+                      await $steps["checkStripeUserExists"];
                   }
 
                   $steps["updateStripeSessionId"] = true
@@ -17861,9 +17680,8 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                     typeof $steps["updateStripeSessionId"] === "object" &&
                     typeof $steps["updateStripeSessionId"].then === "function"
                   ) {
-                    $steps["updateStripeSessionId"] = await $steps[
-                      "updateStripeSessionId"
-                    ];
+                    $steps["updateStripeSessionId"] =
+                      await $steps["updateStripeSessionId"];
                   }
 
                   $steps["getStripeSessionInfos"] = true
@@ -17907,9 +17725,8 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                     typeof $steps["getStripeSessionInfos"] === "object" &&
                     typeof $steps["getStripeSessionInfos"].then === "function"
                   ) {
-                    $steps["getStripeSessionInfos"] = await $steps[
-                      "getStripeSessionInfos"
-                    ];
+                    $steps["getStripeSessionInfos"] =
+                      await $steps["getStripeSessionInfos"];
                   }
 
                   $steps["httpGet"] = true
@@ -18063,9 +17880,8 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                     typeof $steps["updateCustomerId"] === "object" &&
                     typeof $steps["updateCustomerId"].then === "function"
                   ) {
-                    $steps["updateCustomerId"] = await $steps[
-                      "updateCustomerId"
-                    ];
+                    $steps["updateCustomerId"] =
+                      await $steps["updateCustomerId"];
                   }
 
                   $steps["updateStripeStatus"] = true
@@ -18100,9 +17916,8 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                     typeof $steps["updateStripeStatus"] === "object" &&
                     typeof $steps["updateStripeStatus"].then === "function"
                   ) {
-                    $steps["updateStripeStatus"] = await $steps[
-                      "updateStripeStatus"
-                    ];
+                    $steps["updateStripeStatus"] =
+                      await $steps["updateStripeStatus"];
                   }
 
                   $steps["updateStripeSubscriptionId"] = true
@@ -18139,9 +17954,8 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                     typeof $steps["updateStripeSubscriptionId"].then ===
                       "function"
                   ) {
-                    $steps["updateStripeSubscriptionId"] = await $steps[
-                      "updateStripeSubscriptionId"
-                    ];
+                    $steps["updateStripeSubscriptionId"] =
+                      await $steps["updateStripeSubscriptionId"];
                   }
 
                   $steps["updateStripeCreateAccount"] = true
@@ -18176,9 +17990,8 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                     typeof $steps["updateStripeCreateAccount"].then ===
                       "function"
                   ) {
-                    $steps["updateStripeCreateAccount"] = await $steps[
-                      "updateStripeCreateAccount"
-                    ];
+                    $steps["updateStripeCreateAccount"] =
+                      await $steps["updateStripeCreateAccount"];
                   }
                 }}
                 action3={async () => {
@@ -18254,9 +18067,8 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                     typeof $steps["createUserStripeInfos"] === "object" &&
                     typeof $steps["createUserStripeInfos"].then === "function"
                   ) {
-                    $steps["createUserStripeInfos"] = await $steps[
-                      "createUserStripeInfos"
-                    ];
+                    $steps["createUserStripeInfos"] =
+                      await $steps["createUserStripeInfos"];
                   }
 
                   $steps["updateOnboardingTrue"] = true
@@ -18298,9 +18110,8 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                     typeof $steps["updateOnboardingTrue"] === "object" &&
                     typeof $steps["updateOnboardingTrue"].then === "function"
                   ) {
-                    $steps["updateOnboardingTrue"] = await $steps[
-                      "updateOnboardingTrue"
-                    ];
+                    $steps["updateOnboardingTrue"] =
+                      await $steps["updateOnboardingTrue"];
                   }
 
                   $steps["updateStripeCreateAccount"] = true
@@ -18335,9 +18146,8 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                     typeof $steps["updateStripeCreateAccount"].then ===
                       "function"
                   ) {
-                    $steps["updateStripeCreateAccount"] = await $steps[
-                      "updateStripeCreateAccount"
-                    ];
+                    $steps["updateStripeCreateAccount"] =
+                      await $steps["updateStripeCreateAccount"];
                   }
 
                   $steps["goToPage"] = true
@@ -18477,9 +18287,8 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                       typeof $steps["postgresUpdateMany"] === "object" &&
                       typeof $steps["postgresUpdateMany"].then === "function"
                     ) {
-                      $steps["postgresUpdateMany"] = await $steps[
-                        "postgresUpdateMany"
-                      ];
+                      $steps["postgresUpdateMany"] =
+                        await $steps["postgresUpdateMany"];
                     }
                   }}
                   role={"img"}
@@ -18621,9 +18430,8 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                         typeof $steps["updateRechargeLastMinuteIsOpen"].then ===
                           "function"
                       ) {
-                        $steps["updateRechargeLastMinuteIsOpen"] = await $steps[
-                          "updateRechargeLastMinuteIsOpen"
-                        ];
+                        $steps["updateRechargeLastMinuteIsOpen"] =
+                          await $steps["updateRechargeLastMinuteIsOpen"];
                       }
                     }}
                   />
@@ -19355,9 +19163,8 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                 typeof $steps["updatePaiementValidated"] === "object" &&
                 typeof $steps["updatePaiementValidated"].then === "function"
               ) {
-                $steps["updatePaiementValidated"] = await $steps[
-                  "updatePaiementValidated"
-                ];
+                $steps["updatePaiementValidated"] =
+                  await $steps["updatePaiementValidated"];
               }
 
               $steps["updateStripeSessionId"] = true
@@ -19386,9 +19193,8 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                 typeof $steps["updateStripeSessionId"] === "object" &&
                 typeof $steps["updateStripeSessionId"].then === "function"
               ) {
-                $steps["updateStripeSessionId"] = await $steps[
-                  "updateStripeSessionId"
-                ];
+                $steps["updateStripeSessionId"] =
+                  await $steps["updateStripeSessionId"];
               }
 
               $steps["getSessionInfos"] = true
@@ -19583,9 +19389,8 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                 typeof $steps["openModalCreditAlert"] === "object" &&
                 typeof $steps["openModalCreditAlert"].then === "function"
               ) {
-                $steps["openModalCreditAlert"] = await $steps[
-                  "openModalCreditAlert"
-                ];
+                $steps["openModalCreditAlert"] =
+                  await $steps["openModalCreditAlert"];
               }
 
               $steps["goToPage"] = true
@@ -19805,9 +19610,8 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                         typeof $steps["goToOffreEmployeur"] === "object" &&
                         typeof $steps["goToOffreEmployeur"].then === "function"
                       ) {
-                        $steps["goToOffreEmployeur"] = await $steps[
-                          "goToOffreEmployeur"
-                        ];
+                        $steps["goToOffreEmployeur"] =
+                          await $steps["goToOffreEmployeur"];
                       }
 
                       $steps["verifyRechargesStock"] = true
@@ -19854,9 +19658,8 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                         typeof $steps["verifyRechargesStock"].then ===
                           "function"
                       ) {
-                        $steps["verifyRechargesStock"] = await $steps[
-                          "verifyRechargesStock"
-                        ];
+                        $steps["verifyRechargesStock"] =
+                          await $steps["verifyRechargesStock"];
                       }
 
                       $steps["updateCreateJobIsOpen"] = true
@@ -19891,9 +19694,8 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                         typeof $steps["updateCreateJobIsOpen"].then ===
                           "function"
                       ) {
-                        $steps["updateCreateJobIsOpen"] = await $steps[
-                          "updateCreateJobIsOpen"
-                        ];
+                        $steps["updateCreateJobIsOpen"] =
+                          await $steps["updateCreateJobIsOpen"];
                       }
                     }}
                   />
@@ -19950,9 +19752,8 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                         typeof $steps["updateIsModalCreditOpen"].then ===
                           "function"
                       ) {
-                        $steps["updateIsModalCreditOpen"] = await $steps[
-                          "updateIsModalCreditOpen"
-                        ];
+                        $steps["updateIsModalCreditOpen"] =
+                          await $steps["updateIsModalCreditOpen"];
                       }
 
                       $steps["updateModalCreditsAlertsIsOpen"] = true
@@ -19988,9 +19789,8 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                         typeof $steps["updateModalCreditsAlertsIsOpen"].then ===
                           "function"
                       ) {
-                        $steps["updateModalCreditsAlertsIsOpen"] = await $steps[
-                          "updateModalCreditsAlertsIsOpen"
-                        ];
+                        $steps["updateModalCreditsAlertsIsOpen"] =
+                          await $steps["updateModalCreditsAlertsIsOpen"];
                       }
                     }}
                     src={{
@@ -20094,9 +19894,7 @@ const PlasmicDescendants = {
     "select30",
     "select31",
     "container1",
-    "timePicker3",
     "container2",
-    "timePicker4",
     "select32",
     "lastMinuteToggle",
     "select33",
@@ -20312,9 +20110,7 @@ const PlasmicDescendants = {
     "select30",
     "select31",
     "container1",
-    "timePicker3",
     "container2",
-    "timePicker4",
     "select32",
     "lastMinuteToggle",
     "select33",
@@ -20336,9 +20132,7 @@ const PlasmicDescendants = {
     "select30",
     "select31",
     "container1",
-    "timePicker3",
     "container2",
-    "timePicker4",
     "select32",
     "lastMinuteToggle",
     "select33",
@@ -20356,10 +20150,8 @@ const PlasmicDescendants = {
   select29: ["select29"],
   select30: ["select30"],
   select31: ["select31"],
-  container1: ["container1", "timePicker3"],
-  timePicker3: ["timePicker3"],
-  container2: ["container2", "timePicker4"],
-  timePicker4: ["timePicker4"],
+  container1: ["container1"],
+  container2: ["container2"],
   select32: ["select32"],
   lastMinuteToggle: ["lastMinuteToggle"],
   select33: ["select33"],
@@ -21001,9 +20793,7 @@ type NodeDefaultElementType = {
   select30: typeof Select;
   select31: typeof Select;
   container1: "div";
-  timePicker3: typeof AntdDatePicker;
   container2: "div";
-  timePicker4: typeof AntdDatePicker;
   select32: typeof Select;
   lastMinuteToggle: typeof LastMinuteToggle;
   select33: typeof Select;
@@ -21187,7 +20977,9 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicOffreEmployeur__VariantsArgs;
     args?: PlasmicOffreEmployeur__ArgsType;
     overrides?: NodeOverridesType<T>;
-  } & Omit<PlasmicOffreEmployeur__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
+  } &
+    // Specify variants directly as props
+    Omit<PlasmicOffreEmployeur__VariantsArgs, ReservedPropsType> &
     // Specify args directly as props
     Omit<PlasmicOffreEmployeur__ArgsType, ReservedPropsType> &
     // Specify overrides for each element directly as props
@@ -21258,9 +21050,7 @@ export const PlasmicOffreEmployeur = Object.assign(
     select30: makeNodeComponent("select30"),
     select31: makeNodeComponent("select31"),
     container1: makeNodeComponent("container1"),
-    timePicker3: makeNodeComponent("timePicker3"),
     container2: makeNodeComponent("container2"),
-    timePicker4: makeNodeComponent("timePicker4"),
     select32: makeNodeComponent("select32"),
     lastMinuteToggle: makeNodeComponent("lastMinuteToggle"),
     select33: makeNodeComponent("select33"),

@@ -14,7 +14,7 @@
     "@hello-pangea/dnd": "^18.0.1",
     "@heroui/react": "^2.7.5",
     "@mapbox/mapbox-gl-directions": "^4.3.1",
-    "@plasmicapp/cli": "^0.1.344",
+    "@plasmicapp/cli": "^0.1.345",
     "@plasmicapp/loader-nextjs": "^1.0.410",
     "@plasmicapp/loader-react": "^1.0.373",
     "@plasmicapp/react-web": "^0.2.398",

@@ -5093,6 +5093,12 @@
           "name": "WeglotSelector",
           "displayName": "WeglotSelector",
           "componentImportPath": "./plasmic-library/others/WeglotSelector/WeglotSelector"
+        },
+        {
+          "id": "Qpnfm_SMTd8c",
+          "name": "JamDatePicker",
+          "displayName": "JamDatePicker",
+          "componentImportPath": "./components/forms/JamDatePicker/JamDatePicker"
         }
       ],
       "customFunctions": [],
@@ -5258,6 +5264,6 @@
   "nextjsConfig": {
     "pagesDir": "../pages"
   },
-  "cliVersion": "0.1.344",
-  "$schema": "https://unpkg.com/@plasmicapp/cli@0.1.344/dist/plasmic.schema.json"
+  "cliVersion": "0.1.345",
+  "$schema": "https://unpkg.com/@plasmicapp/cli@0.1.345/dist/plasmic.schema.json"
 }

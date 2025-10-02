@@ -125,15 +125,15 @@ export default function GlobalContextsProvider(
         antdConfigProviderProps && "themeStyles" in antdConfigProviderProps
           ? antdConfigProviderProps.themeStyles!
           : true
-          ? {
-              fontFamily: "Inter",
-              fontSize: "14px",
-              fontWeight: "400",
-              lineHeight: "1.5",
-              color: "#535353",
-              letterSpacing: "normal"
-            }
-          : undefined
+            ? {
+                fontFamily: "Inter",
+                fontSize: "14px",
+                fontWeight: "400",
+                lineHeight: "1.5",
+                color: "#535353",
+                letterSpacing: "normal"
+              }
+            : undefined
       }
       wireframe={
         antdConfigProviderProps && "wireframe" in antdConfigProviderProps
