@@ -99,7 +99,7 @@ const JamDatePicker = ({
 
     // Styles pour le container
     const containerVariant = cva(
-        "flex flex-col w-full",
+        "flex flex-col w-full max-w-md max-h-20",
         {
             variants: {
                 disabled: {
@@ -112,10 +112,10 @@ const JamDatePicker = ({
 
     // Styles pour le DatePicker
     const pickerClassName = cn(
-        "w-full transition-all rounded-2xl border-1 border-solid",
+        "w-full max-w-md h-12 transition-all rounded-2xl border border-solid",
         {
             "border-error-700": destructive,
-            "border-pine-500": !destructive,
+            "border-[#C8C8C8]": !destructive,
             "shadow-[0_0_0_4px_#D92D20]": destructive && focus,
             "shadow-[0_0_0_4px_#E8FFCC]": !destructive && focus,
         },
@@ -126,14 +126,16 @@ const JamDatePicker = ({
         control: (provided: any) => ({
             ...provided,
             borderRadius: "1rem",
-            border: destructive ? "1px solid #D92D20" : "1px solid #10B981",
+            border: destructive ? "1px solid #D92D20" : "1px solid #C8C8C8",
+            maxWidth: "28rem",
+            height: "3rem",
             boxShadow: focus
                 ? destructive
                     ? "0 0 0 4px #D92D20"
                     : "0 0 0 4px #E8FFCC"
                 : "none",
             "&:hover": {
-                border: destructive ? "1px solid #D92D20" : "1px solid #10B981",
+                border: destructive ? "1px solid #D92D20" : "1px solid #C8C8C8",
             },
         }),
     };
