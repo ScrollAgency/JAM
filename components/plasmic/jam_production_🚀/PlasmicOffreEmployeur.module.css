@@ -484,6 +484,7 @@
     padding-left: 20px;
     align-items: center;
     justify-content: center;
+    overflow: auto;
   }
 }
 @media (max-width: 375px) {
