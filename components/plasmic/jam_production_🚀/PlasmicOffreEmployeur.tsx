@@ -3967,7 +3967,9 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                       hasVariant(globalVariants, "screen", "mobileOnly")
                         ? (() => {
                             try {
-                              return $queries.jobOffers.data.length === 0;
+                              return (
+                                $queries.paramEmpCardJobOffers.data.length === 0
+                              );
                             } catch (e) {
                               if (
                                 e instanceof TypeError ||
