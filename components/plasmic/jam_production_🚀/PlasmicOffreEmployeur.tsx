@@ -500,8 +500,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
         path: "createJob.isOpen",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) =>
-          hasVariant(globalVariants, "screen", "mobileOnly") ? false : false
+        initFunc: ({ $props, $state, $queries, $ctx }) => false
       },
       {
         path: "form2.value",
