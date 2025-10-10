@@ -501,7 +501,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
         type: "private",
         variableType: "boolean",
         initFunc: ({ $props, $state, $queries, $ctx }) =>
-          hasVariant(globalVariants, "screen", "mobileOnly") ? false : true
+          hasVariant(globalVariants, "screen", "mobileOnly") ? false : false
       },
       {
         path: "form2.value",
@@ -2020,9 +2020,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                                     sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
                                     opId: "c97d2f24-3d9a-4bf9-8107-193ee0e13062",
                                     userArgs: {
-                                      filters: [
-                                        $ctx.SupabaseUser.user?.id ?? null
-                                      ]
+                                      filters: [$ctx.SupabaseUser.user.id]
                                     },
                                     cacheKey: null,
                                     invalidatedKeys: null,
