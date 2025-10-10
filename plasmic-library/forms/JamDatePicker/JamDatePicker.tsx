@@ -25,8 +25,12 @@ interface JamDatePickerProps {
     destructive?: boolean;
     disabled?: boolean;
     className?: string;
-    value?: string | Date;
+    // value can be provided as ISO string, Date, or Dayjs (to support form libs)
+    value?: string | Date | Dayjs | null;
+    // onDateChange: Plasmic-style callback with both string and Dayjs
     onDateChange?: (value: string | null, dayjs: Dayjs | null) => void;
+    // onChange: simplified callback for form libraries (stores primitive string or null)
+    onChange?: (value: string | null) => void;
     format?: string;
     showTime?: boolean;
     size?: "small" | "middle" | "large";
@@ -43,6 +47,7 @@ const JamDatePicker = ({
     className,
     value,
     onDateChange,
+    onChange,
     format,
     showTime = false,
     size = "middle",
@@ -54,7 +59,8 @@ const JamDatePicker = ({
     // Conversion de la valeur d'entrée en Dayjs
     useEffect(() => {
         if (value) {
-            const dayjsValue = typeof value === "string" ? dayjs(value) : dayjs(value);
+            // dayjs can parse Date, string, or Dayjs instances
+            const dayjsValue = dayjs(value as any);
             setDateValue(dayjsValue.isValid() ? dayjsValue : null);
         } else {
             setDateValue(null);
@@ -64,10 +70,21 @@ const JamDatePicker = ({
     const handleDateChange = (date: any, dateString: string | string[]) => {
         const dayjsDate = date as Dayjs | null;
         setDateValue(dayjsDate);
+
+        // prefer an ISO string for simple storage/submit; fallback to dateString when absent
+    const formattedFromAntd = Array.isArray(dateString) ? dateString[0] : dateString;
+    // Return a local date-only string (YYYY-MM-DD) to avoid timezone shifts when
+    // converting to ISO (toISOString uses UTC and can roll the date back).
+    const isoString = dayjsDate ? dayjsDate.format("YYYY-MM-DD") : (formattedFromAntd || null);
+
+        // Call Plasmic prop if provided (ISO string + Dayjs)
         if (onDateChange) {
-            // Convertir string[] en string si nécessaire
-            const stringValue = Array.isArray(dateString) ? dateString[0] : dateString;
-            onDateChange(stringValue || null, dayjsDate);
+            onDateChange(isoString, dayjsDate);
+        }
+
+        // Call simplified onChange for forms (string or null) — ISO string preferred
+        if (onChange) {
+            onChange(isoString);
         }
     };
 
@@ -119,6 +136,7 @@ const JamDatePicker = ({
             "shadow-[0_0_0_4px_#D92D20]": destructive && focus,
             "shadow-[0_0_0_4px_#E8FFCC]": !destructive && focus,
         },
+        // ensure container className is applied only once; pass remaining classes to picker
         className
     );
 
@@ -140,8 +158,10 @@ const JamDatePicker = ({
         }),
     };
 
+    const containerClassName = cn(containerVariant({ disabled }), className);
+
     return (
-        <div className={containerVariant({ disabled, className })}>
+        <div className={containerClassName}>
             {label && (
                 <label className="text-sm font-medium text-gray-700 mb-2">
                     {label}
