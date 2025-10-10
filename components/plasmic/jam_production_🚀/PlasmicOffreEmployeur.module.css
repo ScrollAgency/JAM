@@ -525,6 +525,11 @@
   row-gap: 16px;
   min-width: 0;
 }
+@media (min-width: 0px) and (max-width: 768px) {
+  .form2:global(.__wab_instance) {
+    overflow: visible;
+  }
+}
 @media (max-width: 375px) {
   .form2:global(.__wab_instance) {
     width: 100%;
@@ -847,23 +852,9 @@
     font-size: 14px;
   }
 }
-.container1 {
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  width: 100%;
-  height: auto;
-  max-width: 100%;
-  justify-content: flex-start;
-  align-items: center;
-  min-width: 0;
-  padding: 0px;
-}
-.jamDatePicker__wrVbn:global(.__wab_instance) {
+.jamDatePicker__a9LaD:global(.__wab_instance) {
   max-width: 100%;
   object-fit: cover;
-  width: 100%;
-  min-width: 0;
 }
 .formField__jnbdB:global(.__wab_instance) {
   width: 100%;
@@ -871,6 +862,8 @@
   object-fit: cover;
   text-align: right;
   font-size: 16px;
+  display: flex;
+  flex-direction: column;
   min-width: 0;
   padding: 0px;
   margin: 0px;
@@ -886,19 +879,7 @@
     font-size: 14px;
   }
 }
-.container2 {
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  width: 100%;
-  height: auto;
-  max-width: 100%;
-  justify-content: flex-start;
-  align-items: center;
-  min-width: 0;
-  padding: 0px;
-}
-.jamDatePicker__r3Ki7:global(.__wab_instance) {
+.jamDatePicker__tgrr6:global(.__wab_instance) {
   max-width: 100%;
   object-fit: cover;
 }
@@ -910,7 +891,7 @@
   height: auto;
   max-width: 100%;
   justify-content: center;
-  align-items: center;
+  align-items: flex-end;
   column-gap: 16px;
   min-width: 0;
   padding: 0px;
@@ -957,23 +938,6 @@
 @media (max-width: 375px) {
   .text__hbhBq {
     font-size: 14px;
-  }
-}
-.freeBox__fnjuv {
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  width: 100%;
-  height: auto;
-  max-width: 100%;
-  justify-content: flex-start;
-  align-items: center;
-  min-width: 0;
-  padding: 0px;
-}
-@media (min-width: 0px) and (max-width: 768px) {
-  .freeBox__fnjuv {
-    padding: 0px;
   }
 }
 .select32:global(.__wab_instance):global(.__wab_instance) {
@@ -1458,6 +1422,24 @@
   position: relative;
   color: var(--token-OIYWLyLPYWym);
   height: 1em;
+}
+.freeBox__t81Qj {
+  flex-direction: column;
+  width: 100%;
+  max-width: 100%;
+  justify-content: flex-start;
+  align-items: center;
+  height: 100vh;
+  flex-grow: 0;
+  flex-shrink: 0;
+  min-width: 0;
+  display: none;
+  padding: 50px;
+}
+@media (min-width: 0px) and (max-width: 768px) {
+  .freeBox__t81Qj {
+    display: flex;
+  }
 }
 .editJob:global(.__wab_instance):global(.__wab_instance) {
   max-width: 100%;

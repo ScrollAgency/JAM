@@ -171,8 +171,6 @@ export type PlasmicOffreEmployeur__OverridesType = {
   select29?: Flex__<typeof Select>;
   select30?: Flex__<typeof Select>;
   select31?: Flex__<typeof Select>;
-  container1?: Flex__<"div">;
-  container2?: Flex__<"div">;
   select32?: Flex__<typeof Select>;
   lastMinuteToggle?: Flex__<typeof LastMinuteToggle>;
   select33?: Flex__<typeof Select>;
@@ -507,7 +505,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
         type: "private",
         variableType: "boolean",
         initFunc: ({ $props, $state, $queries, $ctx }) =>
-          hasVariant(globalVariants, "screen", "mobileOnly") ? true : false
+          hasVariant(globalVariants, "screen", "mobileOnly") ? true : true
       },
       {
         path: "form2.value",
@@ -5262,27 +5260,18 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                           name={"start_date"}
                           rules={[{ ruleType: "required", message: "requis" }]}
                         >
-                          <div
-                            data-plasmic-name={"container1"}
-                            data-plasmic-override={overrides.container1}
+                          <JamDatePicker
+                            allowClear={true}
                             className={classNames(
-                              projectcss.all,
-                              sty.container1
+                              "__wab_instance",
+                              sty.jamDatePicker__a9LaD
                             )}
-                          >
-                            <JamDatePicker
-                              allowClear={true}
-                              className={classNames(
-                                "__wab_instance",
-                                sty.jamDatePicker__wrVbn
-                              )}
-                              destructive={false}
-                              disabled={false}
-                              showTime={false}
-                              size={"middle"}
-                              type={"date"}
-                            />
-                          </div>
+                            destructive={false}
+                            disabled={false}
+                            showTime={false}
+                            size={"middle"}
+                            type={"date"}
+                          />
                         </FormItemWrapper>
                         <FormItemWrapper
                           className={classNames(
@@ -5312,31 +5301,22 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                                     $state.form2.value.end_date
                                 );
                               },
-                              message: ``
+                              message: "Erreur"
                             }
                           ]}
                         >
-                          <div
-                            data-plasmic-name={"container2"}
-                            data-plasmic-override={overrides.container2}
+                          <JamDatePicker
+                            allowClear={true}
                             className={classNames(
-                              projectcss.all,
-                              sty.container2
+                              "__wab_instance",
+                              sty.jamDatePicker__tgrr6
                             )}
-                          >
-                            <JamDatePicker
-                              allowClear={true}
-                              className={classNames(
-                                "__wab_instance",
-                                sty.jamDatePicker__r3Ki7
-                              )}
-                              destructive={false}
-                              disabled={false}
-                              showTime={false}
-                              size={"middle"}
-                              type={"date"}
-                            />
-                          </div>
+                            destructive={false}
+                            disabled={false}
+                            showTime={false}
+                            size={"middle"}
+                            type={"date"}
+                          />
                         </FormItemWrapper>
                       </div>
                       <div
@@ -5364,115 +5344,103 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                           name={"work_mode"}
                           rules={[{ ruleType: "required", message: "requis" }]}
                         >
-                          <div
+                          <Select
+                            data-plasmic-name={"select32"}
+                            data-plasmic-override={overrides.select32}
                             className={classNames(
-                              projectcss.all,
-                              sty.freeBox__fnjuv
+                              "__wab_instance",
+                              sty.select32
                             )}
-                          >
-                            <Select
-                              data-plasmic-name={"select32"}
-                              data-plasmic-override={overrides.select32}
-                              className={classNames(
-                                "__wab_instance",
-                                sty.select32
-                              )}
-                              initialSelectedValue={undefined}
-                              items={(_par =>
-                                !_par
-                                  ? []
-                                  : Array.isArray(_par)
-                                    ? _par
-                                    : [_par])(
-                                (() => {
-                                  try {
-                                    return $queries.getCriteria.data
-                                      .filter(item => item.type === "work_mode")
-                                      .map(item => ({
-                                        value: item.id,
-                                        label: item.name
-                                      }));
-                                  } catch (e) {
-                                    if (
-                                      e instanceof TypeError ||
-                                      e?.plasmicType ===
-                                        "PlasmicUndefinedDataError"
-                                    ) {
-                                      return [];
-                                    }
-                                    throw e;
+                            items={(_par =>
+                              !_par ? [] : Array.isArray(_par) ? _par : [_par])(
+                              (() => {
+                                try {
+                                  return $queries.getCriteria.data
+                                    .filter(item => item.type === "work_mode")
+                                    .map(item => ({
+                                      value: item.id,
+                                      label: item.name
+                                    }));
+                                } catch (e) {
+                                  if (
+                                    e instanceof TypeError ||
+                                    e?.plasmicType ===
+                                      "PlasmicUndefinedDataError"
+                                  ) {
+                                    return [];
                                   }
-                                })()
-                              ).map((__plasmic_item_0, __plasmic_idx_0) => {
-                                const currentItem = __plasmic_item_0;
-                                const currentIndex = __plasmic_idx_0;
-                                return (
-                                  <MenuItem
-                                    className={classNames(
-                                      "__wab_instance",
-                                      sty.menuItem__gsxIt
-                                    )}
-                                    key={currentIndex}
-                                    label={(() => {
-                                      try {
-                                        return currentItem.label;
-                                      } catch (e) {
-                                        if (
-                                          e instanceof TypeError ||
-                                          e?.plasmicType ===
-                                            "PlasmicUndefinedDataError"
-                                        ) {
-                                          return undefined;
-                                        }
-                                        throw e;
-                                      }
-                                    })()}
-                                    value={(() => {
-                                      try {
-                                        return currentItem.value;
-                                      } catch (e) {
-                                        if (
-                                          e instanceof TypeError ||
-                                          e?.plasmicType ===
-                                            "PlasmicUndefinedDataError"
-                                        ) {
-                                          return undefined;
-                                        }
-                                        throw e;
-                                      }
-                                    })()}
-                                  />
-                                );
-                              })}
-                              label={
-                                <div
-                                  className={classNames(
-                                    projectcss.all,
-                                    projectcss.__wab_text,
-                                    sty.text__x20T
-                                  )}
-                                >
-                                  {"Label"}
-                                </div>
-                              }
-                              onChange={async (...eventArgs: any) => {
-                                generateStateOnChangeProp($state, [
-                                  "select32",
-                                  "value"
-                                ]).apply(null, eventArgs);
-
-                                if (
-                                  eventArgs.length > 1 &&
-                                  eventArgs[1] &&
-                                  eventArgs[1]._plasmic_state_init_
-                                ) {
-                                  return;
+                                  throw e;
                                 }
-                              }}
-                              placeholder={"Mode de travail"}
-                              showLabel={false}
-                            />
-                          </div>
+                              })()
+                            ).map((__plasmic_item_0, __plasmic_idx_0) => {
+                              const currentItem = __plasmic_item_0;
+                              const currentIndex = __plasmic_idx_0;
+                              return (
+                                <MenuItem
+                                  className={classNames(
+                                    "__wab_instance",
+                                    sty.menuItem__gsxIt
+                                  )}
+                                  key={currentIndex}
+                                  label={(() => {
+                                    try {
+                                      return currentItem.label;
+                                    } catch (e) {
+                                      if (
+                                        e instanceof TypeError ||
+                                        e?.plasmicType ===
+                                          "PlasmicUndefinedDataError"
+                                      ) {
+                                        return undefined;
+                                      }
+                                      throw e;
+                                    }
+                                  })()}
+                                  value={(() => {
+                                    try {
+                                      return currentItem.value;
+                                    } catch (e) {
+                                      if (
+                                        e instanceof TypeError ||
+                                        e?.plasmicType ===
+                                          "PlasmicUndefinedDataError"
+                                      ) {
+                                        return undefined;
+                                      }
+                                      throw e;
+                                    }
+                                  })()}
+                                />
+                              );
+                            })}
+                            label={
+                              <div
+                                className={classNames(
+                                  projectcss.all,
+                                  projectcss.__wab_text,
+                                  sty.text__x20T
+                                )}
+                              >
+                                {"Label"}
+                              </div>
+                            }
+                            onChange={async (...eventArgs: any) => {
+                              generateStateOnChangeProp($state, [
+                                "select32",
+                                "value"
+                              ]).apply(null, eventArgs);
+
+                              if (
+                                eventArgs.length > 1 &&
+                                eventArgs[1] &&
+                                eventArgs[1]._plasmic_state_init_
+                              ) {
+                                return;
+                              }
+                            }}
+                            placeholder={"Mode de travail"}
+                            showLabel={false}
+                          />
                         </FormItemWrapper>
                         <FormItemWrapper
                           className={classNames(
@@ -6850,6 +6818,9 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                     </FormWrapper>
                   );
                 })()}
+                <div
+                  className={classNames(projectcss.all, sty.freeBox__t81Qj)}
+                />
               </div>
             }
             footer={null}
@@ -19909,8 +19880,6 @@ const PlasmicDescendants = {
     "select29",
     "select30",
     "select31",
-    "container1",
-    "container2",
     "select32",
     "lastMinuteToggle",
     "select33",
@@ -20124,8 +20093,6 @@ const PlasmicDescendants = {
     "select29",
     "select30",
     "select31",
-    "container1",
-    "container2",
     "select32",
     "lastMinuteToggle",
     "select33",
@@ -20145,8 +20112,6 @@ const PlasmicDescendants = {
     "select29",
     "select30",
     "select31",
-    "container1",
-    "container2",
     "select32",
     "lastMinuteToggle",
     "select33",
@@ -20164,8 +20129,6 @@ const PlasmicDescendants = {
   select29: ["select29"],
   select30: ["select30"],
   select31: ["select31"],
-  container1: ["container1"],
-  container2: ["container2"],
   select32: ["select32"],
   lastMinuteToggle: ["lastMinuteToggle"],
   select33: ["select33"],
@@ -20805,8 +20768,6 @@ type NodeDefaultElementType = {
   select29: typeof Select;
   select30: typeof Select;
   select31: typeof Select;
-  container1: "div";
-  container2: "div";
   select32: typeof Select;
   lastMinuteToggle: typeof LastMinuteToggle;
   select33: typeof Select;
@@ -21061,8 +21022,6 @@ export const PlasmicOffreEmployeur = Object.assign(
     select29: makeNodeComponent("select29"),
     select30: makeNodeComponent("select30"),
     select31: makeNodeComponent("select31"),
-    container1: makeNodeComponent("container1"),
-    container2: makeNodeComponent("container2"),
     select32: makeNodeComponent("select32"),
     lastMinuteToggle: makeNodeComponent("lastMinuteToggle"),
     select33: makeNodeComponent("select33"),
