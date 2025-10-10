@@ -968,7 +968,12 @@
   justify-content: flex-start;
   align-items: center;
   min-width: 0;
-  padding: 15px 8px 8px;
+  padding: 0px;
+}
+@media (min-width: 0px) and (max-width: 768px) {
+  .freeBox__fnjuv {
+    padding: 0px;
+  }
 }
 .select32:global(.__wab_instance):global(.__wab_instance) {
   height: 100%;
@@ -997,11 +1002,12 @@
   display: flex;
   flex-direction: row;
   position: relative;
-  align-items: stretch;
+  align-items: center;
   justify-content: flex-start;
   width: 100%;
   height: auto;
   max-width: 100%;
+  column-gap: 8px;
   min-width: 0;
   padding: 8px 8px 0px;
 }

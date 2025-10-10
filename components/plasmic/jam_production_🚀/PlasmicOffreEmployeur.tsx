@@ -507,7 +507,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
         type: "private",
         variableType: "boolean",
         initFunc: ({ $props, $state, $queries, $ctx }) =>
-          hasVariant(globalVariants, "screen", "mobileOnly") ? false : false
+          hasVariant(globalVariants, "screen", "mobileOnly") ? true : false
       },
       {
         path: "form2.value",
@@ -2042,7 +2042,9 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                                     sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
                                     opId: "c97d2f24-3d9a-4bf9-8107-193ee0e13062",
                                     userArgs: {
-                                      filters: [$ctx.SupabaseUser.user.id]
+                                      filters: [
+                                        $ctx.SupabaseUser.user?.id ?? null
+                                      ]
                                     },
                                     cacheKey: null,
                                     invalidatedKeys: null,
@@ -5922,23 +5924,36 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                             }
                             name={"postal_code"}
                             noLabel={true}
-                            rules={[
-                              { ruleType: "required" },
+                            rules={
+                              hasVariant(globalVariants, "screen", "mobileOnly")
+                                ? [
+                                    { ruleType: "required" },
 
-                              {
-                                ruleType: "min",
-                                length: 5,
-                                message:
-                                  "Le code postal doit contenir au moins 5 chiffres."
-                              },
+                                    {
+                                      ruleType: "min",
+                                      length: 2,
+                                      message:
+                                        "Le code postal doit contenir au moins 2 chiffres."
+                                    }
+                                  ]
+                                : [
+                                    { ruleType: "required" },
 
-                              {
-                                ruleType: "max",
-                                length: 5,
-                                message:
-                                  "Le code postal ne doit pas d\u00e9passer 5 chiffres."
-                              }
-                            ]}
+                                    {
+                                      ruleType: "min",
+                                      length: 5,
+                                      message:
+                                        "Le code postal doit contenir au moins 5 chiffres."
+                                    },
+
+                                    {
+                                      ruleType: "max",
+                                      length: 5,
+                                      message:
+                                        "Le code postal ne doit pas d\u00e9passer 5 chiffres."
+                                    }
+                                  ]
+                            }
                           >
                             <TextInput
                               data-plasmic-name={"codePostal"}

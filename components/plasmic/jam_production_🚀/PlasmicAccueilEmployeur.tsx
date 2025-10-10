@@ -192,10 +192,8 @@ export type PlasmicAccueilEmployeur__OverridesType = {
   heading2?: Flex__<"div">;
   supportingText6?: Flex__<"div">;
   content8?: Flex__<"div">;
-  placeholderImage?: Flex__<"div">;
   container5?: Flex__<"div">;
   content9?: Flex__<"div">;
-  placeholderImage2?: Flex__<"div">;
   content10?: Flex__<"div">;
   description2?: Flex__<"div">;
   iconAndText2?: Flex__<"div">;
@@ -883,9 +881,8 @@ function PlasmicAccueilEmployeur__RenderFunc(props: {
                           typeof $steps["goToConnexion"] === "object" &&
                           typeof $steps["goToConnexion"].then === "function"
                         ) {
-                          $steps["goToConnexion"] = await $steps[
-                            "goToConnexion"
-                          ];
+                          $steps["goToConnexion"] =
+                            await $steps["goToConnexion"];
                         }
                       }}
                     />
@@ -1432,9 +1429,8 @@ function PlasmicAccueilEmployeur__RenderFunc(props: {
                             typeof $steps["goToRegister"] === "object" &&
                             typeof $steps["goToRegister"].then === "function"
                           ) {
-                            $steps["goToRegister"] = await $steps[
-                              "goToRegister"
-                            ];
+                            $steps["goToRegister"] =
+                              await $steps["goToRegister"];
                           }
                         }}
                       />
@@ -1505,9 +1501,8 @@ function PlasmicAccueilEmployeur__RenderFunc(props: {
                               typeof $steps["goToRegister"] === "object" &&
                               typeof $steps["goToRegister"].then === "function"
                             ) {
-                              $steps["goToRegister"] = await $steps[
-                                "goToRegister"
-                              ];
+                              $steps["goToRegister"] =
+                                await $steps["goToRegister"];
                             }
                           }}
                         />
@@ -2012,13 +2007,22 @@ function PlasmicAccueilEmployeur__RenderFunc(props: {
                     data-plasmic-override={overrides.content8}
                     className={classNames(projectcss.all, sty.content8)}
                   >
-                    <div
-                      data-plasmic-name={"placeholderImage"}
-                      data-plasmic-override={overrides.placeholderImage}
-                      className={classNames(
-                        projectcss.all,
-                        sty.placeholderImage
-                      )}
+                    <PlasmicImg__
+                      alt={""}
+                      className={classNames(sty.img__jjVo5)}
+                      displayHeight={"auto"}
+                      displayMaxHeight={"none"}
+                      displayMaxWidth={"100%"}
+                      displayMinHeight={"0"}
+                      displayMinWidth={"0"}
+                      displayWidth={"auto"}
+                      loading={"lazy"}
+                      src={{
+                        src: "/plasmic/jam_production_🚀/images/pexelsShvetsa126628171.jpg",
+                        fullWidth: 2731,
+                        fullHeight: 4096,
+                        aspectRatio: undefined
+                      }}
                     />
                   </div>
                 </div>
@@ -2032,13 +2036,22 @@ function PlasmicAccueilEmployeur__RenderFunc(props: {
                     data-plasmic-override={overrides.content9}
                     className={classNames(projectcss.all, sty.content9)}
                   >
-                    <div
-                      data-plasmic-name={"placeholderImage2"}
-                      data-plasmic-override={overrides.placeholderImage2}
-                      className={classNames(
-                        projectcss.all,
-                        sty.placeholderImage2
-                      )}
+                    <PlasmicImg__
+                      alt={""}
+                      className={classNames(sty.img__i41M6)}
+                      displayHeight={"auto"}
+                      displayMaxHeight={"none"}
+                      displayMaxWidth={"100%"}
+                      displayMinHeight={"0"}
+                      displayMinWidth={"0"}
+                      displayWidth={"auto"}
+                      loading={"lazy"}
+                      src={{
+                        src: "/plasmic/jam_production_🚀/images/pexelsShvetsa42261221.jpg",
+                        fullWidth: 2731,
+                        fullHeight: 4096,
+                        aspectRatio: undefined
+                      }}
                     />
                   </div>
                   <div
@@ -2164,9 +2177,8 @@ function PlasmicAccueilEmployeur__RenderFunc(props: {
                             typeof $steps["goToRegister"] === "object" &&
                             typeof $steps["goToRegister"].then === "function"
                           ) {
-                            $steps["goToRegister"] = await $steps[
-                              "goToRegister"
-                            ];
+                            $steps["goToRegister"] =
+                              await $steps["goToRegister"];
                           }
                         }}
                       >
@@ -2501,9 +2513,8 @@ function PlasmicAccueilEmployeur__RenderFunc(props: {
                               typeof $steps["goToRegister"] === "object" &&
                               typeof $steps["goToRegister"].then === "function"
                             ) {
-                              $steps["goToRegister"] = await $steps[
-                                "goToRegister"
-                              ];
+                              $steps["goToRegister"] =
+                                await $steps["goToRegister"];
                             }
                           }}
                           type={"bordered"}
@@ -2887,9 +2898,8 @@ function PlasmicAccueilEmployeur__RenderFunc(props: {
                               typeof $steps["goToRegister"] === "object" &&
                               typeof $steps["goToRegister"].then === "function"
                             ) {
-                              $steps["goToRegister"] = await $steps[
-                                "goToRegister"
-                              ];
+                              $steps["goToRegister"] =
+                                await $steps["goToRegister"];
                             }
                           }}
                         />
@@ -3538,10 +3548,8 @@ const PlasmicDescendants = {
     "heading2",
     "supportingText6",
     "content8",
-    "placeholderImage",
     "container5",
     "content9",
-    "placeholderImage2",
     "content10",
     "description2",
     "iconAndText2",
@@ -3740,10 +3748,8 @@ const PlasmicDescendants = {
     "heading2",
     "supportingText6",
     "content8",
-    "placeholderImage",
     "container5",
     "content9",
-    "placeholderImage2",
     "content10",
     "description2",
     "iconAndText2",
@@ -4206,10 +4212,8 @@ const PlasmicDescendants = {
     "heading2",
     "supportingText6",
     "content8",
-    "placeholderImage",
     "container5",
     "content9",
-    "placeholderImage2",
     "content10",
     "description2",
     "iconAndText2",
@@ -4246,8 +4250,7 @@ const PlasmicDescendants = {
     "headingAndSupportingText2",
     "heading2",
     "supportingText6",
-    "content8",
-    "placeholderImage"
+    "content8"
   ],
   content7: [
     "content7",
@@ -4281,12 +4284,10 @@ const PlasmicDescendants = {
   ],
   heading2: ["heading2"],
   supportingText6: ["supportingText6"],
-  content8: ["content8", "placeholderImage"],
-  placeholderImage: ["placeholderImage"],
+  content8: ["content8"],
   container5: [
     "container5",
     "content9",
-    "placeholderImage2",
     "content10",
     "description2",
     "iconAndText2",
@@ -4295,8 +4296,7 @@ const PlasmicDescendants = {
     "heading3",
     "supportingText7"
   ],
-  content9: ["content9", "placeholderImage2"],
-  placeholderImage2: ["placeholderImage2"],
+  content9: ["content9"],
   content10: [
     "content10",
     "description2",
@@ -5032,10 +5032,8 @@ type NodeDefaultElementType = {
   heading2: "div";
   supportingText6: "div";
   content8: "div";
-  placeholderImage: "div";
   container5: "div";
   content9: "div";
-  placeholderImage2: "div";
   content10: "div";
   description2: "div";
   iconAndText2: "div";
@@ -5160,7 +5158,9 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicAccueilEmployeur__VariantsArgs;
     args?: PlasmicAccueilEmployeur__ArgsType;
     overrides?: NodeOverridesType<T>;
-  } & Omit<PlasmicAccueilEmployeur__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
+  } &
+    // Specify variants directly as props
+    Omit<PlasmicAccueilEmployeur__VariantsArgs, ReservedPropsType> &
     // Specify args directly as props
     Omit<PlasmicAccueilEmployeur__ArgsType, ReservedPropsType> &
     // Specify overrides for each element directly as props
@@ -5298,10 +5298,8 @@ export const PlasmicAccueilEmployeur = Object.assign(
     heading2: makeNodeComponent("heading2"),
     supportingText6: makeNodeComponent("supportingText6"),
     content8: makeNodeComponent("content8"),
-    placeholderImage: makeNodeComponent("placeholderImage"),
     container5: makeNodeComponent("container5"),
     content9: makeNodeComponent("content9"),
-    placeholderImage2: makeNodeComponent("placeholderImage2"),
     content10: makeNodeComponent("content10"),
     description2: makeNodeComponent("description2"),
     iconAndText2: makeNodeComponent("iconAndText2"),
