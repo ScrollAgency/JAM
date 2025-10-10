@@ -484,7 +484,6 @@
     padding-left: 20px;
     align-items: center;
     justify-content: center;
-    overflow: auto;
   }
 }
 @media (max-width: 375px) {
@@ -524,11 +523,6 @@
   object-fit: cover;
   row-gap: 16px;
   min-width: 0;
-}
-@media (min-width: 0px) and (max-width: 768px) {
-  .form2:global(.__wab_instance) {
-    overflow: visible;
-  }
 }
 @media (max-width: 375px) {
   .form2:global(.__wab_instance) {
