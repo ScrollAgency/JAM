@@ -5881,23 +5881,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                                         "Le code postal doit contenir au moins 2 chiffres."
                                     }
                                   ]
-                                : [
-                                    { ruleType: "required" },
-
-                                    {
-                                      ruleType: "min",
-                                      length: 5,
-                                      message:
-                                        "Le code postal doit contenir au moins 5 chiffres."
-                                    },
-
-                                    {
-                                      ruleType: "max",
-                                      length: 5,
-                                      message:
-                                        "Le code postal ne doit pas d\u00e9passer 5 chiffres."
-                                    }
-                                  ]
+                                : [{ ruleType: "required" }]
                             }
                           >
                             <TextInput
@@ -8269,21 +8253,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                             name={"postal_code"}
                             noLabel={true}
                             rules={[
-                              { ruleType: "required", message: "requis" },
-
-                              {
-                                ruleType: "min",
-                                length: 5,
-                                message:
-                                  "Le code postal doit contenir au moins 5 chiffres."
-                              },
-
-                              {
-                                ruleType: "max",
-                                length: 5,
-                                message:
-                                  "Le code postal ne doit pas d\u00e9passer 5 chiffres."
-                              }
+                              { ruleType: "required", message: "requis" }
                             ]}
                           >
                             <TextInput
@@ -9199,6 +9169,9 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                     </FormWrapper>
                   );
                 })()}
+                <div
+                  className={classNames(projectcss.all, sty.freeBox___2Kj97)}
+                />
               </div>
             }
             footer={null}
