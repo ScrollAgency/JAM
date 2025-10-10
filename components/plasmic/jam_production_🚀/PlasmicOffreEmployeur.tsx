@@ -85,8 +85,6 @@ import { JamDatePicker } from "../../forms/JamDatePicker/JamDatePicker"; // plas
 import LastMinuteToggle from "../../LastMinuteToggle"; // plasmic-import: Porp6y76-dWy/component
 import { AntdSelect } from "@plasmicpkgs/antd5/skinny/registerSelect";
 import TextAreaInput from "../../TextAreaInput"; // plasmic-import: nVAUbPc6gpoz/component
-import { AntdDatePicker } from "@plasmicpkgs/antd5/skinny/registerDatePicker";
-import { datePickerHelpers as AntdDatePicker_Helpers } from "@plasmicpkgs/antd5/skinny/registerDatePicker";
 import DeleteAccount from "../../DeleteAccount"; // plasmic-import: KdtWnTG_vDHe/component
 import { UploadWrapper } from "@plasmicpkgs/antd5/skinny/registerUpload";
 import ProgressBar from "../../ProgressBar"; // plasmic-import: o2sDSKJQp4UX/component
@@ -189,8 +187,6 @@ export type PlasmicOffreEmployeur__OverridesType = {
   select35?: Flex__<typeof Select>;
   select36?: Flex__<typeof Select>;
   select37?: Flex__<typeof Select>;
-  timePicker?: Flex__<typeof AntdDatePicker>;
-  timePicker2?: Flex__<typeof AntdDatePicker>;
   select38?: Flex__<typeof Select>;
   lastMinuteToggle2?: Flex__<typeof LastMinuteToggle>;
   select39?: Flex__<typeof Select>;
@@ -505,7 +501,7 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
         type: "private",
         variableType: "boolean",
         initFunc: ({ $props, $state, $queries, $ctx }) =>
-          hasVariant(globalVariants, "screen", "mobileOnly") ? true : true
+          hasVariant(globalVariants, "screen", "mobileOnly") ? false : true
       },
       {
         path: "form2.value",
@@ -983,22 +979,6 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
         type: "private",
         variableType: "text",
         initFunc: ({ $props, $state, $queries, $ctx }) => undefined
-      },
-      {
-        path: "timePicker.value",
-        type: "private",
-        variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
-
-        onMutate: generateOnMutateForSpec("value", AntdDatePicker_Helpers)
-      },
-      {
-        path: "timePicker2.value",
-        type: "private",
-        variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
-
-        onMutate: generateOnMutateForSpec("value", AntdDatePicker_Helpers)
       },
       {
         path: "coordinates",
@@ -7675,49 +7655,18 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                           name={"start_date"}
                           rules={[{ ruleType: "required", message: "requis" }]}
                         >
-                          {(() => {
-                            const child$Props = {
-                              allowClear: true,
-                              className: classNames(
-                                "__wab_instance",
-                                sty.timePicker
-                              ),
-                              onChange: async (...eventArgs: any) => {
-                                generateStateOnChangePropForCodeComponents(
-                                  $state,
-                                  "value",
-                                  ["timePicker", "value"],
-                                  AntdDatePicker_Helpers
-                                ).apply(null, eventArgs);
-                              },
-                              popupScopeClassName:
-                                sty["timePicker__datePickerPopup"],
-                              value: generateStateValueProp($state, [
-                                "timePicker",
-                                "value"
-                              ])
-                            };
-                            initializeCodeComponentStates(
-                              $state,
-                              [
-                                {
-                                  name: "value",
-                                  plasmicStateName: "timePicker.value"
-                                }
-                              ],
-                              [],
-                              AntdDatePicker_Helpers ?? {},
-                              child$Props
-                            );
-
-                            return (
-                              <AntdDatePicker
-                                data-plasmic-name={"timePicker"}
-                                data-plasmic-override={overrides.timePicker}
-                                {...child$Props}
-                              />
-                            );
-                          })()}
+                          <JamDatePicker
+                            allowClear={true}
+                            className={classNames(
+                              "__wab_instance",
+                              sty.jamDatePicker__o7BLm
+                            )}
+                            destructive={false}
+                            disabled={false}
+                            showTime={false}
+                            size={"middle"}
+                            type={"date"}
+                          />
                         </FormItemWrapper>
                         <FormItemWrapper
                           className={classNames(
@@ -7750,51 +7699,39 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                           }
                           name={"end_date"}
                           noLabel={false}
-                          rules={[]}
+                          rules={
+                            hasVariant(globalVariants, "screen", "mobileOnly")
+                              ? [
+                                  {
+                                    ruleType: "advanced",
+                                    custom: (rule, value) => {
+                                      return (
+                                        $state.formUpdate.value.end_date ==
+                                          undefined ||
+                                        $state.formUpdate.value.end_date ==
+                                          null ||
+                                        $state.formUpdate.value.start_date <
+                                          $state.formUpdate.value.end_date
+                                      );
+                                    },
+                                    message: "Erreur"
+                                  }
+                                ]
+                              : []
+                          }
                         >
-                          {(() => {
-                            const child$Props = {
-                              allowClear: true,
-                              className: classNames(
-                                "__wab_instance",
-                                sty.timePicker2
-                              ),
-                              onChange: async (...eventArgs: any) => {
-                                generateStateOnChangePropForCodeComponents(
-                                  $state,
-                                  "value",
-                                  ["timePicker2", "value"],
-                                  AntdDatePicker_Helpers
-                                ).apply(null, eventArgs);
-                              },
-                              popupScopeClassName:
-                                sty["timePicker2__datePickerPopup"],
-                              value: generateStateValueProp($state, [
-                                "timePicker2",
-                                "value"
-                              ])
-                            };
-                            initializeCodeComponentStates(
-                              $state,
-                              [
-                                {
-                                  name: "value",
-                                  plasmicStateName: "timePicker2.value"
-                                }
-                              ],
-                              [],
-                              AntdDatePicker_Helpers ?? {},
-                              child$Props
-                            );
-
-                            return (
-                              <AntdDatePicker
-                                data-plasmic-name={"timePicker2"}
-                                data-plasmic-override={overrides.timePicker2}
-                                {...child$Props}
-                              />
-                            );
-                          })()}
+                          <JamDatePicker
+                            allowClear={true}
+                            className={classNames(
+                              "__wab_instance",
+                              sty.jamDatePicker__tsD6P
+                            )}
+                            destructive={false}
+                            disabled={false}
+                            showTime={false}
+                            size={"middle"}
+                            type={"date"}
+                          />
                         </FormItemWrapper>
                       </div>
                       <div
@@ -19898,8 +19835,6 @@ const PlasmicDescendants = {
     "select35",
     "select36",
     "select37",
-    "timePicker",
-    "timePicker2",
     "select38",
     "lastMinuteToggle2",
     "select39",
@@ -20148,8 +20083,6 @@ const PlasmicDescendants = {
     "select35",
     "select36",
     "select37",
-    "timePicker",
-    "timePicker2",
     "select38",
     "lastMinuteToggle2",
     "select39",
@@ -20170,8 +20103,6 @@ const PlasmicDescendants = {
     "select35",
     "select36",
     "select37",
-    "timePicker",
-    "timePicker2",
     "select38",
     "lastMinuteToggle2",
     "select39",
@@ -20190,8 +20121,6 @@ const PlasmicDescendants = {
   select35: ["select35"],
   select36: ["select36"],
   select37: ["select37"],
-  timePicker: ["timePicker"],
-  timePicker2: ["timePicker2"],
   select38: ["select38"],
   lastMinuteToggle2: ["lastMinuteToggle2"],
   select39: ["select39"],
@@ -20786,8 +20715,6 @@ type NodeDefaultElementType = {
   select35: typeof Select;
   select36: typeof Select;
   select37: typeof Select;
-  timePicker: typeof AntdDatePicker;
-  timePicker2: typeof AntdDatePicker;
   select38: typeof Select;
   lastMinuteToggle2: typeof LastMinuteToggle;
   select39: typeof Select;
@@ -21040,8 +20967,6 @@ export const PlasmicOffreEmployeur = Object.assign(
     select35: makeNodeComponent("select35"),
     select36: makeNodeComponent("select36"),
     select37: makeNodeComponent("select37"),
-    timePicker: makeNodeComponent("timePicker"),
-    timePicker2: makeNodeComponent("timePicker2"),
     select38: makeNodeComponent("select38"),
     lastMinuteToggle2: makeNodeComponent("lastMinuteToggle2"),
     select39: makeNodeComponent("select39"),
