@@ -1429,9 +1429,9 @@
   max-width: 100%;
   justify-content: flex-start;
   align-items: center;
-  height: 100vh;
   flex-grow: 0;
   flex-shrink: 0;
+  height: 50vh;
   min-width: 0;
   display: none;
   padding: 50px;
