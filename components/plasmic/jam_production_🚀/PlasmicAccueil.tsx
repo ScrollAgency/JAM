@@ -1829,9 +1829,8 @@ function PlasmicAccueil__RenderFunc(props: {
                   typeof $steps["updateJobDetailsIsOpen"] === "object" &&
                   typeof $steps["updateJobDetailsIsOpen"].then === "function"
                 ) {
-                  $steps["updateJobDetailsIsOpen"] = await $steps[
-                    "updateJobDetailsIsOpen"
-                  ];
+                  $steps["updateJobDetailsIsOpen"] =
+                    await $steps["updateJobDetailsIsOpen"];
                 }
               }}
               shouldRun={(() => {
@@ -2196,9 +2195,8 @@ function PlasmicAccueil__RenderFunc(props: {
                               typeof $steps["goToCandidateSettings"].then ===
                                 "function"
                             ) {
-                              $steps["goToCandidateSettings"] = await $steps[
-                                "goToCandidateSettings"
-                              ];
+                              $steps["goToCandidateSettings"] =
+                                await $steps["goToCandidateSettings"];
                             }
 
                             $steps["goToEmployerSettings"] =
@@ -2230,9 +2228,8 @@ function PlasmicAccueil__RenderFunc(props: {
                               typeof $steps["goToEmployerSettings"].then ===
                                 "function"
                             ) {
-                              $steps["goToEmployerSettings"] = await $steps[
-                                "goToEmployerSettings"
-                              ];
+                              $steps["goToEmployerSettings"] =
+                                await $steps["goToEmployerSettings"];
                             }
 
                             $steps["goToAdminSettings"] =
@@ -2265,9 +2262,8 @@ function PlasmicAccueil__RenderFunc(props: {
                               typeof $steps["goToAdminSettings"].then ===
                                 "function"
                             ) {
-                              $steps["goToAdminSettings"] = await $steps[
-                                "goToAdminSettings"
-                              ];
+                              $steps["goToAdminSettings"] =
+                                await $steps["goToAdminSettings"];
                             }
                           }}
                         />
@@ -2396,9 +2392,8 @@ function PlasmicAccueil__RenderFunc(props: {
                               typeof $steps["goToRegisterValidation"].then ===
                                 "function"
                             ) {
-                              $steps["goToRegisterValidation"] = await $steps[
-                                "goToRegisterValidation"
-                              ];
+                              $steps["goToRegisterValidation"] =
+                                await $steps["goToRegisterValidation"];
                             }
 
                             $steps["goToCandidateSettings"] =
@@ -2432,9 +2427,8 @@ function PlasmicAccueil__RenderFunc(props: {
                               typeof $steps["goToCandidateSettings"].then ===
                                 "function"
                             ) {
-                              $steps["goToCandidateSettings"] = await $steps[
-                                "goToCandidateSettings"
-                              ];
+                              $steps["goToCandidateSettings"] =
+                                await $steps["goToCandidateSettings"];
                             }
 
                             $steps["goToEmployerSettings"] =
@@ -2443,7 +2437,7 @@ function PlasmicAccueil__RenderFunc(props: {
                                 "Company"
                                 ? (() => {
                                     const actionArgs = {
-                                      destination: `/parametres-employeur`
+                                      destination: `/offre-employeur`
                                     };
                                     return (({ destination }) => {
                                       if (
@@ -2468,9 +2462,8 @@ function PlasmicAccueil__RenderFunc(props: {
                               typeof $steps["goToEmployerSettings"].then ===
                                 "function"
                             ) {
-                              $steps["goToEmployerSettings"] = await $steps[
-                                "goToEmployerSettings"
-                              ];
+                              $steps["goToEmployerSettings"] =
+                                await $steps["goToEmployerSettings"];
                             }
 
                             $steps["goToAdminSettings"] =
@@ -2503,9 +2496,8 @@ function PlasmicAccueil__RenderFunc(props: {
                               typeof $steps["goToAdminSettings"].then ===
                                 "function"
                             ) {
-                              $steps["goToAdminSettings"] = await $steps[
-                                "goToAdminSettings"
-                              ];
+                              $steps["goToAdminSettings"] =
+                                await $steps["goToAdminSettings"];
                             }
                           }}
                         />
@@ -3032,9 +3024,10 @@ function PlasmicAccueil__RenderFunc(props: {
                                                   ) {
                                                     $steps[
                                                       "updateSearchLocation"
-                                                    ] = await $steps[
-                                                      "updateSearchLocation"
-                                                    ];
+                                                    ] =
+                                                      await $steps[
+                                                        "updateSearchLocation"
+                                                      ];
                                                   }
                                                 }).apply(null, eventArgs);
                                               },
@@ -4011,9 +4004,10 @@ function PlasmicAccueil__RenderFunc(props: {
                                           ) {
                                             $steps[
                                               "updateFormFilter2Submited"
-                                            ] = await $steps[
-                                              "updateFormFilter2Submited"
-                                            ];
+                                            ] =
+                                              await $steps[
+                                                "updateFormFilter2Submited"
+                                              ];
                                           }
                                         }}
                                         size={"large"}
@@ -4131,9 +4125,10 @@ function PlasmicAccueil__RenderFunc(props: {
                                           ) {
                                             $steps[
                                               "updateFormFilter2Submited"
-                                            ] = await $steps[
-                                              "updateFormFilter2Submited"
-                                            ];
+                                            ] =
+                                              await $steps[
+                                                "updateFormFilter2Submited"
+                                              ];
                                           }
 
                                           $steps["runCode"] = true
@@ -4163,9 +4158,8 @@ function PlasmicAccueil__RenderFunc(props: {
                                             typeof $steps["runCode"].then ===
                                               "function"
                                           ) {
-                                            $steps["runCode"] = await $steps[
-                                              "runCode"
-                                            ];
+                                            $steps["runCode"] =
+                                              await $steps["runCode"];
                                           }
                                         }}
                                         resetsForm={
@@ -4250,9 +4244,8 @@ function PlasmicAccueil__RenderFunc(props: {
                                               typeof $steps["runCode"].then ===
                                                 "function"
                                             ) {
-                                              $steps["runCode"] = await $steps[
-                                                "runCode"
-                                              ];
+                                              $steps["runCode"] =
+                                                await $steps["runCode"];
                                             }
 
                                             $steps["runActionOnFormFilter"] =
@@ -4341,9 +4334,10 @@ function PlasmicAccueil__RenderFunc(props: {
                                             ) {
                                               $steps[
                                                 "updateFormFilter2Submited"
-                                              ] = await $steps[
-                                                "updateFormFilter2Submited"
-                                              ];
+                                              ] =
+                                                await $steps[
+                                                  "updateFormFilter2Submited"
+                                                ];
                                             }
                                           }}
                                           ref={ref => {
@@ -5017,8 +5011,8 @@ function PlasmicAccueil__RenderFunc(props: {
                                             !_par
                                               ? []
                                               : Array.isArray(_par)
-                                              ? _par
-                                              : [_par])(
+                                                ? _par
+                                                : [_par])(
                                             (() => {
                                               try {
                                                 return $queries.jobOffers.data;
@@ -5259,9 +5253,10 @@ function PlasmicAccueil__RenderFunc(props: {
                                                         ) {
                                                           $steps[
                                                             "userNotLogged"
-                                                          ] = await $steps[
-                                                            "userNotLogged"
-                                                          ];
+                                                          ] =
+                                                            await $steps[
+                                                              "userNotLogged"
+                                                            ];
                                                         }
                                                       }}
                                                     >
@@ -5384,9 +5379,10 @@ function PlasmicAccueil__RenderFunc(props: {
                                                             ) {
                                                               $steps[
                                                                 "updateDb"
-                                                              ] = await $steps[
-                                                                "updateDb"
-                                                              ];
+                                                              ] =
+                                                                await $steps[
+                                                                  "updateDb"
+                                                                ];
                                                             }
 
                                                             $steps[
@@ -5433,9 +5429,10 @@ function PlasmicAccueil__RenderFunc(props: {
                                                             ) {
                                                               $steps[
                                                                 "refreshData"
-                                                              ] = await $steps[
-                                                                "refreshData"
-                                                              ];
+                                                              ] =
+                                                                await $steps[
+                                                                  "refreshData"
+                                                                ];
                                                             }
 
                                                             $steps[
@@ -5494,9 +5491,10 @@ function PlasmicAccueil__RenderFunc(props: {
                                                             ) {
                                                               $steps[
                                                                 "showToast"
-                                                              ] = await $steps[
-                                                                "showToast"
-                                                              ];
+                                                              ] =
+                                                                await $steps[
+                                                                  "showToast"
+                                                                ];
                                                             }
 
                                                             $steps[
@@ -5519,8 +5517,7 @@ function PlasmicAccueil__RenderFunc(props: {
                                                                               ]
                                                                           },
                                                                         operation: 0,
-                                                                        value:
-                                                                          true
+                                                                        value: true
                                                                       };
                                                                     return (({
                                                                       variable,
@@ -5567,9 +5564,10 @@ function PlasmicAccueil__RenderFunc(props: {
                                                             ) {
                                                               $steps[
                                                                 "updateVerifyUserAuthIsOpen"
-                                                              ] = await $steps[
-                                                                "updateVerifyUserAuthIsOpen"
-                                                              ];
+                                                              ] =
+                                                                await $steps[
+                                                                  "updateVerifyUserAuthIsOpen"
+                                                                ];
                                                             }
 
                                                             $steps[
@@ -5636,9 +5634,10 @@ function PlasmicAccueil__RenderFunc(props: {
                                                             ) {
                                                               $steps[
                                                                 "updateErrorMsg"
-                                                              ] = await $steps[
-                                                                "updateErrorMsg"
-                                                              ];
+                                                              ] =
+                                                                await $steps[
+                                                                  "updateErrorMsg"
+                                                                ];
                                                             }
                                                           }}
                                                           role={"img"}
@@ -5756,9 +5755,10 @@ function PlasmicAccueil__RenderFunc(props: {
                                                             ) {
                                                               $steps[
                                                                 "updateDb"
-                                                              ] = await $steps[
-                                                                "updateDb"
-                                                              ];
+                                                              ] =
+                                                                await $steps[
+                                                                  "updateDb"
+                                                                ];
                                                             }
 
                                                             $steps[
@@ -5805,9 +5805,10 @@ function PlasmicAccueil__RenderFunc(props: {
                                                             ) {
                                                               $steps[
                                                                 "refreshData"
-                                                              ] = await $steps[
-                                                                "refreshData"
-                                                              ];
+                                                              ] =
+                                                                await $steps[
+                                                                  "refreshData"
+                                                                ];
                                                             }
 
                                                             $steps[
@@ -5859,9 +5860,10 @@ function PlasmicAccueil__RenderFunc(props: {
                                                             ) {
                                                               $steps[
                                                                 "showToast"
-                                                              ] = await $steps[
-                                                                "showToast"
-                                                              ];
+                                                              ] =
+                                                                await $steps[
+                                                                  "showToast"
+                                                                ];
                                                             }
                                                           }}
                                                           role={"img"}
@@ -6089,9 +6091,10 @@ function PlasmicAccueil__RenderFunc(props: {
                                                         ) {
                                                           $steps[
                                                             "updateJobObject"
-                                                          ] = await $steps[
-                                                            "updateJobObject"
-                                                          ];
+                                                          ] =
+                                                            await $steps[
+                                                              "updateJobObject"
+                                                            ];
                                                         }
 
                                                         $steps[
@@ -6154,9 +6157,10 @@ function PlasmicAccueil__RenderFunc(props: {
                                                         ) {
                                                           $steps[
                                                             "updateJobCoordinates"
-                                                          ] = await $steps[
-                                                            "updateJobCoordinates"
-                                                          ];
+                                                          ] =
+                                                            await $steps[
+                                                              "updateJobCoordinates"
+                                                            ];
                                                         }
 
                                                         $steps[
@@ -6215,9 +6219,10 @@ function PlasmicAccueil__RenderFunc(props: {
                                                         ) {
                                                           $steps[
                                                             "updateJobDetailsIsOpen"
-                                                          ] = await $steps[
-                                                            "updateJobDetailsIsOpen"
-                                                          ];
+                                                          ] =
+                                                            await $steps[
+                                                              "updateJobDetailsIsOpen"
+                                                            ];
                                                         }
                                                       },
                                                       onCompanyLogoChange:
@@ -7095,9 +7100,10 @@ function PlasmicAccueil__RenderFunc(props: {
                                                         ) {
                                                           $steps[
                                                             "updateKeyWords"
-                                                          ] = await $steps[
-                                                            "updateKeyWords"
-                                                          ];
+                                                          ] =
+                                                            await $steps[
+                                                              "updateKeyWords"
+                                                            ];
                                                         }
                                                       }).apply(null, eventArgs);
                                                     },
@@ -7297,9 +7303,10 @@ function PlasmicAccueil__RenderFunc(props: {
                                                         ) {
                                                           $steps[
                                                             "updateSearchLocation"
-                                                          ] = await $steps[
-                                                            "updateSearchLocation"
-                                                          ];
+                                                          ] =
+                                                            await $steps[
+                                                              "updateSearchLocation"
+                                                            ];
                                                         }
                                                       }).apply(null, eventArgs);
                                                     },
@@ -8311,9 +8318,10 @@ function PlasmicAccueil__RenderFunc(props: {
                                                 ) {
                                                   $steps[
                                                     "updateFormFilter2Submited"
-                                                  ] = await $steps[
-                                                    "updateFormFilter2Submited"
-                                                  ];
+                                                  ] =
+                                                    await $steps[
+                                                      "updateFormFilter2Submited"
+                                                    ];
                                                 }
                                               }}
                                               size={"large"}
@@ -8387,9 +8395,10 @@ function PlasmicAccueil__RenderFunc(props: {
                                                 ) {
                                                   $steps[
                                                     "runActionOnFormFilter"
-                                                  ] = await $steps[
-                                                    "runActionOnFormFilter"
-                                                  ];
+                                                  ] =
+                                                    await $steps[
+                                                      "runActionOnFormFilter"
+                                                    ];
                                                 }
 
                                                 $steps[
@@ -8444,9 +8453,10 @@ function PlasmicAccueil__RenderFunc(props: {
                                                 ) {
                                                   $steps[
                                                     "updateFormFilter2Submited"
-                                                  ] = await $steps[
-                                                    "updateFormFilter2Submited"
-                                                  ];
+                                                  ] =
+                                                    await $steps[
+                                                      "updateFormFilter2Submited"
+                                                    ];
                                                 }
 
                                                 $steps["runCode"] = true
@@ -8614,9 +8624,10 @@ function PlasmicAccueil__RenderFunc(props: {
                                                   ) {
                                                     $steps[
                                                       "runActionOnFormFilter"
-                                                    ] = await $steps[
-                                                      "runActionOnFormFilter"
-                                                    ];
+                                                    ] =
+                                                      await $steps[
+                                                        "runActionOnFormFilter"
+                                                      ];
                                                   }
 
                                                   $steps[
@@ -8671,9 +8682,10 @@ function PlasmicAccueil__RenderFunc(props: {
                                                   ) {
                                                     $steps[
                                                       "updateFormFilter2Submited"
-                                                    ] = await $steps[
-                                                      "updateFormFilter2Submited"
-                                                    ];
+                                                    ] =
+                                                      await $steps[
+                                                        "updateFormFilter2Submited"
+                                                      ];
                                                   }
                                                 }}
                                                 ref={ref => {
@@ -8912,9 +8924,8 @@ function PlasmicAccueil__RenderFunc(props: {
                                         typeof $steps["runCode"].then ===
                                           "function"
                                       ) {
-                                        $steps["runCode"] = await $steps[
-                                          "runCode"
-                                        ];
+                                        $steps["runCode"] =
+                                          await $steps["runCode"];
                                       }
 
                                       $steps["updateJobDetailsIsOpen"] =
@@ -9391,9 +9402,8 @@ function PlasmicAccueil__RenderFunc(props: {
                               typeof $steps["goToConnexion"] === "object" &&
                               typeof $steps["goToConnexion"].then === "function"
                             ) {
-                              $steps["goToConnexion"] = await $steps[
-                                "goToConnexion"
-                              ];
+                              $steps["goToConnexion"] =
+                                await $steps["goToConnexion"];
                             }
                           }}
                         />
@@ -9634,9 +9644,8 @@ function PlasmicAccueil__RenderFunc(props: {
                                     typeof $steps["errorMsg"].then ===
                                       "function"
                                   ) {
-                                    $steps["errorMsg"] = await $steps[
-                                      "errorMsg"
-                                    ];
+                                    $steps["errorMsg"] =
+                                      await $steps["errorMsg"];
                                   }
 
                                   $steps["closeModal"] =
@@ -9680,9 +9689,8 @@ function PlasmicAccueil__RenderFunc(props: {
                                     typeof $steps["closeModal"].then ===
                                       "function"
                                   ) {
-                                    $steps["closeModal"] = await $steps[
-                                      "closeModal"
-                                    ];
+                                    $steps["closeModal"] =
+                                      await $steps["closeModal"];
                                   }
 
                                   $steps["userNotLogged"] =
@@ -9727,9 +9735,8 @@ function PlasmicAccueil__RenderFunc(props: {
                                     typeof $steps["userNotLogged"].then ===
                                       "function"
                                   ) {
-                                    $steps["userNotLogged"] = await $steps[
-                                      "userNotLogged"
-                                    ];
+                                    $steps["userNotLogged"] =
+                                      await $steps["userNotLogged"];
                                   }
                                 }}
                               >
@@ -9970,9 +9977,8 @@ function PlasmicAccueil__RenderFunc(props: {
                                         typeof $steps["updateErrorMsg"].then ===
                                           "function"
                                       ) {
-                                        $steps["updateErrorMsg"] = await $steps[
-                                          "updateErrorMsg"
-                                        ];
+                                        $steps["updateErrorMsg"] =
+                                          await $steps["updateErrorMsg"];
                                       }
                                     }}
                                     role={"img"}
@@ -10145,12 +10151,7 @@ function PlasmicAccueil__RenderFunc(props: {
                                 <React.Fragment>
                                   {(() => {
                                     try {
-                                      return `${
-                                        $state.jobObject.location
-                                      } (${$state.jobObject.company_postal_code.substring(
-                                        0,
-                                        2
-                                      )})`;
+                                      return `${$state.jobObject.location} (${$state.jobObject.company_postal_code.substring(0, 2)})`;
                                     } catch (e) {
                                       if (
                                         e instanceof TypeError ||
@@ -10522,9 +10523,8 @@ function PlasmicAccueil__RenderFunc(props: {
                                     typeof $steps["updateMessage2"].then ===
                                       "function"
                                   ) {
-                                    $steps["updateMessage2"] = await $steps[
-                                      "updateMessage2"
-                                    ];
+                                    $steps["updateMessage2"] =
+                                      await $steps["updateMessage2"];
                                   }
 
                                   $steps["updateVerifyUserAuthIsOpen"] =
@@ -11249,9 +11249,8 @@ function PlasmicAccueil__RenderFunc(props: {
                               typeof $steps["updateJobObject"].then ===
                                 "function"
                             ) {
-                              $steps["updateJobObject"] = await $steps[
-                                "updateJobObject"
-                              ];
+                              $steps["updateJobObject"] =
+                                await $steps["updateJobObject"];
                             }
 
                             $steps["updateJobId"] = true
@@ -11284,9 +11283,8 @@ function PlasmicAccueil__RenderFunc(props: {
                               typeof $steps["updateJobId"] === "object" &&
                               typeof $steps["updateJobId"].then === "function"
                             ) {
-                              $steps["updateJobId"] = await $steps[
-                                "updateJobId"
-                              ];
+                              $steps["updateJobId"] =
+                                await $steps["updateJobId"];
                             }
 
                             $steps["updateModalIsOpen"] = true
@@ -11321,9 +11319,8 @@ function PlasmicAccueil__RenderFunc(props: {
                               typeof $steps["updateModalIsOpen"].then ===
                                 "function"
                             ) {
-                              $steps["updateModalIsOpen"] = await $steps[
-                                "updateModalIsOpen"
-                              ];
+                              $steps["updateModalIsOpen"] =
+                                await $steps["updateModalIsOpen"];
                             }
                           }}
                           src={{
@@ -12296,9 +12293,8 @@ function PlasmicAccueil__RenderFunc(props: {
                                 typeof $steps["updateUser"] === "object" &&
                                 typeof $steps["updateUser"].then === "function"
                               ) {
-                                $steps["updateUser"] = await $steps[
-                                  "updateUser"
-                                ];
+                                $steps["updateUser"] =
+                                  await $steps["updateUser"];
                               }
 
                               $steps["createApplication"] = (
@@ -12384,9 +12380,8 @@ function PlasmicAccueil__RenderFunc(props: {
                                 typeof $steps["createApplication"].then ===
                                   "function"
                               ) {
-                                $steps["createApplication"] = await $steps[
-                                  "createApplication"
-                                ];
+                                $steps["createApplication"] =
+                                  await $steps["createApplication"];
                               }
 
                               $steps["errorMsg"] = (
@@ -12514,9 +12509,8 @@ function PlasmicAccueil__RenderFunc(props: {
                                 typeof $steps["sendEmailToEmployer"].then ===
                                   "function"
                               ) {
-                                $steps["sendEmailToEmployer"] = await $steps[
-                                  "sendEmailToEmployer"
-                                ];
+                                $steps["sendEmailToEmployer"] =
+                                  await $steps["sendEmailToEmployer"];
                               }
 
                               $steps["sendEmailToCandidat"] = true
@@ -12582,9 +12576,8 @@ function PlasmicAccueil__RenderFunc(props: {
                                 typeof $steps["sendEmailToCandidat"].then ===
                                   "function"
                               ) {
-                                $steps["sendEmailToCandidat"] = await $steps[
-                                  "sendEmailToCandidat"
-                                ];
+                                $steps["sendEmailToCandidat"] =
+                                  await $steps["sendEmailToCandidat"];
                               }
 
                               $steps["closeModal"] = true
@@ -12622,9 +12615,8 @@ function PlasmicAccueil__RenderFunc(props: {
                                 typeof $steps["closeModal"] === "object" &&
                                 typeof $steps["closeModal"].then === "function"
                               ) {
-                                $steps["closeModal"] = await $steps[
-                                  "closeModal"
-                                ];
+                                $steps["closeModal"] =
+                                  await $steps["closeModal"];
                               }
                             },
                             onFinishFailed: async data => {
@@ -12653,9 +12645,8 @@ function PlasmicAccueil__RenderFunc(props: {
                                 typeof $steps["invokeGlobalAction"].then ===
                                   "function"
                               ) {
-                                $steps["invokeGlobalAction"] = await $steps[
-                                  "invokeGlobalAction"
-                                ];
+                                $steps["invokeGlobalAction"] =
+                                  await $steps["invokeGlobalAction"];
                               }
                             },
                             onIsSubmittingChange: async (...eventArgs: any) => {
@@ -12985,9 +12976,8 @@ function PlasmicAccueil__RenderFunc(props: {
                                           typeof $steps["runCode"].then ===
                                             "function"
                                         ) {
-                                          $steps["runCode"] = await $steps[
-                                            "runCode"
-                                          ];
+                                          $steps["runCode"] =
+                                            await $steps["runCode"];
                                         }
 
                                         $steps["postgresUpdateMany"] = true
@@ -13527,8 +13517,8 @@ function PlasmicAccueil__RenderFunc(props: {
                                     !_par
                                       ? []
                                       : Array.isArray(_par)
-                                      ? _par
-                                      : [_par])(
+                                        ? _par
+                                        : [_par])(
                                     (() => {
                                       try {
                                         return $state.countries;
@@ -13929,8 +13919,8 @@ function PlasmicAccueil__RenderFunc(props: {
                                     !_par
                                       ? []
                                       : Array.isArray(_par)
-                                      ? _par
-                                      : [_par])(
+                                        ? _par
+                                        : [_par])(
                                     (() => {
                                       try {
                                         return $queries.getXpLevel.data.sort(
@@ -14131,9 +14121,8 @@ function PlasmicAccueil__RenderFunc(props: {
                                             typeof $steps["runCode"].then ===
                                               "function"
                                           ) {
-                                            $steps["runCode"] = await $steps[
-                                              "runCode"
-                                            ];
+                                            $steps["runCode"] =
+                                              await $steps["runCode"];
                                           }
 
                                           $steps["postgresUpdateMany"] = true
@@ -14491,9 +14480,8 @@ function PlasmicAccueil__RenderFunc(props: {
                                             typeof $steps["runCode"].then ===
                                               "function"
                                           ) {
-                                            $steps["runCode"] = await $steps[
-                                              "runCode"
-                                            ];
+                                            $steps["runCode"] =
+                                              await $steps["runCode"];
                                           }
 
                                           $steps["postgresUpdateMany"] = true
@@ -14966,9 +14954,8 @@ function PlasmicAccueil__RenderFunc(props: {
                                 typeof $steps["invokeGlobalAction"].then ===
                                   "function"
                               ) {
-                                $steps["invokeGlobalAction"] = await $steps[
-                                  "invokeGlobalAction"
-                                ];
+                                $steps["invokeGlobalAction"] =
+                                  await $steps["invokeGlobalAction"];
                               }
                             }}
                             password={generateStateValueProp($state, [
@@ -15063,9 +15050,8 @@ function PlasmicAccueil__RenderFunc(props: {
                               typeof $steps["updateModal2IsOpen"].then ===
                                 "function"
                             ) {
-                              $steps["updateModal2IsOpen"] = await $steps[
-                                "updateModal2IsOpen"
-                              ];
+                              $steps["updateModal2IsOpen"] =
+                                await $steps["updateModal2IsOpen"];
                             }
                           }}
                           src={{
@@ -16310,9 +16296,8 @@ function PlasmicAccueil__RenderFunc(props: {
                                         typeof $steps["runCode"].then ===
                                           "function"
                                       ) {
-                                        $steps["runCode"] = await $steps[
-                                          "runCode"
-                                        ];
+                                        $steps["runCode"] =
+                                          await $steps["runCode"];
                                       }
                                     }}
                                     resetsForm={(() => {
@@ -16670,9 +16655,8 @@ function PlasmicAccueil__RenderFunc(props: {
                               typeof $steps["updateModalIsOpen"].then ===
                                 "function"
                             ) {
-                              $steps["updateModalIsOpen"] = await $steps[
-                                "updateModalIsOpen"
-                              ];
+                              $steps["updateModalIsOpen"] =
+                                await $steps["updateModalIsOpen"];
                             }
                           }}
                           src={{
@@ -16775,9 +16759,8 @@ function PlasmicAccueil__RenderFunc(props: {
                 typeof $steps["goToRegisterGoogleValidation"].then ===
                   "function"
               ) {
-                $steps["goToRegisterGoogleValidation"] = await $steps[
-                  "goToRegisterGoogleValidation"
-                ];
+                $steps["goToRegisterGoogleValidation"] =
+                  await $steps["goToRegisterGoogleValidation"];
               }
             }}
             shouldRun={(() => {
@@ -18567,7 +18550,9 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicAccueil__VariantsArgs;
     args?: PlasmicAccueil__ArgsType;
     overrides?: NodeOverridesType<T>;
-  } & Omit<PlasmicAccueil__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
+  } &
+    // Specify variants directly as props
+    Omit<PlasmicAccueil__VariantsArgs, ReservedPropsType> &
     // Specify args directly as props
     Omit<PlasmicAccueil__ArgsType, ReservedPropsType> &
     // Specify overrides for each element directly as props
