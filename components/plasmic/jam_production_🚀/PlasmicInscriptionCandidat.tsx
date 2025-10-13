@@ -586,12 +586,11 @@ function PlasmicInscriptionCandidat__RenderFunc(props: {
                         typeof $steps["invokeGlobalAction"] === "object" &&
                         typeof $steps["invokeGlobalAction"].then === "function"
                       ) {
-                        $steps["invokeGlobalAction"] = await $steps[
-                          "invokeGlobalAction"
-                        ];
+                        $steps["invokeGlobalAction"] =
+                          await $steps["invokeGlobalAction"];
                       }
 
-                      $steps["sendEmailToCandidate"] = true
+                      $steps["sendEmailToCandidate"] = false
                         ? (() => {
                             const actionArgs = {
                               dataOp: {
@@ -644,9 +643,8 @@ function PlasmicInscriptionCandidat__RenderFunc(props: {
                         typeof $steps["sendEmailToCandidate"].then ===
                           "function"
                       ) {
-                        $steps["sendEmailToCandidate"] = await $steps[
-                          "sendEmailToCandidate"
-                        ];
+                        $steps["sendEmailToCandidate"] =
+                          await $steps["sendEmailToCandidate"];
                       }
                     }}
                     password={generateStateValueProp($state, [
@@ -768,7 +766,9 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicInscriptionCandidat__VariantsArgs;
     args?: PlasmicInscriptionCandidat__ArgsType;
     overrides?: NodeOverridesType<T>;
-  } & Omit<PlasmicInscriptionCandidat__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
+  } &
+    // Specify variants directly as props
+    Omit<PlasmicInscriptionCandidat__VariantsArgs, ReservedPropsType> &
     // Specify args directly as props
     Omit<PlasmicInscriptionCandidat__ArgsType, ReservedPropsType> &
     // Specify overrides for each element directly as props

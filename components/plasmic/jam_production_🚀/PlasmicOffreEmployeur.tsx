@@ -5276,11 +5276,11 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                                 return (
                                   $state.form2.value.end_date == undefined ||
                                   $state.form2.value.end_date == null ||
-                                  $state.form2.value.start_date <
+                                  $state.form2.value.start_date <=
                                     $state.form2.value.end_date
                                 );
                               },
-                              message: "Erreur"
+                              message: "Date de fin invalide"
                             }
                           ]}
                         >
@@ -7700,7 +7700,22 @@ function PlasmicOffreEmployeur__RenderFunc(props: {
                                     message: "Erreur"
                                   }
                                 ]
-                              : []
+                              : [
+                                  {
+                                    ruleType: "advanced",
+                                    custom: (rule, value) => {
+                                      return (
+                                        $state.formUpdate.value.end_date ==
+                                          undefined ||
+                                        $state.formUpdate.value.end_date ==
+                                          null ||
+                                        $state.formUpdate.value.start_date <=
+                                          $state.formUpdate.value.end_date
+                                      );
+                                    },
+                                    message: "Date de fin invalide"
+                                  }
+                                ]
                           }
                         >
                           <JamDatePicker

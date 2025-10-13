@@ -287,9 +287,8 @@ function PlasmicInscriptionEmployeur__RenderFunc(props: {
                     typeof $steps["goToMesCandidatures"] === "object" &&
                     typeof $steps["goToMesCandidatures"].then === "function"
                   ) {
-                    $steps["goToMesCandidatures"] = await $steps[
-                      "goToMesCandidatures"
-                    ];
+                    $steps["goToMesCandidatures"] =
+                      await $steps["goToMesCandidatures"];
                   }
                 }}
               >
@@ -533,12 +532,11 @@ function PlasmicInscriptionEmployeur__RenderFunc(props: {
                         typeof $steps["invokeGlobalAction"] === "object" &&
                         typeof $steps["invokeGlobalAction"].then === "function"
                       ) {
-                        $steps["invokeGlobalAction"] = await $steps[
-                          "invokeGlobalAction"
-                        ];
+                        $steps["invokeGlobalAction"] =
+                          await $steps["invokeGlobalAction"];
                       }
 
-                      $steps["sendEmailToEmployer"] = true
+                      $steps["sendEmailToEmployer"] = false
                         ? (() => {
                             const actionArgs = {
                               dataOp: {
@@ -591,9 +589,8 @@ function PlasmicInscriptionEmployeur__RenderFunc(props: {
                         typeof $steps["sendEmailToEmployer"] === "object" &&
                         typeof $steps["sendEmailToEmployer"].then === "function"
                       ) {
-                        $steps["sendEmailToEmployer"] = await $steps[
-                          "sendEmailToEmployer"
-                        ];
+                        $steps["sendEmailToEmployer"] =
+                          await $steps["sendEmailToEmployer"];
                       }
                     }}
                     password={generateStateValueProp($state, [
@@ -789,7 +786,9 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicInscriptionEmployeur__VariantsArgs;
     args?: PlasmicInscriptionEmployeur__ArgsType;
     overrides?: NodeOverridesType<T>;
-  } & Omit<PlasmicInscriptionEmployeur__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
+  } &
+    // Specify variants directly as props
+    Omit<PlasmicInscriptionEmployeur__VariantsArgs, ReservedPropsType> &
     // Specify args directly as props
     Omit<PlasmicInscriptionEmployeur__ArgsType, ReservedPropsType> &
     // Specify overrides for each element directly as props
