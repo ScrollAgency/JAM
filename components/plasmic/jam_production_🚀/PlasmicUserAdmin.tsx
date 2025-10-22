@@ -404,7 +404,7 @@ function PlasmicUserAdmin__RenderFunc(props: {
                             )}
                           >
                             {hasVariant(globalVariants, "screen", "mobileOnly")
-                              ? "Gestion des users 2"
+                              ? "Gestion des users"
                               : "Gestion des users"}
                           </h1>
                         }
@@ -425,7 +425,7 @@ function PlasmicUserAdmin__RenderFunc(props: {
                             )}
                           >
                             {hasVariant(globalVariants, "screen", "mobileOnly")
-                              ? "Gestion des users 2"
+                              ? "Gestion des users"
                               : "Gestion des users"}
                           </h1>
                         }

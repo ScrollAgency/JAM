@@ -400,7 +400,7 @@ function PlasmicOffreAdmin__RenderFunc(props: {
                             )}
                           >
                             {hasVariant(globalVariants, "screen", "mobileOnly")
-                              ? "Gestion des offres 9"
+                              ? "Gestion des offres"
                               : "Gestion des offres"}
                           </h1>
                         }
@@ -421,7 +421,7 @@ function PlasmicOffreAdmin__RenderFunc(props: {
                             )}
                           >
                             {hasVariant(globalVariants, "screen", "mobileOnly")
-                              ? "Gestion des offres 9"
+                              ? "Gestion des offres"
                               : "Gestion des offres"}
                           </h1>
                         }
