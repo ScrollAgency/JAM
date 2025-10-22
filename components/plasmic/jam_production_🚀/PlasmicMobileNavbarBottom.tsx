@@ -200,7 +200,8 @@ function PlasmicMobileNavbarBottom__RenderFunc(props: {
         projectcss.plasmic_default_styles,
         projectcss.plasmic_mixins,
         styleTokensClassNames,
-        sty.root
+        sty.root,
+        { [sty.rootuser_candidat]: hasVariant($state, "user", "candidat") }
       )}
     >
       <nav
@@ -227,7 +228,14 @@ function PlasmicMobileNavbarBottom__RenderFunc(props: {
               className={classNames(
                 projectcss.all,
                 projectcss.__wab_text,
-                sty.text___7Gko
+                sty.text___7Gko,
+                {
+                  [sty.textuser_candidat___7GkoCmvY0]: hasVariant(
+                    $state,
+                    "user",
+                    "candidat"
+                  )
+                }
               )}
             >
               {"candidatures"}
