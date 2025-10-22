@@ -293,12 +293,6 @@ function PlasmicMesAlertes__RenderFunc(props: {
         type: "private",
         variableType: "text",
         initFunc: ({ $props, $state, $queries, $ctx }) => "candidat"
-      },
-      {
-        path: "mobileNavbarBottom.role",
-        type: "private",
-        variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => 0
       }
     ],
     [$props, $ctx, $refs]
@@ -546,9 +540,8 @@ function PlasmicMesAlertes__RenderFunc(props: {
                           typeof $steps["resetCurrentAlert"] === "object" &&
                           typeof $steps["resetCurrentAlert"].then === "function"
                         ) {
-                          $steps["resetCurrentAlert"] = await $steps[
-                            "resetCurrentAlert"
-                          ];
+                          $steps["resetCurrentAlert"] =
+                            await $steps["resetCurrentAlert"];
                         }
 
                         $steps["openModal"] = true
@@ -750,9 +743,8 @@ function PlasmicMesAlertes__RenderFunc(props: {
                                 typeof $steps["updateCurrentAlert"].then ===
                                   "function"
                               ) {
-                                $steps["updateCurrentAlert"] = await $steps[
-                                  "updateCurrentAlert"
-                                ];
+                                $steps["updateCurrentAlert"] =
+                                  await $steps["updateCurrentAlert"];
                               }
 
                               $steps["openModal"] = true
@@ -873,9 +865,8 @@ function PlasmicMesAlertes__RenderFunc(props: {
                                   typeof $steps["updateCurrentAlert"].then ===
                                     "function"
                                 ) {
-                                  $steps["updateCurrentAlert"] = await $steps[
-                                    "updateCurrentAlert"
-                                  ];
+                                  $steps["updateCurrentAlert"] =
+                                    await $steps["updateCurrentAlert"];
                                 }
 
                                 $steps["openDeleteModal"] = true
@@ -915,9 +906,8 @@ function PlasmicMesAlertes__RenderFunc(props: {
                                   typeof $steps["openDeleteModal"].then ===
                                     "function"
                                 ) {
-                                  $steps["openDeleteModal"] = await $steps[
-                                    "openDeleteModal"
-                                  ];
+                                  $steps["openDeleteModal"] =
+                                    await $steps["openDeleteModal"];
                                 }
                               }}
                               onClickEdit={async event => {
@@ -957,9 +947,8 @@ function PlasmicMesAlertes__RenderFunc(props: {
                                   typeof $steps["updateCurrentAlert"].then ===
                                     "function"
                                 ) {
-                                  $steps["updateCurrentAlert"] = await $steps[
-                                    "updateCurrentAlert"
-                                  ];
+                                  $steps["updateCurrentAlert"] =
+                                    await $steps["updateCurrentAlert"];
                                 }
 
                                 $steps["updateIsModalOpen"] = true
@@ -996,9 +985,8 @@ function PlasmicMesAlertes__RenderFunc(props: {
                                   typeof $steps["updateIsModalOpen"].then ===
                                     "function"
                                 ) {
-                                  $steps["updateIsModalOpen"] = await $steps[
-                                    "updateIsModalOpen"
-                                  ];
+                                  $steps["updateIsModalOpen"] =
+                                    await $steps["updateIsModalOpen"];
                                 }
                               }}
                             />
@@ -1069,9 +1057,8 @@ function PlasmicMesAlertes__RenderFunc(props: {
                       typeof $steps["updateIsModalOpen"] === "object" &&
                       typeof $steps["updateIsModalOpen"].then === "function"
                     ) {
-                      $steps["updateIsModalOpen"] = await $steps[
-                        "updateIsModalOpen"
-                      ];
+                      $steps["updateIsModalOpen"] =
+                        await $steps["updateIsModalOpen"];
                     }
                   }}
                   role={"img"}
@@ -1184,9 +1171,8 @@ function PlasmicMesAlertes__RenderFunc(props: {
                         typeof $steps["createCriteria"] === "object" &&
                         typeof $steps["createCriteria"].then === "function"
                       ) {
-                        $steps["createCriteria"] = await $steps[
-                          "createCriteria"
-                        ];
+                        $steps["createCriteria"] =
+                          await $steps["createCriteria"];
                       }
 
                       $steps["updateCriteria"] =
@@ -1240,9 +1226,8 @@ function PlasmicMesAlertes__RenderFunc(props: {
                         typeof $steps["updateCriteria"] === "object" &&
                         typeof $steps["updateCriteria"].then === "function"
                       ) {
-                        $steps["updateCriteria"] = await $steps[
-                          "updateCriteria"
-                        ];
+                        $steps["updateCriteria"] =
+                          await $steps["updateCriteria"];
                       }
 
                       $steps["closeModal"] = true
@@ -1315,9 +1300,8 @@ function PlasmicMesAlertes__RenderFunc(props: {
                         typeof $steps["showNotification"] === "object" &&
                         typeof $steps["showNotification"].then === "function"
                       ) {
-                        $steps["showNotification"] = await $steps[
-                          "showNotification"
-                        ];
+                        $steps["showNotification"] =
+                          await $steps["showNotification"];
                       }
                     },
                     onIsSubmittingChange: async (...eventArgs: any) => {
@@ -2048,9 +2032,8 @@ function PlasmicMesAlertes__RenderFunc(props: {
                         typeof $steps["updateDeleteAlertIsOpen"].then ===
                           "function"
                       ) {
-                        $steps["updateDeleteAlertIsOpen"] = await $steps[
-                          "updateDeleteAlertIsOpen"
-                        ];
+                        $steps["updateDeleteAlertIsOpen"] =
+                          await $steps["updateDeleteAlertIsOpen"];
                       }
                     }}
                   >
@@ -2077,24 +2060,7 @@ function PlasmicMesAlertes__RenderFunc(props: {
             data-plasmic-name={"mobileNavbarBottom"}
             data-plasmic-override={overrides.mobileNavbarBottom}
             className={classNames("__wab_instance", sty.mobileNavbarBottom)}
-            onRoleChange={async (...eventArgs: any) => {
-              generateStateOnChangeProp($state, [
-                "mobileNavbarBottom",
-                "role"
-              ]).apply(null, eventArgs);
-
-              if (
-                eventArgs.length > 1 &&
-                eventArgs[1] &&
-                eventArgs[1]._plasmic_state_init_
-              ) {
-                return;
-              }
-            }}
-            role={generateStateValueProp($state, [
-              "mobileNavbarBottom",
-              "role"
-            ])}
+            user={"candidat"}
           />
 
           <Modal
@@ -2623,7 +2589,9 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicMesAlertes__VariantsArgs;
     args?: PlasmicMesAlertes__ArgsType;
     overrides?: NodeOverridesType<T>;
-  } & Omit<PlasmicMesAlertes__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
+  } &
+    // Specify variants directly as props
+    Omit<PlasmicMesAlertes__VariantsArgs, ReservedPropsType> &
     // Specify args directly as props
     Omit<PlasmicMesAlertes__ArgsType, ReservedPropsType> &
     // Specify overrides for each element directly as props

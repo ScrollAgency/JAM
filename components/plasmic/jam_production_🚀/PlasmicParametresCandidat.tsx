@@ -651,13 +651,6 @@ function PlasmicParametresCandidat__RenderFunc(props: {
         type: "private",
         variableType: "text",
         initFunc: ({ $props, $state, $queries, $ctx }) => "candidat"
-      },
-      {
-        path: "mobileNavbarBottom.role",
-        type: "private",
-        variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) =>
-          hasVariant(globalVariants, "screen", "mobileOnly") ? 0 : 0
       }
     ],
     [$props, $ctx, $refs]
@@ -1071,9 +1064,8 @@ function PlasmicParametresCandidat__RenderFunc(props: {
                                 typeof $steps["supabaseUploadFile"].then ===
                                   "function"
                               ) {
-                                $steps["supabaseUploadFile"] = await $steps[
-                                  "supabaseUploadFile"
-                                ];
+                                $steps["supabaseUploadFile"] =
+                                  await $steps["supabaseUploadFile"];
                               }
 
                               $steps["postgresUpdateById"] = true
@@ -1129,9 +1121,8 @@ function PlasmicParametresCandidat__RenderFunc(props: {
                                 typeof $steps["postgresUpdateById"].then ===
                                   "function"
                               ) {
-                                $steps["postgresUpdateById"] = await $steps[
-                                  "postgresUpdateById"
-                                ];
+                                $steps["postgresUpdateById"] =
+                                  await $steps["postgresUpdateById"];
                               }
                             }).apply(null, eventArgs);
                           }}
@@ -1228,9 +1219,8 @@ function PlasmicParametresCandidat__RenderFunc(props: {
                                 typeof $steps["updateUpload2Files"].then ===
                                   "function"
                               ) {
-                                $steps["updateUpload2Files"] = await $steps[
-                                  "updateUpload2Files"
-                                ];
+                                $steps["updateUpload2Files"] =
+                                  await $steps["updateUpload2Files"];
                               }
 
                               $steps["runCode"] = true
@@ -1304,9 +1294,8 @@ function PlasmicParametresCandidat__RenderFunc(props: {
                                 typeof $steps["postgresUpdateMany"].then ===
                                   "function"
                               ) {
-                                $steps["postgresUpdateMany"] = await $steps[
-                                  "postgresUpdateMany"
-                                ];
+                                $steps["postgresUpdateMany"] =
+                                  await $steps["postgresUpdateMany"];
                               }
                             }}
                           >
@@ -1632,9 +1621,8 @@ function PlasmicParametresCandidat__RenderFunc(props: {
                                     typeof $steps["updateUser"].then ===
                                       "function"
                                   ) {
-                                    $steps["updateUser"] = await $steps[
-                                      "updateUser"
-                                    ];
+                                    $steps["updateUser"] =
+                                      await $steps["updateUser"];
                                   }
 
                                   $steps["showMsg"] = true
@@ -2219,8 +2207,8 @@ function PlasmicParametresCandidat__RenderFunc(props: {
                                         !_par
                                           ? []
                                           : Array.isArray(_par)
-                                          ? _par
-                                          : [_par])(
+                                            ? _par
+                                            : [_par])(
                                         (() => {
                                           try {
                                             return $state.countries;
@@ -2702,8 +2690,8 @@ function PlasmicParametresCandidat__RenderFunc(props: {
                                         !_par
                                           ? []
                                           : Array.isArray(_par)
-                                          ? _par
-                                          : [_par])(
+                                            ? _par
+                                            : [_par])(
                                         (() => {
                                           try {
                                             return (() => {
@@ -3054,9 +3042,8 @@ function PlasmicParametresCandidat__RenderFunc(props: {
                                       typeof $steps["updateErrorMsg"].then ===
                                         "function"
                                     ) {
-                                      $steps["updateErrorMsg"] = await $steps[
-                                        "updateErrorMsg"
-                                      ];
+                                      $steps["updateErrorMsg"] =
+                                        await $steps["updateErrorMsg"];
                                     }
 
                                     $steps["supabaseUploadFile"] = (() => {
@@ -3480,9 +3467,8 @@ function PlasmicParametresCandidat__RenderFunc(props: {
                                     typeof $steps["postgresUpdateMany"].then ===
                                       "function"
                                   ) {
-                                    $steps["postgresUpdateMany"] = await $steps[
-                                      "postgresUpdateMany"
-                                    ];
+                                    $steps["postgresUpdateMany"] =
+                                      await $steps["postgresUpdateMany"];
                                   }
 
                                   $steps["updateUploadFiles"] = true
@@ -3523,9 +3509,8 @@ function PlasmicParametresCandidat__RenderFunc(props: {
                                     typeof $steps["updateUploadFiles"].then ===
                                       "function"
                                   ) {
-                                    $steps["updateUploadFiles"] = await $steps[
-                                      "updateUploadFiles"
-                                    ];
+                                    $steps["updateUploadFiles"] =
+                                      await $steps["updateUploadFiles"];
                                   }
                                 }}
                                 role={"img"}
@@ -3690,9 +3675,8 @@ function PlasmicParametresCandidat__RenderFunc(props: {
                                       typeof $steps["errorMsg"].then ===
                                         "function"
                                     ) {
-                                      $steps["errorMsg"] = await $steps[
-                                        "errorMsg"
-                                      ];
+                                      $steps["errorMsg"] =
+                                        await $steps["errorMsg"];
                                     }
 
                                     $steps["supabaseUploadFile"] = (() => {
@@ -4116,9 +4100,8 @@ function PlasmicParametresCandidat__RenderFunc(props: {
                                     typeof $steps["postgresUpdateMany"].then ===
                                       "function"
                                   ) {
-                                    $steps["postgresUpdateMany"] = await $steps[
-                                      "postgresUpdateMany"
-                                    ];
+                                    $steps["postgresUpdateMany"] =
+                                      await $steps["postgresUpdateMany"];
                                   }
                                 }}
                                 role={"img"}
@@ -4270,9 +4253,8 @@ function PlasmicParametresCandidat__RenderFunc(props: {
                                 typeof $steps["postgresUpdateById"].then ===
                                   "function"
                               ) {
-                                $steps["postgresUpdateById"] = await $steps[
-                                  "postgresUpdateById"
-                                ];
+                                $steps["postgresUpdateById"] =
+                                  await $steps["postgresUpdateById"];
                               }
                             }}
                             password={generateStateValueProp($state, [
@@ -4359,9 +4341,8 @@ function PlasmicParametresCandidat__RenderFunc(props: {
                                   typeof $steps["invokeGlobalAction"].then ===
                                     "function"
                                 ) {
-                                  $steps["invokeGlobalAction"] = await $steps[
-                                    "invokeGlobalAction"
-                                  ];
+                                  $steps["invokeGlobalAction"] =
+                                    await $steps["invokeGlobalAction"];
                                 }
                               },
                               onIsSubmittingChange: async (
@@ -4537,9 +4518,8 @@ function PlasmicParametresCandidat__RenderFunc(props: {
                           typeof $steps["invokeGlobalAction"].then ===
                             "function"
                         ) {
-                          $steps["invokeGlobalAction"] = await $steps[
-                            "invokeGlobalAction"
-                          ];
+                          $steps["invokeGlobalAction"] =
+                            await $steps["invokeGlobalAction"];
                         }
                       }}
                     >
@@ -4615,9 +4595,8 @@ function PlasmicParametresCandidat__RenderFunc(props: {
                       typeof $steps["postgresUpdateMany"] === "object" &&
                       typeof $steps["postgresUpdateMany"].then === "function"
                     ) {
-                      $steps["postgresUpdateMany"] = await $steps[
-                        "postgresUpdateMany"
-                      ];
+                      $steps["postgresUpdateMany"] =
+                        await $steps["postgresUpdateMany"];
                     }
                   }}
                   role={"img"}
@@ -4695,9 +4674,8 @@ function PlasmicParametresCandidat__RenderFunc(props: {
                         typeof $steps["updateSupprCompteIsOpen"].then ===
                           "function"
                       ) {
-                        $steps["updateSupprCompteIsOpen"] = await $steps[
-                          "updateSupprCompteIsOpen"
-                        ];
+                        $steps["updateSupprCompteIsOpen"] =
+                          await $steps["updateSupprCompteIsOpen"];
                       }
                     }}
                     type={"bordered"}
@@ -4761,9 +4739,8 @@ function PlasmicParametresCandidat__RenderFunc(props: {
                         typeof $steps["postgresDeleteMany"] === "object" &&
                         typeof $steps["postgresDeleteMany"].then === "function"
                       ) {
-                        $steps["postgresDeleteMany"] = await $steps[
-                          "postgresDeleteMany"
-                        ];
+                        $steps["postgresDeleteMany"] =
+                          await $steps["postgresDeleteMany"];
                       }
 
                       $steps["goToAccueil"] = true
@@ -4823,24 +4800,11 @@ function PlasmicParametresCandidat__RenderFunc(props: {
             data-plasmic-name={"mobileNavbarBottom"}
             data-plasmic-override={overrides.mobileNavbarBottom}
             className={classNames("__wab_instance", sty.mobileNavbarBottom)}
-            onRoleChange={async (...eventArgs: any) => {
-              generateStateOnChangeProp($state, [
-                "mobileNavbarBottom",
-                "role"
-              ]).apply(null, eventArgs);
-
-              if (
-                eventArgs.length > 1 &&
-                eventArgs[1] &&
-                eventArgs[1]._plasmic_state_init_
-              ) {
-                return;
-              }
-            }}
-            role={generateStateValueProp($state, [
-              "mobileNavbarBottom",
-              "role"
-            ])}
+            user={
+              hasVariant(globalVariants, "screen", "mobileOnly")
+                ? "candidat"
+                : undefined
+            }
           />
         </div>
       </div>
@@ -5290,7 +5254,9 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicParametresCandidat__VariantsArgs;
     args?: PlasmicParametresCandidat__ArgsType;
     overrides?: NodeOverridesType<T>;
-  } & Omit<PlasmicParametresCandidat__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
+  } &
+    // Specify variants directly as props
+    Omit<PlasmicParametresCandidat__VariantsArgs, ReservedPropsType> &
     // Specify args directly as props
     Omit<PlasmicParametresCandidat__ArgsType, ReservedPropsType> &
     // Specify overrides for each element directly as props

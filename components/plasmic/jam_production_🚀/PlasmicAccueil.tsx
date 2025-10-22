@@ -2516,7 +2516,7 @@ function PlasmicAccueil__RenderFunc(props: {
                       className={classNames(sty.bgImage)}
                       displayHeight={
                         hasVariant(globalVariants, "screen", "mobileOnly")
-                          ? "582px"
+                          ? "675px"
                           : "auto"
                       }
                       displayMaxHeight={"none"}

@@ -387,12 +387,6 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
               throw e;
             }
           })()
-      },
-      {
-        path: "mobileNavbarBottom.role",
-        type: "private",
-        variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => 1
       }
     ],
     [$props, $ctx, $refs]
@@ -595,9 +589,8 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                 typeof $steps["updatePaiementValidated"] === "object" &&
                 typeof $steps["updatePaiementValidated"].then === "function"
               ) {
-                $steps["updatePaiementValidated"] = await $steps[
-                  "updatePaiementValidated"
-                ];
+                $steps["updatePaiementValidated"] =
+                  await $steps["updatePaiementValidated"];
               }
 
               $steps["updateSessionId"] = true
@@ -721,9 +714,8 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                 typeof $steps["apiStripeValidateSubscription"].then ===
                   "function"
               ) {
-                $steps["apiStripeValidateSubscription"] = await $steps[
-                  "apiStripeValidateSubscription"
-                ];
+                $steps["apiStripeValidateSubscription"] =
+                  await $steps["apiStripeValidateSubscription"];
               }
 
               $steps["goToParametresAbonnementPaiementOk"] = true
@@ -752,9 +744,8 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                 typeof $steps["goToParametresAbonnementPaiementOk"].then ===
                   "function"
               ) {
-                $steps["goToParametresAbonnementPaiementOk"] = await $steps[
-                  "goToParametresAbonnementPaiementOk"
-                ];
+                $steps["goToParametresAbonnementPaiementOk"] =
+                  await $steps["goToParametresAbonnementPaiementOk"];
               }
             }}
             shouldRun={(() => {
@@ -808,9 +799,8 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                 typeof $steps["updatePaiementValidated"] === "object" &&
                 typeof $steps["updatePaiementValidated"].then === "function"
               ) {
-                $steps["updatePaiementValidated"] = await $steps[
-                  "updatePaiementValidated"
-                ];
+                $steps["updatePaiementValidated"] =
+                  await $steps["updatePaiementValidated"];
               }
 
               $steps["updateSessionId"] = true
@@ -1012,9 +1002,8 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                 typeof $steps["openModalCreditAlert"] === "object" &&
                 typeof $steps["openModalCreditAlert"].then === "function"
               ) {
-                $steps["openModalCreditAlert"] = await $steps[
-                  "openModalCreditAlert"
-                ];
+                $steps["openModalCreditAlert"] =
+                  await $steps["openModalCreditAlert"];
               }
 
               $steps["goToPagePaymentOk"] = true
@@ -1260,9 +1249,8 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                           typeof $steps["goToOffreEmployeur"].then ===
                             "function"
                         ) {
-                          $steps["goToOffreEmployeur"] = await $steps[
-                            "goToOffreEmployeur"
-                          ];
+                          $steps["goToOffreEmployeur"] =
+                            await $steps["goToOffreEmployeur"];
                         }
                       }}
                     />
@@ -1322,9 +1310,8 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                           typeof $steps["updateIsModalCreditOpen"].then ===
                             "function"
                         ) {
-                          $steps["updateIsModalCreditOpen"] = await $steps[
-                            "updateIsModalCreditOpen"
-                          ];
+                          $steps["updateIsModalCreditOpen"] =
+                            await $steps["updateIsModalCreditOpen"];
                         }
 
                         $steps["resetVariables"] = true
@@ -1358,9 +1345,8 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                           typeof $steps["resetVariables"] === "object" &&
                           typeof $steps["resetVariables"].then === "function"
                         ) {
-                          $steps["resetVariables"] = await $steps[
-                            "resetVariables"
-                          ];
+                          $steps["resetVariables"] =
+                            await $steps["resetVariables"];
                         }
                       }}
                       src={{
@@ -1636,9 +1622,8 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                                 typeof $steps["updateSelectedProduct"].then ===
                                   "function"
                               ) {
-                                $steps["updateSelectedProduct"] = await $steps[
-                                  "updateSelectedProduct"
-                                ];
+                                $steps["updateSelectedProduct"] =
+                                  await $steps["updateSelectedProduct"];
                               }
                             }}
                             productId={(() => {
@@ -1832,9 +1817,8 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                               typeof $steps["successNotification"].then ===
                                 "function"
                             ) {
-                              $steps["successNotification"] = await $steps[
-                                "successNotification"
-                              ];
+                              $steps["successNotification"] =
+                                await $steps["successNotification"];
                             }
 
                             $steps["httpPost"] = true
@@ -1935,9 +1919,8 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                               typeof $steps["goToParametresAbonnement"].then ===
                                 "function"
                             ) {
-                              $steps["goToParametresAbonnement"] = await $steps[
-                                "goToParametresAbonnement"
-                              ];
+                              $steps["goToParametresAbonnement"] =
+                                await $steps["goToParametresAbonnement"];
                             }
                           }}
                           priceId={``}
@@ -2100,9 +2083,8 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                                   typeof $steps["showNotification"].then ===
                                     "function"
                                 ) {
-                                  $steps["showNotification"] = await $steps[
-                                    "showNotification"
-                                  ];
+                                  $steps["showNotification"] =
+                                    await $steps["showNotification"];
                                 }
 
                                 $steps["refreshData"] = false
@@ -2128,9 +2110,8 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                                   typeof $steps["refreshData"].then ===
                                     "function"
                                 ) {
-                                  $steps["refreshData"] = await $steps[
-                                    "refreshData"
-                                  ];
+                                  $steps["refreshData"] =
+                                    await $steps["refreshData"];
                                 }
                               }}
                             />
@@ -2355,9 +2336,8 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                               typeof $steps["changeUpdateDate"].then ===
                                 "function"
                             ) {
-                              $steps["changeUpdateDate"] = await $steps[
-                                "changeUpdateDate"
-                              ];
+                              $steps["changeUpdateDate"] =
+                                await $steps["changeUpdateDate"];
                             }
 
                             $steps["apiStripeValidateSubscription"] = true
@@ -2491,9 +2471,8 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                               typeof $steps["successNotification"].then ===
                                 "function"
                             ) {
-                              $steps["successNotification"] = await $steps[
-                                "successNotification"
-                              ];
+                              $steps["successNotification"] =
+                                await $steps["successNotification"];
                             }
 
                             $steps["refreshData"] = true
@@ -2514,9 +2493,8 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                               typeof $steps["refreshData"] === "object" &&
                               typeof $steps["refreshData"].then === "function"
                             ) {
-                              $steps["refreshData"] = await $steps[
-                                "refreshData"
-                              ];
+                              $steps["refreshData"] =
+                                await $steps["refreshData"];
                             }
                           }}
                           priceId={(() => {
@@ -2802,9 +2780,8 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                               typeof $steps["stripeCheckoutSession"].then ===
                                 "function"
                             ) {
-                              $steps["stripeCheckoutSession"] = await $steps[
-                                "stripeCheckoutSession"
-                              ];
+                              $steps["stripeCheckoutSession"] =
+                                await $steps["stripeCheckoutSession"];
                             }
 
                             $steps["goToPage"] = true
@@ -3029,9 +3006,9 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                               .status === "cancel"
                               ? "résilié"
                               : $queries.getUserStripeInfos.data[0]
-                                  .product_id === $state.classicSubPid
-                              ? "Basic"
-                              : "Premium";
+                                    .product_id === $state.classicSubPid
+                                ? "Basic"
+                                : "Premium";
                           } catch (e) {
                             if (
                               e instanceof TypeError ||
@@ -3631,9 +3608,8 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                                       typeof $steps["runCode"].then ===
                                         "function"
                                     ) {
-                                      $steps["runCode"] = await $steps[
-                                        "runCode"
-                                      ];
+                                      $steps["runCode"] =
+                                        await $steps["runCode"];
                                     }
                                   }}
                                 >
@@ -4310,9 +4286,8 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                     typeof $steps["updateProductId2"] === "object" &&
                     typeof $steps["updateProductId2"].then === "function"
                   ) {
-                    $steps["updateProductId2"] = await $steps[
-                      "updateProductId2"
-                    ];
+                    $steps["updateProductId2"] =
+                      await $steps["updateProductId2"];
                   }
 
                   $steps["checkStripeUserExists"] = true
@@ -4354,9 +4329,8 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                     typeof $steps["checkStripeUserExists"] === "object" &&
                     typeof $steps["checkStripeUserExists"].then === "function"
                   ) {
-                    $steps["checkStripeUserExists"] = await $steps[
-                      "checkStripeUserExists"
-                    ];
+                    $steps["checkStripeUserExists"] =
+                      await $steps["checkStripeUserExists"];
                   }
 
                   $steps["updateStripeSessionId"] = true
@@ -4400,9 +4374,8 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                     typeof $steps["updateStripeSessionId"] === "object" &&
                     typeof $steps["updateStripeSessionId"].then === "function"
                   ) {
-                    $steps["updateStripeSessionId"] = await $steps[
-                      "updateStripeSessionId"
-                    ];
+                    $steps["updateStripeSessionId"] =
+                      await $steps["updateStripeSessionId"];
                   }
 
                   $steps["getStripeSessionInfos"] = true
@@ -4446,9 +4419,8 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                     typeof $steps["getStripeSessionInfos"] === "object" &&
                     typeof $steps["getStripeSessionInfos"].then === "function"
                   ) {
-                    $steps["getStripeSessionInfos"] = await $steps[
-                      "getStripeSessionInfos"
-                    ];
+                    $steps["getStripeSessionInfos"] =
+                      await $steps["getStripeSessionInfos"];
                   }
 
                   $steps["httpGet"] = true
@@ -4603,9 +4575,8 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                     typeof $steps["updateCustomerId"] === "object" &&
                     typeof $steps["updateCustomerId"].then === "function"
                   ) {
-                    $steps["updateCustomerId"] = await $steps[
-                      "updateCustomerId"
-                    ];
+                    $steps["updateCustomerId"] =
+                      await $steps["updateCustomerId"];
                   }
 
                   $steps["updateStripeStatus"] = true
@@ -4640,9 +4611,8 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                     typeof $steps["updateStripeStatus"] === "object" &&
                     typeof $steps["updateStripeStatus"].then === "function"
                   ) {
-                    $steps["updateStripeStatus"] = await $steps[
-                      "updateStripeStatus"
-                    ];
+                    $steps["updateStripeStatus"] =
+                      await $steps["updateStripeStatus"];
                   }
 
                   $steps["updateStripeSubscriptionId"] = true
@@ -4679,9 +4649,8 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                     typeof $steps["updateStripeSubscriptionId"].then ===
                       "function"
                   ) {
-                    $steps["updateStripeSubscriptionId"] = await $steps[
-                      "updateStripeSubscriptionId"
-                    ];
+                    $steps["updateStripeSubscriptionId"] =
+                      await $steps["updateStripeSubscriptionId"];
                   }
 
                   $steps["updateCreateAccount"] = true
@@ -4715,9 +4684,8 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                     typeof $steps["updateCreateAccount"] === "object" &&
                     typeof $steps["updateCreateAccount"].then === "function"
                   ) {
-                    $steps["updateCreateAccount"] = await $steps[
-                      "updateCreateAccount"
-                    ];
+                    $steps["updateCreateAccount"] =
+                      await $steps["updateCreateAccount"];
                   }
                 }}
                 action2={async () => {
@@ -4778,9 +4746,8 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                     typeof $steps["createUserStripeInfos"] === "object" &&
                     typeof $steps["createUserStripeInfos"].then === "function"
                   ) {
-                    $steps["createUserStripeInfos"] = await $steps[
-                      "createUserStripeInfos"
-                    ];
+                    $steps["createUserStripeInfos"] =
+                      await $steps["createUserStripeInfos"];
                   }
 
                   $steps["updateStripeCreateAccount"] = true
@@ -4815,9 +4782,8 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                     typeof $steps["updateStripeCreateAccount"].then ===
                       "function"
                   ) {
-                    $steps["updateStripeCreateAccount"] = await $steps[
-                      "updateStripeCreateAccount"
-                    ];
+                    $steps["updateStripeCreateAccount"] =
+                      await $steps["updateStripeCreateAccount"];
                   }
                 }}
                 className={classNames("__wab_instance", sty.stripeCheckout)}
@@ -4875,24 +4841,7 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
             data-plasmic-name={"mobileNavbarBottom"}
             data-plasmic-override={overrides.mobileNavbarBottom}
             className={classNames("__wab_instance", sty.mobileNavbarBottom)}
-            onRoleChange={async (...eventArgs: any) => {
-              generateStateOnChangeProp($state, [
-                "mobileNavbarBottom",
-                "role"
-              ]).apply(null, eventArgs);
-
-              if (
-                eventArgs.length > 1 &&
-                eventArgs[1] &&
-                eventArgs[1]._plasmic_state_init_
-              ) {
-                return;
-              }
-            }}
-            role={generateStateValueProp($state, [
-              "mobileNavbarBottom",
-              "role"
-            ])}
+            user={"employer"}
           />
         </div>
       </div>
@@ -5307,7 +5256,9 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicParametresAbonnement__VariantsArgs;
     args?: PlasmicParametresAbonnement__ArgsType;
     overrides?: NodeOverridesType<T>;
-  } & Omit<PlasmicParametresAbonnement__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
+  } &
+    // Specify variants directly as props
+    Omit<PlasmicParametresAbonnement__VariantsArgs, ReservedPropsType> &
     // Specify args directly as props
     Omit<PlasmicParametresAbonnement__ArgsType, ReservedPropsType> &
     // Specify overrides for each element directly as props

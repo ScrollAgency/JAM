@@ -521,12 +521,6 @@ function PlasmicRechercheCandidat__RenderFunc(props: {
               throw e;
             }
           })()
-      },
-      {
-        path: "mobileNavbarBottom.role",
-        type: "private",
-        variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => 1
       }
     ],
     [$props, $ctx, $refs]
@@ -758,9 +752,8 @@ function PlasmicRechercheCandidat__RenderFunc(props: {
                           typeof $steps["updateResultsObj"] === "object" &&
                           typeof $steps["updateResultsObj"].then === "function"
                         ) {
-                          $steps["updateResultsObj"] = await $steps[
-                            "updateResultsObj"
-                          ];
+                          $steps["updateResultsObj"] =
+                            await $steps["updateResultsObj"];
                         }
 
                         $steps["pushWords"] = true
@@ -2207,8 +2200,8 @@ function PlasmicRechercheCandidat__RenderFunc(props: {
                                       !_par
                                         ? []
                                         : Array.isArray(_par)
-                                        ? _par
-                                        : [_par])(
+                                          ? _par
+                                          : [_par])(
                                       (() => {
                                         try {
                                           return currentItem.skill;
@@ -2911,24 +2904,7 @@ function PlasmicRechercheCandidat__RenderFunc(props: {
             data-plasmic-name={"mobileNavbarBottom"}
             data-plasmic-override={overrides.mobileNavbarBottom}
             className={classNames("__wab_instance", sty.mobileNavbarBottom)}
-            onRoleChange={async (...eventArgs: any) => {
-              generateStateOnChangeProp($state, [
-                "mobileNavbarBottom",
-                "role"
-              ]).apply(null, eventArgs);
-
-              if (
-                eventArgs.length > 1 &&
-                eventArgs[1] &&
-                eventArgs[1]._plasmic_state_init_
-              ) {
-                return;
-              }
-            }}
-            role={generateStateValueProp($state, [
-              "mobileNavbarBottom",
-              "role"
-            ])}
+            user={"employer"}
           />
         </div>
       </div>
@@ -3477,7 +3453,9 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicRechercheCandidat__VariantsArgs;
     args?: PlasmicRechercheCandidat__ArgsType;
     overrides?: NodeOverridesType<T>;
-  } & Omit<PlasmicRechercheCandidat__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
+  } &
+    // Specify variants directly as props
+    Omit<PlasmicRechercheCandidat__VariantsArgs, ReservedPropsType> &
     // Specify args directly as props
     Omit<PlasmicRechercheCandidat__ArgsType, ReservedPropsType> &
     // Specify overrides for each element directly as props

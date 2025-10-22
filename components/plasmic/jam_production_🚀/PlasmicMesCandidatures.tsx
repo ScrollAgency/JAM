@@ -204,13 +204,6 @@ function PlasmicMesCandidatures__RenderFunc(props: {
         type: "private",
         variableType: "text",
         initFunc: ({ $props, $state, $queries, $ctx }) => "candidat"
-      },
-      {
-        path: "mobileNavbarBottom.role",
-        type: "private",
-        variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) =>
-          hasVariant(globalVariants, "screen", "mobileOnly") ? 0 : 0
       }
     ],
     [$props, $ctx, $refs]
@@ -411,17 +404,7 @@ function PlasmicMesCandidatures__RenderFunc(props: {
                             <React.Fragment>
                               {(() => {
                                 try {
-                                  return `${
-                                    $queries
-                                      .candidaturesGetJobApplicationsByUser.data
-                                      .length ?? 0
-                                  } candidature${
-                                    $queries
-                                      .candidaturesGetJobApplicationsByUser.data
-                                      .length > 1
-                                      ? "s"
-                                      : ""
-                                  }`;
+                                  return `${$queries.candidaturesGetJobApplicationsByUser.data.length ?? 0} candidature${$queries.candidaturesGetJobApplicationsByUser.data.length > 1 ? "s" : ""}`;
                                 } catch (e) {
                                   if (
                                     e instanceof TypeError ||
@@ -581,9 +564,8 @@ function PlasmicMesCandidatures__RenderFunc(props: {
                               typeof $steps["updatePageChange"].then ===
                                 "function"
                             ) {
-                              $steps["updatePageChange"] = await $steps[
-                                "updatePageChange"
-                              ];
+                              $steps["updatePageChange"] =
+                                await $steps["updatePageChange"];
                             }
                           }}
                           pageSize={10}
@@ -776,9 +758,8 @@ function PlasmicMesCandidatures__RenderFunc(props: {
                                 typeof $steps["goToAccueil"] === "object" &&
                                 typeof $steps["goToAccueil"].then === "function"
                               ) {
-                                $steps["goToAccueil"] = await $steps[
-                                  "goToAccueil"
-                                ];
+                                $steps["goToAccueil"] =
+                                  await $steps["goToAccueil"];
                               }
                             }}
                           />
@@ -794,24 +775,11 @@ function PlasmicMesCandidatures__RenderFunc(props: {
             data-plasmic-name={"mobileNavbarBottom"}
             data-plasmic-override={overrides.mobileNavbarBottom}
             className={classNames("__wab_instance", sty.mobileNavbarBottom)}
-            onRoleChange={async (...eventArgs: any) => {
-              generateStateOnChangeProp($state, [
-                "mobileNavbarBottom",
-                "role"
-              ]).apply(null, eventArgs);
-
-              if (
-                eventArgs.length > 1 &&
-                eventArgs[1] &&
-                eventArgs[1]._plasmic_state_init_
-              ) {
-                return;
-              }
-            }}
-            role={generateStateValueProp($state, [
-              "mobileNavbarBottom",
-              "role"
-            ])}
+            user={
+              hasVariant(globalVariants, "screen", "mobileOnly")
+                ? "candidat"
+                : undefined
+            }
           />
 
           <SideEffect
@@ -970,7 +938,9 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicMesCandidatures__VariantsArgs;
     args?: PlasmicMesCandidatures__ArgsType;
     overrides?: NodeOverridesType<T>;
-  } & Omit<PlasmicMesCandidatures__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
+  } &
+    // Specify variants directly as props
+    Omit<PlasmicMesCandidatures__VariantsArgs, ReservedPropsType> &
     // Specify args directly as props
     Omit<PlasmicMesCandidatures__ArgsType, ReservedPropsType> &
     // Specify overrides for each element directly as props

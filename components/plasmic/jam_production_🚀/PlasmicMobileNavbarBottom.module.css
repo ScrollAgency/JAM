@@ -15,7 +15,7 @@
     padding: 0px;
   }
 }
-.candidat {
+.candidatNavbar {
   background: rgba(19, 16, 19, 1);
   filter: none;
   width: auto;
@@ -27,7 +27,7 @@
   flex-shrink: 0;
 }
 @media (min-width: 0px) and (max-width: 768px) {
-  .candidat {
+  .candidatNavbar {
     width: 100%;
     height: auto;
     justify-content: space-between;
@@ -40,6 +40,12 @@
     display: flex;
     padding: 0px 10px 15px;
   }
+}
+.candidatNavbaruser_employer {
+  display: none;
+}
+.candidatNavbaruser_admin {
+  display: none;
 }
 .button2__nsRvc:global(.__wab_instance):global(.__wab_instance) {
   max-width: 100%;
@@ -279,21 +285,21 @@
   color: rgba(251, 251, 251, 1);
   position: relative;
 }
-.company {
+.employerNavbar {
   background: rgba(19, 16, 19, 1);
   filter: none;
   width: 100%;
   height: auto;
-  display: flex;
   flex-direction: row;
   align-items: flex-end;
   justify-content: center;
   flex-shrink: 0;
   position: relative;
   min-width: 0;
+  display: none;
 }
 @media (min-width: 0px) and (max-width: 768px) {
-  .company {
+  .employerNavbar {
     width: 100%;
     height: auto;
     justify-content: space-around;
@@ -303,9 +309,15 @@
     column-gap: 0px;
     row-gap: 0px;
     min-width: 0;
-    display: flex;
+    display: none;
     padding: 0px 10px 15px;
   }
+}
+.employerNavbaruser_employer {
+  display: flex;
+}
+.employerNavbaruser_admin {
+  display: none;
 }
 .button2__k05Ij:global(.__wab_instance):global(.__wab_instance) {
   max-width: 100%;
@@ -550,21 +562,21 @@
   color: rgba(251, 251, 251, 1);
   position: relative;
 }
-.admin {
+.adminNavbar {
   background: rgba(19, 16, 19, 1);
   filter: none;
   width: 100%;
   height: auto;
-  display: flex;
   flex-direction: row;
   align-items: flex-end;
   justify-content: center;
   flex-shrink: 0;
   position: relative;
   min-width: 0;
+  display: none;
 }
 @media (min-width: 0px) and (max-width: 768px) {
-  .admin {
+  .adminNavbar {
     width: 100%;
     height: auto;
     justify-content: space-around;
@@ -574,9 +586,15 @@
     column-gap: 0px;
     row-gap: 0px;
     min-width: 0;
-    display: flex;
+    display: none;
     padding: 0px 10px 15px;
   }
+}
+.adminNavbaruser_employer {
+  display: none;
+}
+.adminNavbaruser_admin {
+  display: flex;
 }
 .button2__wMQeA:global(.__wab_instance):global(.__wab_instance) {
   max-width: 100%;
@@ -610,29 +628,6 @@
   font-size: 12px;
 }
 .svg___2TvYf {
-  position: relative;
-  color: var(--token-OIYWLyLPYWym);
-  height: 1em;
-}
-.button2__pvi2D:global(.__wab_instance):global(.__wab_instance) {
-  max-width: 100%;
-}
-@media (min-width: 0px) and (max-width: 768px) {
-  .button2__pvi2D:global(.__wab_instance):global(.__wab_instance) {
-    display: none;
-  }
-}
-.svg__fFlmK {
-  position: relative;
-  width: 17px;
-  height: 17px;
-}
-.text__nYq3J {
-  white-space: pre;
-  padding-top: 0px;
-  font-size: 12px;
-}
-.svg___1NtTa {
   position: relative;
   color: var(--token-OIYWLyLPYWym);
   height: 1em;

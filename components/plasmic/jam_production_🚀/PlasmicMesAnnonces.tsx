@@ -704,12 +704,6 @@ function PlasmicMesAnnonces__RenderFunc(props: {
         type: "private",
         variableType: "text",
         initFunc: ({ $props, $state, $queries, $ctx }) => "candidat"
-      },
-      {
-        path: "mobileNavbarBottom.role",
-        type: "private",
-        variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => 0
       }
     ],
     [$props, $ctx, $refs]
@@ -1220,9 +1214,8 @@ function PlasmicMesAnnonces__RenderFunc(props: {
                                     typeof $steps["updateModalIsOpen"].then ===
                                       "function"
                                   ) {
-                                    $steps["updateModalIsOpen"] = await $steps[
-                                      "updateModalIsOpen"
-                                    ];
+                                    $steps["updateModalIsOpen"] =
+                                      await $steps["updateModalIsOpen"];
                                   }
                                 },
                                 onCompanyLogoChange: async (
@@ -1724,9 +1717,8 @@ function PlasmicMesAnnonces__RenderFunc(props: {
                                   typeof $steps["showToast"] === "object" &&
                                   typeof $steps["showToast"].then === "function"
                                 ) {
-                                  $steps["showToast"] = await $steps[
-                                    "showToast"
-                                  ];
+                                  $steps["showToast"] =
+                                    await $steps["showToast"];
                                 }
                               }}
                               role={"img"}
@@ -1864,9 +1856,8 @@ function PlasmicMesAnnonces__RenderFunc(props: {
                                   typeof $steps["updateJobObjetct"].then ===
                                     "function"
                                 ) {
-                                  $steps["updateJobObjetct"] = await $steps[
-                                    "updateJobObjetct"
-                                  ];
+                                  $steps["updateJobObjetct"] =
+                                    await $steps["updateJobObjetct"];
                                 }
 
                                 $steps["openModal"] = true
@@ -1904,9 +1895,8 @@ function PlasmicMesAnnonces__RenderFunc(props: {
                                   typeof $steps["openModal"] === "object" &&
                                   typeof $steps["openModal"].then === "function"
                                 ) {
-                                  $steps["openModal"] = await $steps[
-                                    "openModal"
-                                  ];
+                                  $steps["openModal"] =
+                                    await $steps["openModal"];
                                 }
                               }}
                               salary={(() => {
@@ -2088,9 +2078,8 @@ function PlasmicMesAnnonces__RenderFunc(props: {
                               typeof $steps["goToAccueil"] === "object" &&
                               typeof $steps["goToAccueil"].then === "function"
                             ) {
-                              $steps["goToAccueil"] = await $steps[
-                                "goToAccueil"
-                              ];
+                              $steps["goToAccueil"] =
+                                await $steps["goToAccueil"];
                             }
                           }}
                         />
@@ -2105,24 +2094,7 @@ function PlasmicMesAnnonces__RenderFunc(props: {
             data-plasmic-name={"mobileNavbarBottom"}
             data-plasmic-override={overrides.mobileNavbarBottom}
             className={classNames("__wab_instance", sty.mobileNavbarBottom)}
-            onRoleChange={async (...eventArgs: any) => {
-              generateStateOnChangeProp($state, [
-                "mobileNavbarBottom",
-                "role"
-              ]).apply(null, eventArgs);
-
-              if (
-                eventArgs.length > 1 &&
-                eventArgs[1] &&
-                eventArgs[1]._plasmic_state_init_
-              ) {
-                return;
-              }
-            }}
-            role={generateStateValueProp($state, [
-              "mobileNavbarBottom",
-              "role"
-            ])}
+            user={"candidat"}
           />
 
           <Modal
@@ -2490,9 +2462,8 @@ function PlasmicMesAnnonces__RenderFunc(props: {
                             typeof $steps["updateModal2IsOpen"].then ===
                               "function"
                           ) {
-                            $steps["updateModal2IsOpen"] = await $steps[
-                              "updateModal2IsOpen"
-                            ];
+                            $steps["updateModal2IsOpen"] =
+                              await $steps["updateModal2IsOpen"];
                           }
                         }}
                       />
@@ -2977,9 +2948,8 @@ function PlasmicMesAnnonces__RenderFunc(props: {
                       typeof $steps["updateModalIsOpen"] === "object" &&
                       typeof $steps["updateModalIsOpen"].then === "function"
                     ) {
-                      $steps["updateModalIsOpen"] = await $steps[
-                        "updateModalIsOpen"
-                      ];
+                      $steps["updateModalIsOpen"] =
+                        await $steps["updateModalIsOpen"];
                     }
                   }}
                   src={{
@@ -3817,9 +3787,8 @@ function PlasmicMesAnnonces__RenderFunc(props: {
                         typeof $steps["createApplication"] === "object" &&
                         typeof $steps["createApplication"].then === "function"
                       ) {
-                        $steps["createApplication"] = await $steps[
-                          "createApplication"
-                        ];
+                        $steps["createApplication"] =
+                          await $steps["createApplication"];
                       }
 
                       $steps["errorMsg"] = (
@@ -3971,9 +3940,8 @@ function PlasmicMesAnnonces__RenderFunc(props: {
                         typeof $steps["sendEmailToCandidat"] === "object" &&
                         typeof $steps["sendEmailToCandidat"].then === "function"
                       ) {
-                        $steps["sendEmailToCandidat"] = await $steps[
-                          "sendEmailToCandidat"
-                        ];
+                        $steps["sendEmailToCandidat"] =
+                          await $steps["sendEmailToCandidat"];
                       }
 
                       $steps["sendEmailToEmployer"] = true
@@ -4034,9 +4002,8 @@ function PlasmicMesAnnonces__RenderFunc(props: {
                         typeof $steps["sendEmailToEmployer"] === "object" &&
                         typeof $steps["sendEmailToEmployer"].then === "function"
                       ) {
-                        $steps["sendEmailToEmployer"] = await $steps[
-                          "sendEmailToEmployer"
-                        ];
+                        $steps["sendEmailToEmployer"] =
+                          await $steps["sendEmailToEmployer"];
                       }
                     },
                     onFinishFailed: async data => {
@@ -4060,9 +4027,8 @@ function PlasmicMesAnnonces__RenderFunc(props: {
                         typeof $steps["invokeGlobalAction"] === "object" &&
                         typeof $steps["invokeGlobalAction"].then === "function"
                       ) {
-                        $steps["invokeGlobalAction"] = await $steps[
-                          "invokeGlobalAction"
-                        ];
+                        $steps["invokeGlobalAction"] =
+                          await $steps["invokeGlobalAction"];
                       }
                     },
                     onIsSubmittingChange: async (...eventArgs: any) => {
@@ -4183,9 +4149,8 @@ function PlasmicMesAnnonces__RenderFunc(props: {
                                 typeof $steps["supabaseUploadFile"].then ===
                                   "function"
                               ) {
-                                $steps["supabaseUploadFile"] = await $steps[
-                                  "supabaseUploadFile"
-                                ];
+                                $steps["supabaseUploadFile"] =
+                                  await $steps["supabaseUploadFile"];
                               }
 
                               $steps["postgresUpdateById"] = true
@@ -4241,9 +4206,8 @@ function PlasmicMesAnnonces__RenderFunc(props: {
                                 typeof $steps["postgresUpdateById"].then ===
                                   "function"
                               ) {
-                                $steps["postgresUpdateById"] = await $steps[
-                                  "postgresUpdateById"
-                                ];
+                                $steps["postgresUpdateById"] =
+                                  await $steps["postgresUpdateById"];
                               }
                             }).apply(null, eventArgs);
                           }}
@@ -4369,9 +4333,8 @@ function PlasmicMesAnnonces__RenderFunc(props: {
                                     typeof $steps["updateUpload2Files"].then ===
                                       "function"
                                   ) {
-                                    $steps["updateUpload2Files"] = await $steps[
-                                      "updateUpload2Files"
-                                    ];
+                                    $steps["updateUpload2Files"] =
+                                      await $steps["updateUpload2Files"];
                                   }
 
                                   $steps["runCode"] = true
@@ -4446,9 +4409,8 @@ function PlasmicMesAnnonces__RenderFunc(props: {
                                     typeof $steps["postgresUpdateMany"].then ===
                                       "function"
                                   ) {
-                                    $steps["postgresUpdateMany"] = await $steps[
-                                      "postgresUpdateMany"
-                                    ];
+                                    $steps["postgresUpdateMany"] =
+                                      await $steps["postgresUpdateMany"];
                                   }
                                 }}
                                 role={"img"}
@@ -5893,9 +5855,8 @@ function PlasmicMesAnnonces__RenderFunc(props: {
                       typeof $steps["updateModal2IsOpen"] === "object" &&
                       typeof $steps["updateModal2IsOpen"].then === "function"
                     ) {
-                      $steps["updateModal2IsOpen"] = await $steps[
-                        "updateModal2IsOpen"
-                      ];
+                      $steps["updateModal2IsOpen"] =
+                        await $steps["updateModal2IsOpen"];
                     }
                   }}
                   src={{
@@ -6556,7 +6517,9 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicMesAnnonces__VariantsArgs;
     args?: PlasmicMesAnnonces__ArgsType;
     overrides?: NodeOverridesType<T>;
-  } & Omit<PlasmicMesAnnonces__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
+  } &
+    // Specify variants directly as props
+    Omit<PlasmicMesAnnonces__VariantsArgs, ReservedPropsType> &
     // Specify args directly as props
     Omit<PlasmicMesAnnonces__ArgsType, ReservedPropsType> &
     // Specify overrides for each element directly as props

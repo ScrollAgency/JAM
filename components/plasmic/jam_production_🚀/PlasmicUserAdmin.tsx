@@ -68,7 +68,8 @@ import {
 
 import MobileNavbarTop from "../../MobileNavbarTop"; // plasmic-import: mAg8Ml3XUEhy/component
 import Sidebar from "../../Sidebar"; // plasmic-import: M06HuWMcBQV2/component
-import { SideEffect } from "@plasmicpkgs/plasmic-basic-components";
+import { LoadingBoundary } from "@plasmicpkgs/plasmic-basic-components";
+import LoadingComponent from "../../LoadingComponent"; // plasmic-import: H7nb8l13ZEyx/component
 import Button from "../../Button"; // plasmic-import: 9ixtKbGKv7x-/component
 import { DataGridUser } from "../../others/DataGridUser/DataGridUser"; // plasmic-import: HXtz_l-PfcN1/codeComponent
 import Modal from "../../Modal"; // plasmic-import: fsC3QwUZz9uz/component
@@ -102,8 +103,9 @@ export type PlasmicUserAdmin__OverridesType = {
   root?: Flex__<"div">;
   mobileNavbarTop?: Flex__<typeof MobileNavbarTop>;
   sidebar?: Flex__<typeof Sidebar>;
+  loadingBoundary?: Flex__<typeof LoadingBoundary>;
+  loadingComponent?: Flex__<typeof LoadingComponent>;
   main?: Flex__<"div">;
-  sideEffect?: Flex__<typeof SideEffect>;
   h1?: Flex__<"h1">;
   supprUser?: Flex__<typeof Modal>;
   svg?: Flex__<"svg">;
@@ -154,6 +156,8 @@ function PlasmicUserAdmin__RenderFunc(props: {
   const $refs = refsRef.current;
 
   const globalVariants = _useGlobalVariants();
+
+  const $globalActions = useGlobalActions?.();
 
   let [$queries, setDollarQueries] = React.useState<
     Record<string, ReturnType<typeof usePlasmicDataOp>>
@@ -207,13 +211,6 @@ function PlasmicUserAdmin__RenderFunc(props: {
         type: "private",
         variableType: "text",
         initFunc: ({ $props, $state, $queries, $ctx }) => "admin"
-      },
-      {
-        path: "mobileNavbarBottom.role",
-        type: "private",
-        variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) =>
-          hasVariant(globalVariants, "screen", "mobileOnly") ? 2 : "admin"
       }
     ],
     [$props, $ctx, $refs]
@@ -350,884 +347,982 @@ function PlasmicUserAdmin__RenderFunc(props: {
             role={generateStateValueProp($state, ["sidebar", "role"])}
           />
 
-          <div
-            data-plasmic-name={"main"}
-            data-plasmic-override={overrides.main}
-            className={classNames(
-              projectcss.all,
-              sty.main,
-              hasVariant(globalVariants, "screen", "mobileOnly")
-                ? ``
-                : "main-content"
-            )}
+          <LoadingBoundary
+            data-plasmic-name={"loadingBoundary"}
+            data-plasmic-override={overrides.loadingBoundary}
+            loadingState={
+              <DataCtxReader__>
+                {$ctx => (
+                  <div
+                    className={classNames(projectcss.all, sty.freeBox__gIzjf)}
+                  >
+                    <LoadingComponent
+                      data-plasmic-name={"loadingComponent"}
+                      data-plasmic-override={overrides.loadingComponent}
+                      className={classNames(
+                        "__wab_instance",
+                        sty.loadingComponent
+                      )}
+                    />
+                  </div>
+                )}
+              </DataCtxReader__>
+            }
           >
-            <SideEffect
-              data-plasmic-name={"sideEffect"}
-              data-plasmic-override={overrides.sideEffect}
-              className={classNames("__wab_instance", sty.sideEffect)}
-              onMount={async () => {
-                const $steps = {};
-
-                $steps["refreshData"] = true
-                  ? (() => {
-                      const actionArgs = {
-                        queryInvalidation: [
-                          "bb945d86-82c9-4e29-8e20-a93fd544ce10",
-                          "69ef5223-bbea-4520-8d08-0598747d0ac3"
-                        ]
-                      };
-                      return (async ({ queryInvalidation }) => {
-                        if (!queryInvalidation) {
-                          return;
-                        }
-                        await plasmicInvalidate(queryInvalidation);
-                      })?.apply(null, [actionArgs]);
-                    })()
-                  : undefined;
-                if (
-                  $steps["refreshData"] != null &&
-                  typeof $steps["refreshData"] === "object" &&
-                  typeof $steps["refreshData"].then === "function"
-                ) {
-                  $steps["refreshData"] = await $steps["refreshData"];
-                }
-              }}
-            />
-
-            <div
-              className={classNames(
-                projectcss.all,
-                projectcss.__wab_text,
-                sty.text___2Ba4Z
-              )}
-            >
-              <React.Fragment>
-                <React.Fragment>{""}</React.Fragment>
-                {
-                  <h1
-                    data-plasmic-name={"h1"}
-                    data-plasmic-override={overrides.h1}
-                    className={classNames(
-                      projectcss.all,
-                      projectcss.h1,
-                      projectcss.__wab_text,
-                      sty.h1
-                    )}
-                  >
-                    {"Gestion des users"}
-                  </h1>
-                }
-                <React.Fragment>{""}</React.Fragment>
-              </React.Fragment>
-            </div>
-            <div className={classNames(projectcss.all, sty.freeBox__lg6T6)}>
-              <div className={classNames(projectcss.all, sty.freeBox__vJiyM)}>
-                <Button
-                  className={classNames("__wab_instance", sty.button__bnOxe)}
-                  label={
-                    <div
-                      className={classNames(
-                        projectcss.all,
-                        projectcss.__wab_text,
-                        sty.text__vl9It
-                      )}
-                    >
-                      {"Candidat"}
-                    </div>
-                  }
-                  onClick={async event => {
-                    const $steps = {};
-
-                    $steps["updateShowCandidat"] = true
-                      ? (() => {
-                          const actionArgs = {
-                            variable: {
-                              objRoot: $state,
-                              variablePath: ["showCandidat"]
-                            },
-                            operation: 0,
-                            value: true
-                          };
-                          return (({
-                            variable,
-                            value,
-                            startIndex,
-                            deleteCount
-                          }) => {
-                            if (!variable) {
-                              return;
-                            }
-                            const { objRoot, variablePath } = variable;
-
-                            $stateSet(objRoot, variablePath, value);
-                            return value;
-                          })?.apply(null, [actionArgs]);
-                        })()
-                      : undefined;
-                    if (
-                      $steps["updateShowCandidat"] != null &&
-                      typeof $steps["updateShowCandidat"] === "object" &&
-                      typeof $steps["updateShowCandidat"].then === "function"
-                    ) {
-                      $steps["updateShowCandidat"] = await $steps[
-                        "updateShowCandidat"
-                      ];
-                    }
-
-                    $steps["updateShowCandidat2"] = true
-                      ? (() => {
-                          const actionArgs = {
-                            variable: {
-                              objRoot: $state,
-                              variablePath: ["showCompany"]
-                            },
-                            operation: 0,
-                            value: false
-                          };
-                          return (({
-                            variable,
-                            value,
-                            startIndex,
-                            deleteCount
-                          }) => {
-                            if (!variable) {
-                              return;
-                            }
-                            const { objRoot, variablePath } = variable;
-
-                            $stateSet(objRoot, variablePath, value);
-                            return value;
-                          })?.apply(null, [actionArgs]);
-                        })()
-                      : undefined;
-                    if (
-                      $steps["updateShowCandidat2"] != null &&
-                      typeof $steps["updateShowCandidat2"] === "object" &&
-                      typeof $steps["updateShowCandidat2"].then === "function"
-                    ) {
-                      $steps["updateShowCandidat2"] = await $steps[
-                        "updateShowCandidat2"
-                      ];
-                    }
-                  }}
-                  type={"bordered"}
-                />
-
-                <Button
-                  className={classNames("__wab_instance", sty.button__xOMc)}
-                  label={
-                    <div
-                      className={classNames(
-                        projectcss.all,
-                        projectcss.__wab_text,
-                        sty.text__eHpxc
-                      )}
-                    >
-                      {"Company"}
-                    </div>
-                  }
-                  onClick={async event => {
-                    const $steps = {};
-
-                    $steps["updateShowCompany"] = true
-                      ? (() => {
-                          const actionArgs = {
-                            variable: {
-                              objRoot: $state,
-                              variablePath: ["showCompany"]
-                            },
-                            operation: 0,
-                            value: true
-                          };
-                          return (({
-                            variable,
-                            value,
-                            startIndex,
-                            deleteCount
-                          }) => {
-                            if (!variable) {
-                              return;
-                            }
-                            const { objRoot, variablePath } = variable;
-
-                            $stateSet(objRoot, variablePath, value);
-                            return value;
-                          })?.apply(null, [actionArgs]);
-                        })()
-                      : undefined;
-                    if (
-                      $steps["updateShowCompany"] != null &&
-                      typeof $steps["updateShowCompany"] === "object" &&
-                      typeof $steps["updateShowCompany"].then === "function"
-                    ) {
-                      $steps["updateShowCompany"] = await $steps[
-                        "updateShowCompany"
-                      ];
-                    }
-
-                    $steps["updateShowCandidat"] = true
-                      ? (() => {
-                          const actionArgs = {
-                            variable: {
-                              objRoot: $state,
-                              variablePath: ["showCandidat"]
-                            },
-                            operation: 0,
-                            value: false
-                          };
-                          return (({
-                            variable,
-                            value,
-                            startIndex,
-                            deleteCount
-                          }) => {
-                            if (!variable) {
-                              return;
-                            }
-                            const { objRoot, variablePath } = variable;
-
-                            $stateSet(objRoot, variablePath, value);
-                            return value;
-                          })?.apply(null, [actionArgs]);
-                        })()
-                      : undefined;
-                    if (
-                      $steps["updateShowCandidat"] != null &&
-                      typeof $steps["updateShowCandidat"] === "object" &&
-                      typeof $steps["updateShowCandidat"].then === "function"
-                    ) {
-                      $steps["updateShowCandidat"] = await $steps[
-                        "updateShowCandidat"
-                      ];
-                    }
-                  }}
-                  type={"bordered"}
-                />
-              </div>
-              {(() => {
-                try {
-                  return $state.showCandidat;
-                } catch (e) {
-                  if (
-                    e instanceof TypeError ||
-                    e?.plasmicType === "PlasmicUndefinedDataError"
-                  ) {
-                    return true;
-                  }
-                  throw e;
-                }
-              })() ? (
-                <div className={classNames(projectcss.all, sty.freeBox__cewrk)}>
-                  <DataGridUser
-                    className={classNames(
-                      "__wab_instance",
-                      sty.dataGridUser__oVczU
-                    )}
-                    columnLabels={{
-                      name: "Nom",
-                      email: "Email",
-                      role: "R\u00f4le",
-                      created_at: "Date d'inscription"
-                    }}
-                    currentPage={(() => {
-                      try {
-                        return $state.pageUser;
-                      } catch (e) {
-                        if (
-                          e instanceof TypeError ||
-                          e?.plasmicType === "PlasmicUndefinedDataError"
-                        ) {
-                          return 1;
-                        }
-                        throw e;
-                      }
-                    })()}
-                    emptyStateMessage={"Aucun utilisateur disponible"}
-                    isLoading={false}
-                    onDelete={async userId => {
-                      const $steps = {};
-
-                      $steps["updateUserId"] = true
-                        ? (() => {
-                            const actionArgs = {
-                              variable: {
-                                objRoot: $state,
-                                variablePath: ["idUser"]
-                              },
-                              operation: 0,
-                              value: userId
-                            };
-                            return (({
-                              variable,
-                              value,
-                              startIndex,
-                              deleteCount
-                            }) => {
-                              if (!variable) {
-                                return;
-                              }
-                              const { objRoot, variablePath } = variable;
-
-                              $stateSet(objRoot, variablePath, value);
-                              return value;
-                            })?.apply(null, [actionArgs]);
-                          })()
-                        : undefined;
-                      if (
-                        $steps["updateUserId"] != null &&
-                        typeof $steps["updateUserId"] === "object" &&
-                        typeof $steps["updateUserId"].then === "function"
-                      ) {
-                        $steps["updateUserId"] = await $steps["updateUserId"];
-                      }
-
-                      $steps["updateModalIsOpen"] = true
-                        ? (() => {
-                            const actionArgs = {
-                              variable: {
-                                objRoot: $state,
-                                variablePath: ["supprUser", "isOpen"]
-                              },
-                              operation: 0,
-                              value: true
-                            };
-                            return (({
-                              variable,
-                              value,
-                              startIndex,
-                              deleteCount
-                            }) => {
-                              if (!variable) {
-                                return;
-                              }
-                              const { objRoot, variablePath } = variable;
-
-                              $stateSet(objRoot, variablePath, value);
-                              return value;
-                            })?.apply(null, [actionArgs]);
-                          })()
-                        : undefined;
-                      if (
-                        $steps["updateModalIsOpen"] != null &&
-                        typeof $steps["updateModalIsOpen"] === "object" &&
-                        typeof $steps["updateModalIsOpen"].then === "function"
-                      ) {
-                        $steps["updateModalIsOpen"] = await $steps[
-                          "updateModalIsOpen"
-                        ];
-                      }
-                    }}
-                    onPageChange={async page => {
-                      const $steps = {};
-
-                      $steps["updatePage"] = true
-                        ? (() => {
-                            const actionArgs = {
-                              variable: {
-                                objRoot: $state,
-                                variablePath: ["pageUser"]
-                              },
-                              operation: 0,
-                              value: page
-                            };
-                            return (({
-                              variable,
-                              value,
-                              startIndex,
-                              deleteCount
-                            }) => {
-                              if (!variable) {
-                                return;
-                              }
-                              const { objRoot, variablePath } = variable;
-
-                              $stateSet(objRoot, variablePath, value);
-                              return value;
-                            })?.apply(null, [actionArgs]);
-                          })()
-                        : undefined;
-                      if (
-                        $steps["updatePage"] != null &&
-                        typeof $steps["updatePage"] === "object" &&
-                        typeof $steps["updatePage"].then === "function"
-                      ) {
-                        $steps["updatePage"] = await $steps["updatePage"];
-                      }
-                    }}
-                    pageSize={10}
-                    statusConfig={{
-                      actif: { label: "Actif", color: "#D1FAE5" },
-                      inactif: { label: "Inactif", color: "#FEE2E2" },
-                      suspendu: { label: "Suspendu", color: "#FEF3C7" }
-                    }}
-                    theme={{
-                      headerBgColor: "#F3F4F6",
-                      rowBgColor: "#ffffff",
-                      hoverBgColor: "#E5E7EB",
-                      borderColor: "#E5E7EB",
-                      textColor: "#4B5563"
-                    }}
-                    users={(() => {
-                      try {
-                        return $queries.paramAdminGetCandidat.data;
-                      } catch (e) {
-                        if (
-                          e instanceof TypeError ||
-                          e?.plasmicType === "PlasmicUndefinedDataError"
-                        ) {
-                          return [];
-                        }
-                        throw e;
-                      }
-                    })()}
-                    visibleColumns={["name", "email", "role", "created_at"]}
-                  />
-                </div>
-              ) : null}
-              {(() => {
-                try {
-                  return $state.showCompany;
-                } catch (e) {
-                  if (
-                    e instanceof TypeError ||
-                    e?.plasmicType === "PlasmicUndefinedDataError"
-                  ) {
-                    return true;
-                  }
-                  throw e;
-                }
-              })() ? (
-                <div className={classNames(projectcss.all, sty.freeBox__zefOy)}>
-                  <DataGridUser
-                    className={classNames(
-                      "__wab_instance",
-                      sty.dataGridUser__tgwQc
-                    )}
-                    columnLabels={{
-                      name: "Nom",
-                      email: "Email",
-                      role: "R\u00f4le",
-                      created_at_formatted: "Date d'inscription",
-                      siren: "Siren",
-                      kbis_file: "KBIS",
-                      identity_file: "Pi\u00e8ce d'identit\u00e9"
-                    }}
-                    currentPage={(() => {
-                      try {
-                        return $state.pageCompany;
-                      } catch (e) {
-                        if (
-                          e instanceof TypeError ||
-                          e?.plasmicType === "PlasmicUndefinedDataError"
-                        ) {
-                          return 1;
-                        }
-                        throw e;
-                      }
-                    })()}
-                    emptyStateMessage={"Aucun utilisateur disponible"}
-                    isLoading={false}
-                    onDelete={async userId => {
-                      const $steps = {};
-
-                      $steps["updateUserId"] = true
-                        ? (() => {
-                            const actionArgs = {
-                              variable: {
-                                objRoot: $state,
-                                variablePath: ["idUser"]
-                              },
-                              operation: 0,
-                              value: userId
-                            };
-                            return (({
-                              variable,
-                              value,
-                              startIndex,
-                              deleteCount
-                            }) => {
-                              if (!variable) {
-                                return;
-                              }
-                              const { objRoot, variablePath } = variable;
-
-                              $stateSet(objRoot, variablePath, value);
-                              return value;
-                            })?.apply(null, [actionArgs]);
-                          })()
-                        : undefined;
-                      if (
-                        $steps["updateUserId"] != null &&
-                        typeof $steps["updateUserId"] === "object" &&
-                        typeof $steps["updateUserId"].then === "function"
-                      ) {
-                        $steps["updateUserId"] = await $steps["updateUserId"];
-                      }
-
-                      $steps["updateModalIsOpen"] = true
-                        ? (() => {
-                            const actionArgs = {
-                              variable: {
-                                objRoot: $state,
-                                variablePath: ["supprUser", "isOpen"]
-                              },
-                              operation: 0,
-                              value: true
-                            };
-                            return (({
-                              variable,
-                              value,
-                              startIndex,
-                              deleteCount
-                            }) => {
-                              if (!variable) {
-                                return;
-                              }
-                              const { objRoot, variablePath } = variable;
-
-                              $stateSet(objRoot, variablePath, value);
-                              return value;
-                            })?.apply(null, [actionArgs]);
-                          })()
-                        : undefined;
-                      if (
-                        $steps["updateModalIsOpen"] != null &&
-                        typeof $steps["updateModalIsOpen"] === "object" &&
-                        typeof $steps["updateModalIsOpen"].then === "function"
-                      ) {
-                        $steps["updateModalIsOpen"] = await $steps[
-                          "updateModalIsOpen"
-                        ];
-                      }
-                    }}
-                    onPageChange={async page => {
-                      const $steps = {};
-
-                      $steps["updatePage"] = true
-                        ? (() => {
-                            const actionArgs = {
-                              variable: {
-                                objRoot: $state,
-                                variablePath: ["pageCompany"]
-                              },
-                              operation: 0,
-                              value: page
-                            };
-                            return (({
-                              variable,
-                              value,
-                              startIndex,
-                              deleteCount
-                            }) => {
-                              if (!variable) {
-                                return;
-                              }
-                              const { objRoot, variablePath } = variable;
-
-                              $stateSet(objRoot, variablePath, value);
-                              return value;
-                            })?.apply(null, [actionArgs]);
-                          })()
-                        : undefined;
-                      if (
-                        $steps["updatePage"] != null &&
-                        typeof $steps["updatePage"] === "object" &&
-                        typeof $steps["updatePage"].then === "function"
-                      ) {
-                        $steps["updatePage"] = await $steps["updatePage"];
-                      }
-                    }}
-                    pageSize={10}
-                    statusConfig={{
-                      actif: { label: "Actif", color: "#D1FAE5" },
-                      inactif: { label: "Inactif", color: "#FEE2E2" },
-                      suspendu: { label: "Suspendu", color: "#FEF3C7" }
-                    }}
-                    theme={{
-                      headerBgColor: "#F3F4F6",
-                      rowBgColor: "#ffffff",
-                      hoverBgColor: "#E5E7EB",
-                      borderColor: "#E5E7EB",
-                      textColor: "#4B5563"
-                    }}
-                    users={(() => {
-                      try {
-                        return $queries.paramAdminGetCompany2.data;
-                      } catch (e) {
-                        if (
-                          e instanceof TypeError ||
-                          e?.plasmicType === "PlasmicUndefinedDataError"
-                        ) {
-                          return [];
-                        }
-                        throw e;
-                      }
-                    })()}
-                    visibleColumns={[
-                      "name",
-                      "email",
-                      "role",
-                      "created_at_formatted",
-                      "siren",
-                      "kbis_file",
-                      "identity_file"
-                    ]}
-                  />
-                </div>
-              ) : null}
-            </div>
-            <Modal
-              data-plasmic-name={"supprUser"}
-              data-plasmic-override={overrides.supprUser}
-              className={classNames("__wab_instance", sty.supprUser)}
-              content={
-                <div className={classNames(projectcss.all, sty.freeBox__ibQn9)}>
-                  <ReshotIconAlert7T6Wum8VleSvgIcon
-                    data-plasmic-name={"svg"}
-                    data-plasmic-override={overrides.svg}
-                    className={classNames(projectcss.all, sty.svg)}
-                    role={"img"}
-                  />
-
+            <DataCtxReader__>
+              {$ctx => (
+                <div
+                  data-plasmic-name={"main"}
+                  data-plasmic-override={overrides.main}
+                  className={classNames(
+                    projectcss.all,
+                    sty.main,
+                    hasVariant(globalVariants, "screen", "mobileOnly")
+                      ? ``
+                      : "main-content"
+                  )}
+                >
                   <div
                     className={classNames(
                       projectcss.all,
                       projectcss.__wab_text,
-                      sty.text___5TXc
+                      sty.text___2Ba4Z
                     )}
                   >
-                    {"Voulez-vous supprimer ce user ?"}
+                    {hasVariant(globalVariants, "screen", "mobileOnly") ? (
+                      <React.Fragment>
+                        <React.Fragment>{""}</React.Fragment>
+                        {
+                          <h1
+                            data-plasmic-name={"h1"}
+                            data-plasmic-override={overrides.h1}
+                            className={classNames(
+                              projectcss.all,
+                              projectcss.h1,
+                              projectcss.__wab_text,
+                              sty.h1
+                            )}
+                          >
+                            {hasVariant(globalVariants, "screen", "mobileOnly")
+                              ? "Gestion des users 2"
+                              : "Gestion des users"}
+                          </h1>
+                        }
+                        <React.Fragment>{""}</React.Fragment>
+                      </React.Fragment>
+                    ) : (
+                      <React.Fragment>
+                        <React.Fragment>{""}</React.Fragment>
+                        {
+                          <h1
+                            data-plasmic-name={"h1"}
+                            data-plasmic-override={overrides.h1}
+                            className={classNames(
+                              projectcss.all,
+                              projectcss.h1,
+                              projectcss.__wab_text,
+                              sty.h1
+                            )}
+                          >
+                            {hasVariant(globalVariants, "screen", "mobileOnly")
+                              ? "Gestion des users 2"
+                              : "Gestion des users"}
+                          </h1>
+                        }
+                        <React.Fragment>{""}</React.Fragment>
+                      </React.Fragment>
+                    )}
                   </div>
                   <div
-                    data-plasmic-name={"e2"}
-                    data-plasmic-override={overrides.e2}
-                    className={classNames(
-                      projectcss.all,
-                      projectcss.__wab_text,
-                      sty.e2
-                    )}
+                    className={classNames(projectcss.all, sty.freeBox__lg6T6)}
                   >
-                    {
-                      "Attention : cette action est irr\u00e9versible. Le user sera d\u00e9finitivement supprim\u00e9."
-                    }
-                  </div>
-                  <div
-                    className={classNames(projectcss.all, sty.freeBox___7Lbwn)}
-                  >
-                    <Button
-                      className={classNames(
-                        "__wab_instance",
-                        sty.button__phMvE
-                      )}
-                      color={"white"}
-                      label={
-                        <div
-                          className={classNames(
-                            projectcss.all,
-                            projectcss.__wab_text,
-                            sty.text__mWtW2
-                          )}
-                        >
-                          {"retour"}
-                        </div>
-                      }
-                      onClick={async event => {
-                        const $steps = {};
-
-                        $steps["updateModalIsOpen"] = true
-                          ? (() => {
-                              const actionArgs = {
-                                variable: {
-                                  objRoot: $state,
-                                  variablePath: ["supprUser", "isOpen"]
-                                },
-                                operation: 0,
-                                value: false
-                              };
-                              return (({
-                                variable,
-                                value,
-                                startIndex,
-                                deleteCount
-                              }) => {
-                                if (!variable) {
-                                  return;
-                                }
-                                const { objRoot, variablePath } = variable;
-
-                                $stateSet(objRoot, variablePath, value);
-                                return value;
-                              })?.apply(null, [actionArgs]);
-                            })()
-                          : undefined;
-                        if (
-                          $steps["updateModalIsOpen"] != null &&
-                          typeof $steps["updateModalIsOpen"] === "object" &&
-                          typeof $steps["updateModalIsOpen"].then === "function"
-                        ) {
-                          $steps["updateModalIsOpen"] = await $steps[
-                            "updateModalIsOpen"
-                          ];
+                    <div
+                      className={classNames(projectcss.all, sty.freeBox__vJiyM)}
+                    >
+                      <Button
+                        className={classNames(
+                          "__wab_instance",
+                          sty.button__bnOxe
+                        )}
+                        label={
+                          <div
+                            className={classNames(
+                              projectcss.all,
+                              projectcss.__wab_text,
+                              sty.text__vl9It
+                            )}
+                          >
+                            {"Candidat"}
+                          </div>
                         }
-                      }}
-                      type={"bordered"}
-                    />
+                        onClick={async event => {
+                          const $steps = {};
 
-                    <DeleteAccount
-                      data-plasmic-name={"deleteAccount"}
-                      data-plasmic-override={overrides.deleteAccount}
-                      className={classNames(
-                        "__wab_instance",
-                        sty.deleteAccount
-                      )}
-                      label={
-                        <div
-                          className={classNames(
-                            projectcss.all,
-                            projectcss.__wab_text,
-                            sty.text__rBlbh
-                          )}
-                        >
-                          {"supprimer"}
-                        </div>
-                      }
-                      onClick={async event => {
-                        const $steps = {};
-
-                        $steps["postgresDeleteMany"] = true
-                          ? (() => {
-                              const actionArgs = {
-                                dataOp: {
-                                  sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
-                                  opId: "78979320-35e7-4bf7-9b84-8f975cd2f4dc",
-                                  userArgs: {
-                                    conditions: [$state.idUser]
+                          $steps["updateShowCandidat"] = true
+                            ? (() => {
+                                const actionArgs = {
+                                  variable: {
+                                    objRoot: $state,
+                                    variablePath: ["showCandidat"]
                                   },
-                                  cacheKey: null,
-                                  invalidatedKeys: null,
-                                  roleId: null
-                                }
-                              };
-                              return (async ({ dataOp, continueOnError }) => {
-                                try {
-                                  const response = await executePlasmicDataOp(
-                                    dataOp,
-                                    {
-                                      userAuthToken:
-                                        dataSourcesCtx?.userAuthToken,
-                                      user: dataSourcesCtx?.user
-                                    }
-                                  );
-                                  await plasmicInvalidate(
-                                    dataOp.invalidatedKeys
-                                  );
-                                  return response;
-                                } catch (e) {
-                                  if (!continueOnError) {
-                                    throw e;
+                                  operation: 0,
+                                  value: true
+                                };
+                                return (({
+                                  variable,
+                                  value,
+                                  startIndex,
+                                  deleteCount
+                                }) => {
+                                  if (!variable) {
+                                    return;
                                   }
-                                  return e;
-                                }
-                              })?.apply(null, [actionArgs]);
-                            })()
-                          : undefined;
-                        if (
-                          $steps["postgresDeleteMany"] != null &&
-                          typeof $steps["postgresDeleteMany"] === "object" &&
-                          typeof $steps["postgresDeleteMany"].then ===
-                            "function"
-                        ) {
-                          $steps["postgresDeleteMany"] = await $steps[
-                            "postgresDeleteMany"
-                          ];
-                        }
+                                  const { objRoot, variablePath } = variable;
 
-                        $steps["updateSupprUserIsOpen"] = true
-                          ? (() => {
-                              const actionArgs = {
-                                variable: {
-                                  objRoot: $state,
-                                  variablePath: ["supprUser", "isOpen"]
-                                },
-                                operation: 0,
-                                value: false
-                              };
-                              return (({
-                                variable,
-                                value,
-                                startIndex,
-                                deleteCount
-                              }) => {
-                                if (!variable) {
-                                  return;
-                                }
-                                const { objRoot, variablePath } = variable;
+                                  $stateSet(objRoot, variablePath, value);
+                                  return value;
+                                })?.apply(null, [actionArgs]);
+                              })()
+                            : undefined;
+                          if (
+                            $steps["updateShowCandidat"] != null &&
+                            typeof $steps["updateShowCandidat"] === "object" &&
+                            typeof $steps["updateShowCandidat"].then ===
+                              "function"
+                          ) {
+                            $steps["updateShowCandidat"] =
+                              await $steps["updateShowCandidat"];
+                          }
 
-                                $stateSet(objRoot, variablePath, value);
-                                return value;
-                              })?.apply(null, [actionArgs]);
-                            })()
-                          : undefined;
-                        if (
-                          $steps["updateSupprUserIsOpen"] != null &&
-                          typeof $steps["updateSupprUserIsOpen"] === "object" &&
-                          typeof $steps["updateSupprUserIsOpen"].then ===
-                            "function"
-                        ) {
-                          $steps["updateSupprUserIsOpen"] = await $steps[
-                            "updateSupprUserIsOpen"
-                          ];
+                          $steps["updateShowCandidat2"] = true
+                            ? (() => {
+                                const actionArgs = {
+                                  variable: {
+                                    objRoot: $state,
+                                    variablePath: ["showCompany"]
+                                  },
+                                  operation: 0,
+                                  value: false
+                                };
+                                return (({
+                                  variable,
+                                  value,
+                                  startIndex,
+                                  deleteCount
+                                }) => {
+                                  if (!variable) {
+                                    return;
+                                  }
+                                  const { objRoot, variablePath } = variable;
+
+                                  $stateSet(objRoot, variablePath, value);
+                                  return value;
+                                })?.apply(null, [actionArgs]);
+                              })()
+                            : undefined;
+                          if (
+                            $steps["updateShowCandidat2"] != null &&
+                            typeof $steps["updateShowCandidat2"] === "object" &&
+                            typeof $steps["updateShowCandidat2"].then ===
+                              "function"
+                          ) {
+                            $steps["updateShowCandidat2"] =
+                              await $steps["updateShowCandidat2"];
+                          }
+                        }}
+                        type={"bordered"}
+                      />
+
+                      <Button
+                        className={classNames(
+                          "__wab_instance",
+                          sty.button__xOMc
+                        )}
+                        label={
+                          <div
+                            className={classNames(
+                              projectcss.all,
+                              projectcss.__wab_text,
+                              sty.text__eHpxc
+                            )}
+                          >
+                            {"Company"}
+                          </div>
                         }
-                      }}
-                    />
+                        onClick={async event => {
+                          const $steps = {};
+
+                          $steps["updateShowCompany"] = true
+                            ? (() => {
+                                const actionArgs = {
+                                  variable: {
+                                    objRoot: $state,
+                                    variablePath: ["showCompany"]
+                                  },
+                                  operation: 0,
+                                  value: true
+                                };
+                                return (({
+                                  variable,
+                                  value,
+                                  startIndex,
+                                  deleteCount
+                                }) => {
+                                  if (!variable) {
+                                    return;
+                                  }
+                                  const { objRoot, variablePath } = variable;
+
+                                  $stateSet(objRoot, variablePath, value);
+                                  return value;
+                                })?.apply(null, [actionArgs]);
+                              })()
+                            : undefined;
+                          if (
+                            $steps["updateShowCompany"] != null &&
+                            typeof $steps["updateShowCompany"] === "object" &&
+                            typeof $steps["updateShowCompany"].then ===
+                              "function"
+                          ) {
+                            $steps["updateShowCompany"] =
+                              await $steps["updateShowCompany"];
+                          }
+
+                          $steps["updateShowCandidat"] = true
+                            ? (() => {
+                                const actionArgs = {
+                                  variable: {
+                                    objRoot: $state,
+                                    variablePath: ["showCandidat"]
+                                  },
+                                  operation: 0,
+                                  value: false
+                                };
+                                return (({
+                                  variable,
+                                  value,
+                                  startIndex,
+                                  deleteCount
+                                }) => {
+                                  if (!variable) {
+                                    return;
+                                  }
+                                  const { objRoot, variablePath } = variable;
+
+                                  $stateSet(objRoot, variablePath, value);
+                                  return value;
+                                })?.apply(null, [actionArgs]);
+                              })()
+                            : undefined;
+                          if (
+                            $steps["updateShowCandidat"] != null &&
+                            typeof $steps["updateShowCandidat"] === "object" &&
+                            typeof $steps["updateShowCandidat"].then ===
+                              "function"
+                          ) {
+                            $steps["updateShowCandidat"] =
+                              await $steps["updateShowCandidat"];
+                          }
+                        }}
+                        type={"bordered"}
+                      />
+                    </div>
+                    {(() => {
+                      try {
+                        return $state.showCandidat;
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return true;
+                        }
+                        throw e;
+                      }
+                    })() ? (
+                      <div
+                        className={classNames(
+                          projectcss.all,
+                          sty.freeBox__cewrk
+                        )}
+                      >
+                        <DataGridUser
+                          className={classNames(
+                            "__wab_instance",
+                            sty.dataGridUser__oVczU
+                          )}
+                          columnLabels={{
+                            name: "Nom",
+                            email: "Email",
+                            role: "R\u00f4le",
+                            created_at: "Date d'inscription"
+                          }}
+                          currentPage={(() => {
+                            try {
+                              return $state.pageUser;
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return 1;
+                              }
+                              throw e;
+                            }
+                          })()}
+                          emptyStateMessage={"Aucun utilisateur disponible"}
+                          isLoading={false}
+                          onDelete={async userId => {
+                            const $steps = {};
+
+                            $steps["updateUserId"] = true
+                              ? (() => {
+                                  const actionArgs = {
+                                    variable: {
+                                      objRoot: $state,
+                                      variablePath: ["idUser"]
+                                    },
+                                    operation: 0,
+                                    value: userId
+                                  };
+                                  return (({
+                                    variable,
+                                    value,
+                                    startIndex,
+                                    deleteCount
+                                  }) => {
+                                    if (!variable) {
+                                      return;
+                                    }
+                                    const { objRoot, variablePath } = variable;
+
+                                    $stateSet(objRoot, variablePath, value);
+                                    return value;
+                                  })?.apply(null, [actionArgs]);
+                                })()
+                              : undefined;
+                            if (
+                              $steps["updateUserId"] != null &&
+                              typeof $steps["updateUserId"] === "object" &&
+                              typeof $steps["updateUserId"].then === "function"
+                            ) {
+                              $steps["updateUserId"] =
+                                await $steps["updateUserId"];
+                            }
+
+                            $steps["updateModalIsOpen"] = true
+                              ? (() => {
+                                  const actionArgs = {
+                                    variable: {
+                                      objRoot: $state,
+                                      variablePath: ["supprUser", "isOpen"]
+                                    },
+                                    operation: 0,
+                                    value: true
+                                  };
+                                  return (({
+                                    variable,
+                                    value,
+                                    startIndex,
+                                    deleteCount
+                                  }) => {
+                                    if (!variable) {
+                                      return;
+                                    }
+                                    const { objRoot, variablePath } = variable;
+
+                                    $stateSet(objRoot, variablePath, value);
+                                    return value;
+                                  })?.apply(null, [actionArgs]);
+                                })()
+                              : undefined;
+                            if (
+                              $steps["updateModalIsOpen"] != null &&
+                              typeof $steps["updateModalIsOpen"] === "object" &&
+                              typeof $steps["updateModalIsOpen"].then ===
+                                "function"
+                            ) {
+                              $steps["updateModalIsOpen"] =
+                                await $steps["updateModalIsOpen"];
+                            }
+                          }}
+                          onPageChange={async page => {
+                            const $steps = {};
+
+                            $steps["updatePage"] = true
+                              ? (() => {
+                                  const actionArgs = {
+                                    variable: {
+                                      objRoot: $state,
+                                      variablePath: ["pageUser"]
+                                    },
+                                    operation: 0,
+                                    value: page
+                                  };
+                                  return (({
+                                    variable,
+                                    value,
+                                    startIndex,
+                                    deleteCount
+                                  }) => {
+                                    if (!variable) {
+                                      return;
+                                    }
+                                    const { objRoot, variablePath } = variable;
+
+                                    $stateSet(objRoot, variablePath, value);
+                                    return value;
+                                  })?.apply(null, [actionArgs]);
+                                })()
+                              : undefined;
+                            if (
+                              $steps["updatePage"] != null &&
+                              typeof $steps["updatePage"] === "object" &&
+                              typeof $steps["updatePage"].then === "function"
+                            ) {
+                              $steps["updatePage"] = await $steps["updatePage"];
+                            }
+                          }}
+                          pageSize={10}
+                          statusConfig={{
+                            actif: { label: "Actif", color: "#D1FAE5" },
+                            inactif: { label: "Inactif", color: "#FEE2E2" },
+                            suspendu: { label: "Suspendu", color: "#FEF3C7" }
+                          }}
+                          theme={{
+                            headerBgColor: "#F3F4F6",
+                            rowBgColor: "#ffffff",
+                            hoverBgColor: "#E5E7EB",
+                            borderColor: "#E5E7EB",
+                            textColor: "#4B5563"
+                          }}
+                          users={(() => {
+                            try {
+                              return $queries.paramAdminGetCandidat.data;
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return [];
+                              }
+                              throw e;
+                            }
+                          })()}
+                          visibleColumns={[
+                            "name",
+                            "email",
+                            "role",
+                            "created_at"
+                          ]}
+                        />
+                      </div>
+                    ) : null}
+                    {(() => {
+                      try {
+                        return $state.showCompany;
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return true;
+                        }
+                        throw e;
+                      }
+                    })() ? (
+                      <div
+                        className={classNames(
+                          projectcss.all,
+                          sty.freeBox__zefOy
+                        )}
+                      >
+                        <DataGridUser
+                          className={classNames(
+                            "__wab_instance",
+                            sty.dataGridUser__tgwQc
+                          )}
+                          columnLabels={{
+                            name: "Nom",
+                            email: "Email",
+                            role: "R\u00f4le",
+                            created_at_formatted: "Date d'inscription",
+                            siren: "Siren",
+                            kbis_file: "KBIS",
+                            identity_file: "Pi\u00e8ce d'identit\u00e9"
+                          }}
+                          currentPage={(() => {
+                            try {
+                              return $state.pageCompany;
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return 1;
+                              }
+                              throw e;
+                            }
+                          })()}
+                          emptyStateMessage={"Aucun utilisateur disponible"}
+                          isLoading={false}
+                          onDelete={async userId => {
+                            const $steps = {};
+
+                            $steps["updateUserId"] = true
+                              ? (() => {
+                                  const actionArgs = {
+                                    variable: {
+                                      objRoot: $state,
+                                      variablePath: ["idUser"]
+                                    },
+                                    operation: 0,
+                                    value: userId
+                                  };
+                                  return (({
+                                    variable,
+                                    value,
+                                    startIndex,
+                                    deleteCount
+                                  }) => {
+                                    if (!variable) {
+                                      return;
+                                    }
+                                    const { objRoot, variablePath } = variable;
+
+                                    $stateSet(objRoot, variablePath, value);
+                                    return value;
+                                  })?.apply(null, [actionArgs]);
+                                })()
+                              : undefined;
+                            if (
+                              $steps["updateUserId"] != null &&
+                              typeof $steps["updateUserId"] === "object" &&
+                              typeof $steps["updateUserId"].then === "function"
+                            ) {
+                              $steps["updateUserId"] =
+                                await $steps["updateUserId"];
+                            }
+
+                            $steps["updateModalIsOpen"] = true
+                              ? (() => {
+                                  const actionArgs = {
+                                    variable: {
+                                      objRoot: $state,
+                                      variablePath: ["supprUser", "isOpen"]
+                                    },
+                                    operation: 0,
+                                    value: true
+                                  };
+                                  return (({
+                                    variable,
+                                    value,
+                                    startIndex,
+                                    deleteCount
+                                  }) => {
+                                    if (!variable) {
+                                      return;
+                                    }
+                                    const { objRoot, variablePath } = variable;
+
+                                    $stateSet(objRoot, variablePath, value);
+                                    return value;
+                                  })?.apply(null, [actionArgs]);
+                                })()
+                              : undefined;
+                            if (
+                              $steps["updateModalIsOpen"] != null &&
+                              typeof $steps["updateModalIsOpen"] === "object" &&
+                              typeof $steps["updateModalIsOpen"].then ===
+                                "function"
+                            ) {
+                              $steps["updateModalIsOpen"] =
+                                await $steps["updateModalIsOpen"];
+                            }
+                          }}
+                          onPageChange={async page => {
+                            const $steps = {};
+
+                            $steps["updatePage"] = true
+                              ? (() => {
+                                  const actionArgs = {
+                                    variable: {
+                                      objRoot: $state,
+                                      variablePath: ["pageCompany"]
+                                    },
+                                    operation: 0,
+                                    value: page
+                                  };
+                                  return (({
+                                    variable,
+                                    value,
+                                    startIndex,
+                                    deleteCount
+                                  }) => {
+                                    if (!variable) {
+                                      return;
+                                    }
+                                    const { objRoot, variablePath } = variable;
+
+                                    $stateSet(objRoot, variablePath, value);
+                                    return value;
+                                  })?.apply(null, [actionArgs]);
+                                })()
+                              : undefined;
+                            if (
+                              $steps["updatePage"] != null &&
+                              typeof $steps["updatePage"] === "object" &&
+                              typeof $steps["updatePage"].then === "function"
+                            ) {
+                              $steps["updatePage"] = await $steps["updatePage"];
+                            }
+                          }}
+                          pageSize={10}
+                          statusConfig={{
+                            actif: { label: "Actif", color: "#D1FAE5" },
+                            inactif: { label: "Inactif", color: "#FEE2E2" },
+                            suspendu: { label: "Suspendu", color: "#FEF3C7" }
+                          }}
+                          theme={{
+                            headerBgColor: "#F3F4F6",
+                            rowBgColor: "#ffffff",
+                            hoverBgColor: "#E5E7EB",
+                            borderColor: "#E5E7EB",
+                            textColor: "#4B5563"
+                          }}
+                          users={(() => {
+                            try {
+                              return $queries.paramAdminGetCompany2.data;
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return [];
+                              }
+                              throw e;
+                            }
+                          })()}
+                          visibleColumns={[
+                            "name",
+                            "email",
+                            "role",
+                            "created_at_formatted",
+                            "siren",
+                            "kbis_file",
+                            "identity_file"
+                          ]}
+                        />
+                      </div>
+                    ) : null}
                   </div>
+                  <Modal
+                    data-plasmic-name={"supprUser"}
+                    data-plasmic-override={overrides.supprUser}
+                    className={classNames("__wab_instance", sty.supprUser)}
+                    content={
+                      <div
+                        className={classNames(
+                          projectcss.all,
+                          sty.freeBox__ibQn9
+                        )}
+                      >
+                        <ReshotIconAlert7T6Wum8VleSvgIcon
+                          data-plasmic-name={"svg"}
+                          data-plasmic-override={overrides.svg}
+                          className={classNames(projectcss.all, sty.svg)}
+                          role={"img"}
+                        />
+
+                        <div
+                          className={classNames(
+                            projectcss.all,
+                            projectcss.__wab_text,
+                            sty.text___5TXc
+                          )}
+                        >
+                          {"Voulez-vous supprimer ce user ?"}
+                        </div>
+                        <div
+                          data-plasmic-name={"e2"}
+                          data-plasmic-override={overrides.e2}
+                          className={classNames(
+                            projectcss.all,
+                            projectcss.__wab_text,
+                            sty.e2
+                          )}
+                        >
+                          {
+                            "Attention : cette action est irr\u00e9versible. Le user sera d\u00e9finitivement supprim\u00e9."
+                          }
+                        </div>
+                        <div
+                          className={classNames(
+                            projectcss.all,
+                            sty.freeBox___7Lbwn
+                          )}
+                        >
+                          <Button
+                            className={classNames(
+                              "__wab_instance",
+                              sty.button__phMvE
+                            )}
+                            color={"white"}
+                            label={
+                              <div
+                                className={classNames(
+                                  projectcss.all,
+                                  projectcss.__wab_text,
+                                  sty.text__mWtW2
+                                )}
+                              >
+                                {"retour"}
+                              </div>
+                            }
+                            onClick={async event => {
+                              const $steps = {};
+
+                              $steps["updateModalIsOpen"] = true
+                                ? (() => {
+                                    const actionArgs = {
+                                      variable: {
+                                        objRoot: $state,
+                                        variablePath: ["supprUser", "isOpen"]
+                                      },
+                                      operation: 0,
+                                      value: false
+                                    };
+                                    return (({
+                                      variable,
+                                      value,
+                                      startIndex,
+                                      deleteCount
+                                    }) => {
+                                      if (!variable) {
+                                        return;
+                                      }
+                                      const { objRoot, variablePath } =
+                                        variable;
+
+                                      $stateSet(objRoot, variablePath, value);
+                                      return value;
+                                    })?.apply(null, [actionArgs]);
+                                  })()
+                                : undefined;
+                              if (
+                                $steps["updateModalIsOpen"] != null &&
+                                typeof $steps["updateModalIsOpen"] ===
+                                  "object" &&
+                                typeof $steps["updateModalIsOpen"].then ===
+                                  "function"
+                              ) {
+                                $steps["updateModalIsOpen"] =
+                                  await $steps["updateModalIsOpen"];
+                              }
+                            }}
+                            type={"bordered"}
+                          />
+
+                          <DeleteAccount
+                            data-plasmic-name={"deleteAccount"}
+                            data-plasmic-override={overrides.deleteAccount}
+                            className={classNames(
+                              "__wab_instance",
+                              sty.deleteAccount
+                            )}
+                            label={
+                              <div
+                                className={classNames(
+                                  projectcss.all,
+                                  projectcss.__wab_text,
+                                  sty.text__rBlbh
+                                )}
+                              >
+                                {"supprimer"}
+                              </div>
+                            }
+                            onClick={async event => {
+                              const $steps = {};
+
+                              $steps["postgresDeleteMany"] = true
+                                ? (() => {
+                                    const actionArgs = {
+                                      dataOp: {
+                                        sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
+                                        opId: "78979320-35e7-4bf7-9b84-8f975cd2f4dc",
+                                        userArgs: {
+                                          conditions: [$state.idUser]
+                                        },
+                                        cacheKey: null,
+                                        invalidatedKeys: [
+                                          "69ef5223-bbea-4520-8d08-0598747d0ac3",
+                                          "bb945d86-82c9-4e29-8e20-a93fd544ce10"
+                                        ],
+                                        roleId: null
+                                      }
+                                    };
+                                    return (async ({
+                                      dataOp,
+                                      continueOnError
+                                    }) => {
+                                      try {
+                                        const response =
+                                          await executePlasmicDataOp(dataOp, {
+                                            userAuthToken:
+                                              dataSourcesCtx?.userAuthToken,
+                                            user: dataSourcesCtx?.user
+                                          });
+                                        await plasmicInvalidate(
+                                          dataOp.invalidatedKeys
+                                        );
+                                        return response;
+                                      } catch (e) {
+                                        if (!continueOnError) {
+                                          throw e;
+                                        }
+                                        return e;
+                                      }
+                                    })?.apply(null, [actionArgs]);
+                                  })()
+                                : undefined;
+                              if (
+                                $steps["postgresDeleteMany"] != null &&
+                                typeof $steps["postgresDeleteMany"] ===
+                                  "object" &&
+                                typeof $steps["postgresDeleteMany"].then ===
+                                  "function"
+                              ) {
+                                $steps["postgresDeleteMany"] =
+                                  await $steps["postgresDeleteMany"];
+                              }
+
+                              $steps["updateSupprUserIsOpen"] = true
+                                ? (() => {
+                                    const actionArgs = {
+                                      variable: {
+                                        objRoot: $state,
+                                        variablePath: ["supprUser", "isOpen"]
+                                      },
+                                      operation: 0,
+                                      value: false
+                                    };
+                                    return (({
+                                      variable,
+                                      value,
+                                      startIndex,
+                                      deleteCount
+                                    }) => {
+                                      if (!variable) {
+                                        return;
+                                      }
+                                      const { objRoot, variablePath } =
+                                        variable;
+
+                                      $stateSet(objRoot, variablePath, value);
+                                      return value;
+                                    })?.apply(null, [actionArgs]);
+                                  })()
+                                : undefined;
+                              if (
+                                $steps["updateSupprUserIsOpen"] != null &&
+                                typeof $steps["updateSupprUserIsOpen"] ===
+                                  "object" &&
+                                typeof $steps["updateSupprUserIsOpen"].then ===
+                                  "function"
+                              ) {
+                                $steps["updateSupprUserIsOpen"] =
+                                  await $steps["updateSupprUserIsOpen"];
+                              }
+
+                              $steps["invokeGlobalAction"] = true
+                                ? (() => {
+                                    const actionArgs = {
+                                      args: [
+                                        "success",
+                                        "Utilisateur supprim\u00e9 !"
+                                      ]
+                                    };
+                                    return $globalActions[
+                                      "plasmic-antd5-config-provider.showNotification"
+                                    ]?.apply(null, [...actionArgs.args]);
+                                  })()
+                                : undefined;
+                              if (
+                                $steps["invokeGlobalAction"] != null &&
+                                typeof $steps["invokeGlobalAction"] ===
+                                  "object" &&
+                                typeof $steps["invokeGlobalAction"].then ===
+                                  "function"
+                              ) {
+                                $steps["invokeGlobalAction"] =
+                                  await $steps["invokeGlobalAction"];
+                              }
+                            }}
+                          />
+                        </div>
+                      </div>
+                    }
+                    footer={null}
+                    heading={null}
+                    isOpen={generateStateValueProp($state, [
+                      "supprUser",
+                      "isOpen"
+                    ])}
+                    noTrigger={
+                      hasVariant(globalVariants, "screen", "mobileOnly")
+                        ? true
+                        : true
+                    }
+                    onOpenChange={async (...eventArgs: any) => {
+                      generateStateOnChangeProp($state, [
+                        "supprUser",
+                        "isOpen"
+                      ]).apply(null, eventArgs);
+
+                      if (
+                        eventArgs.length > 1 &&
+                        eventArgs[1] &&
+                        eventArgs[1]._plasmic_state_init_
+                      ) {
+                        return;
+                      }
+                    }}
+                    showFooter={false}
+                    showHeader={false}
+                    trigger={null}
+                  />
                 </div>
+              )}
+            </DataCtxReader__>
+          </LoadingBoundary>
+          {(
+            hasVariant(globalVariants, "screen", "mobileOnly")
+              ? (() => {
+                  try {
+                    return true;
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return true;
+                    }
+                    throw e;
+                  }
+                })()
+              : true
+          ) ? (
+            <MobileNavbarBottom
+              data-plasmic-name={"mobileNavbarBottom"}
+              data-plasmic-override={overrides.mobileNavbarBottom}
+              className={classNames("__wab_instance", sty.mobileNavbarBottom)}
+              user={
+                hasVariant(globalVariants, "screen", "mobileOnly")
+                  ? "admin"
+                  : undefined
               }
-              footer={null}
-              heading={null}
-              isOpen={generateStateValueProp($state, ["supprUser", "isOpen"])}
-              onOpenChange={async (...eventArgs: any) => {
-                generateStateOnChangeProp($state, [
-                  "supprUser",
-                  "isOpen"
-                ]).apply(null, eventArgs);
-
-                if (
-                  eventArgs.length > 1 &&
-                  eventArgs[1] &&
-                  eventArgs[1]._plasmic_state_init_
-                ) {
-                  return;
-                }
-              }}
-              showFooter={false}
-              showHeader={false}
-              trigger={null}
             />
-          </div>
-          <MobileNavbarBottom
-            data-plasmic-name={"mobileNavbarBottom"}
-            data-plasmic-override={overrides.mobileNavbarBottom}
-            className={classNames("__wab_instance", sty.mobileNavbarBottom)}
-            onRoleChange={async (...eventArgs: any) => {
-              generateStateOnChangeProp($state, [
-                "mobileNavbarBottom",
-                "role"
-              ]).apply(null, eventArgs);
-
-              if (
-                eventArgs.length > 1 &&
-                eventArgs[1] &&
-                eventArgs[1]._plasmic_state_init_
-              ) {
-                return;
-              }
-            }}
-            role={generateStateValueProp($state, [
-              "mobileNavbarBottom",
-              "role"
-            ])}
-          />
+          ) : null}
         </div>
       </div>
     </React.Fragment>
@@ -1239,8 +1334,9 @@ const PlasmicDescendants = {
     "root",
     "mobileNavbarTop",
     "sidebar",
+    "loadingBoundary",
+    "loadingComponent",
     "main",
-    "sideEffect",
     "h1",
     "supprUser",
     "svg",
@@ -1250,8 +1346,18 @@ const PlasmicDescendants = {
   ],
   mobileNavbarTop: ["mobileNavbarTop"],
   sidebar: ["sidebar"],
-  main: ["main", "sideEffect", "h1", "supprUser", "svg", "e2", "deleteAccount"],
-  sideEffect: ["sideEffect"],
+  loadingBoundary: [
+    "loadingBoundary",
+    "loadingComponent",
+    "main",
+    "h1",
+    "supprUser",
+    "svg",
+    "e2",
+    "deleteAccount"
+  ],
+  loadingComponent: ["loadingComponent"],
+  main: ["main", "h1", "supprUser", "svg", "e2", "deleteAccount"],
   h1: ["h1"],
   supprUser: ["supprUser", "svg", "e2", "deleteAccount"],
   svg: ["svg"],
@@ -1266,8 +1372,9 @@ type NodeDefaultElementType = {
   root: "div";
   mobileNavbarTop: typeof MobileNavbarTop;
   sidebar: typeof Sidebar;
+  loadingBoundary: typeof LoadingBoundary;
+  loadingComponent: typeof LoadingComponent;
   main: "div";
-  sideEffect: typeof SideEffect;
   h1: "h1";
   supprUser: typeof Modal;
   svg: "svg";
@@ -1287,7 +1394,9 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicUserAdmin__VariantsArgs;
     args?: PlasmicUserAdmin__ArgsType;
     overrides?: NodeOverridesType<T>;
-  } & Omit<PlasmicUserAdmin__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
+  } &
+    // Specify variants directly as props
+    Omit<PlasmicUserAdmin__VariantsArgs, ReservedPropsType> &
     // Specify args directly as props
     Omit<PlasmicUserAdmin__ArgsType, ReservedPropsType> &
     // Specify overrides for each element directly as props
@@ -1338,8 +1447,9 @@ export const PlasmicUserAdmin = Object.assign(
     // Helper components rendering sub-elements
     mobileNavbarTop: makeNodeComponent("mobileNavbarTop"),
     sidebar: makeNodeComponent("sidebar"),
+    loadingBoundary: makeNodeComponent("loadingBoundary"),
+    loadingComponent: makeNodeComponent("loadingComponent"),
     main: makeNodeComponent("main"),
-    sideEffect: makeNodeComponent("sideEffect"),
     h1: makeNodeComponent("h1"),
     supprUser: makeNodeComponent("supprUser"),
     svg: makeNodeComponent("svg"),

@@ -303,12 +303,6 @@ function PlasmicCandidaturesEmployeur__RenderFunc(props: {
         type: "private",
         variableType: "text",
         initFunc: ({ $props, $state, $queries, $ctx }) => "employer"
-      },
-      {
-        path: "mobileNavbarBottom.role",
-        type: "private",
-        variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => "company"
       }
     ],
     [$props, $ctx, $refs]
@@ -763,9 +757,8 @@ function PlasmicCandidaturesEmployeur__RenderFunc(props: {
                     typeof $steps["goToOffreEmployeur"] === "object" &&
                     typeof $steps["goToOffreEmployeur"].then === "function"
                   ) {
-                    $steps["goToOffreEmployeur"] = await $steps[
-                      "goToOffreEmployeur"
-                    ];
+                    $steps["goToOffreEmployeur"] =
+                      await $steps["goToOffreEmployeur"];
                   }
                 }}
                 type={"bordered"}
@@ -953,9 +946,8 @@ function PlasmicCandidaturesEmployeur__RenderFunc(props: {
                       typeof $steps["updateCurrentCandidat"] === "object" &&
                       typeof $steps["updateCurrentCandidat"].then === "function"
                     ) {
-                      $steps["updateCurrentCandidat"] = await $steps[
-                        "updateCurrentCandidat"
-                      ];
+                      $steps["updateCurrentCandidat"] =
+                        await $steps["updateCurrentCandidat"];
                     }
 
                     $steps["updateCurrentProfilePhoto"] = true
@@ -990,9 +982,8 @@ function PlasmicCandidaturesEmployeur__RenderFunc(props: {
                       typeof $steps["updateCurrentProfilePhoto"].then ===
                         "function"
                     ) {
-                      $steps["updateCurrentProfilePhoto"] = await $steps[
-                        "updateCurrentProfilePhoto"
-                      ];
+                      $steps["updateCurrentProfilePhoto"] =
+                        await $steps["updateCurrentProfilePhoto"];
                     }
 
                     $steps["updateCurrentUserId"] = true
@@ -1026,9 +1017,8 @@ function PlasmicCandidaturesEmployeur__RenderFunc(props: {
                       typeof $steps["updateCurrentUserId"] === "object" &&
                       typeof $steps["updateCurrentUserId"].then === "function"
                     ) {
-                      $steps["updateCurrentUserId"] = await $steps[
-                        "updateCurrentUserId"
-                      ];
+                      $steps["updateCurrentUserId"] =
+                        await $steps["updateCurrentUserId"];
                     }
 
                     $steps["postgresUpdateById"] = true
@@ -1062,9 +1052,8 @@ function PlasmicCandidaturesEmployeur__RenderFunc(props: {
                       typeof $steps["postgresUpdateById"] === "object" &&
                       typeof $steps["postgresUpdateById"].then === "function"
                     ) {
-                      $steps["postgresUpdateById"] = await $steps[
-                        "postgresUpdateById"
-                      ];
+                      $steps["postgresUpdateById"] =
+                        await $steps["postgresUpdateById"];
                     }
                   }}
                   onPageChange={async page => {
@@ -1101,9 +1090,8 @@ function PlasmicCandidaturesEmployeur__RenderFunc(props: {
                       typeof $steps["updatePageChange"] === "object" &&
                       typeof $steps["updatePageChange"].then === "function"
                     ) {
-                      $steps["updatePageChange"] = await $steps[
-                        "updatePageChange"
-                      ];
+                      $steps["updatePageChange"] =
+                        await $steps["updatePageChange"];
                     }
                   }}
                   onReject={async taskId => {
@@ -1248,9 +1236,8 @@ function PlasmicCandidaturesEmployeur__RenderFunc(props: {
                       typeof $steps["updateCurrentJaId"] === "object" &&
                       typeof $steps["updateCurrentJaId"].then === "function"
                     ) {
-                      $steps["updateCurrentJaId"] = await $steps[
-                        "updateCurrentJaId"
-                      ];
+                      $steps["updateCurrentJaId"] =
+                        await $steps["updateCurrentJaId"];
                     }
 
                     $steps["supabaseGetSignedFileUrl"] = true
@@ -1301,9 +1288,8 @@ function PlasmicCandidaturesEmployeur__RenderFunc(props: {
                       typeof $steps["supabaseGetSignedFileUrl"].then ===
                         "function"
                     ) {
-                      $steps["supabaseGetSignedFileUrl"] = await $steps[
-                        "supabaseGetSignedFileUrl"
-                      ];
+                      $steps["supabaseGetSignedFileUrl"] =
+                        await $steps["supabaseGetSignedFileUrl"];
                     }
 
                     $steps["updateCurrentCvUrl"] = true
@@ -1337,9 +1323,8 @@ function PlasmicCandidaturesEmployeur__RenderFunc(props: {
                       typeof $steps["updateCurrentCvUrl"] === "object" &&
                       typeof $steps["updateCurrentCvUrl"].then === "function"
                     ) {
-                      $steps["updateCurrentCvUrl"] = await $steps[
-                        "updateCurrentCvUrl"
-                      ];
+                      $steps["updateCurrentCvUrl"] =
+                        await $steps["updateCurrentCvUrl"];
                     }
 
                     $steps["updateCvIsOpen"] = true
@@ -1410,9 +1395,8 @@ function PlasmicCandidaturesEmployeur__RenderFunc(props: {
                       typeof $steps["updateCurrentJaId"] === "object" &&
                       typeof $steps["updateCurrentJaId"].then === "function"
                     ) {
-                      $steps["updateCurrentJaId"] = await $steps[
-                        "updateCurrentJaId"
-                      ];
+                      $steps["updateCurrentJaId"] =
+                        await $steps["updateCurrentJaId"];
                     }
 
                     $steps["supabaseGetSignedFileUrl"] = true
@@ -1463,9 +1447,8 @@ function PlasmicCandidaturesEmployeur__RenderFunc(props: {
                       typeof $steps["supabaseGetSignedFileUrl"].then ===
                         "function"
                     ) {
-                      $steps["supabaseGetSignedFileUrl"] = await $steps[
-                        "supabaseGetSignedFileUrl"
-                      ];
+                      $steps["supabaseGetSignedFileUrl"] =
+                        await $steps["supabaseGetSignedFileUrl"];
                     }
 
                     $steps["updateCurrentLmUrl"] = true
@@ -1499,9 +1482,8 @@ function PlasmicCandidaturesEmployeur__RenderFunc(props: {
                       typeof $steps["updateCurrentLmUrl"] === "object" &&
                       typeof $steps["updateCurrentLmUrl"].then === "function"
                     ) {
-                      $steps["updateCurrentLmUrl"] = await $steps[
-                        "updateCurrentLmUrl"
-                      ];
+                      $steps["updateCurrentLmUrl"] =
+                        await $steps["updateCurrentLmUrl"];
                     }
 
                     $steps["updateLettreDeMotivationIsOpen"] = true
@@ -1537,9 +1519,8 @@ function PlasmicCandidaturesEmployeur__RenderFunc(props: {
                       typeof $steps["updateLettreDeMotivationIsOpen"].then ===
                         "function"
                     ) {
-                      $steps["updateLettreDeMotivationIsOpen"] = await $steps[
-                        "updateLettreDeMotivationIsOpen"
-                      ];
+                      $steps["updateLettreDeMotivationIsOpen"] =
+                        await $steps["updateLettreDeMotivationIsOpen"];
                     }
                   }}
                   pageSize={
@@ -1816,9 +1797,8 @@ function PlasmicCandidaturesEmployeur__RenderFunc(props: {
                             typeof $steps["updatePonctualite"].then ===
                               "function"
                           ) {
-                            $steps["updatePonctualite"] = await $steps[
-                              "updatePonctualite"
-                            ];
+                            $steps["updatePonctualite"] =
+                              await $steps["updatePonctualite"];
                           }
                         }}
                         value={(() => {
@@ -1889,9 +1869,8 @@ function PlasmicCandidaturesEmployeur__RenderFunc(props: {
                             typeof $steps["updateRespect"] === "object" &&
                             typeof $steps["updateRespect"].then === "function"
                           ) {
-                            $steps["updateRespect"] = await $steps[
-                              "updateRespect"
-                            ];
+                            $steps["updateRespect"] =
+                              await $steps["updateRespect"];
                           }
                         }}
                         value={(() => {
@@ -1963,9 +1942,8 @@ function PlasmicCandidaturesEmployeur__RenderFunc(props: {
                             typeof $steps["updatePrestation"].then ===
                               "function"
                           ) {
-                            $steps["updatePrestation"] = await $steps[
-                              "updatePrestation"
-                            ];
+                            $steps["updatePrestation"] =
+                              await $steps["updatePrestation"];
                           }
                         }}
                         value={(() => {
@@ -2032,9 +2010,8 @@ function PlasmicCandidaturesEmployeur__RenderFunc(props: {
                           typeof $steps["invokeGlobalAction"].then ===
                             "function"
                         ) {
-                          $steps["invokeGlobalAction"] = await $steps[
-                            "invokeGlobalAction"
-                          ];
+                          $steps["invokeGlobalAction"] =
+                            await $steps["invokeGlobalAction"];
                         }
 
                         $steps["postgresUpdateById"] =
@@ -2105,9 +2082,8 @@ function PlasmicCandidaturesEmployeur__RenderFunc(props: {
                           typeof $steps["postgresUpdateById"].then ===
                             "function"
                         ) {
-                          $steps["postgresUpdateById"] = await $steps[
-                            "postgresUpdateById"
-                          ];
+                          $steps["postgresUpdateById"] =
+                            await $steps["postgresUpdateById"];
                         }
 
                         $steps["goToCandidaturesEmployeur"] =
@@ -2152,9 +2128,8 @@ function PlasmicCandidaturesEmployeur__RenderFunc(props: {
                           typeof $steps["goToCandidaturesEmployeur"].then ===
                             "function"
                         ) {
-                          $steps["goToCandidaturesEmployeur"] = await $steps[
-                            "goToCandidaturesEmployeur"
-                          ];
+                          $steps["goToCandidaturesEmployeur"] =
+                            await $steps["goToCandidaturesEmployeur"];
                         }
                       }}
                     />
@@ -2207,9 +2182,8 @@ function PlasmicCandidaturesEmployeur__RenderFunc(props: {
                         typeof $steps["updateNotationIsOpen"].then ===
                           "function"
                       ) {
-                        $steps["updateNotationIsOpen"] = await $steps[
-                          "updateNotationIsOpen"
-                        ];
+                        $steps["updateNotationIsOpen"] =
+                          await $steps["updateNotationIsOpen"];
                       }
                     }}
                     src={{
@@ -2269,9 +2243,8 @@ function PlasmicCandidaturesEmployeur__RenderFunc(props: {
                       typeof $steps["updateCurrentUId"] === "object" &&
                       typeof $steps["updateCurrentUId"].then === "function"
                     ) {
-                      $steps["updateCurrentUId"] = await $steps[
-                        "updateCurrentUId"
-                      ];
+                      $steps["updateCurrentUId"] =
+                        await $steps["updateCurrentUId"];
                     }
 
                     $steps["updateCurrentProfilePhoto"] = true
@@ -2307,9 +2280,8 @@ function PlasmicCandidaturesEmployeur__RenderFunc(props: {
                       typeof $steps["updateCurrentProfilePhoto"].then ===
                         "function"
                     ) {
-                      $steps["updateCurrentProfilePhoto"] = await $steps[
-                        "updateCurrentProfilePhoto"
-                      ];
+                      $steps["updateCurrentProfilePhoto"] =
+                        await $steps["updateCurrentProfilePhoto"];
                     }
                   }).apply(null, eventArgs);
                 }}
@@ -2395,9 +2367,8 @@ function PlasmicCandidaturesEmployeur__RenderFunc(props: {
                         typeof $steps["updateModalIsOpen"] === "object" &&
                         typeof $steps["updateModalIsOpen"].then === "function"
                       ) {
-                        $steps["updateModalIsOpen"] = await $steps[
-                          "updateModalIsOpen"
-                        ];
+                        $steps["updateModalIsOpen"] =
+                          await $steps["updateModalIsOpen"];
                       }
                     }}
                     type={"bordered"}
@@ -2504,9 +2475,8 @@ function PlasmicCandidaturesEmployeur__RenderFunc(props: {
                         typeof $steps["updateModalIsOpen"] === "object" &&
                         typeof $steps["updateModalIsOpen"].then === "function"
                       ) {
-                        $steps["updateModalIsOpen"] = await $steps[
-                          "updateModalIsOpen"
-                        ];
+                        $steps["updateModalIsOpen"] =
+                          await $steps["updateModalIsOpen"];
                       }
 
                       $steps["refreshData"] = true
@@ -2558,9 +2528,8 @@ function PlasmicCandidaturesEmployeur__RenderFunc(props: {
                         typeof $steps["updateCurrentCvUrl"] === "object" &&
                         typeof $steps["updateCurrentCvUrl"].then === "function"
                       ) {
-                        $steps["updateCurrentCvUrl"] = await $steps[
-                          "updateCurrentCvUrl"
-                        ];
+                        $steps["updateCurrentCvUrl"] =
+                          await $steps["updateCurrentCvUrl"];
                       }
                     }}
                     type={"bordered"}
@@ -3387,24 +3356,7 @@ function PlasmicCandidaturesEmployeur__RenderFunc(props: {
             data-plasmic-name={"mobileNavbarBottom"}
             data-plasmic-override={overrides.mobileNavbarBottom}
             className={classNames("__wab_instance", sty.mobileNavbarBottom)}
-            onRoleChange={async (...eventArgs: any) => {
-              generateStateOnChangeProp($state, [
-                "mobileNavbarBottom",
-                "role"
-              ]).apply(null, eventArgs);
-
-              if (
-                eventArgs.length > 1 &&
-                eventArgs[1] &&
-                eventArgs[1]._plasmic_state_init_
-              ) {
-                return;
-              }
-            }}
-            role={generateStateValueProp($state, [
-              "mobileNavbarBottom",
-              "role"
-            ])}
+            user={"candidat"}
           />
         </div>
       </div>
@@ -3589,7 +3541,9 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicCandidaturesEmployeur__VariantsArgs;
     args?: PlasmicCandidaturesEmployeur__ArgsType;
     overrides?: NodeOverridesType<T>;
-  } & Omit<PlasmicCandidaturesEmployeur__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
+  } &
+    // Specify variants directly as props
+    Omit<PlasmicCandidaturesEmployeur__VariantsArgs, ReservedPropsType> &
     // Specify args directly as props
     Omit<PlasmicCandidaturesEmployeur__ArgsType, ReservedPropsType> &
     // Specify overrides for each element directly as props

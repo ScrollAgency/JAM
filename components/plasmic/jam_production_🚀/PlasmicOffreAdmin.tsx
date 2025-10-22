@@ -68,6 +68,8 @@ import {
 
 import Sidebar from "../../Sidebar"; // plasmic-import: M06HuWMcBQV2/component
 import MobileNavbarTop from "../../MobileNavbarTop"; // plasmic-import: mAg8Ml3XUEhy/component
+import { LoadingBoundary } from "@plasmicpkgs/plasmic-basic-components";
+import LoadingComponent from "../../LoadingComponent"; // plasmic-import: H7nb8l13ZEyx/component
 import { DataGridOffre } from "../../others/DataGridOffre/DataGridOffre"; // plasmic-import: xkvR5y_rqfm4/codeComponent
 import Modal from "../../Modal"; // plasmic-import: fsC3QwUZz9uz/component
 import Button from "../../Button"; // plasmic-import: 9ixtKbGKv7x-/component
@@ -106,6 +108,8 @@ export type PlasmicOffreAdmin__OverridesType = {
   root?: Flex__<"div">;
   sidebar?: Flex__<typeof Sidebar>;
   mobileNavbarTop?: Flex__<typeof MobileNavbarTop>;
+  loadingBoundary?: Flex__<typeof LoadingBoundary>;
+  loadingComponent?: Flex__<typeof LoadingComponent>;
   main?: Flex__<"div">;
   h1?: Flex__<"h1">;
   dataGridOffre?: Flex__<typeof DataGridOffre>;
@@ -223,12 +227,6 @@ function PlasmicOffreAdmin__RenderFunc(props: {
         type: "private",
         variableType: "text",
         initFunc: ({ $props, $state, $queries, $ctx }) => "admin"
-      },
-      {
-        path: "mobileNavbarBottom.role",
-        type: "private",
-        variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => 2
       }
     ],
     [$props, $ctx, $refs]
@@ -345,757 +343,277 @@ function PlasmicOffreAdmin__RenderFunc(props: {
             className={classNames("__wab_instance", sty.mobileNavbarTop)}
           />
 
-          <div
-            data-plasmic-name={"main"}
-            data-plasmic-override={overrides.main}
-            className={classNames(
-              projectcss.all,
-              sty.main,
-              hasVariant(globalVariants, "screen", "mobileOnly")
-                ? ``
-                : "main-content"
-            )}
-          >
-            <div
-              className={classNames(
-                projectcss.all,
-                projectcss.__wab_text,
-                sty.text__dZ8Cx
-              )}
-            >
-              <React.Fragment>
-                <React.Fragment>{""}</React.Fragment>
-                {
-                  <h1
-                    data-plasmic-name={"h1"}
-                    data-plasmic-override={overrides.h1}
-                    className={classNames(
-                      projectcss.all,
-                      projectcss.h1,
-                      projectcss.__wab_text,
-                      sty.h1
-                    )}
+          <LoadingBoundary
+            data-plasmic-name={"loadingBoundary"}
+            data-plasmic-override={overrides.loadingBoundary}
+            loadingState={
+              <DataCtxReader__>
+                {$ctx => (
+                  <div
+                    className={classNames(projectcss.all, sty.freeBox__hQsPm)}
                   >
-                    {"Gestion des offres"}
-                  </h1>
-                }
-                <React.Fragment>{""}</React.Fragment>
-              </React.Fragment>
-            </div>
-            <DataGridOffre
-              data-plasmic-name={"dataGridOffre"}
-              data-plasmic-override={overrides.dataGridOffre}
-              className={classNames("__wab_instance", sty.dataGridOffre)}
-              columnLabels={{
-                job_name: "Titre",
-                description: "Description",
-                company_name: "Entreprise",
-                created_at_formatted: "Date de publication",
-                job_location: "Lieu",
-                actions: "Actions"
-              }}
-              currentPage={(() => {
-                try {
-                  return $state.page;
-                } catch (e) {
-                  if (
-                    e instanceof TypeError ||
-                    e?.plasmicType === "PlasmicUndefinedDataError"
-                  ) {
-                    return 1;
-                  }
-                  throw e;
-                }
-              })()}
-              emptyStateMessage={"Aucune offre disponible"}
-              isLoading={false}
-              offres={(() => {
-                try {
-                  return $queries.adminGetOffers.data;
-                } catch (e) {
-                  if (
-                    e instanceof TypeError ||
-                    e?.plasmicType === "PlasmicUndefinedDataError"
-                  ) {
-                    return [];
-                  }
-                  throw e;
-                }
-              })()}
-              onDelete={async offreId => {
-                const $steps = {};
-
-                $steps["updateOffreId"] = true
-                  ? (() => {
-                      const actionArgs = {
-                        variable: {
-                          objRoot: $state,
-                          variablePath: ["offreId"]
-                        },
-                        operation: 0,
-                        value: offreId
-                      };
-                      return (({
-                        variable,
-                        value,
-                        startIndex,
-                        deleteCount
-                      }) => {
-                        if (!variable) {
-                          return;
-                        }
-                        const { objRoot, variablePath } = variable;
-
-                        $stateSet(objRoot, variablePath, value);
-                        return value;
-                      })?.apply(null, [actionArgs]);
-                    })()
-                  : undefined;
-                if (
-                  $steps["updateOffreId"] != null &&
-                  typeof $steps["updateOffreId"] === "object" &&
-                  typeof $steps["updateOffreId"].then === "function"
-                ) {
-                  $steps["updateOffreId"] = await $steps["updateOffreId"];
-                }
-
-                $steps["updateDeleteIsOpen"] = true
-                  ? (() => {
-                      const actionArgs = {
-                        variable: {
-                          objRoot: $state,
-                          variablePath: ["_delete", "isOpen"]
-                        },
-                        operation: 0,
-                        value: true
-                      };
-                      return (({
-                        variable,
-                        value,
-                        startIndex,
-                        deleteCount
-                      }) => {
-                        if (!variable) {
-                          return;
-                        }
-                        const { objRoot, variablePath } = variable;
-
-                        $stateSet(objRoot, variablePath, value);
-                        return value;
-                      })?.apply(null, [actionArgs]);
-                    })()
-                  : undefined;
-                if (
-                  $steps["updateDeleteIsOpen"] != null &&
-                  typeof $steps["updateDeleteIsOpen"] === "object" &&
-                  typeof $steps["updateDeleteIsOpen"].then === "function"
-                ) {
-                  $steps["updateDeleteIsOpen"] = await $steps[
-                    "updateDeleteIsOpen"
-                  ];
-                }
-              }}
-              onPageChange={async page => {
-                const $steps = {};
-
-                $steps["updatePage"] = true
-                  ? (() => {
-                      const actionArgs = {
-                        variable: {
-                          objRoot: $state,
-                          variablePath: ["page"]
-                        },
-                        operation: 0,
-                        value: page
-                      };
-                      return (({
-                        variable,
-                        value,
-                        startIndex,
-                        deleteCount
-                      }) => {
-                        if (!variable) {
-                          return;
-                        }
-                        const { objRoot, variablePath } = variable;
-
-                        $stateSet(objRoot, variablePath, value);
-                        return value;
-                      })?.apply(null, [actionArgs]);
-                    })()
-                  : undefined;
-                if (
-                  $steps["updatePage"] != null &&
-                  typeof $steps["updatePage"] === "object" &&
-                  typeof $steps["updatePage"].then === "function"
-                ) {
-                  $steps["updatePage"] = await $steps["updatePage"];
-                }
-              }}
-              onViewDetails={async (offreId, offre) => {
-                const $steps = {};
-
-                $steps["updateOffre2"] = true
-                  ? (() => {
-                      const actionArgs = {
-                        variable: {
-                          objRoot: $state,
-                          variablePath: ["offre2"]
-                        },
-                        operation: 0,
-                        value: offre
-                      };
-                      return (({
-                        variable,
-                        value,
-                        startIndex,
-                        deleteCount
-                      }) => {
-                        if (!variable) {
-                          return;
-                        }
-                        const { objRoot, variablePath } = variable;
-
-                        $stateSet(objRoot, variablePath, value);
-                        return value;
-                      })?.apply(null, [actionArgs]);
-                    })()
-                  : undefined;
-                if (
-                  $steps["updateOffre2"] != null &&
-                  typeof $steps["updateOffre2"] === "object" &&
-                  typeof $steps["updateOffre2"].then === "function"
-                ) {
-                  $steps["updateOffre2"] = await $steps["updateOffre2"];
-                }
-
-                $steps["updateOffreIsOpen"] = true
-                  ? (() => {
-                      const actionArgs = {
-                        variable: {
-                          objRoot: $state,
-                          variablePath: ["offre", "isOpen"]
-                        },
-                        operation: 0,
-                        value: true
-                      };
-                      return (({
-                        variable,
-                        value,
-                        startIndex,
-                        deleteCount
-                      }) => {
-                        if (!variable) {
-                          return;
-                        }
-                        const { objRoot, variablePath } = variable;
-
-                        $stateSet(objRoot, variablePath, value);
-                        return value;
-                      })?.apply(null, [actionArgs]);
-                    })()
-                  : undefined;
-                if (
-                  $steps["updateOffreIsOpen"] != null &&
-                  typeof $steps["updateOffreIsOpen"] === "object" &&
-                  typeof $steps["updateOffreIsOpen"].then === "function"
-                ) {
-                  $steps["updateOffreIsOpen"] = await $steps[
-                    "updateOffreIsOpen"
-                  ];
-                }
-              }}
-              pageSize={10}
-              statusConfig={{
-                active: { label: "Active", color: "#D1FAE5" },
-                inactive: { label: "Inactive", color: "#FEE2E2" },
-                en_attente: { label: "En attente", color: "#FEF3C7" }
-              }}
-              theme={{
-                headerBgColor: "#F3F4F6",
-                rowBgColor: "#ffffff",
-                hoverBgColor: "#E5E7EB",
-                borderColor: "#E5E7EB",
-                textColor: "#4B5563"
-              }}
-              visibleColumns={[
-                "job_name",
-                "company_name",
-                "description",
-                "job_location",
-                "created_at_formatted"
-              ]}
-            />
-
-            <Modal
-              data-plasmic-name={"offre"}
-              data-plasmic-override={overrides.offre}
-              className={classNames("__wab_instance", sty.offre)}
-              content={
+                    <LoadingComponent
+                      data-plasmic-name={"loadingComponent"}
+                      data-plasmic-override={overrides.loadingComponent}
+                      className={classNames(
+                        "__wab_instance",
+                        sty.loadingComponent
+                      )}
+                    />
+                  </div>
+                )}
+              </DataCtxReader__>
+            }
+          >
+            <DataCtxReader__>
+              {$ctx => (
                 <div
-                  data-plasmic-name={"jobListing"}
-                  data-plasmic-override={overrides.jobListing}
-                  className={classNames(projectcss.all, sty.jobListing)}
+                  data-plasmic-name={"main"}
+                  data-plasmic-override={overrides.main}
+                  className={classNames(
+                    projectcss.all,
+                    sty.main,
+                    hasVariant(globalVariants, "screen", "mobileOnly")
+                      ? ``
+                      : "main-content"
+                  )}
                 >
                   <div
-                    data-plasmic-name={"jobDetail"}
-                    data-plasmic-override={overrides.jobDetail}
-                    className={classNames(projectcss.all, sty.jobDetail)}
-                  >
-                    <div
-                      className={classNames(projectcss.all, sty.freeBox__oSsmz)}
-                    >
-                      <div
-                        data-plasmic-name={"location"}
-                        data-plasmic-override={overrides.location}
-                        className={classNames(projectcss.all, sty.location)}
-                      >
-                        <PhMapPin2Icon
-                          className={classNames(projectcss.all, sty.svg__yUmcp)}
-                          role={"img"}
-                        />
-
-                        <div
-                          className={classNames(
-                            projectcss.all,
-                            projectcss.__wab_text,
-                            sty.text___0WsNs
-                          )}
-                        >
-                          <React.Fragment>
-                            {(() => {
-                              try {
-                                return $state.offre2.job_location;
-                              } catch (e) {
-                                if (
-                                  e instanceof TypeError ||
-                                  e?.plasmicType === "PlasmicUndefinedDataError"
-                                ) {
-                                  return "";
-                                }
-                                throw e;
-                              }
-                            })()}
-                          </React.Fragment>
-                        </div>
-                      </div>
-                      <div
-                        className={classNames(
-                          projectcss.all,
-                          projectcss.__wab_text,
-                          sty.text___3BKl
-                        )}
-                      >
-                        <React.Fragment>
-                          {(() => {
-                            try {
-                              return $state.offre2.created_at_formatted;
-                            } catch (e) {
-                              if (
-                                e instanceof TypeError ||
-                                e?.plasmicType === "PlasmicUndefinedDataError"
-                              ) {
-                                return "";
-                              }
-                              throw e;
-                            }
-                          })()}
-                        </React.Fragment>
-                      </div>
-                    </div>
-                    <div
-                      data-plasmic-name={"frame46"}
-                      data-plasmic-override={overrides.frame46}
-                      className={classNames(projectcss.all, sty.frame46)}
-                    >
-                      <div
-                        data-plasmic-name={"frame47"}
-                        data-plasmic-override={overrides.frame47}
-                        className={classNames(projectcss.all, sty.frame47)}
-                      >
-                        <div
-                          data-plasmic-name={"frame48"}
-                          data-plasmic-override={overrides.frame48}
-                          className={classNames(projectcss.all, sty.frame48)}
-                        >
-                          <PhFileTextIcon
-                            className={classNames(
-                              projectcss.all,
-                              sty.svg__pflfg
-                            )}
-                            role={"img"}
-                          />
-
-                          <div
-                            className={classNames(
-                              projectcss.all,
-                              projectcss.__wab_text,
-                              sty.text__tvXAx
-                            )}
-                          >
-                            <React.Fragment>
-                              {(() => {
-                                try {
-                                  return $state.offre2.contract_type;
-                                } catch (e) {
-                                  if (
-                                    e instanceof TypeError ||
-                                    e?.plasmicType ===
-                                      "PlasmicUndefinedDataError"
-                                  ) {
-                                    return "";
-                                  }
-                                  throw e;
-                                }
-                              })()}
-                            </React.Fragment>
-                          </div>
-                        </div>
-                        <div
-                          data-plasmic-name={"frame49"}
-                          data-plasmic-override={overrides.frame49}
-                          className={classNames(projectcss.all, sty.frame49)}
-                        >
-                          <PhClockIcon
-                            className={classNames(
-                              projectcss.all,
-                              sty.svg__qe3J8
-                            )}
-                            role={"img"}
-                          />
-
-                          <div
-                            className={classNames(
-                              projectcss.all,
-                              projectcss.__wab_text,
-                              sty.text__gHpCq
-                            )}
-                          >
-                            <React.Fragment>
-                              {(() => {
-                                try {
-                                  return $state.offre2.working_time;
-                                } catch (e) {
-                                  if (
-                                    e instanceof TypeError ||
-                                    e?.plasmicType ===
-                                      "PlasmicUndefinedDataError"
-                                  ) {
-                                    return "";
-                                  }
-                                  throw e;
-                                }
-                              })()}
-                            </React.Fragment>
-                          </div>
-                        </div>
-                        <div
-                          data-plasmic-name={"frame50"}
-                          data-plasmic-override={overrides.frame50}
-                          className={classNames(projectcss.all, sty.frame50)}
-                        >
-                          <PhCoinsLightIcon
-                            className={classNames(
-                              projectcss.all,
-                              sty.svg__a9B16
-                            )}
-                            role={"img"}
-                          />
-
-                          <div
-                            className={classNames(
-                              projectcss.all,
-                              projectcss.__wab_text,
-                              sty.text__akSj7
-                            )}
-                          >
-                            <React.Fragment>
-                              {(() => {
-                                try {
-                                  return $state.offre2.salary;
-                                } catch (e) {
-                                  if (
-                                    e instanceof TypeError ||
-                                    e?.plasmicType ===
-                                      "PlasmicUndefinedDataError"
-                                  ) {
-                                    return "";
-                                  }
-                                  throw e;
-                                }
-                              })()}
-                            </React.Fragment>
-                          </div>
-                        </div>
-                        <div
-                          data-plasmic-name={"frame51"}
-                          data-plasmic-override={overrides.frame51}
-                          className={classNames(projectcss.all, sty.frame51)}
-                        >
-                          <PhClockCountdownIcon
-                            className={classNames(
-                              projectcss.all,
-                              sty.svg__oxjs9
-                            )}
-                            role={"img"}
-                          />
-
-                          <div
-                            className={classNames(
-                              projectcss.all,
-                              projectcss.__wab_text,
-                              sty.text__otlji
-                            )}
-                          >
-                            <React.Fragment>
-                              {(() => {
-                                try {
-                                  return $state.offre2.availability_status;
-                                } catch (e) {
-                                  if (
-                                    e instanceof TypeError ||
-                                    e?.plasmicType ===
-                                      "PlasmicUndefinedDataError"
-                                  ) {
-                                    return "";
-                                  }
-                                  throw e;
-                                }
-                              })()}
-                            </React.Fragment>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div
-                    data-plasmic-name={"jobDescriptionContainer"}
-                    data-plasmic-override={overrides.jobDescriptionContainer}
                     className={classNames(
                       projectcss.all,
-                      sty.jobDescriptionContainer
+                      projectcss.__wab_text,
+                      sty.text__dZ8Cx
                     )}
                   >
-                    <div
-                      className={classNames(
-                        projectcss.all,
-                        projectcss.__wab_text,
-                        sty.text__tB8FW
-                      )}
-                    >
-                      {"Description du poste"}
-                    </div>
-                    <div
-                      className={classNames(
-                        projectcss.all,
-                        projectcss.__wab_text,
-                        sty.text__pWQn
-                      )}
-                    >
+                    {hasVariant(globalVariants, "screen", "mobileOnly") ? (
                       <React.Fragment>
-                        {(() => {
-                          try {
-                            return $state.offre2.description;
-                          } catch (e) {
-                            if (
-                              e instanceof TypeError ||
-                              e?.plasmicType === "PlasmicUndefinedDataError"
-                            ) {
-                              return "";
-                            }
-                            throw e;
-                          }
-                        })()}
-                      </React.Fragment>
-                    </div>
-                    <div
-                      data-plasmic-name={"benefits"}
-                      data-plasmic-override={overrides.benefits}
-                      className={classNames(projectcss.all, sty.benefits)}
-                    >
-                      {(_par =>
-                        !_par ? [] : Array.isArray(_par) ? _par : [_par])(
-                        []
-                      ).map((__plasmic_item_0, __plasmic_idx_0) => {
-                        const currentItem = __plasmic_item_0;
-                        const currentIndex = __plasmic_idx_0;
-                        return (
-                          <div
+                        <React.Fragment>{""}</React.Fragment>
+                        {
+                          <h1
+                            data-plasmic-name={"h1"}
+                            data-plasmic-override={overrides.h1}
                             className={classNames(
                               projectcss.all,
+                              projectcss.h1,
                               projectcss.__wab_text,
-                              sty.text__byVDa
+                              sty.h1
                             )}
-                            key={currentIndex}
                           >
-                            <React.Fragment>
-                              {(() => {
-                                try {
-                                  return currentItem;
-                                } catch (e) {
-                                  if (
-                                    e instanceof TypeError ||
-                                    e?.plasmicType ===
-                                      "PlasmicUndefinedDataError"
-                                  ) {
-                                    return "";
-                                  }
-                                  throw e;
-                                }
-                              })()}
-                            </React.Fragment>
-                          </div>
-                        );
-                      })}
-                    </div>
-                  </div>
-                  <div
-                    data-plasmic-name={"expectedProfileContainer"}
-                    data-plasmic-override={overrides.expectedProfileContainer}
-                    className={classNames(
-                      projectcss.all,
-                      sty.expectedProfileContainer
-                    )}
-                  >
-                    <div
-                      className={classNames(
-                        projectcss.all,
-                        projectcss.__wab_text,
-                        sty.text__xiR
-                      )}
-                    >
-                      {"Profil attendu"}
-                    </div>
-                    <div
-                      className={classNames(
-                        projectcss.all,
-                        projectcss.__wab_text,
-                        sty.text___2Fb2U
-                      )}
-                    >
-                      <React.Fragment>
-                        {(() => {
-                          try {
-                            return $state.offre2.requirements;
-                          } catch (e) {
-                            if (
-                              e instanceof TypeError ||
-                              e?.plasmicType === "PlasmicUndefinedDataError"
-                            ) {
-                              return "";
-                            }
-                            throw e;
-                          }
-                        })()}
-                      </React.Fragment>
-                    </div>
-                  </div>
-                  <div
-                    data-plasmic-name={"companyContainer"}
-                    data-plasmic-override={overrides.companyContainer}
-                    className={classNames(projectcss.all, sty.companyContainer)}
-                  >
-                    <div
-                      data-plasmic-name={"logoContainer"}
-                      data-plasmic-override={overrides.logoContainer}
-                      className={classNames(projectcss.all, sty.logoContainer)}
-                    >
-                      <div
-                        className={classNames(
-                          projectcss.all,
-                          projectcss.__wab_text,
-                          sty.text__n48UG
-                        )}
-                      >
-                        {"L\u2019entreprise"}
-                      </div>
-                    </div>
-                    <div
-                      className={classNames(projectcss.all, sty.freeBox__epD7F)}
-                    >
-                      <div
-                        className={classNames(
-                          projectcss.all,
-                          projectcss.__wab_text,
-                          sty.text__jpE4L
-                        )}
-                      >
-                        <React.Fragment>
-                          {(() => {
-                            try {
-                              return $state.offre2.company_name;
-                            } catch (e) {
-                              if (
-                                e instanceof TypeError ||
-                                e?.plasmicType === "PlasmicUndefinedDataError"
-                              ) {
-                                return "";
-                              }
-                              throw e;
-                            }
-                          })()}
-                        </React.Fragment>
-                      </div>
-                    </div>
-                    <div
-                      className={classNames(
-                        projectcss.all,
-                        projectcss.__wab_text,
-                        sty.text__h3F40
-                      )}
-                    >
-                      <React.Fragment>
-                        {(() => {
-                          try {
-                            return $state.offre2.company_description;
-                          } catch (e) {
-                            if (
-                              e instanceof TypeError ||
-                              e?.plasmicType === "PlasmicUndefinedDataError"
-                            ) {
-                              return "";
-                            }
-                            throw e;
-                          }
-                        })()}
-                      </React.Fragment>
-                    </div>
-                  </div>
-                </div>
-              }
-              footer={null}
-              heading={
-                (
-                  hasVariant(globalVariants, "screen", "mobileOnly")
-                    ? true
-                    : (() => {
-                        try {
-                          return true;
-                        } catch (e) {
-                          if (
-                            e instanceof TypeError ||
-                            e?.plasmicType === "PlasmicUndefinedDataError"
-                          ) {
-                            return true;
-                          }
-                          throw e;
+                            {hasVariant(globalVariants, "screen", "mobileOnly")
+                              ? "Gestion des offres 9"
+                              : "Gestion des offres"}
+                          </h1>
                         }
-                      })()
-                ) ? (
-                  <PlasmicImg__
-                    data-plasmic-name={"img"}
-                    data-plasmic-override={overrides.img}
-                    alt={""}
-                    className={classNames(sty.img)}
-                    displayHeight={"17px"}
-                    displayMaxHeight={"none"}
-                    displayMaxWidth={"100%"}
-                    displayMinHeight={"0"}
-                    displayMinWidth={"0"}
-                    displayWidth={"17px"}
-                    loading={"lazy"}
-                    onClick={async event => {
+                        <React.Fragment>{""}</React.Fragment>
+                      </React.Fragment>
+                    ) : (
+                      <React.Fragment>
+                        <React.Fragment>{""}</React.Fragment>
+                        {
+                          <h1
+                            data-plasmic-name={"h1"}
+                            data-plasmic-override={overrides.h1}
+                            className={classNames(
+                              projectcss.all,
+                              projectcss.h1,
+                              projectcss.__wab_text,
+                              sty.h1
+                            )}
+                          >
+                            {hasVariant(globalVariants, "screen", "mobileOnly")
+                              ? "Gestion des offres 9"
+                              : "Gestion des offres"}
+                          </h1>
+                        }
+                        <React.Fragment>{""}</React.Fragment>
+                      </React.Fragment>
+                    )}
+                  </div>
+                  <DataGridOffre
+                    data-plasmic-name={"dataGridOffre"}
+                    data-plasmic-override={overrides.dataGridOffre}
+                    className={classNames("__wab_instance", sty.dataGridOffre)}
+                    columnLabels={{
+                      job_name: "Titre",
+                      description: "Description",
+                      company_name: "Entreprise",
+                      created_at_formatted: "Date de publication",
+                      job_location: "Lieu",
+                      actions: "Actions"
+                    }}
+                    currentPage={(() => {
+                      try {
+                        return $state.page;
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return 1;
+                        }
+                        throw e;
+                      }
+                    })()}
+                    emptyStateMessage={"Aucune offre disponible"}
+                    isLoading={false}
+                    offres={(() => {
+                      try {
+                        return $queries.adminGetOffers.data;
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return [];
+                        }
+                        throw e;
+                      }
+                    })()}
+                    onDelete={async offreId => {
                       const $steps = {};
+
+                      $steps["updateOffreId"] = true
+                        ? (() => {
+                            const actionArgs = {
+                              variable: {
+                                objRoot: $state,
+                                variablePath: ["offreId"]
+                              },
+                              operation: 0,
+                              value: offreId
+                            };
+                            return (({
+                              variable,
+                              value,
+                              startIndex,
+                              deleteCount
+                            }) => {
+                              if (!variable) {
+                                return;
+                              }
+                              const { objRoot, variablePath } = variable;
+
+                              $stateSet(objRoot, variablePath, value);
+                              return value;
+                            })?.apply(null, [actionArgs]);
+                          })()
+                        : undefined;
+                      if (
+                        $steps["updateOffreId"] != null &&
+                        typeof $steps["updateOffreId"] === "object" &&
+                        typeof $steps["updateOffreId"].then === "function"
+                      ) {
+                        $steps["updateOffreId"] = await $steps["updateOffreId"];
+                      }
+
+                      $steps["updateDeleteIsOpen"] = true
+                        ? (() => {
+                            const actionArgs = {
+                              variable: {
+                                objRoot: $state,
+                                variablePath: ["_delete", "isOpen"]
+                              },
+                              operation: 0,
+                              value: true
+                            };
+                            return (({
+                              variable,
+                              value,
+                              startIndex,
+                              deleteCount
+                            }) => {
+                              if (!variable) {
+                                return;
+                              }
+                              const { objRoot, variablePath } = variable;
+
+                              $stateSet(objRoot, variablePath, value);
+                              return value;
+                            })?.apply(null, [actionArgs]);
+                          })()
+                        : undefined;
+                      if (
+                        $steps["updateDeleteIsOpen"] != null &&
+                        typeof $steps["updateDeleteIsOpen"] === "object" &&
+                        typeof $steps["updateDeleteIsOpen"].then === "function"
+                      ) {
+                        $steps["updateDeleteIsOpen"] =
+                          await $steps["updateDeleteIsOpen"];
+                      }
+                    }}
+                    onPageChange={async page => {
+                      const $steps = {};
+
+                      $steps["updatePage"] = true
+                        ? (() => {
+                            const actionArgs = {
+                              variable: {
+                                objRoot: $state,
+                                variablePath: ["page"]
+                              },
+                              operation: 0,
+                              value: page
+                            };
+                            return (({
+                              variable,
+                              value,
+                              startIndex,
+                              deleteCount
+                            }) => {
+                              if (!variable) {
+                                return;
+                              }
+                              const { objRoot, variablePath } = variable;
+
+                              $stateSet(objRoot, variablePath, value);
+                              return value;
+                            })?.apply(null, [actionArgs]);
+                          })()
+                        : undefined;
+                      if (
+                        $steps["updatePage"] != null &&
+                        typeof $steps["updatePage"] === "object" &&
+                        typeof $steps["updatePage"].then === "function"
+                      ) {
+                        $steps["updatePage"] = await $steps["updatePage"];
+                      }
+                    }}
+                    onViewDetails={async (offreId, offre) => {
+                      const $steps = {};
+
+                      $steps["updateOffre2"] = true
+                        ? (() => {
+                            const actionArgs = {
+                              variable: {
+                                objRoot: $state,
+                                variablePath: ["offre2"]
+                              },
+                              operation: 0,
+                              value: offre
+                            };
+                            return (({
+                              variable,
+                              value,
+                              startIndex,
+                              deleteCount
+                            }) => {
+                              if (!variable) {
+                                return;
+                              }
+                              const { objRoot, variablePath } = variable;
+
+                              $stateSet(objRoot, variablePath, value);
+                              return value;
+                            })?.apply(null, [actionArgs]);
+                          })()
+                        : undefined;
+                      if (
+                        $steps["updateOffre2"] != null &&
+                        typeof $steps["updateOffre2"] === "object" &&
+                        typeof $steps["updateOffre2"].then === "function"
+                      ) {
+                        $steps["updateOffre2"] = await $steps["updateOffre2"];
+                      }
 
                       $steps["updateOffreIsOpen"] = true
                         ? (() => {
@@ -1105,7 +623,7 @@ function PlasmicOffreAdmin__RenderFunc(props: {
                                 variablePath: ["offre", "isOpen"]
                               },
                               operation: 0,
-                              value: false
+                              value: true
                             };
                             return (({
                               variable,
@@ -1128,319 +646,896 @@ function PlasmicOffreAdmin__RenderFunc(props: {
                         typeof $steps["updateOffreIsOpen"] === "object" &&
                         typeof $steps["updateOffreIsOpen"].then === "function"
                       ) {
-                        $steps["updateOffreIsOpen"] = await $steps[
-                          "updateOffreIsOpen"
-                        ];
+                        $steps["updateOffreIsOpen"] =
+                          await $steps["updateOffreIsOpen"];
                       }
                     }}
-                    src={{
-                      src: "/plasmic/jam_production_🚀/images/close3.svg",
-                      fullWidth: 17,
-                      fullHeight: 17,
-                      aspectRatio: 1
+                    pageSize={10}
+                    statusConfig={{
+                      active: { label: "Active", color: "#D1FAE5" },
+                      inactive: { label: "Inactive", color: "#FEE2E2" },
+                      en_attente: { label: "En attente", color: "#FEF3C7" }
                     }}
-                  />
-                ) : null
-              }
-              isOpen={generateStateValueProp($state, ["offre", "isOpen"])}
-              noTrigger={
-                hasVariant(globalVariants, "screen", "mobileOnly") ? true : true
-              }
-              onOpenChange={async (...eventArgs: any) => {
-                generateStateOnChangeProp($state, ["offre", "isOpen"]).apply(
-                  null,
-                  eventArgs
-                );
-
-                if (
-                  eventArgs.length > 1 &&
-                  eventArgs[1] &&
-                  eventArgs[1]._plasmic_state_init_
-                ) {
-                  return;
-                }
-              }}
-              showFooter={false}
-              showHeader={true}
-              trigger={null}
-            />
-
-            <Modal
-              data-plasmic-name={"_delete"}
-              data-plasmic-override={overrides._delete}
-              className={classNames("__wab_instance", sty._delete)}
-              content={
-                <div className={classNames(projectcss.all, sty.freeBox__rnh3F)}>
-                  <ReshotIconAlert7T6Wum8VleSvgIcon
-                    className={classNames(projectcss.all, sty.svg__sW7Sg)}
-                    role={"img"}
+                    theme={{
+                      headerBgColor: "#F3F4F6",
+                      rowBgColor: "#ffffff",
+                      hoverBgColor: "#E5E7EB",
+                      borderColor: "#E5E7EB",
+                      textColor: "#4B5563"
+                    }}
+                    visibleColumns={[
+                      "job_name",
+                      "company_name",
+                      "description",
+                      "job_location",
+                      "created_at_formatted"
+                    ]}
                   />
 
-                  <div
-                    className={classNames(
-                      projectcss.all,
-                      projectcss.__wab_text,
-                      sty.text__lhHn
-                    )}
-                  >
-                    {"Voulez-vous supprimer cette offre ?"}
-                  </div>
-                  <div
-                    data-plasmic-name={"e2"}
-                    data-plasmic-override={overrides.e2}
-                    className={classNames(
-                      projectcss.all,
-                      projectcss.__wab_text,
-                      sty.e2
-                    )}
-                  >
-                    {
-                      "Attention : cette action est irr\u00e9versible. L\u2019offre sera d\u00e9finitivement supprim\u00e9e."
-                    }
-                  </div>
-                  <div
-                    className={classNames(projectcss.all, sty.freeBox__eRqVk)}
-                  >
-                    <Button
-                      data-plasmic-name={"button"}
-                      data-plasmic-override={overrides.button}
-                      className={classNames("__wab_instance", sty.button)}
-                      color={"white"}
-                      label={
+                  <Modal
+                    data-plasmic-name={"offre"}
+                    data-plasmic-override={overrides.offre}
+                    className={classNames("__wab_instance", sty.offre)}
+                    content={
+                      <div
+                        data-plasmic-name={"jobListing"}
+                        data-plasmic-override={overrides.jobListing}
+                        className={classNames(projectcss.all, sty.jobListing)}
+                      >
                         <div
-                          className={classNames(
-                            projectcss.all,
-                            projectcss.__wab_text,
-                            sty.text__iNu6
-                          )}
+                          data-plasmic-name={"jobDetail"}
+                          data-plasmic-override={overrides.jobDetail}
+                          className={classNames(projectcss.all, sty.jobDetail)}
                         >
-                          {"retour"}
-                        </div>
-                      }
-                      onClick={async event => {
-                        const $steps = {};
+                          <div
+                            className={classNames(
+                              projectcss.all,
+                              sty.freeBox__oSsmz
+                            )}
+                          >
+                            <div
+                              data-plasmic-name={"location"}
+                              data-plasmic-override={overrides.location}
+                              className={classNames(
+                                projectcss.all,
+                                sty.location
+                              )}
+                            >
+                              <PhMapPin2Icon
+                                className={classNames(
+                                  projectcss.all,
+                                  sty.svg__yUmcp
+                                )}
+                                role={"img"}
+                              />
 
-                        $steps["updateDeleteIsOpen"] = true
-                          ? (() => {
-                              const actionArgs = {
-                                variable: {
-                                  objRoot: $state,
-                                  variablePath: ["_delete", "isOpen"]
-                                },
-                                operation: 0,
-                                value: false
-                              };
-                              return (({
-                                variable,
-                                value,
-                                startIndex,
-                                deleteCount
-                              }) => {
-                                if (!variable) {
-                                  return;
-                                }
-                                const { objRoot, variablePath } = variable;
-
-                                $stateSet(objRoot, variablePath, value);
-                                return value;
-                              })?.apply(null, [actionArgs]);
-                            })()
-                          : undefined;
-                        if (
-                          $steps["updateDeleteIsOpen"] != null &&
-                          typeof $steps["updateDeleteIsOpen"] === "object" &&
-                          typeof $steps["updateDeleteIsOpen"].then ===
-                            "function"
-                        ) {
-                          $steps["updateDeleteIsOpen"] = await $steps[
-                            "updateDeleteIsOpen"
-                          ];
-                        }
-                      }}
-                      type={"bordered"}
-                    />
-
-                    <DeleteAccount
-                      data-plasmic-name={"deleteAccount"}
-                      data-plasmic-override={overrides.deleteAccount}
-                      className={classNames(
-                        "__wab_instance",
-                        sty.deleteAccount
-                      )}
-                      label={
-                        <div
-                          className={classNames(
-                            projectcss.all,
-                            projectcss.__wab_text,
-                            sty.text__neUMx
-                          )}
-                        >
-                          {"supprimer"}
-                        </div>
-                      }
-                      onClick={async event => {
-                        const $steps = {};
-
-                        $steps["postgresDeleteMany"] = true
-                          ? (() => {
-                              const actionArgs = {
-                                dataOp: {
-                                  sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
-                                  opId: "1dac4760-8007-474e-a008-760fab400325",
-                                  userArgs: {
-                                    conditions: [$state.offreId]
-                                  },
-                                  cacheKey: null,
-                                  invalidatedKeys: ["plasmic_refresh_all"],
-                                  roleId: null
-                                }
-                              };
-                              return (async ({ dataOp, continueOnError }) => {
-                                try {
-                                  const response = await executePlasmicDataOp(
-                                    dataOp,
-                                    {
-                                      userAuthToken:
-                                        dataSourcesCtx?.userAuthToken,
-                                      user: dataSourcesCtx?.user
+                              <div
+                                className={classNames(
+                                  projectcss.all,
+                                  projectcss.__wab_text,
+                                  sty.text___0WsNs
+                                )}
+                              >
+                                <React.Fragment>
+                                  {(() => {
+                                    try {
+                                      return $state.offre2.job_location;
+                                    } catch (e) {
+                                      if (
+                                        e instanceof TypeError ||
+                                        e?.plasmicType ===
+                                          "PlasmicUndefinedDataError"
+                                      ) {
+                                        return "";
+                                      }
+                                      throw e;
                                     }
-                                  );
-                                  await plasmicInvalidate(
-                                    dataOp.invalidatedKeys
-                                  );
-                                  return response;
-                                } catch (e) {
-                                  if (!continueOnError) {
+                                  })()}
+                                </React.Fragment>
+                              </div>
+                            </div>
+                            <div
+                              className={classNames(
+                                projectcss.all,
+                                projectcss.__wab_text,
+                                sty.text___3BKl
+                              )}
+                            >
+                              <React.Fragment>
+                                {(() => {
+                                  try {
+                                    return $state.offre2.created_at_formatted;
+                                  } catch (e) {
+                                    if (
+                                      e instanceof TypeError ||
+                                      e?.plasmicType ===
+                                        "PlasmicUndefinedDataError"
+                                    ) {
+                                      return "";
+                                    }
                                     throw e;
                                   }
-                                  return e;
+                                })()}
+                              </React.Fragment>
+                            </div>
+                          </div>
+                          <div
+                            data-plasmic-name={"frame46"}
+                            data-plasmic-override={overrides.frame46}
+                            className={classNames(projectcss.all, sty.frame46)}
+                          >
+                            <div
+                              data-plasmic-name={"frame47"}
+                              data-plasmic-override={overrides.frame47}
+                              className={classNames(
+                                projectcss.all,
+                                sty.frame47
+                              )}
+                            >
+                              <div
+                                data-plasmic-name={"frame48"}
+                                data-plasmic-override={overrides.frame48}
+                                className={classNames(
+                                  projectcss.all,
+                                  sty.frame48
+                                )}
+                              >
+                                <PhFileTextIcon
+                                  className={classNames(
+                                    projectcss.all,
+                                    sty.svg__pflfg
+                                  )}
+                                  role={"img"}
+                                />
+
+                                <div
+                                  className={classNames(
+                                    projectcss.all,
+                                    projectcss.__wab_text,
+                                    sty.text__tvXAx
+                                  )}
+                                >
+                                  <React.Fragment>
+                                    {(() => {
+                                      try {
+                                        return $state.offre2.contract_type;
+                                      } catch (e) {
+                                        if (
+                                          e instanceof TypeError ||
+                                          e?.plasmicType ===
+                                            "PlasmicUndefinedDataError"
+                                        ) {
+                                          return "";
+                                        }
+                                        throw e;
+                                      }
+                                    })()}
+                                  </React.Fragment>
+                                </div>
+                              </div>
+                              <div
+                                data-plasmic-name={"frame49"}
+                                data-plasmic-override={overrides.frame49}
+                                className={classNames(
+                                  projectcss.all,
+                                  sty.frame49
+                                )}
+                              >
+                                <PhClockIcon
+                                  className={classNames(
+                                    projectcss.all,
+                                    sty.svg__qe3J8
+                                  )}
+                                  role={"img"}
+                                />
+
+                                <div
+                                  className={classNames(
+                                    projectcss.all,
+                                    projectcss.__wab_text,
+                                    sty.text__gHpCq
+                                  )}
+                                >
+                                  <React.Fragment>
+                                    {(() => {
+                                      try {
+                                        return $state.offre2.working_time;
+                                      } catch (e) {
+                                        if (
+                                          e instanceof TypeError ||
+                                          e?.plasmicType ===
+                                            "PlasmicUndefinedDataError"
+                                        ) {
+                                          return "";
+                                        }
+                                        throw e;
+                                      }
+                                    })()}
+                                  </React.Fragment>
+                                </div>
+                              </div>
+                              <div
+                                data-plasmic-name={"frame50"}
+                                data-plasmic-override={overrides.frame50}
+                                className={classNames(
+                                  projectcss.all,
+                                  sty.frame50
+                                )}
+                              >
+                                <PhCoinsLightIcon
+                                  className={classNames(
+                                    projectcss.all,
+                                    sty.svg__a9B16
+                                  )}
+                                  role={"img"}
+                                />
+
+                                <div
+                                  className={classNames(
+                                    projectcss.all,
+                                    projectcss.__wab_text,
+                                    sty.text__akSj7
+                                  )}
+                                >
+                                  <React.Fragment>
+                                    {(() => {
+                                      try {
+                                        return $state.offre2.salary;
+                                      } catch (e) {
+                                        if (
+                                          e instanceof TypeError ||
+                                          e?.plasmicType ===
+                                            "PlasmicUndefinedDataError"
+                                        ) {
+                                          return "";
+                                        }
+                                        throw e;
+                                      }
+                                    })()}
+                                  </React.Fragment>
+                                </div>
+                              </div>
+                              <div
+                                data-plasmic-name={"frame51"}
+                                data-plasmic-override={overrides.frame51}
+                                className={classNames(
+                                  projectcss.all,
+                                  sty.frame51
+                                )}
+                              >
+                                <PhClockCountdownIcon
+                                  className={classNames(
+                                    projectcss.all,
+                                    sty.svg__oxjs9
+                                  )}
+                                  role={"img"}
+                                />
+
+                                <div
+                                  className={classNames(
+                                    projectcss.all,
+                                    projectcss.__wab_text,
+                                    sty.text__otlji
+                                  )}
+                                >
+                                  <React.Fragment>
+                                    {(() => {
+                                      try {
+                                        return $state.offre2
+                                          .availability_status;
+                                      } catch (e) {
+                                        if (
+                                          e instanceof TypeError ||
+                                          e?.plasmicType ===
+                                            "PlasmicUndefinedDataError"
+                                        ) {
+                                          return "";
+                                        }
+                                        throw e;
+                                      }
+                                    })()}
+                                  </React.Fragment>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div
+                          data-plasmic-name={"jobDescriptionContainer"}
+                          data-plasmic-override={
+                            overrides.jobDescriptionContainer
+                          }
+                          className={classNames(
+                            projectcss.all,
+                            sty.jobDescriptionContainer
+                          )}
+                        >
+                          <div
+                            className={classNames(
+                              projectcss.all,
+                              projectcss.__wab_text,
+                              sty.text__tB8FW
+                            )}
+                          >
+                            {"Description du poste"}
+                          </div>
+                          <div
+                            className={classNames(
+                              projectcss.all,
+                              projectcss.__wab_text,
+                              sty.text__pWQn
+                            )}
+                          >
+                            <React.Fragment>
+                              {(() => {
+                                try {
+                                  return $state.offre2.description;
+                                } catch (e) {
+                                  if (
+                                    e instanceof TypeError ||
+                                    e?.plasmicType ===
+                                      "PlasmicUndefinedDataError"
+                                  ) {
+                                    return "";
+                                  }
+                                  throw e;
                                 }
-                              })?.apply(null, [actionArgs]);
-                            })()
-                          : undefined;
-                        if (
-                          $steps["postgresDeleteMany"] != null &&
-                          typeof $steps["postgresDeleteMany"] === "object" &&
-                          typeof $steps["postgresDeleteMany"].then ===
-                            "function"
-                        ) {
-                          $steps["postgresDeleteMany"] = await $steps[
-                            "postgresDeleteMany"
-                          ];
-                        }
-
-                        $steps["invokeGlobalAction"] = true
-                          ? (() => {
-                              const actionArgs = {
-                                args: [
-                                  "success",
-                                  "L'offre a bien \u00e9t\u00e9 supprim\u00e9e !"
-                                ]
-                              };
-                              return $globalActions[
-                                "plasmic-antd5-config-provider.showNotification"
-                              ]?.apply(null, [...actionArgs.args]);
-                            })()
-                          : undefined;
-                        if (
-                          $steps["invokeGlobalAction"] != null &&
-                          typeof $steps["invokeGlobalAction"] === "object" &&
-                          typeof $steps["invokeGlobalAction"].then ===
-                            "function"
-                        ) {
-                          $steps["invokeGlobalAction"] = await $steps[
-                            "invokeGlobalAction"
-                          ];
-                        }
-
-                        $steps["updateDeleteIsOpen"] = true
-                          ? (() => {
-                              const actionArgs = {
-                                variable: {
-                                  objRoot: $state,
-                                  variablePath: ["_delete", "isOpen"]
-                                },
-                                operation: 0,
-                                value: false
-                              };
-                              return (({
-                                variable,
-                                value,
-                                startIndex,
-                                deleteCount
-                              }) => {
-                                if (!variable) {
-                                  return;
+                              })()}
+                            </React.Fragment>
+                          </div>
+                          <div
+                            data-plasmic-name={"benefits"}
+                            data-plasmic-override={overrides.benefits}
+                            className={classNames(projectcss.all, sty.benefits)}
+                          >
+                            {(_par =>
+                              !_par ? [] : Array.isArray(_par) ? _par : [_par])(
+                              []
+                            ).map((__plasmic_item_0, __plasmic_idx_0) => {
+                              const currentItem = __plasmic_item_0;
+                              const currentIndex = __plasmic_idx_0;
+                              return (
+                                <div
+                                  className={classNames(
+                                    projectcss.all,
+                                    projectcss.__wab_text,
+                                    sty.text__byVDa
+                                  )}
+                                  key={currentIndex}
+                                >
+                                  <React.Fragment>
+                                    {(() => {
+                                      try {
+                                        return currentItem;
+                                      } catch (e) {
+                                        if (
+                                          e instanceof TypeError ||
+                                          e?.plasmicType ===
+                                            "PlasmicUndefinedDataError"
+                                        ) {
+                                          return "";
+                                        }
+                                        throw e;
+                                      }
+                                    })()}
+                                  </React.Fragment>
+                                </div>
+                              );
+                            })}
+                          </div>
+                        </div>
+                        <div
+                          data-plasmic-name={"expectedProfileContainer"}
+                          data-plasmic-override={
+                            overrides.expectedProfileContainer
+                          }
+                          className={classNames(
+                            projectcss.all,
+                            sty.expectedProfileContainer
+                          )}
+                        >
+                          <div
+                            className={classNames(
+                              projectcss.all,
+                              projectcss.__wab_text,
+                              sty.text__xiR
+                            )}
+                          >
+                            {"Profil attendu"}
+                          </div>
+                          <div
+                            className={classNames(
+                              projectcss.all,
+                              projectcss.__wab_text,
+                              sty.text___2Fb2U
+                            )}
+                          >
+                            <React.Fragment>
+                              {(() => {
+                                try {
+                                  return $state.offre2.requirements;
+                                } catch (e) {
+                                  if (
+                                    e instanceof TypeError ||
+                                    e?.plasmicType ===
+                                      "PlasmicUndefinedDataError"
+                                  ) {
+                                    return "";
+                                  }
+                                  throw e;
                                 }
-                                const { objRoot, variablePath } = variable;
-
-                                $stateSet(objRoot, variablePath, value);
-                                return value;
-                              })?.apply(null, [actionArgs]);
+                              })()}
+                            </React.Fragment>
+                          </div>
+                        </div>
+                        <div
+                          data-plasmic-name={"companyContainer"}
+                          data-plasmic-override={overrides.companyContainer}
+                          className={classNames(
+                            projectcss.all,
+                            sty.companyContainer
+                          )}
+                        >
+                          <div
+                            data-plasmic-name={"logoContainer"}
+                            data-plasmic-override={overrides.logoContainer}
+                            className={classNames(
+                              projectcss.all,
+                              sty.logoContainer
+                            )}
+                          >
+                            <div
+                              className={classNames(
+                                projectcss.all,
+                                projectcss.__wab_text,
+                                sty.text__n48UG
+                              )}
+                            >
+                              {"L\u2019entreprise"}
+                            </div>
+                          </div>
+                          <div
+                            className={classNames(
+                              projectcss.all,
+                              sty.freeBox__epD7F
+                            )}
+                          >
+                            <div
+                              className={classNames(
+                                projectcss.all,
+                                projectcss.__wab_text,
+                                sty.text__jpE4L
+                              )}
+                            >
+                              <React.Fragment>
+                                {(() => {
+                                  try {
+                                    return $state.offre2.company_name;
+                                  } catch (e) {
+                                    if (
+                                      e instanceof TypeError ||
+                                      e?.plasmicType ===
+                                        "PlasmicUndefinedDataError"
+                                    ) {
+                                      return "";
+                                    }
+                                    throw e;
+                                  }
+                                })()}
+                              </React.Fragment>
+                            </div>
+                          </div>
+                          <div
+                            className={classNames(
+                              projectcss.all,
+                              projectcss.__wab_text,
+                              sty.text__h3F40
+                            )}
+                          >
+                            <React.Fragment>
+                              {(() => {
+                                try {
+                                  return $state.offre2.company_description;
+                                } catch (e) {
+                                  if (
+                                    e instanceof TypeError ||
+                                    e?.plasmicType ===
+                                      "PlasmicUndefinedDataError"
+                                  ) {
+                                    return "";
+                                  }
+                                  throw e;
+                                }
+                              })()}
+                            </React.Fragment>
+                          </div>
+                        </div>
+                      </div>
+                    }
+                    footer={null}
+                    heading={
+                      (
+                        hasVariant(globalVariants, "screen", "mobileOnly")
+                          ? true
+                          : (() => {
+                              try {
+                                return true;
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return true;
+                                }
+                                throw e;
+                              }
                             })()
-                          : undefined;
-                        if (
-                          $steps["updateDeleteIsOpen"] != null &&
-                          typeof $steps["updateDeleteIsOpen"] === "object" &&
-                          typeof $steps["updateDeleteIsOpen"].then ===
-                            "function"
-                        ) {
-                          $steps["updateDeleteIsOpen"] = await $steps[
-                            "updateDeleteIsOpen"
-                          ];
-                        }
-                      }}
-                    />
-                  </div>
+                      ) ? (
+                        <PlasmicImg__
+                          data-plasmic-name={"img"}
+                          data-plasmic-override={overrides.img}
+                          alt={""}
+                          className={classNames(sty.img)}
+                          displayHeight={"17px"}
+                          displayMaxHeight={"none"}
+                          displayMaxWidth={"100%"}
+                          displayMinHeight={"0"}
+                          displayMinWidth={"0"}
+                          displayWidth={"17px"}
+                          loading={"lazy"}
+                          onClick={async event => {
+                            const $steps = {};
+
+                            $steps["updateOffreIsOpen"] = true
+                              ? (() => {
+                                  const actionArgs = {
+                                    variable: {
+                                      objRoot: $state,
+                                      variablePath: ["offre", "isOpen"]
+                                    },
+                                    operation: 0,
+                                    value: false
+                                  };
+                                  return (({
+                                    variable,
+                                    value,
+                                    startIndex,
+                                    deleteCount
+                                  }) => {
+                                    if (!variable) {
+                                      return;
+                                    }
+                                    const { objRoot, variablePath } = variable;
+
+                                    $stateSet(objRoot, variablePath, value);
+                                    return value;
+                                  })?.apply(null, [actionArgs]);
+                                })()
+                              : undefined;
+                            if (
+                              $steps["updateOffreIsOpen"] != null &&
+                              typeof $steps["updateOffreIsOpen"] === "object" &&
+                              typeof $steps["updateOffreIsOpen"].then ===
+                                "function"
+                            ) {
+                              $steps["updateOffreIsOpen"] =
+                                await $steps["updateOffreIsOpen"];
+                            }
+                          }}
+                          src={{
+                            src: "/plasmic/jam_production_🚀/images/close3.svg",
+                            fullWidth: 17,
+                            fullHeight: 17,
+                            aspectRatio: 1
+                          }}
+                        />
+                      ) : null
+                    }
+                    isOpen={generateStateValueProp($state, ["offre", "isOpen"])}
+                    noTrigger={
+                      hasVariant(globalVariants, "screen", "mobileOnly")
+                        ? true
+                        : true
+                    }
+                    onOpenChange={async (...eventArgs: any) => {
+                      generateStateOnChangeProp($state, [
+                        "offre",
+                        "isOpen"
+                      ]).apply(null, eventArgs);
+
+                      if (
+                        eventArgs.length > 1 &&
+                        eventArgs[1] &&
+                        eventArgs[1]._plasmic_state_init_
+                      ) {
+                        return;
+                      }
+                    }}
+                    showFooter={false}
+                    showHeader={true}
+                    trigger={null}
+                  />
+
+                  <Modal
+                    data-plasmic-name={"_delete"}
+                    data-plasmic-override={overrides._delete}
+                    className={classNames("__wab_instance", sty._delete)}
+                    content={
+                      <div
+                        className={classNames(
+                          projectcss.all,
+                          sty.freeBox__rnh3F
+                        )}
+                      >
+                        <ReshotIconAlert7T6Wum8VleSvgIcon
+                          className={classNames(projectcss.all, sty.svg__sW7Sg)}
+                          role={"img"}
+                        />
+
+                        <div
+                          className={classNames(
+                            projectcss.all,
+                            projectcss.__wab_text,
+                            sty.text__lhHn
+                          )}
+                        >
+                          {"Voulez-vous supprimer cette offre ?"}
+                        </div>
+                        <div
+                          data-plasmic-name={"e2"}
+                          data-plasmic-override={overrides.e2}
+                          className={classNames(
+                            projectcss.all,
+                            projectcss.__wab_text,
+                            sty.e2
+                          )}
+                        >
+                          {
+                            "Attention : cette action est irr\u00e9versible. L\u2019offre sera d\u00e9finitivement supprim\u00e9e."
+                          }
+                        </div>
+                        <div
+                          className={classNames(
+                            projectcss.all,
+                            sty.freeBox__eRqVk
+                          )}
+                        >
+                          <Button
+                            data-plasmic-name={"button"}
+                            data-plasmic-override={overrides.button}
+                            className={classNames("__wab_instance", sty.button)}
+                            color={"white"}
+                            label={
+                              <div
+                                className={classNames(
+                                  projectcss.all,
+                                  projectcss.__wab_text,
+                                  sty.text__iNu6
+                                )}
+                              >
+                                {"retour"}
+                              </div>
+                            }
+                            onClick={async event => {
+                              const $steps = {};
+
+                              $steps["updateDeleteIsOpen"] = true
+                                ? (() => {
+                                    const actionArgs = {
+                                      variable: {
+                                        objRoot: $state,
+                                        variablePath: ["_delete", "isOpen"]
+                                      },
+                                      operation: 0,
+                                      value: false
+                                    };
+                                    return (({
+                                      variable,
+                                      value,
+                                      startIndex,
+                                      deleteCount
+                                    }) => {
+                                      if (!variable) {
+                                        return;
+                                      }
+                                      const { objRoot, variablePath } =
+                                        variable;
+
+                                      $stateSet(objRoot, variablePath, value);
+                                      return value;
+                                    })?.apply(null, [actionArgs]);
+                                  })()
+                                : undefined;
+                              if (
+                                $steps["updateDeleteIsOpen"] != null &&
+                                typeof $steps["updateDeleteIsOpen"] ===
+                                  "object" &&
+                                typeof $steps["updateDeleteIsOpen"].then ===
+                                  "function"
+                              ) {
+                                $steps["updateDeleteIsOpen"] =
+                                  await $steps["updateDeleteIsOpen"];
+                              }
+                            }}
+                            type={"bordered"}
+                          />
+
+                          <DeleteAccount
+                            data-plasmic-name={"deleteAccount"}
+                            data-plasmic-override={overrides.deleteAccount}
+                            className={classNames(
+                              "__wab_instance",
+                              sty.deleteAccount
+                            )}
+                            label={
+                              <div
+                                className={classNames(
+                                  projectcss.all,
+                                  projectcss.__wab_text,
+                                  sty.text__neUMx
+                                )}
+                              >
+                                {"supprimer"}
+                              </div>
+                            }
+                            onClick={async event => {
+                              const $steps = {};
+
+                              $steps["postgresDeleteMany"] = true
+                                ? (() => {
+                                    const actionArgs = {
+                                      dataOp: {
+                                        sourceId: "kVSSe8ab4TtzwRPnTeEeUp",
+                                        opId: "1dac4760-8007-474e-a008-760fab400325",
+                                        userArgs: {
+                                          conditions: [$state.offreId]
+                                        },
+                                        cacheKey: null,
+                                        invalidatedKeys: [
+                                          "plasmic_refresh_all"
+                                        ],
+                                        roleId: null
+                                      }
+                                    };
+                                    return (async ({
+                                      dataOp,
+                                      continueOnError
+                                    }) => {
+                                      try {
+                                        const response =
+                                          await executePlasmicDataOp(dataOp, {
+                                            userAuthToken:
+                                              dataSourcesCtx?.userAuthToken,
+                                            user: dataSourcesCtx?.user
+                                          });
+                                        await plasmicInvalidate(
+                                          dataOp.invalidatedKeys
+                                        );
+                                        return response;
+                                      } catch (e) {
+                                        if (!continueOnError) {
+                                          throw e;
+                                        }
+                                        return e;
+                                      }
+                                    })?.apply(null, [actionArgs]);
+                                  })()
+                                : undefined;
+                              if (
+                                $steps["postgresDeleteMany"] != null &&
+                                typeof $steps["postgresDeleteMany"] ===
+                                  "object" &&
+                                typeof $steps["postgresDeleteMany"].then ===
+                                  "function"
+                              ) {
+                                $steps["postgresDeleteMany"] =
+                                  await $steps["postgresDeleteMany"];
+                              }
+
+                              $steps["updateDeleteIsOpen"] = true
+                                ? (() => {
+                                    const actionArgs = {
+                                      variable: {
+                                        objRoot: $state,
+                                        variablePath: ["_delete", "isOpen"]
+                                      },
+                                      operation: 0,
+                                      value: false
+                                    };
+                                    return (({
+                                      variable,
+                                      value,
+                                      startIndex,
+                                      deleteCount
+                                    }) => {
+                                      if (!variable) {
+                                        return;
+                                      }
+                                      const { objRoot, variablePath } =
+                                        variable;
+
+                                      $stateSet(objRoot, variablePath, value);
+                                      return value;
+                                    })?.apply(null, [actionArgs]);
+                                  })()
+                                : undefined;
+                              if (
+                                $steps["updateDeleteIsOpen"] != null &&
+                                typeof $steps["updateDeleteIsOpen"] ===
+                                  "object" &&
+                                typeof $steps["updateDeleteIsOpen"].then ===
+                                  "function"
+                              ) {
+                                $steps["updateDeleteIsOpen"] =
+                                  await $steps["updateDeleteIsOpen"];
+                              }
+
+                              $steps["invokeGlobalAction"] = true
+                                ? (() => {
+                                    const actionArgs = {
+                                      args: [
+                                        "success",
+                                        "L'offre a bien \u00e9t\u00e9 supprim\u00e9e !"
+                                      ]
+                                    };
+                                    return $globalActions[
+                                      "plasmic-antd5-config-provider.showNotification"
+                                    ]?.apply(null, [...actionArgs.args]);
+                                  })()
+                                : undefined;
+                              if (
+                                $steps["invokeGlobalAction"] != null &&
+                                typeof $steps["invokeGlobalAction"] ===
+                                  "object" &&
+                                typeof $steps["invokeGlobalAction"].then ===
+                                  "function"
+                              ) {
+                                $steps["invokeGlobalAction"] =
+                                  await $steps["invokeGlobalAction"];
+                              }
+                            }}
+                          />
+                        </div>
+                      </div>
+                    }
+                    footer={null}
+                    heading={null}
+                    isOpen={generateStateValueProp($state, [
+                      "_delete",
+                      "isOpen"
+                    ])}
+                    noTrigger={
+                      hasVariant(globalVariants, "screen", "mobileOnly")
+                        ? true
+                        : true
+                    }
+                    onOpenChange={async (...eventArgs: any) => {
+                      generateStateOnChangeProp($state, [
+                        "_delete",
+                        "isOpen"
+                      ]).apply(null, eventArgs);
+
+                      if (
+                        eventArgs.length > 1 &&
+                        eventArgs[1] &&
+                        eventArgs[1]._plasmic_state_init_
+                      ) {
+                        return;
+                      }
+                    }}
+                    showFooter={false}
+                    showHeader={false}
+                    trigger={null}
+                  />
                 </div>
-              }
-              footer={null}
-              heading={null}
-              isOpen={generateStateValueProp($state, ["_delete", "isOpen"])}
-              noTrigger={
-                hasVariant(globalVariants, "screen", "mobileOnly") ? true : true
-              }
-              onOpenChange={async (...eventArgs: any) => {
-                generateStateOnChangeProp($state, ["_delete", "isOpen"]).apply(
-                  null,
-                  eventArgs
-                );
-
-                if (
-                  eventArgs.length > 1 &&
-                  eventArgs[1] &&
-                  eventArgs[1]._plasmic_state_init_
-                ) {
-                  return;
-                }
-              }}
-              showFooter={false}
-              showHeader={false}
-              trigger={null}
-            />
-          </div>
+              )}
+            </DataCtxReader__>
+          </LoadingBoundary>
           <MobileNavbarBottom
             data-plasmic-name={"mobileNavbarBottom"}
             data-plasmic-override={overrides.mobileNavbarBottom}
             className={classNames("__wab_instance", sty.mobileNavbarBottom)}
-            onRoleChange={async (...eventArgs: any) => {
-              generateStateOnChangeProp($state, [
-                "mobileNavbarBottom",
-                "role"
-              ]).apply(null, eventArgs);
-
-              if (
-                eventArgs.length > 1 &&
-                eventArgs[1] &&
-                eventArgs[1]._plasmic_state_init_
-              ) {
-                return;
-              }
-            }}
-            role={generateStateValueProp($state, [
-              "mobileNavbarBottom",
-              "role"
-            ])}
+            user={"admin"}
           />
         </div>
       </div>
@@ -1453,6 +1548,8 @@ const PlasmicDescendants = {
     "root",
     "sidebar",
     "mobileNavbarTop",
+    "loadingBoundary",
+    "loadingComponent",
     "main",
     "h1",
     "dataGridOffre",
@@ -1480,6 +1577,34 @@ const PlasmicDescendants = {
   ],
   sidebar: ["sidebar"],
   mobileNavbarTop: ["mobileNavbarTop"],
+  loadingBoundary: [
+    "loadingBoundary",
+    "loadingComponent",
+    "main",
+    "h1",
+    "dataGridOffre",
+    "offre",
+    "img",
+    "jobListing",
+    "jobDetail",
+    "location",
+    "frame46",
+    "frame47",
+    "frame48",
+    "frame49",
+    "frame50",
+    "frame51",
+    "jobDescriptionContainer",
+    "benefits",
+    "expectedProfileContainer",
+    "companyContainer",
+    "logoContainer",
+    "_delete",
+    "e2",
+    "button",
+    "deleteAccount"
+  ],
+  loadingComponent: ["loadingComponent"],
   main: [
     "main",
     "h1",
@@ -1577,6 +1702,8 @@ type NodeDefaultElementType = {
   root: "div";
   sidebar: typeof Sidebar;
   mobileNavbarTop: typeof MobileNavbarTop;
+  loadingBoundary: typeof LoadingBoundary;
+  loadingComponent: typeof LoadingComponent;
   main: "div";
   h1: "h1";
   dataGridOffre: typeof DataGridOffre;
@@ -1614,7 +1741,9 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicOffreAdmin__VariantsArgs;
     args?: PlasmicOffreAdmin__ArgsType;
     overrides?: NodeOverridesType<T>;
-  } & Omit<PlasmicOffreAdmin__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
+  } &
+    // Specify variants directly as props
+    Omit<PlasmicOffreAdmin__VariantsArgs, ReservedPropsType> &
     // Specify args directly as props
     Omit<PlasmicOffreAdmin__ArgsType, ReservedPropsType> &
     // Specify overrides for each element directly as props
@@ -1665,6 +1794,8 @@ export const PlasmicOffreAdmin = Object.assign(
     // Helper components rendering sub-elements
     sidebar: makeNodeComponent("sidebar"),
     mobileNavbarTop: makeNodeComponent("mobileNavbarTop"),
+    loadingBoundary: makeNodeComponent("loadingBoundary"),
+    loadingComponent: makeNodeComponent("loadingComponent"),
     main: makeNodeComponent("main"),
     h1: makeNodeComponent("h1"),
     dataGridOffre: makeNodeComponent("dataGridOffre"),

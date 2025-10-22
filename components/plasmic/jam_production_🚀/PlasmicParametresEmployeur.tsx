@@ -559,12 +559,6 @@ function PlasmicParametresEmployeur__RenderFunc(props: {
           "Zambie",
           "Zimbabwe"
         ]
-      },
-      {
-        path: "mobileNavbarBottom.role",
-        type: "private",
-        variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => 1
       }
     ],
     [$props, $ctx, $refs]
@@ -1008,9 +1002,8 @@ function PlasmicParametresEmployeur__RenderFunc(props: {
                                       typeof $steps["updateDb"].then ===
                                         "function"
                                     ) {
-                                      $steps["updateDb"] = await $steps[
-                                        "updateDb"
-                                      ];
+                                      $steps["updateDb"] =
+                                        await $steps["updateDb"];
                                     }
 
                                     $steps["showToast"] = true
@@ -1032,9 +1025,8 @@ function PlasmicParametresEmployeur__RenderFunc(props: {
                                       typeof $steps["showToast"].then ===
                                         "function"
                                     ) {
-                                      $steps["showToast"] = await $steps[
-                                        "showToast"
-                                      ];
+                                      $steps["showToast"] =
+                                        await $steps["showToast"];
                                     }
                                   },
                                   onFinishFailed: async data => {
@@ -1582,9 +1574,8 @@ function PlasmicParametresEmployeur__RenderFunc(props: {
                               typeof $steps["postgresUpdateById"].then ===
                                 "function"
                             ) {
-                              $steps["postgresUpdateById"] = await $steps[
-                                "postgresUpdateById"
-                              ];
+                              $steps["postgresUpdateById"] =
+                                await $steps["postgresUpdateById"];
                             }
                           }}
                           password={generateStateValueProp($state, [
@@ -1709,9 +1700,8 @@ function PlasmicParametresEmployeur__RenderFunc(props: {
                                 typeof $steps["supabaseUploadFile"].then ===
                                   "function"
                               ) {
-                                $steps["supabaseUploadFile"] = await $steps[
-                                  "supabaseUploadFile"
-                                ];
+                                $steps["supabaseUploadFile"] =
+                                  await $steps["supabaseUploadFile"];
                               }
 
                               $steps["postgresUpdateById"] = true
@@ -1768,9 +1758,8 @@ function PlasmicParametresEmployeur__RenderFunc(props: {
                                 typeof $steps["postgresUpdateById"].then ===
                                   "function"
                               ) {
-                                $steps["postgresUpdateById"] = await $steps[
-                                  "postgresUpdateById"
-                                ];
+                                $steps["postgresUpdateById"] =
+                                  await $steps["postgresUpdateById"];
                               }
                             }).apply(null, eventArgs);
                           }}
@@ -1871,9 +1860,8 @@ function PlasmicParametresEmployeur__RenderFunc(props: {
                                 typeof $steps["updateUpload2Files"].then ===
                                   "function"
                               ) {
-                                $steps["updateUpload2Files"] = await $steps[
-                                  "updateUpload2Files"
-                                ];
+                                $steps["updateUpload2Files"] =
+                                  await $steps["updateUpload2Files"];
                               }
 
                               $steps["runCode"] = true
@@ -1947,9 +1935,8 @@ function PlasmicParametresEmployeur__RenderFunc(props: {
                                 typeof $steps["postgresUpdateMany"].then ===
                                   "function"
                               ) {
-                                $steps["postgresUpdateMany"] = await $steps[
-                                  "postgresUpdateMany"
-                                ];
+                                $steps["postgresUpdateMany"] =
+                                  await $steps["postgresUpdateMany"];
                               }
                             }}
                           >
@@ -2106,9 +2093,8 @@ function PlasmicParametresEmployeur__RenderFunc(props: {
                                     typeof $steps["updateUser"].then ===
                                       "function"
                                   ) {
-                                    $steps["updateUser"] = await $steps[
-                                      "updateUser"
-                                    ];
+                                    $steps["updateUser"] =
+                                      await $steps["updateUser"];
                                   }
 
                                   $steps["invokeGlobalAction"] = true
@@ -2131,9 +2117,8 @@ function PlasmicParametresEmployeur__RenderFunc(props: {
                                     typeof $steps["invokeGlobalAction"].then ===
                                       "function"
                                   ) {
-                                    $steps["invokeGlobalAction"] = await $steps[
-                                      "invokeGlobalAction"
-                                    ];
+                                    $steps["invokeGlobalAction"] =
+                                      await $steps["invokeGlobalAction"];
                                   }
                                 },
                                 onFinishFailed: async data => {
@@ -2156,9 +2141,8 @@ function PlasmicParametresEmployeur__RenderFunc(props: {
                                     typeof $steps["invokeGlobalAction"].then ===
                                       "function"
                                   ) {
-                                    $steps["invokeGlobalAction"] = await $steps[
-                                      "invokeGlobalAction"
-                                    ];
+                                    $steps["invokeGlobalAction"] =
+                                      await $steps["invokeGlobalAction"];
                                   }
                                 },
                                 onIsSubmittingChange: async (
@@ -2550,8 +2534,8 @@ function PlasmicParametresEmployeur__RenderFunc(props: {
                                         !_par
                                           ? []
                                           : Array.isArray(_par)
-                                          ? _par
-                                          : [_par])(
+                                            ? _par
+                                            : [_par])(
                                         (() => {
                                           try {
                                             return $state.countries;
@@ -2730,8 +2714,8 @@ function PlasmicParametresEmployeur__RenderFunc(props: {
                                         !_par
                                           ? []
                                           : Array.isArray(_par)
-                                          ? _par
-                                          : [_par])(
+                                            ? _par
+                                            : [_par])(
                                         (() => {
                                           try {
                                             return $queries.getCriteria.data
@@ -2856,8 +2840,8 @@ function PlasmicParametresEmployeur__RenderFunc(props: {
                                         !_par
                                           ? []
                                           : Array.isArray(_par)
-                                          ? _par
-                                          : [_par])(
+                                            ? _par
+                                            : [_par])(
                                         (() => {
                                           try {
                                             return $queries.getCriteria.data
@@ -3066,9 +3050,8 @@ function PlasmicParametresEmployeur__RenderFunc(props: {
                           typeof $steps["invokeGlobalAction"].then ===
                             "function"
                         ) {
-                          $steps["invokeGlobalAction"] = await $steps[
-                            "invokeGlobalAction"
-                          ];
+                          $steps["invokeGlobalAction"] =
+                            await $steps["invokeGlobalAction"];
                         }
                       }}
                     >
@@ -3096,24 +3079,7 @@ function PlasmicParametresEmployeur__RenderFunc(props: {
             data-plasmic-name={"mobileNavbarBottom"}
             data-plasmic-override={overrides.mobileNavbarBottom}
             className={classNames("__wab_instance", sty.mobileNavbarBottom)}
-            onRoleChange={async (...eventArgs: any) => {
-              generateStateOnChangeProp($state, [
-                "mobileNavbarBottom",
-                "role"
-              ]).apply(null, eventArgs);
-
-              if (
-                eventArgs.length > 1 &&
-                eventArgs[1] &&
-                eventArgs[1]._plasmic_state_init_
-              ) {
-                return;
-              }
-            }}
-            role={generateStateValueProp($state, [
-              "mobileNavbarBottom",
-              "role"
-            ])}
+            user={"employer"}
           />
         </div>
       </div>
@@ -3357,7 +3323,9 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicParametresEmployeur__VariantsArgs;
     args?: PlasmicParametresEmployeur__ArgsType;
     overrides?: NodeOverridesType<T>;
-  } & Omit<PlasmicParametresEmployeur__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
+  } &
+    // Specify variants directly as props
+    Omit<PlasmicParametresEmployeur__VariantsArgs, ReservedPropsType> &
     // Specify args directly as props
     Omit<PlasmicParametresEmployeur__ArgsType, ReservedPropsType> &
     // Specify overrides for each element directly as props

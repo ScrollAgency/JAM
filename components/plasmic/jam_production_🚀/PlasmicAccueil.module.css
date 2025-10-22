@@ -220,10 +220,11 @@
     margin-bottom: 0px;
     justify-self: flex-start;
     column-gap: 18px;
+    background: #ffffff00;
     row-gap: 0px;
     grid-column-start: 1 !important;
     grid-column-end: -1 !important;
-    padding: 5px 11px 15px;
+    padding: 15px 11px;
   }
 }
 @media (max-width: 375px) {
@@ -245,7 +246,7 @@
 }
 @media (min-width: 0px) and (max-width: 768px) {
   .jamLogo {
-    align-self: flex-start;
+    align-self: auto;
     column-gap: 1px;
     row-gap: 0px;
   }
@@ -524,10 +525,10 @@
 }
 @media (min-width: 0px) and (max-width: 768px) {
   .bgImage {
-    height: 582px;
+    height: 675px;
     position: absolute;
     left: 0px;
-    top: 0px;
+    top: -95px;
     object-position: center center;
     object-fit: fill;
     flex-shrink: 0;

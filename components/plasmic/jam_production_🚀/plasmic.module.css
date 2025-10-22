@@ -282,7 +282,6 @@
 @media (min-width: 0px) and (max-width: 768px) {
   .plasmic_tokens {
     --token-ceD1eQOG2geq: #000000;
-    --plasmic-token-basic-text-primary: var(--token-ceD1eQOG2geq);
   }
 }
 
@@ -298,8 +297,8 @@
 
 .plasmic_default_styles,
 .plasmic_default_styles:where(
-    .global_unnamedGlobalGroupOfVariants_unnamedVariant
-  ) {
+  .global_unnamedGlobalGroupOfVariants_unnamedVariant
+) {
   --mixin-wvrN6qTZTx0r_font-family: "Inter", sans-serif;
   --mixin-wvrN6qTZTx0r_font-size: 14px;
   --mixin-wvrN6qTZTx0r_font-weight: 400;
@@ -426,8 +425,8 @@
 @media (min-width: 0px) and (max-width: 768px) {
   .plasmic_default_styles,
   .plasmic_default_styles:where(
-      .global_unnamedGlobalGroupOfVariants_unnamedVariant
-    ) {
+    .global_unnamedGlobalGroupOfVariants_unnamedVariant
+  ) {
     --mixin-1-EG1vyUAJjP_font-size: 48px;
     --mixin-1-EG1vyUAJjP_white-space: pre-wrap;
   }
