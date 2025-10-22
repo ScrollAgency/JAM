@@ -41,7 +41,7 @@
     column-gap: 0px;
     row-gap: 0px;
     min-width: 0;
-    display: flex;
+    display: none;
     padding: 0px 10px 15px;
   }
 }
