@@ -185,3 +185,8 @@ export { default as NotationMeta } from "./others/Notation/Notation.meta";
 //       WeglotSelector
 export { default as WeglotSelector } from "./others/WeglotSelector/WeglotSelector";
 export { default as WeglotSelectorMeta } from "./others/WeglotSelector/WeglotSelector.meta";
+
+// Analytics
+//       PostHogTracker
+export { PostHogTracker } from "./analytics/PostHogTracker/PostHogTracker";
+export { default as PostHogTrackerMeta } from "./analytics/PostHogTracker/PostHogTracker.meta";
