@@ -3,6 +3,7 @@ import { type ButtonHTMLAttributes, forwardRef, useImperativeHandle, useRef, } f
 import { cn } from "@/lib/utils";
 import { cva } from "class-variance-authority";
 import { createClient } from '@/utils/supabase/components'
+import { presets } from "@/styles/presets";
 import Image from "next/image";
 
 type HTMLButtonProps = Pick<
@@ -124,17 +125,12 @@ const ButtonApple = forwardRef<ButtonActions, ButtonProps>(
                 onClick={handleClick}
                 disabled={disabled}
                 className={cn(variants({ destructive, hierarchy, size, state }), className)}
+                style={presets.oAuthButton as React.CSSProperties}
             >
-                {icon === "start" && iconImage && (
-                    <Image src={iconImage} alt="Apple Icon" width={20} height={20} />
-                )}
-                {icon !== "only" && <span>{label}</span>}
-                {icon === "end" && iconImage && (
-                    <Image src={iconImage} alt="Apple Icon" width={20} height={20} />
-                )}
-                {icon === "only" && iconImage && (
-                    <Image src={iconImage} alt="Apple Icon" width={20} height={20} />
-                )}
+                {iconImage && (icon === "start" || icon === "end" || icon === "only") && (
+                                    <Image src={iconImage} alt="Icon" width={20} height={20} />
+                                )}
+                                {icon !== "only" && <span>{label}</span>}
             </button>
         );
     }

@@ -240,14 +240,14 @@ function Login_(
         )}
 
         {showAppleButton && (
-          <button
-            type="button"
-            style={presets.oAuthButtons as React.CSSProperties}
-            aria-label="Se connecter avec Apple"
-          >
-            <img src="/apple-logo.svg" alt="Logo Apple" className="w-5 h-5" />
-            <span>{appleButtonText}</span>
-          </button>
+          <AuthButton
+            label={appleButtonText}
+            icon="start"
+            iconImage="/apple-logo.svg"
+            size="large"
+            hierarchy="secondary"
+            redirectTo={redirectTo}
+          />
         )}
        
       </div>
