@@ -194,7 +194,14 @@ function Login_(
   // Rendu des boutons OAuth
   const renderOAuthButtons = () => {
     return (
-      <div style={presets.oAuthButtons as React.CSSProperties}>
+      <div style={{
+        ...presets.oAuthButtons as React.CSSProperties,
+        display: "flex",
+        gap: "16px",
+        width: "100%",
+        justifyContent: "center",
+        alignItems: "center"
+      }}>
         <button
           type="button"
           onClick={handleGoogleSignIn}
