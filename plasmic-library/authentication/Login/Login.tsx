@@ -227,7 +227,14 @@ function Login_(
     if (!showGoogleButton && !showAppleButton) return null;
     
     return (
-      <div style={presets.oAuthButtons as React.CSSProperties}>
+      <div style={{
+        display: "flex",
+        gap: "16px",
+        width: "100%",
+        justifyContent: "center",
+        alignItems: "center",
+        flexDirection: "row"
+      }}>
         {showGoogleButton && (
           <AuthButton
             label={googleButtonText}
@@ -240,14 +247,14 @@ function Login_(
         )}
 
         {showAppleButton && (
-          <button
-            type="button"
-            style={presets.oAuthButtons as React.CSSProperties}
-            aria-label="Se connecter avec Apple"
-          >
-            <img src="/apple-logo.svg" alt="Logo Apple" className="w-5 h-5" />
-            <span>{appleButtonText}</span>
-          </button>
+          <AuthButton
+            label={appleButtonText}
+            icon="start"
+            iconImage="/apple-logo.svg"
+            size="large"
+            hierarchy="secondary"
+            redirectTo={redirectTo}
+          />
         )}
        
       </div>
