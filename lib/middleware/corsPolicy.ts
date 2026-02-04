@@ -10,6 +10,10 @@ const allowedOrigins = [
   "https://jam.agence-scroll.com",
   "https://job-around-me.com",
   "https://www.job-around-me.com",
+    // Capacitor native app origins
+    "https://localhost",
+    "capacitor://localhost",
+    "http://localhost",
 ].filter(Boolean);
 
 export async function corsPolicy(
