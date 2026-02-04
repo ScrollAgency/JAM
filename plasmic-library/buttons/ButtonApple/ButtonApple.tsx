@@ -1,8 +1,9 @@
 import type React from "react";
 import { type ButtonHTMLAttributes, forwardRef, useImperativeHandle, useRef, } from "react"
-//import { createClient } from "@/lib/supabaseBrowserClient";
 import { cn } from "@/lib/utils";
 import { cva } from "class-variance-authority";
+import { createClient } from '@/utils/supabase/components'
+import { presets } from "@/styles/presets";
 import Image from "next/image";
 
 type HTMLButtonProps = Pick<
@@ -16,16 +17,18 @@ interface ButtonProps extends HTMLButtonProps {
     destructive?: boolean;
     hierarchy?: "primary" | "secondary";
     size?: "small" | "large";
+    redirectTo?: string;
     state?: "default" | "hover" | "focused" | "disabled";
     iconImage?: string;
     className?: string;
+    authProvider?: "apple" | "none";
 }
 
 export interface ButtonActions {
     click(): void;
 }
 
-//const supabase = createClient();
+const supabase = createClient();
 
 const ButtonApple = forwardRef<ButtonActions, ButtonProps>(
     (
@@ -40,6 +43,8 @@ const ButtonApple = forwardRef<ButtonActions, ButtonProps>(
             onClick,
             iconImage = "/apple-icon.svg", // Path to the Apple icon
             className,
+            authProvider = "apple",
+            redirectTo = "/",
         },
         ref
     ) => {
@@ -51,26 +56,29 @@ const ButtonApple = forwardRef<ButtonActions, ButtonProps>(
             },
         }));
 
-        // Function to handle Apple sign-in with Supabase OAuth
-        // const handleAppleSignIn = async () => {
-        //     const { error } = await supabase.auth.signInWithOAuth({
-        //         provider: "apple",
-        //         options: {
-        //             redirectTo: `${window.location.origin}/home`,
-        //         },
-        //     });
-        //     if (error) {
-        //         console.error("Error signing in with Apple:", error.message);
-        //     }
-        // };
-
-        // const handleClick = async (event: React.MouseEvent<HTMLButtonElement>) => {
-        //     event.preventDefault();
-        //     if (onClick) {
-        //         onClick(event);
-        //     }
-        //     await handleAppleSignIn();
-        // };
+        const handleClick = async (event: React.MouseEvent<HTMLButtonElement>) => {
+                    if (authProvider === "apple") {
+                        event.preventDefault();
+                        try {
+                        const { data, error } = await supabase.auth.signInWithOAuth({
+                            provider: "apple",
+                            options: {
+                            redirectTo,
+                            },
+                        });
+        
+                        if (error) {
+                            console.error("Login error:", error.message);
+                        } else {
+                            console.log("Login successful:", data);
+                        }
+                        } catch (err) {
+                        console.error("Unexpected error:", err);
+                        }
+                    } else if (onClick) {
+                        onClick(event);
+                    }
+                };
 
         const variants = cva(
             "flex items-center justify-center gap-3 rounded transition-all outline-none group",
@@ -114,20 +122,15 @@ const ButtonApple = forwardRef<ButtonActions, ButtonProps>(
             <button
                 type="button"
                 ref={buttonRef}
-                //onClick={handleClick}
+                onClick={handleClick}
                 disabled={disabled}
                 className={cn(variants({ destructive, hierarchy, size, state }), className)}
+                style={presets.oAuthButton as React.CSSProperties}
             >
-                {icon === "start" && iconImage && (
-                    <Image src={iconImage} alt="Apple Icon" width={20} height={20} />
-                )}
-                {icon !== "only" && <span>{label}</span>}
-                {icon === "end" && iconImage && (
-                    <Image src={iconImage} alt="Apple Icon" width={20} height={20} />
-                )}
-                {icon === "only" && iconImage && (
-                    <Image src={iconImage} alt="Apple Icon" width={20} height={20} />
-                )}
+                {iconImage && (icon === "start" || icon === "end" || icon === "only") && (
+                                    <Image src={iconImage} alt="Icon" width={20} height={20} />
+                                )}
+                                {icon !== "only" && <span>{label}</span>}
             </button>
         );
     }
