@@ -150,6 +150,7 @@ function PlasmicAlertInfo__RenderFunc(props: {
     $props,
     $ctx,
     $queries: {},
+    $q: {},
     $refs
   });
 
@@ -194,7 +195,9 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicAlertInfo__VariantsArgs;
     args?: PlasmicAlertInfo__ArgsType;
     overrides?: NodeOverridesType<T>;
-  } & Omit<PlasmicAlertInfo__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
+  } &
+    // Specify variants directly as props
+    Omit<PlasmicAlertInfo__VariantsArgs, ReservedPropsType> &
     // Specify args directly as props
     Omit<PlasmicAlertInfo__ArgsType, ReservedPropsType> &
     // Specify overrides for each element directly as props

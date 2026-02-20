@@ -99,6 +99,35 @@ import IconPhBriefcaseIcon from "./icons/PlasmicIcon__IconPhBriefcase"; // plasm
 import PhClockCountdownFillIcon from "./icons/PlasmicIcon__PhClockCountdownFill"; // plasmic-import: GhtgoozaYTSb/icon
 import Icon15Icon from "./icons/PlasmicIcon__Icon15"; // plasmic-import: p0L_wgJiyVXj/icon
 
+const emptyProxy: any = new Proxy(() => "", {
+  get(_, prop) {
+    return prop === Symbol.toPrimitive ? () => "" : emptyProxy;
+  }
+});
+
+function wrapQueriesWithLoadingProxy($q: any): any {
+  return new Proxy($q, {
+    get(target, queryName) {
+      const query = target[queryName];
+      return !query || query.isLoading || !query.data ? emptyProxy : query;
+    }
+  });
+}
+
+export function generateDynamicMetadata($q: any, $ctx: any) {
+  return {
+    title: "Abonnement et recharges",
+
+    openGraph: {
+      title: "Abonnement et recharges"
+    },
+    twitter: {
+      card: "summary",
+      title: "Abonnement et recharges"
+    }
+  };
+}
+
 createPlasmicElementProxy;
 
 export type PlasmicParametresAbonnement__VariantMembers = {};
@@ -227,37 +256,37 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
         path: "productId",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => ``
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ``
       },
       {
         path: "textInput.value",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
       },
       {
         path: "inputComboSelect.value",
         type: "private",
         variableType: "number",
-        initFunc: ({ $props, $state, $queries, $ctx }) => 0
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => 0
       },
       {
         path: "inputComboSelect2.value",
         type: "private",
         variableType: "number",
-        initFunc: ({ $props, $state, $queries, $ctx }) => 0
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => 0
       },
       {
         path: "inputComboSelect3.value",
         type: "private",
         variableType: "number",
-        initFunc: ({ $props, $state, $queries, $ctx }) => 0
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => 0
       },
       {
         path: "modalCreditsAlerts.isOpen",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) =>
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
           (() => {
             try {
               return (
@@ -282,31 +311,31 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
         path: "isModalCreditOpen",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => false
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
       },
       {
         path: "sessionId",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => ``
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ``
       },
       {
         path: "clientReferenceId",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => ""
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ""
       },
       {
         path: "paiementValidated",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => false
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
       },
       {
         path: "selectedProduct",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) =>
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
           (() => {
             try {
               return $queries.getUserStripeInfos.data[0].product_id;
@@ -325,55 +354,55 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
         path: "stripeSessionId",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => ``
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ``
       },
       {
         path: "priceId",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => ""
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ""
       },
       {
         path: "stripeCustomerId",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => ""
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ""
       },
       {
         path: "stripeStatus",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => ""
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ""
       },
       {
         path: "stripeSubscriptionId",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => ""
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ""
       },
       {
         path: "stripeCreateAccount",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => false
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
       },
       {
         path: "sidebar.disableLinks",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => true
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => true
       },
       {
         path: "sidebar.role",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => "employer"
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => "employer"
       },
       {
         path: "classicSubPid",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) =>
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
           (() => {
             try {
               return $queries.getStripeRefs.data[0].product_id;
@@ -395,6 +424,7 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
     $props,
     $ctx,
     $queries: $queries,
+    $q: {},
     $refs
   });
   const dataSourcesCtx = usePlasmicDataSourceContext();
@@ -466,24 +496,23 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
     $queries = new$Queries;
   }
 
+  const pageMetadata = generateDynamicMetadata(
+    wrapQueriesWithLoadingProxy({}),
+    $ctx
+  );
+
   const styleTokensClassNames = _useStyleTokens();
 
   return (
     <React.Fragment>
       <Head>
         <meta name="twitter:card" content="summary" />
-        <title key="title">
-          {PlasmicParametresAbonnement.pageMetadata.title}
-        </title>
-        <meta
-          key="og:title"
-          property="og:title"
-          content={PlasmicParametresAbonnement.pageMetadata.title}
-        />
+        <title key="title">{pageMetadata.title}</title>
+        <meta key="og:title" property="og:title" content={pageMetadata.title} />
         <meta
           key="twitter:title"
-          name="twitter:title"
-          content={PlasmicParametresAbonnement.pageMetadata.title}
+          property="twitter:title"
+          content={pageMetadata.title}
         />
       </Head>
 
@@ -1384,7 +1413,7 @@ function PlasmicParametresAbonnement__RenderFunc(props: {
                 [
                   {
                     name: "modalCreditsAlerts.isOpen",
-                    initFunc: ({ $props, $state, $queries }) =>
+                    initFunc: ({ $props, $state, $queries, $q }) =>
                       (() => {
                         try {
                           return (
@@ -5372,13 +5401,11 @@ export const PlasmicParametresAbonnement = Object.assign(
     internalVariantProps: PlasmicParametresAbonnement__VariantProps,
     internalArgProps: PlasmicParametresAbonnement__ArgProps,
 
-    // Page metadata
-    pageMetadata: {
-      title: "Abonnement et recharges",
-      description: "",
-      ogImageSrc: "",
-      canonical: ""
-    }
+    pageMetadata: generateDynamicMetadata(wrapQueriesWithLoadingProxy({}), {
+      pagePath: "/parametres-abonnement",
+      searchParams: {},
+      params: {}
+    })
   }
 );
 

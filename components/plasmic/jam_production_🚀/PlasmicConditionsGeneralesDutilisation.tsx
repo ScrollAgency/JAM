@@ -77,6 +77,35 @@ import DeleteSvgrepoComSvgIcon from "./icons/PlasmicIcon__DeleteSvgrepoComSvg"; 
 import CircleIcon from "./icons/PlasmicIcon__Circle"; // plasmic-import: je95h6YoQ2jE/icon
 import GroupIcon from "./icons/PlasmicIcon__Group"; // plasmic-import: yIYn4o5HgDaM/icon
 
+const emptyProxy: any = new Proxy(() => "", {
+  get(_, prop) {
+    return prop === Symbol.toPrimitive ? () => "" : emptyProxy;
+  }
+});
+
+function wrapQueriesWithLoadingProxy($q: any): any {
+  return new Proxy($q, {
+    get(target, queryName) {
+      const query = target[queryName];
+      return !query || query.isLoading || !query.data ? emptyProxy : query;
+    }
+  });
+}
+
+export function generateDynamicMetadata($q: any, $ctx: any) {
+  return {
+    title: "Conditions générales d'utilisation",
+
+    openGraph: {
+      title: "Conditions générales d'utilisation"
+    },
+    twitter: {
+      card: "summary",
+      title: "Conditions générales d'utilisation"
+    }
+  };
+}
+
 createPlasmicElementProxy;
 
 export type PlasmicConditionsGeneralesDutilisation__VariantMembers = {};
@@ -211,24 +240,23 @@ function PlasmicConditionsGeneralesDutilisation__RenderFunc(props: {
 
   const globalVariants = _useGlobalVariants();
 
+  const pageMetadata = generateDynamicMetadata(
+    wrapQueriesWithLoadingProxy({}),
+    $ctx
+  );
+
   const styleTokensClassNames = _useStyleTokens();
 
   return (
     <React.Fragment>
       <Head>
         <meta name="twitter:card" content="summary" />
-        <title key="title">
-          {PlasmicConditionsGeneralesDutilisation.pageMetadata.title}
-        </title>
-        <meta
-          key="og:title"
-          property="og:title"
-          content={PlasmicConditionsGeneralesDutilisation.pageMetadata.title}
-        />
+        <title key="title">{pageMetadata.title}</title>
+        <meta key="og:title" property="og:title" content={pageMetadata.title} />
         <meta
           key="twitter:title"
-          name="twitter:title"
-          content={PlasmicConditionsGeneralesDutilisation.pageMetadata.title}
+          property="twitter:title"
+          content={pageMetadata.title}
         />
       </Head>
 
@@ -276,6 +304,7 @@ function PlasmicConditionsGeneralesDutilisation__RenderFunc(props: {
                       )}
                       component={Link}
                       href={"#"}
+                      legacyBehavior={false}
                       platform={"nextjs"}
                     >
                       <PlasmicImg__
@@ -485,6 +514,7 @@ function PlasmicConditionsGeneralesDutilisation__RenderFunc(props: {
                       )}
                       component={Link}
                       href={"/"}
+                      legacyBehavior={false}
                       platform={"nextjs"}
                     >
                       {"Home"}
@@ -498,6 +528,7 @@ function PlasmicConditionsGeneralesDutilisation__RenderFunc(props: {
                       )}
                       component={Link}
                       href={"/"}
+                      legacyBehavior={false}
                       platform={"nextjs"}
                     >
                       {"About"}
@@ -511,6 +542,7 @@ function PlasmicConditionsGeneralesDutilisation__RenderFunc(props: {
                       )}
                       component={Link}
                       href={"/"}
+                      legacyBehavior={false}
                       platform={"nextjs"}
                     >
                       {"Contact"}
@@ -719,9 +751,8 @@ function PlasmicConditionsGeneralesDutilisation__RenderFunc(props: {
                           typeof $steps["goToConnexion"] === "object" &&
                           typeof $steps["goToConnexion"].then === "function"
                         ) {
-                          $steps["goToConnexion"] = await $steps[
-                            "goToConnexion"
-                          ];
+                          $steps["goToConnexion"] =
+                            await $steps["goToConnexion"];
                         }
                       }}
                     />
@@ -3011,10 +3042,12 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicConditionsGeneralesDutilisation__VariantsArgs;
     args?: PlasmicConditionsGeneralesDutilisation__ArgsType;
     overrides?: NodeOverridesType<T>;
-  } & Omit< // Specify variants directly as props
-    PlasmicConditionsGeneralesDutilisation__VariantsArgs,
-    ReservedPropsType
-  > &
+  } &
+    // Specify variants directly as props
+    Omit<
+      PlasmicConditionsGeneralesDutilisation__VariantsArgs,
+      ReservedPropsType
+    > &
     // Specify args directly as props
     Omit<PlasmicConditionsGeneralesDutilisation__ArgsType, ReservedPropsType> &
     // Specify overrides for each element directly as props
@@ -3143,13 +3176,11 @@ export const PlasmicConditionsGeneralesDutilisation = Object.assign(
     internalVariantProps: PlasmicConditionsGeneralesDutilisation__VariantProps,
     internalArgProps: PlasmicConditionsGeneralesDutilisation__ArgProps,
 
-    // Page metadata
-    pageMetadata: {
-      title: "Conditions générales d'utilisation",
-      description: "",
-      ogImageSrc: "",
-      canonical: ""
-    }
+    pageMetadata: generateDynamicMetadata(wrapQueriesWithLoadingProxy({}), {
+      pagePath: "/cgu",
+      searchParams: {},
+      params: {}
+    })
   }
 );
 

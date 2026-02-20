@@ -194,51 +194,52 @@ function PlasmicOnboarding__RenderFunc(props: {
         path: "productId",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => "prod_S81KBWHPyJa53z"
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
+          "prod_S81KBWHPyJa53z"
       },
       {
         path: "stripeSessionId",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) =>
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
           "cs_test_a1OndaBFWbGXTkTWhBWzrUXROUQWoUIf36yo4jdSBAcp0KPHMDcss5lBab"
       },
       {
         path: "createAccount",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => false
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
       },
       {
         path: "priceId",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) =>
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
           "price_1S3f0ZFVPXc61qf6OOV7PFZB"
       },
       {
         path: "customerId",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => ""
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ""
       },
       {
         path: "stripeStatus",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => ""
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ""
       },
       {
         path: "stripeSubscriptionId",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => ""
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ""
       },
       {
         path: "classicPid",
         type: "readonly",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) =>
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
           (() => {
             try {
               return $queries.getStripeRefs.data[0].product_id;
@@ -262,6 +263,7 @@ function PlasmicOnboarding__RenderFunc(props: {
     $props,
     $ctx,
     $queries: $queries,
+    $q: {},
     $refs
   });
   const dataSourcesCtx = usePlasmicDataSourceContext();
@@ -557,9 +559,8 @@ function PlasmicOnboarding__RenderFunc(props: {
                   typeof $steps["updateStripeSessionId"] === "object" &&
                   typeof $steps["updateStripeSessionId"].then === "function"
                 ) {
-                  $steps["updateStripeSessionId"] = await $steps[
-                    "updateStripeSessionId"
-                  ];
+                  $steps["updateStripeSessionId"] =
+                    await $steps["updateStripeSessionId"];
                 }
 
                 $steps["httpGet"] = true
@@ -668,9 +669,8 @@ function PlasmicOnboarding__RenderFunc(props: {
                   typeof $steps["updateStripeStatus"] === "object" &&
                   typeof $steps["updateStripeStatus"].then === "function"
                 ) {
-                  $steps["updateStripeStatus"] = await $steps[
-                    "updateStripeStatus"
-                  ];
+                  $steps["updateStripeStatus"] =
+                    await $steps["updateStripeStatus"];
                 }
 
                 $steps["updateStripeSubscriptionId"] = true
@@ -705,9 +705,8 @@ function PlasmicOnboarding__RenderFunc(props: {
                   typeof $steps["updateStripeSubscriptionId"].then ===
                     "function"
                 ) {
-                  $steps["updateStripeSubscriptionId"] = await $steps[
-                    "updateStripeSubscriptionId"
-                  ];
+                  $steps["updateStripeSubscriptionId"] =
+                    await $steps["updateStripeSubscriptionId"];
                 }
 
                 $steps["updateCreateAccount"] = true
@@ -741,9 +740,8 @@ function PlasmicOnboarding__RenderFunc(props: {
                   typeof $steps["updateCreateAccount"] === "object" &&
                   typeof $steps["updateCreateAccount"].then === "function"
                 ) {
-                  $steps["updateCreateAccount"] = await $steps[
-                    "updateCreateAccount"
-                  ];
+                  $steps["updateCreateAccount"] =
+                    await $steps["updateCreateAccount"];
                 }
               }}
               action3={async () => {
@@ -1189,9 +1187,8 @@ function PlasmicOnboarding__RenderFunc(props: {
                               typeof $steps["supabaseUploadFile"].then ===
                                 "function"
                             ) {
-                              $steps["supabaseUploadFile"] = await $steps[
-                                "supabaseUploadFile"
-                              ];
+                              $steps["supabaseUploadFile"] =
+                                await $steps["supabaseUploadFile"];
                             }
 
                             $steps["postgresUpdateById"] = true
@@ -1245,9 +1242,8 @@ function PlasmicOnboarding__RenderFunc(props: {
                               typeof $steps["postgresUpdateById"].then ===
                                 "function"
                             ) {
-                              $steps["postgresUpdateById"] = await $steps[
-                                "postgresUpdateById"
-                              ];
+                              $steps["postgresUpdateById"] =
+                                await $steps["postgresUpdateById"];
                             }
                           }}
                           showUploadList={false}
@@ -1336,9 +1332,8 @@ function PlasmicOnboarding__RenderFunc(props: {
                                 typeof $steps["updateUpload2Files"].then ===
                                   "function"
                               ) {
-                                $steps["updateUpload2Files"] = await $steps[
-                                  "updateUpload2Files"
-                                ];
+                                $steps["updateUpload2Files"] =
+                                  await $steps["updateUpload2Files"];
                               }
 
                               $steps["runCode"] = true
@@ -1412,9 +1407,8 @@ function PlasmicOnboarding__RenderFunc(props: {
                                 typeof $steps["postgresUpdateMany"].then ===
                                   "function"
                               ) {
-                                $steps["postgresUpdateMany"] = await $steps[
-                                  "postgresUpdateMany"
-                                ];
+                                $steps["postgresUpdateMany"] =
+                                  await $steps["postgresUpdateMany"];
                               }
                             }}
                           >
@@ -1895,9 +1889,8 @@ function PlasmicOnboarding__RenderFunc(props: {
                                 typeof $steps["supabaseUploadFile"].then ===
                                   "function"
                               ) {
-                                $steps["supabaseUploadFile"] = await $steps[
-                                  "supabaseUploadFile"
-                                ];
+                                $steps["supabaseUploadFile"] =
+                                  await $steps["supabaseUploadFile"];
                               }
 
                               $steps["postgresUpdateById"] = true
@@ -1955,9 +1948,8 @@ function PlasmicOnboarding__RenderFunc(props: {
                                 typeof $steps["postgresUpdateById"].then ===
                                   "function"
                               ) {
-                                $steps["postgresUpdateById"] = await $steps[
-                                  "postgresUpdateById"
-                                ];
+                                $steps["postgresUpdateById"] =
+                                  await $steps["postgresUpdateById"];
                               }
                             }}
                             showUploadList={false}
@@ -2097,9 +2089,8 @@ function PlasmicOnboarding__RenderFunc(props: {
                                 typeof $steps["supabaseUploadFile"].then ===
                                   "function"
                               ) {
-                                $steps["supabaseUploadFile"] = await $steps[
-                                  "supabaseUploadFile"
-                                ];
+                                $steps["supabaseUploadFile"] =
+                                  await $steps["supabaseUploadFile"];
                               }
 
                               $steps["postgresUpdateById"] = true
@@ -2157,9 +2148,8 @@ function PlasmicOnboarding__RenderFunc(props: {
                                 typeof $steps["postgresUpdateById"].then ===
                                   "function"
                               ) {
-                                $steps["postgresUpdateById"] = await $steps[
-                                  "postgresUpdateById"
-                                ];
+                                $steps["postgresUpdateById"] =
+                                  await $steps["postgresUpdateById"];
                               }
                             }}
                             showUploadList={false}
@@ -2356,9 +2346,8 @@ function PlasmicOnboarding__RenderFunc(props: {
                           typeof $steps["updateProductId"] === "object" &&
                           typeof $steps["updateProductId"].then === "function"
                         ) {
-                          $steps["updateProductId"] = await $steps[
-                            "updateProductId"
-                          ];
+                          $steps["updateProductId"] =
+                            await $steps["updateProductId"];
                         }
 
                         $steps["updatePriceId"] = true
@@ -2396,9 +2385,8 @@ function PlasmicOnboarding__RenderFunc(props: {
                           typeof $steps["updatePriceId"] === "object" &&
                           typeof $steps["updatePriceId"].then === "function"
                         ) {
-                          $steps["updatePriceId"] = await $steps[
-                            "updatePriceId"
-                          ];
+                          $steps["updatePriceId"] =
+                            await $steps["updatePriceId"];
                         }
                       }}
                     >
@@ -2557,9 +2545,8 @@ function PlasmicOnboarding__RenderFunc(props: {
                       typeof $steps["stripeCheckoutSession"] === "object" &&
                       typeof $steps["stripeCheckoutSession"].then === "function"
                     ) {
-                      $steps["stripeCheckoutSession"] = await $steps[
-                        "stripeCheckoutSession"
-                      ];
+                      $steps["stripeCheckoutSession"] =
+                        await $steps["stripeCheckoutSession"];
                     }
 
                     $steps["goToPage"] = true
@@ -2654,9 +2641,8 @@ function PlasmicOnboarding__RenderFunc(props: {
                         typeof $steps["postgresUpdateMany"] === "object" &&
                         typeof $steps["postgresUpdateMany"].then === "function"
                       ) {
-                        $steps["postgresUpdateMany"] = await $steps[
-                          "postgresUpdateMany"
-                        ];
+                        $steps["postgresUpdateMany"] =
+                          await $steps["postgresUpdateMany"];
                       }
                     }}
                     role={"img"}
@@ -2792,7 +2778,9 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicOnboarding__VariantsArgs;
     args?: PlasmicOnboarding__ArgsType;
     overrides?: NodeOverridesType<T>;
-  } & Omit<PlasmicOnboarding__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
+  } &
+    // Specify variants directly as props
+    Omit<PlasmicOnboarding__VariantsArgs, ReservedPropsType> &
     // Specify args directly as props
     Omit<PlasmicOnboarding__ArgsType, ReservedPropsType> &
     // Specify overrides for each element directly as props

@@ -150,6 +150,7 @@ function PlasmicJobName__RenderFunc(props: {
     $props,
     $ctx,
     $queries: {},
+    $q: {},
     $refs
   });
 
@@ -194,7 +195,9 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicJobName__VariantsArgs;
     args?: PlasmicJobName__ArgsType;
     overrides?: NodeOverridesType<T>;
-  } & Omit<PlasmicJobName__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
+  } &
+    // Specify variants directly as props
+    Omit<PlasmicJobName__VariantsArgs, ReservedPropsType> &
     // Specify args directly as props
     Omit<PlasmicJobName__ArgsType, ReservedPropsType> &
     // Specify overrides for each element directly as props

@@ -400,6 +400,7 @@ function PlasmicMobileNavbarBottomAdmin__RenderFunc(props: {
           )}
           component={Link}
           href={`/annonces`}
+          legacyBehavior={false}
           platform={"nextjs"}
         >
           <div
@@ -433,6 +434,7 @@ function PlasmicMobileNavbarBottomAdmin__RenderFunc(props: {
           )}
           component={Link}
           href={`/alertes`}
+          legacyBehavior={false}
           platform={"nextjs"}
         >
           <div
@@ -466,6 +468,7 @@ function PlasmicMobileNavbarBottomAdmin__RenderFunc(props: {
           )}
           component={Link}
           href={"/parametres"}
+          legacyBehavior={false}
           platform={"nextjs"}
         >
           <div
@@ -535,7 +538,9 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicMobileNavbarBottomAdmin__VariantsArgs;
     args?: PlasmicMobileNavbarBottomAdmin__ArgsType;
     overrides?: NodeOverridesType<T>;
-  } & Omit<PlasmicMobileNavbarBottomAdmin__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
+  } &
+    // Specify variants directly as props
+    Omit<PlasmicMobileNavbarBottomAdmin__VariantsArgs, ReservedPropsType> &
     // Specify args directly as props
     Omit<PlasmicMobileNavbarBottomAdmin__ArgsType, ReservedPropsType> &
     // Specify overrides for each element directly as props

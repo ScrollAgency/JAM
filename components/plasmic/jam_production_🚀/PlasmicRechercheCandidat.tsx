@@ -101,6 +101,35 @@ import EnvelopeSimpleIcon from "./icons/PlasmicIcon__EnvelopeSimple"; // plasmic
 import PictogramIcon from "./icons/PlasmicIcon__Pictogram"; // plasmic-import: KlZQiGxQTluF/icon
 import MagnifyingGlassIcon from "./icons/PlasmicIcon__MagnifyingGlass"; // plasmic-import: fii_q6lckj-n/icon
 
+const emptyProxy: any = new Proxy(() => "", {
+  get(_, prop) {
+    return prop === Symbol.toPrimitive ? () => "" : emptyProxy;
+  }
+});
+
+function wrapQueriesWithLoadingProxy($q: any): any {
+  return new Proxy($q, {
+    get(target, queryName) {
+      const query = target[queryName];
+      return !query || query.isLoading || !query.data ? emptyProxy : query;
+    }
+  });
+}
+
+export function generateDynamicMetadata($q: any, $ctx: any) {
+  return {
+    title: "Recherche de candidats",
+
+    openGraph: {
+      title: "Recherche de candidats"
+    },
+    twitter: {
+      card: "summary",
+      title: "Recherche de candidats"
+    }
+  };
+}
+
 createPlasmicElementProxy;
 
 export type PlasmicRechercheCandidat__VariantMembers = {};
@@ -233,7 +262,7 @@ function PlasmicRechercheCandidat__RenderFunc(props: {
         path: "filterForm.value",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined,
 
         refName: "filterForm",
         onMutate: generateOnMutateForSpec("value", FormWrapper_Helpers)
@@ -242,7 +271,7 @@ function PlasmicRechercheCandidat__RenderFunc(props: {
         path: "filterForm.isSubmitting",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => false,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => false,
 
         refName: "filterForm",
         onMutate: generateOnMutateForSpec("isSubmitting", FormWrapper_Helpers)
@@ -251,7 +280,7 @@ function PlasmicRechercheCandidat__RenderFunc(props: {
         path: "keyWordsInput.value",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) =>
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
           (() => {
             try {
               return "";
@@ -272,7 +301,7 @@ function PlasmicRechercheCandidat__RenderFunc(props: {
         path: "locationInput.value",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined,
 
         onMutate: generateOnMutateForSpec("value", AntdInput_Helpers)
       },
@@ -280,61 +309,61 @@ function PlasmicRechercheCandidat__RenderFunc(props: {
         path: "keyWordsTab",
         type: "private",
         variableType: "array",
-        initFunc: ({ $props, $state, $queries, $ctx }) => []
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => []
       },
       {
         path: "cityTab",
         type: "private",
         variableType: "array",
-        initFunc: ({ $props, $state, $queries, $ctx }) => []
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => []
       },
       {
         path: "listWords",
         type: "private",
         variableType: "array",
-        initFunc: ({ $props, $state, $queries, $ctx }) => []
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => []
       },
       {
         path: "cvModal.isOpen",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
       },
       {
         path: "currentCvUrl",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => ""
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ""
       },
       {
         path: "currentLdmUrl",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => ""
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ""
       },
       {
         path: "coverLetterModal.isOpen",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
       },
       {
         path: "variable",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => ""
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ""
       },
       {
         path: "userId",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => ""
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ""
       },
       {
         path: "profilePhoto",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => ""
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ""
       },
       {
         path: "file[].userId",
@@ -350,19 +379,19 @@ function PlasmicRechercheCandidat__RenderFunc(props: {
         path: "sidebar.disableLinks",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => true
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => true
       },
       {
         path: "sidebar.role",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => "employer"
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => "employer"
       },
       {
         path: "candidates",
         type: "private",
         variableType: "array",
-        initFunc: ({ $props, $state, $queries, $ctx }) =>
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
           (() => {
             try {
               return (() => {
@@ -481,7 +510,7 @@ function PlasmicRechercheCandidat__RenderFunc(props: {
         path: "resultsArray",
         type: "private",
         variableType: "array",
-        initFunc: ({ $props, $state, $queries, $ctx }) =>
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
           (() => {
             try {
               return (() => {
@@ -529,6 +558,7 @@ function PlasmicRechercheCandidat__RenderFunc(props: {
     $props,
     $ctx,
     $queries: $queries,
+    $q: {},
     $refs
   });
   const dataSourcesCtx = usePlasmicDataSourceContext();
@@ -564,22 +594,23 @@ function PlasmicRechercheCandidat__RenderFunc(props: {
     $queries = new$Queries;
   }
 
+  const pageMetadata = generateDynamicMetadata(
+    wrapQueriesWithLoadingProxy({}),
+    $ctx
+  );
+
   const styleTokensClassNames = _useStyleTokens();
 
   return (
     <React.Fragment>
       <Head>
         <meta name="twitter:card" content="summary" />
-        <title key="title">{PlasmicRechercheCandidat.pageMetadata.title}</title>
-        <meta
-          key="og:title"
-          property="og:title"
-          content={PlasmicRechercheCandidat.pageMetadata.title}
-        />
+        <title key="title">{pageMetadata.title}</title>
+        <meta key="og:title" property="og:title" content={pageMetadata.title} />
         <meta
           key="twitter:title"
-          name="twitter:title"
-          content={PlasmicRechercheCandidat.pageMetadata.title}
+          property="twitter:title"
+          content={pageMetadata.title}
         />
       </Head>
 
@@ -1465,7 +1496,8 @@ function PlasmicRechercheCandidat__RenderFunc(props: {
                                         initFunc: ({
                                           $props,
                                           $state,
-                                          $queries
+                                          $queries,
+                                          $q
                                         }) =>
                                           (() => {
                                             try {
@@ -1487,7 +1519,8 @@ function PlasmicRechercheCandidat__RenderFunc(props: {
                                         initFunc: ({
                                           $props,
                                           $state,
-                                          $queries
+                                          $queries,
+                                          $q
                                         }) =>
                                           (() => {
                                             try {
@@ -3573,13 +3606,11 @@ export const PlasmicRechercheCandidat = Object.assign(
     internalVariantProps: PlasmicRechercheCandidat__VariantProps,
     internalArgProps: PlasmicRechercheCandidat__ArgProps,
 
-    // Page metadata
-    pageMetadata: {
-      title: "Recherche de candidats",
-      description: "",
-      ogImageSrc: "",
-      canonical: ""
-    }
+    pageMetadata: generateDynamicMetadata(wrapQueriesWithLoadingProxy({}), {
+      pagePath: "/recherche-candidat",
+      searchParams: {},
+      params: {}
+    })
   }
 );
 

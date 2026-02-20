@@ -77,6 +77,35 @@ import sty from "./PlasmicMotDePasseOublie.module.css"; // plasmic-import: nZQjp
 
 import PictogramIcon from "./icons/PlasmicIcon__Pictogram"; // plasmic-import: KlZQiGxQTluF/icon
 
+const emptyProxy: any = new Proxy(() => "", {
+  get(_, prop) {
+    return prop === Symbol.toPrimitive ? () => "" : emptyProxy;
+  }
+});
+
+function wrapQueriesWithLoadingProxy($q: any): any {
+  return new Proxy($q, {
+    get(target, queryName) {
+      const query = target[queryName];
+      return !query || query.isLoading || !query.data ? emptyProxy : query;
+    }
+  });
+}
+
+export function generateDynamicMetadata($q: any, $ctx: any) {
+  return {
+    title: "Mot de passe oublié",
+
+    openGraph: {
+      title: "Mot de passe oublié"
+    },
+    twitter: {
+      card: "summary",
+      title: "Mot de passe oublié"
+    }
+  };
+}
+
 createPlasmicElementProxy;
 
 export type PlasmicMotDePasseOublie__VariantMembers = {};
@@ -158,13 +187,13 @@ function PlasmicMotDePasseOublie__RenderFunc(props: {
         path: "succrss",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => false
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
       },
       {
         path: "forgotPassword.email",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => ""
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ""
       }
     ],
     [$props, $ctx, $refs]
@@ -173,6 +202,7 @@ function PlasmicMotDePasseOublie__RenderFunc(props: {
     $props,
     $ctx,
     $queries: $queries,
+    $q: {},
     $refs
   });
 
@@ -196,22 +226,23 @@ function PlasmicMotDePasseOublie__RenderFunc(props: {
     $queries = new$Queries;
   }
 
+  const pageMetadata = generateDynamicMetadata(
+    wrapQueriesWithLoadingProxy({}),
+    $ctx
+  );
+
   const styleTokensClassNames = _useStyleTokens();
 
   return (
     <React.Fragment>
       <Head>
         <meta name="twitter:card" content="summary" />
-        <title key="title">{PlasmicMotDePasseOublie.pageMetadata.title}</title>
-        <meta
-          key="og:title"
-          property="og:title"
-          content={PlasmicMotDePasseOublie.pageMetadata.title}
-        />
+        <title key="title">{pageMetadata.title}</title>
+        <meta key="og:title" property="og:title" content={pageMetadata.title} />
         <meta
           key="twitter:title"
-          name="twitter:title"
-          content={PlasmicMotDePasseOublie.pageMetadata.title}
+          property="twitter:title"
+          content={pageMetadata.title}
         />
       </Head>
 
@@ -398,9 +429,8 @@ function PlasmicMotDePasseOublie__RenderFunc(props: {
                     typeof $steps["invokeGlobalAction"] === "object" &&
                     typeof $steps["invokeGlobalAction"].then === "function"
                   ) {
-                    $steps["invokeGlobalAction"] = await $steps[
-                      "invokeGlobalAction"
-                    ];
+                    $steps["invokeGlobalAction"] =
+                      await $steps["invokeGlobalAction"];
                   }
 
                   $steps["invokeGlobalAction2"] = true
@@ -422,9 +452,8 @@ function PlasmicMotDePasseOublie__RenderFunc(props: {
                     typeof $steps["invokeGlobalAction2"] === "object" &&
                     typeof $steps["invokeGlobalAction2"].then === "function"
                   ) {
-                    $steps["invokeGlobalAction2"] = await $steps[
-                      "invokeGlobalAction2"
-                    ];
+                    $steps["invokeGlobalAction2"] =
+                      await $steps["invokeGlobalAction2"];
                   }
                 }}
                 placeholderEmail={"Entrez votre email"}
@@ -540,7 +569,9 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicMotDePasseOublie__VariantsArgs;
     args?: PlasmicMotDePasseOublie__ArgsType;
     overrides?: NodeOverridesType<T>;
-  } & Omit<PlasmicMotDePasseOublie__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
+  } &
+    // Specify variants directly as props
+    Omit<PlasmicMotDePasseOublie__VariantsArgs, ReservedPropsType> &
     // Specify args directly as props
     Omit<PlasmicMotDePasseOublie__ArgsType, ReservedPropsType> &
     // Specify overrides for each element directly as props
@@ -605,13 +636,11 @@ export const PlasmicMotDePasseOublie = Object.assign(
     internalVariantProps: PlasmicMotDePasseOublie__VariantProps,
     internalArgProps: PlasmicMotDePasseOublie__ArgProps,
 
-    // Page metadata
-    pageMetadata: {
-      title: "Mot de passe oublié",
-      description: "",
-      ogImageSrc: "",
-      canonical: ""
-    }
+    pageMetadata: generateDynamicMetadata(wrapQueriesWithLoadingProxy({}), {
+      pagePath: "/forgot-password",
+      searchParams: {},
+      params: {}
+    })
   }
 );
 

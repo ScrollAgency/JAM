@@ -196,7 +196,7 @@ function PlasmicRangeSlider__RenderFunc(props: {
         path: "ariaRangeSlider.value",
         type: "readonly",
         variableType: "array",
-        initFunc: ({ $props, $state, $queries, $ctx }) =>
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
           $props["initialValue"],
 
         onChangeProp: "onChange"
@@ -208,6 +208,7 @@ function PlasmicRangeSlider__RenderFunc(props: {
     $props,
     $ctx,
     $queries: {},
+    $q: {},
     $refs
   });
 
@@ -410,7 +411,9 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicRangeSlider__VariantsArgs;
     args?: PlasmicRangeSlider__ArgsType;
     overrides?: NodeOverridesType<T>;
-  } & Omit<PlasmicRangeSlider__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
+  } &
+    // Specify variants directly as props
+    Omit<PlasmicRangeSlider__VariantsArgs, ReservedPropsType> &
     // Specify args directly as props
     Omit<PlasmicRangeSlider__ArgsType, ReservedPropsType> &
     // Specify overrides for each element directly as props

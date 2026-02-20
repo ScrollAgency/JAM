@@ -169,7 +169,7 @@ function PlasmicCheckboxGroup__RenderFunc(props: {
         path: "ariaCheckboxGroup.value",
         type: "readonly",
         variableType: "array",
-        initFunc: ({ $props, $state, $queries, $ctx }) =>
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
           $props["defaultValues"],
 
         onChangeProp: "onChange"
@@ -181,6 +181,7 @@ function PlasmicCheckboxGroup__RenderFunc(props: {
     $props,
     $ctx,
     $queries: {},
+    $q: {},
     $refs
   });
 
@@ -308,7 +309,9 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicCheckboxGroup__VariantsArgs;
     args?: PlasmicCheckboxGroup__ArgsType;
     overrides?: NodeOverridesType<T>;
-  } & Omit<PlasmicCheckboxGroup__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
+  } &
+    // Specify variants directly as props
+    Omit<PlasmicCheckboxGroup__VariantsArgs, ReservedPropsType> &
     // Specify args directly as props
     Omit<PlasmicCheckboxGroup__ArgsType, ReservedPropsType> &
     // Specify overrides for each element directly as props

@@ -70,6 +70,35 @@ import sty from "./PlasmicResetPassword.module.css"; // plasmic-import: n2hOExzm
 
 import PictogramIcon from "./icons/PlasmicIcon__Pictogram"; // plasmic-import: KlZQiGxQTluF/icon
 
+const emptyProxy: any = new Proxy(() => "", {
+  get(_, prop) {
+    return prop === Symbol.toPrimitive ? () => "" : emptyProxy;
+  }
+});
+
+function wrapQueriesWithLoadingProxy($q: any): any {
+  return new Proxy($q, {
+    get(target, queryName) {
+      const query = target[queryName];
+      return !query || query.isLoading || !query.data ? emptyProxy : query;
+    }
+  });
+}
+
+export function generateDynamicMetadata($q: any, $ctx: any) {
+  return {
+    title: "Réinitialiser son mot de passe",
+
+    openGraph: {
+      title: "Réinitialiser son mot de passe"
+    },
+    twitter: {
+      card: "summary",
+      title: "Réinitialiser son mot de passe"
+    }
+  };
+}
+
 createPlasmicElementProxy;
 
 export type PlasmicResetPassword__VariantMembers = {};
@@ -146,7 +175,7 @@ function PlasmicResetPassword__RenderFunc(props: {
         path: "variable",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) =>
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
           (() => {
             try {
               return $ctx.pagePath.split("/").pop().replace(/\[|\]/g, "");
@@ -165,13 +194,13 @@ function PlasmicResetPassword__RenderFunc(props: {
         path: "resetPassword.password",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => ""
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ""
       },
       {
         path: "resetPassword.confirmPassword",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => ""
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ""
       }
     ],
     [$props, $ctx, $refs]
@@ -180,8 +209,14 @@ function PlasmicResetPassword__RenderFunc(props: {
     $props,
     $ctx,
     $queries: {},
+    $q: {},
     $refs
   });
+
+  const pageMetadata = generateDynamicMetadata(
+    wrapQueriesWithLoadingProxy({}),
+    $ctx
+  );
 
   const styleTokensClassNames = _useStyleTokens();
 
@@ -189,16 +224,12 @@ function PlasmicResetPassword__RenderFunc(props: {
     <React.Fragment>
       <Head>
         <meta name="twitter:card" content="summary" />
-        <title key="title">{PlasmicResetPassword.pageMetadata.title}</title>
-        <meta
-          key="og:title"
-          property="og:title"
-          content={PlasmicResetPassword.pageMetadata.title}
-        />
+        <title key="title">{pageMetadata.title}</title>
+        <meta key="og:title" property="og:title" content={pageMetadata.title} />
         <meta
           key="twitter:title"
-          name="twitter:title"
-          content={PlasmicResetPassword.pageMetadata.title}
+          property="twitter:title"
+          content={pageMetadata.title}
         />
       </Head>
 
@@ -390,9 +421,8 @@ function PlasmicResetPassword__RenderFunc(props: {
                     typeof $steps["invokeGlobalAction"] === "object" &&
                     typeof $steps["invokeGlobalAction"].then === "function"
                   ) {
-                    $steps["invokeGlobalAction"] = await $steps[
-                      "invokeGlobalAction"
-                    ];
+                    $steps["invokeGlobalAction"] =
+                      await $steps["invokeGlobalAction"];
                   }
                 }}
                 password={generateStateValueProp($state, [
@@ -494,7 +524,9 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicResetPassword__VariantsArgs;
     args?: PlasmicResetPassword__ArgsType;
     overrides?: NodeOverridesType<T>;
-  } & Omit<PlasmicResetPassword__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
+  } &
+    // Specify variants directly as props
+    Omit<PlasmicResetPassword__VariantsArgs, ReservedPropsType> &
     // Specify args directly as props
     Omit<PlasmicResetPassword__ArgsType, ReservedPropsType> &
     // Specify overrides for each element directly as props
@@ -558,13 +590,11 @@ export const PlasmicResetPassword = Object.assign(
     internalVariantProps: PlasmicResetPassword__VariantProps,
     internalArgProps: PlasmicResetPassword__ArgProps,
 
-    // Page metadata
-    pageMetadata: {
-      title: "Réinitialiser son mot de passe",
-      description: "",
-      ogImageSrc: "",
-      canonical: ""
-    }
+    pageMetadata: generateDynamicMetadata(wrapQueriesWithLoadingProxy({}), {
+      pagePath: "/reset-password/[recovery_token]",
+      searchParams: {},
+      params: {}
+    })
   }
 );
 

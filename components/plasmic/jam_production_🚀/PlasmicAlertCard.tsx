@@ -567,7 +567,9 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicAlertCard__VariantsArgs;
     args?: PlasmicAlertCard__ArgsType;
     overrides?: NodeOverridesType<T>;
-  } & Omit<PlasmicAlertCard__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
+  } &
+    // Specify variants directly as props
+    Omit<PlasmicAlertCard__VariantsArgs, ReservedPropsType> &
     // Specify args directly as props
     Omit<PlasmicAlertCard__ArgsType, ReservedPropsType> &
     // Specify overrides for each element directly as props

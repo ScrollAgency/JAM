@@ -172,7 +172,7 @@ function PlasmicTooltip__RenderFunc(props: {
         path: "ariaTooltip.isOpen",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
       }
     ],
     [$props, $ctx, $refs]
@@ -181,6 +181,7 @@ function PlasmicTooltip__RenderFunc(props: {
     $props,
     $ctx,
     $queries: {},
+    $q: {},
     $refs
   });
 
@@ -307,7 +308,9 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicTooltip__VariantsArgs;
     args?: PlasmicTooltip__ArgsType;
     overrides?: NodeOverridesType<T>;
-  } & Omit<PlasmicTooltip__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
+  } &
+    // Specify variants directly as props
+    Omit<PlasmicTooltip__VariantsArgs, ReservedPropsType> &
     // Specify args directly as props
     Omit<PlasmicTooltip__ArgsType, ReservedPropsType> &
     // Specify overrides for each element directly as props

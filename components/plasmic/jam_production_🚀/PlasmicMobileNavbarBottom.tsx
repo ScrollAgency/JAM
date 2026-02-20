@@ -174,7 +174,7 @@ function PlasmicMobileNavbarBottom__RenderFunc(props: {
         path: "user",
         type: "private",
         variableType: "variant",
-        initFunc: ({ $props, $state, $queries, $ctx }) => $props.user
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.user
       }
     ],
     [$props, $ctx, $refs]
@@ -183,6 +183,7 @@ function PlasmicMobileNavbarBottom__RenderFunc(props: {
     $props,
     $ctx,
     $queries: {},
+    $q: {},
     $refs
   });
 
@@ -488,6 +489,7 @@ function PlasmicMobileNavbarBottom__RenderFunc(props: {
           )}
           component={Link}
           href={`/annonces`}
+          legacyBehavior={false}
           platform={"nextjs"}
         >
           <div
@@ -521,6 +523,7 @@ function PlasmicMobileNavbarBottom__RenderFunc(props: {
           )}
           component={Link}
           href={`/alertes`}
+          legacyBehavior={false}
           platform={"nextjs"}
         >
           <div
@@ -554,6 +557,7 @@ function PlasmicMobileNavbarBottom__RenderFunc(props: {
           )}
           component={Link}
           href={"/parametres"}
+          legacyBehavior={false}
           platform={"nextjs"}
         >
           <div
@@ -855,6 +859,7 @@ function PlasmicMobileNavbarBottom__RenderFunc(props: {
           )}
           component={Link}
           href={`/annonces`}
+          legacyBehavior={false}
           platform={"nextjs"}
         >
           <div
@@ -888,6 +893,7 @@ function PlasmicMobileNavbarBottom__RenderFunc(props: {
           )}
           component={Link}
           href={`/alertes`}
+          legacyBehavior={false}
           platform={"nextjs"}
         >
           <div
@@ -921,6 +927,7 @@ function PlasmicMobileNavbarBottom__RenderFunc(props: {
           )}
           component={Link}
           href={"/parametres"}
+          legacyBehavior={false}
           platform={"nextjs"}
         >
           <div
@@ -1127,6 +1134,7 @@ function PlasmicMobileNavbarBottom__RenderFunc(props: {
           )}
           component={Link}
           href={`/annonces`}
+          legacyBehavior={false}
           platform={"nextjs"}
         >
           <div
@@ -1160,6 +1168,7 @@ function PlasmicMobileNavbarBottom__RenderFunc(props: {
           )}
           component={Link}
           href={`/alertes`}
+          legacyBehavior={false}
           platform={"nextjs"}
         >
           <div
@@ -1193,6 +1202,7 @@ function PlasmicMobileNavbarBottom__RenderFunc(props: {
           )}
           component={Link}
           href={"/parametres"}
+          legacyBehavior={false}
           platform={"nextjs"}
         >
           <div

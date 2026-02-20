@@ -297,7 +297,7 @@ function PlasmicJobCard__RenderFunc(props: {
         path: "switch3.isSelected",
         type: "readonly",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) =>
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
           (() => {
             try {
               return $props.isBoosted;
@@ -446,7 +446,7 @@ function PlasmicJobCard__RenderFunc(props: {
         path: "variable",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => ""
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ""
       }
     ],
     [$props, $ctx, $refs]
@@ -455,6 +455,7 @@ function PlasmicJobCard__RenderFunc(props: {
     $props,
     $ctx,
     $queries: {},
+    $q: {},
     $refs
   });
 
@@ -625,9 +626,7 @@ function PlasmicJobCard__RenderFunc(props: {
                   <React.Fragment>
                     {(() => {
                       try {
-                        return `Publié le ${new Date(
-                          $state.publishDate
-                        ).toLocaleDateString("fr-FR")}`;
+                        return `Publié le ${new Date($state.publishDate).toLocaleDateString("fr-FR")}`;
                       } catch (e) {
                         if (
                           e instanceof TypeError ||
@@ -737,8 +736,8 @@ function PlasmicJobCard__RenderFunc(props: {
                           color: $state.isBoosted
                             ? "#002400"
                             : Number($props.stripe.data[0].recharge_boost) == 0
-                            ? "#C8C8C8"
-                            : "#666666"
+                              ? "#C8C8C8"
+                              : "#666666"
                         };
                       } catch (e) {
                         if (
@@ -822,9 +821,8 @@ function PlasmicJobCard__RenderFunc(props: {
                             typeof $steps["runOnJobToBoost"] === "object" &&
                             typeof $steps["runOnJobToBoost"].then === "function"
                           ) {
-                            $steps["runOnJobToBoost"] = await $steps[
-                              "runOnJobToBoost"
-                            ];
+                            $steps["runOnJobToBoost"] =
+                              await $steps["runOnJobToBoost"];
                           }
                         }).apply(null, eventArgs);
                       }}
@@ -866,9 +864,8 @@ function PlasmicJobCard__RenderFunc(props: {
                       typeof $steps["invokeGlobalAction"] === "object" &&
                       typeof $steps["invokeGlobalAction"].then === "function"
                     ) {
-                      $steps["invokeGlobalAction"] = await $steps[
-                        "invokeGlobalAction"
-                      ];
+                      $steps["invokeGlobalAction"] =
+                        await $steps["invokeGlobalAction"];
                     }
                   }}
                   src={{
@@ -1203,9 +1200,8 @@ function PlasmicJobCard__RenderFunc(props: {
                 typeof $steps["runOnclickToPostAd"] === "object" &&
                 typeof $steps["runOnclickToPostAd"].then === "function"
               ) {
-                $steps["runOnclickToPostAd"] = await $steps[
-                  "runOnclickToPostAd"
-                ];
+                $steps["runOnclickToPostAd"] =
+                  await $steps["runOnclickToPostAd"];
               }
             }}
           />
@@ -1250,8 +1246,8 @@ function PlasmicJobCard__RenderFunc(props: {
                           ? $state.numJobApplications === 1
                             ? "Voir la candidature"
                             : $state.numJobApplications > 1
-                            ? `Voir les ${$state.numJobApplications} candidatures`
-                            : "Voir les candidatures"
+                              ? `Voir les ${$state.numJobApplications} candidatures`
+                              : "Voir les candidatures"
                           : "";
                       })();
                     } catch (e) {
@@ -1286,9 +1282,8 @@ function PlasmicJobCard__RenderFunc(props: {
                 typeof $steps["runOnclickToShowJobApplications"].then ===
                   "function"
               ) {
-                $steps["runOnclickToShowJobApplications"] = await $steps[
-                  "runOnclickToShowJobApplications"
-                ];
+                $steps["runOnclickToShowJobApplications"] =
+                  await $steps["runOnclickToShowJobApplications"];
               }
             }}
           />
@@ -1386,7 +1381,9 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicJobCard__VariantsArgs;
     args?: PlasmicJobCard__ArgsType;
     overrides?: NodeOverridesType<T>;
-  } & Omit<PlasmicJobCard__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
+  } &
+    // Specify variants directly as props
+    Omit<PlasmicJobCard__VariantsArgs, ReservedPropsType> &
     // Specify args directly as props
     Omit<PlasmicJobCard__ArgsType, ReservedPropsType> &
     // Specify overrides for each element directly as props

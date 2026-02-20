@@ -952,7 +952,7 @@
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  transform: translateX(0px) translateY(0px) translateZ(0px);
+  transform: skew(0deg, 0deg);
   left: 0;
   top: auto;
   right: 0;
@@ -986,7 +986,7 @@
   object-fit: cover;
   max-width: 100%;
   color: var(--token-uqUcyTUgvV0c);
-  transform: rotateX(0deg) rotateY(0deg) rotateZ(90deg);
+  transform: rotate3d(0, 0, 1, 90deg);
   width: 20px;
   height: 20px;
   flex-shrink: 0;

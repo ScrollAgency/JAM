@@ -261,9 +261,8 @@ function PlasmicMobileNavbarBottomCompany__RenderFunc(props: {
               typeof $steps["goToRechercheCandidat"] === "object" &&
               typeof $steps["goToRechercheCandidat"].then === "function"
             ) {
-              $steps["goToRechercheCandidat"] = await $steps[
-                "goToRechercheCandidat"
-              ];
+              $steps["goToRechercheCandidat"] =
+                await $steps["goToRechercheCandidat"];
             }
           }}
           start={
@@ -387,9 +386,8 @@ function PlasmicMobileNavbarBottomCompany__RenderFunc(props: {
               typeof $steps["goToParametresEmployeur"] === "object" &&
               typeof $steps["goToParametresEmployeur"].then === "function"
             ) {
-              $steps["goToParametresEmployeur"] = await $steps[
-                "goToParametresEmployeur"
-              ];
+              $steps["goToParametresEmployeur"] =
+                await $steps["goToParametresEmployeur"];
             }
           }}
           start={
@@ -423,6 +421,7 @@ function PlasmicMobileNavbarBottomCompany__RenderFunc(props: {
           )}
           component={Link}
           href={`/annonces`}
+          legacyBehavior={false}
           platform={"nextjs"}
         >
           <div
@@ -456,6 +455,7 @@ function PlasmicMobileNavbarBottomCompany__RenderFunc(props: {
           )}
           component={Link}
           href={`/alertes`}
+          legacyBehavior={false}
           platform={"nextjs"}
         >
           <div
@@ -489,6 +489,7 @@ function PlasmicMobileNavbarBottomCompany__RenderFunc(props: {
           )}
           component={Link}
           href={"/parametres"}
+          legacyBehavior={false}
           platform={"nextjs"}
         >
           <div
@@ -558,7 +559,9 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicMobileNavbarBottomCompany__VariantsArgs;
     args?: PlasmicMobileNavbarBottomCompany__ArgsType;
     overrides?: NodeOverridesType<T>;
-  } & Omit<PlasmicMobileNavbarBottomCompany__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
+  } &
+    // Specify variants directly as props
+    Omit<PlasmicMobileNavbarBottomCompany__VariantsArgs, ReservedPropsType> &
     // Specify args directly as props
     Omit<PlasmicMobileNavbarBottomCompany__ArgsType, ReservedPropsType> &
     // Specify overrides for each element directly as props

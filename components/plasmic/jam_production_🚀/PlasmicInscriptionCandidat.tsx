@@ -78,6 +78,35 @@ import sty from "./PlasmicInscriptionCandidat.module.css"; // plasmic-import: cv
 import PictogramIcon from "./icons/PlasmicIcon__Pictogram"; // plasmic-import: KlZQiGxQTluF/icon
 import CheckIcon from "./icons/PlasmicIcon__Check"; // plasmic-import: wV32h4GpW1qw/icon
 
+const emptyProxy: any = new Proxy(() => "", {
+  get(_, prop) {
+    return prop === Symbol.toPrimitive ? () => "" : emptyProxy;
+  }
+});
+
+function wrapQueriesWithLoadingProxy($q: any): any {
+  return new Proxy($q, {
+    get(target, queryName) {
+      const query = target[queryName];
+      return !query || query.isLoading || !query.data ? emptyProxy : query;
+    }
+  });
+}
+
+export function generateDynamicMetadata($q: any, $ctx: any) {
+  return {
+    title: "Inscription candidat",
+
+    openGraph: {
+      title: "Inscription candidat"
+    },
+    twitter: {
+      card: "summary",
+      title: "Inscription candidat"
+    }
+  };
+}
+
 createPlasmicElementProxy;
 
 export type PlasmicInscriptionCandidat__VariantMembers = {};
@@ -156,43 +185,43 @@ function PlasmicInscriptionCandidat__RenderFunc(props: {
         path: "signUp3.email",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => ""
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ""
       },
       {
         path: "signUp3.firstName",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => ""
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ""
       },
       {
         path: "signUp3.lastName",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => ""
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ""
       },
       {
         path: "signUp3.password",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => ""
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ""
       },
       {
         path: "signUp3.confirmPassword",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => ""
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ""
       },
       {
         path: "signUp3.phone",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => ""
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ""
       },
       {
         path: "signUp3.countryCode",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => "+33"
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => "+33"
       }
     ],
     [$props, $ctx, $refs]
@@ -201,10 +230,16 @@ function PlasmicInscriptionCandidat__RenderFunc(props: {
     $props,
     $ctx,
     $queries: {},
+    $q: {},
     $refs
   });
   const dataSourcesCtx = usePlasmicDataSourceContext();
   const plasmicInvalidate = usePlasmicInvalidate();
+
+  const pageMetadata = generateDynamicMetadata(
+    wrapQueriesWithLoadingProxy({}),
+    $ctx
+  );
 
   const styleTokensClassNames = _useStyleTokens();
 
@@ -212,18 +247,12 @@ function PlasmicInscriptionCandidat__RenderFunc(props: {
     <React.Fragment>
       <Head>
         <meta name="twitter:card" content="summary" />
-        <title key="title">
-          {PlasmicInscriptionCandidat.pageMetadata.title}
-        </title>
-        <meta
-          key="og:title"
-          property="og:title"
-          content={PlasmicInscriptionCandidat.pageMetadata.title}
-        />
+        <title key="title">{pageMetadata.title}</title>
+        <meta key="og:title" property="og:title" content={pageMetadata.title} />
         <meta
           key="twitter:title"
-          name="twitter:title"
-          content={PlasmicInscriptionCandidat.pageMetadata.title}
+          property="twitter:title"
+          content={pageMetadata.title}
         />
       </Head>
 
@@ -668,7 +697,7 @@ function PlasmicInscriptionCandidat__RenderFunc(props: {
                     redirectAfterSignUp={``}
                     redirectTo={"https://job-around-me.com/auth/oauth-callback"}
                     showAlerts={true}
-                    showAppleButton={false}
+                    showAppleButton={true}
                     showGoogleButton={true}
                     showLabels={true}
                     showLoginLink={true}
@@ -833,13 +862,11 @@ export const PlasmicInscriptionCandidat = Object.assign(
     internalVariantProps: PlasmicInscriptionCandidat__VariantProps,
     internalArgProps: PlasmicInscriptionCandidat__ArgProps,
 
-    // Page metadata
-    pageMetadata: {
-      title: "Inscription candidat",
-      description: "",
-      ogImageSrc: "",
-      canonical: ""
-    }
+    pageMetadata: generateDynamicMetadata(wrapQueriesWithLoadingProxy({}), {
+      pagePath: "/register-candidat",
+      searchParams: {},
+      params: {}
+    })
   }
 );
 

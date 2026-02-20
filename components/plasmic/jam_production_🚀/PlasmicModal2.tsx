@@ -194,7 +194,7 @@ function PlasmicModal2__RenderFunc(props: {
         path: "ariaModal.isOpen",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => true,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => true,
 
         refName: "ariaModal"
       },
@@ -202,7 +202,7 @@ function PlasmicModal2__RenderFunc(props: {
         path: "noTrigger",
         type: "private",
         variableType: "variant",
-        initFunc: ({ $props, $state, $queries, $ctx }) => $props.noTrigger
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.noTrigger
       }
     ],
     [$props, $ctx, $refs]
@@ -211,6 +211,7 @@ function PlasmicModal2__RenderFunc(props: {
     $props,
     $ctx,
     $queries: {},
+    $q: {},
     $refs
   });
 
@@ -382,9 +383,8 @@ function PlasmicModal2__RenderFunc(props: {
                         typeof $steps["updateAriaDialogTriggerIsOpen"].then ===
                           "function"
                       ) {
-                        $steps["updateAriaDialogTriggerIsOpen"] = await $steps[
-                          "updateAriaDialogTriggerIsOpen"
-                        ];
+                        $steps["updateAriaDialogTriggerIsOpen"] =
+                          await $steps["updateAriaDialogTriggerIsOpen"];
                       }
                     }}
                     type={"soft"}
@@ -448,7 +448,9 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicModal2__VariantsArgs;
     args?: PlasmicModal2__ArgsType;
     overrides?: NodeOverridesType<T>;
-  } & Omit<PlasmicModal2__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
+  } &
+    // Specify variants directly as props
+    Omit<PlasmicModal2__VariantsArgs, ReservedPropsType> &
     // Specify args directly as props
     Omit<PlasmicModal2__ArgsType, ReservedPropsType> &
     // Specify overrides for each element directly as props

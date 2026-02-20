@@ -141,7 +141,7 @@ function PlasmicJamSocialAccounts__RenderFunc(props: {
         path: "employeur",
         type: "private",
         variableType: "variant",
-        initFunc: ({ $props, $state, $queries, $ctx }) => $props.employeur
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.employeur
       }
     ],
     [$props, $ctx, $refs]
@@ -150,6 +150,7 @@ function PlasmicJamSocialAccounts__RenderFunc(props: {
     $props,
     $ctx,
     $queries: {},
+    $q: {},
     $refs
   });
 
@@ -191,6 +192,7 @@ function PlasmicJamSocialAccounts__RenderFunc(props: {
             throw e;
           }
         })()}
+        legacyBehavior={false}
         platform={"nextjs"}
         target={"_blank"}
       >
@@ -230,7 +232,9 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicJamSocialAccounts__VariantsArgs;
     args?: PlasmicJamSocialAccounts__ArgsType;
     overrides?: NodeOverridesType<T>;
-  } & Omit<PlasmicJamSocialAccounts__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
+  } &
+    // Specify variants directly as props
+    Omit<PlasmicJamSocialAccounts__VariantsArgs, ReservedPropsType> &
     // Specify args directly as props
     Omit<PlasmicJamSocialAccounts__ArgsType, ReservedPropsType> &
     // Specify overrides for each element directly as props

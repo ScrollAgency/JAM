@@ -186,6 +186,7 @@ function PlasmicSectionCard__RenderFunc(props: {
     $props,
     $ctx,
     $queries: {},
+    $q: {},
     $refs
   });
 
@@ -362,7 +363,9 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicSectionCard__VariantsArgs;
     args?: PlasmicSectionCard__ArgsType;
     overrides?: NodeOverridesType<T>;
-  } & Omit<PlasmicSectionCard__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
+  } &
+    // Specify variants directly as props
+    Omit<PlasmicSectionCard__VariantsArgs, ReservedPropsType> &
     // Specify args directly as props
     Omit<PlasmicSectionCard__ArgsType, ReservedPropsType> &
     // Specify overrides for each element directly as props

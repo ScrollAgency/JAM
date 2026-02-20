@@ -142,7 +142,7 @@ function PlasmicOverlayArrow__RenderFunc(props: {
         path: "dark",
         type: "private",
         variableType: "variant",
-        initFunc: ({ $props, $state, $queries, $ctx }) => $props.dark
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.dark
       }
     ],
     [$props, $ctx, $refs]
@@ -151,6 +151,7 @@ function PlasmicOverlayArrow__RenderFunc(props: {
     $props,
     $ctx,
     $queries: {},
+    $q: {},
     $refs
   });
 
@@ -227,7 +228,9 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicOverlayArrow__VariantsArgs;
     args?: PlasmicOverlayArrow__ArgsType;
     overrides?: NodeOverridesType<T>;
-  } & Omit<PlasmicOverlayArrow__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
+  } &
+    // Specify variants directly as props
+    Omit<PlasmicOverlayArrow__VariantsArgs, ReservedPropsType> &
     // Specify args directly as props
     Omit<PlasmicOverlayArrow__ArgsType, ReservedPropsType> &
     // Specify overrides for each element directly as props

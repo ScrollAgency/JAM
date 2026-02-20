@@ -66,6 +66,7 @@ import {
   usePlasmicInvalidate
 } from "@plasmicapp/react-web/lib/data-sources";
 
+import { PostHogTracker } from "../../../plasmic-library/analytics/PostHogTracker"; // plasmic-import: h1G1Z5PWXbvn/codeComponent
 import { PageLoader } from "../../others/PageLoader/PageLoader"; // plasmic-import: FHDrnDhA4DZe/codeComponent
 import { LoadingBoundary } from "@plasmicpkgs/plasmic-basic-components";
 import Button from "../../Button"; // plasmic-import: 9ixtKbGKv7x-/component
@@ -130,6 +131,35 @@ import ChevronDownIcon from "./icons/PlasmicIcon__ChevronDown"; // plasmic-impor
 import PhClockCountdownFillIcon from "./icons/PlasmicIcon__PhClockCountdownFill"; // plasmic-import: GhtgoozaYTSb/icon
 import IconPhBellFillIcon from "./icons/PlasmicIcon__IconPhBellFill"; // plasmic-import: unf2e-lexzfx/icon
 
+const emptyProxy: any = new Proxy(() => "", {
+  get(_, prop) {
+    return prop === Symbol.toPrimitive ? () => "" : emptyProxy;
+  }
+});
+
+function wrapQueriesWithLoadingProxy($q: any): any {
+  return new Proxy($q, {
+    get(target, queryName) {
+      const query = target[queryName];
+      return !query || query.isLoading || !query.data ? emptyProxy : query;
+    }
+  });
+}
+
+export function generateDynamicMetadata($q: any, $ctx: any) {
+  return {
+    title: "Accueil",
+
+    openGraph: {
+      title: "Accueil"
+    },
+    twitter: {
+      card: "summary",
+      title: "Accueil"
+    }
+  };
+}
+
 createPlasmicElementProxy;
 
 export type PlasmicAccueil__VariantMembers = {};
@@ -143,6 +173,7 @@ export const PlasmicAccueil__ArgProps = new Array<ArgPropType>();
 
 export type PlasmicAccueil__OverridesType = {
   rechercheJob?: Flex__<"div">;
+  postHogTracker?: Flex__<typeof PostHogTracker>;
   loadingBoundary?: Flex__<typeof LoadingBoundary>;
   screen?: Flex__<"div">;
   frame6?: Flex__<"div">;
@@ -411,31 +442,31 @@ function PlasmicAccueil__RenderFunc(props: {
         path: "lieu",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => ``
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ``
       },
       {
         path: "menuOnOff",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => false
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
       },
       {
         path: "city",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => ""
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ""
       },
       {
         path: "critereBtn",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => false
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
       },
       {
         path: "form.value",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined,
 
         refName: "form",
         onMutate: generateOnMutateForSpec("value", FormWrapper_Helpers)
@@ -444,7 +475,7 @@ function PlasmicAccueil__RenderFunc(props: {
         path: "form.isSubmitting",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => false,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => false,
 
         refName: "form",
         onMutate: generateOnMutateForSpec("isSubmitting", FormWrapper_Helpers)
@@ -453,61 +484,61 @@ function PlasmicAccueil__RenderFunc(props: {
         path: "select.value",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
       },
       {
         path: "textInput1.value",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
       },
       {
         path: "textInput2.value",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
       },
       {
         path: "textInput3.value",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
       },
       {
         path: "textInput4.value",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
       },
       {
         path: "textInput6.value",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
       },
       {
         path: "jobDetails.isOpen",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => false
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
       },
       {
         path: "signUpApplication.isOpen",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => false
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
       },
       {
         path: "isDiv1Visible",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => true
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => true
       },
       {
         path: "couleurLike",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) =>
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
           (() => {
             try {
               return false;
@@ -526,13 +557,13 @@ function PlasmicAccueil__RenderFunc(props: {
         path: "jobId",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => "1"
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => "1"
       },
       {
         path: "jobAvailability",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) =>
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
           (() => {
             try {
               return undefined;
@@ -551,73 +582,73 @@ function PlasmicAccueil__RenderFunc(props: {
         path: "jobDetais",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => false
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
       },
       {
         path: "select4.value",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
       },
       {
         path: "select7.value",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
       },
       {
         path: "select14.value",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
       },
       {
         path: "select13.value",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
       },
       {
         path: "select8.value",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
       },
       {
         path: "select9.value",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
       },
       {
         path: "select10.value",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
       },
       {
         path: "select12.value",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
       },
       {
         path: "upload.files",
         type: "private",
         variableType: "array",
-        initFunc: ({ $props, $state, $queries, $ctx }) => []
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => []
       },
       {
         path: "upload3.files",
         type: "private",
         variableType: "array",
-        initFunc: ({ $props, $state, $queries, $ctx }) => []
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => []
       },
       {
         path: "formFilter.value",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined,
 
         refName: "formFilter",
         onMutate: generateOnMutateForSpec("value", FormWrapper_Helpers)
@@ -626,7 +657,7 @@ function PlasmicAccueil__RenderFunc(props: {
         path: "formFilter.isSubmitting",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => false,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => false,
 
         refName: "formFilter",
         onMutate: generateOnMutateForSpec("isSubmitting", FormWrapper_Helpers)
@@ -635,13 +666,13 @@ function PlasmicAccueil__RenderFunc(props: {
         path: "upload2.files",
         type: "private",
         variableType: "array",
-        initFunc: ({ $props, $state, $queries, $ctx }) => []
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => []
       },
       {
         path: "input3.value",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) =>
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
           (() => {
             try {
               return $ctx.query.name || "";
@@ -662,7 +693,7 @@ function PlasmicAccueil__RenderFunc(props: {
         path: "input4.value",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) =>
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
           (() => {
             try {
               return $ctx.query.city || "";
@@ -683,7 +714,7 @@ function PlasmicAccueil__RenderFunc(props: {
         path: "keyWords",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) =>
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
           (() => {
             try {
               return $state.input3.value;
@@ -702,31 +733,31 @@ function PlasmicAccueil__RenderFunc(props: {
         path: "loginForm2.email",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => ""
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ""
       },
       {
         path: "loginForm2.password",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => ""
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ""
       },
       {
         path: "showJobs",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => false
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
       },
       {
         path: "criteria",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => ""
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ""
       },
       {
         path: "searchLocation",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) =>
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
           (() => {
             try {
               return $state.input4.value;
@@ -745,7 +776,7 @@ function PlasmicAccueil__RenderFunc(props: {
         path: "formFilter2.value",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined,
 
         refName: "formFilter2",
         onMutate: generateOnMutateForSpec("value", FormWrapper_Helpers)
@@ -754,7 +785,7 @@ function PlasmicAccueil__RenderFunc(props: {
         path: "formFilter2.isSubmitting",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => false,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => false,
 
         refName: "formFilter2",
         onMutate: generateOnMutateForSpec("isSubmitting", FormWrapper_Helpers)
@@ -763,7 +794,7 @@ function PlasmicAccueil__RenderFunc(props: {
         path: "input5.value",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => ``,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ``,
 
         onMutate: generateOnMutateForSpec("value", AntdInput_Helpers)
       },
@@ -771,7 +802,7 @@ function PlasmicAccueil__RenderFunc(props: {
         path: "input6.value",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined,
 
         onMutate: generateOnMutateForSpec("value", AntdInput_Helpers)
       },
@@ -779,85 +810,85 @@ function PlasmicAccueil__RenderFunc(props: {
         path: "select15.value",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
       },
       {
         path: "select16.value",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
       },
       {
         path: "select17.value",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
       },
       {
         path: "select18.value",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
       },
       {
         path: "select19.value",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
       },
       {
         path: "select20.value",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
       },
       {
         path: "select21.value",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
       },
       {
         path: "modal.isOpen",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
       },
       {
         path: "formFilter2Submited",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => false
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
       },
       {
         path: "rue.value",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
       },
       {
         path: "codePostal.value",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
       },
       {
         path: "ville.value",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
       },
       {
         path: "select5.value",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => []
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => []
       },
       {
         path: "jobObject",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) =>
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
           (() => {
             try {
               return $queries.getJobByAlertId.data[0];
@@ -876,7 +907,7 @@ function PlasmicAccueil__RenderFunc(props: {
         path: "locationData",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) =>
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
           (() => {
             try {
               return undefined;
@@ -895,7 +926,7 @@ function PlasmicAccueil__RenderFunc(props: {
         path: "verifyUserAuth.isOpen",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
       },
       {
         path: "jobCard20[].name",
@@ -966,13 +997,13 @@ function PlasmicAccueil__RenderFunc(props: {
         path: "isLastMinute",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => false
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
       },
       {
         path: "gpsCoordinates",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) =>
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
           (() => {
             try {
               return {
@@ -998,7 +1029,7 @@ function PlasmicAccueil__RenderFunc(props: {
         path: "countries",
         type: "private",
         variableType: "array",
-        initFunc: ({ $props, $state, $queries, $ctx }) => [
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => [
           "Afghanistan",
           "Afrique du Sud",
           "Albanie",
@@ -1202,7 +1233,7 @@ function PlasmicAccueil__RenderFunc(props: {
         path: "messages",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => ({
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ({
           postuler:
             "Veuillez vous connecter pour pouvoir postuler \u00e0 cette offre.",
           favoris:
@@ -1213,78 +1244,78 @@ function PlasmicAccueil__RenderFunc(props: {
         path: "errorMsg",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => ""
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ""
       },
       {
         path: "textAreaInput.value",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
       },
       {
         path: "sectionCard.icon",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => "img1"
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => "img1"
       },
       {
         path: "sectionCard.title",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) =>
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
           "Il suffit de traverser la rue"
       },
       {
         path: "sectionCard.description",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) =>
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
           "Gr\u00e2ce \u00e0 la carte, rep\u00e9rez les jobs \u00e0 pourvoir pr\u00e8s de chez vous."
       },
       {
         path: "sectionCard2.icon",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => "img2"
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => "img2"
       },
       {
         path: "sectionCard2.title",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) =>
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
           "Ne manquez aucune offre"
       },
       {
         path: "sectionCard2.description",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) =>
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
           "Soyez inform\u00e9 en temps r\u00e9el lorsqu'une nouvelle offre d'emploi correspond \u00e0 vos crit\u00e8res de recherche."
       },
       {
         path: "sectionCard3.icon",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => "img3"
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => "img3"
       },
       {
         path: "sectionCard3.title",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => "Last Minute"
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => "Last Minute"
       },
       {
         path: "sectionCard3.description",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) =>
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
           "Avoir l\u2018acc\u00e8s aux jobs \u00e0 pourvoir imm\u00e9diatement. Offres urgentes, besoin imm\u00e9diat."
       },
       {
         path: "isMobile",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) =>
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
           (() => {
             try {
               return window.innerWidth < 768;
@@ -1303,7 +1334,7 @@ function PlasmicAccueil__RenderFunc(props: {
         path: "sectorActivity2",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) =>
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
           (() => {
             try {
               return (
@@ -1326,7 +1357,7 @@ function PlasmicAccueil__RenderFunc(props: {
         path: "availabilityStatus",
         type: "private",
         variableType: "array",
-        initFunc: ({ $props, $state, $queries, $ctx }) =>
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
           (() => {
             try {
               return (
@@ -1349,7 +1380,7 @@ function PlasmicAccueil__RenderFunc(props: {
         path: "contractType",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) =>
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
           (() => {
             try {
               return (
@@ -1372,7 +1403,7 @@ function PlasmicAccueil__RenderFunc(props: {
         path: "workingTime",
         type: "private",
         variableType: "array",
-        initFunc: ({ $props, $state, $queries, $ctx }) =>
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
           (() => {
             try {
               return (
@@ -1395,7 +1426,7 @@ function PlasmicAccueil__RenderFunc(props: {
         path: "workMode",
         type: "private",
         variableType: "array",
-        initFunc: ({ $props, $state, $queries, $ctx }) =>
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
           (() => {
             try {
               return (
@@ -1418,7 +1449,7 @@ function PlasmicAccueil__RenderFunc(props: {
         path: "salary",
         type: "private",
         variableType: "array",
-        initFunc: ({ $props, $state, $queries, $ctx }) =>
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
           (() => {
             try {
               return (
@@ -1441,7 +1472,7 @@ function PlasmicAccueil__RenderFunc(props: {
         path: "formFilter3.value",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined,
 
         refName: "formFilter3",
         onMutate: generateOnMutateForSpec("value", FormWrapper_Helpers)
@@ -1450,7 +1481,7 @@ function PlasmicAccueil__RenderFunc(props: {
         path: "formFilter3.isSubmitting",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => false,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => false,
 
         refName: "formFilter3",
         onMutate: generateOnMutateForSpec("isSubmitting", FormWrapper_Helpers)
@@ -1459,7 +1490,7 @@ function PlasmicAccueil__RenderFunc(props: {
         path: "input7.value",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) =>
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
           (() => {
             try {
               return $ctx.query.name || "";
@@ -1480,7 +1511,7 @@ function PlasmicAccueil__RenderFunc(props: {
         path: "input8.value",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) =>
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
           (() => {
             try {
               return $ctx.query.city || "";
@@ -1501,43 +1532,43 @@ function PlasmicAccueil__RenderFunc(props: {
         path: "select22.value",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
       },
       {
         path: "select11.value",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
       },
       {
         path: "select23.value",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
       },
       {
         path: "select24.value",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
       },
       {
         path: "select25.value",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
       },
       {
         path: "select26.value",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
       },
       {
         path: "userObj",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) =>
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
           (() => {
             try {
               return $queries.getCurrentUser.data[0];
@@ -1559,6 +1590,7 @@ function PlasmicAccueil__RenderFunc(props: {
     $props,
     $ctx,
     $queries: $queries,
+    $q: {},
     $refs
   });
   const dataSourcesCtx = usePlasmicDataSourceContext();
@@ -1744,22 +1776,23 @@ function PlasmicAccueil__RenderFunc(props: {
     $queries = new$Queries;
   }
 
+  const pageMetadata = generateDynamicMetadata(
+    wrapQueriesWithLoadingProxy({}),
+    $ctx
+  );
+
   const styleTokensClassNames = _useStyleTokens();
 
   return (
     <React.Fragment>
       <Head>
         <meta name="twitter:card" content="summary" />
-        <title key="title">{PlasmicAccueil.pageMetadata.title}</title>
-        <meta
-          key="og:title"
-          property="og:title"
-          content={PlasmicAccueil.pageMetadata.title}
-        />
+        <title key="title">{pageMetadata.title}</title>
+        <meta key="og:title" property="og:title" content={pageMetadata.title} />
         <meta
           key="twitter:title"
-          name="twitter:title"
-          content={PlasmicAccueil.pageMetadata.title}
+          property="twitter:title"
+          content={pageMetadata.title}
         />
       </Head>
 
@@ -1792,6 +1825,17 @@ function PlasmicAccueil__RenderFunc(props: {
             }
           )}
         >
+          <PostHogTracker
+            data-plasmic-name={"postHogTracker"}
+            data-plasmic-override={overrides.postHogTracker}
+            className={classNames("__wab_instance", sty.postHogTracker)}
+            eventName={""}
+            properties={{}}
+            triggerOnMount={false}
+            userId={""}
+            userProperties={{}}
+          />
+
           {false ? (
             <PageLoader
               className={classNames("__wab_instance", sty.pageLoader__aEt67)}
@@ -2087,6 +2131,7 @@ function PlasmicAccueil__RenderFunc(props: {
                         )}
                         component={Link}
                         href={`/accueil-employeur`}
+                        legacyBehavior={false}
                         platform={"nextjs"}
                         target={"_blank"}
                       >
@@ -2890,7 +2935,8 @@ function PlasmicAccueil__RenderFunc(props: {
                                                   initFunc: ({
                                                     $props,
                                                     $state,
-                                                    $queries
+                                                    $queries,
+                                                    $q
                                                   }) =>
                                                     (() => {
                                                       try {
@@ -3081,7 +3127,8 @@ function PlasmicAccueil__RenderFunc(props: {
                                                   initFunc: ({
                                                     $props,
                                                     $state,
-                                                    $queries
+                                                    $queries,
+                                                    $q
                                                   }) =>
                                                     (() => {
                                                       try {
@@ -6526,7 +6573,8 @@ function PlasmicAccueil__RenderFunc(props: {
                                                           initFunc: ({
                                                             $props,
                                                             $state,
-                                                            $queries
+                                                            $queries,
+                                                            $q
                                                           }) =>
                                                             (() => {
                                                               try {
@@ -6549,7 +6597,8 @@ function PlasmicAccueil__RenderFunc(props: {
                                                           initFunc: ({
                                                             $props,
                                                             $state,
-                                                            $queries
+                                                            $queries,
+                                                            $q
                                                           }) =>
                                                             (() => {
                                                               try {
@@ -6580,7 +6629,8 @@ function PlasmicAccueil__RenderFunc(props: {
                                                           initFunc: ({
                                                             $props,
                                                             $state,
-                                                            $queries
+                                                            $queries,
+                                                            $q
                                                           }) =>
                                                             (() => {
                                                               try {
@@ -6603,7 +6653,8 @@ function PlasmicAccueil__RenderFunc(props: {
                                                           initFunc: ({
                                                             $props,
                                                             $state,
-                                                            $queries
+                                                            $queries,
+                                                            $q
                                                           }) =>
                                                             (() => {
                                                               try {
@@ -6626,7 +6677,8 @@ function PlasmicAccueil__RenderFunc(props: {
                                                           initFunc: ({
                                                             $props,
                                                             $state,
-                                                            $queries
+                                                            $queries,
+                                                            $q
                                                           }) =>
                                                             (() => {
                                                               try {
@@ -6649,7 +6701,8 @@ function PlasmicAccueil__RenderFunc(props: {
                                                           initFunc: ({
                                                             $props,
                                                             $state,
-                                                            $queries
+                                                            $queries,
+                                                            $q
                                                           }) =>
                                                             (() => {
                                                               try {
@@ -6672,7 +6725,8 @@ function PlasmicAccueil__RenderFunc(props: {
                                                           initFunc: ({
                                                             $props,
                                                             $state,
-                                                            $queries
+                                                            $queries,
+                                                            $q
                                                           }) =>
                                                             (() => {
                                                               try {
@@ -6695,7 +6749,8 @@ function PlasmicAccueil__RenderFunc(props: {
                                                           initFunc: ({
                                                             $props,
                                                             $state,
-                                                            $queries
+                                                            $queries,
+                                                            $q
                                                           }) =>
                                                             (() => {
                                                               try {
@@ -6718,7 +6773,8 @@ function PlasmicAccueil__RenderFunc(props: {
                                                           initFunc: ({
                                                             $props,
                                                             $state,
-                                                            $queries
+                                                            $queries,
+                                                            $q
                                                           }) =>
                                                             (() => {
                                                               try {
@@ -6741,7 +6797,8 @@ function PlasmicAccueil__RenderFunc(props: {
                                                           initFunc: ({
                                                             $props,
                                                             $state,
-                                                            $queries
+                                                            $queries,
+                                                            $q
                                                           }) =>
                                                             (() => {
                                                               try {
@@ -6764,7 +6821,8 @@ function PlasmicAccueil__RenderFunc(props: {
                                                           initFunc: ({
                                                             $props,
                                                             $state,
-                                                            $queries
+                                                            $queries,
+                                                            $q
                                                           }) =>
                                                             (() => {
                                                               try {
@@ -6787,7 +6845,8 @@ function PlasmicAccueil__RenderFunc(props: {
                                                           initFunc: ({
                                                             $props,
                                                             $state,
-                                                            $queries
+                                                            $queries,
+                                                            $q
                                                           }) =>
                                                             (() => {
                                                               try {
@@ -6815,7 +6874,8 @@ function PlasmicAccueil__RenderFunc(props: {
                                                           initFunc: ({
                                                             $props,
                                                             $state,
-                                                            $queries
+                                                            $queries,
+                                                            $q
                                                           }) =>
                                                             (() => {
                                                               try {
@@ -7161,7 +7221,8 @@ function PlasmicAccueil__RenderFunc(props: {
                                                         initFunc: ({
                                                           $props,
                                                           $state,
-                                                          $queries
+                                                          $queries,
+                                                          $q
                                                         }) =>
                                                           (() => {
                                                             try {
@@ -7363,7 +7424,8 @@ function PlasmicAccueil__RenderFunc(props: {
                                                         initFunc: ({
                                                           $props,
                                                           $state,
-                                                          $queries
+                                                          $queries,
+                                                          $q
                                                         }) =>
                                                           (() => {
                                                             try {
@@ -16424,6 +16486,7 @@ function PlasmicAccueil__RenderFunc(props: {
                                       throw e;
                                     }
                                   })()}
+                                  legacyBehavior={false}
                                   platform={"nextjs"}
                                 >
                                   <IconPhBellFillIcon
@@ -16765,7 +16828,10 @@ function PlasmicAccueil__RenderFunc(props: {
             }}
             shouldRun={(() => {
               try {
-                return $ctx.SupabaseUser.user?.user_metadata.role === "google";
+                return (
+                  $ctx.SupabaseUser.user?.user_metadata.role === "google" ||
+                  $ctx.SupabaseUser.user?.user_metadata.role === "apple"
+                );
               } catch (e) {
                 if (
                   e instanceof TypeError ||
@@ -16786,6 +16852,7 @@ function PlasmicAccueil__RenderFunc(props: {
 const PlasmicDescendants = {
   rechercheJob: [
     "rechercheJob",
+    "postHogTracker",
     "loadingBoundary",
     "screen",
     "frame6",
@@ -16999,6 +17066,7 @@ const PlasmicDescendants = {
     "weglotSelector",
     "updateRoleForGoogleRegistration"
   ],
+  postHogTracker: ["postHogTracker"],
   loadingBoundary: [
     "loadingBoundary",
     "screen",
@@ -18325,6 +18393,7 @@ type DescendantsType<T extends NodeNameType> =
   (typeof PlasmicDescendants)[T][number];
 type NodeDefaultElementType = {
   rechercheJob: "div";
+  postHogTracker: typeof PostHogTracker;
   loadingBoundary: typeof LoadingBoundary;
   screen: "div";
   frame6: "div";
@@ -18601,6 +18670,7 @@ export const PlasmicAccueil = Object.assign(
   makeNodeComponent("rechercheJob"),
   {
     // Helper components rendering sub-elements
+    postHogTracker: makeNodeComponent("postHogTracker"),
     loadingBoundary: makeNodeComponent("loadingBoundary"),
     screen: makeNodeComponent("screen"),
     frame6: makeNodeComponent("frame6"),
@@ -18824,13 +18894,11 @@ export const PlasmicAccueil = Object.assign(
     internalVariantProps: PlasmicAccueil__VariantProps,
     internalArgProps: PlasmicAccueil__ArgProps,
 
-    // Page metadata
-    pageMetadata: {
-      title: "Accueil",
-      description: "",
-      ogImageSrc: "",
-      canonical: ""
-    }
+    pageMetadata: generateDynamicMetadata(wrapQueriesWithLoadingProxy({}), {
+      pagePath: "/",
+      searchParams: {},
+      params: {}
+    })
   }
 );
 

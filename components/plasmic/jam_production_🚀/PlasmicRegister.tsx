@@ -69,6 +69,35 @@ import sty from "./PlasmicRegister.module.css"; // plasmic-import: E45M1sTSQfF9/
 
 import PictogramIcon from "./icons/PlasmicIcon__Pictogram"; // plasmic-import: KlZQiGxQTluF/icon
 
+const emptyProxy: any = new Proxy(() => "", {
+  get(_, prop) {
+    return prop === Symbol.toPrimitive ? () => "" : emptyProxy;
+  }
+});
+
+function wrapQueriesWithLoadingProxy($q: any): any {
+  return new Proxy($q, {
+    get(target, queryName) {
+      const query = target[queryName];
+      return !query || query.isLoading || !query.data ? emptyProxy : query;
+    }
+  });
+}
+
+export function generateDynamicMetadata($q: any, $ctx: any) {
+  return {
+    title: "Créer un compte",
+
+    openGraph: {
+      title: "Créer un compte"
+    },
+    twitter: {
+      card: "summary",
+      title: "Créer un compte"
+    }
+  };
+}
+
 createPlasmicElementProxy;
 
 export type PlasmicRegister__VariantMembers = {};
@@ -143,22 +172,23 @@ function PlasmicRegister__RenderFunc(props: {
 
   const globalVariants = _useGlobalVariants();
 
+  const pageMetadata = generateDynamicMetadata(
+    wrapQueriesWithLoadingProxy({}),
+    $ctx
+  );
+
   const styleTokensClassNames = _useStyleTokens();
 
   return (
     <React.Fragment>
       <Head>
         <meta name="twitter:card" content="summary" />
-        <title key="title">{PlasmicRegister.pageMetadata.title}</title>
-        <meta
-          key="og:title"
-          property="og:title"
-          content={PlasmicRegister.pageMetadata.title}
-        />
+        <title key="title">{pageMetadata.title}</title>
+        <meta key="og:title" property="og:title" content={pageMetadata.title} />
         <meta
           key="twitter:title"
-          name="twitter:title"
-          content={PlasmicRegister.pageMetadata.title}
+          property="twitter:title"
+          content={pageMetadata.title}
         />
       </Head>
 
@@ -349,9 +379,8 @@ function PlasmicRegister__RenderFunc(props: {
                       typeof $steps["goToRegisterCandidat"] === "object" &&
                       typeof $steps["goToRegisterCandidat"].then === "function"
                     ) {
-                      $steps["goToRegisterCandidat"] = await $steps[
-                        "goToRegisterCandidat"
-                      ];
+                      $steps["goToRegisterCandidat"] =
+                        await $steps["goToRegisterCandidat"];
                     }
                   }}
                   ref={ref => {
@@ -398,9 +427,8 @@ function PlasmicRegister__RenderFunc(props: {
                       typeof $steps["goToRegisterCompany"] === "object" &&
                       typeof $steps["goToRegisterCompany"].then === "function"
                     ) {
-                      $steps["goToRegisterCompany"] = await $steps[
-                        "goToRegisterCompany"
-                      ];
+                      $steps["goToRegisterCompany"] =
+                        await $steps["goToRegisterCompany"];
                     }
                   }}
                   ref={ref => {
@@ -533,7 +561,9 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicRegister__VariantsArgs;
     args?: PlasmicRegister__ArgsType;
     overrides?: NodeOverridesType<T>;
-  } & Omit<PlasmicRegister__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
+  } &
+    // Specify variants directly as props
+    Omit<PlasmicRegister__VariantsArgs, ReservedPropsType> &
     // Specify args directly as props
     Omit<PlasmicRegister__ArgsType, ReservedPropsType> &
     // Specify overrides for each element directly as props
@@ -603,13 +633,11 @@ export const PlasmicRegister = Object.assign(
     internalVariantProps: PlasmicRegister__VariantProps,
     internalArgProps: PlasmicRegister__ArgProps,
 
-    // Page metadata
-    pageMetadata: {
-      title: "Créer un compte",
-      description: "",
-      ogImageSrc: "",
-      canonical: ""
-    }
+    pageMetadata: generateDynamicMetadata(wrapQueriesWithLoadingProxy({}), {
+      pagePath: "/register",
+      searchParams: {},
+      params: {}
+    })
   }
 );
 

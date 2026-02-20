@@ -147,7 +147,7 @@ function PlasmicSidebar3__RenderFunc(props: {
         path: "showButton",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) =>
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
           (() => {
             try {
               return false;
@@ -169,6 +169,7 @@ function PlasmicSidebar3__RenderFunc(props: {
     $props,
     $ctx,
     $queries: {},
+    $q: {},
     $refs
   });
 
@@ -194,6 +195,7 @@ function PlasmicSidebar3__RenderFunc(props: {
         data-plasmic-override={overrides.logoWrapper}
         className={classNames(projectcss.all, projectcss.a, sty.logoWrapper)}
         component={Link}
+        legacyBehavior={false}
         onClick={async event => {
           const $steps = {};
 
@@ -431,9 +433,8 @@ function PlasmicSidebar3__RenderFunc(props: {
                   typeof $steps["goToParametresDeCompte"] === "object" &&
                   typeof $steps["goToParametresDeCompte"].then === "function"
                 ) {
-                  $steps["goToParametresDeCompte"] = await $steps[
-                    "goToParametresDeCompte"
-                  ];
+                  $steps["goToParametresDeCompte"] =
+                    await $steps["goToParametresDeCompte"];
                 }
               }}
               start={null}
@@ -508,9 +509,8 @@ function PlasmicSidebar3__RenderFunc(props: {
                   typeof $steps["goToParametresDeCompte"] === "object" &&
                   typeof $steps["goToParametresDeCompte"].then === "function"
                 ) {
-                  $steps["goToParametresDeCompte"] = await $steps[
-                    "goToParametresDeCompte"
-                  ];
+                  $steps["goToParametresDeCompte"] =
+                    await $steps["goToParametresDeCompte"];
                 }
               }}
               start={null}
@@ -553,6 +553,7 @@ function PlasmicSidebar3__RenderFunc(props: {
             )}
             component={Link}
             href={""}
+            legacyBehavior={false}
             onClick={async event => {
               const $steps = {};
 
@@ -569,9 +570,8 @@ function PlasmicSidebar3__RenderFunc(props: {
                 typeof $steps["invokeGlobalAction"] === "object" &&
                 typeof $steps["invokeGlobalAction"].then === "function"
               ) {
-                $steps["invokeGlobalAction"] = await $steps[
-                  "invokeGlobalAction"
-                ];
+                $steps["invokeGlobalAction"] =
+                  await $steps["invokeGlobalAction"];
               }
             }}
             platform={"nextjs"}
@@ -608,9 +608,8 @@ function PlasmicSidebar3__RenderFunc(props: {
                 typeof $steps["invokeGlobalAction"] === "object" &&
                 typeof $steps["invokeGlobalAction"].then === "function"
               ) {
-                $steps["invokeGlobalAction"] = await $steps[
-                  "invokeGlobalAction"
-                ];
+                $steps["invokeGlobalAction"] =
+                  await $steps["invokeGlobalAction"];
               }
             }}
             start={
@@ -677,7 +676,9 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicSidebar3__VariantsArgs;
     args?: PlasmicSidebar3__ArgsType;
     overrides?: NodeOverridesType<T>;
-  } & Omit<PlasmicSidebar3__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
+  } &
+    // Specify variants directly as props
+    Omit<PlasmicSidebar3__VariantsArgs, ReservedPropsType> &
     // Specify args directly as props
     Omit<PlasmicSidebar3__ArgsType, ReservedPropsType> &
     // Specify overrides for each element directly as props

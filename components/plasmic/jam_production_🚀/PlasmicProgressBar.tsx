@@ -149,19 +149,19 @@ function PlasmicProgressBar__RenderFunc(props: {
         path: "step1",
         type: "private",
         variableType: "variant",
-        initFunc: ({ $props, $state, $queries, $ctx }) => $props.step1
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.step1
       },
       {
         path: "step2",
         type: "private",
         variableType: "variant",
-        initFunc: ({ $props, $state, $queries, $ctx }) => $props.step2
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.step2
       },
       {
         path: "step3",
         type: "private",
         variableType: "variant",
-        initFunc: ({ $props, $state, $queries, $ctx }) => $props.step3
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.step3
       }
     ],
     [$props, $ctx, $refs]
@@ -170,6 +170,7 @@ function PlasmicProgressBar__RenderFunc(props: {
     $props,
     $ctx,
     $queries: {},
+    $q: {},
     $refs
   });
 
@@ -252,7 +253,9 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicProgressBar__VariantsArgs;
     args?: PlasmicProgressBar__ArgsType;
     overrides?: NodeOverridesType<T>;
-  } & Omit<PlasmicProgressBar__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
+  } &
+    // Specify variants directly as props
+    Omit<PlasmicProgressBar__VariantsArgs, ReservedPropsType> &
     // Specify args directly as props
     Omit<PlasmicProgressBar__ArgsType, ReservedPropsType> &
     // Specify overrides for each element directly as props

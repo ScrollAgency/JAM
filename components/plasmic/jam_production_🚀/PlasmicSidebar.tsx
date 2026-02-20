@@ -183,7 +183,7 @@ function PlasmicSidebar__RenderFunc(props: {
         path: "showButton",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => false
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
       },
       {
         path: "disableLinks",
@@ -208,6 +208,7 @@ function PlasmicSidebar__RenderFunc(props: {
     $props,
     $ctx,
     $queries: $queries,
+    $q: {},
     $refs
   });
 
@@ -265,6 +266,7 @@ function PlasmicSidebar__RenderFunc(props: {
         data-plasmic-override={overrides.logoWrapper}
         className={classNames(projectcss.all, projectcss.a, sty.logoWrapper)}
         component={Link}
+        legacyBehavior={false}
         onClick={async event => {
           const $steps = {};
 
@@ -431,9 +433,8 @@ function PlasmicSidebar__RenderFunc(props: {
                   typeof $steps["goToMesCandidatures"] === "object" &&
                   typeof $steps["goToMesCandidatures"].then === "function"
                 ) {
-                  $steps["goToMesCandidatures"] = await $steps[
-                    "goToMesCandidatures"
-                  ];
+                  $steps["goToMesCandidatures"] =
+                    await $steps["goToMesCandidatures"];
                 }
               }}
               start={
@@ -624,9 +625,8 @@ function PlasmicSidebar__RenderFunc(props: {
                   typeof $steps["goToParametresDeCompte"] === "object" &&
                   typeof $steps["goToParametresDeCompte"].then === "function"
                 ) {
-                  $steps["goToParametresDeCompte"] = await $steps[
-                    "goToParametresDeCompte"
-                  ];
+                  $steps["goToParametresDeCompte"] =
+                    await $steps["goToParametresDeCompte"];
                 }
               }}
               start={
@@ -734,9 +734,8 @@ function PlasmicSidebar__RenderFunc(props: {
                       typeof $steps["goToOffreEmployeur"] === "object" &&
                       typeof $steps["goToOffreEmployeur"].then === "function"
                     ) {
-                      $steps["goToOffreEmployeur"] = await $steps[
-                        "goToOffreEmployeur"
-                      ];
+                      $steps["goToOffreEmployeur"] =
+                        await $steps["goToOffreEmployeur"];
                     }
                   }}
                   start={
@@ -906,9 +905,8 @@ function PlasmicSidebar__RenderFunc(props: {
                       typeof $steps["goToParametresEmployeur"].then ===
                         "function"
                     ) {
-                      $steps["goToParametresEmployeur"] = await $steps[
-                        "goToParametresEmployeur"
-                      ];
+                      $steps["goToParametresEmployeur"] =
+                        await $steps["goToParametresEmployeur"];
                     }
                   }}
                   start={
@@ -996,9 +994,8 @@ function PlasmicSidebar__RenderFunc(props: {
                       typeof $steps["goToParametresDeCompte"].then ===
                         "function"
                     ) {
-                      $steps["goToParametresDeCompte"] = await $steps[
-                        "goToParametresDeCompte"
-                      ];
+                      $steps["goToParametresDeCompte"] =
+                        await $steps["goToParametresDeCompte"];
                     }
                   }}
                   start={null}
@@ -1080,9 +1077,8 @@ function PlasmicSidebar__RenderFunc(props: {
                       typeof $steps["goToParametresDeCompte"].then ===
                         "function"
                     ) {
-                      $steps["goToParametresDeCompte"] = await $steps[
-                        "goToParametresDeCompte"
-                      ];
+                      $steps["goToParametresDeCompte"] =
+                        await $steps["goToParametresDeCompte"];
                     }
                   }}
                   start={null}
@@ -1542,9 +1538,8 @@ function PlasmicSidebar__RenderFunc(props: {
                     typeof $steps["goToParametresDeCompte"] === "object" &&
                     typeof $steps["goToParametresDeCompte"].then === "function"
                   ) {
-                    $steps["goToParametresDeCompte"] = await $steps[
-                      "goToParametresDeCompte"
-                    ];
+                    $steps["goToParametresDeCompte"] =
+                      await $steps["goToParametresDeCompte"];
                   }
                 }}
                 start={null}
@@ -1625,9 +1620,8 @@ function PlasmicSidebar__RenderFunc(props: {
                     typeof $steps["goToParametresDeCompte"] === "object" &&
                     typeof $steps["goToParametresDeCompte"].then === "function"
                   ) {
-                    $steps["goToParametresDeCompte"] = await $steps[
-                      "goToParametresDeCompte"
-                    ];
+                    $steps["goToParametresDeCompte"] =
+                      await $steps["goToParametresDeCompte"];
                   }
                 }}
                 start={null}
@@ -1686,6 +1680,7 @@ function PlasmicSidebar__RenderFunc(props: {
             )}
             component={Link}
             href={""}
+            legacyBehavior={false}
             onClick={async event => {
               const $steps = {};
 
@@ -1702,9 +1697,8 @@ function PlasmicSidebar__RenderFunc(props: {
                 typeof $steps["invokeGlobalAction"] === "object" &&
                 typeof $steps["invokeGlobalAction"].then === "function"
               ) {
-                $steps["invokeGlobalAction"] = await $steps[
-                  "invokeGlobalAction"
-                ];
+                $steps["invokeGlobalAction"] =
+                  await $steps["invokeGlobalAction"];
               }
             }}
             platform={"nextjs"}
@@ -1741,9 +1735,8 @@ function PlasmicSidebar__RenderFunc(props: {
                 typeof $steps["invokeGlobalAction"] === "object" &&
                 typeof $steps["invokeGlobalAction"].then === "function"
               ) {
-                $steps["invokeGlobalAction"] = await $steps[
-                  "invokeGlobalAction"
-                ];
+                $steps["invokeGlobalAction"] =
+                  await $steps["invokeGlobalAction"];
               }
             }}
             start={
@@ -1825,7 +1818,9 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicSidebar__VariantsArgs;
     args?: PlasmicSidebar__ArgsType;
     overrides?: NodeOverridesType<T>;
-  } & Omit<PlasmicSidebar__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
+  } &
+    // Specify variants directly as props
+    Omit<PlasmicSidebar__VariantsArgs, ReservedPropsType> &
     // Specify args directly as props
     Omit<PlasmicSidebar__ArgsType, ReservedPropsType> &
     // Specify overrides for each element directly as props

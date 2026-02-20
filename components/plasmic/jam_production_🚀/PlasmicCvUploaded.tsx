@@ -177,6 +177,7 @@ function PlasmicCvUploaded__RenderFunc(props: {
     $props,
     $ctx,
     $queries: {},
+    $q: {},
     $refs
   });
 
@@ -310,7 +311,9 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicCvUploaded__VariantsArgs;
     args?: PlasmicCvUploaded__ArgsType;
     overrides?: NodeOverridesType<T>;
-  } & Omit<PlasmicCvUploaded__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
+  } &
+    // Specify variants directly as props
+    Omit<PlasmicCvUploaded__VariantsArgs, ReservedPropsType> &
     // Specify args directly as props
     Omit<PlasmicCvUploaded__ArgsType, ReservedPropsType> &
     // Specify overrides for each element directly as props

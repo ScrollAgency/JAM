@@ -194,7 +194,7 @@ function PlasmicTextAreaInput2__RenderFunc(props: {
         path: "ariaTextArea.value",
         type: "readonly",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) =>
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
           $props["defaultValue"],
 
         onChangeProp: "onChange",
@@ -205,19 +205,19 @@ function PlasmicTextAreaInput2__RenderFunc(props: {
         path: "type",
         type: "private",
         variableType: "variant",
-        initFunc: ({ $props, $state, $queries, $ctx }) => $props.type
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.type
       },
       {
         path: "flat",
         type: "private",
         variableType: "variant",
-        initFunc: ({ $props, $state, $queries, $ctx }) => $props.flat
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.flat
       },
       {
         path: "padded",
         type: "private",
         variableType: "variant",
-        initFunc: ({ $props, $state, $queries, $ctx }) => $props.padded
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.padded
       }
     ],
     [$props, $ctx, $refs]
@@ -226,6 +226,7 @@ function PlasmicTextAreaInput2__RenderFunc(props: {
     $props,
     $ctx,
     $queries: {},
+    $q: {},
     $refs
   });
 
@@ -338,7 +339,9 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicTextAreaInput2__VariantsArgs;
     args?: PlasmicTextAreaInput2__ArgsType;
     overrides?: NodeOverridesType<T>;
-  } & Omit<PlasmicTextAreaInput2__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
+  } &
+    // Specify variants directly as props
+    Omit<PlasmicTextAreaInput2__VariantsArgs, ReservedPropsType> &
     // Specify args directly as props
     Omit<PlasmicTextAreaInput2__ArgsType, ReservedPropsType> &
     // Specify overrides for each element directly as props

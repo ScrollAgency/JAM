@@ -115,6 +115,35 @@ import PhTrashIcon from "./icons/PlasmicIcon__PhTrash"; // plasmic-import: juO39
 import Line10Icon from "./icons/PlasmicIcon__Line10"; // plasmic-import: okDoJMf2ty5e/icon
 import PlusIcon from "./icons/PlasmicIcon__Plus"; // plasmic-import: I5WL24ilJ3LK/icon
 
+const emptyProxy: any = new Proxy(() => "", {
+  get(_, prop) {
+    return prop === Symbol.toPrimitive ? () => "" : emptyProxy;
+  }
+});
+
+function wrapQueriesWithLoadingProxy($q: any): any {
+  return new Proxy($q, {
+    get(target, queryName) {
+      const query = target[queryName];
+      return !query || query.isLoading || !query.data ? emptyProxy : query;
+    }
+  });
+}
+
+export function generateDynamicMetadata($q: any, $ctx: any) {
+  return {
+    title: "Mes annonces",
+
+    openGraph: {
+      title: "Mes annonces"
+    },
+    twitter: {
+      card: "summary",
+      title: "Mes annonces"
+    }
+  };
+}
+
 createPlasmicElementProxy;
 
 export type PlasmicMesAnnonces__VariantMembers = {};
@@ -290,19 +319,19 @@ function PlasmicMesAnnonces__RenderFunc(props: {
         path: "jobDetailsModal.isOpen",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
       },
       {
         path: "applicationModal.isOpen",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => false
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
       },
       {
         path: "form.value",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined,
 
         refName: "form",
         onMutate: generateOnMutateForSpec("value", FormWrapper_Helpers)
@@ -311,7 +340,7 @@ function PlasmicMesAnnonces__RenderFunc(props: {
         path: "form.isSubmitting",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => false,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => false,
 
         refName: "form",
         onMutate: generateOnMutateForSpec("isSubmitting", FormWrapper_Helpers)
@@ -320,109 +349,109 @@ function PlasmicMesAnnonces__RenderFunc(props: {
         path: "upload2.files",
         type: "private",
         variableType: "array",
-        initFunc: ({ $props, $state, $queries, $ctx }) => []
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => []
       },
       {
         path: "textInput1.value",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
       },
       {
         path: "textInput2.value",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
       },
       {
         path: "textInput4.value",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
       },
       {
         path: "textInput3.value",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
       },
       {
         path: "select4.value",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
       },
       {
         path: "select3.value",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
       },
       {
         path: "select7.value",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
       },
       {
         path: "upload.files",
         type: "private",
         variableType: "array",
-        initFunc: ({ $props, $state, $queries, $ctx }) => []
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => []
       },
       {
         path: "upload3.files",
         type: "private",
         variableType: "array",
-        initFunc: ({ $props, $state, $queries, $ctx }) => []
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => []
       },
       {
         path: "textInput6.value",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
       },
       {
         path: "rue.value",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
       },
       {
         path: "codePostal.value",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
       },
       {
         path: "ville.value",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
       },
       {
         path: "select5.value",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
       },
       {
         path: "isRefreshed",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => false
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
       },
       {
         path: "currentJobObject",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => ({})
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ({})
       },
       {
         path: "country",
         type: "private",
         variableType: "array",
-        initFunc: ({ $props, $state, $queries, $ctx }) => [
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => [
           "Afghanistan",
           "Afrique du Sud",
           "Albanie",
@@ -691,19 +720,19 @@ function PlasmicMesAnnonces__RenderFunc(props: {
         path: "textAreaInput.value",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
       },
       {
         path: "sidebar.disableLinks",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => true
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => true
       },
       {
         path: "sidebar.role",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => "candidat"
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => "candidat"
       }
     ],
     [$props, $ctx, $refs]
@@ -712,6 +741,7 @@ function PlasmicMesAnnonces__RenderFunc(props: {
     $props,
     $ctx,
     $queries: $queries,
+    $q: {},
     $refs
   });
   const dataSourcesCtx = usePlasmicDataSourceContext();
@@ -819,22 +849,23 @@ function PlasmicMesAnnonces__RenderFunc(props: {
     $queries = new$Queries;
   }
 
+  const pageMetadata = generateDynamicMetadata(
+    wrapQueriesWithLoadingProxy({}),
+    $ctx
+  );
+
   const styleTokensClassNames = _useStyleTokens();
 
   return (
     <React.Fragment>
       <Head>
         <meta name="twitter:card" content="summary" />
-        <title key="title">{PlasmicMesAnnonces.pageMetadata.title}</title>
-        <meta
-          key="og:title"
-          property="og:title"
-          content={PlasmicMesAnnonces.pageMetadata.title}
-        />
+        <title key="title">{pageMetadata.title}</title>
+        <meta key="og:title" property="og:title" content={pageMetadata.title} />
         <meta
           key="twitter:title"
-          name="twitter:title"
-          content={PlasmicMesAnnonces.pageMetadata.title}
+          property="twitter:title"
+          content={pageMetadata.title}
         />
       </Head>
 
@@ -1405,7 +1436,12 @@ function PlasmicMesAnnonces__RenderFunc(props: {
                                 [
                                   {
                                     name: "likeJobCard[].name",
-                                    initFunc: ({ $props, $state, $queries }) =>
+                                    initFunc: ({
+                                      $props,
+                                      $state,
+                                      $queries,
+                                      $q
+                                    }) =>
                                       (() => {
                                         try {
                                           return currentItem.title;
@@ -1423,7 +1459,12 @@ function PlasmicMesAnnonces__RenderFunc(props: {
                                   },
                                   {
                                     name: "likeJobCard[].city",
-                                    initFunc: ({ $props, $state, $queries }) =>
+                                    initFunc: ({
+                                      $props,
+                                      $state,
+                                      $queries,
+                                      $q
+                                    }) =>
                                       (() => {
                                         try {
                                           return currentItem.location;
@@ -1441,7 +1482,12 @@ function PlasmicMesAnnonces__RenderFunc(props: {
                                   },
                                   {
                                     name: "likeJobCard[].campany",
-                                    initFunc: ({ $props, $state, $queries }) =>
+                                    initFunc: ({
+                                      $props,
+                                      $state,
+                                      $queries,
+                                      $q
+                                    }) =>
                                       (() => {
                                         try {
                                           return currentItem.company_name;
@@ -1459,7 +1505,12 @@ function PlasmicMesAnnonces__RenderFunc(props: {
                                   },
                                   {
                                     name: "likeJobCard[].sector",
-                                    initFunc: ({ $props, $state, $queries }) =>
+                                    initFunc: ({
+                                      $props,
+                                      $state,
+                                      $queries,
+                                      $q
+                                    }) =>
                                       (() => {
                                         try {
                                           return currentItem.sector_activity;
@@ -1477,7 +1528,12 @@ function PlasmicMesAnnonces__RenderFunc(props: {
                                   },
                                   {
                                     name: "likeJobCard[].contractType",
-                                    initFunc: ({ $props, $state, $queries }) =>
+                                    initFunc: ({
+                                      $props,
+                                      $state,
+                                      $queries,
+                                      $q
+                                    }) =>
                                       (() => {
                                         try {
                                           return currentItem.contract_type;
@@ -1495,7 +1551,12 @@ function PlasmicMesAnnonces__RenderFunc(props: {
                                   },
                                   {
                                     name: "likeJobCard[].availability",
-                                    initFunc: ({ $props, $state, $queries }) =>
+                                    initFunc: ({
+                                      $props,
+                                      $state,
+                                      $queries,
+                                      $q
+                                    }) =>
                                       (() => {
                                         try {
                                           return currentItem.availability_status;
@@ -1513,7 +1574,12 @@ function PlasmicMesAnnonces__RenderFunc(props: {
                                   },
                                   {
                                     name: "likeJobCard[].workingTime",
-                                    initFunc: ({ $props, $state, $queries }) =>
+                                    initFunc: ({
+                                      $props,
+                                      $state,
+                                      $queries,
+                                      $q
+                                    }) =>
                                       (() => {
                                         try {
                                           return currentItem.working_time;
@@ -1531,7 +1597,12 @@ function PlasmicMesAnnonces__RenderFunc(props: {
                                   },
                                   {
                                     name: "likeJobCard[].salary",
-                                    initFunc: ({ $props, $state, $queries }) =>
+                                    initFunc: ({
+                                      $props,
+                                      $state,
+                                      $queries,
+                                      $q
+                                    }) =>
                                       (() => {
                                         try {
                                           return currentItem.salary;
@@ -1549,7 +1620,12 @@ function PlasmicMesAnnonces__RenderFunc(props: {
                                   },
                                   {
                                     name: "likeJobCard[].workMode",
-                                    initFunc: ({ $props, $state, $queries }) =>
+                                    initFunc: ({
+                                      $props,
+                                      $state,
+                                      $queries,
+                                      $q
+                                    }) =>
                                       (() => {
                                         try {
                                           return currentItem.work_mode;
@@ -1567,7 +1643,12 @@ function PlasmicMesAnnonces__RenderFunc(props: {
                                   },
                                   {
                                     name: "likeJobCard[].companyLogo",
-                                    initFunc: ({ $props, $state, $queries }) =>
+                                    initFunc: ({
+                                      $props,
+                                      $state,
+                                      $queries,
+                                      $q
+                                    }) =>
                                       (() => {
                                         try {
                                           return currentItem.logo_file;
@@ -1585,18 +1666,30 @@ function PlasmicMesAnnonces__RenderFunc(props: {
                                   },
                                   {
                                     name: "likeJobCard[].isLastMinute",
-                                    initFunc: ({ $props, $state, $queries }) =>
-                                      false
+                                    initFunc: ({
+                                      $props,
+                                      $state,
+                                      $queries,
+                                      $q
+                                    }) => false
                                   },
                                   {
                                     name: "likeJobCard[].isNew",
-                                    initFunc: ({ $props, $state, $queries }) =>
-                                      false
+                                    initFunc: ({
+                                      $props,
+                                      $state,
+                                      $queries,
+                                      $q
+                                    }) => false
                                   },
                                   {
                                     name: "likeJobCard[].isApplied",
-                                    initFunc: ({ $props, $state, $queries }) =>
-                                      false
+                                    initFunc: ({
+                                      $props,
+                                      $state,
+                                      $queries,
+                                      $q
+                                    }) => false
                                   }
                                 ],
                                 [__plasmic_idx_0]
@@ -6679,13 +6772,11 @@ export const PlasmicMesAnnonces = Object.assign(
     internalVariantProps: PlasmicMesAnnonces__VariantProps,
     internalArgProps: PlasmicMesAnnonces__ArgProps,
 
-    // Page metadata
-    pageMetadata: {
-      title: "Mes annonces",
-      description: "",
-      ogImageSrc: "",
-      canonical: ""
-    }
+    pageMetadata: generateDynamicMetadata(wrapQueriesWithLoadingProxy({}), {
+      pagePath: "/annonces",
+      searchParams: {},
+      params: {}
+    })
   }
 );
 

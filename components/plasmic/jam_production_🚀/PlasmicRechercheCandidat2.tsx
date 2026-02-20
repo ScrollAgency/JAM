@@ -99,6 +99,35 @@ import EnvelopeSimpleIcon from "./icons/PlasmicIcon__EnvelopeSimple"; // plasmic
 import PictogramIcon from "./icons/PlasmicIcon__Pictogram"; // plasmic-import: KlZQiGxQTluF/icon
 import MagnifyingGlassIcon from "./icons/PlasmicIcon__MagnifyingGlass"; // plasmic-import: fii_q6lckj-n/icon
 
+const emptyProxy: any = new Proxy(() => "", {
+  get(_, prop) {
+    return prop === Symbol.toPrimitive ? () => "" : emptyProxy;
+  }
+});
+
+function wrapQueriesWithLoadingProxy($q: any): any {
+  return new Proxy($q, {
+    get(target, queryName) {
+      const query = target[queryName];
+      return !query || query.isLoading || !query.data ? emptyProxy : query;
+    }
+  });
+}
+
+export function generateDynamicMetadata($q: any, $ctx: any) {
+  return {
+    title: "Recherche de candidats",
+
+    openGraph: {
+      title: "Recherche de candidats"
+    },
+    twitter: {
+      card: "summary",
+      title: "Recherche de candidats"
+    }
+  };
+}
+
 createPlasmicElementProxy;
 
 export type PlasmicRechercheCandidat2__VariantMembers = {};
@@ -229,7 +258,7 @@ function PlasmicRechercheCandidat2__RenderFunc(props: {
         path: "filterForm.value",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined,
 
         refName: "filterForm",
         onMutate: generateOnMutateForSpec("value", FormWrapper_Helpers)
@@ -238,7 +267,7 @@ function PlasmicRechercheCandidat2__RenderFunc(props: {
         path: "filterForm.isSubmitting",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => false,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => false,
 
         refName: "filterForm",
         onMutate: generateOnMutateForSpec("isSubmitting", FormWrapper_Helpers)
@@ -247,7 +276,7 @@ function PlasmicRechercheCandidat2__RenderFunc(props: {
         path: "keyWordsInput.value",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) =>
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
           (() => {
             try {
               return "";
@@ -268,7 +297,7 @@ function PlasmicRechercheCandidat2__RenderFunc(props: {
         path: "locationInput.value",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined,
 
         onMutate: generateOnMutateForSpec("value", AntdInput_Helpers)
       },
@@ -276,61 +305,61 @@ function PlasmicRechercheCandidat2__RenderFunc(props: {
         path: "keyWordsTab",
         type: "private",
         variableType: "array",
-        initFunc: ({ $props, $state, $queries, $ctx }) => []
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => []
       },
       {
         path: "cityTab",
         type: "private",
         variableType: "array",
-        initFunc: ({ $props, $state, $queries, $ctx }) => []
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => []
       },
       {
         path: "listWords",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => ""
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ""
       },
       {
         path: "cvModal.isOpen",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
       },
       {
         path: "currentCvUrl",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => ""
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ""
       },
       {
         path: "currentLdmUrl",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => ""
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ""
       },
       {
         path: "coverLetterModal.isOpen",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
       },
       {
         path: "variable",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => ""
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ""
       },
       {
         path: "userId",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => ""
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ""
       },
       {
         path: "profilePhoto",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => ""
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ""
       },
       {
         path: "file[].userId",
@@ -346,13 +375,13 @@ function PlasmicRechercheCandidat2__RenderFunc(props: {
         path: "sidebar.disableLinks",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => true
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => true
       },
       {
         path: "sidebar.role",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => "employer"
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => "employer"
       }
     ],
     [$props, $ctx, $refs]
@@ -361,6 +390,7 @@ function PlasmicRechercheCandidat2__RenderFunc(props: {
     $props,
     $ctx,
     $queries: $queries,
+    $q: {},
     $refs
   });
   const dataSourcesCtx = usePlasmicDataSourceContext();
@@ -416,24 +446,23 @@ function PlasmicRechercheCandidat2__RenderFunc(props: {
     $queries = new$Queries;
   }
 
+  const pageMetadata = generateDynamicMetadata(
+    wrapQueriesWithLoadingProxy({}),
+    $ctx
+  );
+
   const styleTokensClassNames = _useStyleTokens();
 
   return (
     <React.Fragment>
       <Head>
         <meta name="twitter:card" content="summary" />
-        <title key="title">
-          {PlasmicRechercheCandidat2.pageMetadata.title}
-        </title>
-        <meta
-          key="og:title"
-          property="og:title"
-          content={PlasmicRechercheCandidat2.pageMetadata.title}
-        />
+        <title key="title">{pageMetadata.title}</title>
+        <meta key="og:title" property="og:title" content={pageMetadata.title} />
         <meta
           key="twitter:title"
-          name="twitter:title"
-          content={PlasmicRechercheCandidat2.pageMetadata.title}
+          property="twitter:title"
+          content={pageMetadata.title}
         />
       </Head>
 
@@ -662,9 +691,8 @@ function PlasmicRechercheCandidat2__RenderFunc(props: {
                     typeof $steps["updateKeyWordsInputValue"].then ===
                       "function"
                   ) {
-                    $steps["updateKeyWordsInputValue"] = await $steps[
-                      "updateKeyWordsInputValue"
-                    ];
+                    $steps["updateKeyWordsInputValue"] =
+                      await $steps["updateKeyWordsInputValue"];
                   }
                 },
                 onIsSubmittingChange: async (...eventArgs: any) => {
@@ -785,9 +813,8 @@ function PlasmicRechercheCandidat2__RenderFunc(props: {
                               typeof $steps["updateKeyWordsTab"].then ===
                                 "function"
                             ) {
-                              $steps["updateKeyWordsTab"] = await $steps[
-                                "updateKeyWordsTab"
-                              ];
+                              $steps["updateKeyWordsTab"] =
+                                await $steps["updateKeyWordsTab"];
                             }
                           },
                           placeholder: "Mot-cl\u00e9, comp\u00e9tence...",
@@ -917,9 +944,8 @@ function PlasmicRechercheCandidat2__RenderFunc(props: {
                                 typeof $steps["updateKeyWordsTab"].then ===
                                   "function"
                               ) {
-                                $steps["updateKeyWordsTab"] = await $steps[
-                                  "updateKeyWordsTab"
-                                ];
+                                $steps["updateKeyWordsTab"] =
+                                  await $steps["updateKeyWordsTab"];
                               }
                             },
                             placeholder: "Localisation",
@@ -1149,9 +1175,8 @@ function PlasmicRechercheCandidat2__RenderFunc(props: {
                             typeof $steps["updateInputValue"].then ===
                               "function"
                           ) {
-                            $steps["updateInputValue"] = await $steps[
-                              "updateInputValue"
-                            ];
+                            $steps["updateInputValue"] =
+                              await $steps["updateInputValue"];
                           }
                         }}
                         role={"img"}
@@ -1362,7 +1387,12 @@ function PlasmicRechercheCandidat2__RenderFunc(props: {
                               [
                                 {
                                   name: "file[].userId",
-                                  initFunc: ({ $props, $state, $queries }) =>
+                                  initFunc: ({
+                                    $props,
+                                    $state,
+                                    $queries,
+                                    $q
+                                  }) =>
                                     (() => {
                                       try {
                                         return currentItem.id;
@@ -1380,7 +1410,12 @@ function PlasmicRechercheCandidat2__RenderFunc(props: {
                                 },
                                 {
                                   name: "file[].photoUrl",
-                                  initFunc: ({ $props, $state, $queries }) =>
+                                  initFunc: ({
+                                    $props,
+                                    $state,
+                                    $queries,
+                                    $q
+                                  }) =>
                                     (() => {
                                       try {
                                         return currentItem.profile_photo;
@@ -1730,9 +1765,8 @@ function PlasmicRechercheCandidat2__RenderFunc(props: {
                                     typeof $steps["updateCurrentCvUrl"].then ===
                                       "function"
                                   ) {
-                                    $steps["updateCurrentCvUrl"] = await $steps[
-                                      "updateCurrentCvUrl"
-                                    ];
+                                    $steps["updateCurrentCvUrl"] =
+                                      await $steps["updateCurrentCvUrl"];
                                   }
 
                                   $steps["updateModalIsOpen"] = true
@@ -1773,9 +1807,8 @@ function PlasmicRechercheCandidat2__RenderFunc(props: {
                                     typeof $steps["updateModalIsOpen"].then ===
                                       "function"
                                   ) {
-                                    $steps["updateModalIsOpen"] = await $steps[
-                                      "updateModalIsOpen"
-                                    ];
+                                    $steps["updateModalIsOpen"] =
+                                      await $steps["updateModalIsOpen"];
                                   }
                                 }}
                                 size={"small"}
@@ -1960,9 +1993,8 @@ function PlasmicRechercheCandidat2__RenderFunc(props: {
                                     typeof $steps["updateModalIsOpen"].then ===
                                       "function"
                                   ) {
-                                    $steps["updateModalIsOpen"] = await $steps[
-                                      "updateModalIsOpen"
-                                    ];
+                                    $steps["updateModalIsOpen"] =
+                                      await $steps["updateModalIsOpen"];
                                   }
                                 }}
                                 size={"small"}
@@ -2045,8 +2077,8 @@ function PlasmicRechercheCandidat2__RenderFunc(props: {
                                 !_par
                                   ? []
                                   : Array.isArray(_par)
-                                  ? _par
-                                  : [_par])(
+                                    ? _par
+                                    : [_par])(
                                 (() => {
                                   try {
                                     return currentItem.skill;
@@ -3182,7 +3214,9 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicRechercheCandidat2__VariantsArgs;
     args?: PlasmicRechercheCandidat2__ArgsType;
     overrides?: NodeOverridesType<T>;
-  } & Omit<PlasmicRechercheCandidat2__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
+  } &
+    // Specify variants directly as props
+    Omit<PlasmicRechercheCandidat2__VariantsArgs, ReservedPropsType> &
     // Specify args directly as props
     Omit<PlasmicRechercheCandidat2__ArgsType, ReservedPropsType> &
     // Specify overrides for each element directly as props
@@ -3298,13 +3332,11 @@ export const PlasmicRechercheCandidat2 = Object.assign(
     internalVariantProps: PlasmicRechercheCandidat2__VariantProps,
     internalArgProps: PlasmicRechercheCandidat2__ArgProps,
 
-    // Page metadata
-    pageMetadata: {
-      title: "Recherche de candidats",
-      description: "",
-      ogImageSrc: "",
-      canonical: ""
-    }
+    pageMetadata: generateDynamicMetadata(wrapQueriesWithLoadingProxy({}), {
+      pagePath: "/recherche-candidat-2",
+      searchParams: {},
+      params: {}
+    })
   }
 );
 

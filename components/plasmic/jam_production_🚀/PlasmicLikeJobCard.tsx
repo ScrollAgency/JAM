@@ -345,6 +345,7 @@ function PlasmicLikeJobCard__RenderFunc(props: {
     $props,
     $ctx,
     $queries: {},
+    $q: {},
     $refs
   });
 
@@ -786,7 +787,9 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicLikeJobCard__VariantsArgs;
     args?: PlasmicLikeJobCard__ArgsType;
     overrides?: NodeOverridesType<T>;
-  } & Omit<PlasmicLikeJobCard__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
+  } &
+    // Specify variants directly as props
+    Omit<PlasmicLikeJobCard__VariantsArgs, ReservedPropsType> &
     // Specify args directly as props
     Omit<PlasmicLikeJobCard__ArgsType, ReservedPropsType> &
     // Specify overrides for each element directly as props

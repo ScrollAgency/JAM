@@ -173,19 +173,20 @@ function PlasmicProductCard__RenderFunc(props: {
         path: "active",
         type: "private",
         variableType: "variant",
-        initFunc: ({ $props, $state, $queries, $ctx }) => $props.active
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.active
       },
       {
         path: "roundedBorder",
         type: "private",
         variableType: "variant",
-        initFunc: ({ $props, $state, $queries, $ctx }) => $props.roundedBorder
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
+          $props.roundedBorder
       },
       {
         path: "variable",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) =>
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
           (() => {
             try {
               return $props.onClick;
@@ -207,6 +208,7 @@ function PlasmicProductCard__RenderFunc(props: {
     $props,
     $ctx,
     $queries: $queries,
+    $q: {},
     $refs
   });
 
@@ -510,9 +512,8 @@ function PlasmicProductCard__RenderFunc(props: {
                         typeof $steps["invokeGlobalAction"] === "object" &&
                         typeof $steps["invokeGlobalAction"].then === "function"
                       ) {
-                        $steps["invokeGlobalAction"] = await $steps[
-                          "invokeGlobalAction"
-                        ];
+                        $steps["invokeGlobalAction"] =
+                          await $steps["invokeGlobalAction"];
                       }
                     }}
                     role={"img"}
@@ -574,7 +575,9 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicProductCard__VariantsArgs;
     args?: PlasmicProductCard__ArgsType;
     overrides?: NodeOverridesType<T>;
-  } & Omit<PlasmicProductCard__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
+  } &
+    // Specify variants directly as props
+    Omit<PlasmicProductCard__VariantsArgs, ReservedPropsType> &
     // Specify args directly as props
     Omit<PlasmicProductCard__ArgsType, ReservedPropsType> &
     // Specify overrides for each element directly as props

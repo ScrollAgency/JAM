@@ -167,7 +167,7 @@ function PlasmicFooter__RenderFunc(props: {
         path: "employeur",
         type: "private",
         variableType: "variant",
-        initFunc: ({ $props, $state, $queries, $ctx }) => $props.employeur
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.employeur
       }
     ],
     [$props, $ctx, $refs]
@@ -176,6 +176,7 @@ function PlasmicFooter__RenderFunc(props: {
     $props,
     $ctx,
     $queries: {},
+    $q: {},
     $refs
   });
 
@@ -416,9 +417,8 @@ function PlasmicFooter__RenderFunc(props: {
                 typeof $steps["goToAccueilEmployeur"] === "object" &&
                 typeof $steps["goToAccueilEmployeur"].then === "function"
               ) {
-                $steps["goToAccueilEmployeur"] = await $steps[
-                  "goToAccueilEmployeur"
-                ];
+                $steps["goToAccueilEmployeur"] =
+                  await $steps["goToAccueilEmployeur"];
               }
             }}
             roundedFull={true}
@@ -487,6 +487,7 @@ function PlasmicFooter__RenderFunc(props: {
                       ? "/accueil-employeur#services"
                       : undefined
                   }
+                  legacyBehavior={false}
                   platform={"nextjs"}
                 >
                   <React.Fragment>
@@ -519,6 +520,7 @@ function PlasmicFooter__RenderFunc(props: {
                       ? "/accueil-employeur/#offres"
                       : undefined
                   }
+                  legacyBehavior={false}
                   platform={"nextjs"}
                 >
                   <React.Fragment>
@@ -551,6 +553,7 @@ function PlasmicFooter__RenderFunc(props: {
                       ? "/accueil-employeur#faq"
                       : undefined
                   }
+                  legacyBehavior={false}
                   platform={"nextjs"}
                 >
                   <React.Fragment>
@@ -623,6 +626,7 @@ function PlasmicFooter__RenderFunc(props: {
                   )}
                   component={Link}
                   href={`/mentions-legales`}
+                  legacyBehavior={false}
                   platform={"nextjs"}
                 >
                   <React.Fragment>
@@ -673,6 +677,7 @@ function PlasmicFooter__RenderFunc(props: {
                   )}
                   component={Link}
                   href={`/cgu`}
+                  legacyBehavior={false}
                   platform={"nextjs"}
                 >
                   <React.Fragment>
@@ -702,8 +707,8 @@ function PlasmicFooter__RenderFunc(props: {
                   hasVariant(globalVariants, "screen", "mobileOnly")
                     ? true
                     : hasVariant($state, "employeur", "employeur")
-                    ? true
-                    : undefined
+                      ? true
+                      : undefined
                 }
               />
             </div>
@@ -748,6 +753,7 @@ function PlasmicFooter__RenderFunc(props: {
             )}
             component={Link}
             href={`/mentions-legales`}
+            legacyBehavior={false}
             platform={"nextjs"}
           >
             {"Mentions l\u00e9gales"}
@@ -768,6 +774,7 @@ function PlasmicFooter__RenderFunc(props: {
             )}
             component={Link}
             href={""}
+            legacyBehavior={false}
             platform={"nextjs"}
           >
             {"Politique de confidentialit\u00e9"}
@@ -788,6 +795,7 @@ function PlasmicFooter__RenderFunc(props: {
             )}
             component={Link}
             href={`/cgu`}
+            legacyBehavior={false}
             onClick={async event => {
               const $steps = {};
 
@@ -815,9 +823,8 @@ function PlasmicFooter__RenderFunc(props: {
                 typeof $steps["goToConditionsGeneralesDutilisation"].then ===
                   "function"
               ) {
-                $steps["goToConditionsGeneralesDutilisation"] = await $steps[
-                  "goToConditionsGeneralesDutilisation"
-                ];
+                $steps["goToConditionsGeneralesDutilisation"] =
+                  await $steps["goToConditionsGeneralesDutilisation"];
               }
             }}
             platform={"nextjs"}
@@ -992,7 +999,9 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicFooter__VariantsArgs;
     args?: PlasmicFooter__ArgsType;
     overrides?: NodeOverridesType<T>;
-  } & Omit<PlasmicFooter__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
+  } &
+    // Specify variants directly as props
+    Omit<PlasmicFooter__VariantsArgs, ReservedPropsType> &
     // Specify args directly as props
     Omit<PlasmicFooter__ArgsType, ReservedPropsType> &
     // Specify overrides for each element directly as props

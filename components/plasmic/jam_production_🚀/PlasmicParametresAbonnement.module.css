@@ -587,7 +587,7 @@
 .buttonSubscription:global(.__wab_instance):global(.__wab_instance) {
   max-width: 100%;
   width: 100%;
-  transform: translateX(0px) translateY(0px) translateZ(0px);
+  transform: skew(0deg, 0deg);
   min-width: 0;
   display: none;
 }
@@ -623,7 +623,7 @@
 .buttonSubscription3:global(.__wab_instance):global(.__wab_instance) {
   max-width: 100%;
   width: 100%;
-  transform: translateX(0px) translateY(0px) translateZ(0px);
+  transform: skew(0deg, 0deg);
   min-width: 0;
 }
 .svg__rXeEj {

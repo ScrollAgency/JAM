@@ -50,7 +50,7 @@
   position: relative;
   width: 40px;
   height: 40px;
-  transform: rotateX(0deg) rotateY(0deg) rotateZ(133deg);
+  transform: rotate3d(0, 0, 1, 133deg);
   flex-shrink: 0;
   display: none;
 }
@@ -108,7 +108,8 @@
 }
 .boutonDeRecherche {
   background: rgba(187, 254, 104, 1);
-  box-shadow: inset 0px 0px 0px 1px rgba(187, 254, 104, 1),
+  box-shadow:
+    inset 0px 0px 0px 1px rgba(187, 254, 104, 1),
     0px 1px 2px 0px rgba(16, 24, 40, 0.05000000074505806);
   width: auto;
   height: 32px;

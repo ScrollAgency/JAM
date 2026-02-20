@@ -93,6 +93,35 @@ import Frame1171275265Icon from "./icons/PlasmicIcon__Frame1171275265"; // plasm
 import MinusCircleIcon from "./icons/PlasmicIcon__MinusCircle"; // plasmic-import: OHiw_2IBL6V4/icon
 import PlusCircle2Icon from "./icons/PlasmicIcon__PlusCircle2"; // plasmic-import: Bk_iFwJOhfaS/icon
 
+const emptyProxy: any = new Proxy(() => "", {
+  get(_, prop) {
+    return prop === Symbol.toPrimitive ? () => "" : emptyProxy;
+  }
+});
+
+function wrapQueriesWithLoadingProxy($q: any): any {
+  return new Proxy($q, {
+    get(target, queryName) {
+      const query = target[queryName];
+      return !query || query.isLoading || !query.data ? emptyProxy : query;
+    }
+  });
+}
+
+export function generateDynamicMetadata($q: any, $ctx: any) {
+  return {
+    title: "Accueil employeur",
+
+    openGraph: {
+      title: "Accueil employeur"
+    },
+    twitter: {
+      card: "summary",
+      title: "Accueil employeur"
+    }
+  };
+}
+
 createPlasmicElementProxy;
 
 export type PlasmicAccueilEmployeur__VariantMembers = {};
@@ -350,22 +379,23 @@ function PlasmicAccueilEmployeur__RenderFunc(props: {
 
   const globalVariants = _useGlobalVariants();
 
+  const pageMetadata = generateDynamicMetadata(
+    wrapQueriesWithLoadingProxy({}),
+    $ctx
+  );
+
   const styleTokensClassNames = _useStyleTokens();
 
   return (
     <React.Fragment>
       <Head>
         <meta name="twitter:card" content="summary" />
-        <title key="title">{PlasmicAccueilEmployeur.pageMetadata.title}</title>
-        <meta
-          key="og:title"
-          property="og:title"
-          content={PlasmicAccueilEmployeur.pageMetadata.title}
-        />
+        <title key="title">{pageMetadata.title}</title>
+        <meta key="og:title" property="og:title" content={pageMetadata.title} />
         <meta
           key="twitter:title"
-          name="twitter:title"
-          content={PlasmicAccueilEmployeur.pageMetadata.title}
+          property="twitter:title"
+          content={pageMetadata.title}
         />
       </Head>
 
@@ -413,6 +443,7 @@ function PlasmicAccueilEmployeur__RenderFunc(props: {
                       )}
                       component={Link}
                       href={"#"}
+                      legacyBehavior={false}
                       platform={"nextjs"}
                     >
                       <PlasmicImg__
@@ -650,6 +681,7 @@ function PlasmicAccueilEmployeur__RenderFunc(props: {
                       )}
                       component={Link}
                       href={"/"}
+                      legacyBehavior={false}
                       platform={"nextjs"}
                     >
                       {"Home"}
@@ -663,6 +695,7 @@ function PlasmicAccueilEmployeur__RenderFunc(props: {
                       )}
                       component={Link}
                       href={"/"}
+                      legacyBehavior={false}
                       platform={"nextjs"}
                     >
                       {"About"}
@@ -676,6 +709,7 @@ function PlasmicAccueilEmployeur__RenderFunc(props: {
                       )}
                       component={Link}
                       href={"/"}
+                      legacyBehavior={false}
                       platform={"nextjs"}
                     >
                       {"Contact"}
@@ -5416,13 +5450,11 @@ export const PlasmicAccueilEmployeur = Object.assign(
     internalVariantProps: PlasmicAccueilEmployeur__VariantProps,
     internalArgProps: PlasmicAccueilEmployeur__ArgProps,
 
-    // Page metadata
-    pageMetadata: {
-      title: "Accueil employeur",
-      description: "",
-      ogImageSrc: "",
-      canonical: ""
-    }
+    pageMetadata: generateDynamicMetadata(wrapQueriesWithLoadingProxy({}), {
+      pagePath: "/accueil-employeur",
+      searchParams: {},
+      params: {}
+    })
   }
 );
 

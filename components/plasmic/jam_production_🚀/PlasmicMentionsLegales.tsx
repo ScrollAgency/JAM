@@ -77,6 +77,35 @@ import DeleteSvgrepoComSvgIcon from "./icons/PlasmicIcon__DeleteSvgrepoComSvg"; 
 import CircleIcon from "./icons/PlasmicIcon__Circle"; // plasmic-import: je95h6YoQ2jE/icon
 import GroupIcon from "./icons/PlasmicIcon__Group"; // plasmic-import: yIYn4o5HgDaM/icon
 
+const emptyProxy: any = new Proxy(() => "", {
+  get(_, prop) {
+    return prop === Symbol.toPrimitive ? () => "" : emptyProxy;
+  }
+});
+
+function wrapQueriesWithLoadingProxy($q: any): any {
+  return new Proxy($q, {
+    get(target, queryName) {
+      const query = target[queryName];
+      return !query || query.isLoading || !query.data ? emptyProxy : query;
+    }
+  });
+}
+
+export function generateDynamicMetadata($q: any, $ctx: any) {
+  return {
+    title: "Mentions légales",
+
+    openGraph: {
+      title: "Mentions légales"
+    },
+    twitter: {
+      card: "summary",
+      title: "Mentions légales"
+    }
+  };
+}
+
 createPlasmicElementProxy;
 
 export type PlasmicMentionsLegales__VariantMembers = {};
@@ -234,22 +263,23 @@ function PlasmicMentionsLegales__RenderFunc(props: {
 
   const globalVariants = _useGlobalVariants();
 
+  const pageMetadata = generateDynamicMetadata(
+    wrapQueriesWithLoadingProxy({}),
+    $ctx
+  );
+
   const styleTokensClassNames = _useStyleTokens();
 
   return (
     <React.Fragment>
       <Head>
         <meta name="twitter:card" content="summary" />
-        <title key="title">{PlasmicMentionsLegales.pageMetadata.title}</title>
-        <meta
-          key="og:title"
-          property="og:title"
-          content={PlasmicMentionsLegales.pageMetadata.title}
-        />
+        <title key="title">{pageMetadata.title}</title>
+        <meta key="og:title" property="og:title" content={pageMetadata.title} />
         <meta
           key="twitter:title"
-          name="twitter:title"
-          content={PlasmicMentionsLegales.pageMetadata.title}
+          property="twitter:title"
+          content={pageMetadata.title}
         />
       </Head>
 
@@ -297,6 +327,7 @@ function PlasmicMentionsLegales__RenderFunc(props: {
                       )}
                       component={Link}
                       href={"#"}
+                      legacyBehavior={false}
                       platform={"nextjs"}
                     >
                       <PlasmicImg__
@@ -506,6 +537,7 @@ function PlasmicMentionsLegales__RenderFunc(props: {
                       )}
                       component={Link}
                       href={"/"}
+                      legacyBehavior={false}
                       platform={"nextjs"}
                     >
                       {"Home"}
@@ -519,6 +551,7 @@ function PlasmicMentionsLegales__RenderFunc(props: {
                       )}
                       component={Link}
                       href={"/"}
+                      legacyBehavior={false}
                       platform={"nextjs"}
                     >
                       {"About"}
@@ -532,6 +565,7 @@ function PlasmicMentionsLegales__RenderFunc(props: {
                       )}
                       component={Link}
                       href={"/"}
+                      legacyBehavior={false}
                       platform={"nextjs"}
                     >
                       {"Contact"}
@@ -740,9 +774,8 @@ function PlasmicMentionsLegales__RenderFunc(props: {
                           typeof $steps["goToConnexion"] === "object" &&
                           typeof $steps["goToConnexion"].then === "function"
                         ) {
-                          $steps["goToConnexion"] = await $steps[
-                            "goToConnexion"
-                          ];
+                          $steps["goToConnexion"] =
+                            await $steps["goToConnexion"];
                         }
                       }}
                     />
@@ -3494,7 +3527,9 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicMentionsLegales__VariantsArgs;
     args?: PlasmicMentionsLegales__ArgsType;
     overrides?: NodeOverridesType<T>;
-  } & Omit<PlasmicMentionsLegales__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
+  } &
+    // Specify variants directly as props
+    Omit<PlasmicMentionsLegales__VariantsArgs, ReservedPropsType> &
     // Specify args directly as props
     Omit<PlasmicMentionsLegales__ArgsType, ReservedPropsType> &
     // Specify overrides for each element directly as props
@@ -3646,13 +3681,11 @@ export const PlasmicMentionsLegales = Object.assign(
     internalVariantProps: PlasmicMentionsLegales__VariantProps,
     internalArgProps: PlasmicMentionsLegales__ArgProps,
 
-    // Page metadata
-    pageMetadata: {
-      title: "Mentions légales",
-      description: "",
-      ogImageSrc: "",
-      canonical: ""
-    }
+    pageMetadata: generateDynamicMetadata(wrapQueriesWithLoadingProxy({}), {
+      pagePath: "/mentions-legales",
+      searchParams: {},
+      params: {}
+    })
   }
 );
 

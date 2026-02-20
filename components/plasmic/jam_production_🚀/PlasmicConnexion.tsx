@@ -71,6 +71,35 @@ import sty from "./PlasmicConnexion.module.css"; // plasmic-import: ZGZ6sFcj1aLn
 
 import PictogramIcon from "./icons/PlasmicIcon__Pictogram"; // plasmic-import: KlZQiGxQTluF/icon
 
+const emptyProxy: any = new Proxy(() => "", {
+  get(_, prop) {
+    return prop === Symbol.toPrimitive ? () => "" : emptyProxy;
+  }
+});
+
+function wrapQueriesWithLoadingProxy($q: any): any {
+  return new Proxy($q, {
+    get(target, queryName) {
+      const query = target[queryName];
+      return !query || query.isLoading || !query.data ? emptyProxy : query;
+    }
+  });
+}
+
+export function generateDynamicMetadata($q: any, $ctx: any) {
+  return {
+    title: "Connexion",
+
+    openGraph: {
+      title: "Connexion"
+    },
+    twitter: {
+      card: "summary",
+      title: "Connexion"
+    }
+  };
+}
+
 createPlasmicElementProxy;
 
 export type PlasmicConnexion__VariantMembers = {};
@@ -148,13 +177,13 @@ function PlasmicConnexion__RenderFunc(props: {
         path: "loginForm.email",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => ""
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ""
       },
       {
         path: "loginForm.password",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => ""
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ""
       }
     ],
     [$props, $ctx, $refs]
@@ -163,8 +192,14 @@ function PlasmicConnexion__RenderFunc(props: {
     $props,
     $ctx,
     $queries: {},
+    $q: {},
     $refs
   });
+
+  const pageMetadata = generateDynamicMetadata(
+    wrapQueriesWithLoadingProxy({}),
+    $ctx
+  );
 
   const styleTokensClassNames = _useStyleTokens();
 
@@ -172,16 +207,12 @@ function PlasmicConnexion__RenderFunc(props: {
     <React.Fragment>
       <Head>
         <meta name="twitter:card" content="summary" />
-        <title key="title">{PlasmicConnexion.pageMetadata.title}</title>
-        <meta
-          key="og:title"
-          property="og:title"
-          content={PlasmicConnexion.pageMetadata.title}
-        />
+        <title key="title">{pageMetadata.title}</title>
+        <meta key="og:title" property="og:title" content={pageMetadata.title} />
         <meta
           key="twitter:title"
-          name="twitter:title"
-          content={PlasmicConnexion.pageMetadata.title}
+          property="twitter:title"
+          content={pageMetadata.title}
         />
       </Head>
 
@@ -398,9 +429,8 @@ function PlasmicConnexion__RenderFunc(props: {
                     typeof $steps["invokeGlobalAction"] === "object" &&
                     typeof $steps["invokeGlobalAction"].then === "function"
                   ) {
-                    $steps["invokeGlobalAction"] = await $steps[
-                      "invokeGlobalAction"
-                    ];
+                    $steps["invokeGlobalAction"] =
+                      await $steps["invokeGlobalAction"];
                   }
                 }}
                 onPasswordChange={async (...eventArgs: any) => {
@@ -467,9 +497,8 @@ function PlasmicConnexion__RenderFunc(props: {
                     typeof $steps["invokeGlobalAction"] === "object" &&
                     typeof $steps["invokeGlobalAction"].then === "function"
                   ) {
-                    $steps["invokeGlobalAction"] = await $steps[
-                      "invokeGlobalAction"
-                    ];
+                    $steps["invokeGlobalAction"] =
+                      await $steps["invokeGlobalAction"];
                   }
                 }}
                 password={generateStateValueProp($state, [
@@ -480,7 +509,7 @@ function PlasmicConnexion__RenderFunc(props: {
                 placeholderEmail={"Entrez votre email"}
                 placeholderPassword={"Entrez votre mot de passe"}
                 redirectTo={"https://job-around-me.com/auth/oauth-callback"}
-                showAppleButton={false}
+                showAppleButton={true}
                 showBottomSignupLink={true}
                 showCreateAccount={false}
                 showGoogleButton={true}
@@ -509,9 +538,9 @@ function PlasmicConnexion__RenderFunc(props: {
                             "Company"
                             ? "offre-employeur"
                             : $ctx.SupabaseUser.user.user_metadata.role ===
-                              "Admin"
-                            ? "offre_admin"
-                            : "/";
+                                "Admin"
+                              ? "offre_admin"
+                              : "/";
                         } catch (e) {
                           if (
                             e instanceof TypeError ||
@@ -647,7 +676,9 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicConnexion__VariantsArgs;
     args?: PlasmicConnexion__ArgsType;
     overrides?: NodeOverridesType<T>;
-  } & Omit<PlasmicConnexion__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
+  } &
+    // Specify variants directly as props
+    Omit<PlasmicConnexion__VariantsArgs, ReservedPropsType> &
     // Specify args directly as props
     Omit<PlasmicConnexion__ArgsType, ReservedPropsType> &
     // Specify overrides for each element directly as props
@@ -712,13 +743,11 @@ export const PlasmicConnexion = Object.assign(
     internalVariantProps: PlasmicConnexion__VariantProps,
     internalArgProps: PlasmicConnexion__ArgProps,
 
-    // Page metadata
-    pageMetadata: {
-      title: "Connexion",
-      description: "",
-      ogImageSrc: "",
-      canonical: ""
-    }
+    pageMetadata: generateDynamicMetadata(wrapQueriesWithLoadingProxy({}), {
+      pagePath: "/login",
+      searchParams: {},
+      params: {}
+    })
   }
 );
 

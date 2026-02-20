@@ -172,7 +172,7 @@ function PlasmicAvatar__RenderFunc(props: {
         path: "url",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) =>
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
           (() => {
             try {
               return $queries.query.signedUrl;
@@ -194,6 +194,7 @@ function PlasmicAvatar__RenderFunc(props: {
     $props,
     $ctx,
     $queries: $queries,
+    $q: {},
     $refs
   });
 
@@ -292,7 +293,9 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicAvatar__VariantsArgs;
     args?: PlasmicAvatar__ArgsType;
     overrides?: NodeOverridesType<T>;
-  } & Omit<PlasmicAvatar__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
+  } &
+    // Specify variants directly as props
+    Omit<PlasmicAvatar__VariantsArgs, ReservedPropsType> &
     // Specify args directly as props
     Omit<PlasmicAvatar__ArgsType, ReservedPropsType> &
     // Specify overrides for each element directly as props

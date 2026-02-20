@@ -169,7 +169,7 @@ function PlasmicRadioGroup__RenderFunc(props: {
         path: "ariaRadioGroup.value",
         type: "readonly",
         variableType: "array",
-        initFunc: ({ $props, $state, $queries, $ctx }) =>
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
           $props["defaultValue"],
 
         onChangeProp: "onChange"
@@ -181,6 +181,7 @@ function PlasmicRadioGroup__RenderFunc(props: {
     $props,
     $ctx,
     $queries: {},
+    $q: {},
     $refs
   });
 
@@ -308,7 +309,9 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicRadioGroup__VariantsArgs;
     args?: PlasmicRadioGroup__ArgsType;
     overrides?: NodeOverridesType<T>;
-  } & Omit<PlasmicRadioGroup__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
+  } &
+    // Specify variants directly as props
+    Omit<PlasmicRadioGroup__VariantsArgs, ReservedPropsType> &
     // Specify args directly as props
     Omit<PlasmicRadioGroup__ArgsType, ReservedPropsType> &
     // Specify overrides for each element directly as props

@@ -187,6 +187,7 @@ function PlasmicSwitch2__RenderFunc(props: {
     $props,
     $ctx,
     $queries: {},
+    $q: {},
     $refs
   });
 
@@ -311,7 +312,9 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicSwitch2__VariantsArgs;
     args?: PlasmicSwitch2__ArgsType;
     overrides?: NodeOverridesType<T>;
-  } & Omit<PlasmicSwitch2__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
+  } &
+    // Specify variants directly as props
+    Omit<PlasmicSwitch2__VariantsArgs, ReservedPropsType> &
     // Specify args directly as props
     Omit<PlasmicSwitch2__ArgsType, ReservedPropsType> &
     // Specify overrides for each element directly as props

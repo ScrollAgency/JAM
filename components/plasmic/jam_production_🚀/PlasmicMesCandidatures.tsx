@@ -87,6 +87,35 @@ import CircleIcon from "./icons/PlasmicIcon__Circle"; // plasmic-import: je95h6Y
 import GroupIcon from "./icons/PlasmicIcon__Group"; // plasmic-import: yIYn4o5HgDaM/icon
 import IconPhBriefcaseIcon from "./icons/PlasmicIcon__IconPhBriefcase"; // plasmic-import: E-c3RGwvaig6/icon
 
+const emptyProxy: any = new Proxy(() => "", {
+  get(_, prop) {
+    return prop === Symbol.toPrimitive ? () => "" : emptyProxy;
+  }
+});
+
+function wrapQueriesWithLoadingProxy($q: any): any {
+  return new Proxy($q, {
+    get(target, queryName) {
+      const query = target[queryName];
+      return !query || query.isLoading || !query.data ? emptyProxy : query;
+    }
+  });
+}
+
+export function generateDynamicMetadata($q: any, $ctx: any) {
+  return {
+    title: "Mes candidatures",
+
+    openGraph: {
+      title: "Mes candidatures"
+    },
+    twitter: {
+      card: "summary",
+      title: "Mes candidatures"
+    }
+  };
+}
+
 createPlasmicElementProxy;
 
 export type PlasmicMesCandidatures__VariantMembers = {};
@@ -172,7 +201,7 @@ function PlasmicMesCandidatures__RenderFunc(props: {
         path: "idUser",
         type: "private",
         variableType: "number",
-        initFunc: ({ $props, $state, $queries, $ctx }) =>
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
           (() => {
             try {
               return undefined;
@@ -191,19 +220,19 @@ function PlasmicMesCandidatures__RenderFunc(props: {
         path: "pageChange",
         type: "private",
         variableType: "number",
-        initFunc: ({ $props, $state, $queries, $ctx }) => 1
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => 1
       },
       {
         path: "sidebar.disableLinks",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => true
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => true
       },
       {
         path: "sidebar.role",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => "candidat"
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => "candidat"
       }
     ],
     [$props, $ctx, $refs]
@@ -212,6 +241,7 @@ function PlasmicMesCandidatures__RenderFunc(props: {
     $props,
     $ctx,
     $queries: $queries,
+    $q: {},
     $refs
   });
   const dataSourcesCtx = usePlasmicDataSourceContext();
@@ -237,22 +267,23 @@ function PlasmicMesCandidatures__RenderFunc(props: {
     $queries = new$Queries;
   }
 
+  const pageMetadata = generateDynamicMetadata(
+    wrapQueriesWithLoadingProxy({}),
+    $ctx
+  );
+
   const styleTokensClassNames = _useStyleTokens();
 
   return (
     <React.Fragment>
       <Head>
         <meta name="twitter:card" content="summary" />
-        <title key="title">{PlasmicMesCandidatures.pageMetadata.title}</title>
-        <meta
-          key="og:title"
-          property="og:title"
-          content={PlasmicMesCandidatures.pageMetadata.title}
-        />
+        <title key="title">{pageMetadata.title}</title>
+        <meta key="og:title" property="og:title" content={pageMetadata.title} />
         <meta
           key="twitter:title"
-          name="twitter:title"
-          content={PlasmicMesCandidatures.pageMetadata.title}
+          property="twitter:title"
+          content={pageMetadata.title}
         />
       </Head>
 
@@ -1011,13 +1042,11 @@ export const PlasmicMesCandidatures = Object.assign(
     internalVariantProps: PlasmicMesCandidatures__VariantProps,
     internalArgProps: PlasmicMesCandidatures__ArgProps,
 
-    // Page metadata
-    pageMetadata: {
-      title: "Mes candidatures",
-      description: "",
-      ogImageSrc: "",
-      canonical: ""
-    }
+    pageMetadata: generateDynamicMetadata(wrapQueriesWithLoadingProxy({}), {
+      pagePath: "/candidatures",
+      searchParams: {},
+      params: {}
+    })
   }
 );
 

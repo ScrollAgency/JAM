@@ -208,43 +208,43 @@ function PlasmicButton3__RenderFunc(props: {
         path: "color",
         type: "private",
         variableType: "variant",
-        initFunc: ({ $props, $state, $queries, $ctx }) => $props.color
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.color
       },
       {
         path: "size",
         type: "private",
         variableType: "variant",
-        initFunc: ({ $props, $state, $queries, $ctx }) => $props.size
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.size
       },
       {
         path: "iconStart",
         type: "private",
         variableType: "variant",
-        initFunc: ({ $props, $state, $queries, $ctx }) => $props.iconStart
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.iconStart
       },
       {
         path: "iconEnd",
         type: "private",
         variableType: "variant",
-        initFunc: ({ $props, $state, $queries, $ctx }) => $props.iconEnd
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.iconEnd
       },
       {
         path: "roundedFull",
         type: "private",
         variableType: "variant",
-        initFunc: ({ $props, $state, $queries, $ctx }) => $props.roundedFull
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.roundedFull
       },
       {
         path: "type",
         type: "private",
         variableType: "variant",
-        initFunc: ({ $props, $state, $queries, $ctx }) => $props.type
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.type
       },
       {
         path: "flatSide",
         type: "private",
         variableType: "variant",
-        initFunc: ({ $props, $state, $queries, $ctx }) => $props.flatSide
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.flatSide
       }
     ],
     [$props, $ctx, $refs]
@@ -253,6 +253,7 @@ function PlasmicButton3__RenderFunc(props: {
     $props,
     $ctx,
     $queries: {},
+    $q: {},
     $refs
   });
 
@@ -376,10 +377,10 @@ function PlasmicButton3__RenderFunc(props: {
         hasVariant($state, "type", "bordered") && $ccVariants["pressed"]
           ? true
           : hasVariant($state, "type", "bordered") && $ccVariants["hovered"]
-          ? true
-          : hasVariant($state, "type", "soft")
-          ? true
-          : false
+            ? true
+            : hasVariant($state, "type", "soft")
+              ? true
+              : false
       ) ? (
         <div
           data-plasmic-name={"softBackground"}
@@ -971,7 +972,9 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicButton3__VariantsArgs;
     args?: PlasmicButton3__ArgsType;
     overrides?: NodeOverridesType<T>;
-  } & Omit<PlasmicButton3__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
+  } &
+    // Specify variants directly as props
+    Omit<PlasmicButton3__VariantsArgs, ReservedPropsType> &
     // Specify args directly as props
     Omit<PlasmicButton3__ArgsType, ReservedPropsType> &
     // Specify overrides for each element directly as props

@@ -162,7 +162,7 @@ function PlasmicNavBarBottBtn__RenderFunc(props: {
         path: "type",
         type: "private",
         variableType: "variant",
-        initFunc: ({ $props, $state, $queries, $ctx }) => $props.type
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.type
       }
     ],
     [$props, $ctx, $refs]
@@ -171,6 +171,7 @@ function PlasmicNavBarBottBtn__RenderFunc(props: {
     $props,
     $ctx,
     $queries: {},
+    $q: {},
     $refs
   });
 
@@ -194,6 +195,7 @@ function PlasmicNavBarBottBtn__RenderFunc(props: {
       )}
       component={Link}
       href={`/candidatures`}
+      legacyBehavior={false}
       platform={"nextjs"}
     >
       <div
@@ -342,7 +344,9 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicNavBarBottBtn__VariantsArgs;
     args?: PlasmicNavBarBottBtn__ArgsType;
     overrides?: NodeOverridesType<T>;
-  } & Omit<PlasmicNavBarBottBtn__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
+  } &
+    // Specify variants directly as props
+    Omit<PlasmicNavBarBottBtn__VariantsArgs, ReservedPropsType> &
     // Specify args directly as props
     Omit<PlasmicNavBarBottBtn__ArgsType, ReservedPropsType> &
     // Specify overrides for each element directly as props

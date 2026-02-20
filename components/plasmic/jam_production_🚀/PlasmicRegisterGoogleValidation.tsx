@@ -76,6 +76,35 @@ import sty from "./PlasmicRegisterGoogleValidation.module.css"; // plasmic-impor
 
 import PictogramIcon from "./icons/PlasmicIcon__Pictogram"; // plasmic-import: KlZQiGxQTluF/icon
 
+const emptyProxy: any = new Proxy(() => "", {
+  get(_, prop) {
+    return prop === Symbol.toPrimitive ? () => "" : emptyProxy;
+  }
+});
+
+function wrapQueriesWithLoadingProxy($q: any): any {
+  return new Proxy($q, {
+    get(target, queryName) {
+      const query = target[queryName];
+      return !query || query.isLoading || !query.data ? emptyProxy : query;
+    }
+  });
+}
+
+export function generateDynamicMetadata($q: any, $ctx: any) {
+  return {
+    title: "Inscription",
+
+    openGraph: {
+      title: "Inscription"
+    },
+    twitter: {
+      card: "summary",
+      title: "Inscription"
+    }
+  };
+}
+
 createPlasmicElementProxy;
 
 export type PlasmicRegisterGoogleValidation__VariantMembers = {};
@@ -155,24 +184,23 @@ function PlasmicRegisterGoogleValidation__RenderFunc(props: {
   const dataSourcesCtx = usePlasmicDataSourceContext();
   const plasmicInvalidate = usePlasmicInvalidate();
 
+  const pageMetadata = generateDynamicMetadata(
+    wrapQueriesWithLoadingProxy({}),
+    $ctx
+  );
+
   const styleTokensClassNames = _useStyleTokens();
 
   return (
     <React.Fragment>
       <Head>
         <meta name="twitter:card" content="summary" />
-        <title key="title">
-          {PlasmicRegisterGoogleValidation.pageMetadata.title}
-        </title>
-        <meta
-          key="og:title"
-          property="og:title"
-          content={PlasmicRegisterGoogleValidation.pageMetadata.title}
-        />
+        <title key="title">{pageMetadata.title}</title>
+        <meta key="og:title" property="og:title" content={pageMetadata.title} />
         <meta
           key="twitter:title"
-          name="twitter:title"
-          content={PlasmicRegisterGoogleValidation.pageMetadata.title}
+          property="twitter:title"
+          content={pageMetadata.title}
         />
       </Head>
 
@@ -471,9 +499,8 @@ function PlasmicRegisterGoogleValidation__RenderFunc(props: {
                       typeof $steps["goToParametresCandidat"].then ===
                         "function"
                     ) {
-                      $steps["goToParametresCandidat"] = await $steps[
-                        "goToParametresCandidat"
-                      ];
+                      $steps["goToParametresCandidat"] =
+                        await $steps["goToParametresCandidat"];
                     }
                   }}
                   ref={ref => {
@@ -614,9 +641,8 @@ function PlasmicRegisterGoogleValidation__RenderFunc(props: {
                       typeof $steps["goToOffreEmployeur"] === "object" &&
                       typeof $steps["goToOffreEmployeur"].then === "function"
                     ) {
-                      $steps["goToOffreEmployeur"] = await $steps[
-                        "goToOffreEmployeur"
-                      ];
+                      $steps["goToOffreEmployeur"] =
+                        await $steps["goToOffreEmployeur"];
                     }
                   }}
                   ref={ref => {
@@ -749,7 +775,9 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicRegisterGoogleValidation__VariantsArgs;
     args?: PlasmicRegisterGoogleValidation__ArgsType;
     overrides?: NodeOverridesType<T>;
-  } & Omit<PlasmicRegisterGoogleValidation__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
+  } &
+    // Specify variants directly as props
+    Omit<PlasmicRegisterGoogleValidation__VariantsArgs, ReservedPropsType> &
     // Specify args directly as props
     Omit<PlasmicRegisterGoogleValidation__ArgsType, ReservedPropsType> &
     // Specify overrides for each element directly as props
@@ -820,13 +848,11 @@ export const PlasmicRegisterGoogleValidation = Object.assign(
     internalVariantProps: PlasmicRegisterGoogleValidation__VariantProps,
     internalArgProps: PlasmicRegisterGoogleValidation__ArgProps,
 
-    // Page metadata
-    pageMetadata: {
-      title: "Inscription",
-      description: "",
-      ogImageSrc: "",
-      canonical: ""
-    }
+    pageMetadata: generateDynamicMetadata(wrapQueriesWithLoadingProxy({}), {
+      pagePath: "/register-validation",
+      searchParams: {},
+      params: {}
+    })
   }
 );
 
